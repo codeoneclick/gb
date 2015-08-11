@@ -165,6 +165,10 @@
 		21B4059C1B7A0EB3003382AB /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B405991B7A0EB3003382AB /* common.cpp */; };
 		21B405A01B7A1031003382AB /* gl_commands.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4059D1B7A0EE9003382AB /* gl_commands.hpp */; };
 		21B405A11B7A1031003382AB /* gl_commands.hpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4059D1B7A0EE9003382AB /* gl_commands.hpp */; };
+		21B405BC1B7A413C003382AB /* ces_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B405BA1B7A413C003382AB /* ces_entity.cpp */; };
+		21B405BD1B7A413C003382AB /* ces_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B405BA1B7A413C003382AB /* ces_entity.cpp */; };
+		21B405C01B7A4154003382AB /* ces_base_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B405BE1B7A4154003382AB /* ces_base_component.cpp */; };
+		21B405C11B7A4154003382AB /* ces_base_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B405BE1B7A4154003382AB /* ces_base_component.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -562,6 +566,11 @@
 		21B4059D1B7A0EE9003382AB /* gl_commands.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = gl_commands.hpp; path = sources/gl_commands.hpp; sourceTree = "<group>"; };
 		21B4059F1B7A0FDC003382AB /* built_in_shaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = built_in_shaders.h; path = sources/built_in_shaders.h; sourceTree = "<group>"; };
 		21B405A21B7A3362003382AB /* gl_statistics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = gl_statistics.hpp; path = sources/gl_statistics.hpp; sourceTree = "<group>"; };
+		21B405BA1B7A413C003382AB /* ces_entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_entity.cpp; path = sources/ces_entity.cpp; sourceTree = "<group>"; };
+		21B405BB1B7A413C003382AB /* ces_entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_entity.h; path = sources/ces_entity.h; sourceTree = "<group>"; };
+		21B405BE1B7A4154003382AB /* ces_base_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_base_component.cpp; path = sources/ces_base_component.cpp; sourceTree = "<group>"; };
+		21B405BF1B7A4154003382AB /* ces_base_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_base_component.h; path = sources/ces_base_component.h; sourceTree = "<group>"; };
+		21B405C21B7A41D6003382AB /* ces_component_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_component_types.h; path = sources/ces_component_types.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -603,6 +612,11 @@
 		21B402D71B7A0864003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				21B405B71B7A4068003382AB /* ces */,
+				21B405B61B7A3BEA003382AB /* gesture recognizers managment */,
+				21B405B51B7A3BD8003382AB /* thread pool managment */,
+				21B405B41B7A3BCC003382AB /* collision managment */,
+				21B405B31B7A3BB1003382AB /* state machine managment */,
 				21B405B21B7A39E2003382AB /* scene graph managment */,
 				21B405961B7A0DC9003382AB /* common */,
 				21B4059E1B7A0F93003382AB /* built-in shaders */,
@@ -1166,6 +1180,46 @@
 			name = "scene graph managment";
 			sourceTree = "<group>";
 		};
+		21B405B31B7A3BB1003382AB /* state machine managment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "state machine managment";
+			sourceTree = "<group>";
+		};
+		21B405B41B7A3BCC003382AB /* collision managment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "collision managment";
+			sourceTree = "<group>";
+		};
+		21B405B51B7A3BD8003382AB /* thread pool managment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "thread pool managment";
+			sourceTree = "<group>";
+		};
+		21B405B61B7A3BEA003382AB /* gesture recognizers managment */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "gesture recognizers managment";
+			sourceTree = "<group>";
+		};
+		21B405B71B7A4068003382AB /* ces */ = {
+			isa = PBXGroup;
+			children = (
+				21B405BB1B7A413C003382AB /* ces_entity.h */,
+				21B405BA1B7A413C003382AB /* ces_entity.cpp */,
+				21B405C21B7A41D6003382AB /* ces_component_types.h */,
+				21B405BF1B7A4154003382AB /* ces_base_component.h */,
+				21B405BE1B7A4154003382AB /* ces_base_component.cpp */,
+			);
+			name = ces;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1294,6 +1348,7 @@
 				21B405131B7A0A88003382AB /* trees.c in Sources */,
 				21B404DA1B7A0A88003382AB /* b2Timer.cpp in Sources */,
 				21B4059B1B7A0EB3003382AB /* common.cpp in Sources */,
+				21B405BC1B7A413C003382AB /* ces_entity.cpp in Sources */,
 				21B404F01B7A0A88003382AB /* b2PrismaticJoint.cpp in Sources */,
 				21B4050F1B7A0A88003382AB /* infback.c in Sources */,
 				21B404EC1B7A0A88003382AB /* b2GearJoint.cpp in Sources */,
@@ -1310,6 +1365,7 @@
 				21B404E61B7A0A88003382AB /* b2EdgeAndCircleContact.cpp in Sources */,
 				21B404E81B7A0A88003382AB /* b2PolygonAndCircleContact.cpp in Sources */,
 				21B404EA1B7A0A88003382AB /* b2DistanceJoint.cpp in Sources */,
+				21B405C01B7A4154003382AB /* ces_base_component.cpp in Sources */,
 				21B404F81B7A0A88003382AB /* pngerror.c in Sources */,
 				21B404CF1B7A0A88003382AB /* b2DynamicTree.cpp in Sources */,
 				21B404D31B7A0A88003382AB /* b2EdgeShape.cpp in Sources */,
@@ -1380,6 +1436,7 @@
 				21B4055B1B7A0AFA003382AB /* trees.c in Sources */,
 				21B4055C1B7A0AFA003382AB /* b2Timer.cpp in Sources */,
 				21B4059C1B7A0EB3003382AB /* common.cpp in Sources */,
+				21B405BD1B7A413C003382AB /* ces_entity.cpp in Sources */,
 				21B4055D1B7A0AFA003382AB /* b2PrismaticJoint.cpp in Sources */,
 				21B4055E1B7A0AFA003382AB /* infback.c in Sources */,
 				21B4055F1B7A0AFA003382AB /* b2GearJoint.cpp in Sources */,
@@ -1396,6 +1453,7 @@
 				21B4056A1B7A0AFA003382AB /* b2EdgeAndCircleContact.cpp in Sources */,
 				21B4056B1B7A0AFA003382AB /* b2PolygonAndCircleContact.cpp in Sources */,
 				21B4056C1B7A0AFA003382AB /* b2DistanceJoint.cpp in Sources */,
+				21B405C11B7A4154003382AB /* ces_base_component.cpp in Sources */,
 				21B4056D1B7A0AFA003382AB /* pngerror.c in Sources */,
 				21B4056E1B7A0AFA003382AB /* b2DynamicTree.cpp in Sources */,
 				21B4056F1B7A0AFA003382AB /* b2EdgeShape.cpp in Sources */,
