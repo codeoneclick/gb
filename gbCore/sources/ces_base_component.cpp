@@ -10,6 +10,17 @@
 
 namespace gb
 {
+    ces_base_component_interface::ces_base_component_interface(void) :
+    m_type(e_ces_component_type_undefined)
+    {
+        
+    }
+    
+    e_ces_component_type ces_base_component_interface::get_type(void) const
+    {
+        return m_type;
+    }
+    
     void ces_base_component_interface::on_component_added(const std::shared_ptr<ces_base_component>& component)
     {
         

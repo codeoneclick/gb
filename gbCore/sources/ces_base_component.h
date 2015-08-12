@@ -21,13 +21,17 @@ namespace gb
         
     protected:
         
+        e_ces_component_type m_type;
+        
         virtual void on_component_added(const std::shared_ptr<ces_base_component>& component);
         virtual void on_component_removed(const std::shared_ptr<ces_base_component>& component);
         
     public:
         
-        ces_base_component_interface(void) = default;
+        ces_base_component_interface(void);
         virtual ~ces_base_component_interface(void) = default;
+        
+        e_ces_component_type get_type(void) const;
     };
     
     class ces_base_component : public std::enable_shared_from_this<ces_base_component>

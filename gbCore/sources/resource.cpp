@@ -7,114 +7,37 @@
 //
 
 #include "resource.h"
+#include "resource_status.h"
 
 namespace gb
 {
-    resource_interface::~resource_interface(void)
-    {
-        m_resources.clear();
-        m_listeners.clear();
-    }
-    
-    void resource_interface::on_resource_loaded(const std::shared_ptr<resource> &resource, bool success)
-    {
-        if(success)
-        {
-            m_resources.insert(resource);
-        }
-        std::for_each(m_listeners.begin(), m_listeners.end(), [resource, success](std::shared_ptr<gb::resource_interface> listener){
-            listener->on_resource_loaded(resource, success);
-        });
-    }
-    
-    void resource_interface::add_listener(const std::shared_ptr<resource_interface> &listener)
-    {
-        m_listeners.insert(listener);
-        std::for_each(m_resources.begin(), m_resources.end(), [listener](std::shared_ptr<resource> resource){
-            listener->on_resource_loaded(resource, true);
-        });
-    }
-    
-    void IResourceLoadingHandler::removeResourceLoadingCommand(const RESOURCE_LOADING_COMMAND& command)
-    {
-    }
-    
-    IResourceData::IResourceData(E_RESOURCE_DATA_CLASS resourceDataClass) :
-    m_resourceDataClass(resourceDataClass)
-    {
-        
-    }
-    
-    IResourceData::~IResourceData(void)
-    {
-        
-    }
-    
-    E_RESOURCE_DATA_CLASS IResourceData::getResourceDataClass(void) const
-    {
-        return m_resourceDataClass;
-    }
-    
-    IResource::IResource(E_RESOURCE_CLASS resourceClass, const std::string& guid) :
-    m_resourceClass(resourceClass),
+    resource::resource(e_resource_type type, const std::string& guid) :
+    m_type(type),
     m_guid(guid),
-    m_status(E_RESOURCE_STATUS_UNLOADED)
+    m_status(e_resource_status_unloaded)
     {
         
     }
     
-    IResource::~IResource(void)
-    {
-        m_handlers.clear();
-    }
-    
-    const std::string& IResource::getGUID(void) const
+    const std::string& resource::get_guid(void) const
     {
         return m_guid;
     }
     
-    E_RESOURCE_CLASS IResource::getResourceClass(void) const
+    e_resource_type resource::get_type(void) const
     {
-        return m_resourceClass;
+        return m_type;
     }
     
-    bool IResource::isLoaded(void) const
+    bool resource::is_loaded(void) const
     {
-        const bool value = 0 != (m_status & E_RESOURCE_STATUS_LOADED);
+        const bool value = 0 != (m_status & e_resource_status_loaded);
         return value;
     };
     
-    bool IResource::isCommited(void) const
+    bool resource::is_commited(void) const
     {
-        const bool value = 0 != (m_status & E_RESOURCE_STATUS_COMMITED);
+        const bool value = 0 != (m_status & e_resource_status_commited);
         return value;
     };
-    
-    void IResource::addLoadingHandler(ISharedResourceLoadingHandlerRef handler)
-    {
-        assert(handler != nullptr);
-        if(IResource::isLoaded() && IResource::isCommited())
-        {
-            handler->onResourceLoaded(shared_from_this(), true);
-        }
-        m_handlers.insert(handler);
-    }
-    
-    void IResource::removeLoadingHandler(ISharedResourceLoadingHandlerRef handler)
-    {
-        assert(handler != nullptr);
-        m_handlers.erase(handler);
-    }
-    
-    void IResource::onResourceLoaded(void)
-    {
-        for(const auto& handler : m_handlers)
-        {
-            handler->onResourceLoaded(shared_from_this(), true);
-        }
-        
-        m_handlers.clear();
-        std::set<ISharedResourceLoadingHandler> deleter;
-        m_handlers.swap(deleter);
-    }
 }

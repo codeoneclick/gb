@@ -21,7 +21,7 @@ namespace gb
     
     void game_controller::add_transition(const std::shared_ptr<game_transition>& transition)
     {
-        m_transitions.insert(std::make_pair(transition, ))
+        //m_transitions.insert(std::make_pair(transition, ))
     }
     
     void game_controller::remove_transition(const std::shared_ptr<game_transition>& transition)

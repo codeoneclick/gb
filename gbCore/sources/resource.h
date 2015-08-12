@@ -14,54 +14,47 @@
 
 namespace gb
 {
-    class resource;
-    class resource_interface
+    struct resource_transfering_data
     {
-    private:
-        
-        std::set<std::shared_ptr<resource_interface>> m_listeners;
-        std::set<std::shared_ptr<resource>> m_resources;
-        
     protected:
         
-        virtual void on_resource_loaded(const std::shared_ptr<resource>& resource, bool success);
+        e_resource_transfering_data_type m_type;
+        resource_transfering_data(e_resource_transfering_data_type type);
         
     public:
         
-        resource_interface(void) = default;
-        virtual ~resource_interface(void);
+        virtual ~resource_transfering_data(void) = default;
         
-        void add_listener(const std::shared_ptr<resource_interface>& listener);
-        void remove_listener(const std::shared_ptr<resource_interface>& listener);
+        e_resource_transfering_data_type get_type(void) const;
     };
     
     class resource : public std::enable_shared_from_this<resource>
     {
     private:
         
+        friend class resource_serializer;
         std::string m_guid;
         
     protected:
         
         ui8 m_status;
-        e_resource_type m_resource_type;
-        std::set<std::shared_ptr<resource_interface>> m_listeners;
+        e_resource_type m_type;
         
-        resource(e_resource_type resource_type,
+        resource(e_resource_type type,
                  const std::string& guid);
+        
+        virtual void on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data>& data) = 0;
+        virtual void on_transfering_data_commited(const std::shared_ptr<resource_transfering_data>& data) = 0;
         
     public:
         
-        virtual ~resource(void);
+        virtual ~resource(void) = default;
         
         const std::string& get_guid(void) const;
-        e_resource_type get_resource_type(void) const;
+        e_resource_type get_type(void) const;
         
         virtual bool is_loaded(void) const;
         virtual bool is_commited(void) const;
-        
-        void add_listener(const std::shared_ptr<resource_interface>& listener);
-        void remove_listener(const std::shared_ptr<resource_interface>& listener);
     };
 };
 
