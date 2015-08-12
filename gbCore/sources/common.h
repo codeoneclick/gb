@@ -9,6 +9,10 @@
 #ifndef common_h
 #define common_h
 
-#include <stdio.h>
+#include "main_headers.h"
+
+std::string bundlepath(void);
+std::string executablepath(void);
+std::string documentspath(void);
 
 #endif

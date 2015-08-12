@@ -36,11 +36,16 @@ namespace gb
         
     protected:
         
+        std::set<std::shared_ptr<ces_base_component_interface>> m_listeners;
+        
     public:
         ces_base_component(void) = default;
         virtual ~ces_base_component(void) = default;
         
         virtual e_ces_component_type get_type(void) const;
+        
+        void add_listener(const std::shared_ptr<ces_base_component_interface>& listener);
+        void remove_listener(const std::shared_ptr<ces_base_component_interface>& listener);
     };
 };
 
