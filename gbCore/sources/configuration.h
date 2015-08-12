@@ -222,11 +222,9 @@ namespace gb
         
         void set_attribute(const std::string& attribute_name,
                            const std::shared_ptr<configuration_attribute>& attribute);
-        
         void set_configuration(const std::string& configuration_name,
                                const std::shared_ptr<configuration>& configuration,
                                i32 index = -1);
-        
         pugi::xml_parse_result open_xml_document(pugi::xml_document &document,
                                                  const std::string &filename);
         
