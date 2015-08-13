@@ -52,13 +52,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void model_configuration::add_materials_configurations(const std::shared_ptr<gbmaterial_configuration>& material)
+void model_configuration::add_materials_configurations(const std::shared_ptr<gb::material_configuration>& material)
 {
 configuration::set_configuration("/model/materials/material", material);
 }
 #endif
 #if defined(__EDITOR__)
-void model_configuration::set_materials_configurations(const std::shared_ptr<gbmaterial_configuration>& material, i32 index)
+void model_configuration::set_materials_configurations(const std::shared_ptr<gb::material_configuration>& material, i32 index)
 {
 configuration::set_configuration("/model/materials/material", material, index);
 }
@@ -74,13 +74,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void model_configuration::add_animations_configurations(const std::shared_ptr<gbanimation_configuration>& animation)
+void model_configuration::add_animations_configurations(const std::shared_ptr<gb::animation_configuration>& animation)
 {
 configuration::set_configuration("/model/animations/animation", animation);
 }
 #endif
 #if defined(__EDITOR__)
-void model_configuration::set_animations_configurations(const std::shared_ptr<gbanimation_configuration>& animation, i32 index)
+void model_configuration::set_animations_configurations(const std::shared_ptr<gb::animation_configuration>& animation, i32 index)
 {
 configuration::set_configuration("/model/animations/animation", animation, index);
 }
@@ -133,15 +133,15 @@ attribute = node.append_attribute("is_batching");
 bool is_batching = model_configuration::get_batching();
 attribute.set_value(is_batching);
 node = parent_node.append_child("materials");
-for(const auto& iterator : model_configuration::getmaterials_configurations())
+for(const auto& iterator : model_configuration::get_materials_configurations())
 {
 std::shared_ptr<gb::material_configuration> configuration = std::static_pointer_cast<gb::material_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("material");
 attribute = child_node.append_attribute("filename");
-attribute.set_value(configuration->getFilename().c_str());
+attribute.set_value(configuration->get_filename().c_str());
 }
 node = parent_node.append_child("animations");
-for(const auto& iterator : model_configuration::getanimations_configurations())
+for(const auto& iterator : model_configuration::get_animations_configurations())
 {
 std::shared_ptr<gb::animation_configuration> configuration = std::static_pointer_cast<gb::animation_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("animation");

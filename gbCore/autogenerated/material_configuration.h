@@ -84,7 +84,7 @@ std::vector<std::shared_ptr<configuration>> get_textures_configurations(void) co
 void add_textures_configurations(const std::shared_ptr<gb::texture_configuration>& texture);
 #endif
 #if defined(__EDITOR__)
-void set_textures_configurations(const std::shared_ptr<gbtexture_configuration>& texture, i32 index);
+void set_textures_configurations(const std::shared_ptr<gb::texture_configuration>& texture, i32 index);
 #endif
 void serialize(const std::string& filename);
 #if defined(__EDITOR__)

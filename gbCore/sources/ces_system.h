@@ -1,0 +1,38 @@
+//
+//  ces_system.h
+//  gbCore
+//
+//  Created by Sergey Sergeev on 8/13/15.
+//  Copyright (c) 2015 sergey.sergeev. All rights reserved.
+//
+
+#ifndef ces_system_h
+#define ces_system_h
+
+#include "main_headers.h"
+#include "ces_system_types.h"
+
+class ces_entity;
+
+namespace gb
+{
+    class ces_system
+    {
+    private:
+        
+    protected:
+        
+        e_ces_system_type m_type;
+        virtual void on_feed(const std::shared_ptr<ces_entity>& entity) = 0;
+        
+    public:
+        
+        ces_system(void);
+        ~ces_system(void);
+        
+        e_ces_system_type get_type(void) const;
+    };
+};
+
+
+#endif

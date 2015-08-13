@@ -110,16 +110,6 @@ namespace gb
         m_filename = filename;
     }
     
-    void configuration::set_enabled(bool value)
-    {
-        m_enabled = value;
-    }
-    
-    bool IConfiguration::getEnabled(void) const
-    {
-        return m_isEnabled;
-    }
-    
 #endif
     
     std::string configuration::get_filename(void) const

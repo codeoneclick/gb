@@ -43,13 +43,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void transition_configuration::add_ws_technique_configuration(const std::shared_ptr<gbws_technique_configuration>& ws_technique)
+void transition_configuration::add_ws_technique_configuration(const std::shared_ptr<gb::ws_technique_configuration>& ws_technique)
 {
 configuration::set_configuration("/transition/ws_techniques/ws_technique", ws_technique);
 }
 #endif
 #if defined(__EDITOR__)
-void transition_configuration::set_ws_technique_configuration(const std::shared_ptr<gbws_technique_configuration>& ws_technique, i32 index)
+void transition_configuration::set_ws_technique_configuration(const std::shared_ptr<gb::ws_technique_configuration>& ws_technique, i32 index)
 {
 configuration::set_configuration("/transition/ws_techniques/ws_technique", ws_technique, index);
 }
@@ -65,13 +65,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void transition_configuration::add_ss_technique_configuration(const std::shared_ptr<gbss_technique_configuration>& ss_technique)
+void transition_configuration::add_ss_technique_configuration(const std::shared_ptr<gb::ss_technique_configuration>& ss_technique)
 {
 configuration::set_configuration("/transition/ss_techniques/ss_technique", ss_technique);
 }
 #endif
 #if defined(__EDITOR__)
-void transition_configuration::set_ss_technique_configuration(const std::shared_ptr<gbss_technique_configuration>& ss_technique, i32 index)
+void transition_configuration::set_ss_technique_configuration(const std::shared_ptr<gb::ss_technique_configuration>& ss_technique, i32 index)
 {
 configuration::set_configuration("/transition/ss_techniques/ss_technique", ss_technique, index);
 }
@@ -120,20 +120,20 @@ node = parent_node.append_child("output_technique");
 attribute = node.append_attribute("filename");
 attribute.set_value(configuration::get_filename().c_str());
 node = parent_node.append_child("ws_techniques");
-for(const auto& iterator : transition_configuration::getws_technique_configuration())
+for(const auto& iterator : transition_configuration::get_ws_technique_configuration())
 {
 std::shared_ptr<gb::ws_technique_configuration> configuration = std::static_pointer_cast<gb::ws_technique_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("ws_technique");
 attribute = child_node.append_attribute("filename");
-attribute.set_value(configuration->getFilename().c_str());
+attribute.set_value(configuration->get_filename().c_str());
 }
 node = parent_node.append_child("ss_techniques");
-for(const auto& iterator : transition_configuration::getss_technique_configuration())
+for(const auto& iterator : transition_configuration::get_ss_technique_configuration())
 {
 std::shared_ptr<gb::ss_technique_configuration> configuration = std::static_pointer_cast<gb::ss_technique_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("ss_technique");
 attribute = child_node.append_attribute("filename");
-attribute.set_value(configuration->getFilename().c_str());
+attribute.set_value(configuration->get_filename().c_str());
 }
 document.save_file(filename.c_str());
 }

@@ -238,13 +238,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void material_configuration::add_textures_configurations(const std::shared_ptr<gbtexture_configuration>& texture)
+void material_configuration::add_textures_configurations(const std::shared_ptr<gb::texture_configuration>& texture)
 {
 configuration::set_configuration("/material/textures/texture", texture);
 }
 #endif
 #if defined(__EDITOR__)
-void material_configuration::set_textures_configurations(const std::shared_ptr<gbtexture_configuration>& texture, i32 index)
+void material_configuration::set_textures_configurations(const std::shared_ptr<gb::texture_configuration>& texture, i32 index)
 {
 configuration::set_configuration("/material/textures/texture", texture, index);
 }
@@ -329,7 +329,7 @@ bool is_cull_face = material_configuration::get_culling();
 attribute.set_value(is_cull_face);
 attribute = node.append_attribute("cull_face_mode");
 GLenum cull_face_mode_enum = material_configuration::get_culling_mode();
-assert(g_enumGLToString.find(cull_face_modeEnum) != g_enumGLToString.end());
+assert(g_glenum_to_string.find(cull_face_mode_enum) != g_glenum_to_string.end());
 std::string cull_face_mode = g_glenum_to_string.find(cull_face_mode_enum)->second;
 attribute.set_value(cull_face_mode.c_str());
 attribute = node.append_attribute("is_blending");
@@ -337,12 +337,12 @@ bool is_blending = material_configuration::get_blending();
 attribute.set_value(is_blending);
 attribute = node.append_attribute("blending_function_source");
 GLenum blending_function_source_enum = material_configuration::get_blending_function_source();
-assert(g_enumGLToString.find(blending_function_sourceEnum) != g_enumGLToString.end());
+assert(g_glenum_to_string.find(blending_function_source_enum) != g_glenum_to_string.end());
 std::string blending_function_source = g_glenum_to_string.find(blending_function_source_enum)->second;
 attribute.set_value(blending_function_source.c_str());
 attribute = node.append_attribute("blending_function_destination");
 GLenum blending_function_destination_enum = material_configuration::get_blending_function_destination();
-assert(g_enumGLToString.find(blending_function_destinationEnum) != g_enumGLToString.end());
+assert(g_glenum_to_string.find(blending_function_destination_enum) != g_glenum_to_string.end());
 std::string blending_function_destination = g_glenum_to_string.find(blending_function_destination_enum)->second;
 attribute.set_value(blending_function_destination.c_str());
 attribute = node.append_attribute("is_cliping");
@@ -370,9 +370,9 @@ attribute = node.append_attribute("is_debugging");
 bool is_debugging = material_configuration::get_debugging();
 attribute.set_value(is_debugging);
 node = parent_node.append_child("shader");
-material_configuration::getshader_configuration()->deserialize(node);
+material_configuration::get_shader_configuration()->deserialize(node);
 node = parent_node.append_child("textures");
-for(const auto& iterator : material_configuration::gettextures_configurations())
+for(const auto& iterator : material_configuration::get_textures_configurations())
 {
 std::shared_ptr<gb::texture_configuration> configuration = std::static_pointer_cast<gb::texture_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("texture");

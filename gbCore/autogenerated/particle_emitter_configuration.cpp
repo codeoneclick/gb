@@ -364,13 +364,13 @@ assert(iterator != m_configurations.end());
 return iterator->second;
 }
 #if defined(__EDITOR__)
-void particle_emitter_configuration::add_materials_configurations(const std::shared_ptr<gbmaterial_configuration>& material)
+void particle_emitter_configuration::add_materials_configurations(const std::shared_ptr<gb::material_configuration>& material)
 {
 configuration::set_configuration("/particle_emitter/materials/material", material);
 }
 #endif
 #if defined(__EDITOR__)
-void particle_emitter_configuration::set_materials_configurations(const std::shared_ptr<gbmaterial_configuration>& material, i32 index)
+void particle_emitter_configuration::set_materials_configurations(const std::shared_ptr<gb::material_configuration>& material, i32 index)
 {
 configuration::set_configuration("/particle_emitter/materials/material", material, index);
 }
@@ -535,12 +535,12 @@ attribute = node.append_attribute("max_emitt_interval");
 ui32 max_emitt_interval = particle_emitter_configuration::get_max_emitt_interval();
 attribute.set_value(max_emitt_interval);
 node = parent_node.append_child("materials");
-for(const auto& iterator : particle_emitter_configuration::getmaterials_configurations())
+for(const auto& iterator : particle_emitter_configuration::get_materials_configurations())
 {
 std::shared_ptr<gb::material_configuration> configuration = std::static_pointer_cast<gb::material_configuration>(iterator);
 pugi::xml_node child_node = node.append_child("material");
 attribute = child_node.append_attribute("filename");
-attribute.set_value(configuration->getFilename().c_str());
+attribute.set_value(configuration->get_filename().c_str());
 }
 document.save_file(filename.c_str());
 }

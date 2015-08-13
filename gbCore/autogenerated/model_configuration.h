@@ -28,14 +28,14 @@ std::vector<std::shared_ptr<configuration>> get_materials_configurations(void) c
 void add_materials_configurations(const std::shared_ptr<gb::material_configuration>& material);
 #endif
 #if defined(__EDITOR__)
-void set_materials_configurations(const std::shared_ptr<gbmaterial_configuration>& material, i32 index);
+void set_materials_configurations(const std::shared_ptr<gb::material_configuration>& material, i32 index);
 #endif
 std::vector<std::shared_ptr<configuration>> get_animations_configurations(void) const;
 #if defined(__EDITOR__)
 void add_animations_configurations(const std::shared_ptr<gb::animation_configuration>& animation);
 #endif
 #if defined(__EDITOR__)
-void set_animations_configurations(const std::shared_ptr<gbanimation_configuration>& animation, i32 index);
+void set_animations_configurations(const std::shared_ptr<gb::animation_configuration>& animation, i32 index);
 #endif
 void serialize(const std::string& filename);
 #if defined(__EDITOR__)

@@ -62,7 +62,7 @@ def write_attributes_deserializer(source_cpp_file, attributes, class_name):
 		if attribute.get('type') == 'GLenum':
 
 			source_cpp_file.write('GLenum ' + attribute.get("name") + '_enum = ' + class_name + '::get_' + attribute.get('property') +'();\n')
-			source_cpp_file.write('assert(g_enumGLToString.find('+ attribute.get("name") +'Enum) != g_enumGLToString.end());\n')
+			source_cpp_file.write('assert(g_glenum_to_string.find('+ attribute.get("name") +'_enum) != g_glenum_to_string.end());\n')
 			source_cpp_file.write('std::string '+ attribute.get("name") + ' = g_glenum_to_string.find('+ attribute.get("name") +'_enum)->second;\n')
 
 		else:
@@ -122,7 +122,7 @@ def write_relationships_deserializer(source_cpp_file, relationships, class_name)
 			source_cpp_file.write('node = parent_node.append_child("' + relationship.get('name') + '");\n')
 
 			if relationship.get("is_external") == '0':
-				source_cpp_file.write(class_name + '::' + 'get' + relationship.get('property') + '()->deserialize(node);\n')
+				source_cpp_file.write(class_name + '::' + 'get_' + relationship.get('property') + '()->deserialize(node);\n')
 			else:
 
 				source_cpp_file.write('attribute = node.append_attribute("filename");\n')
@@ -131,7 +131,7 @@ def write_relationships_deserializer(source_cpp_file, relationships, class_name)
 		else:
 
 			source_cpp_file.write('node = parent_node.append_child("' + relationship.get('path').split('/')[-1] + '");\n')
-			source_cpp_file.write('for(const auto& iterator : ' +  class_name + '::get' + relationship.get('property') + '())\n')
+			source_cpp_file.write('for(const auto& iterator : ' +  class_name + '::get_' + relationship.get('property') + '())\n')
 			source_cpp_file.write('{\n')
 			source_cpp_file.write('std::shared_ptr<gb::' + relationship.get('type') + '> configuration = std::static_pointer_cast<gb::' + relationship.get('type') + '>(iterator);\n')
 			source_cpp_file.write('pugi::xml_node child_node = node.append_child("' + relationship.get('name') + '");\n')
@@ -141,7 +141,7 @@ def write_relationships_deserializer(source_cpp_file, relationships, class_name)
 			else:
 
 				source_cpp_file.write('attribute = child_node.append_attribute("filename");\n')
-				source_cpp_file.write('attribute.set_value(configuration->getFilename().c_str());\n')
+				source_cpp_file.write('attribute.set_value(configuration->get_filename().c_str());\n')
 
 			source_cpp_file.write('}\n')
 
@@ -274,18 +274,18 @@ def parse_xml(filename, accessor_class_source_h_file, accessor_class_source_cpp_
 			source_h_file.write('#endif\n')
 
 			source_cpp_file.write('#if defined(__EDITOR__)\n')
-			source_cpp_file.write('void ' + class_name + '::add_' + relationship.get('property') + '(const std::shared_ptr<gb' + relationship.get('type') + '>& ' + relationship.get('name') + ')\n')
+			source_cpp_file.write('void ' + class_name + '::add_' + relationship.get('property') + '(const std::shared_ptr<gb::' + relationship.get('type') + '>& ' + relationship.get('name') + ')\n')
 			source_cpp_file.write('{\n')
 			source_cpp_file.write('configuration::set_configuration("' + relationship.get('path') + '/' + relationship.get("name") + '", ' + relationship.get('name') + ');\n')
 			source_cpp_file.write('}\n')
 			source_cpp_file.write('#endif\n')
 
 			source_h_file.write('#if defined(__EDITOR__)\n')
-			source_h_file.write('void set_' + relationship.get('property') + '(const std::shared_ptr<gb' + relationship.get('type') + '>& ' + relationship.get('name') + ', i32 index);\n')
+			source_h_file.write('void set_' + relationship.get('property') + '(const std::shared_ptr<gb::' + relationship.get('type') + '>& ' + relationship.get('name') + ', i32 index);\n')
 			source_h_file.write('#endif\n')
 
 			source_cpp_file.write('#if defined(__EDITOR__)\n')
-			source_cpp_file.write('void ' + class_name + '::set_' + relationship.get('property') + '(const std::shared_ptr<gb' + relationship.get('type') + '>& ' + relationship.get('name') + ', i32 index)\n')
+			source_cpp_file.write('void ' + class_name + '::set_' + relationship.get('property') + '(const std::shared_ptr<gb::' + relationship.get('type') + '>& ' + relationship.get('name') + ', i32 index)\n')
 			source_cpp_file.write('{\n')
 			source_cpp_file.write('configuration::set_configuration("' + relationship.get('path') + '/' + relationship.get("name") + '", ' + relationship.get('name') + ', index);\n')
 			source_cpp_file.write('}\n')

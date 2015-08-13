@@ -11,6 +11,10 @@
 		2102EB311B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB2E1B7BDD2E00F20197 /* shader_compiler_glsl.cpp */; };
 		2102EB341B7BDE1B00F20197 /* resource_serializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB321B7BDE1B00F20197 /* resource_serializer.cpp */; };
 		2102EB351B7BDE1B00F20197 /* resource_serializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB321B7BDE1B00F20197 /* resource_serializer.cpp */; };
+		2102EB3B1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */; };
+		2102EB3C1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */; };
+		2102EB3F1B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
+		2102EB401B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
 		21376BF71B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BF81B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BFB1B7C991600D293C5 /* ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF91B7C991600D293C5 /* ibo.cpp */; };
@@ -257,6 +261,11 @@
 		2102EB2F1B7BDD2E00F20197 /* shader_compiler_glsl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shader_compiler_glsl.h; path = sources/shader_compiler_glsl.h; sourceTree = "<group>"; };
 		2102EB321B7BDE1B00F20197 /* resource_serializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_serializer.cpp; path = sources/resource_serializer.cpp; sourceTree = "<group>"; };
 		2102EB331B7BDE1B00F20197 /* resource_serializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_serializer.h; path = sources/resource_serializer.h; sourceTree = "<group>"; };
+		2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_systems_feeder.cpp; path = sources/ces_systems_feeder.cpp; sourceTree = "<group>"; };
+		2102EB3A1B7D06CC00F20197 /* ces_systems_feeder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_systems_feeder.h; path = sources/ces_systems_feeder.h; sourceTree = "<group>"; };
+		2102EB3D1B7D072B00F20197 /* ces_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_system.cpp; path = sources/ces_system.cpp; sourceTree = "<group>"; };
+		2102EB3E1B7D072B00F20197 /* ces_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_system.h; path = sources/ces_system.h; sourceTree = "<group>"; };
+		2102EB411B7D074100F20197 /* ces_system_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_system_types.h; path = sources/ces_system_types.h; sourceTree = "<group>"; };
 		21376BF51B7C8FC100D293C5 /* vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vbo.cpp; path = sources/vbo.cpp; sourceTree = "<group>"; };
 		21376BF61B7C8FC100D293C5 /* vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vbo.h; path = sources/vbo.h; sourceTree = "<group>"; };
 		21376BF91B7C991600D293C5 /* ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ibo.cpp; path = sources/ibo.cpp; sourceTree = "<group>"; };
@@ -748,6 +757,18 @@
 				2102EB2E1B7BDD2E00F20197 /* shader_compiler_glsl.cpp */,
 			);
 			name = compilers;
+			sourceTree = "<group>";
+		};
+		2102EB381B7D068700F20197 /* systems */ = {
+			isa = PBXGroup;
+			children = (
+				2102EB411B7D074100F20197 /* ces_system_types.h */,
+				2102EB3E1B7D072B00F20197 /* ces_system.h */,
+				2102EB3D1B7D072B00F20197 /* ces_system.cpp */,
+				2102EB3A1B7D06CC00F20197 /* ces_systems_feeder.h */,
+				2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */,
+			);
+			name = systems;
 			sourceTree = "<group>";
 		};
 		21B402B41B7A07E9003382AB = {
@@ -1387,6 +1408,7 @@
 		21B405B71B7A4068003382AB /* ces */ = {
 			isa = PBXGroup;
 			children = (
+				2102EB381B7D068700F20197 /* systems */,
 				21B405BB1B7A413C003382AB /* ces_entity.h */,
 				21B405BA1B7A413C003382AB /* ces_entity.cpp */,
 				21B405C21B7A41D6003382AB /* ces_component_types.h */,
@@ -1539,7 +1561,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "python \"${SRCROOT}/../gbScripts/configuration_generator.py\" current_accessor_configuration_accessor";
+			shellScript = "#python \"${SRCROOT}/../gbScripts/configuration_generator.py\" current_accessor_configuration_accessor";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1566,6 +1588,7 @@
 				21B405111B7A0A88003382AB /* inflate.c in Sources */,
 				21B405011B7A0A88003382AB /* pngtrans.c in Sources */,
 				21B404D01B7A0A88003382AB /* b2TimeOfImpact.cpp in Sources */,
+				2102EB3B1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */,
 				2173D1ED1B7CAE7F002912BE /* sequence.cpp in Sources */,
 				21B405071B7A0A88003382AB /* adler32.c in Sources */,
 				21B404D81B7A0A88003382AB /* b2Settings.cpp in Sources */,
@@ -1585,6 +1608,7 @@
 				21B404DC1B7A0A88003382AB /* b2ContactManager.cpp in Sources */,
 				21B4050A1B7A0A88003382AB /* deflate.c in Sources */,
 				21B404E41B7A0A88003382AB /* b2Contact.cpp in Sources */,
+				2102EB3F1B7D072B00F20197 /* ces_system.cpp in Sources */,
 				21B404CE1B7A0A88003382AB /* b2Distance.cpp in Sources */,
 				21B404E91B7A0A88003382AB /* b2PolygonContact.cpp in Sources */,
 				21B4050D1B7A0A88003382AB /* gzread.c in Sources */,
@@ -1726,6 +1750,7 @@
 				21B4054F1B7A0AFA003382AB /* crc32.c in Sources */,
 				2102EB311B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */,
 				21B406101B7B662D003382AB /* particle_emitter_configuration.cpp in Sources */,
+				2102EB3C1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */,
 				21B405501B7A0AFA003382AB /* uncompr.c in Sources */,
 				21B405511B7A0AFA003382AB /* b2MouseJoint.cpp in Sources */,
 				21B405521B7A0AFA003382AB /* b2Island.cpp in Sources */,
@@ -1746,6 +1771,7 @@
 				21B4055C1B7A0AFA003382AB /* b2Timer.cpp in Sources */,
 				21B405BD1B7A413C003382AB /* ces_entity.cpp in Sources */,
 				21B4055D1B7A0AFA003382AB /* b2PrismaticJoint.cpp in Sources */,
+				2102EB401B7D072B00F20197 /* ces_system.cpp in Sources */,
 				21B4055E1B7A0AFA003382AB /* infback.c in Sources */,
 				21B4055F1B7A0AFA003382AB /* b2GearJoint.cpp in Sources */,
 				21B405601B7A0AFA003382AB /* b2CircleContact.cpp in Sources */,
@@ -1873,12 +1899,14 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"__OSX__=1",
+					"__EDITOR__=1",
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/libraries\"",
+					"\"$(SRCROOT)/autogenerated\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1902,6 +1930,7 @@
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"\"$(SRCROOT)/libraries\"",
+					"\"$(SRCROOT)/autogenerated\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

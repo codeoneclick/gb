@@ -72,7 +72,7 @@ namespace gb
         material->set_reflecting(configuration->get_reflecting());
         material->set_shadowing(configuration->get_shadowing());
         material->set_debugging(configuration->get_debugging());
-        
+
         return material;
     }
     
@@ -107,422 +107,368 @@ namespace gb
         return m_parameters->m_blending_function_destination;
     }
     
-    bool material::isDepthTest(void) const
+    bool material::is_depth_test(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isDepthTest;
+        return m_parameters->m_is_depth_test;
     }
     
-    bool material::isDepthMask(void) const
+    bool material::is_depth_mask(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isDepthMask;
+        return m_parameters->m_is_depth_mask;
     }
     
-    bool material::isClipping(void) const
+    bool material::is_clipping(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isClipping;
+        return m_parameters->m_is_clipping;
     }
     
-    glm::vec4 material::getClippingPlane(void) const
+    glm::vec4 material::get_clipping_plane(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_clippingPlane;
+        return m_parameters->m_clipping_plane;
     }
     
-    bool material::isReflecting(void) const
+    bool material::is_reflecting(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isReflecting;
+        return m_parameters->m_is_reflecting;
     }
     
-    bool material::isShadowing(void) const
+    bool material::is_shadowing(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isShadowing;
+        return m_parameters->m_is_shadowing;
     }
     
-    bool material::isDebugging(void) const
+    bool material::is_debugging(void) const
     {
         assert(m_parameters != nullptr);
-        return m_parameters->m_isDebugging;
+        return m_parameters->m_is_debugging;
     }
     
-    CSharedShader material::getShader(void) const
+    std::shared_ptr<shader> material::get_shader(void) const
     {
         assert(m_parameters != nullptr);
         return m_parameters->m_shader;
     }
     
-    CSharedTexture material::getTexture(E_SHADER_SAMPLER sampler) const
+    std::shared_ptr<texture> material::get_texture(e_shader_sampler sampler) const
     {
         assert(m_parameters != nullptr);
         return m_parameters->m_textures.at(sampler);
     }
     
-    E_SHADER_SAMPLER material::getSamplerIndex(CSharedTextureRef texture) const
+    e_shader_sampler material::get_sampler_index(const std::shared_ptr<texture>& texture) const
     {
         assert(m_parameters != nullptr);
         for(ui32 i = 0; i < m_parameters->m_textures.size(); ++i)
         {
             if(texture == m_parameters->m_textures.at(i))
             {
-                return static_cast<E_SHADER_SAMPLER>(i);
+                return static_cast<e_shader_sampler>(i);
             }
         }
         assert(false);
-        return E_SHADER_SAMPLER_01;
+        return e_shader_sampler_01;
     }
     
-    void material::setCulling(bool value)
+    void material::set_culling(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isCulling = value;
+        m_parameters->m_is_culling = value;
     }
     
-    void material::setCullingMode(GLenum value)
+    void material::set_culling_mode(GLenum value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_cullingMode = value;
+        m_parameters->m_culling_mode = value;
     }
     
-    void material::setBlending(bool value)
+    void material::set_blending(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isBlending = value;
+        m_parameters->m_is_blending = value;
     }
     
-    void material::setBlendingFunctionSource(GLenum value)
+    void material::set_blending_function_source(GLenum value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_blendingFunctionSource = value;
+        m_parameters->m_blending_function_source = value;
     }
     
-    void material::setBlendingFunctionDestination(GLenum value)
+    void material::set_blending_function_destination(GLenum value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_blendingFunctionDestination = value;
+        m_parameters->m_blending_function_destination = value;
     }
     
-    void material::setDepthTest(bool value)
+    void material::set_depth_test(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isDepthTest = value;
+        m_parameters->m_is_depth_test = value;
     }
     
-    void material::setDepthMask(bool value)
+    void material::set_depth_mask(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isDepthMask = value;
+        m_parameters->m_is_depth_mask = value;
     }
     
-    void material::setClipping(bool value)
+    void material::set_clipping(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isClipping = value;
+        m_parameters->m_is_clipping = value;
     }
     
-    void material::setClippingPlane(const glm::vec4& value)
+    void material::set_clipping_plane(const glm::vec4& value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_clippingPlane = value;
+        m_parameters->m_clipping_plane = value;
     }
     
-    void material::setReflecting(bool value)
+    void material::set_reflecting(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isReflecting = value;
+        m_parameters->m_is_reflecting = value;
     }
     
-    void material::setShadowing(bool value)
+    void material::set_shadowing(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isShadowing = value;
+        m_parameters->m_is_shadowing = value;
     }
     
-    void material::setDebugging(bool value)
+    void material::set_debugging(bool value)
     {
         assert(m_parameters != nullptr);
-        m_parameters->m_isDebugging = value;
+        m_parameters->m_is_debugging = value;
     }
     
-    void material::setShader(CSharedShaderRef shader)
+    void material::set_shader(const std::shared_ptr<shader>& shader)
     {
         assert(m_parameters != nullptr);
+        
         m_parameters->m_shader = shader;
     }
     
-    void material::setTexture(CSharedTextureRef texture,
-                               E_SHADER_SAMPLER sampler)
+    void material::set_texture(const std::shared_ptr<texture>& texture,
+                               e_shader_sampler sampler)
     {
         assert(m_parameters != nullptr);
         m_parameters->m_textures.at(sampler) = texture;
     }
     
-    void material::setCustomShaderUniform(const glm::mat4x4& matrix, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::mat4x4& matrix, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_MAT4X4);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_mat4);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setMatrix4x4(matrix);
+        current_uniform->set_mat4(matrix);
     }
     
-    void material::setCustomShaderUniform(const glm::mat3x3& matrix, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::mat3x3& matrix, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_MAT3X3);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_mat3);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setMatrix3x3(matrix);
+        current_uniform->set_mat3(matrix);
     }
     
-    void material::setCustomShaderUniform(const glm::vec4& vector, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::vec4& vector, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_VECTOR4);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_vec4);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setVector4(vector);
+        current_uniform->set_vec4(vector);
     }
     
-    void material::setCustomShaderUniform(const glm::vec3& vector, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::vec3& vector, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_VECTOR3);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_vec3);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setVector3(vector);
+        current_uniform->set_vec3(vector);
     }
     
-    void material::setCustomShaderUniform(const glm::vec2& vector, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::vec2& vector, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_VECTOR2);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_vec2);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setVector2(vector);
+        current_uniform->set_vec2(vector);
     }
     
-    void CMaterial::setCustomShaderUniform(f32 value, const std::string& uniform)
+    void material::set_custom_shader_uniform(f32 value, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_FLOAT);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_f32);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setFloat(value);
+        current_uniform->set_f32(value);
     }
     
-    void CMaterial::setCustomShaderUniform(i32 value, const std::string& uniform)
+    void material::set_custom_shader_uniform(i32 value, const std::string& uniform)
     {
-        const auto& iterator = m_customShaderUniforms.find(uniform);
-        CSharedShaderUniform currentUniform = nullptr;
-        if(iterator != m_customShaderUniforms.end())
+        const auto& iterator = m_custom_shader_uniforms.find(uniform);
+        std::shared_ptr<shader_uniform> current_uniform = nullptr;
+        if(iterator != m_custom_shader_uniforms.end())
         {
-            currentUniform = iterator->second;
+            current_uniform = iterator->second;
         }
         else
         {
-            currentUniform = std::make_shared<CShaderUniform>(E_UNIFORM_CLASS_INT);
-            m_customShaderUniforms.insert(std::make_pair(uniform, currentUniform));
+            current_uniform = std::make_shared<shader_uniform>(e_uniform_type_i32);
+            m_custom_shader_uniforms.insert(std::make_pair(uniform, current_uniform));
         }
-        currentUniform->setInt(value);
+        current_uniform->set_i32(value);
     }
     
-    const std::map<std::string, CSharedShaderUniform>& CMaterial::getCustomUniforms(void) const
+    const std::map<std::string, std::shared_ptr<shader_uniform>>& material::get_custom_uniforms(void) const
     {
-        return m_customShaderUniforms;
+        return m_custom_shader_uniforms;
     }
     
-    bool CMaterial::isLoaded(void) const
-    {
-        bool value = false;
-        if(m_parameters != nullptr)
-        {
-            for(const auto& texture : m_parameters->m_textures)
-            {
-                if(texture != nullptr)
-                {
-                    value = texture->isLoaded();
-                    if(!value)
-                    {
-                        return value;
-                    }
-                }
-            }
-            value = m_parameters->m_shader->isLoaded();
-        }
-        return value;
-    }
-    
-    bool CMaterial::isCommited(void) const
-    {
-        bool value = false;
-        if(m_parameters != nullptr)
-        {
-            for(const auto& texture : m_parameters->m_textures)
-            {
-                if(texture != nullptr)
-                {
-                    value = texture->isCommited();
-                    if(!value)
-                    {
-                        return value;
-                    }
-                }
-            }
-            value = m_parameters->m_shader->isCommited();
-        }
-        return value;
-    }
-    
-    void CMaterial::bind(void)
+    void material::bind(void)
     {
         assert(m_parameters != nullptr);
         assert(m_parameters->m_shader != nullptr);
         
         m_parameters->m_shader->bind();
         
-        for(ui32 i = 0; i < E_SHADER_SAMPLER_MAX; ++i)
+        for(ui32 i = 0; i < e_shader_sampler_max; ++i)
         {
             if(m_parameters->m_textures[i] != nullptr)
             {
-                m_parameters->m_shader->setTexture(m_parameters->m_textures[i], static_cast<E_SHADER_SAMPLER>(i));
+                m_parameters->m_shader->set_texture(m_parameters->m_textures[i], static_cast<e_shader_sampler>(i));
             }
         }
         
-        if(m_parameters->m_isDepthTest &&
-           getCachedParameters()->m_isDepthTest != m_parameters->m_isDepthTest)
+        if(m_parameters->m_is_depth_test &&
+           material::get_cached_parameters()->m_is_depth_test != m_parameters->m_is_depth_test)
         {
-            ieEnable(GL_DEPTH_TEST);
-            ieDepthFunc(GL_LEQUAL);
-            getCachedParameters()->m_isDepthTest = m_parameters->m_isDepthTest;
+            gl_enable(GL_DEPTH_TEST);
+            gl_depth_function(GL_LEQUAL);
+            material::get_cached_parameters()->m_is_depth_test = m_parameters->m_is_depth_test;
         }
-        else if(getCachedParameters()->m_isDepthTest != m_parameters->m_isDepthTest)
+        else if(material::get_cached_parameters()->m_is_depth_test != m_parameters->m_is_depth_test)
         {
-            ieDisable(GL_DEPTH_TEST);
-            getCachedParameters()->m_isDepthTest = m_parameters->m_isDepthTest;
-        }
-        
-        if(m_parameters->m_isDepthMask &&
-           getCachedParameters()->m_isDepthMask != m_parameters->m_isDepthMask)
-        {
-            ieDepthMask(GL_TRUE);
-            getCachedParameters()->m_isDepthMask = m_parameters->m_isDepthMask;
-        }
-        else if(getCachedParameters()->m_isDepthMask != m_parameters->m_isDepthMask)
-        {
-            ieDepthMask(GL_FALSE);
-            getCachedParameters()->m_isDepthMask = m_parameters->m_isDepthMask;
+            gl_disable(GL_DEPTH_TEST);
+            material::get_cached_parameters()->m_is_depth_test = m_parameters->m_is_depth_test;
         }
         
-        if(m_parameters->m_isCulling &&
-           getCachedParameters()->m_isCulling != m_parameters->m_isCulling)
+        if(m_parameters->m_is_depth_mask &&
+           material::get_cached_parameters()->m_is_depth_mask != m_parameters->m_is_depth_mask)
         {
-            ieEnable(GL_CULL_FACE);
-            ieCullFace(m_parameters->m_cullingMode);
-            getCachedParameters()->m_isCulling = m_parameters->m_isCulling;
+            gl_depth_mask(GL_TRUE);
+            material::get_cached_parameters()->m_is_depth_mask = m_parameters->m_is_depth_mask;
         }
-        else if(getCachedParameters()->m_isCulling != m_parameters->m_isCulling)
+        else if(material::get_cached_parameters()->m_is_depth_mask != m_parameters->m_is_depth_mask)
         {
-            ieDisable(GL_CULL_FACE);
-            getCachedParameters()->m_isCulling = m_parameters->m_isCulling;
-        }
-        
-        if(m_parameters->m_isBlending &&
-           getCachedParameters()->m_isBlending != m_parameters->m_isBlending)
-        {
-            ieEnable(GL_BLEND);
-            ieBlendFunc(m_parameters->m_blendingFunctionSource, m_parameters->m_blendingFunctionDestination);
-            getCachedParameters()->m_isBlending = m_parameters->m_isBlending;
-        }
-        else if(getCachedParameters()->m_isBlending != m_parameters->m_isBlending)
-        {
-            ieDisable(GL_BLEND);
-            getCachedParameters()->m_isBlending = m_parameters->m_isBlending;
+            gl_depth_mask(GL_FALSE);
+            material::get_cached_parameters()->m_is_depth_mask = m_parameters->m_is_depth_mask;
         }
         
-        if(m_parameters->m_isClipping &&
-           getCachedParameters()->m_isClipping != m_parameters->m_isClipping)
+        if(m_parameters->m_is_culling &&
+           material::get_cached_parameters()->m_is_culling != m_parameters->m_is_culling)
+        {
+            gl_enable(GL_CULL_FACE);
+            gl_cull_face(m_parameters->m_culling_mode);
+            material::get_cached_parameters()->m_is_culling = m_parameters->m_is_culling;
+        }
+        else if(material::get_cached_parameters()->m_is_culling != m_parameters->m_is_culling)
+        {
+            gl_disable(GL_CULL_FACE);
+            material::get_cached_parameters()->m_is_culling = m_parameters->m_is_culling;
+        }
+        
+        if(m_parameters->m_is_blending &&
+           material::get_cached_parameters()->m_is_blending != m_parameters->m_is_blending)
+        {
+            gl_enable(GL_BLEND);
+            gl_blend_function(m_parameters->m_blending_function_source, m_parameters->m_blending_function_destination);
+            material::get_cached_parameters()->m_is_blending = m_parameters->m_is_blending;
+        }
+        else if(material::get_cached_parameters()->m_is_blending != m_parameters->m_is_blending)
+        {
+            gl_disable(GL_BLEND);
+            material::get_cached_parameters()->m_is_blending = m_parameters->m_is_blending;
+        }
+        
+        if(m_parameters->m_is_clipping &&
+           material::get_cached_parameters()->m_is_clipping != m_parameters->m_is_clipping)
         {
 #if defined(__IOS__) && defined(GL_APPLE_clip_distance)
-            ieEnable(GL_CLIP_DISTANCE0_APPLE);
+            gl_enable(GL_CLIP_DISTANCE0_APPLE);
 #else
-            ieEnable(GL_CLIP_DISTANCE0);
+            gl_enable(GL_CLIP_DISTANCE0);
 #endif
-            getCachedParameters()->m_isClipping = m_parameters->m_isClipping;
+            material::get_cached_parameters()->m_is_clipping = m_parameters->m_is_clipping;
         }
-        else if(getCachedParameters()->m_isClipping != m_parameters->m_isClipping)
+        else if(material::get_cached_parameters()->m_is_clipping != m_parameters->m_is_clipping)
         {
 #if defined(__IOS__) && defined(GL_APPLE_clip_distance)
-            ieDisable(GL_CLIP_DISTANCE0_APPLE);
+            gl_disable(GL_CLIP_DISTANCE0_APPLE);
 #else
-            ieDisable(GL_CLIP_DISTANCE0);
+            gl_disable(GL_CLIP_DISTANCE0);
 #endif
-            getCachedParameters()->m_isClipping = m_parameters->m_isClipping;
+            material::get_cached_parameters()->m_is_clipping = m_parameters->m_is_clipping;
         }
     }
     
-    void CMaterial::unbind(void)
+    void material::unbind(void)
     {
         assert(m_parameters != nullptr);
         assert(m_parameters->m_shader != nullptr);
         m_parameters->m_shader->unbind();
     }
-    
-#if defined(__EDITOR__)
-    
-    void CMaterial::setEnabled(bool value)
-    {
-        m_isEnabled = value;
-    }
-    
-    bool CMaterial::getEnabled(void) const
-    {
-        return m_isEnabled;
-    }
-
 }

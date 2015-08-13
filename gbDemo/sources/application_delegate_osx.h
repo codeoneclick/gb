@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  application_delegate_osx.h
 //  gbDemo
 //
 //  Created by sergey.sergeev on 8/11/15.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface application_delegate_osx : NSObject <NSApplicationDelegate>
 
 
 @end
