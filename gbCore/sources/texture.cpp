@@ -39,10 +39,10 @@ namespace gb
         
     }
     
-    std::shared_ptr<texture> texture::construct_custom_texture(const std::string& guid,
-                                                               ui32 texture_id,
-                                                               ui32 width,
-                                                               ui32 height)
+    std::shared_ptr<texture> texture::construct(const std::string& guid,
+                                                ui32 texture_id,
+                                                ui32 width,
+                                                ui32 height)
     {
         std::shared_ptr<gb::texture> texture = std::make_shared<gb::texture>(guid);
         texture->m_data = std::make_shared<texture_transfering_data>();

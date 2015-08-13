@@ -42,7 +42,7 @@ namespace gb
         
         mutable ui32 m_setted_min_filter;
         ui32 m_presseted_min_filter;
-
+        
     protected:
         
         void on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data>& data);
@@ -51,10 +51,10 @@ namespace gb
     public:
         
         texture(const std::string& guid);
-        static std::shared_ptr<texture> construct_custom_texture(const std::string& guid,
-                                                                 ui32 texture_id,
-                                                                 ui32 width,
-                                                                 ui32 height);
+        static std::shared_ptr<texture> construct(const std::string& guid,
+                                                  ui32 texture_id,
+                                                  ui32 width,
+                                                  ui32 height);
         ~texture(void);
         
         ui32 get_width(void) const;

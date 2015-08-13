@@ -176,9 +176,9 @@ namespace gb
         
         shader(const std::string& guid);
         
-        static std::shared_ptr<shader> construct_custom_shader(const std::string& guid,
-                                                               const std::string& vs_source_code,
-                                                               const std::string& fs_source_code);
+        static std::shared_ptr<shader> construct(const std::string& guid,
+                                                 const std::string& vs_source_code,
+                                                 const std::string& fs_source_code);
         
         ~shader(void);
         

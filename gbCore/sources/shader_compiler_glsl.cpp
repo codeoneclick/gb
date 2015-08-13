@@ -29,7 +29,7 @@ namespace gb
     attribute vec4 a_normal;\
     attribute vec4 a_tangent;\
     attribute vec4 a_color;\
-    attribute vec4 a_color;\
+    attribute vec4 a_extra;\
     #endif";
     
     std::string shader_compiler_glsl::m_fs_shader_header = "#if defined(__IOS__)\
@@ -46,14 +46,14 @@ namespace gb
     {
         ui32 handle = glCreateShader(shader_type);
         
-        std::string shaderCommon;
+        std::string shader_header;
         if(shader_type == GL_VERTEX_SHADER)
         {
-            shaderCommon = CShaderCompiler_GLSL::getVSCommonShader();
+            shader_header = m_vs_shader_header;
         }
         else if(shader_type == GL_FRAGMENT_SHADER)
         {
-            shaderCommon = CShaderCompiler_GLSL::getFSCommonShader();
+            shader_header = m_fs_shader_header;
         }
         
         std::string define = "";
@@ -77,10 +77,6 @@ namespace gb
 #elif defined(__IOS__)
         
         define.append("#define __IOS__\n");
-        if(/*g_highPerformancePlatforms.count(getPlatform()) != 0*/ true)
-        {
-            define.append("#define __IOS_HIGH_PERFORMANCE__\n");
-        }
         
 #endif
         
@@ -90,11 +86,11 @@ namespace gb
         
 #endif
         
-        define.append(shaderCommon);
+        define.append(shader_header);
         
-        char* shaderData = const_cast<char*>(sourceCode.c_str());
-        char* defineData = const_cast<char*>(define.c_str());
-        char* sources[2] = { defineData, shaderData};
+        char* shader_data = const_cast<char*>(source_code.c_str());
+        char* define_data = const_cast<char*>(define.c_str());
+        char* sources[2] = { define_data, shader_data};
         glShaderSource(handle, 2, sources, NULL);
         glCompileShader(handle);
         
@@ -103,26 +99,26 @@ namespace gb
         
         if(!success)
         {
-            i32 messageSize = 0;
-            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &messageSize);
-            GLchar *messageString = new GLchar[messageSize];
-            memset(messageString, NULL, messageSize * sizeof(GLchar));
-            glGetShaderInfoLog(handle, messageSize, NULL, messageString);
-            *outMessage = messageString;
+            i32 message_size = 0;
+            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &message_size);
+            GLchar *message_string = new GLchar[message_size];
+            memset(message_string, NULL, message_size * sizeof(GLchar));
+            glGetShaderInfoLog(handle, message_size, NULL, message_string);
+            *out_message = message_string;
         }
         else
         {
-            outMessage = nullptr;
+            out_message = nullptr;
         }
-        *outSuccess = success;
+        *out_success = success;
         return handle;
     }
     
-    ui32 shader_compiler_glsl::link(ui32 vsHandle, ui32 fsHandle, std::string* outMessage, bool* outSuccess)
+    ui32 shader_compiler_glsl::link(ui32 vs_handle, ui32 fs_handle, std::string* out_message, bool* out_success)
     {
         ui32 handle = glCreateProgram();
-        glAttachShader(handle, vsHandle);
-        glAttachShader(handle, fsHandle);
+        glAttachShader(handle, vs_handle);
+        glAttachShader(handle, fs_handle);
         glLinkProgram(handle);
         
         i32 success;
@@ -130,18 +126,18 @@ namespace gb
         
         if(!success)
         {
-            i32 messageSize = 0;
-            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &messageSize);
-            GLchar *messageString = new GLchar[messageSize];
-            memset(messageString, NULL, messageSize * sizeof(GLchar));
-            glGetShaderInfoLog(handle, messageSize, NULL, messageString);
-            *outMessage = messageString;
+            i32 message_size = 0;
+            glGetShaderiv(handle, GL_INFO_LOG_LENGTH, &message_size);
+            GLchar *message_string = new GLchar[message_size];
+            memset(message_string, NULL, message_size * sizeof(GLchar));
+            glGetShaderInfoLog(handle, message_size, NULL, message_string);
+            *out_message = message_string;
         }
         else
         {
-            outMessage = nullptr;
+            out_message = nullptr;
         }
-        *outSuccess = success;
+        *out_success = success;
         return handle;
     }
 }
