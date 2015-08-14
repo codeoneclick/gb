@@ -15,6 +15,10 @@
 		2102EB3C1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */; };
 		2102EB3F1B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
 		2102EB401B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
+		212B183E1B7DF4B200FFDCE7 /* ces_configurations_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B183C1B7DF4B200FFDCE7 /* ces_configurations_system.cpp */; };
+		212B183F1B7DF4B200FFDCE7 /* ces_configurations_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B183C1B7DF4B200FFDCE7 /* ces_configurations_system.cpp */; };
+		212B18461B7E08CB00FFDCE7 /* ces_configuration_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18441B7E08CB00FFDCE7 /* ces_configuration_component.cpp */; };
+		212B18471B7E08CB00FFDCE7 /* ces_configuration_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18441B7E08CB00FFDCE7 /* ces_configuration_component.cpp */; };
 		21376BF71B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BF81B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BFB1B7C991600D293C5 /* ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF91B7C991600D293C5 /* ibo.cpp */; };
@@ -266,6 +270,10 @@
 		2102EB3D1B7D072B00F20197 /* ces_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_system.cpp; path = sources/ces_system.cpp; sourceTree = "<group>"; };
 		2102EB3E1B7D072B00F20197 /* ces_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_system.h; path = sources/ces_system.h; sourceTree = "<group>"; };
 		2102EB411B7D074100F20197 /* ces_system_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_system_types.h; path = sources/ces_system_types.h; sourceTree = "<group>"; };
+		212B183C1B7DF4B200FFDCE7 /* ces_configurations_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_configurations_system.cpp; path = sources/ces_configurations_system.cpp; sourceTree = "<group>"; };
+		212B183D1B7DF4B200FFDCE7 /* ces_configurations_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_configurations_system.h; path = sources/ces_configurations_system.h; sourceTree = "<group>"; };
+		212B18441B7E08CB00FFDCE7 /* ces_configuration_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_configuration_component.cpp; path = sources/ces_configuration_component.cpp; sourceTree = "<group>"; };
+		212B18451B7E08CB00FFDCE7 /* ces_configuration_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_configuration_component.h; path = sources/ces_configuration_component.h; sourceTree = "<group>"; };
 		21376BF51B7C8FC100D293C5 /* vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vbo.cpp; path = sources/vbo.cpp; sourceTree = "<group>"; };
 		21376BF61B7C8FC100D293C5 /* vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vbo.h; path = sources/vbo.h; sourceTree = "<group>"; };
 		21376BF91B7C991600D293C5 /* ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ibo.cpp; path = sources/ibo.cpp; sourceTree = "<group>"; };
@@ -767,8 +775,24 @@
 				2102EB3D1B7D072B00F20197 /* ces_system.cpp */,
 				2102EB3A1B7D06CC00F20197 /* ces_systems_feeder.h */,
 				2102EB391B7D06CC00F20197 /* ces_systems_feeder.cpp */,
+				212B183D1B7DF4B200FFDCE7 /* ces_configurations_system.h */,
+				212B183C1B7DF4B200FFDCE7 /* ces_configurations_system.cpp */,
 			);
 			name = systems;
+			sourceTree = "<group>";
+		};
+		212B18431B7E08A200FFDCE7 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				21B405C21B7A41D6003382AB /* ces_component_types.h */,
+				21B405BF1B7A4154003382AB /* ces_base_component.h */,
+				21B405BE1B7A4154003382AB /* ces_base_component.cpp */,
+				21C0AB8B1B7BA8CD004B1B7C /* ces_resources_component.h */,
+				21C0AB8A1B7BA8CD004B1B7C /* ces_resources_component.cpp */,
+				212B18451B7E08CB00FFDCE7 /* ces_configuration_component.h */,
+				212B18441B7E08CB00FFDCE7 /* ces_configuration_component.cpp */,
+			);
+			name = components;
 			sourceTree = "<group>";
 		};
 		21B402B41B7A07E9003382AB = {
@@ -1408,14 +1432,10 @@
 		21B405B71B7A4068003382AB /* ces */ = {
 			isa = PBXGroup;
 			children = (
+				212B18431B7E08A200FFDCE7 /* components */,
 				2102EB381B7D068700F20197 /* systems */,
 				21B405BB1B7A413C003382AB /* ces_entity.h */,
 				21B405BA1B7A413C003382AB /* ces_entity.cpp */,
-				21B405C21B7A41D6003382AB /* ces_component_types.h */,
-				21B405BF1B7A4154003382AB /* ces_base_component.h */,
-				21B405BE1B7A4154003382AB /* ces_base_component.cpp */,
-				21C0AB8B1B7BA8CD004B1B7C /* ces_resources_component.h */,
-				21C0AB8A1B7BA8CD004B1B7C /* ces_resources_component.cpp */,
 			);
 			name = ces;
 			sourceTree = "<group>";
@@ -1613,6 +1633,7 @@
 				21B404E91B7A0A88003382AB /* b2PolygonContact.cpp in Sources */,
 				21B4050D1B7A0A88003382AB /* gzread.c in Sources */,
 				21B405061B7A0A88003382AB /* pugixml.cpp in Sources */,
+				212B183E1B7DF4B200FFDCE7 /* ces_configurations_system.cpp in Sources */,
 				21B405C51B7B1EB0003382AB /* game_loop.cpp in Sources */,
 				21B404E21B7A0A88003382AB /* b2ChainAndPolygonContact.cpp in Sources */,
 				21B404DB1B7A0A88003382AB /* b2Body.cpp in Sources */,
@@ -1681,6 +1702,7 @@
 				21B4050C1B7A0A88003382AB /* gzlib.c in Sources */,
 				2173D1E91B7CAC2C002912BE /* mesh_constructor.cpp in Sources */,
 				21B404CD1B7A0A88003382AB /* b2Collision.cpp in Sources */,
+				212B18461B7E08CB00FFDCE7 /* ces_configuration_component.cpp in Sources */,
 				21B404CB1B7A0A88003382AB /* b2CollideEdge.cpp in Sources */,
 				21B405031B7A0A88003382AB /* pngwrite.c in Sources */,
 				21B405121B7A0A88003382AB /* inftrees.c in Sources */,
@@ -1785,6 +1807,7 @@
 				21B405661B7A0AFA003382AB /* pngget.c in Sources */,
 				21B405671B7A0AFA003382AB /* png.c in Sources */,
 				2173D1E61B7CA8C0002912BE /* bone.cpp in Sources */,
+				212B18471B7E08CB00FFDCE7 /* ces_configuration_component.cpp in Sources */,
 				21B405681B7A0AFA003382AB /* b2RopeJoint.cpp in Sources */,
 				21B405691B7A0AFA003382AB /* b2World.cpp in Sources */,
 				21B4056A1B7A0AFA003382AB /* b2EdgeAndCircleContact.cpp in Sources */,
@@ -1801,6 +1824,7 @@
 				21B405721B7A0AFA003382AB /* b2Collision.cpp in Sources */,
 				21B405731B7A0AFA003382AB /* b2CollideEdge.cpp in Sources */,
 				21B406141B7B6635003382AB /* material_configuration.cpp in Sources */,
+				212B183F1B7DF4B200FFDCE7 /* ces_configurations_system.cpp in Sources */,
 				21B405741B7A0AFA003382AB /* pngwrite.c in Sources */,
 				21B405751B7A0AFA003382AB /* inftrees.c in Sources */,
 			);

@@ -20,6 +20,8 @@ namespace gb
     {
     private:
         
+        friend class ces_systems_feeder;
+        
     protected:
         
         e_ces_system_type m_type;

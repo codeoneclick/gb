@@ -11,11 +11,13 @@
 
 #include "main_headers.h"
 #include "game_loop.h"
+#include "ces_entity.h"
+#include "ces_configuration_component.h"
 
 namespace gb
 {
     class ces_systems_feeder;
-    class game_transition : public game_loop_interface
+    class game_transition : public game_loop_interface, public ces_entity, public ces_configuration_component_interface
     {
     private:
         
@@ -29,6 +31,8 @@ namespace gb
         friend class game_controller;
         void on_activated(void);
         void on_deactivated(void);
+        
+        virtual void on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success);
         
     public:
         

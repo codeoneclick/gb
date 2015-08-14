@@ -31,9 +31,15 @@ namespace gb
     void game_transition::on_activated(void)
     {
         add_listener_to_game_loop(m_system_feeder);
+        m_system_feeder->add_entity(shared_from_this());
     }
     
     void game_transition::on_deactivated(void)
+    {
+        
+    }
+    
+    void game_transition::on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success)
     {
         
     }

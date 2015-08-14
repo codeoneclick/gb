@@ -13,7 +13,9 @@ namespace gb
 {
     enum e_ces_component_type
     {
-        e_ces_component_type_undefined = 0
+        e_ces_component_type_undefined = 0,
+        e_ces_component_type_configuration,
+        e_ces_component_type_resource
     };
 };
 

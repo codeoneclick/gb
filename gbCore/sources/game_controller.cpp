@@ -9,6 +9,7 @@
 #include "game_controller.h"
 #include "game_transition.h"
 #include "game_loop.h"
+#include "configuration_types.h"
 
 namespace gb
 {
@@ -43,6 +44,12 @@ namespace gb
         }
         m_current_transition = m_transitions.find(guid)->second;
         m_current_transition->on_activated();
+        
+        std::shared_ptr<ces_configuration_component> configuration_component =
+        std::make_shared<ces_configuration_component>("transition.demo.xml", e_configuration_type_transition);
+        m_current_transition->add_component(configuration_component);
+        configuration_component->add_listener(m_current_transition);
+        
         add_listener_to_game_loop(m_current_transition);
     }
 }

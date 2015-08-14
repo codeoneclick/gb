@@ -7,3 +7,22 @@
 //
 
 #include "ces_system.h"
+
+namespace gb
+{
+    ces_system::ces_system(void) :
+    m_type(e_ces_system_type_undefined)
+    {
+        
+    }
+    
+    ces_system::~ces_system(void)
+    {
+        
+    }
+    
+    e_ces_system_type ces_system::get_type(void) const
+    {
+        return m_type;
+    }
+}
