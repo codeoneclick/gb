@@ -13,6 +13,18 @@
 		2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB491B7D2DAC00F20197 /* demo_game_transition.cpp */; };
 		2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB491B7D2DAC00F20197 /* demo_game_transition.cpp */; };
 		2102EB4F1B7D34F900F20197 /* libgbCore-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B4034B1B7A0A3B003382AB /* libgbCore-osx.a */; };
+		2102EB561B7E4E4E00F20197 /* output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */; };
+		2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */; };
+		2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB581B7E4E7900F20197 /* ws.technique.base.xml */; };
+		2102EB5D1B7E4E7900F20197 /* ws.technique.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB581B7E4E7900F20197 /* ws.technique.base.xml */; };
+		2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB591B7E4E7900F20197 /* ws.technique.reflection.xml */; };
+		2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB591B7E4E7900F20197 /* ws.technique.reflection.xml */; };
+		2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */; };
+		2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */; };
+		2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
+		2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
+		2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
+		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
 		212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
 		21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */; };
@@ -61,6 +73,13 @@
 		2102EB461B7D2D9000F20197 /* demo_game_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_controller.h; path = sources/demo_game_controller.h; sourceTree = "<group>"; };
 		2102EB491B7D2DAC00F20197 /* demo_game_transition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_game_transition.cpp; path = sources/demo_game_transition.cpp; sourceTree = "<group>"; };
 		2102EB4A1B7D2DAC00F20197 /* demo_game_transition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_transition.h; path = sources/demo_game_transition.h; sourceTree = "<group>"; };
+		2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/output_techniques/output.technique.demo.xml; sourceTree = "<group>"; };
+		2102EB581B7E4E7900F20197 /* ws.technique.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.base.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.base.xml; sourceTree = "<group>"; };
+		2102EB591B7E4E7900F20197 /* ws.technique.reflection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.reflection.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.reflection.xml; sourceTree = "<group>"; };
+		2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.refraction.xml; sourceTree = "<group>"; };
+		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
+		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
+		211B31381B7E899B00178968 /* gbDemo-osx copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = transition.demo.xml; path = ../gbBundle/Configurations/transitions/transition.demo.xml; sourceTree = "<group>"; };
 		21B403121B7A0968003382AB /* gbDemo-osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B403391B7A09FD003382AB /* application_delegate_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = application_delegate_osx.h; path = sources/application_delegate_osx.h; sourceTree = "<group>"; };
@@ -70,7 +89,6 @@
 		21B403421B7A0A23003382AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = MainMenu.xib; sourceTree = "<group>"; };
 		21B403431B7A0A23003382AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = resources/Images.xcassets; sourceTree = "<group>"; };
 		21B403461B7A0A3B003382AB /* gbCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gbCore.xcodeproj; path = ../gbCore/gbCore.xcodeproj; sourceTree = "<group>"; };
-		21B405881B7A0C58003382AB /* gbDemo-osx copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B4058F1B7A0CAC003382AB /* info-ios.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "info-ios.plist"; path = "support/info-ios.plist"; sourceTree = "<group>"; };
 		21B405911B7A0CDA003382AB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		21B405931B7A0CDE003382AB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -97,6 +115,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2102EB521B7E4E0000F20197 /* materials */ = {
+			isa = PBXGroup;
+			children = (
+				2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */,
+			);
+			name = materials;
+			sourceTree = "<group>";
+		};
+		2102EB531B7E4E0D00F20197 /* game_objects */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = game_objects;
+			sourceTree = "<group>";
+		};
+		2102EB541B7E4E2600F20197 /* render_techniques */ = {
+			isa = PBXGroup;
+			children = (
+				2102EB521B7E4E0000F20197 /* materials */,
+				2102EB581B7E4E7900F20197 /* ws.technique.base.xml */,
+				2102EB591B7E4E7900F20197 /* ws.technique.reflection.xml */,
+				2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */,
+				2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */,
+				2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */,
+			);
+			name = render_techniques;
+			sourceTree = "<group>";
+		};
 		212B18561B7E3DE000FFDCE7 /* common */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +154,8 @@
 		212B18581B7E3DE900FFDCE7 /* configuration */ = {
 			isa = PBXGroup;
 			children = (
+				2102EB541B7E4E2600F20197 /* render_techniques */,
+				2102EB531B7E4E0D00F20197 /* game_objects */,
 				212B18591B7E3DF300FFDCE7 /* transitions */,
 			);
 			name = configuration;
@@ -136,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				21B403121B7A0968003382AB /* gbDemo-osx.app */,
-				21B405881B7A0C58003382AB /* gbDemo-osx copy.app */,
+				211B31381B7E899B00178968 /* gbDemo-osx copy.app */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -255,7 +303,7 @@
 			);
 			name = "gbDemo-ios";
 			productName = gbDemo;
-			productReference = 21B405881B7A0C58003382AB /* gbDemo-osx copy.app */;
+			productReference = 211B31381B7E899B00178968 /* gbDemo-osx copy.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -320,7 +368,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				21B405901B7A0CAC003382AB /* info-ios.plist in Resources */,
+				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
+				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
+				2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				21B403451B7A0A23003382AB /* Images.xcassets in Resources */,
+				2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
+				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				2102EB561B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
 				21B4033F1B7A0A0E003382AB /* info-osx.plist in Resources */,
 				21B403441B7A0A23003382AB /* MainMenu.xib in Resources */,
 				212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
@@ -333,8 +387,14 @@
 			files = (
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21B405821B7A0C58003382AB /* Images.xcassets in Resources */,
+				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				21B405831B7A0C58003382AB /* info-osx.plist in Resources */,
+				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				21B405841B7A0C58003382AB /* MainMenu.xib in Resources */,
+				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
+				2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
+				2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
+				2102EB5D1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,6 @@
 #define ces_configurations_system_h
 
 #include "ces_system.h"
-#include "ces_entity.h"
 
 namespace gb
 {

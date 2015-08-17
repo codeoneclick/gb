@@ -23,7 +23,7 @@ namespace gb
         
     public:
         
-        ces_configuration_component_interface(void) = default;
+        ces_configuration_component_interface(void);
         ~ces_configuration_component_interface(void) = default;
         
         virtual void on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success);

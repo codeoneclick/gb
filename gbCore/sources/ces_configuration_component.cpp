@@ -10,6 +10,12 @@
 
 namespace gb
 {
+    ces_configuration_component_interface::ces_configuration_component_interface(void) :
+    gb::ces_base_component_interface()
+    {
+        m_type = e_ces_component_type_configuration;
+    }
+    
     void ces_configuration_component_interface::on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success)
     {
         
@@ -49,6 +55,14 @@ namespace gb
         if(success)
         {
             m_configuration = configuration;
+            for(const auto& listener : m_listeners)
+            {
+                if(listener->get_type() == e_ces_component_type_configuration)
+                {
+                    std::static_pointer_cast<ces_configuration_component_interface>(listener)->on_configuration_loaded(m_configuration,
+                                                                                                                       success);
+                }
+            }
         }
         else
         {

@@ -11,6 +11,7 @@
 
 #include "main_headers.h"
 #include "ces_system_types.h"
+#include "ces_entity.h"
 
 class ces_entity;
 
