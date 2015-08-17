@@ -51,12 +51,11 @@ namespace gb
     sequence_transfering_data::sequence_transfering_data(const std::string& animation_name,
                                                          ui32 animation_fps,
                                                          const std::vector<std::shared_ptr<frame_data>>& frames) :
-    gb::resource_transfering_data(e_resource_transfering_data_type_sequence),
     m_animation_name(animation_name),
     m_animation_fps(animation_fps),
     m_frames(frames)
     {
-        
+        m_type = e_resource_transfering_data_type_sequence;
     }
     
     sequence_transfering_data::~sequence_transfering_data(void)

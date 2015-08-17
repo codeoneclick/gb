@@ -236,14 +236,13 @@ namespace gb
     }
     
     shader_transfering_data::shader_transfering_data() :
-    gb::resource_transfering_data(e_resource_transfering_data_type_shader),
     m_shader_id(0),
     m_vs_filename(""),
     m_fs_filename(""),
     m_vs_source_code(""),
     m_fs_source_code("")
     {
-        
+        m_type = e_resource_transfering_data_type_shader;
     }
     
     shader::shader(const std::string& guid) :

@@ -33,6 +33,9 @@ namespace gb
         ces_systems_feeder(void);
         ~ces_systems_feeder(void);
         
+        void add_system(const std::shared_ptr<ces_system>& system, e_ces_system_type type);
+        void remove_system(e_ces_system_type type);
+        
         void add_entity(const std::shared_ptr<ces_entity>& entity);
         void remove_entity(const std::shared_ptr<ces_entity>& entity);
         

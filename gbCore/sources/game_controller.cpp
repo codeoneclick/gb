@@ -10,12 +10,21 @@
 #include "game_transition.h"
 #include "game_loop.h"
 #include "configuration_types.h"
+#include "graphics_context.h"
+#include "configuration_accessor.h"
 
 namespace gb
 {
-    game_controller::game_controller(const std::shared_ptr<ogl_window>& window)
+    game_controller::game_controller(const std::shared_ptr<ogl_window>& window) :
+    m_current_transition(nullptr)
     {
-        
+#if defined (__IOS__)
+        m_graphics_context = graphics_context::construct(window, e_graphic_context_api_ios);
+#elif defined(__OSX__)
+        m_graphics_context = graphics_context::construct(window, e_graphic_context_api_osx);
+#endif
+
+        m_configuration_accessor = std::make_shared<configuration_accessor>();
     }
     
     game_controller::~game_controller(void)
@@ -43,7 +52,10 @@ namespace gb
             remove_listener_from_game_loop(m_current_transition);
         }
         m_current_transition = m_transitions.find(guid)->second;
-        m_current_transition->on_activated();
+        m_current_transition->on_activated(m_graphics_context,
+                                           nullptr,
+                                           nullptr,
+                                           m_configuration_accessor);
         
         std::shared_ptr<ces_configuration_component> configuration_component =
         std::make_shared<ces_configuration_component>("transition.demo.xml", e_configuration_type_transition);

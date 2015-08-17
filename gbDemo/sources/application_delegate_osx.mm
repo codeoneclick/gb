@@ -13,6 +13,7 @@
 
 @property (weak) IBOutlet NSWindow *window;
 @property (nonatomic, unsafe_unretained) std::shared_ptr<demo_conroller_osx> m_demo_controller;
+@property (weak) IBOutlet NSView *view;
 
 @end
 
@@ -20,12 +21,17 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    self.m_demo_controller = std::make_shared<demo_conroller_osx>();
+    NSOpenGLView *ogl_view = [[NSOpenGLView alloc] initWithFrame:CGRectMake(0.0,
+                                                                            0.0,
+                                                                            self.view.frame.size.width,
+                                                                            self.view.frame.size.height)];
+    [self.view addSubview:ogl_view];
+    self.m_demo_controller = std::make_shared<demo_conroller_osx>(ogl_view);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-   
+    
 }
 
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)aSender

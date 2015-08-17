@@ -42,12 +42,14 @@ namespace gb
         
         e_ces_component_type m_type;
         std::set<std::shared_ptr<ces_base_component_interface>> m_listeners;
+        bool m_dirty;
         
     public:
         ces_base_component(void);
         virtual ~ces_base_component(void) = default;
         
         virtual e_ces_component_type get_type(void) const;
+        virtual bool is_dirty(void) const;
         
         void add_listener(const std::shared_ptr<ces_base_component_interface>& listener);
         void remove_listener(const std::shared_ptr<ces_base_component_interface>& listener);

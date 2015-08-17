@@ -19,7 +19,7 @@ namespace gb
     protected:
         
         e_resource_transfering_data_type m_type;
-        resource_transfering_data(e_resource_transfering_data_type type);
+        resource_transfering_data(void);
         
     public:
         

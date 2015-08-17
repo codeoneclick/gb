@@ -15,6 +15,7 @@ namespace gb
     {
         e_ces_system_type_undefined = 0,
         e_ces_system_type_configuration,
+        e_ces_system_type_render,
         e_ces_system_type_max
     };
 }

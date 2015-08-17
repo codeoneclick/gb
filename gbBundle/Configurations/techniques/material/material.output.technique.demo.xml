@@ -16,8 +16,8 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shaderScreenQuad.vert"
-    fs_filename="shaderScreenQuad.frag"/>
+    vs_filename="shader_texture_2d.vert"
+    fs_filename="shader_texture_2d.frag"/>
     <textures>
         <texture
         filename=""

@@ -26,7 +26,7 @@ namespace gb
         
     public:
         
-        ces_configurations_system(void);
+        ces_configurations_system(const std::shared_ptr<configuration_accessor>& configuration_accessor);
         ~ces_configurations_system(void);
     };
 };

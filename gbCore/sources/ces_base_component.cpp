@@ -32,7 +32,8 @@ namespace gb
     }
     
     ces_base_component::ces_base_component(void) :
-    m_type(e_ces_component_type_undefined)
+    m_type(e_ces_component_type_undefined),
+    m_dirty(true)
     {
         
     }
@@ -40,6 +41,11 @@ namespace gb
     e_ces_component_type ces_base_component::get_type(void) const
     {
         return m_type;
+    }
+    
+    bool ces_base_component::is_dirty(void) const
+    {
+        return m_dirty;
     }
     
     void ces_base_component::add_listener(const std::shared_ptr<ces_base_component_interface>& listener)

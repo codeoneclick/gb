@@ -8,13 +8,12 @@
 
 #include "ces_systems_feeder.h"
 #include "ces_system.h"
-#include "ces_configurations_system.h"
 
 namespace gb
 {
     ces_systems_feeder::ces_systems_feeder(void)
     {
-        m_systems.insert(std::make_pair(e_ces_system_type_configuration, std::make_shared<ces_configurations_system>()));
+        
     }
     
     ces_systems_feeder::~ces_systems_feeder(void)
@@ -40,6 +39,20 @@ namespace gb
             {
                 system.second->on_feed(entity);
             }
+        }
+    }
+    
+    void ces_systems_feeder::add_system(const std::shared_ptr<ces_system>& system, e_ces_system_type type)
+    {
+        m_systems[type] = system;
+    }
+    
+    void ces_systems_feeder::remove_system(e_ces_system_type type)
+    {
+        const auto& iterator = m_systems.find(type);
+        if(iterator != m_systems.end())
+        {
+            m_systems.erase(iterator);
         }
     }
     

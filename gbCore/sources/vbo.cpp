@@ -11,12 +11,13 @@
 namespace gb
 {
     vbo::vbo(ui32 size, GLenum mode, vertex_attribute* mmap) :
-    gb::resource_transfering_data(e_resource_transfering_data_type_vb),
     m_allocated_size(size),
     m_used_size(0),
     m_mode(mode),
     m_is_mmap(mmap != nullptr)
     {
+        m_type = e_resource_transfering_data_type_vb;
+        
         assert(m_allocated_size != 0);
         gl_create_buffers(1, &m_handle);
         

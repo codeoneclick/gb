@@ -68,5 +68,6 @@ namespace gb
         {
             assert(false);
         }
+        m_dirty = false;
     }
 }

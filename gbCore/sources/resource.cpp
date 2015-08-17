@@ -11,6 +11,16 @@
 
 namespace gb
 {
+    resource_transfering_data::resource_transfering_data(void)
+    {
+        m_type = e_resource_transfering_data_type_undefined;
+    }
+    
+    e_resource_transfering_data_type resource_transfering_data::get_type(void) const
+    {
+        return m_type;
+    }
+    
     resource::resource(e_resource_type type, const std::string& guid) :
     m_type(type),
     m_guid(guid),

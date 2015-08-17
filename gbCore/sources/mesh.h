@@ -38,7 +38,7 @@ namespace gb
         
         mesh_transfering_data(vbo::vertex_data* vertices, ui16* indices,
                               ui32 num_vertices, ui32 num_indices,
-                              const glm::vec3& minBound, const glm::vec3& maxBound);
+                              const glm::vec3& min_bound, const glm::vec3& max_bound);
         ~mesh_transfering_data(void);
         
         const vbo::vertex_data* get_vertices(void) const;

@@ -51,7 +51,7 @@
 
 #include <box2d/Box2D.h>
 
-#define STRING_SHADER(SHADER)  #SHADER
+#define string_shader(__shader__)  #__shader__
 #include "built_in_shaders.h"
 
 typedef signed char i8;

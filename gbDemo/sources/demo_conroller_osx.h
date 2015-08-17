@@ -11,6 +11,12 @@
 
 #include "main_headers.h"
 
+#if defined(__OSX__)
+
+#include <Cocoa/Cocoa.h>
+
+#endif
+
 class demo_game_controller;
 class demo_game_transition;
 class demo_conroller_osx
@@ -24,7 +30,7 @@ protected:
     
 public:
     
-    demo_conroller_osx(void);
+    demo_conroller_osx(NSView *ogl_view);
     ~demo_conroller_osx(void);
     
 };

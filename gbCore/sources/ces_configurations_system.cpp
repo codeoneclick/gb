@@ -13,11 +13,10 @@
 
 namespace gb
 {
-    ces_configurations_system::ces_configurations_system(void) :
-    gb::ces_system()
+    ces_configurations_system::ces_configurations_system(const std::shared_ptr<configuration_accessor>& configuration_accessor)
     {
         m_type = e_ces_system_type_configuration;
-        m_configuration_accessor = std::make_shared<configuration_accessor>();
+        m_configuration_accessor = configuration_accessor;
     }
     
     ces_configurations_system::~ces_configurations_system(void)
@@ -27,7 +26,8 @@ namespace gb
     
     void ces_configurations_system::on_feed(const std::shared_ptr<ces_entity> &entity)
     {
-        if(entity->is_component_exist(e_ces_component_type_configuration))
+        if(entity->is_component_exist(e_ces_component_type_configuration) &&
+           entity->get_component(e_ces_component_type_configuration)->is_dirty())
         {
             std::shared_ptr<ces_configuration_component> configuration_component =
             std::static_pointer_cast<ces_configuration_component>(entity->get_component(e_ces_component_type_configuration));

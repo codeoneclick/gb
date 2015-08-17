@@ -12,13 +12,12 @@
 namespace gb
 {
     texture_transfering_data::texture_transfering_data(void) :
-    gb::resource_transfering_data(e_resource_transfering_data_type_texture),
     m_data(nullptr),
     m_width(0),
     m_height(0),
     m_texture_id(0)
     {
-        
+         m_type = e_resource_transfering_data_type_texture;
     }
     
     texture_transfering_data::~texture_transfering_data(void)

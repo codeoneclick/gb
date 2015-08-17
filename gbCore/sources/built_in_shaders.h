@@ -9,5 +9,7 @@
 #ifndef built_in_shaders_h
 #define built_in_shaders_h
 
+extern const char* shader_texure2d_vert;
+extern const char* shader_texure2d_frag;
 
 #endif

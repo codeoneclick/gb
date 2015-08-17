@@ -67,7 +67,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2102EB421B7D2D6700F20197 /* demo_conroller_osx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_conroller_osx.cpp; path = sources/demo_conroller_osx.cpp; sourceTree = "<group>"; };
+		2102EB421B7D2D6700F20197 /* demo_conroller_osx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = demo_conroller_osx.cpp; path = sources/demo_conroller_osx.cpp; sourceTree = "<group>"; };
 		2102EB431B7D2D6700F20197 /* demo_conroller_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_conroller_osx.h; path = sources/demo_conroller_osx.h; sourceTree = "<group>"; };
 		2102EB451B7D2D9000F20197 /* demo_game_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_game_controller.cpp; path = sources/demo_game_controller.cpp; sourceTree = "<group>"; };
 		2102EB461B7D2D9000F20197 /* demo_game_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_controller.h; path = sources/demo_game_controller.h; sourceTree = "<group>"; };

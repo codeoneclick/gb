@@ -11,12 +11,13 @@
 namespace gb
 {
     ibo::ibo(ui32 size, GLenum mode, ui16* mmap) :
-    gb::resource_transfering_data(e_resource_transfering_data_type_ib),
     m_allocated_size(size),
     m_used_size(0),
     m_mode(mode),
     m_is_mmap(mmap != nullptr)
     {
+        m_type = e_resource_transfering_data_type_ib;
+        
         assert(m_allocated_size != 0);
         gl_create_buffers(1, &m_handle);
         
