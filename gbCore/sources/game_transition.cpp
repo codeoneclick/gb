@@ -11,6 +11,13 @@
 #include "game_loop.h"
 #include "ces_configurations_system.h"
 #include "ces_render_system.h"
+#include "transition_configuration.h"
+#include "render_pipeline.h"
+#include "graphics_context.h"
+#include "render_technique_ws.h"
+#include "render_technique_ss.h"
+#include "render_technique_main.h"
+#include "material.h"
 
 namespace gb
 {
@@ -53,47 +60,45 @@ namespace gb
     
     void game_transition::on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success)
     {
-        /*assert(m_renderPipeline != nullptr);
-        assert(m_resourceAccessor != nullptr);
         
-        std::shared_ptr<CConfigurationTransition> configurationTransition = std::static_pointer_cast<CConfigurationTransition>(configuration);
-        assert(configurationTransition != nullptr);
+        std::shared_ptr<ces_render_system> render_system =
+        std::static_pointer_cast<ces_render_system>(m_system_feeder->get_system(e_ces_system_type_render));
+        std::shared_ptr<render_pipeline> render_pipeline = render_system->get_render_pipeline();
         
-        for(const auto& iterator : configurationTransition->getConfigurationWSTechnique())
+        std::shared_ptr<transition_configuration> transition_configuration = std::static_pointer_cast<gb::transition_configuration>(configuration);
+        assert(transition_configuration);
+        
+        for(const auto& iterator : transition_configuration->get_ws_technique_configuration())
         {
-            std::shared_ptr<CConfigurationWSTechnique> configurationWSTechnique = std::static_pointer_cast<CConfigurationWSTechnique>(iterator);
+            std::shared_ptr<ws_technique_configuration> ws_technique_configuration = std::static_pointer_cast<gb::ws_technique_configuration>(iterator);
             
-            ui32 screenWidth = MIN_VALUE(configurationWSTechnique->getScreenWidth(), m_graphicsContext->getWidth());
-            ui32 screenHeight = MIN_VALUE(configurationWSTechnique->getScreenHeight(), m_graphicsContext->getHeight());
+            ui32 screen_width = std::min(ws_technique_configuration->get_screen_width(), render_pipeline->get_graphics_context()->get_width());
+            ui32 screen_height = std::min(ws_technique_configuration->get_screen_height(), render_pipeline->get_graphics_context()->get_height());
             
-            CSharedRenderTechniqueWorldSpace renderWSTechnique =
-            std::make_shared<CRenderTechniqueWorldSpace>(screenWidth,
-                                                         screenHeight,
-                                                         configurationWSTechnique->getGUID(),
-                                                         configurationWSTechnique->getIndex());
-            glm::vec4 color = glm::vec4(configurationWSTechnique->getClearColorR(),
-                                        configurationWSTechnique->getClearColorG(),
-                                        configurationWSTechnique->getClearColorB(),
-                                        configurationWSTechnique->getClearColorA());
-            renderWSTechnique->setClearColor(color);
-            renderWSTechnique->setAreDrawBoundingBoxes(configurationWSTechnique->getDrawBoundingBoxes());
-            m_renderPipeline->addWorldSpaceRenderTechnique(configurationWSTechnique->getGUID(), renderWSTechnique);
+            std::shared_ptr<render_technique_ws> render_technique_ws =
+            std::make_shared<gb::render_technique_ws>(screen_width,
+                                                      screen_height,
+                                                      ws_technique_configuration->get_guid(),
+                                                      ws_technique_configuration->get_index());
+            glm::vec4 color = glm::vec4(ws_technique_configuration->get_clear_color_r(),
+                                        ws_technique_configuration->get_clear_color_g(),
+                                        ws_technique_configuration->get_clear_color_b(),
+                                        ws_technique_configuration->get_clear_color_a());
+            render_technique_ws->set_clear_color(color);
+            render_pipeline->add_ws_render_technique(ws_technique_configuration->get_guid(), render_technique_ws);
         }
         
-        for(const auto& iterator : configurationTransition->getConfigurationSSTechnique())
+        for(const auto& iterator : transition_configuration->get_ss_technique_configuration())
         {
-            std::shared_ptr<CConfigurationSSTechnique> configurationSSTechnique = std::static_pointer_cast<CConfigurationSSTechnique>(iterator);
-            assert(configurationSSTechnique != nullptr);
-            std::shared_ptr<CConfigurationMaterial> configurationMaterial = configurationSSTechnique->getConfigurationMaterial();
-            assert(configurationMaterial != nullptr);
+            std::shared_ptr<ss_technique_configuration> ss_technique_configuration = std::static_pointer_cast<gb::ss_technique_configuration>(iterator);
+            assert(ss_technique_configuration != nullptr);
+            std::shared_ptr<material_configuration> material_configuration = ss_technique_configuration->get_ConfigurationMaterial();
+            assert(material_configuration);
             
-            assert(m_resourceAccessor != nullptr);
-            CSharedMaterial material =  CMaterial::constructCustomMaterial(configurationMaterial,
-                                                                           m_resourceAccessor,
-                                                                           m_renderPipeline);
+            std::shared_ptr<material> material =  material::construct(material_configuration);
             
-            ui32 screenWidth = MIN_VALUE(configurationSSTechnique->getScreenWidth(), m_graphicsContext->getWidth());
-            ui32 screenHeight = MIN_VALUE(configurationSSTechnique->getScreenHeight(), m_graphicsContext->getHeight());
+            ui32 screen_width = std::min(ss_technique_configuration->get_screen_width(), render_pipeline->get_graphics_context()->get_width());
+            ui32 screen_height = std::min(ss_technique_configuration->get_screen_height(), render_pipeline->get_graphics_context()->get_height());
             
             CSharedRenderTechniqueScreenSpace renderSSTechnique =
             std::make_shared<CRenderTechniqueScreenSpace>(screenWidth,
@@ -115,7 +120,7 @@ namespace gb
                                                                            m_resourceAccessor,
                                                                            m_renderPipeline);
             m_renderPipeline->setMainRenderTechnique(material);
-        }*/
+        }
         
 
     }

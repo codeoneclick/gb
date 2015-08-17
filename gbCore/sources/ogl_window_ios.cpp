@@ -11,6 +11,28 @@
 #include <UIKit/UIKit.h>
 #include <QuartzCore/QuartzCore.h>
 
+#if defined(__IOS__)
+
+@implementation opengl_view
+
++ (Class)layerClass
+{
+    return [CAEAGLLayer class];
+}
+
+- (instancetype)initWithFrame:(CGRect)frame;
+{
+    if (self = [super initWithFrame:frame])
+    {
+        super.layer.opaque = YES;
+    }
+    return self;
+}
+
+@end
+
+#endif
+
 namespace gb
 {
     ogl_window::ogl_window(void* hwnd) :

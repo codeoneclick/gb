@@ -11,6 +11,20 @@
 
 #include "main_headers.h"
 
+#if defined(__IOS__)
+
+#include <Foundation/Foundation.h>
+#include <UIKit/UIKit.h>
+#include <QuartzCore/QuartzCore.h>
+
+@interface opengl_view : UIView
+
+@property (nonatomic, assign) UIInterfaceOrientation orientation;
+
+@end
+
+#endif
+
 namespace gb
 {
     class ogl_window

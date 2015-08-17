@@ -7,8 +7,15 @@
 //
 
 #include "demo_controller_ios.h"
+#include "demo_game_controller.h"
+#include "demo_game_transition.h"
+#include "ogl_window.h"
 
 @interface demo_controller_ios ()
+
+@property (nonatomic, unsafe_unretained) std::shared_ptr<demo_game_controller> m_game_controller;
+@property (nonatomic, unsafe_unretained) std::shared_ptr<demo_game_transition> m_game_transition;
+@property (weak, nonatomic) IBOutlet opengl_view *m_opengl_view;
 
 @end
 
@@ -17,6 +24,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    std::shared_ptr<gb::ogl_window> window = std::make_shared<gb::ogl_window>((__bridge void*)self.m_opengl_view);
+    
+    self.m_game_controller = std::make_shared<demo_game_controller>(window);
+    self.m_game_transition = std::make_shared<demo_game_transition>("transition.demo.xml", false);
+    self.m_game_controller->add_transition(self.m_game_transition);
+    self.m_game_controller->goto_transition("transition.demo.xml");
 }
 
 - (void)didReceiveMemoryWarning
