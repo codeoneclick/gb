@@ -53,7 +53,7 @@ namespace gb
                                                                           m_graphics_context->get_frame_buffer(),
                                                                           m_graphics_context->get_render_buffer());
 #if defined(__IOS__)
-        const auto& platform = g_platforms.find(getPlatform());
+        /*const auto& platform = g_platforms.find(getPlatform());
         if(platform == g_platforms.end())
         {
             std::cout<<"[Device] : Simulator"<<std::endl;
@@ -61,7 +61,7 @@ namespace gb
         else
         {
             std::cout<<"[Device] : "<<platform->second<<std::endl;
-        }
+        }*/
 #endif
         std::cout<<"[Output resolution] : "<<m_graphics_context->get_width()<<"x"<<m_graphics_context->get_height()<<std::endl;
         std::cout<<"["<<glGetString(GL_RENDERER)<<"] ["<<glGetString(GL_VERSION)<<"] ["<<glGetString(GL_SHADING_LANGUAGE_VERSION)<<"]"<<std::endl;

@@ -6,8 +6,26 @@
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#if defined(__IOS__)
 
-int main(int argc, const char * argv[]) {
+#include <UIKit/UIKit.h>
+#include "application_delegate_ios.h"
+
+int main(int argc, char *argv[])
+{
+    @autoreleasepool
+    {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([application_delegate_ios class]));
+    }
+}
+
+#elif defined(__OSX__)
+
+#include <Cocoa/Cocoa.h>
+
+int main(int argc, const char * argv[])
+{
     return NSApplicationMain(argc, argv);
 }
+
+#endif

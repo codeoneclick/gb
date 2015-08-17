@@ -22,7 +22,6 @@
 		212B18601B81A70100FFDCE7 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B185E1B81A70100FFDCE7 /* graphics_context.cpp */; };
 		212B18611B81A70100FFDCE7 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B185E1B81A70100FFDCE7 /* graphics_context.cpp */; };
 		212B18641B81A9AA00FFDCE7 /* graphics_context_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18621B81A9AA00FFDCE7 /* graphics_context_osx.cpp */; };
-		212B18651B81A9AA00FFDCE7 /* graphics_context_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18621B81A9AA00FFDCE7 /* graphics_context_osx.cpp */; };
 		212B18691B81B3FA00FFDCE7 /* ces_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18671B81B3FA00FFDCE7 /* ces_render_system.cpp */; };
 		212B186A1B81B3FA00FFDCE7 /* ces_render_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18671B81B3FA00FFDCE7 /* ces_render_system.cpp */; };
 		212B186D1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B186B1B81B41D00FFDCE7 /* render_pipeline.cpp */; };
@@ -61,6 +60,9 @@
 		212B18BB1B820EA000FFDCE7 /* render_technique_ss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18B81B820EA000FFDCE7 /* render_technique_ss.cpp */; };
 		212B18BD1B82184F00FFDCE7 /* shader_texture_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */; };
 		212B18BE1B82184F00FFDCE7 /* shader_texture_2d.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */; };
+		212B18D31B82359100FFDCE7 /* ogl_window_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18D21B82359100FFDCE7 /* ogl_window_ios.cpp */; };
+		212B18D51B8235AA00FFDCE7 /* graphics_context_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18D41B8235AA00FFDCE7 /* graphics_context_ios.cpp */; };
+		212B18E11B82375800FFDCE7 /* game_loop_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18E01B82375800FFDCE7 /* game_loop_ios.cpp */; };
 		21376BF71B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BF81B7C8FC100D293C5 /* vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF51B7C8FC100D293C5 /* vbo.cpp */; };
 		21376BFB1B7C991600D293C5 /* ibo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21376BF91B7C991600D293C5 /* ibo.cpp */; };
@@ -270,7 +272,6 @@
 		21B406201B7B7FEB003382AB /* game_transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4061E1B7B7FEB003382AB /* game_transition.cpp */; };
 		21B406211B7B7FEB003382AB /* game_transition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4061E1B7B7FEB003382AB /* game_transition.cpp */; };
 		21B406241B7B8077003382AB /* ogl_window_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B406221B7B8077003382AB /* ogl_window_osx.cpp */; };
-		21B406251B7B8077003382AB /* ogl_window_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B406221B7B8077003382AB /* ogl_window_osx.cpp */; };
 		21B406291B7B9004003382AB /* resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B406271B7B9004003382AB /* resource.cpp */; };
 		21B4062A1B7B9004003382AB /* resource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B406271B7B9004003382AB /* resource.cpp */; };
 		21C0AB8C1B7BA8CD004B1B7C /* ces_resources_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0AB8A1B7BA8CD004B1B7C /* ces_resources_component.cpp */; };
@@ -358,6 +359,9 @@
 		212B18B81B820EA000FFDCE7 /* render_technique_ss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = render_technique_ss.cpp; path = sources/render_technique_ss.cpp; sourceTree = "<group>"; };
 		212B18B91B820EA000FFDCE7 /* render_technique_ss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = render_technique_ss.h; path = sources/render_technique_ss.h; sourceTree = "<group>"; };
 		212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_texture_2d.cpp; path = sources/shader_texture_2d.cpp; sourceTree = "<group>"; };
+		212B18D21B82359100FFDCE7 /* ogl_window_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = ogl_window_ios.cpp; path = sources/ogl_window_ios.cpp; sourceTree = "<group>"; };
+		212B18D41B8235AA00FFDCE7 /* graphics_context_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = graphics_context_ios.cpp; path = sources/graphics_context_ios.cpp; sourceTree = "<group>"; };
+		212B18E01B82375800FFDCE7 /* game_loop_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = game_loop_ios.cpp; path = sources/game_loop_ios.cpp; sourceTree = "<group>"; };
 		21376BF51B7C8FC100D293C5 /* vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vbo.cpp; path = sources/vbo.cpp; sourceTree = "<group>"; };
 		21376BF61B7C8FC100D293C5 /* vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vbo.h; path = sources/vbo.h; sourceTree = "<group>"; };
 		21376BF91B7C991600D293C5 /* ibo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ibo.cpp; path = sources/ibo.cpp; sourceTree = "<group>"; };
@@ -1486,9 +1490,11 @@
 				212B18771B81B58500FFDCE7 /* techniques */,
 				21B406231B7B8077003382AB /* ogl_window.h */,
 				21B406221B7B8077003382AB /* ogl_window_osx.cpp */,
+				212B18D21B82359100FFDCE7 /* ogl_window_ios.cpp */,
 				212B185F1B81A70100FFDCE7 /* graphics_context.h */,
 				212B185E1B81A70100FFDCE7 /* graphics_context.cpp */,
 				212B18621B81A9AA00FFDCE7 /* graphics_context_osx.cpp */,
+				212B18D41B8235AA00FFDCE7 /* graphics_context_ios.cpp */,
 				2173D1F91B7CC0A9002912BE /* material.h */,
 				2173D1F81B7CC0A9002912BE /* material.cpp */,
 				212B18A61B81D35A00FFDCE7 /* global_light.h */,
@@ -1550,6 +1556,7 @@
 				21B405C41B7B1EB0003382AB /* game_loop.h */,
 				21B405C31B7B1EB0003382AB /* game_loop.cpp */,
 				21B405C71B7B2256003382AB /* game_loop_osx.cpp */,
+				212B18E01B82375800FFDCE7 /* game_loop_ios.cpp */,
 				21B4061B1B7B7FD3003382AB /* game_controller.h */,
 				21B4061A1B7B7FD3003382AB /* game_controller.cpp */,
 				21B4061F1B7B7FEB003382AB /* game_transition.h */,
@@ -1911,7 +1918,6 @@
 				212B186A1B81B3FA00FFDCE7 /* ces_render_system.cpp in Sources */,
 				21B405371B7A0AFA003382AB /* b2Settings.cpp in Sources */,
 				21B406211B7B7FEB003382AB /* game_transition.cpp in Sources */,
-				212B18651B81A9AA00FFDCE7 /* graphics_context_osx.cpp in Sources */,
 				21B405381B7A0AFA003382AB /* b2RevoluteJoint.cpp in Sources */,
 				21B405391B7A0AFA003382AB /* b2CollidePolygon.cpp in Sources */,
 				21C0AB921B7BB0F4004B1B7C /* texture.cpp in Sources */,
@@ -1922,7 +1928,6 @@
 				21B4053C1B7A0AFA003382AB /* b2ChainShape.cpp in Sources */,
 				212B18881B81C04100FFDCE7 /* render_technique_ws.cpp in Sources */,
 				212B18941B81CD5400FFDCE7 /* ces_geometry_component.cpp in Sources */,
-				21B406251B7B8077003382AB /* ogl_window_osx.cpp in Sources */,
 				21B4053D1B7A0AFA003382AB /* pngmem.c in Sources */,
 				21B4053E1B7A0AFA003382AB /* b2ContactSolver.cpp in Sources */,
 				21B4053F1B7A0AFA003382AB /* b2EdgeAndPolygonContact.cpp in Sources */,
@@ -1933,6 +1938,7 @@
 				212B187F1B81B6CF00FFDCE7 /* render_technique_main.cpp in Sources */,
 				2102EB351B7BDE1B00F20197 /* resource_serializer.cpp in Sources */,
 				21B406131B7B662D003382AB /* ws_technique_configuration.cpp in Sources */,
+				212B18E11B82375800FFDCE7 /* game_loop_ios.cpp in Sources */,
 				21B405431B7A0AFA003382AB /* b2ContactManager.cpp in Sources */,
 				21B405441B7A0AFA003382AB /* deflate.c in Sources */,
 				21B405451B7A0AFA003382AB /* b2Contact.cpp in Sources */,
@@ -1952,6 +1958,7 @@
 				21B4054D1B7A0AFA003382AB /* pngwtran.c in Sources */,
 				21B4054E1B7A0AFA003382AB /* gzclose.c in Sources */,
 				212B18A81B81D35A00FFDCE7 /* global_light.cpp in Sources */,
+				212B18D51B8235AA00FFDCE7 /* graphics_context_ios.cpp in Sources */,
 				21B406011B7B62DE003382AB /* animation_configuration.cpp in Sources */,
 				21B4054F1B7A0AFA003382AB /* crc32.c in Sources */,
 				212B18A01B81CF4700FFDCE7 /* ces_frustum_culling_component.cpp in Sources */,
@@ -2018,6 +2025,7 @@
 				212B183F1B7DF4B200FFDCE7 /* ces_configurations_system.cpp in Sources */,
 				21B405741B7A0AFA003382AB /* pngwrite.c in Sources */,
 				212B18721B81B43800FFDCE7 /* render_techniques_accessor.cpp in Sources */,
+				212B18D31B82359100FFDCE7 /* ogl_window_ios.cpp in Sources */,
 				21B405751B7A0AFA003382AB /* inftrees.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2168,6 +2176,12 @@
 					"__EDITOR__=1",
 					"__IOS__=1",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/libraries\"",
+					"\"$(SRCROOT)/autogenerated\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "gbCore-ios";
 				SKIP_INSTALL = YES;
@@ -2184,6 +2198,12 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"__EDITOR__=1",
 					"__IOS__=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/libraries\"",
+					"\"$(SRCROOT)/autogenerated\"",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "gbCore-ios";

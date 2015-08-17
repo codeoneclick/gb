@@ -27,16 +27,22 @@
 		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
 		212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
+		212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 212B18C21B8232EA00FFDCE7 /* application_delegate_ios.mm */; };
+		212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 212B18C41B8232EA00FFDCE7 /* demo_controller_ios.mm */; };
+		212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212B18C61B8232EA00FFDCE7 /* demo_launch_screen_ios.xib */; };
+		212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */ = {isa = PBXBuildFile; fileRef = 212B18C51B8232EA00FFDCE7 /* demo_controller_ios.xib */; };
+		212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B4058C1B7A0C58003382AB /* libgbCore-ios.a */; };
+		212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18D61B82361F00FFDCE7 /* OpenGLES.framework */; };
+		212B18D91B82362600FFDCE7 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18D81B82362600FFDCE7 /* QuartzCore.framework */; };
+		212B18DB1B82363000FFDCE7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */; };
+		212B18DD1B82363800FFDCE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DC1B82363800FFDCE7 /* UIKit.framework */; };
+		212B18DF1B82363E00FFDCE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DE1B82363E00FFDCE7 /* Foundation.framework */; };
 		21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */; };
 		21B4033D1B7A09FD003382AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B4033B1B7A09FD003382AB /* main.m */; };
 		21B4033F1B7A0A0E003382AB /* info-osx.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21B4033E1B7A0A0E003382AB /* info-osx.plist */; };
 		21B403441B7A0A23003382AB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B403411B7A0A23003382AB /* MainMenu.xib */; };
 		21B403451B7A0A23003382AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B403431B7A0A23003382AB /* Images.xcassets */; };
 		21B4057E1B7A0C58003382AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 21B4033B1B7A09FD003382AB /* main.m */; };
-		21B4057F1B7A0C58003382AB /* application_delegate_osx.mm in Sources */ = {isa = PBXBuildFile; fileRef = 21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */; };
-		21B405821B7A0C58003382AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21B403431B7A0A23003382AB /* Images.xcassets */; };
-		21B405831B7A0C58003382AB /* info-osx.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21B4033E1B7A0A0E003382AB /* info-osx.plist */; };
-		21B405841B7A0C58003382AB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 21B403411B7A0A23003382AB /* MainMenu.xib */; };
 		21B405901B7A0CAC003382AB /* info-ios.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21B4058F1B7A0CAC003382AB /* info-ios.plist */; };
 		21B405921B7A0CDA003382AB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B405911B7A0CDA003382AB /* OpenGL.framework */; };
 		21B405941B7A0CDE003382AB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B405931B7A0CDE003382AB /* Cocoa.framework */; };
@@ -49,6 +55,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 21B402BC1B7A07E9003382AB;
 			remoteInfo = "gbCore-osx";
+		};
+		212B18CF1B8234DA00FFDCE7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21B403461B7A0A3B003382AB /* gbCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21B405271B7A0AFA003382AB;
+			remoteInfo = "gbCore-ios";
 		};
 		21B4034A1B7A0A3B003382AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -79,8 +92,19 @@
 		2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.refraction.xml; sourceTree = "<group>"; };
 		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
 		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
-		211B31381B7E899B00178968 /* gbDemo-osx copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211B31381B7E899B00178968 /* gbDemo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = transition.demo.xml; path = ../gbBundle/Configurations/transitions/transition.demo.xml; sourceTree = "<group>"; };
+		212B18C11B8232EA00FFDCE7 /* application_delegate_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = application_delegate_ios.h; path = sources/application_delegate_ios.h; sourceTree = "<group>"; };
+		212B18C21B8232EA00FFDCE7 /* application_delegate_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = application_delegate_ios.mm; path = sources/application_delegate_ios.mm; sourceTree = "<group>"; };
+		212B18C31B8232EA00FFDCE7 /* demo_controller_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_controller_ios.h; path = sources/demo_controller_ios.h; sourceTree = "<group>"; };
+		212B18C41B8232EA00FFDCE7 /* demo_controller_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = demo_controller_ios.mm; path = sources/demo_controller_ios.mm; sourceTree = "<group>"; };
+		212B18C51B8232EA00FFDCE7 /* demo_controller_ios.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = demo_controller_ios.xib; path = sources/demo_controller_ios.xib; sourceTree = "<group>"; };
+		212B18C61B8232EA00FFDCE7 /* demo_launch_screen_ios.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = demo_launch_screen_ios.xib; path = sources/demo_launch_screen_ios.xib; sourceTree = "<group>"; };
+		212B18D61B82361F00FFDCE7 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/OpenGLES.framework; sourceTree = DEVELOPER_DIR; };
+		212B18D81B82362600FFDCE7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
+		212B18DC1B82363800FFDCE7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		212B18DE1B82363E00FFDCE7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		21B403121B7A0968003382AB /* gbDemo-osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B403391B7A09FD003382AB /* application_delegate_osx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = application_delegate_osx.h; path = sources/application_delegate_osx.h; sourceTree = "<group>"; };
 		21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = application_delegate_osx.mm; path = sources/application_delegate_osx.mm; sourceTree = "<group>"; };
@@ -109,6 +133,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212B18DF1B82363E00FFDCE7 /* Foundation.framework in Frameworks */,
+				212B18DD1B82363800FFDCE7 /* UIKit.framework in Frameworks */,
+				212B18DB1B82363000FFDCE7 /* CoreGraphics.framework in Frameworks */,
+				212B18D91B82362600FFDCE7 /* QuartzCore.framework in Frameworks */,
+				212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */,
+				212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +199,38 @@
 			name = transitions;
 			sourceTree = "<group>";
 		};
+		212B18BF1B82329100FFDCE7 /* ios */ = {
+			isa = PBXGroup;
+			children = (
+				212B18C11B8232EA00FFDCE7 /* application_delegate_ios.h */,
+				212B18C21B8232EA00FFDCE7 /* application_delegate_ios.mm */,
+				212B18C31B8232EA00FFDCE7 /* demo_controller_ios.h */,
+				212B18C41B8232EA00FFDCE7 /* demo_controller_ios.mm */,
+				212B18C51B8232EA00FFDCE7 /* demo_controller_ios.xib */,
+				212B18C61B8232EA00FFDCE7 /* demo_launch_screen_ios.xib */,
+			);
+			name = ios;
+			sourceTree = "<group>";
+		};
+		212B18C01B82329600FFDCE7 /* osx */ = {
+			isa = PBXGroup;
+			children = (
+				21B403391B7A09FD003382AB /* application_delegate_osx.h */,
+				21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */,
+				2102EB431B7D2D6700F20197 /* demo_conroller_osx.h */,
+				2102EB421B7D2D6700F20197 /* demo_conroller_osx.cpp */,
+			);
+			name = osx;
+			sourceTree = "<group>";
+		};
 		21B403091B7A0968003382AB = {
 			isa = PBXGroup;
 			children = (
+				212B18DE1B82363E00FFDCE7 /* Foundation.framework */,
+				212B18DC1B82363800FFDCE7 /* UIKit.framework */,
+				212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */,
+				212B18D81B82362600FFDCE7 /* QuartzCore.framework */,
+				212B18D61B82361F00FFDCE7 /* OpenGLES.framework */,
 				21B403361B7A09DB003382AB /* libraries */,
 				21B403351B7A09D6003382AB /* sources */,
 				21B403381B7A09E6003382AB /* support */,
@@ -184,7 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				21B403121B7A0968003382AB /* gbDemo-osx.app */,
-				211B31381B7E899B00178968 /* gbDemo-osx copy.app */,
+				211B31381B7E899B00178968 /* gbDemo-ios.app */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -192,11 +251,9 @@
 		21B403351B7A09D6003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				21B403391B7A09FD003382AB /* application_delegate_osx.h */,
-				21B4033A1B7A09FD003382AB /* application_delegate_osx.mm */,
+				212B18C01B82329600FFDCE7 /* osx */,
+				212B18BF1B82329100FFDCE7 /* ios */,
 				21B4033B1B7A09FD003382AB /* main.m */,
-				2102EB431B7D2D6700F20197 /* demo_conroller_osx.h */,
-				2102EB421B7D2D6700F20197 /* demo_conroller_osx.cpp */,
 				2102EB461B7D2D9000F20197 /* demo_game_controller.h */,
 				2102EB451B7D2D9000F20197 /* demo_game_controller.cpp */,
 				2102EB4A1B7D2DAC00F20197 /* demo_game_transition.h */,
@@ -300,10 +357,11 @@
 			buildRules = (
 			);
 			dependencies = (
+				212B18D01B8234DA00FFDCE7 /* PBXTargetDependency */,
 			);
 			name = "gbDemo-ios";
 			productName = gbDemo;
-			productReference = 211B31381B7E899B00178968 /* gbDemo-osx copy.app */;
+			productReference = 211B31381B7E899B00178968 /* gbDemo-ios.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -317,6 +375,9 @@
 				TargetAttributes = {
 					21B403111B7A0968003382AB = {
 						CreatedOnToolsVersion = 6.4;
+					};
+					21B4057C1B7A0C58003382AB = {
+						DevelopmentTeam = FK6P3M845J;
 					};
 				};
 			};
@@ -386,11 +447,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
-				21B405821B7A0C58003382AB /* Images.xcassets in Resources */,
+				212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */,
 				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
-				21B405831B7A0C58003382AB /* info-osx.plist in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
-				21B405841B7A0C58003382AB /* MainMenu.xib in Resources */,
+				212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */,
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
@@ -420,7 +480,8 @@
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,
-				21B4057F1B7A0C58003382AB /* application_delegate_osx.mm in Sources */,
+				212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */,
+				212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +492,11 @@
 			isa = PBXTargetDependency;
 			name = "gbCore-osx";
 			targetProxy = 2102EB4D1B7D34F200F20197 /* PBXContainerItemProxy */;
+		};
+		212B18D01B8234DA00FFDCE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gbCore-ios";
+			targetProxy = 212B18CF1B8234DA00FFDCE7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -581,11 +647,31 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					"__EDITOR__=1",
+					"__IOS__=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../gbCore/libraries\"",
+					"\"$(SRCROOT)/../gbCore/sources\"",
+					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "gbDemo-osx copy";
+				PRODUCT_NAME = "gbDemo-ios";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -593,11 +679,29 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_ENABLE_CPP_EXCEPTIONS = NO;
+				GCC_ENABLE_CPP_RTTI = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"__EDITOR__=1",
+					"__IOS__=1",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"\"$(SRCROOT)/../gbCore/libraries\"",
+					"\"$(SRCROOT)/../gbCore/sources\"",
+					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "gbDemo-osx copy";
+				PRODUCT_NAME = "gbDemo-ios";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
