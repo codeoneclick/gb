@@ -36,7 +36,7 @@ namespace gb
             std::shared_ptr<render_technique_ws> technique = iterator.second;
 
             technique->bind();
-            technique->draw(nullptr);
+            technique->draw();
             technique->unbind();
         }
         

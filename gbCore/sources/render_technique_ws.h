@@ -24,6 +24,8 @@ namespace gb
         std::shared_ptr<texture> m_color_attachment_texture;
         std::shared_ptr<texture> m_depth_attachment_texture;
         
+        std::queue<std::shared_ptr<ces_entity>> m_entities;
+        
     public:
         
         render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index);
@@ -34,7 +36,9 @@ namespace gb
         
         void bind(void);
         void unbind(void);
-        void draw(const std::shared_ptr<ces_entity>& entity);
+        void draw(void);
+        
+        void add_entity(const std::shared_ptr<ces_entity>& entity);
     };
 };
 

@@ -104,13 +104,15 @@ namespace gb
             GLchar *message_string = new GLchar[message_size];
             memset(message_string, NULL, message_size * sizeof(GLchar));
             glGetShaderInfoLog(handle, message_size, NULL, message_string);
-            *out_message = message_string;
+            if(out_message)
+            {
+                *out_message = message_string;
+            }
         }
-        else
+        if(out_success)
         {
-            out_message = nullptr;
+            *out_success = success;
         }
-        *out_success = success;
         return handle;
     }
     
@@ -131,13 +133,15 @@ namespace gb
             GLchar *message_string = new GLchar[message_size];
             memset(message_string, NULL, message_size * sizeof(GLchar));
             glGetShaderInfoLog(handle, message_size, NULL, message_string);
-            *out_message = message_string;
+            if(out_message)
+            {
+                *out_message = message_string;
+            }
         }
-        else
+        if(out_success)
         {
-            out_message = nullptr;
+            *out_success = success;
         }
-        *out_success = success;
         return handle;
     }
 }

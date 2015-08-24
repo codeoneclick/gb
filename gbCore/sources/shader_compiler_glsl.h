@@ -27,8 +27,8 @@ namespace gb
         shader_compiler_glsl(void) = default;
         ~shader_compiler_glsl(void) = default;
         
-        static ui32 compile(const std::string& source_code, GLenum shader_type, std::string* out_message, bool* out_success);
-        static ui32 link(ui32 vs_handle, ui32 fs_handle, std::string* out_message, bool* out_success);
+        static ui32 compile(const std::string& source_code, GLenum shader_type, std::string* out_message = nullptr, bool* out_success = nullptr);
+        static ui32 link(ui32 vs_handle, ui32 fs_handle, std::string* out_message = nullptr, bool* out_success = nullptr);
     };
 };
 

@@ -60,7 +60,6 @@ namespace gb
     
     void game_transition::on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success)
     {
-        
         std::shared_ptr<ces_render_system> render_system =
         std::static_pointer_cast<ces_render_system>(m_system_feeder->get_system(e_ces_system_type_render));
         std::shared_ptr<render_pipeline> render_pipeline = render_system->get_render_pipeline();
@@ -100,29 +99,24 @@ namespace gb
             ui32 screen_width = std::min(ss_technique_configuration->get_screen_width(), render_pipeline->get_graphics_context()->get_width());
             ui32 screen_height = std::min(ss_technique_configuration->get_screen_height(), render_pipeline->get_graphics_context()->get_height());
             
-            CSharedRenderTechniqueScreenSpace renderSSTechnique =
-            std::make_shared<CRenderTechniqueScreenSpace>(screenWidth,
-                                                          screenHeight,
-                                                          configurationSSTechnique->getGUID(),
-                                                          material);
-            m_renderPipeline->addScreenSpaceRenderTechnique(configurationSSTechnique->getGUID(), renderSSTechnique);
+            std::shared_ptr<render_technique_ss> render_technique_ss =
+            std::make_shared<gb::render_technique_ss>(screen_width,
+                                                      screen_height,
+                                                      ss_technique_configuration->get_guid(),
+                                                      material);
+            render_pipeline->add_ss_render_technique(ss_technique_configuration->get_guid(), render_technique_ss);
         }
         
-        if(!m_isOffscreen)
+        if(!m_offscreen)
         {
-            std::shared_ptr<CConfigurationOutputTechnique> configurationOutputTechnique = configurationTransition->getConfigurationOutputTechnique();
-            assert(configurationOutputTechnique != nullptr);
-            std::shared_ptr<CConfigurationMaterial> configurationMaterial = configurationOutputTechnique->getConfigurationMaterial();
-            assert(configurationMaterial != nullptr);
+            std::shared_ptr<output_technique_configuration> main_technique_configuration = transition_configuration->get_output_technique_configuration();
+            assert(main_technique_configuration);
+            std::shared_ptr<material_configuration> material_configuration = main_technique_configuration->get_material_configuration();
+            assert(material_configuration);
             
-            assert(m_resourceAccessor != nullptr);
-            CSharedMaterial material =  CMaterial::constructCustomMaterial(configurationMaterial,
-                                                                           m_resourceAccessor,
-                                                                           m_renderPipeline);
-            m_renderPipeline->setMainRenderTechnique(material);
+            std::shared_ptr<material> material =  material::construct(material_configuration);
+            render_pipeline->create_main_render_technique(material);
         }
-        
-
     }
     
     void game_transition::on_update(f32 deltatime)

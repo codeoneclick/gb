@@ -13,7 +13,7 @@
 namespace gb
 {
     resource_serializer::resource_serializer(const std::string& guid,
-                                             const std::shared_ptr<resource>& resource) :
+                                             const resource_shared_ptr& resource) :
     m_guid(guid),
     m_resource(resource),
     m_status(e_serializer_status_undefined)
@@ -42,7 +42,7 @@ namespace gb
         std::static_pointer_cast<std::ifstream>(stream)->close();
     }
     
-    void resource_serializer::on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data> &data)
+    void resource_serializer::on_transfering_data_serialized(const resource_transfering_data_shared_ptr &data)
     {
         m_resource->on_transfering_data_serialized(data);
     }

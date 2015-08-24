@@ -131,10 +131,8 @@ namespace gb
         std::string m_fs_source_code;
         ui32 m_shader_id;
         
-    public:
-        
-        shader_transfering_data(void);
-        ~shader_transfering_data(void) = default;
+        shader_transfering_data();
+        ~shader_transfering_data() = default;
     };
     
     class shader : public resource

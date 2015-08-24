@@ -94,6 +94,11 @@ namespace gb
         return m_depth_attachment_texture;
     }
     
+    void render_technique_ws::add_entity(const std::shared_ptr<ces_entity>& entity)
+    {
+        m_entities.push(entity);
+    }
+    
     void render_technique_ws::bind(void)
     {
         gl_bind_frame_buffer(GL_FRAMEBUFFER, m_frame_buffer);
@@ -107,54 +112,59 @@ namespace gb
         
     }
     
-    void render_technique_ws::draw(const std::shared_ptr<ces_entity> &entity)
+    void render_technique_ws::draw(void)
     {
-        std::shared_ptr<ces_render_component> render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
-        std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
-        std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
-        std::shared_ptr<ces_frustum_culling_component> frustum_component =
-        std::static_pointer_cast<ces_frustum_culling_component>(entity->get_component(e_ces_component_type_frustum_culling));
-        std::shared_ptr<ces_transformation_component> transformation_component =
-        std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
-        std::shared_ptr<ces_global_light_component> global_light_component =
-        std::static_pointer_cast<ces_global_light_component>(entity->get_component(e_ces_component_type_global_light));
-        
-        assert(render_component);
-        assert(geometry_component);
-        assert(camera_component);
-        
-        std::shared_ptr<material> material = render_component->on_bind(m_name);
-        render_component->bind_camera_uniforms(m_name, camera_component->get_camera(), material);
-        
-        if(global_light_component)
+        while (!m_entities.empty())
         {
-            render_component->bind_global_light_uniforms(m_name, global_light_component->get_global_light(), material);
-        }
-        
-        if(transformation_component)
-        {
-            render_component->bind_transformation_uniforms(m_name, ces_transformation_component::get_matrix_m(transformation_component),
-                                                           ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
-                                                           ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
-        }
-        
-        if(frustum_component)
-        {
-            glm::vec3 min_bound = geometry_component->get_mesh()->get_min_bound();
-            glm::vec3 max_bound = geometry_component->get_mesh()->get_max_bound();
+            std::shared_ptr<ces_entity> entity = m_entities.front();
+            std::shared_ptr<ces_render_component> render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+            std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
+            std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
+            std::shared_ptr<ces_frustum_culling_component> frustum_component =
+            std::static_pointer_cast<ces_frustum_culling_component>(entity->get_component(e_ces_component_type_frustum_culling));
+            std::shared_ptr<ces_transformation_component> transformation_component =
+            std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
+            std::shared_ptr<ces_global_light_component> global_light_component =
+            std::static_pointer_cast<ces_global_light_component>(entity->get_component(e_ces_component_type_global_light));
+            
+            assert(render_component);
+            assert(geometry_component);
+            assert(camera_component);
+            
+            std::shared_ptr<material> material = render_component->on_bind(m_name);
+            render_component->bind_camera_uniforms(m_name, camera_component->get_camera(), material);
+            
+            if(global_light_component)
+            {
+                render_component->bind_global_light_uniforms(m_name, global_light_component->get_global_light(), material);
+            }
+            
             if(transformation_component)
             {
-                min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
-                max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
+                render_component->bind_transformation_uniforms(m_name, ces_transformation_component::get_matrix_m(transformation_component),
+                                                               ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
+                                                               ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
             }
-            if(frustum_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
+            
+            if(frustum_component)
+            {
+                glm::vec3 min_bound = geometry_component->get_mesh()->get_min_bound();
+                glm::vec3 max_bound = geometry_component->get_mesh()->get_max_bound();
+                if(transformation_component)
+                {
+                    min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
+                    max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
+                }
+                if(frustum_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
+                {
+                    render_component->on_draw(m_name, geometry_component->get_mesh(), material);
+                }
+            }
+            else
             {
                 render_component->on_draw(m_name, geometry_component->get_mesh(), material);
             }
-        }
-        else
-        {
-            render_component->on_draw(m_name, geometry_component->get_mesh(), material);
+            m_entities.pop();
         }
     }
 }

@@ -49,7 +49,6 @@ namespace gb
                 {
                     std::shared_ptr<configuration> configuration = m_configuration_accessor->get_transition_configuration(configuration_component->get_configuration_filename());
                     configuration_component->on_configuration_loaded(configuration, configuration != nullptr);
-                    
                 }
                     break;
                     

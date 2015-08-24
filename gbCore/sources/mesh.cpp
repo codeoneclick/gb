@@ -11,8 +11,6 @@
 
 namespace gb
 {
-    const ui32 kMaxBones = 32;
-    
     mesh_transfering_data::mesh_transfering_data(vbo::vertex_data* vertices, ui16* indices,
                                                  ui32 num_vertices, ui32 num_indices,
                                                  const glm::vec3& min_bound, const glm::vec3& max_bound) :

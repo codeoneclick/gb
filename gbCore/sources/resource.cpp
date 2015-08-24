@@ -50,4 +50,30 @@ namespace gb
         const bool value = 0 != (m_status & e_resource_status_commited);
         return value;
     };
+    
+    void resource::add_resource_loading_listener(const resource_loading_interface_shared_ptr& listener)
+    {
+        if(resource::is_loaded() && resource::is_commited())
+        {
+            listener->on_resource_loaded(shared_from_this(), true);
+        }
+        else
+        {
+            m_listeners.insert(listener);
+        }
+    }
+    
+    void resource::remove_resource_loading_listener(const resource_loading_interface_shared_ptr& listener)
+    {
+        m_listeners.erase(listener);
+    }
+    
+    void resource::on_resource_loaded(bool success)
+    {
+        for(const auto& listener : m_listeners)
+        {
+            listener->on_resource_loaded(shared_from_this(), success);
+        }
+        m_listeners.clear();
+    }
 }

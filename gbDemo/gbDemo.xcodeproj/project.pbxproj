@@ -226,11 +226,6 @@
 		21B403091B7A0968003382AB = {
 			isa = PBXGroup;
 			children = (
-				212B18DE1B82363E00FFDCE7 /* Foundation.framework */,
-				212B18DC1B82363800FFDCE7 /* UIKit.framework */,
-				212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */,
-				212B18D81B82362600FFDCE7 /* QuartzCore.framework */,
-				212B18D61B82361F00FFDCE7 /* OpenGLES.framework */,
 				21B403361B7A09DB003382AB /* libraries */,
 				21B403351B7A09D6003382AB /* sources */,
 				21B403381B7A09E6003382AB /* support */,
@@ -265,6 +260,11 @@
 		21B403361B7A09DB003382AB /* libraries */ = {
 			isa = PBXGroup;
 			children = (
+				212B18DE1B82363E00FFDCE7 /* Foundation.framework */,
+				212B18DC1B82363800FFDCE7 /* UIKit.framework */,
+				212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */,
+				212B18D81B82362600FFDCE7 /* QuartzCore.framework */,
+				212B18D61B82361F00FFDCE7 /* OpenGLES.framework */,
 				21B405931B7A0CDE003382AB /* Cocoa.framework */,
 				21B405911B7A0CDA003382AB /* OpenGL.framework */,
 				21B403461B7A0A3B003382AB /* gbCore.xcodeproj */,

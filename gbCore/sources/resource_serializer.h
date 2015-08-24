@@ -10,6 +10,7 @@
 #define resource_serializer_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {
@@ -21,8 +22,6 @@ namespace gb
         e_serializer_status_success
     };
     
-    class resource;
-    class resource_transfering_data;
     class resource_serializer : public std::enable_shared_from_this<resource_serializer>
     {
     private:
@@ -30,21 +29,21 @@ namespace gb
     protected:
         
         std::string m_guid;
-        std::shared_ptr<resource> m_resource;
+        resource_shared_ptr m_resource;
         e_serializer_status m_status;
         
-        void on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data>& data);
+        void on_transfering_data_serialized(const resource_transfering_data_shared_ptr& data);
         
     public:
         
         resource_serializer(const std::string& guid,
-                            const std::shared_ptr<resource>& resource);
-        virtual ~resource_serializer(void) = default;
+                            const resource_shared_ptr& resource);
+        virtual ~resource_serializer() = default;
         
-        std::string get_guid(void) const;
-        e_serializer_status get_status(void) const;
+        std::string get_guid() const;
+        e_serializer_status get_status() const;
         
-        virtual void serialize(void) = 0;
+        virtual void serialize() = 0;
         
         static std::shared_ptr<std::istream> open_stream(const std::string &filename, e_serializer_status* status);
         static void close_stream(const std::shared_ptr<std::istream>& stream);
