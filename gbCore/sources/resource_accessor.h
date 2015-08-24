@@ -1,13 +1,13 @@
 //
-//  resource_loader.h
+//  resource_accessor.h
 //  gbCore
 //
 //  Created by sergey.sergeev on 8/24/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef resource_loader_h
-#define resource_loader_h
+#ifndef resource_accessor_h
+#define resource_accessor_h
 
 #include "main_headers.h"
 #include "declarations.h"
@@ -15,7 +15,7 @@
 
 namespace gb
 {
-    class resource_loader : public game_loop_interface
+    class resource_accessor : public game_loop_interface
     {
     private:
         
@@ -23,6 +23,7 @@ namespace gb
         
         std::unordered_map<std::string, resource_loading_operation_shared_ptr> m_operationsQueue;
         std::unordered_map<std::string, resource_shared_ptr> m_resources;
+        std::queue<std::tuple<resource_shared_ptr, bool>> m_resources_need_to_callback;
         
         std::mutex m_mutex;
         std::thread m_thread;
@@ -33,8 +34,10 @@ namespace gb
         
     public:
         
-        resource_loader();
-        ~resource_loader();
+        resource_accessor();
+        ~resource_accessor();
+        
+        void add_custom_resource(const std::string& guid, const resource_shared_ptr& resource);
         
         shader_shared_ptr get_shader(const std::string& vs_filename,
                                      const std::string& fs_filename, bool sync = false);

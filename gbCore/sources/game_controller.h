@@ -10,12 +10,12 @@
 #define game_controller_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {
     class ogl_window;
     class graphics_context;
-    class configuration_accessor;
     class game_transition;
     
     class game_controller
@@ -23,7 +23,8 @@ namespace gb
     private:
         
         std::shared_ptr<graphics_context> m_graphics_context;
-        std::shared_ptr<configuration_accessor> m_configuration_accessor;
+        configuration_accessor_shared_ptr m_configuration_accessor;
+        resource_accessor_shared_ptr m_resource_accessor;
         
     protected:
         

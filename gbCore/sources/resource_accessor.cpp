@@ -1,12 +1,12 @@
 //
-//  resource_loader.cpp
+//  resource_accessor.cpp
 //  gbCore
 //
 //  Created by sergey.sergeev on 8/24/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#include "resource_loader.h"
+#include "resource_accessor.h"
 #include "resource_loading_operation.h"
 #include "shader_loading_operation.h"
 #include "texture_loading_operation.h"
@@ -16,13 +16,13 @@
 
 namespace gb
 {
-    resource_loader::resource_loader()
+    resource_accessor::resource_accessor()
     {
         m_thread_executed = true;
-        m_thread = std::thread(&resource_loader::on_thread_update, this);
+        m_thread = std::thread(&resource_accessor::on_thread_update, this);
     }
     
-    resource_loader::~resource_loader()
+    resource_accessor::~resource_accessor()
     {
         m_thread_executed = false;
         m_thread.join();
@@ -30,7 +30,7 @@ namespace gb
         m_resources.clear();
     }
     
-    void resource_loader::on_thread_update()
+    void resource_accessor::on_thread_update()
     {
         while (m_thread_executed)
         {
@@ -50,7 +50,7 @@ namespace gb
         }
     }
     
-    void resource_loader::on_update(f32 deltatime)
+    void resource_accessor::on_update(f32 deltatime)
     {
         auto iterator = m_operationsQueue.begin();
         while(iterator != m_operationsQueue.end())
@@ -78,9 +78,19 @@ namespace gb
                 ++iterator;
             }
         }
+        while (!m_resources_need_to_callback.empty())
+        {
+            std::get<0>(m_resources_need_to_callback.front())->on_resource_loaded(std::get<1>(m_resources_need_to_callback.front()));
+            m_resources_need_to_callback.pop();
+        }
     }
     
-    shader_shared_ptr resource_loader::get_shader(const std::string &vs_filename, const std::string &fs_filename, bool sync)
+    void resource_accessor::add_custom_resource(const std::string& guid, const resource_shared_ptr& resource)
+    {
+        m_resources.insert(std::make_pair(guid, resource));
+    }
+    
+    shader_shared_ptr resource_accessor::get_shader(const std::string &vs_filename, const std::string &fs_filename, bool sync)
     {
         std::string guid = std::string().append(vs_filename).append(fs_filename);
         shader_shared_ptr resource = nullptr;
@@ -103,14 +113,14 @@ namespace gb
             {
                 operation->serialize();
                 operation->commit();
-                resource->on_resource_loaded(operation->get_status() == e_resource_loading_operation_status_success);
+                
+                m_resources_need_to_callback.push(std::make_tuple(resource, operation->get_status() == e_resource_loading_operation_status_success));
             }
         }
         return resource;
     }
     
-    
-    texture_shared_ptr resource_loader::get_texture(const std::string &filename, bool sync)
+    texture_shared_ptr resource_accessor::get_texture(const std::string &filename, bool sync)
     {
         std::string guid = filename;
         texture_shared_ptr resource = nullptr;
@@ -132,11 +142,10 @@ namespace gb
             {
                 operation->serialize();
                 operation->commit();
-                resource->on_resource_loaded(operation->get_status() == e_resource_loading_operation_status_success);
+                
+                m_resources_need_to_callback.push(std::make_tuple(resource, operation->get_status() == e_resource_loading_operation_status_success));
             }
         }
         return resource;
     }
-    
-    
 }

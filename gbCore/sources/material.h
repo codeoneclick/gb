@@ -12,6 +12,8 @@
 #include "texture.h"
 #include "shader.h"
 #include "material_configuration.h"
+#include "resource_accessor.h"
+#include "declarations.h"
 
 namespace gb
 {
@@ -64,6 +66,16 @@ namespace gb
         ~material(void);
         
         static std::shared_ptr<material> construct(const std::shared_ptr<material_configuration>& configuration);
+        
+        static void set_shader(const material_shared_ptr& material,
+                               const std::shared_ptr<material_configuration>& configuration,
+                               const resource_accessor_shared_ptr& resource_accessor,
+                               const resource_loading_interface_shared_ptr& listener = nullptr);
+        
+        static void set_textures(const material_shared_ptr& material,
+                                 const std::shared_ptr<material_configuration>& configuration,
+                                 const resource_accessor_shared_ptr& resource_accessor,
+                                 const resource_loading_interface_shared_ptr& listener = nullptr);
         
         bool is_culling(void) const;
         GLenum get_culling_mode(void) const;

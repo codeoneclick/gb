@@ -10,6 +10,7 @@
 #define configuration_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {

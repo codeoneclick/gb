@@ -7,6 +7,7 @@
 //
 
 #include "material.h"
+#include "resource.h"
 
 namespace gb
 {
@@ -72,10 +73,53 @@ namespace gb
         material->set_reflecting(configuration->get_reflecting());
         material->set_shadowing(configuration->get_shadowing());
         material->set_debugging(configuration->get_debugging());
-
+        
         return material;
     }
     
+    void material::set_shader(const material_shared_ptr& material,
+                              const std::shared_ptr<material_configuration>& configuration,
+                              const resource_accessor_shared_ptr& resource_accessor,
+                              const resource_loading_interface_shared_ptr& listener)
+    {
+        std::shared_ptr<shader_configuration> shader_configuration =
+        std::static_pointer_cast<gb::shader_configuration>(configuration->get_shader_configuration());
+        assert(shader_configuration != nullptr);
+        shader_shared_ptr shader = resource_accessor->get_shader(shader_configuration->get_vs_filename(),
+                                                                 shader_configuration->get_fs_filename());
+        material->set_shader(shader);
+        if(listener)
+        {
+            shader->add_resource_loading_listener(listener);
+        }
+    }
+    
+    void material::set_textures(const material_shared_ptr& material,
+                                const std::shared_ptr<material_configuration>& configuration,
+                                const resource_accessor_shared_ptr& resource_accessor,
+                                const resource_loading_interface_shared_ptr& listener)
+    {
+        for(const auto& iterator : configuration->get_textures_configurations())
+        {
+            std::shared_ptr<texture_configuration> texture_configuration =
+            std::static_pointer_cast<gb::texture_configuration>(iterator);
+            assert(texture_configuration != nullptr);
+            std::string texture_filename = texture_configuration->get_texture_filename().length() != 0 ?
+            texture_configuration->get_texture_filename() : texture_configuration->get_render_technique_name();
+            texture_shared_ptr texture = resource_accessor->get_texture(texture_filename);
+            assert(texture != nullptr);
+            texture->set_wrap_mode(texture_configuration->get_wrap_mode());
+            texture->set_mag_filter(texture_configuration->get_mag_filter());
+            texture->set_min_filter(texture_configuration->get_min_filter());
+            assert(texture_configuration->get_sampler_index() >= 0 &&
+                   texture_configuration->get_sampler_index() < e_shader_sampler_max);
+            material->set_texture(texture, static_cast<e_shader_sampler>(texture_configuration->get_sampler_index()));
+            if(listener)
+            {
+                texture->add_resource_loading_listener(listener);
+            }
+        }
+    }
     
     bool material::is_culling(void) const
     {

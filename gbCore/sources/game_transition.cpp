@@ -9,7 +9,8 @@
 #include "game_transition.h"
 #include "ces_systems_feeder.h"
 #include "game_loop.h"
-#include "ces_configurations_system.h"
+#include "configuration_accessor.h"
+#include "resource_accessor.h"
 #include "ces_render_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
@@ -40,31 +41,14 @@ namespace gb
     
     void game_transition::on_activated(const std::shared_ptr<graphics_context>& graphics_context,
                                        const std::shared_ptr<input_context>& input_context,
-                                       const std::shared_ptr<resources_accessor>& resource_accessor,
-                                       const std::shared_ptr<configuration_accessor>& configurations_accessor)
+                                       const configuration_accessor_shared_ptr& configurations_accessor,
+                                       const resource_accessor_shared_ptr& resource_accessor)
     {
-        std::shared_ptr<ces_configurations_system> configurations_system = std::make_shared<ces_configurations_system>(configurations_accessor);
         std::shared_ptr<ces_render_system> render_system = std::make_shared<ces_render_system>(graphics_context, m_offscreen);
-        
-        m_system_feeder->add_system(configurations_system, e_ces_system_type_configuration);
-        m_system_feeder->add_system(render_system, e_ces_system_type_render);
-        
-        m_system_feeder->add_entity(shared_from_this());
-        add_listener_to_game_loop(m_system_feeder);
-    }
-    
-    void game_transition::on_deactivated(void)
-    {
-        
-    }
-    
-    void game_transition::on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success)
-    {
-        std::shared_ptr<ces_render_system> render_system =
-        std::static_pointer_cast<ces_render_system>(m_system_feeder->get_system(e_ces_system_type_render));
         std::shared_ptr<render_pipeline> render_pipeline = render_system->get_render_pipeline();
         
-        std::shared_ptr<transition_configuration> transition_configuration = std::static_pointer_cast<gb::transition_configuration>(configuration);
+        std::shared_ptr<transition_configuration> transition_configuration =
+        std::static_pointer_cast<gb::transition_configuration>(configurations_accessor->get_transition_configuration(m_guid));
         assert(transition_configuration);
         
         for(const auto& iterator : transition_configuration->get_ws_technique_configuration())
@@ -85,6 +69,11 @@ namespace gb
                                         ws_technique_configuration->get_clear_color_a());
             render_technique_ws->set_clear_color(color);
             render_pipeline->add_ws_render_technique(ws_technique_configuration->get_guid(), render_technique_ws);
+            
+            resource_accessor->add_custom_resource(ws_technique_configuration->get_guid() + ".color",
+                                                   render_technique_ws->get_color_attachment_texture());
+            resource_accessor->add_custom_resource(ws_technique_configuration->get_guid() + ".depth",
+                                                   render_technique_ws->get_depth_attachment_texture());
         }
         
         for(const auto& iterator : transition_configuration->get_ss_technique_configuration())
@@ -94,7 +83,9 @@ namespace gb
             std::shared_ptr<material_configuration> material_configuration = ss_technique_configuration->get_ConfigurationMaterial();
             assert(material_configuration);
             
-            std::shared_ptr<material> material =  material::construct(material_configuration);
+            std::shared_ptr<material> material = material::construct(material_configuration);
+            gb::material::set_shader(material, material_configuration, resource_accessor);
+            gb::material::set_textures(material, material_configuration, resource_accessor);
             
             ui32 screen_width = std::min(ss_technique_configuration->get_screen_width(), render_pipeline->get_graphics_context()->get_width());
             ui32 screen_height = std::min(ss_technique_configuration->get_screen_height(), render_pipeline->get_graphics_context()->get_height());
@@ -105,6 +96,9 @@ namespace gb
                                                       ss_technique_configuration->get_guid(),
                                                       material);
             render_pipeline->add_ss_render_technique(ss_technique_configuration->get_guid(), render_technique_ss);
+            
+            resource_accessor->add_custom_resource(ss_technique_configuration->get_guid() + ".color",
+                                                   render_technique_ss->get_color_attachment_texture());
         }
         
         if(!m_offscreen)
@@ -115,8 +109,19 @@ namespace gb
             assert(material_configuration);
             
             std::shared_ptr<material> material =  material::construct(material_configuration);
+            gb::material::set_shader(material, material_configuration, resource_accessor);
+            gb::material::set_textures(material, material_configuration, resource_accessor);
+            
             render_pipeline->create_main_render_technique(material);
         }
+        
+        m_system_feeder->add_system(render_system, e_ces_system_type_render);
+        add_listener_to_game_loop(m_system_feeder);
+    }
+    
+    void game_transition::on_deactivated(void)
+    {
+        
     }
     
     void game_transition::on_update(f32 deltatime)

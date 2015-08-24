@@ -10,6 +10,7 @@
 #define game_transition_h
 
 #include "main_headers.h"
+#include "declarations.h"
 #include "game_loop.h"
 #include "ces_entity.h"
 #include "ces_configuration_component.h"
@@ -19,9 +20,8 @@ namespace gb
     class ces_systems_feeder;
     class graphics_context;
     class input_context;
-    class resources_accessor;
-    class configuration_accessor;
-    class game_transition : public game_loop_interface, public ces_entity, public ces_configuration_component_interface
+
+    class game_transition : public game_loop_interface
     {
     private:
         
@@ -33,10 +33,6 @@ namespace gb
         
         void on_update(f32 deltatime);
         
-        
-        
-        virtual void on_configuration_loaded(const std::shared_ptr<configuration>& configuration, bool success);
-        
     public:
         
         game_transition(const std::string& guid, bool is_offscreen);
@@ -44,8 +40,8 @@ namespace gb
         
         void on_activated(const std::shared_ptr<graphics_context>& graphics_context,
                           const std::shared_ptr<input_context>& input_context,
-                          const std::shared_ptr<resources_accessor>& resource_accessor,
-                          const std::shared_ptr<configuration_accessor>& configurations_accessor);
+                          const configuration_accessor_shared_ptr& configurations_accessor,
+                          const resource_accessor_shared_ptr& resource_accessor);
         
         void on_deactivated(void);
         

@@ -15,10 +15,10 @@ demo_conroller_osx::demo_conroller_osx(NSView *ogl_view)
 {
     std::shared_ptr<gb::ogl_window> window = std::make_shared<gb::ogl_window>((__bridge void*)ogl_view);
     m_game_controller = std::make_shared<demo_game_controller>(window);
-    m_game_transition = std::make_shared<demo_game_transition>("demo", false);
+    m_game_transition = std::make_shared<demo_game_transition>("transition.demo.xml", false);
     
     m_game_controller->add_transition(m_game_transition);
-    m_game_controller->goto_transition("demo");
+    m_game_controller->goto_transition("transition.demo.xml");
 }
 
 demo_conroller_osx::~demo_conroller_osx(void)

@@ -25,6 +25,10 @@
 		2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
 		2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
+		21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */; };
+		21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */; };
+		21286AA31B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */; };
+		21286AA41B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */; };
 		212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
 		212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */; };
 		212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */ = {isa = PBXBuildFile; fileRef = 212B18C21B8232EA00FFDCE7 /* application_delegate_ios.mm */; };
@@ -93,6 +97,8 @@
 		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
 		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
 		211B31381B7E899B00178968 /* gbDemo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_quad.frag; path = ../gbBundle/Shaders/shader_screen_quad.frag; sourceTree = "<group>"; };
+		21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_quad.vert; path = ../gbBundle/Shaders/shader_screen_quad.vert; sourceTree = "<group>"; };
 		212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = transition.demo.xml; path = ../gbBundle/Configurations/transitions/transition.demo.xml; sourceTree = "<group>"; };
 		212B18C11B8232EA00FFDCE7 /* application_delegate_ios.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = application_delegate_ios.h; path = sources/application_delegate_ios.h; sourceTree = "<group>"; };
 		212B18C21B8232EA00FFDCE7 /* application_delegate_ios.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = application_delegate_ios.mm; path = sources/application_delegate_ios.mm; sourceTree = "<group>"; };
@@ -173,9 +179,19 @@
 			name = render_techniques;
 			sourceTree = "<group>";
 		};
+		21286A9E1B8B8BD6003AD8AC /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */,
+				21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */,
+			);
+			name = shaders;
+			sourceTree = "<group>";
+		};
 		212B18561B7E3DE000FFDCE7 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21286A9E1B8B8BD6003AD8AC /* shaders */,
 				212B18581B7E3DE900FFDCE7 /* configuration */,
 			);
 			name = common;
@@ -428,11 +444,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21286AA31B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
 				21B405901B7A0CAC003382AB /* info-ios.plist in Resources */,
 				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				21B403451B7A0A23003382AB /* Images.xcassets in Resources */,
+				21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
 				2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
 				2102EB561B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
@@ -451,10 +469,12 @@
 				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */,
+				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
 				2102EB5D1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				21286AA41B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

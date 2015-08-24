@@ -281,8 +281,6 @@
 		21C0AB921B7BB0F4004B1B7C /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0AB8F1B7BB0F4004B1B7C /* texture.cpp */; };
 		21C46F9E1B7BC1350070CF14 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C46F9C1B7BC1350070CF14 /* shader.cpp */; };
 		21C46F9F1B7BC1350070CF14 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C46F9C1B7BC1350070CF14 /* shader.cpp */; };
-		21DE30041B832BD90046EDF8 /* resources_accessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30021B832BD90046EDF8 /* resources_accessor.cpp */; };
-		21DE30051B832BD90046EDF8 /* resources_accessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30021B832BD90046EDF8 /* resources_accessor.cpp */; };
 		21DE30081B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE30091B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE300C1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */; };
@@ -299,8 +297,8 @@
 		21DE30521B8B15240046EDF8 /* shader_loading_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE304F1B8B15240046EDF8 /* shader_loading_operation.cpp */; };
 		21DE30551B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30531B8B16C50046EDF8 /* texture_loading_operation.cpp */; };
 		21DE30561B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30531B8B16C50046EDF8 /* texture_loading_operation.cpp */; };
-		21DE30591B8B1D240046EDF8 /* resource_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30571B8B1D240046EDF8 /* resource_loader.cpp */; };
-		21DE305A1B8B1D240046EDF8 /* resource_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30571B8B1D240046EDF8 /* resource_loader.cpp */; };
+		21DE30591B8B1D240046EDF8 /* resource_accessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30571B8B1D240046EDF8 /* resource_accessor.cpp */; };
+		21DE305A1B8B1D240046EDF8 /* resource_accessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30571B8B1D240046EDF8 /* resource_accessor.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -822,8 +820,6 @@
 		21C0AB901B7BB0F4004B1B7C /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = sources/texture.h; sourceTree = "<group>"; };
 		21C46F9C1B7BC1350070CF14 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader.cpp; path = sources/shader.cpp; sourceTree = "<group>"; };
 		21C46F9D1B7BC1350070CF14 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shader.h; path = sources/shader.h; sourceTree = "<group>"; };
-		21DE30021B832BD90046EDF8 /* resources_accessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resources_accessor.cpp; path = sources/resources_accessor.cpp; sourceTree = "<group>"; };
-		21DE30031B832BD90046EDF8 /* resources_accessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resources_accessor.h; path = sources/resources_accessor.h; sourceTree = "<group>"; };
 		21DE30061B832C150046EDF8 /* resource_commiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_commiter.cpp; path = sources/resource_commiter.cpp; sourceTree = "<group>"; };
 		21DE30071B832C150046EDF8 /* resource_commiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_commiter.h; path = sources/resource_commiter.h; sourceTree = "<group>"; };
 		21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_commiter_glsl.cpp; path = sources/shader_commiter_glsl.cpp; sourceTree = "<group>"; };
@@ -841,8 +837,8 @@
 		21DE30501B8B15240046EDF8 /* shader_loading_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shader_loading_operation.h; path = sources/shader_loading_operation.h; sourceTree = "<group>"; };
 		21DE30531B8B16C50046EDF8 /* texture_loading_operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = texture_loading_operation.cpp; path = sources/texture_loading_operation.cpp; sourceTree = "<group>"; };
 		21DE30541B8B16C50046EDF8 /* texture_loading_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture_loading_operation.h; path = sources/texture_loading_operation.h; sourceTree = "<group>"; };
-		21DE30571B8B1D240046EDF8 /* resource_loader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_loader.cpp; path = sources/resource_loader.cpp; sourceTree = "<group>"; };
-		21DE30581B8B1D240046EDF8 /* resource_loader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_loader.h; path = sources/resource_loader.h; sourceTree = "<group>"; };
+		21DE30571B8B1D240046EDF8 /* resource_accessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_accessor.cpp; path = sources/resource_accessor.cpp; sourceTree = "<group>"; };
+		21DE30581B8B1D240046EDF8 /* resource_accessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_accessor.h; path = sources/resource_accessor.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1584,10 +1580,8 @@
 			children = (
 				2102EB2A1B7BDCFB00F20197 /* operations */,
 				21B406261B7B8FF3003382AB /* resources */,
-				21DE30581B8B1D240046EDF8 /* resource_loader.h */,
-				21DE30571B8B1D240046EDF8 /* resource_loader.cpp */,
-				21DE30031B832BD90046EDF8 /* resources_accessor.h */,
-				21DE30021B832BD90046EDF8 /* resources_accessor.cpp */,
+				21DE30581B8B1D240046EDF8 /* resource_accessor.h */,
+				21DE30571B8B1D240046EDF8 /* resource_accessor.cpp */,
 			);
 			name = "resources managment";
 			sourceTree = "<group>";
@@ -1813,7 +1807,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE30451B8B0C600046EDF8 /* shader_serializer_glsl.cpp in Sources */,
-				21DE30591B8B1D240046EDF8 /* resource_loader.cpp in Sources */,
+				21DE30591B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B404F41B7A0A88003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4061C1B7B7FD3003382AB /* game_controller.cpp in Sources */,
 				2173D1E11B7CA774002912BE /* mesh.cpp in Sources */,
@@ -1921,7 +1915,6 @@
 				212B18A31B81D33A00FFDCE7 /* camera.cpp in Sources */,
 				21B406241B7B8077003382AB /* ogl_window_osx.cpp in Sources */,
 				212B189F1B81CF4700FFDCE7 /* ces_frustum_culling_component.cpp in Sources */,
-				21DE30041B832BD90046EDF8 /* resources_accessor.cpp in Sources */,
 				21B404E11B7A0A88003382AB /* b2ChainAndCircleContact.cpp in Sources */,
 				21B405001B7A0A88003382AB /* pngset.c in Sources */,
 				21B404F91B7A0A88003382AB /* pngget.c in Sources */,
@@ -1967,7 +1960,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE30461B8B0C600046EDF8 /* shader_serializer_glsl.cpp in Sources */,
-				21DE305A1B8B1D240046EDF8 /* resource_loader.cpp in Sources */,
+				21DE305A1B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B405291B7A0AFA003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4052A1B7A0AFA003382AB /* b2PolygonShape.cpp in Sources */,
 				21376BFC1B7C991600D293C5 /* ibo.cpp in Sources */,
@@ -2075,7 +2068,6 @@
 				21B405601B7A0AFA003382AB /* b2CircleContact.cpp in Sources */,
 				21B405611B7A0AFA003382AB /* b2Math.cpp in Sources */,
 				21B405621B7A0AFA003382AB /* inffast.c in Sources */,
-				21DE30051B832BD90046EDF8 /* resources_accessor.cpp in Sources */,
 				21B406111B7B662D003382AB /* ss_technique_configuration.cpp in Sources */,
 				21B405631B7A0AFA003382AB /* b2StackAllocator.cpp in Sources */,
 				21B405641B7A0AFA003382AB /* b2ChainAndCircleContact.cpp in Sources */,

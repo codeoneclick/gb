@@ -12,6 +12,7 @@
 #include "configuration_types.h"
 #include "graphics_context.h"
 #include "configuration_accessor.h"
+#include "resource_accessor.h"
 
 namespace gb
 {
@@ -25,6 +26,9 @@ namespace gb
 #endif
 
         m_configuration_accessor = std::make_shared<configuration_accessor>();
+        m_resource_accessor = std::make_shared<resource_accessor>();
+        
+        add_listener_to_game_loop(m_resource_accessor);
     }
     
     game_controller::~game_controller(void)
@@ -54,13 +58,8 @@ namespace gb
         m_current_transition = m_transitions.find(guid)->second;
         m_current_transition->on_activated(m_graphics_context,
                                            nullptr,
-                                           nullptr,
-                                           m_configuration_accessor);
-        
-        std::shared_ptr<ces_configuration_component> configuration_component =
-        std::make_shared<ces_configuration_component>("transition.demo.xml", e_configuration_type_transition);
-        m_current_transition->add_component(configuration_component);
-        configuration_component->add_listener(m_current_transition);
+                                           m_configuration_accessor,
+                                           m_resource_accessor);
         
         add_listener_to_game_loop(m_current_transition);
     }

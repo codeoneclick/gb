@@ -11,6 +11,9 @@
 
 namespace gb
 {
+    class configuration;
+    typedef std::shared_ptr<configuration> configuration_shared_ptr;
+    
     class resource;
     typedef std::shared_ptr<resource> resource_shared_ptr;
     
@@ -46,6 +49,15 @@ namespace gb
     
     class texture_loading_operation;
     typedef std::shared_ptr<texture_loading_operation> texture_loading_operation_shared_ptr;
+    
+    class resource_accessor;
+    typedef std::shared_ptr<resource_accessor> resource_accessor_shared_ptr;
+    
+    class configuration_accessor;
+    typedef std::shared_ptr<configuration_accessor> configuration_accessor_shared_ptr;
+    
+    class material;
+    typedef std::shared_ptr<material> material_shared_ptr;
 };
 
 #endif

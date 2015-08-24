@@ -16,12 +16,12 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shader_texture_2d.vert"
-    fs_filename="shader_texture_2d.frag"/>
+    vs_filename="shader_screen_quad.vert"
+    fs_filename="shader_screen_quad.frag"/>
     <textures>
         <texture
         filename=""
-        render_operation_name="ws.base"
+        render_operation_name="ws.base.color"
         sampler_index="0"
         wrap_mode="GL_CLAMP_TO_EDGE"
         mag_filter="GL_LINEAR"
