@@ -50,7 +50,7 @@ namespace gb
         
         friend class resource_serializer;
         friend class resource_commiter;
-        friend class resource_loading_operation;
+        friend class resource_loader;
         std::string m_guid;
         
     protected:

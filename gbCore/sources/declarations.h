@@ -40,6 +40,12 @@ namespace gb
     
     class resource_loading_interface;
     typedef std::shared_ptr<resource_loading_interface> resource_loading_interface_shared_ptr;
+    
+    class shader_loading_operation;
+    typedef std::shared_ptr<shader_loading_operation> shader_loading_operation_shared_ptr;
+    
+    class texture_loading_operation;
+    typedef std::shared_ptr<texture_loading_operation> texture_loading_operation_shared_ptr;
 };
 
 #endif

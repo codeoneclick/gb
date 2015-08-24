@@ -26,31 +26,22 @@ namespace gb
         
         std::mutex m_mutex;
         std::thread m_thread;
+        bool m_thread_executed;
         
-        void onGameLoopUpdate(f32 deltatime);
-        void onThreadUpdate(void);
-        
-        void _OnGameLoopUpdate(f32 _deltatime);
+        void on_thread_update();
+        void on_update(f32 deltatime);
         
     public:
         
-        resource_loader(void);
-        ~resource_loader(void);
+        resource_loader();
+        ~resource_loader();
         
-        CSharedTexture startTextureLoadingOperation(const std::string& filename, bool sync = false);
+        shader_shared_ptr get_shader(const std::string& vs_filename,
+                                     const std::string& fs_filename, bool sync = false);
         
-        CSharedShader startShaderLoadingOperation(const std::string& vsFilename,
-                                                  const std::string& fsFilename);
+        texture_shared_ptr get_texture(const std::string& filename, bool sync = false);
         
-        CSharedMesh startMeshLoadingOperation(const std::string& filename);
-        
-        CSharedAnimationSequence startAnimationSequenceLoadingOperation(const std::string& filename);
-        
-        void removeLoadingDependecies(ISharedResourceLoadingHandler handler);
-        
-        void unloadResource(ISharedResourceRef resource);
     };
-
 };
 
 #endif
