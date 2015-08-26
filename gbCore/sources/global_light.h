@@ -54,7 +54,6 @@ namespace gb
         
         void update(f32 deltatime);
     };
-
 };
 
 #endif

@@ -13,11 +13,9 @@
 #include "declarations.h"
 #include "game_loop.h"
 #include "ces_entity.h"
-#include "ces_configuration_component.h"
 
 namespace gb
 {
-    class ces_systems_feeder;
     class graphics_context;
     class input_context;
 
@@ -27,7 +25,9 @@ namespace gb
         
         std::string m_guid;
         bool m_offscreen;
-        std::shared_ptr<ces_systems_feeder> m_system_feeder;
+        ces_systems_feeder_shared_ptr m_system_feeder;
+        fabricator_shared_ptr m_fabricator;
+        scene_graph_shared_ptr m_scene_graph;
         
     protected:
         
@@ -47,6 +47,9 @@ namespace gb
         
         virtual void create_scene(void);
         std::string get_guid(void) const;
+        
+        fabricator_shared_ptr get_fabricator(void) const;
+        scene_graph_shared_ptr get_scene_graph(void) const;
     };
 };
 

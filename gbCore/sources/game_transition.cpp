@@ -19,12 +19,16 @@
 #include "render_technique_ss.h"
 #include "render_technique_main.h"
 #include "material.h"
+#include "scene_graph.h"
+#include "fabricator.h"
 
 namespace gb
 {
     game_transition::game_transition(const std::string& guid, bool is_offscreen) :
     m_guid(guid),
-    m_offscreen(is_offscreen)
+    m_offscreen(is_offscreen),
+    m_scene_graph(nullptr),
+    m_fabricator(nullptr)
     {
         m_system_feeder = std::make_shared<ces_systems_feeder>();
     }
@@ -115,8 +119,12 @@ namespace gb
             render_pipeline->create_main_render_technique(material);
         }
         
+        m_fabricator = std::make_shared<fabricator>(configurations_accessor, resource_accessor);
+        m_scene_graph = std::make_shared<scene_graph>(m_system_feeder);
+        
         m_system_feeder->add_system(render_system, e_ces_system_type_render);
         add_listener_to_game_loop(m_system_feeder);
+        add_listener_to_game_loop(m_scene_graph);
     }
     
     void game_transition::on_deactivated(void)
@@ -130,6 +138,16 @@ namespace gb
     }
     
     void game_transition::create_scene(void)
+    {
+        
+    }
+    
+    fabricator_shared_ptr game_transition::get_fabricator(void) const
+    {
+        
+    }
+    
+    scene_graph_shared_ptr game_transition::get_scene_graph(void) const
     {
         
     }

@@ -10,6 +10,7 @@
 #define resource_commiter_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {
@@ -21,8 +22,6 @@ namespace gb
         e_commiter_status_success
     };
     
-    class resource;
-    class resource_transfering_data;
     class resource_commiter  : public std::enable_shared_from_this<resource_commiter>
     {
     private:
@@ -30,14 +29,14 @@ namespace gb
     protected:
         
         std::string m_guid;
-        std::shared_ptr<resource> m_resource;
+        resource_shared_ptr m_resource;
         e_commiter_status m_status;
         
-        void on_transfering_data_commited(const std::shared_ptr<resource_transfering_data>& data);
+        void on_transfering_data_commited(const resource_transfering_data_shared_ptr& data);
         
     public:
         
-        resource_commiter(const std::string& guid, const std::shared_ptr<resource>& resource);
+        resource_commiter(const std::string& guid, const resource_shared_ptr& resource);
         virtual ~resource_commiter(void);
         
         std::string get_guid(void) const;

@@ -23,7 +23,9 @@ namespace gb
         
     protected:
         
+        void on_feed_start();
         void on_feed(const std::shared_ptr<ces_entity>& entity);
+        void on_feed_end();
         
     public:
         

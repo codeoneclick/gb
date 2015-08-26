@@ -24,7 +24,7 @@ namespace gb
         
     }
     
-    void resource_commiter::on_transfering_data_commited(const std::shared_ptr<resource_transfering_data> &data)
+    void resource_commiter::on_transfering_data_commited(const resource_transfering_data_shared_ptr& data)
     {
         m_resource->on_transfering_data_commited(data);
     }

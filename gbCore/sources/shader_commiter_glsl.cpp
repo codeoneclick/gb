@@ -18,7 +18,7 @@ namespace gb
                                                const std::string& fs_filename,
                                                const std::string& vs_source_code,
                                                const std::string& fs_source_code,
-                                               const std::shared_ptr<resource>& resource) :
+                                               const resource_shared_ptr& resource) :
     gb::resource_commiter(guid, resource),
     m_vs_source_code(vs_source_code),
     m_fs_source_code(fs_source_code),

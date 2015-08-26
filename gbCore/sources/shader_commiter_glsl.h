@@ -34,7 +34,7 @@ namespace gb
                              const std::string& fs_filename,
                              const std::string& vs_source_code,
                              const std::string& fs_source_code,
-                             const std::shared_ptr<resource>& resource);
+                             const resource_shared_ptr& resource);
         ~shader_commiter_glsl(void);
         
         void commit(void);

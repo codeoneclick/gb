@@ -50,8 +50,8 @@ namespace gb
         
     public:
         
-        frustum(void);
-        ~frustum(void);
+        frustum();
+        ~frustum();
         
         void update(f32 fov, f32 aspect, f32 near, f32 far,
                     const glm::vec3& position, const glm::vec3& up, const glm::vec3& look_at);

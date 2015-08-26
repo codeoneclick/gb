@@ -15,10 +15,6 @@
 
 namespace gb
 {
-    class mesh;
-    class texture;
-    class camera;
-    class global_light;
     class ces_render_component : public ces_base_component
     {
     private:
@@ -37,7 +33,7 @@ namespace gb
         
         void add_material(const std::string& technique_name, const std::shared_ptr<material>& material);
         void remove_material(const std::string& technique_name);
-        std::shared_ptr<material> get_material(const std::string& technique_name) const;
+        material_shared_ptr get_material(const std::string& technique_name) const;
         
         void set_z_order(i32 z_order);
         i32 get_z_order(void) const;

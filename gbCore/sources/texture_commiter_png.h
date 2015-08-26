@@ -13,7 +13,6 @@
 
 namespace gb
 {
-    class resource;
     class texture_commiter_png : public resource_commiter
     {
     private:
@@ -22,7 +21,7 @@ namespace gb
         
     public:
         
-        texture_commiter_png(const std::string& guid, std::shared_ptr<resource>& resource);
+        texture_commiter_png(const std::string& guid, const resource_shared_ptr& resource);
         ~texture_commiter_png(void);
         
         void commit(void);

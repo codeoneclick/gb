@@ -44,6 +44,8 @@ namespace gb
         
         texture_shared_ptr get_texture(const std::string& filename, bool sync = false);
         
+        mesh_shared_ptr get_mesh(const std::string& filename, bool sync = false);
+        
     };
 };
 

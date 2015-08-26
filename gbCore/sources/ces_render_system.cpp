@@ -28,8 +28,18 @@ namespace gb
         return m_render_pipeline;
     }
     
+    void ces_render_system::on_feed_start()
+    {
+        
+    }
+    
     void ces_render_system::on_feed(const std::shared_ptr<ces_entity>& entity)
     {
         m_render_pipeline->update(0.0f);
+    }
+    
+    void ces_render_system::on_feed_end()
+    {
+        
     }
 }

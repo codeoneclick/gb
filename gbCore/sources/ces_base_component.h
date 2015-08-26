@@ -10,6 +10,7 @@
 #define ces_base_component_h
 
 #include "main_headers.h"
+#include "declarations.h"
 #include "ces_component_types.h"
 
 namespace gb

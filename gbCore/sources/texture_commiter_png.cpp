@@ -11,7 +11,7 @@
 
 namespace gb
 {
-    texture_commiter_png::texture_commiter_png(const std::string& guid, std::shared_ptr<resource>& resource) :
+    texture_commiter_png::texture_commiter_png(const std::string& guid, const resource_shared_ptr& resource) :
     gb::resource_commiter(guid, resource)
     {
         
