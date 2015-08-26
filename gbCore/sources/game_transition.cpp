@@ -144,11 +144,11 @@ namespace gb
     
     fabricator_shared_ptr game_transition::get_fabricator(void) const
     {
-        
+        return m_fabricator;
     }
     
     scene_graph_shared_ptr game_transition::get_scene_graph(void) const
     {
-        
+        return m_scene_graph;
     }
 }
