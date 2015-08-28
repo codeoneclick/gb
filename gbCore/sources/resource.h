@@ -46,6 +46,10 @@ namespace gb
     
     class resource : public std::enable_shared_from_this<resource>
     {
+    public:
+        
+        typedef std::function<void(const resource_shared_ptr&, bool success)> f_resource_loading_callback;
+        
     private:
         
         friend class resource_serializer;
@@ -58,6 +62,7 @@ namespace gb
         ui8 m_status;
         e_resource_type m_type;
         std::set<resource_loading_interface_shared_ptr> m_listeners;
+        std::set<std::shared_ptr<f_resource_loading_callback>> m_callbacks;
         
         resource(e_resource_type type, const std::string& guid);
         
@@ -77,6 +82,9 @@ namespace gb
         
         void add_resource_loading_listener(const resource_loading_interface_shared_ptr& listener);
         void remove_resource_loading_listener(const resource_loading_interface_shared_ptr& listener);
+        
+        void add_resource_loading_callback(const std::shared_ptr<f_resource_loading_callback>& callback);
+        void remove_resource_loading_callback(const std::shared_ptr<f_resource_loading_callback>& callback);
     };
 };
 

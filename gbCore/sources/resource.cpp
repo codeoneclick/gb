@@ -68,12 +68,36 @@ namespace gb
         m_listeners.erase(listener);
     }
     
+    void resource::add_resource_loading_callback(const std::shared_ptr<f_resource_loading_callback>& callback)
+    {
+        if(resource::is_loaded() && resource::is_commited())
+        {
+            (*callback.get())(shared_from_this(), true);
+        }
+        else
+        {
+            m_callbacks.insert(callback);
+        }
+    }
+    
+    void resource::remove_resource_loading_callback(const std::shared_ptr<f_resource_loading_callback>& callback)
+    {
+        m_callbacks.erase(callback);
+    }
+    
     void resource::on_resource_loaded(bool success)
     {
         for(const auto& listener : m_listeners)
         {
             listener->on_resource_loaded(shared_from_this(), success);
         }
+        
+        for(const auto& callback : m_callbacks)
+        {
+            (*callback.get())(shared_from_this(), success);
+        }
+        
         m_listeners.clear();
+        m_callbacks.clear();
     }
 }

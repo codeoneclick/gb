@@ -23,9 +23,9 @@ namespace gb
         
     protected:
         
-        void on_feed_start();
-        void on_feed(const std::shared_ptr<ces_entity>& entity);
-        void on_feed_end();
+        void on_feed_start(f32 deltatime);
+        void on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime);
+        void on_feed_end(f32 deltatime);
         
     public:
         

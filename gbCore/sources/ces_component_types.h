@@ -14,14 +14,13 @@ namespace gb
     enum e_ces_component_type
     {
         e_ces_component_type_undefined = 0,
-        e_ces_component_type_configuration,
-        e_ces_component_type_resource,
         e_ces_component_type_render,
         e_ces_component_type_geometry,
         e_ces_component_type_camera,
         e_ces_component_type_frustum_culling,
         e_ces_component_type_transformation,
-        e_ces_component_type_global_light
+        e_ces_component_type_global_light,
+        e_ces_component_type_animation
     };
 };
 

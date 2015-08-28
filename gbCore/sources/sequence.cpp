@@ -63,12 +63,12 @@ namespace gb
         m_frames.clear();
     }
     
-    ui32 sequence_transfering_data::get_num_frames(void) const
+    i32 sequence_transfering_data::get_num_frames(void) const
     {
         return static_cast<ui32>(m_frames.size());
     }
     
-    ui32 sequence_transfering_data::get_animation_fps(void) const
+    i32 sequence_transfering_data::get_animation_fps(void) const
     {
         return m_animation_fps;
     }

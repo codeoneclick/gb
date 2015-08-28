@@ -10,7 +10,6 @@
 #define ces_render_component_h
 
 #include "ces_base_component.h"
-#include "ces_component_types.h"
 #include "material.h"
 
 namespace gb
@@ -21,17 +20,17 @@ namespace gb
         
     protected:
         
-        std::unordered_map<std::string, std::shared_ptr<material>> m_materials;
+        std::unordered_map<std::string, material_shared_ptr> m_materials;
         i32 m_z_order;
         
-        void bind_custom_shader_uniforms(const std::shared_ptr<material>& material);
+        void bind_custom_shader_uniforms(const material_shared_ptr& material);
         
     public:
         
         ces_render_component(void);
         ~ces_render_component(void);
         
-        void add_material(const std::string& technique_name, const std::shared_ptr<material>& material);
+        void add_material(const std::string& technique_name, const material_shared_ptr& material);
         void remove_material(const std::string& technique_name);
         material_shared_ptr get_material(const std::string& technique_name) const;
         
@@ -41,14 +40,26 @@ namespace gb
         virtual void bind_transformation_uniforms(const std::string& technique_name,
                                                   const glm::mat4& matrix_m,
                                                   const glm::mat4& matrix_mvp,
-                                                  const glm::mat4& matrix_imvp, const std::shared_ptr<material>& material = nullptr);
-        virtual void bind_camera_uniforms(const std::string& technique_name,
-                                          const std::shared_ptr<camera>& camera, const std::shared_ptr<material>& material = nullptr);
-        virtual void bind_global_light_uniforms(const std::string& technique_name,
-                                                const std::shared_ptr<global_light>& global_light, const std::shared_ptr<material>& material = nullptr);
+                                                  const glm::mat4& matrix_imvp,
+                                                  const std::shared_ptr<material>& material = nullptr);
         
-        virtual std::shared_ptr<material> on_bind(const std::string& technique_name);
-        virtual void on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh, const std::shared_ptr<material>& material = nullptr);
+        virtual void bind_camera_uniforms(const std::string& technique_name,
+                                          const std::shared_ptr<camera>& camera,
+                                          const std::shared_ptr<material>& material = nullptr);
+        
+        virtual void bind_global_light_uniforms(const std::string& technique_name,
+                                                const std::shared_ptr<global_light>& global_light,
+                                                const std::shared_ptr<material>& material = nullptr);
+        
+        virtual void bind_skeleton_animation_uniforms(const std::string& technique_name,
+                                                      const glm::mat4* transformations, i32 num_transformations,
+                                                      const std::shared_ptr<material>& material = nullptr);
+        
+        virtual material_shared_ptr on_bind(const std::string& technique_name);
+        
+        virtual void on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh,
+                             const std::shared_ptr<material>& material = nullptr);
+        
         virtual void on_unbind(const std::string& technique_name,
                                const std::shared_ptr<material>& material = nullptr);
         

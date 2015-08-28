@@ -133,7 +133,8 @@ namespace gb
     void ces_render_component::bind_transformation_uniforms(const std::string& technique_name,
                                                             const glm::mat4& matrix_m,
                                                             const glm::mat4& matrix_mvp,
-                                                            const glm::mat4& matrix_imvp, const std::shared_ptr<material>& material)
+                                                            const glm::mat4& matrix_imvp,
+                                                            const std::shared_ptr<material>& material)
     {
         std::shared_ptr<gb::material> using_material = material;
         if(!using_material)
@@ -146,7 +147,8 @@ namespace gb
     }
     
     void ces_render_component::bind_camera_uniforms(const std::string& technique_name,
-                                                    const std::shared_ptr<camera>& camera, const std::shared_ptr<material>& material)
+                                                    const std::shared_ptr<camera>& camera,
+                                                    const std::shared_ptr<material>& material)
     {
         std::shared_ptr<gb::material> using_material = material;
         if(!using_material)
@@ -167,7 +169,8 @@ namespace gb
     }
     
     void ces_render_component::bind_global_light_uniforms(const std::string& technique_name,
-                                                          const std::shared_ptr<global_light>& global_light, const std::shared_ptr<material>& material)
+                                                          const std::shared_ptr<global_light>& global_light,
+                                                          const std::shared_ptr<material>& material)
     {
         std::shared_ptr<gb::material> using_material = material;
         if(!using_material)
@@ -179,6 +182,20 @@ namespace gb
         using_material->get_shader()->set_vec3(global_light->get_position(), e_shader_uniform_vec_global_light_position);
         using_material->get_shader()->set_mat4(global_light->get_matrix_p(), e_shader_uniform_mat_global_light_p);
         using_material->get_shader()->set_mat4(global_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
+    }
+    
+    void ces_render_component::bind_skeleton_animation_uniforms(const std::string &technique_name,
+                                                                const glm::mat4 *transformations, i32 num_transformations,
+                                                                const std::shared_ptr<material>& material)
+    {
+        std::shared_ptr<gb::material> using_material = material;
+        if(!using_material)
+        {
+            using_material = ces_render_component::get_material(technique_name);
+        }
+        assert(using_material);
+        
+        using_material->get_shader()->set_mat4_array(transformations, num_transformations, e_shader_uniform_mat_bones);
     }
     
     std::shared_ptr<material> ces_render_component::on_bind(const std::string& technique_name)
@@ -211,6 +228,7 @@ namespace gb
         }
         assert(using_material);
         assert(using_material->get_shader()->is_commited());
+        assert(mesh->is_commited());
         
         mesh->bind(using_material->get_shader()->get_guid(), using_material->get_shader()->get_attributes());
         mesh->draw();

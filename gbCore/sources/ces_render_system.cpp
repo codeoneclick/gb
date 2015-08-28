@@ -28,17 +28,17 @@ namespace gb
         return m_render_pipeline;
     }
     
-    void ces_render_system::on_feed_start()
+    void ces_render_system::on_feed_start(f32 deltatime)
     {
         m_render_pipeline->on_draw_begin();
     }
     
-    void ces_render_system::on_feed(const std::shared_ptr<ces_entity>& entity)
+    void ces_render_system::on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime)
     {
         m_render_pipeline->on_draw(entity);
     }
     
-    void ces_render_system::on_feed_end()
+    void ces_render_system::on_feed_end(f32 deltatime)
     {
         m_render_pipeline->on_draw_end();
     }

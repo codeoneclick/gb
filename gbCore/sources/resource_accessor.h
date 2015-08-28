@@ -46,6 +46,7 @@ namespace gb
         
         mesh_shared_ptr get_mesh(const std::string& filename, bool sync = false);
         
+        sequence_shared_ptr get_animation(const std::string& filename, bool sync = false);
     };
 };
 

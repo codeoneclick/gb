@@ -74,6 +74,9 @@ namespace gb
     class mesh_loading_operation;
     typedef std::shared_ptr<mesh_loading_operation> mesh_loading_operation_shared_ptr;
     
+    class animation_loading_operation;
+    typedef std::shared_ptr<animation_loading_operation> animation_loading_operation_shared_ptr;
+    
     class resource_accessor;
     typedef std::shared_ptr<resource_accessor> resource_accessor_shared_ptr;
     
@@ -122,6 +125,9 @@ namespace gb
     class ces_render_component;
     typedef std::shared_ptr<ces_render_component> ces_render_component_shared_ptr;
     
+    class ces_animation_component;
+    typedef std::shared_ptr<ces_animation_component> ces_animation_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     
@@ -133,6 +139,21 @@ namespace gb
     
     class game_scene;
     typedef std::shared_ptr<game_scene> game_scene_shared_ptr;
+    
+    class bone;
+    typedef std::shared_ptr<bone> bone_shared_ptr;
+    
+    class bone_data;
+    typedef std::shared_ptr<bone_data> bone_data_shared_ptr;
+    
+    class skeleton;
+    typedef std::shared_ptr<skeleton> skeleton_shared_ptr;
+    
+    class animation_mixer;
+    typedef std::shared_ptr<animation_mixer> animation_mixer_shared_ptr;
+    
+    class model3d_animated;
+    typedef std::shared_ptr<model3d_animated> model3d_animated_shared_ptr;
 };
 
 #endif

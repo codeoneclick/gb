@@ -11,10 +11,12 @@
 #include "shader_loading_operation.h"
 #include "texture_loading_operation.h"
 #include "mesh_loading_operation.h"
+#include "animation_loading_operation.h"
 #include "resource.h"
 #include "shader.h"
 #include "texture.h"
 #include "mesh.h"
+#include "sequence.h"
 
 namespace gb
 {
@@ -164,6 +166,34 @@ namespace gb
             resource = std::make_shared<mesh>(guid);
             mesh_loading_operation_shared_ptr operation = std::make_shared<mesh_loading_operation>(filename,
                                                                                                    resource);
+            m_resources.insert(std::make_pair(guid, resource));
+            if(!sync)
+            {
+                m_operationsQueue.insert(std::make_pair(guid, operation));
+            }
+            else
+            {
+                operation->serialize();
+                operation->commit();
+                
+                m_resources_need_to_callback.push(std::make_tuple(resource, operation->get_status() == e_resource_loading_operation_status_success));
+            }
+        }
+        return resource;
+    }
+    
+    sequence_shared_ptr resource_accessor::get_animation(const std::string& filename, bool sync)
+    {
+        std::string guid = filename;
+        sequence_shared_ptr resource = nullptr;
+        if(m_resources.find(guid) != m_resources.end())
+        {
+            resource = std::static_pointer_cast<sequence>(m_resources.find(guid)->second);
+        }
+        else
+        {
+            resource = std::make_shared<sequence>(guid);
+            animation_loading_operation_shared_ptr operation = std::make_shared<animation_loading_operation>(filename, resource);
             m_resources.insert(std::make_pair(guid, resource));
             if(!sync)
             {

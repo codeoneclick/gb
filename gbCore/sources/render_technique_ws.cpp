@@ -11,6 +11,7 @@
 #include "camera.h"
 #include "frustum.h"
 #include "mesh.h"
+#include "animation_mixer.h"
 #include "ces_entity.h"
 #include "ces_render_component.h"
 #include "ces_geometry_component.h"
@@ -18,6 +19,7 @@
 #include "ces_frustum_culling_component.h"
 #include "ces_transformation_component.h"
 #include "ces_global_light_component.h"
+#include "ces_animation_component.h"
 
 namespace gb
 {
@@ -120,12 +122,18 @@ namespace gb
             std::shared_ptr<ces_render_component> render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
             std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
             std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
+            
             std::shared_ptr<ces_frustum_culling_component> frustum_component =
             std::static_pointer_cast<ces_frustum_culling_component>(entity->get_component(e_ces_component_type_frustum_culling));
+            
             std::shared_ptr<ces_transformation_component> transformation_component =
             std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
+            
             std::shared_ptr<ces_global_light_component> global_light_component =
             std::static_pointer_cast<ces_global_light_component>(entity->get_component(e_ces_component_type_global_light));
+            
+            ces_animation_component_shared_ptr animation_component =
+            std::static_pointer_cast<ces_animation_component>(entity->get_component(e_ces_component_type_animation));
             
             assert(render_component);
             assert(geometry_component);
@@ -137,6 +145,13 @@ namespace gb
             if(global_light_component)
             {
                 render_component->bind_global_light_uniforms(m_name, global_light_component->get_global_light(), material);
+            }
+            
+            if(animation_component)
+            {
+                render_component->bind_skeleton_animation_uniforms(m_name,
+                                                                   animation_component->get_animation_mixer()->get_transformations(),
+                                                                   animation_component->get_animation_mixer()->get_transformation_size());
             }
             
             if(transformation_component)

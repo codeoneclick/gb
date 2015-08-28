@@ -26,9 +26,9 @@ namespace gb
     protected:
         
         e_ces_system_type m_type;
-        virtual void on_feed_start() = 0;
-        virtual void on_feed(const std::shared_ptr<ces_entity>& entity) = 0;
-        virtual void on_feed_end() = 0;
+        virtual void on_feed_start(f32 deltatime) = 0;
+        virtual void on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime) = 0;
+        virtual void on_feed_end(f32 deltatime) = 0;
         
     public:
         

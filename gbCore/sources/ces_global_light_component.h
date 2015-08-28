@@ -13,14 +13,13 @@
 
 namespace gb
 {
-    class global_light;
     class ces_global_light_component : public ces_base_component
     {
     private:
         
     protected:
         
-        std::shared_ptr<global_light> m_global_light;
+        global_light_shared_ptr m_global_light;
         
     public:
         

@@ -56,9 +56,8 @@ namespace gb
         
         ~sequence_transfering_data(void);
         
-        ui32 get_num_frames(void) const;
-        
-        ui32 get_animation_fps(void) const;
+        i32 get_num_frames(void) const;
+        i32 get_animation_fps(void) const;
         
         const std::string get_animation_name(void) const;
         

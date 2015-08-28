@@ -11,6 +11,7 @@
 
 #include "main_headers.h"
 #include "declarations.h"
+#include "configuration_accessor.h"
 
 namespace gb
 {
@@ -40,6 +41,7 @@ namespace gb
         void destroy_global_light(const global_light_shared_ptr& global_light);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
+        model3d_animated_shared_ptr create_model3d_animated(const std::string& filename);
         void destroy_game_object(const game_object_shared_ptr& game_object);
     };
 };

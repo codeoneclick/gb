@@ -37,9 +37,9 @@ namespace gb
         {
             for(const auto& system : m_systems)
             {
-                system.second->on_feed_start();
-                system.second->on_feed(entity);
-                system.second->on_feed_end();
+                system.second->on_feed_start(deltatime);
+                system.second->on_feed(entity, deltatime);
+                system.second->on_feed_end(deltatime);
             }
         }
     }
