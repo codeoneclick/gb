@@ -10,22 +10,28 @@
 
 namespace gb
 {
+    game_loop_interface::game_loop_interface() :
+    m_paused(false)
+    {
+        
+    }
+    
     void game_loop_interface::set_paused(bool paused)
     {
         m_paused = paused;
     }
     
-    bool game_loop_interface::is_paused(void) const
+    bool game_loop_interface::is_paused() const
     {
         return m_paused;
     }
     
-    game_loop::~game_loop(void)
+    game_loop::~game_loop()
     {
         m_listeners.clear();
     }
     
-    void game_loop::on_update(void)
+    void game_loop::on_update()
     {
         static std::chrono::steady_clock::time_point previous_timestamp = std::chrono::steady_clock::now();
         std::chrono::steady_clock::time_point current_timestamp = std::chrono::steady_clock::now();

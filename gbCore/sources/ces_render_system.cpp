@@ -30,16 +30,16 @@ namespace gb
     
     void ces_render_system::on_feed_start()
     {
-        
+        m_render_pipeline->on_draw_begin();
     }
     
     void ces_render_system::on_feed(const std::shared_ptr<ces_entity>& entity)
     {
-        m_render_pipeline->update(0.0f);
+        m_render_pipeline->on_draw(entity);
     }
     
     void ces_render_system::on_feed_end()
     {
-        
+        m_render_pipeline->on_draw_end();
     }
 }

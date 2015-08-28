@@ -50,6 +50,44 @@
 		21B405901B7A0CAC003382AB /* info-ios.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21B4058F1B7A0CAC003382AB /* info-ios.plist */; };
 		21B405921B7A0CDA003382AB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B405911B7A0CDA003382AB /* OpenGL.framework */; };
 		21B405941B7A0CDE003382AB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21B405931B7A0CDE003382AB /* Cocoa.framework */; };
+		21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */; };
+		21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */; };
+		21FA123A1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */; };
+		21FA123B1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */; };
+		21FA123C1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */; };
+		21FA123D1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */; };
+		21FA123E1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12381B8F2B7600ACB9A5 /* gameobject.orc_01.xml */; };
+		21FA123F1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12381B8F2B7600ACB9A5 /* gameobject.orc_01.xml */; };
+		21FA12401B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12391B8F2B7600ACB9A5 /* gameobject.orc_02.xml */; };
+		21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12391B8F2B7600ACB9A5 /* gameobject.orc_02.xml */; };
+		21FA12461B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12421B8F2BAE00ACB9A5 /* material.human_01.base.xml */; };
+		21FA12471B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12421B8F2BAE00ACB9A5 /* material.human_01.base.xml */; };
+		21FA12481B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12431B8F2BAE00ACB9A5 /* material.human_02.base.xml */; };
+		21FA12491B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12431B8F2BAE00ACB9A5 /* material.human_02.base.xml */; };
+		21FA124A1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12441B8F2BAE00ACB9A5 /* material.orc_01.base.xml */; };
+		21FA124B1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12441B8F2BAE00ACB9A5 /* material.orc_01.base.xml */; };
+		21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12451B8F2BAE00ACB9A5 /* material.orc_02.base.xml */; };
+		21FA124D1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12451B8F2BAE00ACB9A5 /* material.orc_02.base.xml */; };
+		21FA12501B8F2BD300ACB9A5 /* shader_model3d.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21FA124E1B8F2BD300ACB9A5 /* shader_model3d.frag */; };
+		21FA12511B8F2BD300ACB9A5 /* shader_model3d.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21FA124E1B8F2BD300ACB9A5 /* shader_model3d.frag */; };
+		21FA12521B8F2BD300ACB9A5 /* shader_model3d.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21FA124F1B8F2BD300ACB9A5 /* shader_model3d.vert */; };
+		21FA12531B8F2BD300ACB9A5 /* shader_model3d.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21FA124F1B8F2BD300ACB9A5 /* shader_model3d.vert */; };
+		21FA125A1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12561B8F2C2600ACB9A5 /* human_01.IE3DMESH */; };
+		21FA125B1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12561B8F2C2600ACB9A5 /* human_01.IE3DMESH */; };
+		21FA125C1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12571B8F2C2600ACB9A5 /* human_02.IE3DMESH */; };
+		21FA125D1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12571B8F2C2600ACB9A5 /* human_02.IE3DMESH */; };
+		21FA125E1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12581B8F2C2600ACB9A5 /* orc_01.IE3DMESH */; };
+		21FA125F1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12581B8F2C2600ACB9A5 /* orc_01.IE3DMESH */; };
+		21FA12601B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12591B8F2C2600ACB9A5 /* orc_02.IE3DMESH */; };
+		21FA12611B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12591B8F2C2600ACB9A5 /* orc_02.IE3DMESH */; };
+		21FA12661B8F2C3A00ACB9A5 /* human_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12621B8F2C3A00ACB9A5 /* human_01.png */; };
+		21FA12671B8F2C3A00ACB9A5 /* human_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12621B8F2C3A00ACB9A5 /* human_01.png */; };
+		21FA12681B8F2C3A00ACB9A5 /* human_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12631B8F2C3A00ACB9A5 /* human_02.png */; };
+		21FA12691B8F2C3A00ACB9A5 /* human_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12631B8F2C3A00ACB9A5 /* human_02.png */; };
+		21FA126A1B8F2C3A00ACB9A5 /* orc_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12641B8F2C3A00ACB9A5 /* orc_01.png */; };
+		21FA126B1B8F2C3A00ACB9A5 /* orc_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12641B8F2C3A00ACB9A5 /* orc_01.png */; };
+		21FA126C1B8F2C3A00ACB9A5 /* orc_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12651B8F2C3A00ACB9A5 /* orc_02.png */; };
+		21FA126D1B8F2C3A00ACB9A5 /* orc_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12651B8F2C3A00ACB9A5 /* orc_02.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +160,26 @@
 		21B4058F1B7A0CAC003382AB /* info-ios.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "info-ios.plist"; path = "support/info-ios.plist"; sourceTree = "<group>"; };
 		21B405911B7A0CDA003382AB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		21B405931B7A0CDE003382AB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_game_scene.cpp; path = sources/demo_game_scene.cpp; sourceTree = "<group>"; };
+		21D78BEE1B8F4F6200665BB6 /* demo_game_scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_scene.h; path = sources/demo_game_scene.h; sourceTree = "<group>"; };
+		21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.human_01.xml; path = ../gbBundle/Configurations/game_objects/gameobject.human_01.xml; sourceTree = "<group>"; };
+		21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.human_02.xml; path = ../gbBundle/Configurations/game_objects/gameobject.human_02.xml; sourceTree = "<group>"; };
+		21FA12381B8F2B7600ACB9A5 /* gameobject.orc_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.orc_01.xml; path = ../gbBundle/Configurations/game_objects/gameobject.orc_01.xml; sourceTree = "<group>"; };
+		21FA12391B8F2B7600ACB9A5 /* gameobject.orc_02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.orc_02.xml; path = ../gbBundle/Configurations/game_objects/gameobject.orc_02.xml; sourceTree = "<group>"; };
+		21FA12421B8F2BAE00ACB9A5 /* material.human_01.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.base.xml; sourceTree = "<group>"; };
+		21FA12431B8F2BAE00ACB9A5 /* material.human_02.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_02.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_02.base.xml; sourceTree = "<group>"; };
+		21FA12441B8F2BAE00ACB9A5 /* material.orc_01.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_01.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_01.base.xml; sourceTree = "<group>"; };
+		21FA12451B8F2BAE00ACB9A5 /* material.orc_02.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_02.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_02.base.xml; sourceTree = "<group>"; };
+		21FA124E1B8F2BD300ACB9A5 /* shader_model3d.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d.frag; path = ../gbBundle/Shaders/shader_model3d.frag; sourceTree = "<group>"; };
+		21FA124F1B8F2BD300ACB9A5 /* shader_model3d.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d.vert; path = ../gbBundle/Shaders/shader_model3d.vert; sourceTree = "<group>"; };
+		21FA12561B8F2C2600ACB9A5 /* human_01.IE3DMESH */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_01.IE3DMESH; path = ../gbBundle/Meshes/human_01.IE3DMESH; sourceTree = "<group>"; };
+		21FA12571B8F2C2600ACB9A5 /* human_02.IE3DMESH */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_02.IE3DMESH; path = ../gbBundle/Meshes/human_02.IE3DMESH; sourceTree = "<group>"; };
+		21FA12581B8F2C2600ACB9A5 /* orc_01.IE3DMESH */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_01.IE3DMESH; path = ../gbBundle/Meshes/orc_01.IE3DMESH; sourceTree = "<group>"; };
+		21FA12591B8F2C2600ACB9A5 /* orc_02.IE3DMESH */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_02.IE3DMESH; path = ../gbBundle/Meshes/orc_02.IE3DMESH; sourceTree = "<group>"; };
+		21FA12621B8F2C3A00ACB9A5 /* human_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = human_01.png; path = ../gbBundle/Textures/human_01.png; sourceTree = "<group>"; };
+		21FA12631B8F2C3A00ACB9A5 /* human_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = human_02.png; path = ../gbBundle/Textures/human_02.png; sourceTree = "<group>"; };
+		21FA12641B8F2C3A00ACB9A5 /* orc_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orc_01.png; path = ../gbBundle/Textures/orc_01.png; sourceTree = "<group>"; };
+		21FA12651B8F2C3A00ACB9A5 /* orc_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = orc_02.png; path = ../gbBundle/Textures/orc_02.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +220,11 @@
 		2102EB531B7E4E0D00F20197 /* game_objects */ = {
 			isa = PBXGroup;
 			children = (
+				21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */,
+				21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */,
+				21FA12381B8F2B7600ACB9A5 /* gameobject.orc_01.xml */,
+				21FA12391B8F2B7600ACB9A5 /* gameobject.orc_02.xml */,
+				21FA12351B8F2B5800ACB9A5 /* materials */,
 			);
 			name = game_objects;
 			sourceTree = "<group>";
@@ -182,6 +245,8 @@
 		21286A9E1B8B8BD6003AD8AC /* shaders */ = {
 			isa = PBXGroup;
 			children = (
+				21FA124F1B8F2BD300ACB9A5 /* shader_model3d.vert */,
+				21FA124E1B8F2BD300ACB9A5 /* shader_model3d.frag */,
 				21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */,
 				21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */,
 			);
@@ -191,6 +256,8 @@
 		212B18561B7E3DE000FFDCE7 /* common */ = {
 			isa = PBXGroup;
 			children = (
+				21FA12551B8F2C0E00ACB9A5 /* textures */,
+				21FA12541B8F2C0300ACB9A5 /* meshes */,
 				21286A9E1B8B8BD6003AD8AC /* shaders */,
 				212B18581B7E3DE900FFDCE7 /* configuration */,
 			);
@@ -269,6 +336,8 @@
 				2102EB451B7D2D9000F20197 /* demo_game_controller.cpp */,
 				2102EB4A1B7D2DAC00F20197 /* demo_game_transition.h */,
 				2102EB491B7D2DAC00F20197 /* demo_game_transition.cpp */,
+				21D78BEE1B8F4F6200665BB6 /* demo_game_scene.h */,
+				21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */,
 			);
 			name = sources;
 			sourceTree = "<group>";
@@ -339,6 +408,39 @@
 			children = (
 			);
 			name = ios;
+			sourceTree = "<group>";
+		};
+		21FA12351B8F2B5800ACB9A5 /* materials */ = {
+			isa = PBXGroup;
+			children = (
+				21FA12421B8F2BAE00ACB9A5 /* material.human_01.base.xml */,
+				21FA12431B8F2BAE00ACB9A5 /* material.human_02.base.xml */,
+				21FA12441B8F2BAE00ACB9A5 /* material.orc_01.base.xml */,
+				21FA12451B8F2BAE00ACB9A5 /* material.orc_02.base.xml */,
+			);
+			name = materials;
+			sourceTree = "<group>";
+		};
+		21FA12541B8F2C0300ACB9A5 /* meshes */ = {
+			isa = PBXGroup;
+			children = (
+				21FA12561B8F2C2600ACB9A5 /* human_01.IE3DMESH */,
+				21FA12571B8F2C2600ACB9A5 /* human_02.IE3DMESH */,
+				21FA12581B8F2C2600ACB9A5 /* orc_01.IE3DMESH */,
+				21FA12591B8F2C2600ACB9A5 /* orc_02.IE3DMESH */,
+			);
+			name = meshes;
+			sourceTree = "<group>";
+		};
+		21FA12551B8F2C0E00ACB9A5 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				21FA12621B8F2C3A00ACB9A5 /* human_01.png */,
+				21FA12631B8F2C3A00ACB9A5 /* human_02.png */,
+				21FA12641B8F2C3A00ACB9A5 /* orc_01.png */,
+				21FA12651B8F2C3A00ACB9A5 /* orc_02.png */,
+			);
+			name = textures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,17 +548,35 @@
 			files = (
 				21286AA31B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
 				21B405901B7A0CAC003382AB /* info-ios.plist in Resources */,
+				21FA123A1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
 				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
+				21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
+				21FA123C1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
 				2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
+				21FA123E1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
+				21FA12681B8F2C3A00ACB9A5 /* human_02.png in Resources */,
 				21B403451B7A0A23003382AB /* Images.xcassets in Resources */,
 				21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
+				21FA12481B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
+				21FA12661B8F2C3A00ACB9A5 /* human_01.png in Resources */,
+				21FA125C1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
 				2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				21FA12601B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
+				21FA124A1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
 				2102EB561B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
+				21FA12401B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
 				21B4033F1B7A0A0E003382AB /* info-osx.plist in Resources */,
+				21FA125A1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
+				21FA126A1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
+				21FA12501B8F2BD300ACB9A5 /* shader_model3d.frag in Resources */,
 				21B403441B7A0A23003382AB /* MainMenu.xib in Resources */,
+				21FA12461B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
+				21FA12521B8F2BD300ACB9A5 /* shader_model3d.vert in Resources */,
 				212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
+				21FA126C1B8F2C3A00ACB9A5 /* orc_02.png in Resources */,
+				21FA125E1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,15 +585,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
+				21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
 				212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */,
+				21FA124D1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
+				21FA123B1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
+				21FA126B1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
+				21FA123F1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
+				21FA124B1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
+				21FA12491B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
+				21FA126D1B8F2C3A00ACB9A5 /* orc_02.png in Resources */,
+				21FA12611B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
 				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
+				21FA12691B8F2C3A00ACB9A5 /* human_02.png in Resources */,
+				21FA125B1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
+				21FA125F1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */,
+				21FA12531B8F2BD300ACB9A5 /* shader_model3d.vert in Resources */,
 				212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */,
+				21FA12471B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
+				21FA12671B8F2C3A00ACB9A5 /* human_01.png in Resources */,
 				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
+				21FA123D1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
+				21FA12511B8F2BD300ACB9A5 /* shader_model3d.frag in Resources */,
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
 				2102EB5D1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				21FA125D1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
 				21286AA41B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +628,7 @@
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
 				21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */,
 				2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
+				21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +641,7 @@
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,
 				212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */,
 				212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */,
+				21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +810,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COMPRESS_PNG_FILES = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -687,7 +829,7 @@
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "gbDemo-ios";
 				SDKROOT = iphoneos;
@@ -702,6 +844,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COMPRESS_PNG_FILES = NO;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -717,7 +860,7 @@
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "gbDemo-ios";
 				SDKROOT = iphoneos;

@@ -11,6 +11,10 @@
 #include "render_technique_main.h"
 #include "render_technique_ws.h"
 #include "render_technique_ss.h"
+#include "ces_entity.h"
+#include "mesh.h"
+#include "ces_render_component.h"
+#include "ces_geometry_component.h"
 
 namespace gb
 {
@@ -26,15 +30,40 @@ namespace gb
         
     }
     
-    void render_pipeline::update(f32 deltatime)
+    void render_pipeline::on_draw_begin()
     {
         assert(m_graphics_context);
         m_graphics_context->make_current();
-        
+    }
+    
+    void render_pipeline::on_draw(const ces_entity_shared_ptr &entity)
+    {
         for(const auto& iterator : m_ws_render_techniques)
         {
             std::shared_ptr<render_technique_ws> technique = iterator.second;
-
+            
+            ces_render_component_shared_ptr render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+            ces_geometry_component_shared_ptr geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
+            assert(render_component);
+            assert(geometry_component);
+            
+            material_shared_ptr using_material = render_component->get_material(iterator.first);
+            mesh_shared_ptr mesh = geometry_component->get_mesh();
+            
+            if(using_material && using_material->get_shader()->is_commited() &&
+               mesh && mesh->is_commited())
+            {
+                technique->add_entity(entity);
+            }
+        }
+    }
+    
+    void render_pipeline::on_draw_end()
+    {
+        for(const auto& iterator : m_ws_render_techniques)
+        {
+            std::shared_ptr<render_technique_ws> technique = iterator.second;
+            
             technique->bind();
             technique->draw();
             technique->unbind();

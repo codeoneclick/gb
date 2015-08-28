@@ -13,7 +13,7 @@ namespace gb
     ces_global_light_component::ces_global_light_component(void) :
     m_global_light(nullptr)
     {
-        
+        m_type = e_ces_component_type_global_light;
     }
     
     ces_global_light_component::~ces_global_light_component(void)

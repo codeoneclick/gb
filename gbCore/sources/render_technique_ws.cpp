@@ -150,11 +150,11 @@ namespace gb
             {
                 glm::vec3 min_bound = geometry_component->get_mesh()->get_min_bound();
                 glm::vec3 max_bound = geometry_component->get_mesh()->get_max_bound();
-                if(transformation_component)
+                /*if(transformation_component)
                 {
                     min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
                     max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
-                }
+                }*/
                 if(frustum_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
                 {
                     render_component->on_draw(m_name, geometry_component->get_mesh(), material);

@@ -7,6 +7,7 @@
 //
 
 #include "demo_game_transition.h"
+#include "demo_game_scene.h"
 
 demo_game_transition::demo_game_transition(const std::string& guid, bool is_offscreen) :
 game_transition(guid, is_offscreen)
@@ -17,4 +18,14 @@ game_transition(guid, is_offscreen)
 demo_game_transition::~demo_game_transition(void)
 {
     
+}
+
+void demo_game_transition::create_scene()
+{
+    m_scene = std::make_shared<demo_game_scene>(shared_from_this());
+}
+
+void demo_game_transition::destroy_scene()
+{
+    m_scene = nullptr;
 }

@@ -26,7 +26,7 @@ namespace gb
         
     public:
         
-        game_loop_interface(void) = default;
+        game_loop_interface(void);
         virtual ~game_loop_interface(void) = default;
         
         void set_paused(bool paused);

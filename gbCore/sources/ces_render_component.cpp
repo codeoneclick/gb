@@ -142,7 +142,7 @@ namespace gb
         }
         assert(using_material);
         using_material->get_shader()->set_mat4(matrix_m, e_shader_uniform_mat_m);
-        using_material->get_shader()->set_mat4(material->is_reflecting() ? matrix_imvp : matrix_mvp, e_shader_uniform_mat_mvp);
+        using_material->get_shader()->set_mat4(using_material->is_reflecting() ? matrix_imvp : matrix_mvp, e_shader_uniform_mat_mvp);
     }
     
     void ces_render_component::bind_camera_uniforms(const std::string& technique_name,
@@ -156,8 +156,8 @@ namespace gb
         assert(using_material);
         
         using_material->get_shader()->set_mat4(camera->get_matrix_p(), e_shader_uniform_mat_p);
-        using_material->get_shader()->set_mat4(!material->is_reflecting() ? camera->get_matrix_v() : camera->get_matrix_iv(), e_shader_uniform_mat_v);
-        using_material->get_shader()->set_mat4(!material->is_reflecting() ? camera->get_matrix_vp() : camera->get_matrix_ivp(), e_shader_uniform_mat_vp);
+        using_material->get_shader()->set_mat4(!using_material->is_reflecting() ? camera->get_matrix_v() : camera->get_matrix_iv(), e_shader_uniform_mat_v);
+        using_material->get_shader()->set_mat4(!using_material->is_reflecting() ? camera->get_matrix_vp() : camera->get_matrix_ivp(), e_shader_uniform_mat_vp);
         using_material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
         
         using_material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
@@ -210,7 +210,10 @@ namespace gb
             using_material = ces_render_component::get_material(technique_name);
         }
         assert(using_material);
-
+        assert(using_material->get_shader()->is_commited());
+        
         mesh->bind(using_material->get_shader()->get_guid(), using_material->get_shader()->get_attributes());
+        mesh->draw();
+        mesh->unbind(using_material->get_shader()->get_guid(), using_material->get_shader()->get_attributes());
     }
 }

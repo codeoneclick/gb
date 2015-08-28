@@ -17,6 +17,9 @@ private:
     
 protected:
     
+    void create_scene();
+    void destroy_scene();
+    
 public:
     
     demo_game_transition(const std::string& guid, bool is_offscreen);

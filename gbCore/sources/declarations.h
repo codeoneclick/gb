@@ -98,6 +98,9 @@ namespace gb
     class fabricator;
     typedef std::shared_ptr<fabricator> fabricator_shared_ptr;
     
+    class ces_entity;
+    typedef std::shared_ptr<ces_entity> ces_entity_shared_ptr;
+    
     class ces_systems_feeder;
     typedef std::shared_ptr<ces_systems_feeder> ces_systems_feeder_shared_ptr;
     
@@ -124,6 +127,12 @@ namespace gb
     
     class model3d_static;
     typedef std::shared_ptr<model3d_static> model3d_static_shared_ptr;
+    
+    class game_transition;
+    typedef std::shared_ptr<game_transition> game_transition_shared_ptr;
+    
+    class game_scene;
+    typedef std::shared_ptr<game_scene> game_scene_shared_ptr;
 };
 
 #endif

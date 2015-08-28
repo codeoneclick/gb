@@ -24,7 +24,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     std::shared_ptr<gb::ogl_window> window = std::make_shared<gb::ogl_window>((__bridge void*)self.m_opengl_view);
     
     self.m_game_controller = std::make_shared<demo_game_controller>(window);

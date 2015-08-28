@@ -21,6 +21,7 @@
 #include "material.h"
 #include "scene_graph.h"
 #include "fabricator.h"
+#include "game_scene.h"
 
 namespace gb
 {
@@ -28,7 +29,8 @@ namespace gb
     m_guid(guid),
     m_offscreen(is_offscreen),
     m_scene_graph(nullptr),
-    m_fabricator(nullptr)
+    m_fabricator(nullptr),
+    m_scene(nullptr)
     {
         m_system_feeder = std::make_shared<ces_systems_feeder>();
     }
@@ -125,29 +127,32 @@ namespace gb
         m_system_feeder->add_system(render_system, e_ces_system_type_render);
         add_listener_to_game_loop(m_system_feeder);
         add_listener_to_game_loop(m_scene_graph);
+        
+        create_scene();
     }
     
     void game_transition::on_deactivated(void)
     {
+        remove_listener_from_game_loop(m_system_feeder);
+        remove_listener_from_game_loop(m_scene_graph);
         
+        destroy_scene();
     }
     
     void game_transition::on_update(f32 deltatime)
     {
-        
+        if(m_scene)
+        {
+            m_scene->update(deltatime);
+        }
     }
     
-    void game_transition::create_scene(void)
-    {
-        
-    }
-    
-    fabricator_shared_ptr game_transition::get_fabricator(void) const
+    fabricator_shared_ptr game_transition::get_fabricator() const
     {
         return m_fabricator;
     }
     
-    scene_graph_shared_ptr game_transition::get_scene_graph(void) const
+    scene_graph_shared_ptr game_transition::get_scene_graph() const
     {
         return m_scene_graph;
     }

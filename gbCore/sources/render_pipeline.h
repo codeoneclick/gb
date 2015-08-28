@@ -11,6 +11,7 @@
 
 #include "render_techniques_importer.h"
 #include "render_techniques_accessor.h"
+#include "declarations.h"
 
 namespace gb
 {
@@ -27,7 +28,9 @@ namespace gb
         render_pipeline(const std::shared_ptr<graphics_context>& graphic_context, bool is_offscreen);
         ~render_pipeline(void);
         
-        void update(f32 deltatime);
+        void on_draw_begin();
+        void on_draw(const ces_entity_shared_ptr& entity);
+        void on_draw_end();
         
         std::shared_ptr<texture> get_technique_texture(const std::string& technique_name);
         std::shared_ptr<material> get_technique_material(const std::string& technique_name);

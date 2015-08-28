@@ -19,7 +19,7 @@ namespace gb
     class graphics_context;
     class input_context;
 
-    class game_transition : public game_loop_interface
+    class game_transition : public game_loop_interface, public std::enable_shared_from_this<game_transition>
     {
     private:
         
@@ -33,10 +33,15 @@ namespace gb
         
         void on_update(f32 deltatime);
         
+        virtual void create_scene() = 0;
+        virtual void destroy_scene() = 0;
+        
+        game_scene_shared_ptr m_scene;
+        
     public:
         
         game_transition(const std::string& guid, bool is_offscreen);
-        virtual ~game_transition(void);
+        virtual ~game_transition();
         
         void on_activated(const std::shared_ptr<graphics_context>& graphics_context,
                           const std::shared_ptr<input_context>& input_context,
@@ -45,11 +50,10 @@ namespace gb
         
         void on_deactivated(void);
         
-        virtual void create_scene(void);
-        std::string get_guid(void) const;
+        std::string get_guid() const;
         
-        fabricator_shared_ptr get_fabricator(void) const;
-        scene_graph_shared_ptr get_scene_graph(void) const;
+        fabricator_shared_ptr get_fabricator() const;
+        scene_graph_shared_ptr get_scene_graph() const;
     };
 };
 
