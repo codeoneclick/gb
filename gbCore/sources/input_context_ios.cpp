@@ -87,7 +87,7 @@ namespace gb
     {
         UIView* view = (__bridge UIView*)window->get_hwnd();
         
-        input_hwnd* input_view = [[InputHWND alloc] init];
+        input_hwnd* input_view = [[input_hwnd alloc] init];
         input_view.m_context = this;
         input_view.frame = CGRectMake(0.f, 0.f,
                                      view.frame.size.width, view.frame.size.height);

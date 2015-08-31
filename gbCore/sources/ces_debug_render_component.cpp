@@ -90,7 +90,7 @@ namespace gb
             assert(m_mesh->is_commited());
             
             m_mesh->bind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
-            m_mesh->draw(GL_LINE);
+            m_mesh->draw();
             m_mesh->unbind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
         }
     }
