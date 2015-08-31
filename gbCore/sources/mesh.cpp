@@ -86,12 +86,13 @@ namespace gb
         return m_bones_data;
     }
     
-    mesh::mesh(const std::string& guid) :
+    mesh::mesh(const std::string& guid, GLenum mode) :
     gb::resource(e_resource_type_mesh, guid),
     m_vbo(nullptr),
     m_ibo(nullptr),
     m_mesh_data(nullptr),
-    m_skeleton_data(nullptr)
+    m_skeleton_data(nullptr),
+    m_mode(mode)
     {
         
     }
@@ -99,26 +100,28 @@ namespace gb
     std::shared_ptr<mesh> mesh::construct(const std::string& guid,
                                           const std::shared_ptr<vbo>& vbo,
                                           const std::shared_ptr<ibo>& ibo,
+                                          const glm::vec3& min_bound,
                                           const glm::vec3& max_bound,
-                                          const glm::vec3& min_bound)
+                                          GLenum mode)
     {
         assert(vbo != nullptr);
         assert(ibo != nullptr);
         
-        std::shared_ptr<mesh> mesh = mesh::construct(guid, vbo, ibo);
+        std::shared_ptr<mesh> mesh = mesh::construct(guid, vbo, ibo, mode);
         mesh->m_min_bound = min_bound;
         mesh->m_max_bound = max_bound;
         return mesh;
     }
     
     std::shared_ptr<mesh> mesh::construct(const std::string &guid,
-                                           const std::shared_ptr<vbo>& vbo,
-                                           const std::shared_ptr<ibo>& ibo)
+                                          const std::shared_ptr<vbo>& vbo,
+                                          const std::shared_ptr<ibo>& ibo,
+                                          GLenum mode)
     {
         assert(vbo != nullptr);
         assert(ibo != nullptr);
         
-        std::shared_ptr<mesh> mesh = std::make_shared<gb::mesh>(guid);
+        std::shared_ptr<mesh> mesh = std::make_shared<gb::mesh>(guid, mode);
         mesh->m_vbo = vbo;
         mesh->m_ibo = ibo;
         
@@ -243,50 +246,65 @@ namespace gb
         return resource::is_loaded() ? m_mesh_data->get_num_indices() : 0;
     }
     
-    const glm::vec3 mesh::get_min_bound(void) const
-    {
-        return resource::is_loaded() ? m_min_bound : std::move(glm::vec3(0.0f));
-    }
-    
-    const glm::vec3 mesh::get_max_bound(void) const
-    {
-        return resource::is_loaded() ? m_max_bound : std::move(glm::vec3(0.0f));
-    }
-    
-    const std::tuple<glm::vec3, glm::vec3> mesh::get_bounds(void) const
+    const glm::vec3 mesh::get_min_bound() const
     {
         if(!resource::is_loaded())
         {
-            return std::make_tuple(glm::vec3(0.0), glm::vec3(0.0));
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return glm::vec3(.0f);
+        }
+        return m_min_bound;
+    }
+    
+    const glm::vec3 mesh::get_max_bound() const
+    {
+        if(!resource::is_loaded())
+        {
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return glm::vec3(.0f);
+        }
+        return m_max_bound;
+    }
+    
+    const std::tuple<glm::vec3, glm::vec3> mesh::get_bounds() const
+    {
+        if(!resource::is_loaded())
+        {
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return std::make_tuple(glm::vec3(0.f), glm::vec3(0.f));
         }
         return std::make_tuple(m_min_bound, m_max_bound);
     }
     
-    const glm::vec3 mesh::get_min_bound(const glm::mat4& matrix) const
+    const glm::vec3 mesh::get_min_bound(const glm::mat4& mat) const
     {
         if(!resource::is_loaded())
         {
-            return glm::vec3(0.0f);
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return glm::vec3(.0f);
         }
-        return std::get<0>(mesh::get_bounds(matrix));
+        return std::get<0>(mesh::get_bounds(mat));
     }
     
-    const glm::vec3 mesh::get_max_bound(const glm::mat4& matrix) const
+    const glm::vec3 mesh::get_max_bound(const glm::mat4& mat) const
     {
         if(!resource::is_loaded())
         {
-            return glm::vec3(0.0f);
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return glm::vec3(.0f);
         }
-        return std::get<0>(mesh::get_bounds(matrix));
+        return std::get<1>(mesh::get_bounds(mat));
     }
     
-    const std::tuple<glm::vec3, glm::vec3> mesh::get_bounds(const glm::mat4& matrix) const
+    const std::tuple<glm::vec3, glm::vec3> mesh::get_bounds(const glm::mat4& mat) const
     {
         if(!resource::is_loaded())
         {
-            return std::make_tuple(glm::vec3(0.0), glm::vec3(0.0));
+            std::cout<<"warning! mesh doesn't loaded - bounds is wrong."<<std::endl;
+            return std::make_tuple(glm::vec3(0.f), glm::vec3(0.f));
         }
         
+        std::cout<<"warning! low performance function - do not call it often."<<std::endl;
         vbo::vertex_attribute *vertices = m_vbo->lock();
         ui16* indices = m_ibo->lock();
         ui32 num_indices = m_ibo->get_used_size();
@@ -297,7 +315,7 @@ namespace gb
         for(ui32 i = 0; i < num_indices; ++i)
         {
             glm::vec3 point = vertices[indices[i]].m_position;
-            glm::vec4 tranformed_vertex = matrix * glm::vec4(point, 1.0f);
+            glm::vec4 tranformed_vertex = mat * glm::vec4(point, 1.0f);
             
             min_bound = glm::min(glm::vec3(tranformed_vertex.x, tranformed_vertex.y, tranformed_vertex.z), min_bound);
             max_bound = glm::max(glm::vec3(tranformed_vertex.x, tranformed_vertex.y, tranformed_vertex.z), max_bound);
@@ -332,11 +350,11 @@ namespace gb
         }
     }
     
-    void mesh::draw(void) const
+    void mesh::draw() const
     {
         if(resource::is_loaded() && resource::is_commited())
         {
-            gl_draw_elements(GL_TRIANGLES, m_ibo->get_used_size(), GL_UNSIGNED_SHORT, NULL);
+            gl_draw_elements(m_mode, m_ibo->get_used_size(), GL_UNSIGNED_SHORT, NULL);
         }
     }
     
@@ -344,7 +362,7 @@ namespace gb
     {
         if(resource::is_loaded() && resource::is_commited())
         {
-            gl_draw_elements(GL_TRIANGLES, indices, GL_UNSIGNED_SHORT, NULL);
+            gl_draw_elements(m_mode, indices, GL_UNSIGNED_SHORT, NULL);
         }
     }
     

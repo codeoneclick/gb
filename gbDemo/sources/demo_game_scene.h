@@ -11,8 +11,9 @@
 
 #include "game_scene.h"
 #include "declarations.h"
+#include "ces_input_system.h"
 
-class demo_game_scene : public gb::game_scene
+class demo_game_scene : public gb::game_scene, public gb::touch_listener
 {
 private:
     
@@ -22,6 +23,9 @@ private:
 protected:
     
     void update(f32 deltatime);
+    
+    void on_touch(const glm::vec3& point, const gb::ces_entity_shared_ptr& listener,
+                  gb::e_input_element input_element, gb::e_input_state input_state);
     
 public:
     

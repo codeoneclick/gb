@@ -97,12 +97,15 @@ namespace gb
             
             mesh_shared_ptr mesh = m_resource_accessor->get_mesh(model_configuration->get_mesh_filename());
             assert(mesh);
+
             model3d_animated->set_mesh(mesh);
             mesh->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([model_configuration, model3d_animated, this](const resource_shared_ptr& resource, bool success) {
                 
                 mesh_shared_ptr mesh = std::static_pointer_cast<gb::mesh>(resource);
                 assert(mesh->get_skeleton_data());
                 assert(mesh->get_bindpose_data());
+
+                model3d_animated->set_mesh(mesh);
                 animation_mixer_shared_ptr animation_mixer = std::make_shared<gb::animation_mixer>(mesh->get_skeleton_data(),
                                                                                                    mesh->get_bindpose_data());
                 
@@ -125,7 +128,7 @@ namespace gb
                 std::shared_ptr<material_configuration> material_configuration =
                 std::static_pointer_cast<gb::material_configuration>(iterator);
                 
-                std::shared_ptr<material> material = material::construct(material_configuration);
+                material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
                 model3d_animated->add_material(material_configuration->get_render_technique_name(), material);

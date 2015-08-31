@@ -20,7 +20,10 @@ namespace gb
         e_ces_component_type_frustum_culling,
         e_ces_component_type_transformation,
         e_ces_component_type_global_light,
-        e_ces_component_type_animation
+        e_ces_component_type_animation,
+        e_ces_component_type_touch,
+        e_ces_component_type_debug_render,
+        e_ces_component_type_max
     };
 };
 

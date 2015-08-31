@@ -45,6 +45,9 @@ gb::game_scene(transition)
     
     m_models["orc_01"]->set_position(glm::vec3(0.f, 0.f, -2.f));
     m_models["orc_02"]->set_position(glm::vec3(0.f, 0.f, 2.f));
+
+    m_models["human_02"]->set_touches_receives_enabled(true);
+    m_models["human_02"]->set_debug_draw_enabled(true);
 }
 
 demo_game_scene::~demo_game_scene()
@@ -54,11 +57,16 @@ demo_game_scene::~demo_game_scene()
 
 void demo_game_scene::update(f32 deltatime)
 {
-    /*static f32 angle = 0.f;
-    angle += 1.f;
-    m_model->set_rotation(glm::vec3(0.f, angle, 0.f));
-    m_camera->set_distance_to_look_at(glm::vec3(6.f + sinf(angle * .01f)));*/
     m_models["human_02"]->set_animation("IDLE");
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
+}
+
+void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,
+                               gb::e_input_element input_element, gb::e_input_state input_state)
+{
+    if(input_state == gb::e_input_state_pressed)
+    {
+        std::cout<<"on_touch"<<std::endl;
+    }
 }

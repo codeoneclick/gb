@@ -24,6 +24,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    f32 width = std::max([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
+    f32 height = std::min([[UIScreen mainScreen] bounds].size.height, [[UIScreen mainScreen] bounds].size.width);
+    [self.view setFrame:CGRectMake(0.0f, 0.0f, width, height)];
+
     std::shared_ptr<gb::ogl_window> window = std::make_shared<gb::ogl_window>((__bridge void*)self.m_opengl_view);
     
     self.m_game_controller = std::make_shared<demo_game_controller>(window);

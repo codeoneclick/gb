@@ -24,6 +24,8 @@ namespace gb
         ces_global_light_component_shared_ptr m_global_light_component;
         ces_geometry_component_shared_ptr m_geometry_component;
         ces_render_component_shared_ptr m_render_component;
+        ces_debug_render_component_shared_ptr m_debug_render_component;
+        ces_touch_component_shared_ptr m_touch_component;
         
     public:
         
@@ -35,6 +37,9 @@ namespace gb
         material_shared_ptr get_material(const std::string& technique_name) const;
         
         void set_mesh(const mesh_shared_ptr& mesh);
+        
+        void set_touches_receives_enabled(bool value);
+        void set_debug_draw_enabled(bool value);
     };
 };
 

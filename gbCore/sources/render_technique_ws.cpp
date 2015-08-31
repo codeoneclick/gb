@@ -20,6 +20,7 @@
 #include "ces_transformation_component.h"
 #include "ces_global_light_component.h"
 #include "ces_animation_component.h"
+#include "ces_debug_render_component.h"
 
 namespace gb
 {
@@ -119,7 +120,10 @@ namespace gb
         while (!m_entities.empty())
         {
             std::shared_ptr<ces_entity> entity = m_entities.front();
-            std::shared_ptr<ces_render_component> render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+            
+            ces_render_component* render_component = unsafe_get_render_component(entity);
+            assert(render_component);
+            
             std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
             std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
             
@@ -135,12 +139,19 @@ namespace gb
             ces_animation_component_shared_ptr animation_component =
             std::static_pointer_cast<ces_animation_component>(entity->get_component(e_ces_component_type_animation));
             
-            assert(render_component);
+            ces_debug_render_component_shared_ptr debug_render_component =
+            std::static_pointer_cast<ces_debug_render_component>(entity->get_component(e_ces_component_type_debug_render));
+            
+            
             assert(geometry_component);
             assert(camera_component);
+            assert(transformation_component);
             
             std::shared_ptr<material> material = render_component->on_bind(m_name);
             render_component->bind_camera_uniforms(m_name, camera_component->get_camera(), material);
+            render_component->bind_transformation_uniforms(m_name, transformation_component->get_matrix_m(),
+                                                           ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
+                                                           ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
             
             if(global_light_component)
             {
@@ -154,17 +165,10 @@ namespace gb
                                                                    animation_component->get_animation_mixer()->get_transformation_size());
             }
             
-            if(transformation_component)
-            {
-                render_component->bind_transformation_uniforms(m_name, ces_transformation_component::get_matrix_m(transformation_component),
-                                                               ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
-                                                               ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
-            }
-            
             if(frustum_component)
             {
-                glm::vec3 min_bound = geometry_component->get_mesh()->get_min_bound();
-                glm::vec3 max_bound = geometry_component->get_mesh()->get_max_bound();
+                glm::vec3 min_bound = geometry_component->get_min_bound();
+                glm::vec3 max_bound = geometry_component->get_max_bound();
                 /*if(transformation_component)
                 {
                     min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
@@ -179,6 +183,18 @@ namespace gb
             {
                 render_component->on_draw(m_name, geometry_component->get_mesh(), material);
             }
+            
+            if(debug_render_component)
+            {
+                debug_render_component->on_bind(m_name);
+                debug_render_component->bind_camera_uniforms(m_name, camera_component->get_camera());
+                debug_render_component->bind_transformation_uniforms(m_name, transformation_component->get_matrix_m(),
+                                                                     ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
+                                                                     ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
+                debug_render_component->on_draw(m_name);
+                debug_render_component->on_unbind(m_name);
+            }
+            
             m_entities.pop();
         }
     }

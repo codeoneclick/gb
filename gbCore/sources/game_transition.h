@@ -13,12 +13,10 @@
 #include "declarations.h"
 #include "game_loop.h"
 #include "ces_entity.h"
+#include "ces_system_types.h"
 
 namespace gb
 {
-    class graphics_context;
-    class input_context;
-
     class game_transition : public game_loop_interface, public std::enable_shared_from_this<game_transition>
     {
     private:
@@ -43,8 +41,8 @@ namespace gb
         game_transition(const std::string& guid, bool is_offscreen);
         virtual ~game_transition();
         
-        void on_activated(const std::shared_ptr<graphics_context>& graphics_context,
-                          const std::shared_ptr<input_context>& input_context,
+        void on_activated(const graphics_context_shared_ptr& graphics_context,
+                          const input_context_shared_ptr& input_context,
                           const configuration_accessor_shared_ptr& configurations_accessor,
                           const resource_accessor_shared_ptr& resource_accessor);
         
@@ -54,6 +52,7 @@ namespace gb
         
         fabricator_shared_ptr get_fabricator() const;
         scene_graph_shared_ptr get_scene_graph() const;
+        ces_system_shared_ptr get_system(e_ces_system_type type);
     };
 };
 

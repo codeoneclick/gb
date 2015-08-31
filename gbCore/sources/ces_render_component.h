@@ -27,15 +27,15 @@ namespace gb
         
     public:
         
-        ces_render_component(void);
-        ~ces_render_component(void);
+        ces_render_component();
+        ~ces_render_component();
         
         void add_material(const std::string& technique_name, const material_shared_ptr& material);
         void remove_material(const std::string& technique_name);
         material_shared_ptr get_material(const std::string& technique_name) const;
         
         void set_z_order(i32 z_order);
-        i32 get_z_order(void) const;
+        i32 get_z_order() const;
         
         virtual void bind_transformation_uniforms(const std::string& technique_name,
                                                   const glm::mat4& matrix_m,

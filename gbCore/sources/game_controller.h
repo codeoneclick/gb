@@ -14,15 +14,14 @@
 
 namespace gb
 {
-    class ogl_window;
-    class graphics_context;
     class game_transition;
     
     class game_controller
     {
     private:
         
-        std::shared_ptr<graphics_context> m_graphics_context;
+        graphics_context_shared_ptr m_graphics_context;
+        input_context_shared_ptr m_input_context;
         configuration_accessor_shared_ptr m_configuration_accessor;
         resource_accessor_shared_ptr m_resource_accessor;
         

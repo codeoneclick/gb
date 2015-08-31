@@ -19,7 +19,7 @@ namespace gb
     
     game_object::~game_object(void)
     {
-        ces_entity::remove_component(m_transformation_component);
+        ces_entity::remove_components();
     }
     
     void game_object::set_position(const glm::vec3& position)

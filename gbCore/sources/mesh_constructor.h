@@ -6,9 +6,28 @@
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef __gbCore__mesh_constructor__
-#define __gbCore__mesh_constructor__
+#ifndef mesh_constructor_h
+#define mesh_constructor_h
 
-#include <stdio.h>
+#include "main_headers.h"
+#include "declarations.h"
 
-#endif /* defined(__gbCore__mesh_constructor__) */
+namespace gb
+{
+    class mesh_constructor
+    {
+    private:
+        
+    protected:
+        
+    public:
+        
+        mesh_constructor() = default;
+        ~mesh_constructor() = default;
+        
+        static mesh_shared_ptr create_wireframe_box(const glm::vec3& min_bound,
+                                                    const glm::vec3& max_bound);
+    };
+};
+
+#endif

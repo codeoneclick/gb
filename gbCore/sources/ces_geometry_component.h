@@ -20,15 +20,23 @@ namespace gb
         
     protected:
         
-        std::shared_ptr<mesh> m_mesh;
+        mesh_shared_ptr m_mesh;
         
     public:
         
-        ces_geometry_component(void);
-        ~ces_geometry_component(void);
+        ces_geometry_component();
+        ~ces_geometry_component();
         
-        void set_mesh(const std::shared_ptr<mesh>& mesh);
-        std::shared_ptr<mesh> get_mesh(void) const;
+        void set_mesh(const mesh_shared_ptr& mesh);
+        mesh_shared_ptr get_mesh() const;
+        
+        const glm::vec3 get_min_bound() const;
+        const glm::vec3 get_max_bound() const;
+        const std::tuple<glm::vec3, glm::vec3> get_bounds() const;
+        
+        const glm::vec3 get_min_bound(const glm::mat4& mat) const;
+        const glm::vec3 get_max_bound(const glm::mat4& mat) const;
+        const std::tuple<glm::vec3, glm::vec3> get_bounds(const glm::mat4& mat) const;
     };
 };
 
