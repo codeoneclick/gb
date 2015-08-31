@@ -17,7 +17,7 @@
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
 {
-    m_camera = game_scene::get_transition()->get_fabricator()->create_camera(45.f, .1f, 1024.f, glm::ivec4(0.f, 0.f, 960.f, 480.f));
+    m_camera = game_scene::get_transition()->get_fabricator()->create_camera(45.f, .1f, 1024.f, glm::ivec4(0.f, 0.f, 1024.f, 768.f));
     gb::global_light_shared_ptr global_light = game_scene::get_transition()->get_fabricator()->create_global_light(45.f , .1f, 1024.f);
     
     m_model = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.human_01.xml");

@@ -156,7 +156,7 @@ namespace gb
             
             if(transformation_component)
             {
-                render_component->bind_transformation_uniforms(m_name, ces_transformation_component::get_matrix_m(transformation_component),
+                render_component->bind_transformation_uniforms(m_name, transformation_component->get_matrix_m(),
                                                                ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
                                                                ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
             }

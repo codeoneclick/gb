@@ -61,25 +61,25 @@ namespace gb
         return m_scale;
     }
     
-    glm::mat4 ces_transformation_component::get_matrix_m(const std::shared_ptr<ces_transformation_component>& component)
+    glm::mat4 ces_transformation_component::get_matrix_m(void)
     {
-        if(!component->m_is_matrix_m_computed)
+        if(!m_is_matrix_m_computed)
         {
-            component->m_matrix_m = component->m_matrix_t * component->m_matrix_r * component->m_matrix_s;
-            component->m_is_matrix_m_computed = true;
+            m_matrix_m = m_matrix_t * m_matrix_r * m_matrix_s;
+            m_is_matrix_m_computed = true;
         }
-        return component->m_matrix_m;
+        return m_matrix_m;
     }
     
     glm::mat4 ces_transformation_component::get_matrix_mvp(const std::shared_ptr<ces_transformation_component> &component, const glm::mat4 &matrix_vp)
     {
-        glm::mat4 matrix_mvp = matrix_vp * ces_transformation_component::get_matrix_m(component);
+        glm::mat4 matrix_mvp = matrix_vp * component->get_matrix_m();
         return std::move(matrix_mvp);
     }
     
     glm::mat4 ces_transformation_component::get_matrix_imvp(const std::shared_ptr<ces_transformation_component> &component, const glm::mat4 &matrix_ivp)
     {
-        glm::mat4 m_matrix_imvp = matrix_ivp * ces_transformation_component::get_matrix_m(component);
+        glm::mat4 m_matrix_imvp = matrix_ivp * component->get_matrix_m();
         return std::move(m_matrix_imvp);
     }
     

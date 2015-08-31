@@ -11,6 +11,7 @@
 #include "game_loop.h"
 #include "configuration_types.h"
 #include "graphics_context.h"
+#include "input_context.h"
 #include "configuration_accessor.h"
 #include "resource_accessor.h"
 
@@ -20,9 +21,15 @@ namespace gb
     m_current_transition(nullptr)
     {
 #if defined (__IOS__)
+        
         m_graphics_context = graphics_context::construct(window, e_graphic_context_api_ios);
+        m_input_context = input_context::construct(window, e_input_context_api_ios);
+        
 #elif defined(__OSX__)
+        
         m_graphics_context = graphics_context::construct(window, e_graphic_context_api_osx);
+        m_input_context = input_context::construct(window, e_input_context_api_osx);
+        
 #endif
 
         m_configuration_accessor = std::make_shared<configuration_accessor>();
@@ -57,7 +64,7 @@ namespace gb
         }
         m_current_transition = m_transitions.find(guid)->second;
         m_current_transition->on_activated(m_graphics_context,
-                                           nullptr,
+                                           m_input_context,
                                            m_configuration_accessor,
                                            m_resource_accessor);
         

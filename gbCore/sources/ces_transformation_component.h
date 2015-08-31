@@ -48,7 +48,8 @@ namespace gb
         glm::vec3 get_up(void) const;
         glm::vec3 get_right(void) const;
         
-        static glm::mat4 get_matrix_m(const std::shared_ptr<ces_transformation_component>& component);
+        glm::mat4 get_matrix_m(void);
+        
         static glm::mat4 get_matrix_mvp(const std::shared_ptr<ces_transformation_component>& component, const glm::mat4 &matrix_vp);
         static glm::mat4 get_matrix_imvp(const std::shared_ptr<ces_transformation_component>& component, const glm::mat4 &matrix_ivp);
     };

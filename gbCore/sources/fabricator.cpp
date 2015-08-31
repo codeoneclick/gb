@@ -98,7 +98,7 @@ namespace gb
             mesh_shared_ptr mesh = m_resource_accessor->get_mesh(model_configuration->get_mesh_filename());
             assert(mesh);
             model3d_animated->set_mesh(mesh);
-            mesh->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([&mesh, &model_configuration, &model3d_animated, this]
+            mesh->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([mesh, model_configuration, model3d_animated, this]
                                                                                                         (const resource_shared_ptr&, bool success) {
                 
                 animation_mixer_shared_ptr animation_mixer = std::make_shared<gb::animation_mixer>(mesh->get_skeleton_data(),
@@ -108,7 +108,7 @@ namespace gb
                 {
                     std::shared_ptr<animation_configuration> animation_configuration = std::static_pointer_cast<gb::animation_configuration>(iterator);
                     sequence_shared_ptr sequence = m_resource_accessor->get_animation(animation_configuration->get_animation_filename());
-                    sequence->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([&sequence, &animation_mixer](const resource_shared_ptr&, bool success) {
+                    sequence->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([sequence, animation_mixer](const resource_shared_ptr&, bool success) {
                         animation_mixer->add_sequence(sequence);
                     }));
                 }

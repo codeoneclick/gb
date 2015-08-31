@@ -11,6 +11,15 @@
 
 namespace gb
 {
+    class ogl_window;
+    typedef std::shared_ptr<ogl_window> ogl_window_shared_ptr;
+    
+    class graphics_context;
+    typedef std::shared_ptr<graphics_context> graphics_context_shared_ptr;
+    
+    class input_context;
+    typedef std::shared_ptr<input_context> input_context_shared_ptr;
+    
     class configuration;
     typedef std::shared_ptr<configuration> configuration_shared_ptr;
     
@@ -128,6 +137,9 @@ namespace gb
     class ces_animation_component;
     typedef std::shared_ptr<ces_animation_component> ces_animation_component_shared_ptr;
     
+    class ces_touch_component;
+    typedef std::shared_ptr<ces_touch_component> ces_touch_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     
@@ -154,6 +166,12 @@ namespace gb
     
     class model3d_animated;
     typedef std::shared_ptr<model3d_animated> model3d_animated_shared_ptr;
+    
+    class input_context_listener;
+    typedef std::shared_ptr<input_context_listener> input_context_listener_shared_ptr;
+    
+    class touch_listener;
+    typedef std::shared_ptr<touch_listener> touch_listener_shared_ptr;
 };
 
 #endif

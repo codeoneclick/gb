@@ -144,7 +144,7 @@ namespace gb
             std::vector<glm::vec3> positions;
             std::vector<glm::vec3> scales;
             
-            for (i32 i = 0; i < num_frames; ++i)
+            for (i32 i = 0; i < num_bones; ++i)
             {
                 glm::vec3 position;
                 filestream->read((char*)&position, sizeof(glm::vec3));

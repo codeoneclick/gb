@@ -13,6 +13,7 @@
 #include "resource_accessor.h"
 #include "ces_render_system.h"
 #include "ces_animation_system.h"
+#include "ces_input_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
 #include "graphics_context.h"
@@ -46,8 +47,8 @@ namespace gb
         return m_guid;
     }
     
-    void game_transition::on_activated(const std::shared_ptr<graphics_context>& graphics_context,
-                                       const std::shared_ptr<input_context>& input_context,
+    void game_transition::on_activated(const graphics_context_shared_ptr& graphics_context,
+                                       const input_context_shared_ptr& input_context,
                                        const configuration_accessor_shared_ptr& configurations_accessor,
                                        const resource_accessor_shared_ptr& resource_accessor)
     {
@@ -129,6 +130,10 @@ namespace gb
         
         std::shared_ptr<ces_animation_system> animation_system = std::make_shared<ces_animation_system>();
         m_system_feeder->add_system(animation_system, e_ces_system_type_animation);
+        
+        std::shared_ptr<ces_input_system> input_system = std::make_shared<ces_input_system>();
+        m_system_feeder->add_system(input_system, e_ces_system_type_input);
+        input_context->add_listener(input_system);
         
         add_listener_to_game_loop(m_system_feeder);
         add_listener_to_game_loop(m_scene_graph);
