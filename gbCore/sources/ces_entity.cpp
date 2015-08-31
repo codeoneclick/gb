@@ -32,6 +32,11 @@ namespace gb
         m_components[component->get_type()] = nullptr;
     }
     
+    void ces_entity::remove_component(e_ces_component_type type)
+    {
+        m_components[type] = nullptr;
+    }
+    
     void ces_entity::remove_components()
     {
         for(auto& component : m_components)

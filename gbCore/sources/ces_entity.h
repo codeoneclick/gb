@@ -28,6 +28,7 @@ namespace gb
         
         void add_component(const std::shared_ptr<ces_base_component>& component);
         void remove_component(const std::shared_ptr<ces_base_component>& component);
+        void remove_component(e_ces_component_type type);
         void remove_components();
         bool is_component_exist(e_ces_component_type type) const;
         ces_base_component_shared_ptr get_component(e_ces_component_type type) const;

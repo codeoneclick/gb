@@ -120,7 +120,8 @@ namespace gb
         while (!m_entities.empty())
         {
             std::shared_ptr<ces_entity> entity = m_entities.front();
-            std::shared_ptr<ces_render_component> render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+            std::shared_ptr<ces_render_component> render_component = unsafe_get_render_component(entity);
+            
             std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
             std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
             

@@ -34,6 +34,9 @@ gb::game_scene(transition)
     global_light->set_distance_to_sun(512.f);
     global_light->set_distance_to_look_at(64.f);
     global_light->set_rotation_center(glm::vec3(256.f, .0f, 256.f));
+    
+    m_model->set_touches_receives_enabled(true);
+    m_model->set_debug_draw_enabled(true);
 }
 
 demo_game_scene::~demo_game_scene()

@@ -36,50 +36,69 @@ namespace gb
         
         m_render_component = std::make_shared<ces_render_component>();
         ces_entity::add_component(m_render_component);
-        
-        m_debug_render_component = std::make_shared<ces_debug_render_component>();
-        ces_entity::add_component(m_debug_render_component);
-        
-        m_touch_component = std::make_shared<ces_touch_component>();
-        ces_entity::add_component(m_touch_component);
-        
-        m_touch_component->enable(e_input_state_pressed, true);
-        m_touch_component->enable(e_input_state_dragged, true);
-        m_touch_component->enable(e_input_state_released, true);
     }
     
     model3d_static::~model3d_static()
     {
-        ces_entity::remove_component(m_camera_component);
-        ces_entity::remove_component(m_frustum_culling_component);
-        ces_entity::remove_component(m_global_light_component);
-        ces_entity::remove_component(m_geometry_component);
-        ces_entity::remove_component(m_render_component);
-        ces_entity::remove_component(m_debug_render_component);
-        ces_entity::remove_component(m_touch_component);
+
     }
     
     void model3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)
     {
-        m_render_component->add_material(technique_name, material);
+        unsafe_get_render_component_from_this()->add_material(technique_name, material);
     }
     
     void model3d_static::remove_material(const std::string& technique_name)
     {
-        m_render_component->remove_material(technique_name);
+        unsafe_get_render_component_from_this()->remove_material(technique_name);
     }
     
     material_shared_ptr model3d_static::get_material(const std::string& technique_name) const
     {
-        return m_render_component->get_material(technique_name);
+        return unsafe_get_render_component_from_this()->get_material(technique_name);
     }
     
     void model3d_static::set_mesh(const mesh_shared_ptr& mesh)
     {
         m_geometry_component->set_mesh(mesh);
         
-        mesh_shared_ptr mesh_bounding_box = mesh_constructor::create_wireframe_box(mesh->get_min_bound(),
-                                                                                   mesh->get_max_bound());
-        m_debug_render_component->set_mesh(mesh_bounding_box);
+        if(ces_entity::is_component_exist(e_ces_component_type_debug_render))
+        {
+            mesh_shared_ptr mesh_bounding_box = mesh_constructor::create_wireframe_box(mesh->get_min_bound(),
+                                                                                       mesh->get_max_bound());
+            m_debug_render_component->set_mesh(mesh_bounding_box);
+        }
+    }
+    
+    void model3d_static::set_touches_receives_enabled(bool value)
+    {
+        if(value)
+        {
+            m_touch_component = std::make_shared<ces_touch_component>();
+            ces_entity::add_component(m_touch_component);
+            
+            m_touch_component->enable(e_input_state_pressed, true);
+            m_touch_component->enable(e_input_state_dragged, true);
+            m_touch_component->enable(e_input_state_released, true);
+        }
+        else
+        {
+            ces_entity::remove_component(e_ces_component_type_touch);
+            m_touch_component = nullptr;
+        }
+    }
+    
+    void model3d_static::set_debug_draw_enabled(bool value)
+    {
+        if(value)
+        {
+            m_debug_render_component = std::make_shared<ces_debug_render_component>();
+            ces_entity::add_component(m_debug_render_component);
+        }
+        else
+        {
+            ces_entity::remove_component(e_ces_component_type_debug_render);
+            m_debug_render_component = nullptr;
+        }
     }
 }

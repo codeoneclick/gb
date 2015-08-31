@@ -37,6 +37,9 @@ namespace gb
         material_shared_ptr get_material(const std::string& technique_name) const;
         
         void set_mesh(const mesh_shared_ptr& mesh);
+        
+        void set_touches_receives_enabled(bool value);
+        void set_debug_draw_enabled(bool value);
     };
 };
 

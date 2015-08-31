@@ -31,6 +31,10 @@ namespace gb
         
         e_ces_component_type get_type() const;
     };
+    
+#define unsafe_get_render_component(entity) static_cast<ces_render_component*>(entity->get_component(e_ces_component_type_render).get())
+#define unsafe_get_render_component_from_this() static_cast<ces_render_component*>(ces_entity::get_component(e_ces_component_type_render).get())
+    
 };
 
 #endif

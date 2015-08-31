@@ -23,21 +23,21 @@ namespace gb
         
     public:
         
-        game_object(void);
-        ~game_object(void);
+        game_object();
+        virtual ~game_object();
         
         void set_position(const glm::vec3& position);
-        glm::vec3 get_position(void) const;
+        glm::vec3 get_position() const;
         
         void set_rotation(const glm::vec3& rotation);
-        glm::vec3 get_rotation(void) const;
+        glm::vec3 get_rotation() const;
         
         void set_scale(const glm::vec3& scale);
-        glm::vec3 get_scale(void) const;
+        glm::vec3 get_scale() const;
         
-        glm::vec3 get_forward(void) const;
-        glm::vec3 get_up(void) const;
-        glm::vec3 get_right(void) const;
+        glm::vec3 get_forward() const;
+        glm::vec3 get_up() const;
+        glm::vec3 get_right() const;
         
         virtual void on_added_to_scene();
         virtual void on_removed_from_scene();
