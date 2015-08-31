@@ -55,7 +55,8 @@ namespace gb
             
             for(const auto& entity : m_entities)
             {
-                if(ces_input_system::is_entity_intersected(entity, point))
+                ces_touch_component_shared_ptr touch_component = std::static_pointer_cast<ces_touch_component>(entity->get_component(e_ces_component_type_touch));
+                if(touch_component->is_enabled(std::get<1>(event)) && ces_input_system::is_entity_intersected(entity, point))
                 {
                     for(const auto& iterator : m_listeners)
                     {
@@ -78,8 +79,8 @@ namespace gb
         collision_manager::unproject(point, camera_component->get_camera()->get_matrix_v(), camera_component->get_camera()->get_matrix_p(),
                                      camera_component->get_camera()->get_viewport(), &ray);
         
-        std::tuple<glm::vec3, glm::vec3> bounding_box = geometry_component->get_mesh()->get_bounds(transformation_component->get_matrix_m());
-        return collision_manager::is_bounding_box_intersected(ray, std::get<0>(bounding_box), std::get<1>(bounding_box), point, nullptr);
+        std::tuple<glm::vec3, glm::vec3> bounds = geometry_component->get_bounds(transformation_component->get_matrix_m());
+        return collision_manager::is_bounding_box_intersected(ray, std::get<0>(bounds), std::get<1>(bounds), point, nullptr);
     }
     
     void ces_input_system::on_gr_pressed(const glm::ivec2& point, e_input_element input_element)

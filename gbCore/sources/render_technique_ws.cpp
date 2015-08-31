@@ -164,8 +164,8 @@ namespace gb
             
             if(frustum_component)
             {
-                glm::vec3 min_bound = geometry_component->get_mesh()->get_min_bound();
-                glm::vec3 max_bound = geometry_component->get_mesh()->get_max_bound();
+                glm::vec3 min_bound = geometry_component->get_min_bound();
+                glm::vec3 max_bound = geometry_component->get_max_bound();
                 /*if(transformation_component)
                 {
                     min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));

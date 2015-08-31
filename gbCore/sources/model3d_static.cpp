@@ -12,9 +12,11 @@
 #include "ces_global_light_component.h"
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
+#include "ces_touch_component.h"
 #include "mesh_constructor.h"
 #include "mesh.h"
 #include "ces_debug_render_component.h"
+#include "input_context.h"
 
 namespace gb
 {
@@ -37,6 +39,13 @@ namespace gb
         
         m_debug_render_component = std::make_shared<ces_debug_render_component>();
         ces_entity::add_component(m_debug_render_component);
+        
+        m_touch_component = std::make_shared<ces_touch_component>();
+        ces_entity::add_component(m_touch_component);
+        
+        m_touch_component->enable(e_input_state_pressed, true);
+        m_touch_component->enable(e_input_state_dragged, true);
+        m_touch_component->enable(e_input_state_released, true);
     }
     
     model3d_static::~model3d_static()
@@ -47,6 +56,7 @@ namespace gb
         ces_entity::remove_component(m_geometry_component);
         ces_entity::remove_component(m_render_component);
         ces_entity::remove_component(m_debug_render_component);
+        ces_entity::remove_component(m_touch_component);
     }
     
     void model3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)

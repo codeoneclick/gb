@@ -25,6 +25,7 @@ namespace gb
         ces_geometry_component_shared_ptr m_geometry_component;
         ces_render_component_shared_ptr m_render_component;
         ces_debug_render_component_shared_ptr m_debug_render_component;
+        ces_touch_component_shared_ptr m_touch_component;
         
     public:
         

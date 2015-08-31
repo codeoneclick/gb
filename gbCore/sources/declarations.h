@@ -119,6 +119,9 @@ namespace gb
     class ces_system;
     typedef std::shared_ptr<ces_system> ces_system_shared_ptr;
     
+    class ces_base_component;
+    typedef std::shared_ptr<ces_base_component> ces_base_component_shared_ptr;
+    
     class ces_transformation_component;
     typedef std::shared_ptr<ces_transformation_component> ces_transformation_component_shared_ptr;
     

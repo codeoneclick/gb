@@ -10,12 +10,12 @@
 
 namespace gb
 {
-    ces_entity::ces_entity(void)
+    ces_entity::ces_entity()
     {
-        
+        ces_entity::remove_components();
     }
     
-    ces_entity::~ces_entity(void)
+    ces_entity::~ces_entity()
     {
         ces_entity::remove_components();
     }
@@ -23,33 +23,32 @@ namespace gb
     void ces_entity::add_component(const std::shared_ptr<ces_base_component>& component)
     {
         assert(component != nullptr && component->get_type() != e_ces_component_type_undefined);
-        m_components.insert(std::make_pair(component->get_type(), component));
+        m_components[component->get_type()] = component;
     }
     
     void ces_entity::remove_component(const std::shared_ptr<ces_base_component>& component)
     {
         assert(component != nullptr && component->get_type() != e_ces_component_type_undefined);
-        auto iterator = m_components.find(component->get_type());
-        assert(iterator != m_components.end());
-        m_components.erase(iterator);
+        m_components[component->get_type()] = nullptr;
     }
     
-    void ces_entity::remove_components(void)
+    void ces_entity::remove_components()
     {
-        m_components.clear();
+        for(auto& component : m_components)
+        {
+            component = nullptr;
+        }
     }
     
     bool ces_entity::is_component_exist(e_ces_component_type type) const
     {
         assert(type != e_ces_component_type_undefined);
-        auto iterator = m_components.find(type);
-        return iterator != m_components.end();
+        return m_components[type] != nullptr;
     }
     
     std::shared_ptr<ces_base_component> ces_entity::get_component(e_ces_component_type type) const
     {
         assert(type != e_ces_component_type_undefined);
-        auto iterator = m_components.find(type);
-        return iterator != m_components.end() ? iterator->second : nullptr;
+        return m_components[type];
     }
 };

@@ -20,7 +20,7 @@ namespace gb
     protected:
         
         ces_animation_component_shared_ptr m_animation_component;
-        ces_touch_component_shared_ptr m_touch_component;
+        
         
     public:
         

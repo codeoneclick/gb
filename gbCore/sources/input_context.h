@@ -32,7 +32,8 @@ namespace gb
         e_input_state_pressed = 0,
         e_input_state_released,
         e_input_state_moved,
-        e_input_state_dragged
+        e_input_state_dragged,
+        e_input_state_max
     };
 
     class input_context_listener

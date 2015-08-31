@@ -10,6 +10,7 @@
 #define ces_touch_component_h
 
 #include "ces_base_component.h"
+#include "input_context.h"
 
 namespace gb
 {
@@ -19,10 +20,15 @@ namespace gb
         
     protected:
         
+        std::array<bool, e_input_state_max> m_responders;
+        
     public:
         
         ces_touch_component();
         ~ces_touch_component();
+        
+        void enable(e_input_state state, bool value);
+        bool is_enabled(e_input_state state);
     };
 }
 
