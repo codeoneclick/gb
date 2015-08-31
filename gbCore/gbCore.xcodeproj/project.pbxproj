@@ -68,6 +68,10 @@
 		21606C641B8DB4EA005EA908 /* model3d_static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21606C611B8DB4EA005EA908 /* model3d_static.cpp */; };
 		21606C671B8DB500005EA908 /* game_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21606C651B8DB500005EA908 /* game_object.cpp */; };
 		21606C681B8DB500005EA908 /* game_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21606C651B8DB500005EA908 /* game_object.cpp */; };
+		21613FE31B946B79001562EB /* ces_debug_render_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE11B946B79001562EB /* ces_debug_render_component.cpp */; };
+		21613FE41B946B79001562EB /* ces_debug_render_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE11B946B79001562EB /* ces_debug_render_component.cpp */; };
+		21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
+		21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
 		2173D1DD1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1E11B7CA774002912BE /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DF1B7CA774002912BE /* mesh.cpp */; };
@@ -423,6 +427,9 @@
 		21606C621B8DB4EA005EA908 /* model3d_static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = model3d_static.h; path = sources/model3d_static.h; sourceTree = "<group>"; };
 		21606C651B8DB500005EA908 /* game_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_object.cpp; path = sources/game_object.cpp; sourceTree = "<group>"; };
 		21606C661B8DB500005EA908 /* game_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_object.h; path = sources/game_object.h; sourceTree = "<group>"; };
+		21613FE11B946B79001562EB /* ces_debug_render_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_debug_render_component.cpp; path = sources/ces_debug_render_component.cpp; sourceTree = "<group>"; };
+		21613FE21B946B79001562EB /* ces_debug_render_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_debug_render_component.h; path = sources/ces_debug_render_component.h; sourceTree = "<group>"; };
+		21613FE51B948256001562EB /* shader_bounding_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_bounding_box.cpp; path = sources/shader_bounding_box.cpp; sourceTree = "<group>"; };
 		2173D1DB1B7C9AD5002912BE /* vao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vao.cpp; path = sources/vao.cpp; sourceTree = "<group>"; };
 		2173D1DC1B7C9AD5002912BE /* vao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vao.h; path = sources/vao.h; sourceTree = "<group>"; };
 		2173D1DF1B7CA774002912BE /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh.cpp; path = sources/mesh.cpp; sourceTree = "<group>"; };
@@ -1035,6 +1042,8 @@
 				21D78BF11B90572F00665BB6 /* ces_animation_component.cpp */,
 				21D78C341B943ACE00665BB6 /* ces_touch_component.h */,
 				21D78C331B943ACE00665BB6 /* ces_touch_component.cpp */,
+				21613FE21B946B79001562EB /* ces_debug_render_component.h */,
+				21613FE11B946B79001562EB /* ces_debug_render_component.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1057,6 +1066,8 @@
 		212B18801B81B71A00FFDCE7 /* geometry managment */ = {
 			isa = PBXGroup;
 			children = (
+				2173D1E81B7CAC2C002912BE /* mesh_constructor.h */,
+				2173D1E71B7CAC2C002912BE /* mesh_constructor.cpp */,
 				212B18821B81B76800FFDCE7 /* quad.h */,
 				212B18811B81B76800FFDCE7 /* quad.cpp */,
 			);
@@ -1656,6 +1667,7 @@
 			children = (
 				21B4059F1B7A0FDC003382AB /* built_in_shaders.h */,
 				212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */,
+				21613FE51B948256001562EB /* shader_bounding_box.cpp */,
 			);
 			name = "built-in shaders";
 			sourceTree = "<group>";
@@ -1817,8 +1829,6 @@
 				2173D1EB1B7CAE7F002912BE /* sequence.cpp */,
 				2173D1E01B7CA774002912BE /* mesh.h */,
 				2173D1DF1B7CA774002912BE /* mesh.cpp */,
-				2173D1E81B7CAC2C002912BE /* mesh_constructor.h */,
-				2173D1E71B7CAC2C002912BE /* mesh_constructor.cpp */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -1921,6 +1931,7 @@
 				21B4061C1B7B7FD3003382AB /* game_controller.cpp in Sources */,
 				2173D1E11B7CA774002912BE /* mesh.cpp in Sources */,
 				21B404D41B7A0A88003382AB /* b2PolygonShape.cpp in Sources */,
+				21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */,
 				21B404FD1B7A0A88003382AB /* pngrio.c in Sources */,
 				21DE320A1B8D983A0046EDF8 /* mesh_loading_operation.cpp in Sources */,
 				21B405C81B7B2256003382AB /* game_loop_osx.cpp in Sources */,
@@ -1979,6 +1990,7 @@
 				21B405C51B7B1EB0003382AB /* game_loop.cpp in Sources */,
 				21DE300C1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */,
 				21B404E21B7A0A88003382AB /* b2ChainAndPolygonContact.cpp in Sources */,
+				21613FE31B946B79001562EB /* ces_debug_render_component.cpp in Sources */,
 				21B404DB1B7A0A88003382AB /* b2Body.cpp in Sources */,
 				2173D1FA1B7CC0A9002912BE /* material.cpp in Sources */,
 				21D78C291B90AD9700665BB6 /* model3d_animated.cpp in Sources */,
@@ -2151,6 +2163,7 @@
 				21B405471B7A0AFA003382AB /* b2PolygonContact.cpp in Sources */,
 				21B405481B7A0AFA003382AB /* gzread.c in Sources */,
 				21B4062A1B7B9004003382AB /* resource.cpp in Sources */,
+				21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */,
 				21DE300D1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */,
 				21D78C2A1B90AD9700665BB6 /* model3d_animated.cpp in Sources */,
 				21B405491B7A0AFA003382AB /* pugixml.cpp in Sources */,
@@ -2245,6 +2258,7 @@
 				21B405731B7A0AFA003382AB /* b2CollideEdge.cpp in Sources */,
 				21606C681B8DB500005EA908 /* game_object.cpp in Sources */,
 				212B18AD1B81F31600FFDCE7 /* frustum.cpp in Sources */,
+				21613FE41B946B79001562EB /* ces_debug_render_component.cpp in Sources */,
 				21B406141B7B6635003382AB /* material_configuration.cpp in Sources */,
 				21DE32031B8D901F0046EDF8 /* mesh_commiter_3dmesh.cpp in Sources */,
 				21B405741B7A0AFA003382AB /* pngwrite.c in Sources */,

@@ -12,6 +12,9 @@
 #include "ces_global_light_component.h"
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
+#include "mesh_constructor.h"
+#include "mesh.h"
+#include "ces_debug_render_component.h"
 
 namespace gb
 {
@@ -31,6 +34,9 @@ namespace gb
         
         m_render_component = std::make_shared<ces_render_component>();
         ces_entity::add_component(m_render_component);
+        
+        m_debug_render_component = std::make_shared<ces_debug_render_component>();
+        ces_entity::add_component(m_debug_render_component);
     }
     
     model3d_static::~model3d_static()
@@ -40,6 +46,7 @@ namespace gb
         ces_entity::remove_component(m_global_light_component);
         ces_entity::remove_component(m_geometry_component);
         ces_entity::remove_component(m_render_component);
+        ces_entity::remove_component(m_debug_render_component);
     }
     
     void model3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)
@@ -60,5 +67,9 @@ namespace gb
     void model3d_static::set_mesh(const mesh_shared_ptr& mesh)
     {
         m_geometry_component->set_mesh(mesh);
+        
+        mesh_shared_ptr mesh_bounding_box = mesh_constructor::create_wireframe_box(mesh->get_min_bound(),
+                                                                                   mesh->get_max_bound());
+        m_debug_render_component->set_mesh(mesh_bounding_box);
     }
 }

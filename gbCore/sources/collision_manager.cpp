@@ -50,20 +50,11 @@ namespace gb
         return false;
     }
     
-    bool collision_manager::is_game_object_intersected(const glm::ray& ray,
-                                                       const glm::vec3& min_bound, const glm::vec3& max_bound,
-                                                       const glm::mat4& mat_m,
-                                                       const glm::ivec2& point, glm::vec3* intersected_point)
+    bool collision_manager::is_bounding_box_intersected(const glm::ray& ray,
+                                                        const glm::vec3& min_bound, const glm::vec3& max_bound,
+                                                        const glm::ivec2& point, glm::vec3* intersected_point)
     {
-        glm::vec3 min_bound_transformed;
-        glm::vec3 max_bound_transformed;
-        
-        glm::vec4 vector = mat_m * glm::vec4(min_bound, 1.f);
-        min_bound_transformed = glm::vec3(vector.x, vector.y, vector.z);
-        vector = mat_m * glm::vec4(max_bound, 1.f);
-        max_bound_transformed = glm::vec3(vector.x, vector.y, vector.z);
-        
-        return glm::intersect(ray, min_bound_transformed, max_bound_transformed);
+        return glm::intersect(ray, min_bound, max_bound);
     }
     
     bool collision_manager::triangle_intersection(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,

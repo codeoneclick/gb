@@ -116,6 +116,9 @@ namespace gb
     class ces_systems_feeder;
     typedef std::shared_ptr<ces_systems_feeder> ces_systems_feeder_shared_ptr;
     
+    class ces_system;
+    typedef std::shared_ptr<ces_system> ces_system_shared_ptr;
+    
     class ces_transformation_component;
     typedef std::shared_ptr<ces_transformation_component> ces_transformation_component_shared_ptr;
     
@@ -139,6 +142,9 @@ namespace gb
     
     class ces_touch_component;
     typedef std::shared_ptr<ces_touch_component> ces_touch_component_shared_ptr;
+    
+    class ces_debug_render_component;
+    typedef std::shared_ptr<ces_debug_render_component> ces_debug_render_component_shared_ptr;
     
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;

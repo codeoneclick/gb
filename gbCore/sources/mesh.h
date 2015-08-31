@@ -88,22 +88,26 @@ namespace gb
         glm::vec3 m_max_bound;
         glm::vec3 m_min_bound;
         
+        GLenum m_mode;
+        
         void on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data>& data);
         void on_transfering_data_commited(const std::shared_ptr<resource_transfering_data>& data);
         
     public:
         
-        mesh(const std::string& guid);
+        mesh(const std::string& guid, GLenum mode = GL_TRIANGLES);
         
         static std::shared_ptr<mesh> construct(const std::string& guid,
                                                const std::shared_ptr<vbo>& vbo,
                                                const std::shared_ptr<ibo>& ibo,
+                                               const glm::vec3& min_bound,
                                                const glm::vec3& max_bound,
-                                               const glm::vec3& min_bound);
+                                               GLenum mode = GL_TRIANGLES);
         
         static std::shared_ptr<mesh> construct(const std::string& guid,
                                                const std::shared_ptr<vbo>& vbo,
-                                               const std::shared_ptr<ibo>& ibo);
+                                               const std::shared_ptr<ibo>& ibo,
+                                               GLenum mode = GL_TRIANGLES);
         ~mesh(void);
         
         std::shared_ptr<vbo> get_vbo(void) const;
@@ -127,7 +131,7 @@ namespace gb
         const std::shared_ptr<sequence_transfering_data> get_bindpose_data(void) const;
         
         void bind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
-        void draw(void) const;
+        void draw() const;
         void draw(ui32 indices) const;
         void unbind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
     };

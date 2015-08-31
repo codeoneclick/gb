@@ -78,8 +78,8 @@ namespace gb
         collision_manager::unproject(point, camera_component->get_camera()->get_matrix_v(), camera_component->get_camera()->get_matrix_p(),
                                      camera_component->get_camera()->get_viewport(), &ray);
         
-        return collision_manager::is_game_object_intersected(ray, geometry_component->get_mesh()->get_min_bound(), geometry_component->get_mesh()->get_max_bound(),
-                                                             transformation_component->get_matrix_m(), point, nullptr);
+        std::tuple<glm::vec3, glm::vec3> bounding_box = geometry_component->get_mesh()->get_bounds(transformation_component->get_matrix_m());
+        return collision_manager::is_bounding_box_intersected(ray, std::get<0>(bounding_box), std::get<1>(bounding_box), point, nullptr);
     }
     
     void ces_input_system::on_gr_pressed(const glm::ivec2& point, e_input_element input_element)

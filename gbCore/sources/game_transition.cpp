@@ -166,4 +166,9 @@ namespace gb
     {
         return m_scene_graph;
     }
+    
+    ces_system_shared_ptr game_transition::get_system(e_ces_system_type type)
+    {
+        return m_system_feeder->get_system(type);
+    }
 }

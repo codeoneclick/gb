@@ -8,6 +8,7 @@
 
 #include "model3d_animated.h"
 #include "ces_animation_component.h"
+#include "ces_touch_component.h"
 #include "animation_mixer.h"
 
 namespace gb
@@ -16,6 +17,9 @@ namespace gb
     {
         m_animation_component = std::make_shared<ces_animation_component>();
         ces_entity::add_component(m_animation_component);
+        
+        m_touch_component = std::make_shared<ces_touch_component>();
+        ces_entity::add_component(m_touch_component);
     }
     
     model3d_animated::~model3d_animated()

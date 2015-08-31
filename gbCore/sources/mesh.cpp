@@ -86,12 +86,13 @@ namespace gb
         return m_bones_data;
     }
     
-    mesh::mesh(const std::string& guid) :
+    mesh::mesh(const std::string& guid, GLenum mode) :
     gb::resource(e_resource_type_mesh, guid),
     m_vbo(nullptr),
     m_ibo(nullptr),
     m_mesh_data(nullptr),
-    m_skeleton_data(nullptr)
+    m_skeleton_data(nullptr),
+    m_mode(mode)
     {
         
     }
@@ -99,26 +100,28 @@ namespace gb
     std::shared_ptr<mesh> mesh::construct(const std::string& guid,
                                           const std::shared_ptr<vbo>& vbo,
                                           const std::shared_ptr<ibo>& ibo,
+                                          const glm::vec3& min_bound,
                                           const glm::vec3& max_bound,
-                                          const glm::vec3& min_bound)
+                                          GLenum mode)
     {
         assert(vbo != nullptr);
         assert(ibo != nullptr);
         
-        std::shared_ptr<mesh> mesh = mesh::construct(guid, vbo, ibo);
+        std::shared_ptr<mesh> mesh = mesh::construct(guid, vbo, ibo, mode);
         mesh->m_min_bound = min_bound;
         mesh->m_max_bound = max_bound;
         return mesh;
     }
     
     std::shared_ptr<mesh> mesh::construct(const std::string &guid,
-                                           const std::shared_ptr<vbo>& vbo,
-                                           const std::shared_ptr<ibo>& ibo)
+                                          const std::shared_ptr<vbo>& vbo,
+                                          const std::shared_ptr<ibo>& ibo,
+                                          GLenum mode)
     {
         assert(vbo != nullptr);
         assert(ibo != nullptr);
         
-        std::shared_ptr<mesh> mesh = std::make_shared<gb::mesh>(guid);
+        std::shared_ptr<mesh> mesh = std::make_shared<gb::mesh>(guid, mode);
         mesh->m_vbo = vbo;
         mesh->m_ibo = ibo;
         
@@ -332,11 +335,11 @@ namespace gb
         }
     }
     
-    void mesh::draw(void) const
+    void mesh::draw() const
     {
         if(resource::is_loaded() && resource::is_commited())
         {
-            gl_draw_elements(GL_TRIANGLES, m_ibo->get_used_size(), GL_UNSIGNED_SHORT, NULL);
+            gl_draw_elements(m_mode, m_ibo->get_used_size(), GL_UNSIGNED_SHORT, NULL);
         }
     }
     
@@ -344,7 +347,7 @@ namespace gb
     {
         if(resource::is_loaded() && resource::is_commited())
         {
-            gl_draw_elements(GL_TRIANGLES, indices, GL_UNSIGNED_SHORT, NULL);
+            gl_draw_elements(m_mode, indices, GL_UNSIGNED_SHORT, NULL);
         }
     }
     

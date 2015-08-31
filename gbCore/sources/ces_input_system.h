@@ -26,7 +26,7 @@ namespace gb
         virtual ~touch_listener(void) = default;
         
         virtual void on_touch(const glm::vec3& point, const ces_entity_shared_ptr& listener,
-                              e_input_element input_element, e_input_state input_state);
+                              e_input_element input_element, e_input_state input_state) = 0;
     };
     
     class ces_input_system : public ces_system, public input_context_listener

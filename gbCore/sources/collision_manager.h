@@ -38,10 +38,9 @@ namespace gb
                                              const std::vector<std::tuple<glm::vec3, glm::vec3, glm::vec3>>& triangles,
                                              const glm::ivec2& point, glm::vec3* intersected_point);
         
-        static bool is_game_object_intersected(const glm::ray& ray,
-                                               const glm::vec3& min_bound, const glm::vec3& max_bound,
-                                               const glm::mat4& mat_m,
-                                               const glm::ivec2& point, glm::vec3* intersected_point);
+        static bool is_bounding_box_intersected(const glm::ray& ray,
+                                                const glm::vec3& min_bound, const glm::vec3& max_bound,
+                                                const glm::ivec2& point, glm::vec3* intersected_point);
     };
 };
 
