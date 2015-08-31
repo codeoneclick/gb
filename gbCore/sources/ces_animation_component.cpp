@@ -8,6 +8,8 @@
 
 #include "ces_animation_component.h"
 #include "animation_mixer.h"
+#include "model_configuration.h"
+#include "animation_configuration.h"
 
 namespace gb
 {
@@ -37,6 +39,30 @@ namespace gb
         if(m_animation_mixer)
         {
             m_animation_mixer->update(deltatime);
+        }
+    }
+    
+    void ces_animation_component::set_animation(const std::string &name)
+    {
+        if(m_animation_mixer)
+        {
+            const auto& animation_name = m_animation_names_linkage.find(name);
+            if(animation_name != m_animation_names_linkage.end())
+            {
+                m_animation_mixer->set_animation(animation_name->second);
+            }
+        }
+    }
+    
+    void ces_animation_component::create_animation_linkage(const model_configuration_shared_ptr& configuration)
+    {
+        for(ui32 i = 0; i < configuration->get_animations_configurations().size(); ++i)
+        {
+            std::shared_ptr<animation_configuration> animation_configuration =
+            std::static_pointer_cast<gb::animation_configuration>(configuration->get_animations_configurations().at(i));
+            
+            m_animation_names_linkage.insert(std::make_pair(animation_configuration->get_animation_name(),
+                                                            animation_configuration->get_animation_filename()));
         }
     }
 }

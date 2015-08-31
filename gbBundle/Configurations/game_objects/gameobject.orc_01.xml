@@ -6,5 +6,7 @@
 		<material filename="material.orc_01.base.xml"/>
 	</materials>
     <animations>
+        <animation name="IDLE" filename="orc_01_idle.IE3DANIMATION"/>
+        <animation name="RUN" filename="orc_01_run.IE3DANIMATION"/>
     </animations>
 </model>

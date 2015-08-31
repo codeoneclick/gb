@@ -20,6 +20,7 @@ namespace gb
     protected:
         
         animation_mixer_shared_ptr m_animation_mixer;
+        std::map<std::string, std::string> m_animation_names_linkage;
         
     public:
         
@@ -30,6 +31,8 @@ namespace gb
         animation_mixer_shared_ptr get_animation_mixer() const;
         
         void update(f32 deltatime);
+        void set_animation(const std::string& name);
+        void create_animation_linkage(const model_configuration_shared_ptr& configuration);
     };
 };
 

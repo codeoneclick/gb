@@ -10,6 +10,7 @@
 #define model3d_animated_h
 
 #include "model3d_static.h"
+#include "configuration_accessor.h"
 
 namespace gb
 {
@@ -28,6 +29,7 @@ namespace gb
         
         void set_animation_mixer(const animation_mixer_shared_ptr& animation_mixer);
         void set_animation(const std::string& name);
+        void create_animation_linkage(const model_configuration_shared_ptr& configuration);
     };
 };
 

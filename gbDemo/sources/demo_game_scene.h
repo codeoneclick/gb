@@ -17,7 +17,7 @@ class demo_game_scene : public gb::game_scene
 private:
     
     gb::camera_shared_ptr m_camera;
-    gb::model3d_animated_shared_ptr m_model;
+    std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     
 protected:
     

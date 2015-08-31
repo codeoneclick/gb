@@ -98,9 +98,11 @@ namespace gb
             mesh_shared_ptr mesh = m_resource_accessor->get_mesh(model_configuration->get_mesh_filename());
             assert(mesh);
             model3d_animated->set_mesh(mesh);
-            mesh->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([&mesh, &model_configuration, &model3d_animated, this]
-                                                                                                        (const resource_shared_ptr&, bool success) {
+            mesh->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([model_configuration, model3d_animated, this](const resource_shared_ptr& resource, bool success) {
                 
+                mesh_shared_ptr mesh = std::static_pointer_cast<gb::mesh>(resource);
+                assert(mesh->get_skeleton_data());
+                assert(mesh->get_bindpose_data());
                 animation_mixer_shared_ptr animation_mixer = std::make_shared<gb::animation_mixer>(mesh->get_skeleton_data(),
                                                                                                    mesh->get_bindpose_data());
                 
@@ -108,11 +110,14 @@ namespace gb
                 {
                     std::shared_ptr<animation_configuration> animation_configuration = std::static_pointer_cast<gb::animation_configuration>(iterator);
                     sequence_shared_ptr sequence = m_resource_accessor->get_animation(animation_configuration->get_animation_filename());
-                    sequence->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([&sequence, &animation_mixer](const resource_shared_ptr&, bool success) {
+                    sequence->add_resource_loading_callback(std::make_shared<resource::f_resource_loading_callback>([animation_mixer](const resource_shared_ptr& resource, bool success) {
+                        
+                        sequence_shared_ptr sequence = std::static_pointer_cast<gb::sequence>(resource);
                         animation_mixer->add_sequence(sequence);
                     }));
                 }
                 model3d_animated->set_animation_mixer(animation_mixer);
+                model3d_animated->create_animation_linkage(model_configuration);
             }));
             
             for(const auto& iterator : model_configuration->get_materials_configurations())

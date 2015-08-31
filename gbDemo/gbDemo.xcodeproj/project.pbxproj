@@ -54,8 +54,8 @@
 		21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */; };
 		21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */; };
 		21D78C181B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */; };
-		21D78C191B90AD6800665BB6 /* human_01_walk.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C101B90AD6800665BB6 /* human_01_walk.IE3DANIMATION */; };
-		21D78C1A1B90AD6800665BB6 /* human_01_walk.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C101B90AD6800665BB6 /* human_01_walk.IE3DANIMATION */; };
+		21D78C191B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C101B90AD6800665BB6 /* human_01_run.IE3DANIMATION */; };
+		21D78C1A1B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C101B90AD6800665BB6 /* human_01_run.IE3DANIMATION */; };
 		21D78C1B1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C111B90AD6800665BB6 /* human_02_idle.IE3DANIMATION */; };
 		21D78C1C1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C111B90AD6800665BB6 /* human_02_idle.IE3DANIMATION */; };
 		21D78C1D1B90AD6800665BB6 /* human_02_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C121B90AD6800665BB6 /* human_02_run.IE3DANIMATION */; };
@@ -179,7 +179,7 @@
 		21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_game_scene.cpp; path = sources/demo_game_scene.cpp; sourceTree = "<group>"; };
 		21D78BEE1B8F4F6200665BB6 /* demo_game_scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_scene.h; path = sources/demo_game_scene.h; sourceTree = "<group>"; };
 		21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_01_idle.IE3DANIMATION; path = ../gbBundle/Meshes/human_01_idle.IE3DANIMATION; sourceTree = "<group>"; };
-		21D78C101B90AD6800665BB6 /* human_01_walk.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_01_walk.IE3DANIMATION; path = ../gbBundle/Meshes/human_01_walk.IE3DANIMATION; sourceTree = "<group>"; };
+		21D78C101B90AD6800665BB6 /* human_01_run.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_01_run.IE3DANIMATION; path = ../gbBundle/Meshes/human_01_run.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C111B90AD6800665BB6 /* human_02_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_02_idle.IE3DANIMATION; path = ../gbBundle/Meshes/human_02_idle.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C121B90AD6800665BB6 /* human_02_run.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_02_run.IE3DANIMATION; path = ../gbBundle/Meshes/human_02_run.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C131B90AD6800665BB6 /* orc_01_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_01_idle.IE3DANIMATION; path = ../gbBundle/Meshes/orc_01_idle.IE3DANIMATION; sourceTree = "<group>"; };
@@ -439,7 +439,7 @@
 			isa = PBXGroup;
 			children = (
 				21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */,
-				21D78C101B90AD6800665BB6 /* human_01_walk.IE3DANIMATION */,
+				21D78C101B90AD6800665BB6 /* human_01_run.IE3DANIMATION */,
 				21D78C111B90AD6800665BB6 /* human_02_idle.IE3DANIMATION */,
 				21D78C121B90AD6800665BB6 /* human_02_run.IE3DANIMATION */,
 				21D78C131B90AD6800665BB6 /* orc_01_idle.IE3DANIMATION */,
@@ -593,7 +593,7 @@
 				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
-				21D78C191B90AD6800665BB6 /* human_01_walk.IE3DANIMATION in Resources */,
+				21D78C191B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				21FA123C1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
 				2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
@@ -633,7 +633,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D78C1E1B90AD6800665BB6 /* human_02_run.IE3DANIMATION in Resources */,
-				21D78C1A1B90AD6800665BB6 /* human_01_walk.IE3DANIMATION in Resources */,
+				21D78C1A1B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
 				212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */,

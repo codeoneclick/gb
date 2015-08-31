@@ -33,14 +33,22 @@ namespace gb
     
     void ces_systems_feeder::on_update(f32 deltatime)
     {
+        for(const auto& system : m_systems)
+        {
+            system.second->on_feed_start(deltatime);
+        }
+        
         for(const auto& entity : m_entities)
         {
             for(const auto& system : m_systems)
             {
-                system.second->on_feed_start(deltatime);
                 system.second->on_feed(entity, deltatime);
-                system.second->on_feed_end(deltatime);
             }
+        }
+        
+        for(const auto& system : m_systems)
+        {
+            system.second->on_feed_end(deltatime);
         }
     }
     

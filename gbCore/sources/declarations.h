@@ -14,6 +14,9 @@ namespace gb
     class configuration;
     typedef std::shared_ptr<configuration> configuration_shared_ptr;
     
+    class model_configuration;
+    typedef std::shared_ptr<model_configuration> model_configuration_shared_ptr;
+    
     class resource;
     typedef std::shared_ptr<resource> resource_shared_ptr;
     

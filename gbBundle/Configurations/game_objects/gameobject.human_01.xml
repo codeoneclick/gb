@@ -7,6 +7,6 @@
     </materials>
     <animations>
         <animation name="IDLE" filename="human_01_idle.IE3DANIMATION"/>
-        <animation name="RUN" filename="human_01_walk.IE3DANIMATION"/>
+        <animation name="RUN" filename="human_01_run.IE3DANIMATION"/>
     </animations>
 </model>

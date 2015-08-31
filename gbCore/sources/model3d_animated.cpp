@@ -30,10 +30,11 @@ namespace gb
     
     void model3d_animated::set_animation(const std::string& name)
     {
-        if(m_animation_component->get_animation_mixer())
-        {
-            m_animation_component->get_animation_mixer()->set_animation(name);
-        }
+        m_animation_component->set_animation(name);
     }
-
+    
+    void model3d_animated::create_animation_linkage(const model_configuration_shared_ptr& configuration)
+    {
+        m_animation_component->create_animation_linkage(configuration);
+    }
 }
