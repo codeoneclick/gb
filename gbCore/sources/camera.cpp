@@ -7,6 +7,7 @@
 //
 
 #include "camera.h"
+#include "frustum.h"
 
 namespace gb
 {
@@ -20,6 +21,7 @@ namespace gb
         m_aspect = static_cast<f32>(viewport.z) / static_cast<f32>(viewport.w);
         m_matrix_p = glm::perspective(m_fov, m_aspect, m_near, m_far);
         m_up = glm::vec3(0.f, 1.f, 0.f);
+        m_frustum = std::make_shared<frustum>();
     }
     
     camera::~camera(void)
@@ -38,18 +40,17 @@ namespace gb
         position.y = -position.y;
         glm::vec3 look_at = m_look_at;
         look_at.y = -look_at.y;
-        m_matrix_iv = glm::lookAt(position, look_at, m_up * -1.f);
+        m_matrix_i_v = glm::lookAt(position, look_at, m_up * -1.f);
         
         m_matrix_n = glm::inverse(m_matrix_v);
         m_matrix_n = glm::transpose(m_matrix_n);
         
-        m_matrix_vp = m_matrix_p * m_matrix_v;
-        m_matrix_ivp = m_matrix_p * m_matrix_iv;
+        m_frustum->update(m_fov, m_aspect, m_near, m_far, m_position, m_up, m_look_at);
     }
     
-    glm::mat4x4 camera::get_matrix_c(const glm::vec3& camera_position, const glm::vec3& position)
+    glm::mat4x4 camera::get_matrix_c(const glm::vec3& position)
     {
-        glm::vec3 direction = camera_position - position;
+        glm::vec3 direction = m_position - position;
         direction = glm::normalize(direction);
         
         glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
@@ -79,14 +80,14 @@ namespace gb
         return matrix_c;
     }
     
-    glm::mat4x4 camera::get_matrix_s(const glm::mat4& mat_v, const glm::vec3& camera_position, const glm::vec3& position)
+    glm::mat4x4 camera::get_matrix_s(const glm::vec3& position)
     {
-        glm::vec3 direction = position - camera_position;
+        glm::vec3 direction = position - m_position;
         direction = glm::normalize(direction);
         
-        glm::vec3 up = glm::vec3(mat_v[1][0],
-                                 mat_v[1][1],
-                                 mat_v[1][2]);
+        glm::vec3 up = glm::vec3(m_matrix_v[1][0],
+                                 m_matrix_v[1][1],
+                                 m_matrix_v[1][2]);
         up = glm::normalize(up);
         
         glm::vec3 right = glm::cross(direction, up);

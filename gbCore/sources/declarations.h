@@ -128,15 +128,6 @@ namespace gb
     class ces_transformation_component;
     typedef std::shared_ptr<ces_transformation_component> ces_transformation_component_shared_ptr;
     
-    class ces_camera_component;
-    typedef std::shared_ptr<ces_camera_component> ces_camera_component_shared_ptr;
-    
-    class ces_frustum_culling_component;
-    typedef std::shared_ptr<ces_frustum_culling_component> ces_frustum_culling_component_shared_ptr;
-    
-    class ces_global_light_component;
-    typedef std::shared_ptr<ces_global_light_component> ces_global_light_component_shared_ptr;
-    
     class ces_geometry_component;
     typedef std::shared_ptr<ces_geometry_component> ces_geometry_component_shared_ptr;
 

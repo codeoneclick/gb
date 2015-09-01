@@ -10,7 +10,8 @@ varying vec2 v_texcoord;
 #endif
 
 uniform mat4 u_mat_m;
-uniform mat4 u_mat_vp;
+uniform mat4 u_mat_v;
+uniform mat4 u_mat_p;
 uniform mat4 u_mat_bones[32];
 uniform vec4 u_vec_clip;
 
@@ -30,7 +31,7 @@ void main(void)
     position = bone_position;
 
     position = u_mat_m * position;
-    gl_Position = u_mat_vp * position;
+    gl_Position = u_mat_p * u_mat_v * position;
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     v_texcoord = a_texcoord;
 }

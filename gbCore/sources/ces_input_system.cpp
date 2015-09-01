@@ -10,8 +10,8 @@
 #include "collision_manager.h"
 #include "mesh.h"
 #include "camera.h"
+#include "scene_graph.h"
 #include "ces_entity.h"
-#include "ces_camera_component.h"
 #include "ces_transformation_component.h"
 #include "ces_geometry_component.h"
 #include "ces_touch_component.h"
@@ -71,13 +71,13 @@ namespace gb
     bool ces_input_system::is_entity_intersected(const ces_entity_shared_ptr& entity, const glm::ivec2& point)
     {
         std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
-        std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
         std::shared_ptr<ces_transformation_component> transformation_component =
         std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
         
+        camera_shared_ptr camera = geometry_component->get_scene_graph()->get_camera();
         glm::ray ray;
-        collision_manager::unproject(point, camera_component->get_camera()->get_matrix_v(), camera_component->get_camera()->get_matrix_p(),
-                                     camera_component->get_camera()->get_viewport(), &ray);
+        collision_manager::unproject(point, camera->get_matrix_v(), camera->get_matrix_p(),
+                                     camera->get_viewport(), &ray);
         
         std::tuple<glm::vec3, glm::vec3> bounds = geometry_component->get_bounds(transformation_component->get_matrix_m());
         return collision_manager::is_bounding_box_intersected(ray, std::get<0>(bounds), std::get<1>(bounds), point, nullptr);

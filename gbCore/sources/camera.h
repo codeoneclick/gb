@@ -10,6 +10,7 @@
 #define camera_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {
@@ -18,11 +19,9 @@ namespace gb
     private:
         
         glm::mat4 m_matrix_v;
+        glm::mat4 m_matrix_i_v;
         glm::mat4 m_matrix_p;
         glm::mat4 m_matrix_n;
-        glm::mat4 m_matrix_iv;
-        glm::mat4 m_matrix_vp;
-        glm::mat4 m_matrix_ivp;
         
         glm::vec3 m_position;
         glm::vec3 m_look_at;
@@ -39,6 +38,8 @@ namespace gb
         
     protected:
         
+        frustum_shared_ptr m_frustum;
+        
     public:
         
         camera(f32 fov, f32 near, f32 far, glm::ivec4 viewport);
@@ -46,38 +47,38 @@ namespace gb
         
         void update(f32 deltatime);
         
-        inline glm::mat4 get_matrix_v(void) const;
-        inline glm::mat4 get_matrix_p(void) const;
-        inline glm::mat4 get_matrix_n(void) const;
-        inline glm::mat4 get_matrix_iv(void) const;
-        inline glm::mat4 get_matrix_vp(void) const;
-        inline glm::mat4 get_matrix_ivp(void) const;
+        inline glm::mat4 get_matrix_v() const;
+        inline glm::mat4 get_matrix_i_v() const;
+        inline glm::mat4 get_matrix_p() const;
+        inline glm::mat4 get_matrix_n() const;
         
         inline void set_position(const glm::vec3& position);
-        inline glm::vec3 get_position(void) const;
+        inline glm::vec3 get_position() const;
         
         inline void set_look_at(const glm::vec3& look_at);
-        inline glm::vec3 get_look_at(void) const;
+        inline glm::vec3 get_look_at() const;
         
-        inline glm::vec3 get_up(void) const;
+        inline glm::vec3 get_up() const;
         
         inline void set_rotation(f32 rotation);
-        inline f32 get_rotation(void) const;
+        inline f32 get_rotation() const;
         
         inline void set_distance_to_look_at(const glm::vec3& distance);
-        inline glm::vec3 get_distance_to_look_at(void) const;
+        inline glm::vec3 get_distance_to_look_at() const;
         
         inline void set_fov(f32 fov);
-        inline f32 get_fov(void) const;
+        inline f32 get_fov() const;
         
-        inline f32 get_aspect(void) const;
-        inline f32 get_near(void) const;
-        inline f32 get_far(void) const;
+        inline f32 get_aspect() const;
+        inline f32 get_near() const;
+        inline f32 get_far() const;
         
-        inline glm::ivec4 get_viewport(void) const;
+        inline glm::ivec4 get_viewport() const;
         
-        static glm::mat4 get_matrix_s(const glm::mat4& mat_v, const glm::vec3& camera_position, const glm::vec3& position); // spherical
-        static glm::mat4 get_matrix_c(const glm::vec3& camera_position, const glm::vec3& position); // cylindrical
+        inline frustum_shared_ptr get_frustum() const;
+        
+        glm::mat4 get_matrix_s(const glm::vec3& position); // spherical
+        glm::mat4 get_matrix_c(const glm::vec3& position); // cylindrical
     };
 };
 

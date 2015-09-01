@@ -24,7 +24,6 @@ namespace gb
         ces_systems_feeder_shared_ptr m_systems_feeder;
         
         camera_shared_ptr m_camera;
-        frustum_shared_ptr m_frustum;
         global_light_shared_ptr m_global_light;
         std::set<game_object_shared_ptr> m_game_objects_container;
         

@@ -32,8 +32,6 @@ namespace gb
         std::string m_mat_v;
         std::string m_mat_p;
         std::string m_mat_n;
-        std::string m_mat_vp;
-        std::string m_mat_mvp;
         std::string m_mat_bones;
         std::string m_vec_camera_position;
         std::string m_vec_global_light_position;
@@ -79,8 +77,6 @@ namespace gb
         "u_mat_v",
         "u_mat_p",
         "u_mat_n",
-        "u_mat_vp",
-        "u_mat_mvp",
         "u_mat_bones",
         "u_vec_camera_position",
         "u_vec_global_light_position",
@@ -348,8 +344,6 @@ namespace gb
         m_uniforms[e_shader_uniform_mat_v] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_v.c_str());
         m_uniforms[e_shader_uniform_mat_p] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_p.c_str());
         m_uniforms[e_shader_uniform_mat_n] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_n.c_str());
-        m_uniforms[e_shader_uniform_mat_vp] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_vp.c_str());
-        m_uniforms[e_shader_uniform_mat_mvp] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_mvp.c_str());
         m_uniforms[e_shader_uniform_mat_bones] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_mat_bones.c_str());
         m_uniforms[e_shader_uniform_vec_camera_position] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_vec_camera_position.c_str());
         m_uniforms[e_shader_uniform_f32_camera_near] = gl_get_uniform_location(m_data->m_shader_id, uniform_names.m_f32_camera_near.c_str());

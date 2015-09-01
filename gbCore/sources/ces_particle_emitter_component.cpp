@@ -12,6 +12,7 @@
 #include "ibo.h"
 #include "std_extensions.h"
 #include "camera.h"
+#include "scene_graph.h"
 
 namespace gb
 {
@@ -145,30 +146,31 @@ namespace gb
                                                               m_settings->get_destination_color_b(),
                                                               m_settings->get_destination_color_a()), particle_clamp_age);
                 
-                /*glm::mat4 mat_s = camera::get_matrix_s(mat_v) m_camera->getSMatrix(m_particles[i].m_position);
+                camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
+                glm::mat4 mat_s = camera->get_matrix_s(m_particles[i].m_position);
                 
-                glm::vec4 position = glm::vec4(-m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.0f, 1.0f);
-                position = matrixS * position;
-                vertexData[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
+                glm::vec4 position = glm::vec4(-m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.f, 1.f);
+                position = mat_s * position;
+                vertices[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
                 
                 position = glm::vec4(m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.0f, 1.0f);
-                position = matrixS * position;
-                vertexData[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
+                position = mat_s * position;
+                vertices[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
                 
                 position = glm::vec4(m_particles[i].m_size.x, m_particles[i].m_size.y, 0.0f, 1.0f);
-                position = matrixS * position;
-                vertexData[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
+                position = mat_s * position;
+                vertices[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
                 
                 position = glm::vec4(-m_particles[i].m_size.x, m_particles[i].m_size.y, 0.0f, 1.0f);
-                position = matrixS * position;
-                vertexData[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
+                position = mat_s * position;
+                vertices[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
                 
-                vertexData[i * 4 + 0].m_color = m_particles[i].m_color;
-                vertexData[i * 4 + 1].m_color = m_particles[i].m_color;
-                vertexData[i * 4 + 2].m_color = m_particles[i].m_color;
-                vertexData[i * 4 + 3].m_color = m_particles[i].m_color;*/
+                vertices[i * 4 + 0].m_color = m_particles[i].m_color;
+                vertices[i * 4 + 1].m_color = m_particles[i].m_color;
+                vertices[i * 4 + 2].m_color = m_particles[i].m_color;
+                vertices[i * 4 + 3].m_color = m_particles[i].m_color;
             }
-            //m_mesh->getVertexBuffer()->unlock();
+            m_mesh->get_vbo()->unlock();
         }
     }
     

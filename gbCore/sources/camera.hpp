@@ -11,34 +11,24 @@
 
 namespace gb
 {
-    inline glm::mat4 camera::get_matrix_v(void) const
+    inline glm::mat4 camera::get_matrix_v() const
     {
         return m_matrix_v;
     }
     
-    inline glm::mat4 camera::get_matrix_p(void) const
+    inline glm::mat4 camera::get_matrix_i_v() const
+    {
+        return m_matrix_i_v;
+    }
+    
+    inline glm::mat4 camera::get_matrix_p() const
     {
         return m_matrix_p;
     }
     
-    inline glm::mat4 camera::get_matrix_n(void) const
+    inline glm::mat4 camera::get_matrix_n() const
     {
         return m_matrix_n;
-    }
-    
-    inline glm::mat4 camera::get_matrix_iv(void) const
-    {
-        return m_matrix_iv;
-    }
-    
-    inline glm::mat4 camera::get_matrix_vp(void) const
-    {
-        return m_matrix_vp;
-    }
-    
-    inline glm::mat4 camera::get_matrix_ivp(void) const
-    {
-        return m_matrix_ivp;
     }
     
     inline void camera::set_position(const glm::vec3& position)
@@ -46,7 +36,7 @@ namespace gb
         m_position = position;
     }
     
-    inline glm::vec3 camera::get_position(void) const
+    inline glm::vec3 camera::get_position() const
     {
         return m_position;
     }
@@ -56,12 +46,12 @@ namespace gb
         m_look_at = look_at;
     }
     
-    inline glm::vec3 camera::get_look_at(void) const
+    inline glm::vec3 camera::get_look_at() const
     {
         return m_look_at;
     }
     
-    inline glm::vec3 camera::get_up(void) const
+    inline glm::vec3 camera::get_up() const
     {
         return m_up;
     }
@@ -71,7 +61,7 @@ namespace gb
         m_rotation = rotation;
     }
     
-    inline f32 camera::get_rotation(void) const
+    inline f32 camera::get_rotation() const
     {
         return m_rotation;
     }
@@ -81,7 +71,7 @@ namespace gb
         m_distance = distance;
     }
     
-    inline glm::vec3 camera::get_distance_to_look_at(void) const
+    inline glm::vec3 camera::get_distance_to_look_at() const
     {
         return m_distance;
     }
@@ -92,29 +82,34 @@ namespace gb
         m_matrix_p = glm::perspective(m_fov, m_aspect, m_near, m_far);
     }
     
-    inline f32 camera::get_fov(void) const
+    inline f32 camera::get_fov() const
     {
         return m_fov;
     }
     
-    inline f32 camera::get_aspect(void) const
+    inline f32 camera::get_aspect() const
     {
         return m_aspect;
     }
     
-    inline f32 camera::get_near(void) const
+    inline f32 camera::get_near() const
     {
         return m_near;
     }
     
-    inline f32 camera::get_far(void) const
+    inline f32 camera::get_far() const
     {
         return m_far;
     }
     
-    inline glm::ivec4 camera::get_viewport(void) const
+    inline glm::ivec4 camera::get_viewport() const
     {
         return m_viewport;
+    }
+    
+    inline frustum_shared_ptr camera::get_frustum() const
+    {
+        return m_frustum;
     }
 }
 

@@ -9,17 +9,14 @@
 #include "render_technique_ws.h"
 #include "texture.h"
 #include "camera.h"
-#include "global_light.h"
 #include "frustum.h"
 #include "mesh.h"
 #include "animation_mixer.h"
+#include "scene_graph.h"
 #include "ces_entity.h"
 #include "ces_render_component.h"
 #include "ces_geometry_component.h"
-#include "ces_camera_component.h"
-#include "ces_frustum_culling_component.h"
 #include "ces_transformation_component.h"
-#include "ces_global_light_component.h"
 #include "ces_animation_component.h"
 #include "ces_debug_render_component.h"
 
@@ -128,26 +125,15 @@ namespace gb
             ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
             assert(geometry_component);
             
-            ces_camera_component* camera_component = unsafe_get_camera_component(entity);
-            assert(camera_component);
-            
             ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
             assert(transformation_component);
             
-            //ces_global_light_component* global_light_component = unsafe_get_global_light_component(entity);
-            
             ces_animation_component* animation_component = unsafe_get_animation_component(entity);
-            
-            ces_frustum_culling_component* frustum_culling_component = unsafe_get_frustum_culling_component(entity);
             
             ces_debug_render_component* debug_render_component = unsafe_get_debug_render_component(entity);
             
             material_shared_ptr material = render_component->on_bind(m_name);
-            
             material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
-            glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
-            glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
-            material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
             
             if(animation_component)
             {
@@ -155,33 +141,25 @@ namespace gb
                                                         animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
             }
             
-            if(frustum_culling_component)
-            {
-                glm::vec3 min_bound = geometry_component->get_min_bound();
-                glm::vec3 max_bound = geometry_component->get_max_bound();
-                /*if(transformation_component)
-                {
-                    min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
-                    max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
-                }*/
-                if(frustum_culling_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
-                {
-                    render_component->on_draw(m_name, geometry_component->get_mesh(), material);
-                }
-            }
-            else
+            
+            glm::vec3 min_bound = geometry_component->get_min_bound();
+            glm::vec3 max_bound = geometry_component->get_max_bound();
+            /*if(transformation_component)
+             {
+             min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
+             max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
+             }*/
+            frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
+            if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
             {
                 render_component->on_draw(m_name, geometry_component->get_mesh(), material);
             }
+
             
             if(debug_render_component)
             {
                 material_shared_ptr material = debug_render_component->on_bind(m_name);
-                
                 material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
-                glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
-                glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
-                material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
                 
                 debug_render_component->on_draw(m_name);
                 debug_render_component->on_unbind(m_name);

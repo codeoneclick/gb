@@ -13,7 +13,6 @@
 
 namespace gb
 {
-
     enum e_frustum_bound_result
     {
         e_frustum_bound_result_outside = 0,
@@ -56,9 +55,9 @@ namespace gb
         void update(f32 fov, f32 aspect, f32 near, f32 far,
                     const glm::vec3& position, const glm::vec3& up, const glm::vec3& look_at);
         
-        e_frustum_bound_result is_point_in_frustum(const glm::vec3& point, const glm::mat4& matrix_m = glm::mat4(1.0f));
-        e_frustum_bound_result is_sphere_in_frumstum(const glm::vec3& center, f32 radius, const glm::mat4& matrix_m = glm::mat4(1.0f));
-        e_frustum_bound_result is_bounding_box_in_frustum(const glm::vec3& min_bound, const glm::vec3& max_bound, const glm::mat4& matrix_m = glm::mat4(1.0f));
+        e_frustum_bound_result is_point_in_frustum(const glm::vec3& point, const glm::mat4& matrix_m = glm::mat4(1.f));
+        e_frustum_bound_result is_sphere_in_frumstum(const glm::vec3& center, f32 radius, const glm::mat4& matrix_m = glm::mat4(1.f));
+        e_frustum_bound_result is_bounding_box_in_frustum(const glm::vec3& min_bound, const glm::vec3& max_bound, const glm::mat4& matrix_m = glm::mat4(1.f));
     };
     
 };

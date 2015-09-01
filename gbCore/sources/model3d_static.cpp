@@ -7,9 +7,6 @@
 //
 
 #include "model3d_static.h"
-#include "ces_camera_component.h"
-#include "ces_frustum_culling_component.h"
-#include "ces_global_light_component.h"
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
 #include "ces_touch_component.h"
@@ -22,15 +19,6 @@ namespace gb
 {
     model3d_static::model3d_static()
     {
-        ces_camera_component_shared_ptr camera_component = std::make_shared<ces_camera_component>();
-        ces_entity::add_component(camera_component);
-        
-        ces_frustum_culling_component_shared_ptr frustum_culling_component = std::make_shared<ces_frustum_culling_component>();
-        ces_entity::add_component(frustum_culling_component);
-                                  
-        ces_global_light_component_shared_ptr global_light_component = std::make_shared<ces_global_light_component>();
-        ces_entity::add_component(global_light_component);
-        
         ces_geometry_component_shared_ptr geometry_component = std::make_shared<ces_geometry_component>();
         ces_entity::add_component(geometry_component);
         

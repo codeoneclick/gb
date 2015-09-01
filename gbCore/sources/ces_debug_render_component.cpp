@@ -51,9 +51,7 @@ namespace gb
         camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
         material->get_shader()->set_mat4(camera->get_matrix_p(), e_shader_uniform_mat_p);
         material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                         camera->get_matrix_v() : camera->get_matrix_iv(), e_shader_uniform_mat_v);
-        material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                         camera->get_matrix_vp() : camera->get_matrix_ivp(), e_shader_uniform_mat_vp);
+                                         camera->get_matrix_v() : camera->get_matrix_i_v(), e_shader_uniform_mat_v);
         material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
         
         material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
