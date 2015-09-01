@@ -152,6 +152,9 @@ namespace gb
     class ces_debug_render_component;
     typedef std::shared_ptr<ces_debug_render_component> ces_debug_render_component_shared_ptr;
     
+    class ces_particle_emitter_component;
+    typedef std::shared_ptr<ces_particle_emitter_component> ces_particle_emitter_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     
@@ -163,6 +166,9 @@ namespace gb
     
     class game_scene;
     typedef std::shared_ptr<game_scene> game_scene_shared_ptr;
+    
+    class scene_graph;
+    typedef std::shared_ptr<scene_graph> scene_graph_shared_ptr;
     
     class bone;
     typedef std::shared_ptr<bone> bone_shared_ptr;

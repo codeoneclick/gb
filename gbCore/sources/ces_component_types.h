@@ -23,6 +23,7 @@ namespace gb
         e_ces_component_type_animation,
         e_ces_component_type_touch,
         e_ces_component_type_debug_render,
+        e_ces_component_type_particle_emitter,
         e_ces_component_type_max
     };
 };

@@ -38,10 +38,10 @@ namespace gb
         }
     }
     
-    std::shared_ptr<material> ces_render_component::get_material(const std::string& technique_name) const
+    material_shared_ptr ces_render_component::get_material(const std::string& technique_name) const
     {
         const auto& iterator = m_materials.find(technique_name);
-        std::shared_ptr<material> material = iterator != m_materials.end() ? iterator->second : nullptr;
+        material_shared_ptr material = iterator != m_materials.end() ? iterator->second : nullptr;
         return material;
     }
     
@@ -59,19 +59,19 @@ namespace gb
     {
         if(technique_name.length() != 0)
         {
-            std::shared_ptr<material> material = ces_render_component::get_material(technique_name);
+            material_shared_ptr material = ces_render_component::get_material(technique_name);
             assert(material);
             material->set_texture(texture, sampler);
         }
         else
         {
-            std::for_each(m_materials.cbegin(), m_materials.cend(), [texture, sampler](std::pair<std::string, std::shared_ptr<material>> material) {
+            std::for_each(m_materials.cbegin(), m_materials.cend(), [texture, sampler](std::pair<std::string, material_shared_ptr> material) {
                 material.second->set_texture(texture, sampler);
             });
         }
     }
     
-    void ces_render_component::bind_custom_shader_uniforms(const std::shared_ptr<material>& material)
+    void ces_render_component::bind_custom_shader_uniforms(const material_shared_ptr& material)
     {
         assert(material != nullptr);
         std::map<std::string, std::shared_ptr<shader_uniform>> custom_shader_uniforms = material->get_custom_uniforms();
@@ -130,77 +130,9 @@ namespace gb
         }
     }
     
-    void ces_render_component::bind_transformation_uniforms(const std::string& technique_name,
-                                                            const glm::mat4& matrix_m,
-                                                            const glm::mat4& matrix_mvp,
-                                                            const glm::mat4& matrix_imvp,
-                                                            const std::shared_ptr<material>& material)
-    {
-        std::shared_ptr<gb::material> using_material = material;
-        if(!using_material)
-        {
-            using_material = ces_render_component::get_material(technique_name);
-        }
-        assert(using_material);
-        using_material->get_shader()->set_mat4(matrix_m, e_shader_uniform_mat_m);
-        using_material->get_shader()->set_mat4(using_material->is_reflecting() ? matrix_imvp : matrix_mvp, e_shader_uniform_mat_mvp);
-    }
-    
-    void ces_render_component::bind_camera_uniforms(const std::string& technique_name,
-                                                    const std::shared_ptr<camera>& camera,
-                                                    const std::shared_ptr<material>& material)
-    {
-        std::shared_ptr<gb::material> using_material = material;
-        if(!using_material)
-        {
-            using_material = ces_render_component::get_material(technique_name);
-        }
-        assert(using_material);
-        
-        using_material->get_shader()->set_mat4(camera->get_matrix_p(), e_shader_uniform_mat_p);
-        using_material->get_shader()->set_mat4(!using_material->is_reflecting() ? camera->get_matrix_v() : camera->get_matrix_iv(), e_shader_uniform_mat_v);
-        using_material->get_shader()->set_mat4(!using_material->is_reflecting() ? camera->get_matrix_vp() : camera->get_matrix_ivp(), e_shader_uniform_mat_vp);
-        using_material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
-        
-        using_material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
-        using_material->get_shader()->set_f32(camera->get_near(), e_shader_uniform_f32_camera_near);
-        using_material->get_shader()->set_f32(camera->get_far(), e_shader_uniform_f32_camera_far);
-        using_material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
-    }
-    
-    void ces_render_component::bind_global_light_uniforms(const std::string& technique_name,
-                                                          const std::shared_ptr<global_light>& global_light,
-                                                          const std::shared_ptr<material>& material)
-    {
-        std::shared_ptr<gb::material> using_material = material;
-        if(!using_material)
-        {
-            using_material = ces_render_component::get_material(technique_name);
-        }
-        assert(using_material);
-        
-        using_material->get_shader()->set_vec3(global_light->get_position(), e_shader_uniform_vec_global_light_position);
-        using_material->get_shader()->set_mat4(global_light->get_matrix_p(), e_shader_uniform_mat_global_light_p);
-        using_material->get_shader()->set_mat4(global_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
-    }
-    
-    void ces_render_component::bind_skeleton_animation_uniforms(const std::string &technique_name,
-                                                                const glm::mat4 *transformations, i32 num_transformations,
-                                                                const std::shared_ptr<material>& material)
-    {
-        std::shared_ptr<gb::material> using_material = material;
-        if(!using_material)
-        {
-            using_material = ces_render_component::get_material(technique_name);
-        }
-        assert(using_material);
-        
-        using_material->get_shader()->set_mat4_array(transformations, num_transformations, e_shader_uniform_mat_bones);
-    }
-    
     std::shared_ptr<material> ces_render_component::on_bind(const std::string& technique_name)
     {
-        std::shared_ptr<gb::material> material = ces_render_component::get_material(technique_name);
+        material_shared_ptr material = ces_render_component::get_material(technique_name);
         assert(material);
         material->bind();
         ces_render_component::bind_custom_shader_uniforms(material);
@@ -208,9 +140,9 @@ namespace gb
     }
     
     void ces_render_component::on_unbind(const std::string& technique_name,
-                                         const std::shared_ptr<material>& material)
+                                         const material_shared_ptr& material)
     {
-        std::shared_ptr<gb::material> using_material = material;
+        material_shared_ptr using_material = material;
         if(!using_material)
         {
             using_material = ces_render_component::get_material(technique_name);
@@ -219,9 +151,9 @@ namespace gb
         using_material->unbind();
     }
 
-    void ces_render_component::on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh, const std::shared_ptr<material>& material)
+    void ces_render_component::on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh, const material_shared_ptr& material)
     {
-        std::shared_ptr<gb::material> using_material = material;
+        material_shared_ptr using_material = material;
         if(!using_material)
         {
             using_material = ces_render_component::get_material(technique_name);

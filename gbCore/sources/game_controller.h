@@ -33,7 +33,7 @@ namespace gb
     public:
         
         game_controller(const std::shared_ptr<ogl_window>& window);
-        virtual ~game_controller(void);
+        virtual ~game_controller();
         
         void add_transition(const std::shared_ptr<game_transition>& transition);
         void remove_transition(const std::shared_ptr<game_transition>& transition);

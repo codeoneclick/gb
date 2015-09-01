@@ -22,20 +22,20 @@ namespace gb
 {
     model3d_static::model3d_static()
     {
-        m_camera_component = std::make_shared<ces_camera_component>();
-        ces_entity::add_component(m_camera_component);
+        ces_camera_component_shared_ptr camera_component = std::make_shared<ces_camera_component>();
+        ces_entity::add_component(camera_component);
         
-        m_frustum_culling_component = std::make_shared<ces_frustum_culling_component>();
-        ces_entity::add_component(m_frustum_culling_component);
+        ces_frustum_culling_component_shared_ptr frustum_culling_component = std::make_shared<ces_frustum_culling_component>();
+        ces_entity::add_component(frustum_culling_component);
                                   
-        m_global_light_component = std::make_shared<ces_global_light_component>();
-        ces_entity::add_component(m_global_light_component);
+        ces_global_light_component_shared_ptr global_light_component = std::make_shared<ces_global_light_component>();
+        ces_entity::add_component(global_light_component);
         
-        m_geometry_component = std::make_shared<ces_geometry_component>();
-        ces_entity::add_component(m_geometry_component);
+        ces_geometry_component_shared_ptr geometry_component = std::make_shared<ces_geometry_component>();
+        ces_entity::add_component(geometry_component);
         
-        m_render_component = std::make_shared<ces_render_component>();
-        ces_entity::add_component(m_render_component);
+        ces_render_component_shared_ptr render_component = std::make_shared<ces_render_component>();
+        ces_entity::add_component(render_component);
     }
     
     model3d_static::~model3d_static()
@@ -45,28 +45,28 @@ namespace gb
     
     void model3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)
     {
-        unsafe_get_render_component_from_this()->add_material(technique_name, material);
+        unsafe_get_render_component_from_this->add_material(technique_name, material);
     }
     
     void model3d_static::remove_material(const std::string& technique_name)
     {
-        unsafe_get_render_component_from_this()->remove_material(technique_name);
+        unsafe_get_render_component_from_this->remove_material(technique_name);
     }
     
     material_shared_ptr model3d_static::get_material(const std::string& technique_name) const
     {
-        return unsafe_get_render_component_from_this()->get_material(technique_name);
+        return unsafe_get_render_component_from_this->get_material(technique_name);
     }
     
     void model3d_static::set_mesh(const mesh_shared_ptr& mesh)
     {
-        m_geometry_component->set_mesh(mesh);
+        unsafe_get_geometry_component_from_this->set_mesh(mesh);
         
         if(ces_entity::is_component_exist(e_ces_component_type_debug_render))
         {
             mesh_shared_ptr mesh_bounding_box = mesh_constructor::create_wireframe_box(mesh->get_min_bound(),
                                                                                        mesh->get_max_bound());
-            m_debug_render_component->set_mesh(mesh_bounding_box);
+            unsafe_get_debug_render_component_from_this->set_mesh(mesh_bounding_box);
         }
     }
     
@@ -74,17 +74,16 @@ namespace gb
     {
         if(value)
         {
-            m_touch_component = std::make_shared<ces_touch_component>();
-            ces_entity::add_component(m_touch_component);
+            ces_touch_component_shared_ptr touch_component = std::make_shared<ces_touch_component>();
+            ces_entity::add_component(touch_component);
             
-            m_touch_component->enable(e_input_state_pressed, true);
-            m_touch_component->enable(e_input_state_dragged, true);
-            m_touch_component->enable(e_input_state_released, true);
+            touch_component->enable(e_input_state_pressed, true);
+            touch_component->enable(e_input_state_dragged, true);
+            touch_component->enable(e_input_state_released, true);
         }
         else
         {
             ces_entity::remove_component(e_ces_component_type_touch);
-            m_touch_component = nullptr;
         }
     }
     
@@ -92,13 +91,12 @@ namespace gb
     {
         if(value)
         {
-            m_debug_render_component = std::make_shared<ces_debug_render_component>();
-            ces_entity::add_component(m_debug_render_component);
+            ces_debug_render_component_shared_ptr debug_render_component = std::make_shared<ces_debug_render_component>();
+            ces_entity::add_component(debug_render_component);
         }
         else
         {
             ces_entity::remove_component(e_ces_component_type_debug_render);
-            m_debug_render_component = nullptr;
         }
     }
 }

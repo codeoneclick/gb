@@ -37,24 +37,6 @@ namespace gb
         void set_z_order(i32 z_order);
         i32 get_z_order() const;
         
-        virtual void bind_transformation_uniforms(const std::string& technique_name,
-                                                  const glm::mat4& matrix_m,
-                                                  const glm::mat4& matrix_mvp,
-                                                  const glm::mat4& matrix_imvp,
-                                                  const std::shared_ptr<material>& material = nullptr);
-        
-        virtual void bind_camera_uniforms(const std::string& technique_name,
-                                          const std::shared_ptr<camera>& camera,
-                                          const std::shared_ptr<material>& material = nullptr);
-        
-        virtual void bind_global_light_uniforms(const std::string& technique_name,
-                                                const std::shared_ptr<global_light>& global_light,
-                                                const std::shared_ptr<material>& material = nullptr);
-        
-        virtual void bind_skeleton_animation_uniforms(const std::string& technique_name,
-                                                      const glm::mat4* transformations, i32 num_transformations,
-                                                      const std::shared_ptr<material>& material = nullptr);
-        
         virtual material_shared_ptr on_bind(const std::string& technique_name);
         
         virtual void on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh,

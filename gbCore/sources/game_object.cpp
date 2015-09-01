@@ -11,60 +11,60 @@
 
 namespace gb
 {
-    game_object::game_object(void)
+    game_object::game_object()
     {
-        m_transformation_component = std::make_shared<ces_transformation_component>();
-        ces_entity::add_component(m_transformation_component);
+        ces_transformation_component_shared_ptr transformation_component = std::make_shared<ces_transformation_component>();
+        ces_entity::add_component(transformation_component);
     }
     
-    game_object::~game_object(void)
+    game_object::~game_object()
     {
-        ces_entity::remove_components();
+        
     }
     
     void game_object::set_position(const glm::vec3& position)
     {
-        m_transformation_component->set_position(position);
+        unsafe_get_transformation_component_from_this->set_position(position);
     }
     
-    glm::vec3 game_object::get_position(void) const
+    glm::vec3 game_object::get_position() const
     {
-        return m_transformation_component->get_position();
+        return unsafe_get_transformation_component_from_this->get_position();
     }
     
     void game_object::set_rotation(const glm::vec3& rotation)
     {
-        m_transformation_component->set_rotation(rotation);
+        unsafe_get_transformation_component_from_this->set_rotation(rotation);
     }
     
-    glm::vec3 game_object::get_rotation(void) const
+    glm::vec3 game_object::get_rotation() const
     {
-        return m_transformation_component->get_rotation();
+        return unsafe_get_transformation_component_from_this->get_rotation();
     }
     
     void game_object::set_scale(const glm::vec3& scale)
     {
-        m_transformation_component->set_scale(scale);
+        unsafe_get_transformation_component_from_this->set_scale(scale);
     }
     
-    glm::vec3 game_object::get_scale(void) const
+    glm::vec3 game_object::get_scale() const
     {
-        return m_transformation_component->get_scale();
+        return unsafe_get_transformation_component_from_this->get_scale();
     }
     
-    glm::vec3 game_object::get_forward(void) const
+    glm::vec3 game_object::get_forward() const
     {
-        return m_transformation_component->get_forward();
+        return unsafe_get_transformation_component_from_this->get_forward();
     }
     
-    glm::vec3 game_object::get_up(void) const
+    glm::vec3 game_object::get_up() const
     {
-        return m_transformation_component->get_up();
+        return unsafe_get_transformation_component_from_this->get_up();
     }
     
-    glm::vec3 game_object::get_right(void) const
+    glm::vec3 game_object::get_right() const
     {
-        return m_transformation_component->get_right();
+        return unsafe_get_transformation_component_from_this->get_right();
     }
     
     void game_object::on_added_to_scene()

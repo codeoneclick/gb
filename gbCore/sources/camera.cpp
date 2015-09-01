@@ -14,12 +14,12 @@ namespace gb
     m_fov(fov),
     m_near(near),
     m_far(far),
-    m_rotation(0.0),
+    m_rotation(0.f),
     m_viewport(viewport)
     {
         m_aspect = static_cast<f32>(viewport.z) / static_cast<f32>(viewport.w);
         m_matrix_p = glm::perspective(m_fov, m_aspect, m_near, m_far);
-        m_up = glm::vec3(0.0f, 1.0f, 0.0f);
+        m_up = glm::vec3(0.f, 1.f, 0.f);
     }
     
     camera::~camera(void)
@@ -38,7 +38,7 @@ namespace gb
         position.y = -position.y;
         glm::vec3 look_at = m_look_at;
         look_at.y = -look_at.y;
-        m_matrix_iv = glm::lookAt(position, look_at, m_up * -1.0f);
+        m_matrix_iv = glm::lookAt(position, look_at, m_up * -1.f);
         
         m_matrix_n = glm::inverse(m_matrix_v);
         m_matrix_n = glm::transpose(m_matrix_n);
@@ -47,12 +47,12 @@ namespace gb
         m_matrix_ivp = m_matrix_p * m_matrix_iv;
     }
     
-    glm::mat4x4 camera::get_matrix_c(const glm::vec3 &position)
+    glm::mat4x4 camera::get_matrix_c(const glm::vec3& camera_position, const glm::vec3& position)
     {
-        glm::vec3 direction = m_position - position;
+        glm::vec3 direction = camera_position - position;
         direction = glm::normalize(direction);
         
-        glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f);
+        glm::vec3 up = glm::vec3(0.f, 1.f, 0.f);
         glm::vec3 right = glm::cross(direction, up);
         right = glm::normalize(right);
         direction = glm::cross(right, direction);
@@ -61,32 +61,32 @@ namespace gb
         matrix_c[0][0] = right.x;
         matrix_c[0][1] = right.y;
         matrix_c[0][2] = right.z;
-        matrix_c[0][3] = 0.0f;
+        matrix_c[0][3] = 0.f;
         matrix_c[1][0] = up.x;
         matrix_c[1][1] = up.y;
         matrix_c[1][2] = up.z;
-        matrix_c[1][3] = 0.0f;
+        matrix_c[1][3] = 0.f;
         matrix_c[2][0] = direction.x;
         matrix_c[2][1] = direction.y;
         matrix_c[2][2] = direction.z;
-        matrix_c[2][3] = 0.0f;
+        matrix_c[2][3] = 0.f;
         
         matrix_c[3][0] = position.x;
         matrix_c[3][1] = position.y;
         matrix_c[3][2] = position.z;
-        matrix_c[3][3] = 1.0f;
+        matrix_c[3][3] = 1.f;
         
         return matrix_c;
     }
     
-    glm::mat4x4 camera::get_matrix_s(const glm::vec3 &position)
+    glm::mat4x4 camera::get_matrix_s(const glm::mat4& mat_v, const glm::vec3& camera_position, const glm::vec3& position)
     {
-        glm::vec3 direction = position - m_position;
+        glm::vec3 direction = position - camera_position;
         direction = glm::normalize(direction);
         
-        glm::vec3 up = glm::vec3(m_matrix_v[1][0],
-                                 m_matrix_v[1][1],
-                                 m_matrix_v[1][2]);
+        glm::vec3 up = glm::vec3(mat_v[1][0],
+                                 mat_v[1][1],
+                                 mat_v[1][2]);
         up = glm::normalize(up);
         
         glm::vec3 right = glm::cross(direction, up);
@@ -99,20 +99,20 @@ namespace gb
         matrix_s[0][0] = right.x;
         matrix_s[0][1] = right.y;
         matrix_s[0][2] = right.z;
-        matrix_s[0][3] = 0.0f;
+        matrix_s[0][3] = 0.f;
         matrix_s[1][0] = up.x;
         matrix_s[1][1] = up.y;
         matrix_s[1][2] = up.z;
-        matrix_s[1][3] = 0.0f;
+        matrix_s[1][3] = 0.f;
         matrix_s[2][0] = direction.x;
         matrix_s[2][1] = direction.y;
         matrix_s[2][2] = direction.z;
-        matrix_s[2][3] = 0.0f;
+        matrix_s[2][3] = 0.f;
         
         matrix_s[3][0] = position.x;
         matrix_s[3][1] = position.y;
         matrix_s[3][2] = position.z;
-        matrix_s[3][3] = 1.0f;
+        matrix_s[3][3] = 1.f;
         
         return matrix_s;
     }

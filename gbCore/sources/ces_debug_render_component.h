@@ -27,18 +27,8 @@ namespace gb
         ces_debug_render_component(void);
         ~ces_debug_render_component(void);
         
-        virtual void bind_transformation_uniforms(const std::string& technique_name,
-                                                  const glm::mat4& matrix_m,
-                                                  const glm::mat4& matrix_mvp,
-                                                  const glm::mat4& matrix_imvp);
-        
-        virtual void bind_camera_uniforms(const std::string& technique_name,
-                                          const std::shared_ptr<camera>& camera);
-        
-        virtual void on_bind(const std::string& technique_name);
-        
+        virtual material_shared_ptr on_bind(const std::string& technique_name);
         virtual void on_draw(const std::string& technique_name);
-        
         virtual void on_unbind(const std::string& technique_name);
         
         void set_mesh(const mesh_shared_ptr& mesh);

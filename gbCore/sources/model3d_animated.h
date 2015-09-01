@@ -20,9 +20,6 @@ namespace gb
         
     protected:
         
-        ces_animation_component_shared_ptr m_animation_component;
-        
-        
     public:
         
         model3d_animated();

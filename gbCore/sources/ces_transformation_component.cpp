@@ -39,6 +39,7 @@ namespace gb
         m_matrix_r = glm::rotate(m_matrix_r, m_rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
         m_is_matrix_m_computed = false;
     }
+    
     void ces_transformation_component::set_scale(const glm::vec3& scale)
     {
         m_scale = scale;
@@ -69,18 +70,6 @@ namespace gb
             m_is_matrix_m_computed = true;
         }
         return m_matrix_m;
-    }
-    
-    glm::mat4 ces_transformation_component::get_matrix_mvp(const std::shared_ptr<ces_transformation_component> &component, const glm::mat4 &matrix_vp)
-    {
-        glm::mat4 matrix_mvp = matrix_vp * component->get_matrix_m();
-        return std::move(matrix_mvp);
-    }
-    
-    glm::mat4 ces_transformation_component::get_matrix_imvp(const std::shared_ptr<ces_transformation_component> &component, const glm::mat4 &matrix_ivp)
-    {
-        glm::mat4 m_matrix_imvp = matrix_ivp * component->get_matrix_m();
-        return std::move(m_matrix_imvp);
     }
     
     glm::vec3 ces_transformation_component::get_forward(void) const

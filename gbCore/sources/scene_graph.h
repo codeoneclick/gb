@@ -15,7 +15,7 @@
 
 namespace gb
 {
-    class scene_graph : public game_loop_interface
+    class scene_graph : public game_loop_interface, public std::enable_shared_from_this<scene_graph>
     {
     private:
         

@@ -24,7 +24,7 @@ namespace gb
         shader_shared_ptr shader = shader::construct("bounding_box",
                                                      shader_bounding_box_vert,
                                                      shader_bounding_box_frag);
-        assert(shader != nullptr);
+        assert(shader);
         m_material->set_shader(shader);
         m_material->set_culling(false);
         m_material->set_culling_mode(GL_BACK);
@@ -45,40 +45,14 @@ namespace gb
         
     }
     
-    void ces_debug_render_component::bind_transformation_uniforms(const std::string& technique_name,
-                                                                  const glm::mat4& matrix_m,
-                                                                  const glm::mat4& matrix_mvp,
-                                                                  const glm::mat4& matrix_imvp)
-    {
-        assert(m_material);
-        
-        m_material->get_shader()->set_mat4(matrix_m, e_shader_uniform_mat_m);
-        m_material->get_shader()->set_mat4(m_material->is_reflecting() ? matrix_imvp : matrix_mvp, e_shader_uniform_mat_mvp);
-    }
-    
-    void ces_debug_render_component::bind_camera_uniforms(const std::string& technique_name,
-                                                          const camera_shared_ptr& camera)
-    {
-        assert(m_material);
-        
-        m_material->get_shader()->set_mat4(camera->get_matrix_p(), e_shader_uniform_mat_p);
-        m_material->get_shader()->set_mat4(!m_material->is_reflecting() ? camera->get_matrix_v() : camera->get_matrix_iv(), e_shader_uniform_mat_v);
-        m_material->get_shader()->set_mat4(!m_material->is_reflecting() ? camera->get_matrix_vp() : camera->get_matrix_ivp(), e_shader_uniform_mat_vp);
-        m_material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
-        
-        m_material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
-        m_material->get_shader()->set_f32(camera->get_near(), e_shader_uniform_f32_camera_near);
-        m_material->get_shader()->set_f32(camera->get_far(), e_shader_uniform_f32_camera_far);
-        m_material->get_shader()->set_vec4(m_material->get_clipping_plane(), e_shader_uniform_vec_clip);
-    }
-    
-    void ces_debug_render_component::on_bind(const std::string& technique_name)
+    material_shared_ptr ces_debug_render_component::on_bind(const std::string& technique_name)
     {
         if(m_mesh)
         {
             assert(m_material);
             m_material->bind();
         }
+        return m_material;
     }
     
     void ces_debug_render_component::on_draw(const std::string& technique_name)

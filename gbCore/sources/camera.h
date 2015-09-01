@@ -76,8 +76,8 @@ namespace gb
         
         inline glm::ivec4 get_viewport(void) const;
         
-        glm::mat4 get_matrix_s(const glm::vec3& position); // spherical
-        glm::mat4 get_matrix_c(const glm::vec3& position); // cylindrical
+        static glm::mat4 get_matrix_s(const glm::mat4& mat_v, const glm::vec3& camera_position, const glm::vec3& position); // spherical
+        static glm::mat4 get_matrix_c(const glm::vec3& camera_position, const glm::vec3& position); // cylindrical
     };
 };
 

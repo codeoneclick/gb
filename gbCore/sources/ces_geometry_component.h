@@ -13,7 +13,6 @@
 
 namespace gb
 {
-    class mesh;
     class ces_geometry_component : public ces_base_component
     {
     private:
@@ -27,16 +26,16 @@ namespace gb
         ces_geometry_component();
         ~ces_geometry_component();
         
-        void set_mesh(const mesh_shared_ptr& mesh);
+        virtual void set_mesh(const mesh_shared_ptr& mesh);
         mesh_shared_ptr get_mesh() const;
         
-        const glm::vec3 get_min_bound() const;
-        const glm::vec3 get_max_bound() const;
-        const std::tuple<glm::vec3, glm::vec3> get_bounds() const;
+        virtual const glm::vec3 get_min_bound() const;
+        virtual const glm::vec3 get_max_bound() const;
+        virtual const std::tuple<glm::vec3, glm::vec3> get_bounds() const;
         
-        const glm::vec3 get_min_bound(const glm::mat4& mat) const;
-        const glm::vec3 get_max_bound(const glm::mat4& mat) const;
-        const std::tuple<glm::vec3, glm::vec3> get_bounds(const glm::mat4& mat) const;
+        virtual const glm::vec3 get_min_bound(const glm::mat4& mat) const;
+        virtual const glm::vec3 get_max_bound(const glm::mat4& mat) const;
+        virtual const std::tuple<glm::vec3, glm::vec3> get_bounds(const glm::mat4& mat) const;
     };
 };
 

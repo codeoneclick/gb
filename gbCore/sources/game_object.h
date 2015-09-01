@@ -19,8 +19,6 @@ namespace gb
         
     protected:
         
-        ces_transformation_component_shared_ptr m_transformation_component;
-        
     public:
         
         game_object();

@@ -9,6 +9,7 @@
 #include "render_technique_ws.h"
 #include "texture.h"
 #include "camera.h"
+#include "global_light.h"
 #include "frustum.h"
 #include "mesh.h"
 #include "animation_mixer.h"
@@ -124,48 +125,56 @@ namespace gb
             ces_render_component* render_component = unsafe_get_render_component(entity);
             assert(render_component);
             
-            std::shared_ptr<ces_geometry_component> geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
-            std::shared_ptr<ces_camera_component> camera_component = std::static_pointer_cast<ces_camera_component>(entity->get_component(e_ces_component_type_camera));
-            
-            std::shared_ptr<ces_frustum_culling_component> frustum_component =
-            std::static_pointer_cast<ces_frustum_culling_component>(entity->get_component(e_ces_component_type_frustum_culling));
-            
-            std::shared_ptr<ces_transformation_component> transformation_component =
-            std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
-            
-            std::shared_ptr<ces_global_light_component> global_light_component =
-            std::static_pointer_cast<ces_global_light_component>(entity->get_component(e_ces_component_type_global_light));
-            
-            ces_animation_component_shared_ptr animation_component =
-            std::static_pointer_cast<ces_animation_component>(entity->get_component(e_ces_component_type_animation));
-            
-            ces_debug_render_component_shared_ptr debug_render_component =
-            std::static_pointer_cast<ces_debug_render_component>(entity->get_component(e_ces_component_type_debug_render));
-            
-            
+            ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
             assert(geometry_component);
+            
+            ces_camera_component* camera_component = unsafe_get_camera_component(entity);
             assert(camera_component);
+            
+            ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
             assert(transformation_component);
             
-            std::shared_ptr<material> material = render_component->on_bind(m_name);
-            render_component->bind_camera_uniforms(m_name, camera_component->get_camera(), material);
-            render_component->bind_transformation_uniforms(m_name, transformation_component->get_matrix_m(),
-                                                           ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
-                                                           ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
+            ces_global_light_component* global_light_component = unsafe_get_global_light_component(entity);
+            
+            ces_animation_component* animation_component = unsafe_get_animation_component(entity);
+            
+            ces_frustum_culling_component* frustum_culling_component = unsafe_get_frustum_culling_component(entity);
+            
+            ces_debug_render_component* debug_render_component = unsafe_get_debug_render_component(entity);
+            
+            material_shared_ptr material = render_component->on_bind(m_name);
+            
+            material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+            glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
+            glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
+            material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
+            
+            material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_p(), e_shader_uniform_mat_p);
+            material->get_shader()->set_mat4(!material->is_reflecting() ?
+                                             camera_component->get_camera()->get_matrix_v() : camera_component->get_camera()->get_matrix_iv(), e_shader_uniform_mat_v);
+            material->get_shader()->set_mat4(!material->is_reflecting() ?
+                                             camera_component->get_camera()->get_matrix_vp() : camera_component->get_camera()->get_matrix_ivp(), e_shader_uniform_mat_vp);
+            material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_n(), e_shader_uniform_mat_n);
+            
+            material->get_shader()->set_vec3(camera_component->get_camera()->get_position(), e_shader_uniform_vec_camera_position);
+            material->get_shader()->set_f32(camera_component->get_camera()->get_near(), e_shader_uniform_f32_camera_near);
+            material->get_shader()->set_f32(camera_component->get_camera()->get_far(), e_shader_uniform_f32_camera_far);
+            material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
             
             if(global_light_component)
             {
-                render_component->bind_global_light_uniforms(m_name, global_light_component->get_global_light(), material);
+                material->get_shader()->set_vec3(global_light_component->get_global_light()->get_position(), e_shader_uniform_vec_global_light_position);
+                material->get_shader()->set_mat4(global_light_component->get_global_light()->get_matrix_p(), e_shader_uniform_mat_global_light_p);
+                material->get_shader()->set_mat4(global_light_component->get_global_light()->get_matrix_v(), e_shader_uniform_mat_global_light_v);
             }
             
             if(animation_component)
             {
-                render_component->bind_skeleton_animation_uniforms(m_name,
-                                                                   animation_component->get_animation_mixer()->get_transformations(),
-                                                                   animation_component->get_animation_mixer()->get_transformation_size());
+                 material->get_shader()->set_mat4_array(animation_component->get_animation_mixer()->get_transformations(),
+                                                        animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
             }
             
-            if(frustum_component)
+            if(frustum_culling_component)
             {
                 glm::vec3 min_bound = geometry_component->get_min_bound();
                 glm::vec3 max_bound = geometry_component->get_max_bound();
@@ -174,7 +183,7 @@ namespace gb
                     min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
                     max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
                 }*/
-                if(frustum_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
+                if(frustum_culling_component->get_frustum()->is_bounding_box_in_frustum(min_bound, max_bound))
                 {
                     render_component->on_draw(m_name, geometry_component->get_mesh(), material);
                 }
@@ -186,15 +195,28 @@ namespace gb
             
             if(debug_render_component)
             {
-                debug_render_component->on_bind(m_name);
-                debug_render_component->bind_camera_uniforms(m_name, camera_component->get_camera());
-                debug_render_component->bind_transformation_uniforms(m_name, transformation_component->get_matrix_m(),
-                                                                     ces_transformation_component::get_matrix_mvp(transformation_component, camera_component->get_camera()->get_matrix_vp()),
-                                                                     ces_transformation_component::get_matrix_imvp(transformation_component, camera_component->get_camera()->get_matrix_ivp()));
+                material_shared_ptr material = debug_render_component->on_bind(m_name);
+                
+                material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+                glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
+                glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
+                material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
+                
+                material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_p(), e_shader_uniform_mat_p);
+                material->get_shader()->set_mat4(!material->is_reflecting() ?
+                                                 camera_component->get_camera()->get_matrix_v() : camera_component->get_camera()->get_matrix_iv(), e_shader_uniform_mat_v);
+                material->get_shader()->set_mat4(!material->is_reflecting() ?
+                                                 camera_component->get_camera()->get_matrix_vp() : camera_component->get_camera()->get_matrix_ivp(), e_shader_uniform_mat_vp);
+                material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_n(), e_shader_uniform_mat_n);
+                
+                material->get_shader()->set_vec3(camera_component->get_camera()->get_position(), e_shader_uniform_vec_camera_position);
+                material->get_shader()->set_f32(camera_component->get_camera()->get_near(), e_shader_uniform_f32_camera_near);
+                material->get_shader()->set_f32(camera_component->get_camera()->get_far(), e_shader_uniform_f32_camera_far);
+                material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
+                
                 debug_render_component->on_draw(m_name);
                 debug_render_component->on_unbind(m_name);
             }
-            
             m_entities.pop();
         }
     }
