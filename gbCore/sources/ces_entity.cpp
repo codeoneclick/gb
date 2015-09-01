@@ -13,6 +13,7 @@ namespace gb
     ces_entity::ces_entity() :
     m_parent(nullptr)
     {
+        m_components.resize(e_ces_component_type_max);
         ces_entity::remove_components();
     }
     
@@ -57,6 +58,11 @@ namespace gb
     {
         assert(type != e_ces_component_type_undefined);
         return m_components[type];
+    }
+    
+    std::vector<ces_base_component_shared_ptr> ces_entity::get_components() const
+    {
+        return m_components;
     }
     
     void ces_entity::add_child(const ces_entity_shared_ptr& child)

@@ -37,7 +37,7 @@ namespace gb
         glm::vec3 get_up() const;
         glm::vec3 get_right() const;
         
-        virtual void on_added_to_scene();
+        virtual void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         virtual void on_removed_from_scene();
     };
 };

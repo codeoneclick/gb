@@ -19,7 +19,7 @@ namespace gb
         
     protected:
         
-        std::array<ces_base_component_shared_ptr, e_ces_component_type_max> m_components;
+        std::vector<ces_base_component_shared_ptr> m_components;
         ces_entity_shared_ptr m_parent;
         std::set<ces_entity_shared_ptr> m_children;
         
@@ -34,6 +34,7 @@ namespace gb
         void remove_components();
         bool is_component_exist(e_ces_component_type type) const;
         ces_base_component_shared_ptr get_component(e_ces_component_type type) const;
+        std::vector<ces_base_component_shared_ptr> get_components() const;
         
         void add_child(const ces_entity_shared_ptr& child);
         void remove_child(const ces_entity_shared_ptr& child);

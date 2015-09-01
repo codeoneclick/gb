@@ -104,12 +104,15 @@ namespace gb
             ces_global_light_component_shared_ptr global_light_component = std::static_pointer_cast<ces_global_light_component>(game_object->get_component(e_ces_component_type_global_light));
             global_light_component->set_global_light(m_global_light);
         }
+        
+        game_object->on_added_to_scene(shared_from_this());
         m_game_objects_container.insert(game_object);
         m_systems_feeder->add_entity(game_object);
     }
     
     void scene_graph::remove_game_object(const game_object_shared_ptr& game_object)
     {
+        game_object->on_removed_from_scene();
         m_game_objects_container.erase(game_object);
         m_systems_feeder->remove_entity(game_object);
     }

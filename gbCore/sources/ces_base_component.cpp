@@ -23,7 +23,7 @@ namespace gb
     
     void ces_base_component::set_scene_graph(const scene_graph_shared_ptr& scene_graph)
     {
-        m_scene_graph= scene_graph;
+        m_scene_graph = scene_graph;
     }
     
     scene_graph_shared_ptr ces_base_component::get_scene_graph() const

@@ -67,9 +67,15 @@ namespace gb
         return unsafe_get_transformation_component_from_this->get_right();
     }
     
-    void game_object::on_added_to_scene()
+    void game_object::on_added_to_scene(const scene_graph_shared_ptr& scene_graph)
     {
-        
+        for(const auto& component : ces_entity::get_components())
+        {
+            if(component != nullptr)
+            {
+                component->set_scene_graph(scene_graph);
+            }
+        }
     }
     
     void game_object::on_removed_from_scene()
