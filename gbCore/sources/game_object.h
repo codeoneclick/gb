@@ -17,7 +17,12 @@ namespace gb
     {
     private:
         
+        std::weak_ptr<scene_graph> m_scene_graph;
+        
     protected:
+        
+        void set_scene_graph(const scene_graph_shared_ptr& scene_graph);
+        scene_graph_shared_ptr get_scene_graph() const;
         
     public:
         

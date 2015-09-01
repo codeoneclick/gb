@@ -76,6 +76,7 @@ namespace gb
         {
             ces_touch_component_shared_ptr touch_component = std::make_shared<ces_touch_component>();
             ces_entity::add_component(touch_component);
+            touch_component->set_scene_graph(game_object::get_scene_graph());
             
             touch_component->enable(e_input_state_pressed, true);
             touch_component->enable(e_input_state_dragged, true);
@@ -93,6 +94,7 @@ namespace gb
         {
             ces_debug_render_component_shared_ptr debug_render_component = std::make_shared<ces_debug_render_component>();
             ces_entity::add_component(debug_render_component);
+            debug_render_component->set_scene_graph(game_object::get_scene_graph());
         }
         else
         {

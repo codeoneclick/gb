@@ -19,11 +19,11 @@ namespace gb
     {
     private:
         
+        std::weak_ptr<scene_graph> m_scene_graph;
+        
     protected:
         
         e_ces_component_type m_type;
-        std::weak_ptr<scene_graph> m_scene_graph;
-        
         ces_base_component();
         
     public:

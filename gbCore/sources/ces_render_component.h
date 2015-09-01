@@ -24,6 +24,7 @@ namespace gb
         i32 m_z_order;
         
         void bind_custom_shader_uniforms(const material_shared_ptr& material);
+        void bind_main_shader_uniforms(const material_shared_ptr& material);
         
     public:
         

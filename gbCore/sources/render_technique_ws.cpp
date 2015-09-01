@@ -134,7 +134,7 @@ namespace gb
             ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
             assert(transformation_component);
             
-            ces_global_light_component* global_light_component = unsafe_get_global_light_component(entity);
+            //ces_global_light_component* global_light_component = unsafe_get_global_light_component(entity);
             
             ces_animation_component* animation_component = unsafe_get_animation_component(entity);
             
@@ -148,25 +148,6 @@ namespace gb
             glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
             glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
             material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
-            
-            material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_p(), e_shader_uniform_mat_p);
-            material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                             camera_component->get_camera()->get_matrix_v() : camera_component->get_camera()->get_matrix_iv(), e_shader_uniform_mat_v);
-            material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                             camera_component->get_camera()->get_matrix_vp() : camera_component->get_camera()->get_matrix_ivp(), e_shader_uniform_mat_vp);
-            material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_n(), e_shader_uniform_mat_n);
-            
-            material->get_shader()->set_vec3(camera_component->get_camera()->get_position(), e_shader_uniform_vec_camera_position);
-            material->get_shader()->set_f32(camera_component->get_camera()->get_near(), e_shader_uniform_f32_camera_near);
-            material->get_shader()->set_f32(camera_component->get_camera()->get_far(), e_shader_uniform_f32_camera_far);
-            material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
-            
-            if(global_light_component)
-            {
-                material->get_shader()->set_vec3(global_light_component->get_global_light()->get_position(), e_shader_uniform_vec_global_light_position);
-                material->get_shader()->set_mat4(global_light_component->get_global_light()->get_matrix_p(), e_shader_uniform_mat_global_light_p);
-                material->get_shader()->set_mat4(global_light_component->get_global_light()->get_matrix_v(), e_shader_uniform_mat_global_light_v);
-            }
             
             if(animation_component)
             {
@@ -201,18 +182,6 @@ namespace gb
                 glm::mat4 mat_mvp = camera_component->get_camera()->get_matrix_vp() * transformation_component->get_matrix_m();
                 glm::mat4 mat_imvp = camera_component->get_camera()->get_matrix_ivp() * transformation_component->get_matrix_m();
                 material->get_shader()->set_mat4(material->is_reflecting() ? mat_imvp : mat_mvp, e_shader_uniform_mat_mvp);
-                
-                material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_p(), e_shader_uniform_mat_p);
-                material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                                 camera_component->get_camera()->get_matrix_v() : camera_component->get_camera()->get_matrix_iv(), e_shader_uniform_mat_v);
-                material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                                 camera_component->get_camera()->get_matrix_vp() : camera_component->get_camera()->get_matrix_ivp(), e_shader_uniform_mat_vp);
-                material->get_shader()->set_mat4(camera_component->get_camera()->get_matrix_n(), e_shader_uniform_mat_n);
-                
-                material->get_shader()->set_vec3(camera_component->get_camera()->get_position(), e_shader_uniform_vec_camera_position);
-                material->get_shader()->set_f32(camera_component->get_camera()->get_near(), e_shader_uniform_f32_camera_near);
-                material->get_shader()->set_f32(camera_component->get_camera()->get_far(), e_shader_uniform_f32_camera_far);
-                material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
                 
                 debug_render_component->on_draw(m_name);
                 debug_render_component->on_unbind(m_name);
