@@ -13,32 +13,30 @@
 
 namespace gb
 {
-    class texture;
-    class ces_entity;
     class render_technique_ws : public render_technique_base
     {
     private:
         
     protected:
         
-        std::shared_ptr<texture> m_color_attachment_texture;
-        std::shared_ptr<texture> m_depth_attachment_texture;
+        texture_shared_ptr m_color_attachment_texture;
+        texture_shared_ptr m_depth_attachment_texture;
         
-        std::queue<std::shared_ptr<ces_entity>> m_entities;
+        std::vector<std::queue<ces_entity_shared_ptr>> m_entities;
         
     public:
         
         render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index);
-        ~render_technique_ws(void);
+        ~render_technique_ws();
         
-        std::shared_ptr<texture> get_color_attachment_texture(void) const;
-        std::shared_ptr<texture> get_depth_attachment_texture(void) const;
+        std::shared_ptr<texture> get_color_attachment_texture() const;
+        std::shared_ptr<texture> get_depth_attachment_texture() const;
         
-        void bind(void);
-        void unbind(void);
-        void draw(void);
+        void bind();
+        void unbind();
+        void draw();
         
-        void add_entity(const std::shared_ptr<ces_entity>& entity);
+        void add_entity(const ces_entity_shared_ptr& entity);
     };
 };
 

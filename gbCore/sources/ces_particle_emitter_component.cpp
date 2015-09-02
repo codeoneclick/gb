@@ -65,13 +65,13 @@ namespace gb
         vbo::vertex_attribute* vertices = vbo->lock();
         for(ui32 i = 0; i < m_settings->get_num_particles(); ++i)
         {
-            m_particles[i].m_size = glm::vec2(0.0f, 0.0f);
-            m_particles[i].m_color = glm::u8vec4(0, 0, 0, 0);
+            m_particles[i].m_size = glm::vec2(0.f);
+            m_particles[i].m_color = glm::u8vec4(0);
             
-            vertices[i * 4 + 0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  0.0f));
-            vertices[i * 4 + 1].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  0.0f));
-            vertices[i * 4 + 2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  1.0f));
-            vertices[i * 4 + 3].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  1.0f));
+            vertices[i * 4 + 0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.f,  0.f));
+            vertices[i * 4 + 1].m_texcoord = glm::packUnorm2x16(glm::vec2(1.f,  0.f));
+            vertices[i * 4 + 2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.f,  1.f));
+            vertices[i * 4 + 3].m_texcoord = glm::packUnorm2x16(glm::vec2(0.f,  1.f));
         }
         vbo->unlock();
         

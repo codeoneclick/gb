@@ -96,9 +96,17 @@ namespace gb
         return m_depth_attachment_texture;
     }
     
-    void render_technique_ws::add_entity(const std::shared_ptr<ces_entity>& entity)
+    void render_technique_ws::add_entity(const ces_entity_shared_ptr& entity)
     {
-        m_entities.push(entity);
+        ces_render_component* render_component = unsafe_get_render_component(entity);
+        assert(render_component);
+        
+        i32 z_order = render_component->get_z_order() + 1;
+        if(z_order > m_entities.size())
+        {
+            m_entities.resize(z_order);
+        }
+        m_entities[z_order - 1].push(entity);
     }
     
     void render_technique_ws::bind(void)
@@ -116,60 +124,63 @@ namespace gb
     
     void render_technique_ws::draw(void)
     {
-        while (!m_entities.empty())
+        for(i32 i = 0; i < m_entities.size(); ++i)
         {
-            std::shared_ptr<ces_entity> entity = m_entities.front();
-            
-            ces_render_component* render_component = unsafe_get_render_component(entity);
-            assert(render_component);
-            
-            ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
-            assert(transformation_component);
-            
-            ces_animation_component* animation_component = unsafe_get_animation_component(entity);
-            
-            ces_debug_render_component* debug_render_component = unsafe_get_debug_render_component(entity);
-            
-            material_shared_ptr material = render_component->on_bind(m_name);
-            material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
-            
-            if(animation_component)
+            while (!m_entities[i].empty())
             {
-                 material->get_shader()->set_mat4_array(animation_component->get_animation_mixer()->get_transformations(),
-                                                        animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
-            }
-            
-            ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
-            ces_particle_emitter_component* particle_emitter_component = unsafe_get_particle_emitter_component(entity);
-            
-            if(geometry_component)
-            {
-                glm::vec3 min_bound = geometry_component->get_min_bound();
-                glm::vec3 max_bound = geometry_component->get_max_bound();
-                frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
-                if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
-                {
-                    render_component->on_draw(m_name, geometry_component->get_mesh(), material);
-                }
-            }
-            else if(particle_emitter_component)
-            {
-                render_component->on_draw(m_name, particle_emitter_component->get_mesh(), material);
-            }
-            else
-            {
-                assert(false);
-            }
-            
-            if(debug_render_component)
-            {
-                material_shared_ptr material = debug_render_component->on_bind(m_name);
+                std::shared_ptr<ces_entity> entity = m_entities[i].front();
+                
+                ces_render_component* render_component = unsafe_get_render_component(entity);
+                assert(render_component);
+                
+                ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
+                assert(transformation_component);
+                
+                ces_animation_component* animation_component = unsafe_get_animation_component(entity);
+                
+                ces_debug_render_component* debug_render_component = unsafe_get_debug_render_component(entity);
+                
+                material_shared_ptr material = render_component->on_bind(m_name);
                 material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
                 
-                debug_render_component->on_draw(m_name);
-                debug_render_component->on_unbind(m_name);
+                if(animation_component)
+                {
+                    material->get_shader()->set_mat4_array(animation_component->get_animation_mixer()->get_transformations(),
+                                                           animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
+                }
+                
+                ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
+                ces_particle_emitter_component* particle_emitter_component = unsafe_get_particle_emitter_component(entity);
+                
+                if(geometry_component)
+                {
+                    glm::vec3 min_bound = geometry_component->get_min_bound();
+                    glm::vec3 max_bound = geometry_component->get_max_bound();
+                    frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
+                    if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
+                    {
+                        render_component->on_draw(m_name, geometry_component->get_mesh(), material);
+                    }
+                }
+                else if(particle_emitter_component)
+                {
+                    render_component->on_draw(m_name, particle_emitter_component->get_mesh(), material);
+                }
+                else
+                {
+                    assert(false);
+                }
+                
+                if(debug_render_component)
+                {
+                    material_shared_ptr material = debug_render_component->on_bind(m_name);
+                    material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+                    
+                    debug_render_component->on_draw(m_name);
+                    debug_render_component->on_unbind(m_name);
+                }
+                m_entities[i].pop();
             }
-            m_entities.pop();
         }
     }
 }

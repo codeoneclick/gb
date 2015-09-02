@@ -48,7 +48,7 @@ namespace gb
     
     void ces_render_component::set_z_order(i32 z_order)
     {
-        
+        m_z_order = z_order;
     }
     
     i32 ces_render_component::get_z_order(void) const

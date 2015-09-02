@@ -78,6 +78,8 @@
 		21EE3D5B1B96E705000AE51C /* shader_particle_emitter.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D571B96E705000AE51C /* shader_particle_emitter.vert */; };
 		21EE3D5D1B96ECC1000AE51C /* particle_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D5C1B96ECC1000AE51C /* particle_01.png */; };
 		21EE3D5E1B96ECC1000AE51C /* particle_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D5C1B96ECC1000AE51C /* particle_01.png */; };
+		21EE3DB01B970C06000AE51C /* particle_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3DAF1B970C06000AE51C /* particle_02.png */; };
+		21EE3DB11B970C06000AE51C /* particle_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3DAF1B970C06000AE51C /* particle_02.png */; };
 		21FA123A1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */; };
 		21FA123B1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */; };
 		21FA123C1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */; };
@@ -201,6 +203,7 @@
 		21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_particle_emitter.frag; path = ../gbBundle/Shaders/shader_particle_emitter.frag; sourceTree = "<group>"; };
 		21EE3D571B96E705000AE51C /* shader_particle_emitter.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_particle_emitter.vert; path = ../gbBundle/Shaders/shader_particle_emitter.vert; sourceTree = "<group>"; };
 		21EE3D5C1B96ECC1000AE51C /* particle_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = particle_01.png; path = ../gbBundle/Textures/particle_01.png; sourceTree = "<group>"; };
+		21EE3DAF1B970C06000AE51C /* particle_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = particle_02.png; path = ../gbBundle/Textures/particle_02.png; sourceTree = "<group>"; };
 		21FA12361B8F2B7600ACB9A5 /* gameobject.human_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.human_01.xml; path = ../gbBundle/Configurations/game_objects/gameobject.human_01.xml; sourceTree = "<group>"; };
 		21FA12371B8F2B7600ACB9A5 /* gameobject.human_02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.human_02.xml; path = ../gbBundle/Configurations/game_objects/gameobject.human_02.xml; sourceTree = "<group>"; };
 		21FA12381B8F2B7600ACB9A5 /* gameobject.orc_01.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.orc_01.xml; path = ../gbBundle/Configurations/game_objects/gameobject.orc_01.xml; sourceTree = "<group>"; };
@@ -499,6 +502,7 @@
 				21FA12641B8F2C3A00ACB9A5 /* orc_01.png */,
 				21FA12651B8F2C3A00ACB9A5 /* orc_02.png */,
 				21EE3D5C1B96ECC1000AE51C /* particle_01.png */,
+				21EE3DAF1B970C06000AE51C /* particle_02.png */,
 			);
 			name = textures;
 			sourceTree = "<group>";
@@ -622,6 +626,7 @@
 				21FA12681B8F2C3A00ACB9A5 /* human_02.png in Resources */,
 				21B403451B7A0A23003382AB /* Images.xcassets in Resources */,
 				21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
+				21EE3DB01B970C06000AE51C /* particle_02.png in Resources */,
 				21FA12481B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
 				21FA12661B8F2C3A00ACB9A5 /* human_01.png in Resources */,
 				21EE3D5D1B96ECC1000AE51C /* particle_01.png in Resources */,
@@ -690,6 +695,7 @@
 				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
 				21FA123D1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
 				21FA12511B8F2BD300ACB9A5 /* shader_model3d.frag in Resources */,
+				21EE3DB11B970C06000AE51C /* particle_02.png in Resources */,
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				21EE3D5E1B96ECC1000AE51C /* particle_01.png in Resources */,
 				21EE3D5B1B96E705000AE51C /* shader_particle_emitter.vert in Resources */,

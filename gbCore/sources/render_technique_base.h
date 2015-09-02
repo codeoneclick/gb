@@ -10,6 +10,7 @@
 #define render_technique_base_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {

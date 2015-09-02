@@ -20,7 +20,7 @@
         fs_filename="shader_particle_emitter.frag"/>
     <textures>
         <texture
-            filename="particle_01.png"
+            filename="particle_02.png"
             render_operation_name=""
             sampler_index="0"
             wrap_mode="GL_CLAMP_TO_EDGE"

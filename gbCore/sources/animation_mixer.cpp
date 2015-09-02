@@ -25,6 +25,8 @@ namespace gb
     m_current_sequence(nullptr),
     m_previous_sequence(nullptr),
     m_current_animation_name(""),
+    m_current_animation_frame(0),
+    m_blending_animation_frame(0),
     m_is_binded(false)
     {
         assert(skeleton_transfering_data);

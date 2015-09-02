@@ -19,5 +19,5 @@ void main(void)
 {
     gl_Position = u_mat_p * u_mat_v * u_mat_m * vec4(a_position, 1.0);
     v_texcoord = a_texcoord;
-    v_color = a_color;
+    v_color = a_color / 255.0;
 }
