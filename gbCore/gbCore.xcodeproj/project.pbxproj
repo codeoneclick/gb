@@ -80,6 +80,10 @@
 		2173D1FB1B7CC0A9002912BE /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1F81B7CC0A9002912BE /* material.cpp */; };
 		21A8466C1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */; };
 		21A8466D1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */; };
+		21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A846721B96D90B002B95A1 /* particle_emitter.cpp */; };
+		21A846751B96D90B002B95A1 /* particle_emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A846721B96D90B002B95A1 /* particle_emitter.cpp */; };
+		21A846781B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */; };
+		21A846791B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */; };
 		21B404C91B7A0A88003382AB /* b2BroadPhase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B4034F1B7A0A87003382AB /* b2BroadPhase.cpp */; };
 		21B404CA1B7A0A88003382AB /* b2CollideCircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B403511B7A0A87003382AB /* b2CollideCircle.cpp */; };
 		21B404CB1B7A0A88003382AB /* b2CollideEdge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21B403521B7A0A87003382AB /* b2CollideEdge.cpp */; };
@@ -434,6 +438,10 @@
 		21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_particle_emitter_component.cpp; path = sources/ces_particle_emitter_component.cpp; sourceTree = "<group>"; };
 		21A8466B1B95BBAB002B95A1 /* ces_particle_emitter_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_particle_emitter_component.h; path = sources/ces_particle_emitter_component.h; sourceTree = "<group>"; };
 		21A8466E1B95F011002B95A1 /* std_extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = std_extensions.h; path = sources/std_extensions.h; sourceTree = "<group>"; };
+		21A846721B96D90B002B95A1 /* particle_emitter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = particle_emitter.cpp; path = sources/particle_emitter.cpp; sourceTree = "<group>"; };
+		21A846731B96D90B002B95A1 /* particle_emitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = particle_emitter.h; path = sources/particle_emitter.h; sourceTree = "<group>"; };
+		21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_particle_emitter_system.cpp; path = sources/ces_particle_emitter_system.cpp; sourceTree = "<group>"; };
+		21A846771B96DCC9002B95A1 /* ces_particle_emitter_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_particle_emitter_system.h; path = sources/ces_particle_emitter_system.h; sourceTree = "<group>"; };
 		21B402BD1B7A07E9003382AB /* libgbCore-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libgbCore-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21B4034D1B7A0A87003382AB /* Box2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Box2D.h; sourceTree = "<group>"; };
 		21B4034F1B7A0A87003382AB /* b2BroadPhase.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = b2BroadPhase.cpp; sourceTree = "<group>"; };
@@ -1008,6 +1016,8 @@
 				21D78BF51B90574600665BB6 /* ces_animation_system.cpp */,
 				21D78C301B94318600665BB6 /* ces_input_system.h */,
 				21D78C2F1B94318600665BB6 /* ces_input_system.cpp */,
+				21A846771B96DCC9002B95A1 /* ces_particle_emitter_system.h */,
+				21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */,
 			);
 			name = systems;
 			sourceTree = "<group>";
@@ -1699,6 +1709,8 @@
 				21606C611B8DB4EA005EA908 /* model3d_static.cpp */,
 				21D78C281B90AD9700665BB6 /* model3d_animated.h */,
 				21D78C271B90AD9700665BB6 /* model3d_animated.cpp */,
+				21A846731B96D90B002B95A1 /* particle_emitter.h */,
+				21A846721B96D90B002B95A1 /* particle_emitter.cpp */,
 				21DE320D1B8D9FCD0046EDF8 /* scene_graph.h */,
 				21DE320C1B8D9FCD0046EDF8 /* scene_graph.cpp */,
 				21606C5E1B8DB21A005EA908 /* fabricator.h */,
@@ -1950,6 +1962,7 @@
 				21B404F21B7A0A88003382AB /* b2RevoluteJoint.cpp in Sources */,
 				21DE32121B8DA1560046EDF8 /* global_light.cpp in Sources */,
 				21A8466C1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
+				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21B404CC1B7A0A88003382AB /* b2CollidePolygon.cpp in Sources */,
 				212B18831B81B76800FFDCE7 /* quad.cpp in Sources */,
 				21B404FF1B7A0A88003382AB /* pngrutil.c in Sources */,
@@ -2004,6 +2017,7 @@
 				21B405A01B7A1031003382AB /* gl_commands.hpp in Sources */,
 				21606C5F1B8DB21A005EA908 /* fabricator.cpp in Sources */,
 				21B404FC1B7A0A88003382AB /* pngread.c in Sources */,
+				21A846781B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */,
 				212B18931B81CD5400FFDCE7 /* ces_geometry_component.cpp in Sources */,
 				21B406081B7B64FB003382AB /* model_configuration.cpp in Sources */,
 				21B404D21B7A0A88003382AB /* b2CircleShape.cpp in Sources */,
@@ -2121,6 +2135,7 @@
 				21DE32131B8DA1560046EDF8 /* global_light.cpp in Sources */,
 				21C0AB921B7BB0F4004B1B7C /* texture.cpp in Sources */,
 				21A8466D1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
+				21A846751B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
 				212B186E1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
 				21B4053A1B7A0AFA003382AB /* pngrutil.c in Sources */,
@@ -2175,6 +2190,7 @@
 				21B4054F1B7A0AFA003382AB /* crc32.c in Sources */,
 				21606C601B8DB21A005EA908 /* fabricator.cpp in Sources */,
 				2102EB311B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */,
+				21A846791B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */,
 				21B406101B7B662D003382AB /* particle_emitter_configuration.cpp in Sources */,
 				2102EB3C1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */,
 				21B405501B7A0AFA003382AB /* uncompr.c in Sources */,

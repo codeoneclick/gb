@@ -12,6 +12,7 @@
 #include "scene_graph.h"
 #include "camera.h"
 #include "global_light.h"
+#include "particle_emitter.h"
 #include "model3d_animated.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
@@ -24,11 +25,15 @@ gb::game_scene(transition)
     m_models["orc_01"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.orc_01.xml");
     m_models["orc_02"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.orc_02.xml");
     
+    gb::particle_emitter_shared_ptr particle_emitter = game_scene::get_transition()->get_fabricator()->create_particle_emitter("gameobject.particle.emitter.xml");
+    
     game_scene::get_transition()->get_scene_graph()->set_camera(m_camera);
     game_scene::get_transition()->get_scene_graph()->set_global_light(global_light);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["human_02"]);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_01"]);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_02"]);
+    
+    game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter);
     
     m_camera->set_position(glm::vec3(0.f));
     m_camera->set_look_at(glm::vec3(0.f, 1.f, 0.f));

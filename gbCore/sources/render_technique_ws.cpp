@@ -19,6 +19,7 @@
 #include "ces_transformation_component.h"
 #include "ces_animation_component.h"
 #include "ces_debug_render_component.h"
+#include "ces_particle_emitter_component.h"
 
 namespace gb
 {
@@ -122,9 +123,6 @@ namespace gb
             ces_render_component* render_component = unsafe_get_render_component(entity);
             assert(render_component);
             
-            ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
-            assert(geometry_component);
-            
             ces_transformation_component* transformation_component = unsafe_get_transformation_component(entity);
             assert(transformation_component);
             
@@ -141,20 +139,27 @@ namespace gb
                                                         animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
             }
             
+            ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
+            ces_particle_emitter_component* particle_emitter_component = unsafe_get_particle_emitter_component(entity);
             
-            glm::vec3 min_bound = geometry_component->get_min_bound();
-            glm::vec3 max_bound = geometry_component->get_max_bound();
-            /*if(transformation_component)
-             {
-             min_bound = geometry_component->get_mesh()->get_min_bound(ces_transformation_component::get_matrix_m(transformation_component));
-             max_bound = geometry_component->get_mesh()->get_max_bound(ces_transformation_component::get_matrix_m(transformation_component));
-             }*/
-            frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
-            if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
+            if(geometry_component)
             {
-                render_component->on_draw(m_name, geometry_component->get_mesh(), material);
+                glm::vec3 min_bound = geometry_component->get_min_bound();
+                glm::vec3 max_bound = geometry_component->get_max_bound();
+                frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
+                if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
+                {
+                    render_component->on_draw(m_name, geometry_component->get_mesh(), material);
+                }
             }
-
+            else if(particle_emitter_component)
+            {
+                render_component->on_draw(m_name, particle_emitter_component->get_mesh(), material);
+            }
+            else
+            {
+                assert(false);
+            }
             
             if(debug_render_component)
             {

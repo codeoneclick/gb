@@ -153,15 +153,15 @@ namespace gb
                 position = mat_s * position;
                 vertices[i * 4 + 0].m_position = glm::vec3(position.x, position.y, position.z);
                 
-                position = glm::vec4(m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.0f, 1.0f);
+                position = glm::vec4(m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.f, 1.f);
                 position = mat_s * position;
                 vertices[i * 4 + 1].m_position = glm::vec3(position.x, position.y, position.z);
                 
-                position = glm::vec4(m_particles[i].m_size.x, m_particles[i].m_size.y, 0.0f, 1.0f);
+                position = glm::vec4(m_particles[i].m_size.x, m_particles[i].m_size.y, 0.f, 1.f);
                 position = mat_s * position;
                 vertices[i * 4 + 2].m_position = glm::vec3(position.x, position.y, position.z);
                 
-                position = glm::vec4(-m_particles[i].m_size.x, m_particles[i].m_size.y, 0.0f, 1.0f);
+                position = glm::vec4(-m_particles[i].m_size.x, m_particles[i].m_size.y, 0.f, 1.f);
                 position = mat_s * position;
                 vertices[i * 4 + 3].m_position = glm::vec3(position.x, position.y, position.z);
                 
@@ -178,5 +178,10 @@ namespace gb
     {
         m_settings = settings;
         ces_particle_emitter_component::create_particles_mesh();
+    }
+    
+    mesh_shared_ptr ces_particle_emitter_component::get_mesh() const
+    {
+        return m_mesh;
     }
 }

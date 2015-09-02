@@ -1,22 +1,21 @@
 //
-//  ces_animation_system.h
+//  ces_particle_emitter_system.h
 //  gbCore
 //
-//  Created by sergey.sergeev on 8/28/15.
+//  Created by sergey.sergeev on 9/2/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef ces_animation_system_h
-#define ces_animation_system_h
+#ifndef ces_particle_emitter_system_h
+#define ces_particle_emitter_system_h
 
 #include "ces_system.h"
 
 namespace gb
 {
-    class ces_animation_system : public ces_system
+    class ces_particle_emitter_system : public ces_system
     {
     private:
-        
         
     protected:
         
@@ -26,8 +25,8 @@ namespace gb
         
     public:
         
-        ces_animation_system();
-        ~ces_animation_system();
+        ces_particle_emitter_system();
+        ~ces_particle_emitter_system();
     };
 };
 

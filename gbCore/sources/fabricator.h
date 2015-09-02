@@ -42,6 +42,7 @@ namespace gb
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
         model3d_animated_shared_ptr create_model3d_animated(const std::string& filename);
+        particle_emitter_shared_ptr create_particle_emitter(const std::string& filename);
         void destroy_game_object(const game_object_shared_ptr& game_object);
     };
 };

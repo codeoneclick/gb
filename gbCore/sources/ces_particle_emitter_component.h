@@ -42,6 +42,8 @@ namespace gb
         ces_particle_emitter_component();
         ~ces_particle_emitter_component();
         
+        mesh_shared_ptr get_mesh() const;
+        
         void set_settings(const std::shared_ptr<particle_emitter_configuration>& settings);
         void update(f32 deltatime);
     };

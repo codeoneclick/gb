@@ -181,6 +181,9 @@ namespace gb
     
     class touch_listener;
     typedef std::shared_ptr<touch_listener> touch_listener_shared_ptr;
+    
+    class particle_emitter;
+    typedef std::shared_ptr<particle_emitter> particle_emitter_shared_ptr;
 };
 
 #endif

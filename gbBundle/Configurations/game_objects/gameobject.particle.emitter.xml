@@ -28,6 +28,5 @@
     min_emitt_interval="66">
     <materials>
 		<material filename="material.particle.emitter.base.xml"/>
-        <!--<material filename="material.particle.emitter.shadowmap.xml"/>-->
 	</materials>
 </particle_emitter>

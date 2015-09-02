@@ -16,6 +16,7 @@
 #include "global_light.h"
 #include "model3d_static.h"
 #include "model3d_animated.h"
+#include "particle_emitter.h"
 
 namespace gb
 {
@@ -136,6 +137,32 @@ namespace gb
             m_game_objects_container.insert(model3d_animated);
         }
         return model3d_animated;
+    }
+    
+    particle_emitter_shared_ptr fabricator::create_particle_emitter(const std::string& filename)
+    {
+        std::shared_ptr<particle_emitter_configuration> particle_emitter_configuration =
+        std::static_pointer_cast<gb::particle_emitter_configuration>(m_configuration_accessor->get_particle_emitter_configuration(filename));
+        assert(particle_emitter_configuration);
+        particle_emitter_shared_ptr particle_emitter = nullptr;
+        if(particle_emitter_configuration)
+        {
+            particle_emitter = std::make_shared<gb::particle_emitter>();
+            particle_emitter->set_settings(particle_emitter_configuration);
+            
+            for(const auto& iterator : particle_emitter_configuration->get_materials_configurations())
+            {
+                std::shared_ptr<material_configuration> material_configuration =
+                std::static_pointer_cast<gb::material_configuration>(iterator);
+                
+                std::shared_ptr<material> material = material::construct(material_configuration);
+                gb::material::set_shader(material, material_configuration, m_resource_accessor);
+                gb::material::set_textures(material, material_configuration, m_resource_accessor);
+                particle_emitter->add_material(material_configuration->get_render_technique_name(), material);
+            }
+            m_game_objects_container.insert(particle_emitter);
+        }
+        return particle_emitter;
     }
     
     void fabricator::destroy_game_object(const game_object_shared_ptr& game_object)

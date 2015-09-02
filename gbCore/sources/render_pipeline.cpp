@@ -15,6 +15,7 @@
 #include "mesh.h"
 #include "ces_render_component.h"
 #include "ces_geometry_component.h"
+#include "ces_particle_emitter_component.h"
 
 namespace gb
 {
@@ -42,13 +43,24 @@ namespace gb
         {
             std::shared_ptr<render_technique_ws> technique = iterator.second;
             
-            ces_render_component_shared_ptr render_component = std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
-            ces_geometry_component_shared_ptr geometry_component = std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
+            ces_render_component_shared_ptr render_component =
+            std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+            ces_geometry_component_shared_ptr geometry_component =
+            std::static_pointer_cast<ces_geometry_component>(entity->get_component(e_ces_component_type_geometry));
+            ces_particle_emitter_component_shared_ptr particle_emitter_component =
+            std::static_pointer_cast<ces_particle_emitter_component>(entity->get_component(e_ces_component_type_particle_emitter));
             assert(render_component);
-            assert(geometry_component);
             
             material_shared_ptr using_material = render_component->get_material(iterator.first);
-            mesh_shared_ptr mesh = geometry_component->get_mesh();
+            mesh_shared_ptr mesh = nullptr;
+            if(geometry_component)
+            {
+                mesh = geometry_component->get_mesh();
+            }
+            else if(particle_emitter_component)
+            {
+                mesh = particle_emitter_component->get_mesh();
+            }
             
             if(using_material && using_material->get_shader()->is_commited() &&
                mesh && mesh->is_commited())

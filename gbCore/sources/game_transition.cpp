@@ -14,6 +14,7 @@
 #include "ces_render_system.h"
 #include "ces_animation_system.h"
 #include "ces_input_system.h"
+#include "ces_particle_emitter_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
 #include "graphics_context.h"
@@ -134,6 +135,9 @@ namespace gb
         std::shared_ptr<ces_input_system> input_system = std::make_shared<ces_input_system>();
         m_system_feeder->add_system(input_system, e_ces_system_type_input);
         input_context->add_listener(input_system);
+        
+        std::shared_ptr<ces_particle_emitter_system> particle_emitter_system = std::make_shared<ces_particle_emitter_system>();
+        m_system_feeder->add_system(particle_emitter_system, e_ces_system_type_particle_emitter);
         
         add_listener_to_game_loop(m_system_feeder);
         add_listener_to_game_loop(m_scene_graph);
