@@ -29,14 +29,16 @@ namespace gb
         render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index);
         ~render_technique_ws();
         
-        std::shared_ptr<texture> get_color_attachment_texture() const;
-        std::shared_ptr<texture> get_depth_attachment_texture() const;
+        texture_shared_ptr get_color_attachment_texture() const;
+        texture_shared_ptr get_depth_attachment_texture() const;
         
         void bind();
         void unbind();
         void draw();
         
         void add_entity(const ces_entity_shared_ptr& entity);
+        
+        bool is_need_to_draw() const;
     };
 };
 

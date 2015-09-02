@@ -75,10 +75,12 @@ namespace gb
         for(const auto& iterator : m_ws_render_techniques)
         {
             std::shared_ptr<render_technique_ws> technique = iterator.second;
-            
-            technique->bind();
-            technique->draw();
-            technique->unbind();
+            if(technique->is_need_to_draw())
+            {
+                technique->bind();
+                technique->draw();
+                technique->unbind();
+            }
         }
         
         for(const auto& iterator : m_ss_render_techniques)

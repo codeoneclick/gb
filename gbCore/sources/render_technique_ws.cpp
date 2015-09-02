@@ -79,20 +79,20 @@ namespace gb
         m_depth_attachment_texture->set_wrap_mode(GL_CLAMP_TO_EDGE);
     }
     
-    render_technique_ws::~render_technique_ws(void)
+    render_technique_ws::~render_technique_ws()
     {
         
     }
     
-    std::shared_ptr<texture> render_technique_ws::get_color_attachment_texture(void) const
+    std::shared_ptr<texture> render_technique_ws::get_color_attachment_texture() const
     {
-        assert(m_color_attachment_texture != nullptr);
+        assert(m_color_attachment_texture);
         return m_color_attachment_texture;
     }
     
-    std::shared_ptr<texture> render_technique_ws::get_depth_attachment_texture(void) const
+    std::shared_ptr<texture> render_technique_ws::get_depth_attachment_texture() const
     {
-        assert(m_depth_attachment_texture != nullptr);
+        assert(m_depth_attachment_texture);
         return m_depth_attachment_texture;
     }
     
@@ -109,7 +109,19 @@ namespace gb
         m_entities[z_order - 1].push(entity);
     }
     
-    void render_technique_ws::bind(void)
+    bool render_technique_ws::is_need_to_draw() const
+    {
+        for(i32 i = 0; i < m_entities.size(); ++i)
+        {
+            if(!m_entities[i].empty())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    void render_technique_ws::bind()
     {
         gl_bind_frame_buffer(GL_FRAMEBUFFER, m_frame_buffer);
         gl_viewport(0, 0, m_frame_width, m_frame_height);
@@ -117,12 +129,12 @@ namespace gb
         gl_clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     
-    void render_technique_ws::unbind(void)
+    void render_technique_ws::unbind()
     {
         
     }
     
-    void render_technique_ws::draw(void)
+    void render_technique_ws::draw()
     {
         for(i32 i = 0; i < m_entities.size(); ++i)
         {

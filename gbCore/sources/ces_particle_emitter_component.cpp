@@ -61,7 +61,7 @@ namespace gb
         m_particles.clear();
         m_particles.resize(m_settings->get_num_particles());
         
-        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(m_settings->get_num_particles() * 4, GL_STREAM_DRAW);
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(m_settings->get_num_particles() * 4, GL_DYNAMIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
         for(ui32 i = 0; i < m_settings->get_num_particles(); ++i)
         {

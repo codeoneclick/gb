@@ -29,11 +29,11 @@ namespace gb
     public:
         
         render_technique_main(ui32 width, ui32 height, const std::shared_ptr<material> material, ui32 frame_buffer, ui32 render_buffer);
-        ~render_technique_main(void);
+        ~render_technique_main();
         
-        void bind(void);
-        void unbind(void);
-        void draw(void);
+        void bind();
+        void unbind();
+        void draw();
     };
 };
 

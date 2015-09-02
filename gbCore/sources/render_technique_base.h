@@ -30,20 +30,20 @@ namespace gb
     public:
         
         render_technique_base(ui32 width, ui32 height, const std::string& name, ui32 index);
-        virtual ~render_technique_base(void);
+        virtual ~render_technique_base();
         
-        ui32 get_index(void) const;
+        ui32 get_index() const;
         
-        ui32 get_frame_width(void) const;
-        ui32 get_frame_height(void) const;
+        ui32 get_frame_width() const;
+        ui32 get_frame_height() const;
         
-        std::string get_name(void) const;
+        std::string get_name() const;
         
         void set_clear_color(const glm::vec4& color);
         
-        virtual void bind(void) = 0;
-        virtual void unbind(void) = 0;
-        virtual void draw(void) = 0;
+        virtual void bind() = 0;
+        virtual void unbind() = 0;
+        virtual void draw() = 0;
     };
 };
 
