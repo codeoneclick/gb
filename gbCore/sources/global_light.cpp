@@ -31,6 +31,11 @@ namespace gb
         return m_position;
     }
     
+    void global_light::set_position(const glm::vec3& position)
+    {
+        m_position = position;
+    }
+    
     void global_light::set_look_at(const glm::vec3& look_at)
     {
         m_look_at = look_at;
@@ -83,14 +88,14 @@ namespace gb
     
     void global_light::update(f32 deltatime)
     {
-        m_position = glm::vec3(sinf(m_angle) * -m_distance_to_sun + m_rotation_center.x,
+        /*m_position = glm::vec3(sinf(m_angle) * -m_distance_to_sun + m_rotation_center.x,
                                cosf(m_angle) * -m_distance_to_sun + m_rotation_center.y,
                                m_rotation_center.z);
         
         glm::vec3 position(sinf(m_angle) * -m_distance_to_look_at + m_look_at.x,
                            cosf(m_angle) * -m_distance_to_look_at + m_look_at.y,
-                           m_look_at.z);
+                           m_look_at.z);*/
         
-        m_matrix_v = glm::lookAt(position, m_look_at, glm::vec3(0.0, 1.0, 0.0));
+        m_matrix_v = glm::lookAt(m_position, m_look_at, glm::vec3(0.f, 1.f, 0.f));
     }
 }

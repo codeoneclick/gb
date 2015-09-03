@@ -17,6 +17,7 @@
 #include "model3d_static.h"
 #include "model3d_animated.h"
 #include "particle_emitter.h"
+#include "mesh_constructor.h"
 
 namespace gb
 {
@@ -66,8 +67,28 @@ namespace gb
         if(model_configuration)
         {
             model3d_static = std::make_shared<gb::model3d_static>();
-           
-            mesh_shared_ptr mesh = m_resource_accessor->get_mesh(model_configuration->get_mesh_filename());
+            
+            mesh_shared_ptr mesh = nullptr;
+            if(model_configuration->get_mesh_filename().length() != 0)
+            {
+                mesh = m_resource_accessor->get_mesh(model_configuration->get_mesh_filename());
+            }
+            else if(model_configuration->get_mesh_base_class().length() != 0)
+            {
+                if(model_configuration->get_mesh_base_class() == "plane")
+                {
+                    mesh = mesh_constructor::create_plane(glm::vec2(1.f));
+                }
+                else
+                {
+                    assert(false);
+                }
+            }
+            else
+            {
+                assert(false);
+            }
+        
             assert(mesh);
             model3d_static->set_mesh(mesh);
             
@@ -75,7 +96,7 @@ namespace gb
             {
                 std::shared_ptr<material_configuration> material_configuration =
                 std::static_pointer_cast<gb::material_configuration>(iterator);
-            
+                
                 std::shared_ptr<material> material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);

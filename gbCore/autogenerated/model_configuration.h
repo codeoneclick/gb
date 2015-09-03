@@ -15,6 +15,10 @@ std::string get_mesh_filename(void) const;
 #if defined(__EDITOR__)
 void set_mesh_filename(std::string mesh_filename);
 #endif
+std::string get_mesh_base_class(void) const;
+#if defined(__EDITOR__)
+void set_mesh_base_class(std::string mesh_base_class);
+#endif
 i32 get_z_order(void) const;
 #if defined(__EDITOR__)
 void set_z_order(i32 z_order);

@@ -36,6 +36,7 @@ namespace gb
         ~global_light(void);
         
         glm::vec3 get_position(void) const;
+        void set_position(const glm::vec3& position);
         
         void set_look_at(const glm::vec3& look_at);
         glm::vec3 get_look_at(void) const;

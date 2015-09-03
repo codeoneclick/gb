@@ -21,7 +21,7 @@ void main(void)
     vec4 weights = a_extra / 255.0;
     
     int index = 0;
-    vec4 bone_position = vec4(0.0, 0.0, 0.0, 0.0);
+    vec4 bone_position = vec4(0.0);
     
     for(int i = 0; i < 4; i++)
     {

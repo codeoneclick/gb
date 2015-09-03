@@ -125,13 +125,15 @@ namespace gb
     {
         gl_bind_frame_buffer(GL_FRAMEBUFFER, m_frame_buffer);
         gl_viewport(0, 0, m_frame_width, m_frame_height);
+        gl_enable(GL_DEPTH_TEST);
+        gl_depth_mask(GL_TRUE);
         gl_clear_color(m_clear_color.r, m_clear_color.g, m_clear_color.b, m_clear_color.a);
         gl_clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     }
     
     void render_technique_ws::unbind()
     {
-        
+        gl_bind_frame_buffer(GL_FRAMEBUFFER, NULL);
     }
     
     void render_technique_ws::draw()
@@ -183,7 +185,7 @@ namespace gb
                     assert(false);
                 }
                 
-                if(debug_render_component)
+                if(debug_render_component && m_name == "ws.base")
                 {
                     material_shared_ptr material = debug_render_component->on_bind(m_name);
                     material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);

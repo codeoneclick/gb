@@ -16,8 +16,8 @@
     is_shadowing="0"
     is_debugging="1">
     <shader
-        vs_filename="shader_model3d.vert"
-        fs_filename="shader_model3d.frag"/>
+        vs_filename="shader_model3d_animated.vert"
+        fs_filename="shader_model3d_animated.frag"/>
     <textures>
         <texture
             filename="orc_01.png"

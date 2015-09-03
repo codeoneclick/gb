@@ -4,6 +4,7 @@
     is_batching="0">
     <materials>
         <material filename="material.human_02.base.xml"/>
+        <material filename="material.human_02.shadowmap.xml"/>
     </materials>
     <animations>
         <animation name="IDLE" filename="human_02_idle.IE3DANIMATION"/>

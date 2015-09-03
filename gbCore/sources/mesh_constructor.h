@@ -27,6 +27,8 @@ namespace gb
         
         static mesh_shared_ptr create_wireframe_box(const glm::vec3& min_bound,
                                                     const glm::vec3& max_bound);
+        
+        static mesh_shared_ptr create_plane(const glm::vec2& size);
     };
 };
 

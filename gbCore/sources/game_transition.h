@@ -27,6 +27,9 @@ namespace gb
         fabricator_shared_ptr m_fabricator;
         scene_graph_shared_ptr m_scene_graph;
         
+        i32 m_width;
+        i32 m_height;
+        
     protected:
         
         void on_update(f32 deltatime);
@@ -53,6 +56,9 @@ namespace gb
         fabricator_shared_ptr get_fabricator() const;
         scene_graph_shared_ptr get_scene_graph() const;
         ces_system_shared_ptr get_system(e_ces_system_type type);
+        
+        i32 get_width() const;
+        i32 get_height() const;
     };
 };
 

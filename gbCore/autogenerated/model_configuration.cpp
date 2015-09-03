@@ -15,6 +15,19 @@ void model_configuration::set_mesh_filename(std::string mesh_filename)
 configuration::set_attribute("/model/mesh_filename", std::make_shared<configuration_attribute>(mesh_filename));
 }
 #endif
+std::string model_configuration::get_mesh_base_class(void) const
+{
+const auto& iterator = m_attributes.find("/model/mesh_base_class");
+assert(iterator != m_attributes.end());
+std::string value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void model_configuration::set_mesh_base_class(std::string mesh_base_class)
+{
+configuration::set_attribute("/model/mesh_base_class", std::make_shared<configuration_attribute>(mesh_base_class));
+}
+#endif
 i32 model_configuration::get_z_order(void) const
 {
 const auto& iterator = m_attributes.find("/model/z_order");
@@ -94,6 +107,8 @@ pugi::xpath_node node;
 node = document.select_single_node("/model");
 std::string mesh_filename = node.node().attribute("mesh_filename").as_string();
 configuration::set_attribute("/model/mesh_filename", std::make_shared<configuration_attribute>(mesh_filename));
+std::string mesh_base_class = node.node().attribute("mesh_base_class").as_string();
+configuration::set_attribute("/model/mesh_base_class", std::make_shared<configuration_attribute>(mesh_base_class));
 i32 z_order = node.node().attribute("z_order").as_int();
 configuration::set_attribute("/model/z_order", std::make_shared<configuration_attribute>(z_order));
 bool is_batching = node.node().attribute("is_batching").as_bool();
@@ -126,6 +141,9 @@ pugi::xml_attribute attribute;
 attribute = node.append_attribute("mesh_filename");
 std::string mesh_filename = model_configuration::get_mesh_filename();
 attribute.set_value(mesh_filename.c_str());
+attribute = node.append_attribute("mesh_base_class");
+std::string mesh_base_class = model_configuration::get_mesh_base_class();
+attribute.set_value(mesh_base_class.c_str());
 attribute = node.append_attribute("z_order");
 i32 z_order = model_configuration::get_z_order();
 attribute.set_value(z_order);

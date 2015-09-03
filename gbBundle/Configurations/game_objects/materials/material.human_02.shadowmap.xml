@@ -9,15 +9,15 @@
     blending_function_destination="GL_ONE_MINUS_SRC_ALPHA"
     is_cliping="1"
     clipping_x="0.0"
-    clipping_y="-1.0"
+    clipping_y="0.0"
     clipping_z="0.0"
-    clipping_w="-0.25"
+    clipping_w="0.0"
     is_reflecting="0"
     is_shadowing="0"
     is_debugging="0">
     <shader
-        vs_filename="shaderAnimatedGameObjectND.vert"
-        fs_filename="shaderAnimatedGameObjectND.frag"/>
+    vs_filename="shader_model3d_animated_nd.vert"
+    fs_filename="shader_model3d_animated_nd.frag"/>
     <textures>
     </textures>
 </material>
