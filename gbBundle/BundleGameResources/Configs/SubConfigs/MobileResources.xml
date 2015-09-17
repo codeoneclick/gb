@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><mobileResources>
+        	<resource assetId="21286" name="Explosion" />
+        	<resource assetId="22554" name="TapFloor" />
+        	<resource assetId="22585" name="Coin" />
+        	<resource assetId="22605" name="Vortex" />
+        	<resource assetId="22917" name="CashBlink" />
+        	<resource assetId="22918" name="CoinsBlink" />
+        	<resource assetId="22919" name="XPBlink" />
+        	<resource assetId="29887" name="FUEshower" />
+        	<resource assetId="29888" name="FUEtshirt" />
+        	<resource assetId="29890" name="FUEcouch" />
+        	<resource assetId="30775" name="Water" />
+        	<resource assetId="31053" name="GBBonus" />
+        	<resource assetId="31054" name="Head" />
+        	<resource assetId="31055" name="Torso" />
+        	<resource assetId="31066" name="HangerTop" />
+        	<resource assetId="31067" name="HangerBottom" />
+        	<resource assetId="31081" name="FUEarrow" />
+        	<resource assetId="32716" name="TapJuicer" />
+        	<resource assetId="33526" name="WalkingPetBlue" />
+        	<resource assetId="34230" name="All20NeighborsBonus" />
+        	<resource assetId="34231" name="AllNeighborsBonus" />
+        	<resource assetId="35498" name="FUEarrowSmall" />
+        	<resource assetId="36939" name="WhiteProgressSpinner" />
+        	<resource assetId="46157" name="FUEstorageArrow" />
+        	<resource assetId="46811" name="NurtureFinger" />
+        	<resource assetId="21920" name="Tiny hands movement closer-further from body" />
+        	<resource assetId="21921" name="Little shifting from foot to foot" />
+        	<resource assetId="21923" name="Curious looking to sides with legs movement" />
+        	<resource assetId="21924" name="Playful shifting toes to heels" />
+        	<resource assetId="21925" name="Curious looking to sides" />
+        	<resource assetId="21926" name="Playful shifting from leg to leg looking up" />
+        	<resource assetId="21927" name="Squeazing up and down looking down" />
+        	<resource assetId="21928" name="Scratching one leg with the other" />
+        	<resource assetId="21929" name="Playful Quick Tapping Feet" />
+        	<resource assetId="21930" name="sliding legs to the sides" />
+        	<resource assetId="21931" name="curious looking at left foot" />
+        	<resource assetId="21932" name="looking up then dirting shoe off" />
+        	<resource assetId="21933" name="standing on legs with split" />
+        	<resource assetId="21935" name="shifting from leg to leg looking at us" />
+        	<resource assetId="21936" name="playful split on the floor" />
+        	<resource assetId="21937" name="shy moving left leg " />
+        	<resource assetId="21939" name="dancing twist" />
+        	<resource assetId="21941" name="cooking dance" />
+        	<resource assetId="21945" name="thinking about something" />
+        	<resource assetId="21948" name="quick split on floor and back up" />
+        	<resource assetId="21958" name="sigh with murring at us" />
+        	<resource assetId="21968" name="Idle Swaying Almost Falling" />
+        	<resource assetId="22000" name="somersault" />
+        	<resource assetId="22378" name="Idle" />
+        	<resource assetId="25900" name="Talk" />
+    </mobileResources>

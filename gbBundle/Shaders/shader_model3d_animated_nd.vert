@@ -1,19 +1,19 @@
 
 #if defined(__OPENGL_30__)
 
-out vec4 v_position;
+out vec2 v_depth;
 
 #else
 
-varying vec4 v_position;
+varying vec2 v_depth;
 
 #endif
 
 uniform mat4 u_mat_m;
 uniform mat4 u_mat_bones[32];
 uniform vec4 u_vec_clip;
-uniform mat4 u_mat_global_light_p;
-uniform mat4 u_mat_global_light_v;
+uniform mat4 u_mat_v;
+uniform mat4 u_mat_p;
 
 void main(void)
 {
@@ -31,7 +31,8 @@ void main(void)
     position = bone_position;
     
     position = u_mat_m * position;
-    gl_Position = u_mat_global_light_p * u_mat_global_light_v * position;
+    gl_Position = u_mat_p * u_mat_v * position;
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
-    v_position = position;
+    v_depth.x = position.z;
+    v_depth.y = position.w;
 }

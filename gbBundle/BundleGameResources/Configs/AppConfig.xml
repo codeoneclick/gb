@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><appConfig>
+    <baseUrl url="http://pbcdn1.wuzy.net/pets/facebook/" />
+    <apiUrl url="http://mobileapi.wuzy.net/" />
+    <configItems>
+    	<config type="HouseParts" url="live/mobile/xml/mob_HouseParts-e63ff0b6a7eb5194f28d8373537f4a39.xml" bundleName="HouseParts.xml"/>
+        <config type="Tamatools" url="live/mobile/xml/mob_Tamatools-e4a1439dc38279737497a34f7e055b03.xml" bundleName="Tamatools.xml"/>
+    	<config type="NeighborActivities" url="live/mobile/xml/mob_NeighborActivities-f9a980f14206bc97269be67b69721e7f.xml" bundleName="NeighborActivities.xml"/>
+    	<config type="FCDAssets" url="live/mobile/xml/mob_FCDAssets-894bdf4dc3a961d7dcb8969c4fddaf23.xml" bundleName="FCDAssets.xml"/>
+        <config type="Awards" url="live/mobile/xml/mob_Awards-0a70ce68a7467047a71f057a066aa113.xml" bundleName="Awards.xml"/>
+        <config type="Levels" locale="en-US" url="live/mobile/xml/mob_Levels-457721ad46fcc4e46306b3dba05d7778.xml" bundleName="Levels_en-US.xml"/>
+        <config type="LearningItems" locale="en-US" url="live/mobile/xml/mob_LearningItems-9e52cf647d63df35ad4568c83d94049f.xml" bundleName="LearningItems_en-US.xml"/>
+        <config type="IngredientsAndFood" locale="en-US" url="live/mobile/xml/mob_IngredientsAndFood-ce0204a98f8ca9ff74d0fd5e69128591.xml" bundleName="IngredientsAndFood_en-US.xml"/>
+        <config type="WorldMenu" url="live/mobile/xml/mob_WorldMenu-e3bc13ea155e7f349e41cb03885af534.xml" bundleName="WorldMenu.xml"/>
+        <config type="PetAnimations" url="live/mobile/xml/mob_PetAnimations-51270f887f78210840eb5b7bb766a864.xml" bundleName="PetAnimations.xml"/>
+        <config type="PetIntellect" url="live/mobile/xml/mob_PetIntellect-3eeba2249805b3d63c38272655272a09.xml" bundleName="PetIntellect.xml"/>
+        <config type="DailyAssets" url="live/mobile/xml/mob_DailyAssets-8ea3c805ca53cab195298acbc810c522.xml" bundleName="DailyAssets.xml"/>
+        <config type="Consumables" url="live/mobile/xml/mob_Consumables-47c4f55829df2ff3bfe3a1b2423a563e.xml" bundleName="Consumables.xml"/>
+        <config type="MobileResources" url="live/mobile/xml/mob_MobileResources-89d5c15c5bfb546a1b388c88d2e50956.xml" bundleName="MobileResources.xml"/>
+        <config type="RandomAwards" url="live/mobile/xml/mob_RandomAwards-8bd4893c5b6d48ed37d6c60921866108.xml" bundleName="RandomAwards.xml"/>
+        <config type="MiscEvents" url="live/mobile/xml/mob_MiscEvents-621ef63ddf43c44eefb35904c0dfe4bf.xml" bundleName="MiscEvents.xml"/>
+        <config type="Plants" url="live/mobile/xml/mob_Plants-9a90e1886be1eea19106546a9364482d.xml" bundleName="Plants.xml"/>
+        <config type="Offers" url="live/mobile/xml/mob_Offers-81b9a209b1badd95f9022d1fc976c100.xml" bundleName="Offers.xml"/>
+        <config type="Collections" url="live/mobile/xml/mob_Collections-63311a551410a18a2acc2f0e92f0728f.xml" bundleName="Collections.xml"/>
+        <config type="Sounds" url="live/mobile/xml/mob_Sounds-65fde875b9d04936463aaa614406f590.xml" bundleName="Sounds.xml" />
+        <config type="SpecialAwards" url="live/mobile/xml/mob_SpecialAwards-26abbc67783006276d269626b38236ee.xml" bundleName="SpecialAwards.xml" />
+        <config type="NavigationObjects" url="live/mobile/xml/mob_NavigationObjects-5b8d3ef3e60879225cfcbe686e2e1769.xml" bundleName="NavigationObjects.xml" />
+        <config type="FacebookGroups" url="live/mobile/xml/mob_FacebookGroups-bb2aa1173ec3995a1e98f9f12d47d710.xml" bundleName="FacebookGroups.xml" />
+        <config type="HairDyes" url="live/mobile/xml/mob_HairDyes-419b660045a705707f19ae28c5a1ebea.xml" bundleName="HairDyes.xml" />
+        <config type="LocalNotifications" url="live/mobile/xml/mob_LocalNotifications-133f2c9b9f19b52dd49aaa9a8caed02f.xml" bundleName="LocalNotifications.xml" />
+        <config type="TrackingEvents" url="live/mobile/xml/mob_TrackingEvents-5b0ed6fb29bd6f1491ac7f3de6eec4c9.xml" bundleName="TrackingEvents.xml" />
+        <config type="PetCustomizations" url="live/mobile/xml/mob_PetCustomizations-b47ad01267675efe2ff372e103a5a2d0.xml" bundleName="PetCustomizations.xml" />
+
+        <config type="Assets" bundleName="Assets.json"/>
+        <config type="DefaultNeighbors" bundleName="DefaultNeighbors.json"/>
+    </configItems>
+</appConfig>

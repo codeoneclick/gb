@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fcdAssets>
+    <days>
+            		<day order="1">
+    			<assets>
+                                            			<asset id="22412" placement="room" placementCoordinates="1,0,0,1,250,130"/>
+                                            			<asset id="87" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1084" placement="pet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1804" placement="pet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="349" placement="pet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2207" placement="room" placementCoordinates="1,0,0,1,355,215"/>
+                                            			<asset id="110" placement="room" placementCoordinates="1,0,0,1,774,215"/>
+                                            			<asset id="32685" placement="room" placementCoordinates="1,0,0,1,729,420"/>
+                                            			<asset id="931" placement="room" placementCoordinates="1,0,0,1,360,600"/>
+                                            			<asset id="827" placement="room" placementCoordinates="1,0,0,1,707,600"/>
+                                            			<asset id="2116" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="472" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="178" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="31121" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="31118" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="34493" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1796" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="115" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="21046" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1818" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1838" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2154" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1860" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="4300" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1184" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2027" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2058" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="485" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2078" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2416" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="40285" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="38622" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="40072" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="39897" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1806" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="29629" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="4278" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2030" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="41729" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="2619" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="116" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="3092" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="3126" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="1445" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="12457" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="32818" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="37505" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                                            			<asset id="16656" placement="closet" placementCoordinates="1,0,0,1,0,0"/>
+                        		</assets>
+        	</day>
+            		<day order="2">
+    			<assets>
+                                            			<asset id="41683" placement="storage" placementCoordinates="1,0,0,1,0,0"/>
+                        		</assets>
+        	</day>
+            </days>
+</fcdAssets>

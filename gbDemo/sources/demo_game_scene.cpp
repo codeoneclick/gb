@@ -21,7 +21,7 @@ gb::game_scene(transition)
     m_camera = game_scene::get_transition()->get_fabricator()->create_camera(45.f, .1f, 128.f, glm::ivec4(0.f, 0.f,
                                                                                                            game_scene::get_transition()->get_width(),
                                                                                                            game_scene::get_transition()->get_height()));
-    gb::global_light_shared_ptr global_light = game_scene::get_transition()->get_fabricator()->create_global_light(45.f , .1f, 128.f);
+    m_global_light = game_scene::get_transition()->get_fabricator()->create_global_light(45.f , .1f, 128.f);
     
     m_models["human_02"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.human_02.xml");
     m_models["orc_01"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.orc_01.xml");
@@ -35,7 +35,7 @@ gb::game_scene(transition)
     plane->set_position(glm::vec3(-4.f, 0.f, -4.f));
     
     game_scene::get_transition()->get_scene_graph()->set_camera(m_camera);
-    game_scene::get_transition()->get_scene_graph()->set_global_light(global_light);
+    game_scene::get_transition()->get_scene_graph()->set_global_light(m_global_light);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["human_02"]);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_01"]);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_02"]);
@@ -52,12 +52,8 @@ gb::game_scene(transition)
     particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
     particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
     
-    //global_light->set_angle(0.f);
-    //global_light->set_distance_to_sun(4.f);
-    //global_light->set_distance_to_look_at(4.f);
-    //global_light->set_rotation_center(glm::vec3(0.f, .0f, 0.f));
-    global_light->set_position(glm::vec3(-4.f, 8.f, 4.f));
-    global_light->set_look_at(glm::vec3(0.f, 1.f, 0.f));
+    m_global_light->set_position(glm::vec3(-4.f, 8.f, 4.f));
+    m_global_light->set_look_at(glm::vec3(0.f, 1.f, 0.f));
     
     m_models["human_02"]->set_rotation(glm::vec3(0.f, -45.f, 0.f));
     m_models["orc_01"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
@@ -80,6 +76,15 @@ void demo_game_scene::update(f32 deltatime)
     m_models["human_02"]->set_animation("IDLE");
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
+    
+    /*
+     static f32 angle = 0.f;
+     angle += 0.01f;
+     glm::vec2 light_xz_position = glm::vec2(0.f);
+     light_xz_position.x = m_global_light->get_look_at().x + cosf(angle) * -4.f;
+     light_xz_position.y = m_global_light->get_look_at().z + sinf(angle) * -4.f;
+     m_global_light->set_position(glm::vec3(light_xz_position.x, 8.f, light_xz_position.y));
+     */
 }
 
 void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,

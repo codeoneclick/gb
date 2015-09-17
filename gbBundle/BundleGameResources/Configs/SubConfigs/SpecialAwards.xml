@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><specialAwards>
+            <specialAwardDay dateFrom="1344063600" dateTo="1344063600" iconAssetId="32876" comment="Only today Ball and Hulahoop have GC awards!" >
+                            <specialAward activityType="tamatool" activityId="11" awardId="18584" />
+                            <specialAward activityType="tamatool" activityId="12" awardId="18585" />
+                    </specialAwardDay>
+            <specialAwardDay dateFrom="1354348800" dateTo="1356940800" iconAssetId="23027" comment="test 2" >
+                            <specialAward activityType="neighbor_activity" activityId="26" awardId="18586" />
+                            <specialAward activityType="tamatool" activityId="13" awardId="18587" />
+                    </specialAwardDay>
+    </specialAwards>

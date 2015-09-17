@@ -18,6 +18,7 @@ class demo_game_scene : public gb::game_scene, public gb::touch_listener
 private:
     
     gb::camera_shared_ptr m_camera;
+    gb::global_light_shared_ptr m_global_light;
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     
 protected:

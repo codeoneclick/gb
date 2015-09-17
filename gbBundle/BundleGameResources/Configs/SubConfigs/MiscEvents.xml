@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<miscEventsConfiguration>
+    <petCreatedAward awardId="19672" />
+    <fueFinishedAward awardId="19671" />
+    <ratePollAward awardId="19673" />
+    <fullShopsLoadedAsset assetId="31682" placementCoordinates="1,0,0,1,820,130" />
+    <fbFirstLoginAsset assetId="31684" placementCoordinates="1,0,0,1,850,130" />
+    <fbFirstLikeAsset assetId="31683" placementCoordinates="1,0,0,1,880,130" />
+    <fbFirstNeighborAsset assetId="31681" placementCoordinates="1,0,0,1,910,130" />
+    <dailyLimitFreeGifts count="80" />
+    <dailyLimitAsks count="20" />
+    <appStatusCheckTimer seconds="60" />
+    <appStatusUpdateReminderTimer seconds="60" />
+    <userDataSynchTimer seconds="5" />
+    <eventsTrackingUploadTimer seconds="30" />
+    <maxAddMeRequestsPerDay count="40" />
+    <maxNeighborToBeInAddMe count="60" />
+    <maxReqestsAddMeUserPerDay count="10" />
+    <pushEnableReminder level="4" awardId="19674" />
+    <enableNativeX value="0" />
+    <enableFiksu value="0" />
+    <freeGiftsDelay seconds="3600"/>
+    <friendInvitedAward amount="2"/>
+    <maxNurtureIdleTime seconds="6"/>
+    <maxNurtureInteractionTime seconds="180"/>
+    <maxFunnyMessages count="2"/>
+    <roomFurnishedAward awardId="19675"/>
+    <nurtureAwardTimeout seconds="60"/>
+    <nurtureAward awardId=""/>
+    <maxNurtureInteractions count="8"/>
+    <tier1MaxGifting amount="10" />
+    <tier2MaxGifting amount="20" />
+    <tier3MaxGifting amount="30" />
+    <tier4MaxGifting amount="40" />
+</miscEventsConfiguration>

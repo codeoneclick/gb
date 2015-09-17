@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><localNotifications>
+            <notification id="food_finished" button="View">
+                            <message>@USER_PET_NAME@ is ready for another yummy meal in its tummy!</message>
+                            <message>@USER_PET_NAME@ could use another bite!</message>
+                    </notification >
+            <notification id="pet_care_not_done" button="View">
+                            <message>Wash, Brush, Hug...Blush :)  Get Pet Care done or @USER_PET_NAME@ starts a fuss.</message>
+                    </notification >
+            <notification id="pet_wake_up" button="View">
+                            <message>@USER_PET_NAME@ slept well and is up and about!</message>
+                    </notification >
+            <notification id="visit_reminder_1" button="View">
+                            <message>@USER_PET_NAME@ is waiting to blow you a kiss. Come visit!</message>
+                    </notification >
+            <notification id="visit_reminder_3" button="View">
+                            <message>Unattended cutie is hoping you&#039;ll stop by soon!</message>
+                    </notification >
+            <notification id="visit_reminder_7" button="View">
+                            <message>@USER_PET_NAME@ misses you and hopes you&#039;ll stop by!</message>
+                    </notification >
+            <notification id="visit_reminder_10" button="View">
+                            <message>Been a long time. @USER_PET_NAME@ would love your company!</message>
+                    </notification >
+            <notification id="weekend_reminder" button="View">
+                            <message>Weekends...Such a perfect time to play with @USER_PET_NAME@</message>
+                    </notification >
+            <notification id="funny_message" button="View">
+                            <message>Don&#039;t forget to smile :)</message>
+                            <message>Never run out of hugs and cookies &lt;3</message>
+                    </notification >
+    </localNotifications>

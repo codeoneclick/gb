@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><shop width="2150" wallAssetId="31119" floorAssetId="31104">
+    <shopItems>
+    		<shopItem assetId="4929" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1724,351" zIndex="0" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="4929" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1124,351" zIndex="1" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="4929" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,525,351" zIndex="2" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="30598" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1238,353" zIndex="3" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="2776" pricetagPlacementCoordinates="1,0,0,1,-52.3,-78.45" assetPlacementCoordinates="1,0,0,1,1582,288.6" zIndex="4" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1160,239" zIndex="5" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="2776" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,881,285" zIndex="6" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,-27.8,-27.8" assetPlacementCoordinates="1,0,0,1,1281.8,134.8" zIndex="7" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,-27.8,-27.8" assetPlacementCoordinates="1,0,0,1,1109.8,136.8" zIndex="8" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="9866" pricetagPlacementCoordinates="1,0,0,1,-61,-20" assetPlacementCoordinates="1,0,0,1,1584,295" zIndex="9" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,-27.8,-27.8" assetPlacementCoordinates="1,0,0,1,1192.8,133.8" zIndex="10" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="9867" pricetagPlacementCoordinates="1,0,0,1,-72,-39" assetPlacementCoordinates="1,0,0,1,1582,255" zIndex="11" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="675" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,471,80" zIndex="12" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="3347" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,886,350" zIndex="13" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="17987" pricetagPlacementCoordinates="1,0,0,1,-36,-65" assetPlacementCoordinates="1,0,0,1,1190.95,155.6" zIndex="14" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="7287" pricetagPlacementCoordinates="1,0,0,1,57,-23" assetPlacementCoordinates="1,0,0,1,883,292" zIndex="15" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="3347" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1702,374" zIndex="16" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="24126" pricetagPlacementCoordinates="1,0,0,1,74,-44" assetPlacementCoordinates="1,0,0,1,881,254" zIndex="17" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1097,239" zIndex="18" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="6555" pricetagPlacementCoordinates="1,0,0,1,24,-14" assetPlacementCoordinates="1,0,0,1,884,325" zIndex="19" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="16029" pricetagPlacementCoordinates="1,0,0,1,-29,-60" assetPlacementCoordinates="1,0,0,1,1102.25,255.8" zIndex="20" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1230,242" zIndex="21" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="10544" pricetagPlacementCoordinates="1,0,0,1,-21,-61" assetPlacementCoordinates="1,0,0,1,1160.85,255.15" zIndex="22" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="2776" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1703,311" zIndex="23" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1307,238" zIndex="24" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1367,132" zIndex="25" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="2776" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,764,301" zIndex="26" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="6508" pricetagPlacementCoordinates="1,0,0,1,-25,-65" assetPlacementCoordinates="1,0,0,1,1229.85,256.95" zIndex="27" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="3347" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1582,352" zIndex="28" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="1024" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1375,239" zIndex="29" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="10586" pricetagPlacementCoordinates="1,0,0,1,4,-4" assetPlacementCoordinates="1,0,0,1,1187,298" zIndex="30" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="339" pricetagPlacementCoordinates="1,0,0,1,-36,-58" assetPlacementCoordinates="1,0,0,1,1308,251" zIndex="31" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="3347" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,766,364" zIndex="32" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="385" pricetagPlacementCoordinates="1,0,0,1,-26,-61" assetPlacementCoordinates="1,0,0,1,1373,256" zIndex="33" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="485" pricetagPlacementCoordinates="1,0,0,1,-38,-57" assetPlacementCoordinates="1,0,0,1,1368,148" zIndex="34" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="8555" pricetagPlacementCoordinates="1,0,0,1,78,-10" assetPlacementCoordinates="1,0,0,1,1702,275" zIndex="35" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="17450" pricetagPlacementCoordinates="1,0,0,1,-38,-68" assetPlacementCoordinates="1,0,0,1,1111,157" zIndex="36" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="10545" pricetagPlacementCoordinates="1,0,0,1,-6,-9" assetPlacementCoordinates="1,0,0,1,1586,325" zIndex="37" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="2133" pricetagPlacementCoordinates="1,0,0,1,-2,-6" assetPlacementCoordinates="1,0,0,1,1263,300" zIndex="38" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="29377" pricetagPlacementCoordinates="1,0,0,1,31,18" assetPlacementCoordinates="1,0,0,1,767,335" zIndex="39" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="6507" pricetagPlacementCoordinates="1,0,0,1,-35,-68" assetPlacementCoordinates="1,0,0,1,1281,159" zIndex="40" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="9640" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,474,313" zIndex="41" showPrice="1" dontSell="1" phaseOut="0" description="" />
+    		<shopItem assetId="723" pricetagPlacementCoordinates="1,0,0,1,-122.65,-91.55" assetPlacementCoordinates="1,0,0,1,466.65,331.55" zIndex="42" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="4929" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,2160,351" zIndex="43" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="37085" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,882,216" zIndex="44" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="37092" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="0.99755859375,-0.06976318359375,0.06976318359375,0.99755859375,763,229" zIndex="45" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="37085" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1577,215" zIndex="46" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="37092" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="0.998626708984375,0.052337646484375,-0.052337646484375,0.998626708984375,1700,236" zIndex="47" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="26493" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,767,268" zIndex="48" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="6580" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1347,305" zIndex="49" showPrice="1" dontSell="0" phaseOut="0" description="" />
+    		<shopItem assetId="6554" pricetagPlacementCoordinates="1,0,0,1,0,0" assetPlacementCoordinates="1,0,0,1,1119,306" zIndex="50" showPrice="1" dontSell="0" phaseOut="0" description="" />
+        </shopItems>
+
+    <shopCollapsibleAreas>
+        </shopCollapsibleAreas>
+</shop>

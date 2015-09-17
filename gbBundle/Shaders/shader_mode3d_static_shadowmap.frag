@@ -13,22 +13,19 @@ varying vec4 v_shadow_parameters;
 uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
 
-const vec2 camera_range = vec2(0.1, 1024.0);
+uniform float u_f32_camera_near;
+uniform float u_f32_camera_far;
 
 float get_shadow_map_pass_depth(in vec2 texcoord)
 {
-    float near_z = camera_range.x;
-    float far_z = camera_range.y;
     float depth = texture2D(sampler_02, texcoord).x;
-    return (2.0 * near_z) / (near_z + far_z - depth * (far_z - near_z));
+    return (2.0 * u_f32_camera_near) / (u_f32_camera_near + u_f32_camera_far - depth * (u_f32_camera_far - u_f32_camera_near));
 }
 
 float get_current_depth(in float z)
 {
     float depth = z;
-    float near_z = camera_range.x;
-    float far_z = camera_range.y;
-    depth = (2.0 * near_z) / (near_z + far_z - depth * (far_z - near_z));
+    depth = (2.0 * u_f32_camera_near) / (u_f32_camera_near + u_f32_camera_far - depth * (u_f32_camera_far - u_f32_camera_near));
     return depth;
 }
 

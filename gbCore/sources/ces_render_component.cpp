@@ -134,9 +134,26 @@ namespace gb
     void ces_render_component::bind_main_shader_uniforms(const material_shared_ptr& material)
     {
         camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
-        material->get_shader()->set_mat4(camera->get_matrix_p(), e_shader_uniform_mat_p);
-        material->get_shader()->set_mat4(!material->is_reflecting() ?
-                                         camera->get_matrix_v() : camera->get_matrix_i_v(), e_shader_uniform_mat_v);
+        global_light_shared_ptr global_light = ces_base_component::get_scene_graph()->get_global_light();
+        
+        glm::mat4 matrix_p = material->is_shadowing() ? global_light->get_matrix_p() : camera->get_matrix_p();
+        glm::mat4 matrix_v;
+        
+        if(material->is_reflecting())
+        {
+            matrix_v = camera->get_matrix_i_v();
+        }
+        else if(material->is_shadowing())
+        {
+            matrix_v = global_light->get_matrix_v();
+        }
+        else
+        {
+            matrix_v = camera->get_matrix_v();
+        }
+        
+        material->get_shader()->set_mat4(matrix_p, e_shader_uniform_mat_p);
+        material->get_shader()->set_mat4(matrix_v, e_shader_uniform_mat_v);
         material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
         
         material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
@@ -144,13 +161,12 @@ namespace gb
         material->get_shader()->set_f32(camera->get_far(), e_shader_uniform_f32_camera_far);
         material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
         
-        global_light_shared_ptr global_light = ces_base_component::get_scene_graph()->get_global_light();
         material->get_shader()->set_vec3(global_light->get_position(), e_shader_uniform_vec_global_light_position);
         material->get_shader()->set_mat4(global_light->get_matrix_p(), e_shader_uniform_mat_global_light_p);
         material->get_shader()->set_mat4(global_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
     }
     
-    std::shared_ptr<material> ces_render_component::on_bind(const std::string& technique_name)
+    material_shared_ptr ces_render_component::on_bind(const std::string& technique_name)
     {
         material_shared_ptr material = ces_render_component::get_material(technique_name);
         assert(material);
@@ -175,7 +191,7 @@ namespace gb
         using_material->unbind();
     }
 
-    void ces_render_component::on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh, const material_shared_ptr& material)
+    void ces_render_component::on_draw(const std::string& technique_name, const mesh_shared_ptr& mesh, const material_shared_ptr& material)
     {
         material_shared_ptr using_material = material;
         if(!using_material)

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><ingredientsAndFood>
+	<ingredientsConfig>
+        <probabilities>
+                            <chance min="20" probability="100" />
+                            <chance min="21" probability="5" />
+            		</probabilities>
+    	<ingredients>
+                                            <ingredient id="1" assetId="32570" name="California Strawberries" minLevel="8" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="2" assetId="32576" name="Juicy Navel Orange" minLevel="8" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="3" assetId="32580" name="Seedless Red Grapes" minLevel="30" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="4" assetId="32571" name="Cantaloupe" minLevel="30" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="5" assetId="32574" name="Firm Blueberries" minLevel="4" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="6" assetId="32581" name="Steamed Rice" minLevel="11" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="7" assetId="32577" name="Organic Broccoli" minLevel="11" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="8" assetId="32578" name="Red Bell Pepper" minLevel="11" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="9" assetId="32573" name="Cucumber Slices" minLevel="19" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="10" assetId="32583" name="Vine Ripened Tomato" minLevel="19" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="11" assetId="32579" name="Scoop of Granola" minLevel="27" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="12" assetId="32566" name="Aged Balsamic Vinegar" minLevel="19" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="13" assetId="32575" name="Honey Roasted Peanuts" minLevel="2" groupId="2" giftable="0" askable="0" />
+                                            <ingredient id="14" assetId="32568" name="Baby Carrots" minLevel="1" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="15" assetId="32572" name="Chopped Parsely" minLevel="1" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="16" assetId="32567" name="Asparagus" minLevel="1" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="17" assetId="32569" name="Butter Cubes" minLevel="1" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="18" assetId="32582" name="Yellow Corn" minLevel="1" groupId="1" giftable="1" askable="1" />
+                                            <ingredient id="19" assetId="32665" name="Hazelnuts" minLevel="1" groupId="2" giftable="0" askable="0" />
+                                            <ingredient id="20" assetId="32664" name="Brazil Nuts" minLevel="1" groupId="4" giftable="0" askable="0" />
+                                            <ingredient id="21" assetId="32663" name="Pine Nuts" minLevel="1" groupId="4" giftable="0" askable="0" />
+                    </ingredients>
+	</ingredientsConfig>
+    <ingredientsSets>
+                    <ingredientsSet id="1" qty="10" cash="3"/>
+                    <ingredientsSet id="2" qty="25" cash="10"/>
+                    <ingredientsSet id="3" qty="75" cash="15"/>
+            </ingredientsSets>
+    <meals>
+                    <meal id="1" assetId="32611" name="Steamed Asparagus" awardId="18023" minLevel="1" duration="300" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="16" qty="1" />
+                                            <ingredient id="17" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="2" assetId="32607" name="Cut Yellow Corn" awardId="18024" minLevel="1" duration="900" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="15" qty="1" />
+                                            <ingredient id="18" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="3" assetId="32603" name="Baby Carrots" awardId="18025" minLevel="1" duration="600" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="14" qty="1" />
+                                            <ingredient id="17" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="4" assetId="32609" name="Honey Roasted Peanuts" awardId="18026" minLevel="2" duration="1800" awardIconAssetId="38081">
+                <ingredients>
+                                                                <ingredient id="13" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="5" assetId="32604" name="Blueberries" awardId="18027" minLevel="4" duration="3600" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="5" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="6" assetId="32606" name="Broccoli Rice" awardId="18028" minLevel="8" duration="7200" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="6" qty="1" />
+                                            <ingredient id="7" qty="1" />
+                                            <ingredient id="8" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="7" assetId="32610" name="Mixed Fruit" awardId="18029" minLevel="11" duration="14400" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="1" qty="1" />
+                                            <ingredient id="2" qty="1" />
+                                            <ingredient id="5" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="8" assetId="32612" name="Tomato Cucumber Salad" awardId="18030" minLevel="19" duration="28800" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="9" qty="1" />
+                                            <ingredient id="10" qty="1" />
+                                            <ingredient id="12" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="9" assetId="32608" name="Fruit salad in a Cantaloupe" awardId="18031" minLevel="22" duration="43200" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="1" qty="1" />
+                                            <ingredient id="2" qty="1" />
+                                            <ingredient id="3" qty="1" />
+                                            <ingredient id="4" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="10" assetId="32613" name="Cucumber Salad" awardId="18032" minLevel="27" duration="64800" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="7" qty="1" />
+                                            <ingredient id="9" qty="1" />
+                                            <ingredient id="10" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="11" assetId="32605" name="Blueberry Granola Crunch" awardId="18033" minLevel="30" duration="86400" awardIconAssetId="0">
+                <ingredients>
+                                                                <ingredient id="5" qty="1" />
+                                            <ingredient id="11" qty="1" />
+                                            <ingredient id="13" qty="1" />
+                                    </ingredients>
+            </meal>
+                    <meal id="12" assetId="32661" name="Hazelnuts" awardId="18034" minLevel="1" duration="60" awardIconAssetId="38081">
+                <ingredients>
+                                                                <ingredient id="19" qty="1" />
+                                    </ingredients>
+            </meal>
+            </meals>
+</ingredientsAndFood>
