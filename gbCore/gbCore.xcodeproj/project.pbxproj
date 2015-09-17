@@ -311,6 +311,8 @@
 		21D78C3A1B943CB400665BB6 /* collision_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78C371B943CB400665BB6 /* collision_manager.cpp */; };
 		21D78C3C1B9453D900665BB6 /* input_context_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78C3B1B9453D900665BB6 /* input_context_osx.cpp */; };
 		21D78C401B9453EC00665BB6 /* input_context_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78C3E1B9453EC00665BB6 /* input_context_ios.cpp */; };
+		21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E411BAB011A009EA47B /* omni_light.cpp */; };
+		21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E411BAB011A009EA47B /* omni_light.cpp */; };
 		21DE30081B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE30091B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE300C1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */; };
@@ -890,6 +892,8 @@
 		21D78C381B943CB400665BB6 /* collision_manager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = collision_manager.h; path = sources/collision_manager.h; sourceTree = "<group>"; };
 		21D78C3B1B9453D900665BB6 /* input_context_osx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = input_context_osx.cpp; path = sources/input_context_osx.cpp; sourceTree = "<group>"; };
 		21D78C3E1B9453EC00665BB6 /* input_context_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = input_context_ios.cpp; path = sources/input_context_ios.cpp; sourceTree = "<group>"; };
+		21DE0E411BAB011A009EA47B /* omni_light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = omni_light.cpp; path = sources/omni_light.cpp; sourceTree = "<group>"; };
+		21DE0E421BAB011A009EA47B /* omni_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = omni_light.h; path = sources/omni_light.h; sourceTree = "<group>"; };
 		21DE30061B832C150046EDF8 /* resource_commiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_commiter.cpp; path = sources/resource_commiter.cpp; sourceTree = "<group>"; };
 		21DE30071B832C150046EDF8 /* resource_commiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_commiter.h; path = sources/resource_commiter.h; sourceTree = "<group>"; };
 		21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_commiter_glsl.cpp; path = sources/shader_commiter_glsl.cpp; sourceTree = "<group>"; };
@@ -1703,6 +1707,8 @@
 				212B18AA1B81F31600FFDCE7 /* frustum.cpp */,
 				21DE32111B8DA1560046EDF8 /* global_light.h */,
 				21DE32101B8DA1560046EDF8 /* global_light.cpp */,
+				21DE0E421BAB011A009EA47B /* omni_light.h */,
+				21DE0E411BAB011A009EA47B /* omni_light.cpp */,
 				21606C661B8DB500005EA908 /* game_object.h */,
 				21606C651B8DB500005EA908 /* game_object.cpp */,
 				21606C621B8DB4EA005EA908 /* model3d_static.h */,
@@ -1965,6 +1971,7 @@
 				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21B404CC1B7A0A88003382AB /* b2CollidePolygon.cpp in Sources */,
 				212B18831B81B76800FFDCE7 /* quad.cpp in Sources */,
+				21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B404FF1B7A0A88003382AB /* pngrutil.c in Sources */,
 				212B18AC1B81F31600FFDCE7 /* frustum.cpp in Sources */,
 				21B405051B7A0A88003382AB /* pngwutil.c in Sources */,
@@ -2138,6 +2145,7 @@
 				21A846751B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
 				212B186E1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
+				21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B4053A1B7A0AFA003382AB /* pngrutil.c in Sources */,
 				21B4053B1B7A0AFA003382AB /* pngwutil.c in Sources */,
 				21B4053C1B7A0AFA003382AB /* b2ChainShape.cpp in Sources */,

@@ -39,7 +39,6 @@ void main(void)
     normal = bone_normal;
 
     position = u_mat_m * position;
-    normal = u_mat_m * normal;
     gl_Position = u_mat_p * u_mat_v * position;
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     v_texcoord = a_texcoord;

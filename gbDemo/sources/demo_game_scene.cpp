@@ -64,6 +64,9 @@ gb::game_scene(transition)
 
     m_models["human_02"]->set_touches_receives_enabled(true);
     m_models["human_02"]->set_debug_draw_enabled(true);
+    
+    m_models["orc_01"]->set_debug_draw_enabled(true);
+    m_models["orc_02"]->set_debug_draw_enabled(true);
 }
 
 demo_game_scene::~demo_game_scene()

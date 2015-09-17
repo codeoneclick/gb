@@ -92,4 +92,50 @@ namespace gb
                                                    glm::vec3(0.f), glm::vec3(size.x, 0.f, size.y));
         return mesh;
     }
+    
+    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, ui32 rings, ui32 sectors)
+    {
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(rings * sectors, GL_STATIC_DRAW);
+        vbo::vertex_attribute* vertices = vbo->lock();
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(rings * sectors * 6, GL_STATIC_DRAW);
+        ui16* indices = ibo->lock();
+        
+        f32 f_rings = 1.f / static_cast<f32>(rings - 1);
+        f32 f_sectors = 1.f / static_cast<f32>(sectors - 1);
+        
+        i32 v_index = 0;
+        i32 i_index = 0;
+        for(i32 r = 0; r < rings; ++r)
+        {
+            for(i32 s = 0; s < sectors; ++s)
+            {
+                f32 y = sinf(-M_PI_2 + M_PI * r * f_rings);
+                f32 x = cosf(2 * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                f32 z = sinf(2 * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                
+                vertices[v_index].m_position = glm::vec3(x, y, z) * radius;
+                vertices[v_index].m_texcoord =  glm::packUnorm2x16(glm::vec2(s * f_sectors, r * f_rings));
+
+                i32 current_row = r * sectors;
+                i32 next_row = (r + 1 ) * sectors;
+                
+                indices[i_index++] = current_row + s;
+                indices[i_index++] = next_row + s;
+                indices[i_index++] = next_row + (s + 1);
+                
+                indices[i_index++] = current_row + s;
+                indices[i_index++] = next_row + (s + 1);
+                indices[i_index++] = current_row + (s + 1);
+                
+                ++v_index;
+            }
+        }
+        
+        vbo->unlock();
+        ibo->unlock();
+        mesh_shared_ptr mesh = gb::mesh::construct("sphere", vbo, ibo,
+                                                   glm::vec3(-radius / 2.f), glm::vec3(radius / 2.f));
+        return mesh;
+    }
 }

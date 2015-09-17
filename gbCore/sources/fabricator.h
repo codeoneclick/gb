@@ -27,6 +27,7 @@ namespace gb
         std::set<camera_shared_ptr> m_cameras_container;
         std::set<global_light_shared_ptr> m_global_lights_container;
         std::set<game_object_shared_ptr> m_game_objects_container;
+        std::set<omni_light_shared_ptr> m_omni_lights_container;
         
     public:
         
@@ -36,6 +37,9 @@ namespace gb
         
         camera_shared_ptr create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
         void destroy_camera(const camera_shared_ptr& camera);
+        
+        omni_light_shared_ptr create_omni_light(f32 radius);
+        void destroy_omni_light(const omni_light_shared_ptr& omni_light);
         
         global_light_shared_ptr create_global_light(f32 fov, f32 near, f32 far);
         void destroy_global_light(const global_light_shared_ptr& global_light);

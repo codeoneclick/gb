@@ -14,6 +14,7 @@
 #include "animation_mixer.h"
 #include "camera.h"
 #include "global_light.h"
+#include "omni_light.h"
 #include "model3d_static.h"
 #include "model3d_animated.h"
 #include "particle_emitter.h"
@@ -44,6 +45,46 @@ namespace gb
     void fabricator::destroy_camera(const camera_shared_ptr& camera)
     {
         m_cameras_container.erase(camera);
+    }
+    
+    std::once_flag g_omni_light_material_created;
+    omni_light_shared_ptr fabricator::create_omni_light(f32 radius)
+    {
+        static material_shared_ptr material = nullptr;
+        std::call_once(g_omni_light_material_created, []{
+            
+            material = std::make_shared<gb::material>();
+            shader_shared_ptr shader = shader::construct("bounding_box",
+                                                         shader_bounding_box_vert,
+                                                         shader_bounding_box_frag);
+            assert(shader);
+            material->set_shader(shader);
+            material->set_culling(false);
+            material->set_culling_mode(GL_BACK);
+            material->set_blending(false);
+            material->set_blending_function_source(GL_SRC_ALPHA);
+            material->set_blending_function_destination(GL_ONE);
+            material->set_depth_test(true);
+            material->set_depth_mask(true);
+            material->set_clipping(false);
+            material->set_clipping_plane(glm::vec4(0.f));
+            material->set_reflecting(false);
+            material->set_shadowing(false);
+            material->set_debugging(false);
+        });
+        
+        mesh_shared_ptr mesh = mesh_constructor::create_sphere(radius, 16, 16);
+        omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
+        
+        omni_light->add_material("ws.deferred.lighting", material);
+        omni_light->set_mesh(mesh);
+        m_omni_lights_container.insert(omni_light);
+        return omni_light;
+    }
+    
+    void fabricator::destroy_omni_light(const omni_light_shared_ptr& omni_light)
+    {
+         m_omni_lights_container.erase(omni_light);
     }
     
     global_light_shared_ptr fabricator::create_global_light(f32 fov, f32 near, f32 far)
@@ -97,7 +138,7 @@ namespace gb
                 std::shared_ptr<material_configuration> material_configuration =
                 std::static_pointer_cast<gb::material_configuration>(iterator);
                 
-                std::shared_ptr<material> material = material::construct(material_configuration);
+                material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
                 model3d_static->add_material(material_configuration->get_render_technique_name(), material);

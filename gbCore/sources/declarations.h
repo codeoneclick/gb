@@ -184,6 +184,9 @@ namespace gb
     
     class particle_emitter;
     typedef std::shared_ptr<particle_emitter> particle_emitter_shared_ptr;
+    
+    class omni_light;
+    typedef std::shared_ptr<omni_light> omni_light_shared_ptr;
 };
 
 #endif

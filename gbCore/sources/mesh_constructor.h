@@ -29,6 +29,8 @@ namespace gb
                                                     const glm::vec3& max_bound);
         
         static mesh_shared_ptr create_plane(const glm::vec2& size);
+        
+        static mesh_shared_ptr create_sphere(f32 radius, ui32 rings, ui32 sectors);
     };
 };
 

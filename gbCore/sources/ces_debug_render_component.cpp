@@ -16,29 +16,34 @@
 
 namespace gb
 {
+    material_shared_ptr ces_debug_render_component::m_material = nullptr;
+    std::once_flag g_debug_render_component_material_created;
+    
     ces_debug_render_component::ces_debug_render_component(void) :
     m_mesh(nullptr)
     {
         m_type = e_ces_component_type_debug_render;
         
-        m_material = std::make_shared<material>();
-        shader_shared_ptr shader = shader::construct("bounding_box",
-                                                     shader_bounding_box_vert,
-                                                     shader_bounding_box_frag);
-        assert(shader);
-        m_material->set_shader(shader);
-        m_material->set_culling(false);
-        m_material->set_culling_mode(GL_BACK);
-        m_material->set_blending(false);
-        m_material->set_blending_function_source(GL_SRC_ALPHA);
-        m_material->set_blending_function_destination(GL_ONE);
-        m_material->set_depth_test(true);
-        m_material->set_depth_mask(true);
-        m_material->set_clipping(false);
-        m_material->set_clipping_plane(glm::vec4(0.f));
-        m_material->set_reflecting(false);
-        m_material->set_shadowing(false);
-        m_material->set_debugging(false);
+        std::call_once(g_debug_render_component_material_created, []{
+            m_material = std::make_shared<material>();
+            shader_shared_ptr shader = shader::construct("bounding_box",
+                                                         shader_bounding_box_vert,
+                                                         shader_bounding_box_frag);
+            assert(shader);
+            m_material->set_shader(shader);
+            m_material->set_culling(false);
+            m_material->set_culling_mode(GL_BACK);
+            m_material->set_blending(false);
+            m_material->set_blending_function_source(GL_SRC_ALPHA);
+            m_material->set_blending_function_destination(GL_ONE);
+            m_material->set_depth_test(true);
+            m_material->set_depth_mask(true);
+            m_material->set_clipping(false);
+            m_material->set_clipping_plane(glm::vec4(0.f));
+            m_material->set_reflecting(false);
+            m_material->set_shadowing(false);
+            m_material->set_debugging(false);
+        });
     }
     
     ces_debug_render_component::~ces_debug_render_component(void)

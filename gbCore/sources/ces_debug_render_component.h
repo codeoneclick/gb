@@ -19,7 +19,7 @@ namespace gb
         
     protected:
         
-        material_shared_ptr m_material;
+        static material_shared_ptr m_material;
         mesh_shared_ptr m_mesh;
         
         void bind_main_shader_uniforms(const material_shared_ptr& material);

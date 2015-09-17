@@ -17,5 +17,7 @@ uniform sampler2D sampler_01;
 void main(void)
 {
     float diffuse_intensity = clamp(dot(v_normal, v_light_direction), 0.0, 1.0);
-    gl_FragColor = texture2D(sampler_01, v_texcoord) * diffuse_intensity;
+    vec4 diffuse_color = texture2D(sampler_01, v_texcoord);
+    diffuse_color.rbg *= diffuse_intensity;
+    gl_FragColor = diffuse_color;
 }
