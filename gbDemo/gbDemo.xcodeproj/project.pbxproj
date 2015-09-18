@@ -98,6 +98,8 @@
 		21D78C241B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C151B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION */; };
 		21D78C251B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C161B90AD6800665BB6 /* orc_02_run.IE3DANIMATION */; };
 		21D78C261B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C161B90AD6800665BB6 /* orc_02_run.IE3DANIMATION */; };
+		21DE0E491BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */; };
+		21DE0E4A1BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */; };
 		21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D521B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */; };
@@ -243,6 +245,7 @@
 		21D78C141B90AD6800665BB6 /* orc_01_run.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_01_run.IE3DANIMATION; path = ../gbBundle/Meshes/orc_01_run.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C151B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_02_idle.IE3DANIMATION; path = ../gbBundle/Meshes/orc_02_idle.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C161B90AD6800665BB6 /* orc_02_run.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_02_run.IE3DANIMATION; path = ../gbBundle/Meshes/orc_02_run.IE3DANIMATION; sourceTree = "<group>"; };
+		21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.deferred.lighting.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.deferred.lighting.xml; sourceTree = "<group>"; };
 		21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.particle.emitter.fire.xml; path = ../gbBundle/Configurations/game_objects/gameobject.particle.emitter.fire.xml; sourceTree = "<group>"; };
 		21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.particle.emitter.fire.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.particle.emitter.fire.base.xml; sourceTree = "<group>"; };
 		21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_particle_emitter.frag; path = ../gbBundle/Shaders/shader_particle_emitter.frag; sourceTree = "<group>"; };
@@ -327,6 +330,7 @@
 				2102EB591B7E4E7900F20197 /* ws.technique.reflection.xml */,
 				2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */,
 				2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */,
+				21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */,
 				2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */,
 			);
 			name = render_techniques;
@@ -743,6 +747,7 @@
 				21275FD11B9861FA00BEE033 /* shader_model3d_static.frag in Resources */,
 				21FA126C1B8F2C3A00ACB9A5 /* orc_02.png in Resources */,
 				21FA125E1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */,
+				21DE0E491BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */,
 				21275FE01B98654E00BEE033 /* material.human_02.shadowmap.xml in Resources */,
 				21275FF21B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */,
 			);
@@ -809,6 +814,7 @@
 				21EE3D591B96E705000AE51C /* shader_particle_emitter.frag in Resources */,
 				21FA125D1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
 				21286AA41B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
+				21DE0E4A1BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */,
 				21275FE11B98654E00BEE033 /* material.human_02.shadowmap.xml in Resources */,
 				21275FF31B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */,
 			);

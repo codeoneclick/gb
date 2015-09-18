@@ -12,6 +12,7 @@
 #include "scene_graph.h"
 #include "camera.h"
 #include "global_light.h"
+#include "omni_light.h"
 #include "particle_emitter.h"
 #include "model3d_animated.h"
 
@@ -67,6 +68,14 @@ gb::game_scene(transition)
     
     m_models["orc_01"]->set_debug_draw_enabled(true);
     m_models["orc_02"]->set_debug_draw_enabled(true);
+    
+    m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light(2.f);
+    game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
+    m_omni_lights["omni_light_01"]->set_position(glm::vec3(2.f, 0.f, 2.f));
+    
+    m_omni_lights["omni_light_02"] = game_scene::get_transition()->get_fabricator()->create_omni_light(4.f);
+    game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_02"]);
+    m_omni_lights["omni_light_02"]->set_position(glm::vec3(2.f, 0.f, -2.f));
 }
 
 demo_game_scene::~demo_game_scene()

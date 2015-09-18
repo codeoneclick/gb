@@ -54,9 +54,9 @@ namespace gb
         std::call_once(g_omni_light_material_created, []{
             
             material = std::make_shared<gb::material>();
-            shader_shared_ptr shader = shader::construct("bounding_box",
-                                                         shader_bounding_box_vert,
-                                                         shader_bounding_box_frag);
+            shader_shared_ptr shader = shader::construct("omni_light",
+                                                         shader_omni_light_vert,
+                                                         shader_omni_light_frag);
             assert(shader);
             material->set_shader(shader);
             material->set_culling(false);

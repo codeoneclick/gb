@@ -30,7 +30,7 @@ namespace gb
         
         static mesh_shared_ptr create_plane(const glm::vec2& size);
         
-        static mesh_shared_ptr create_sphere(f32 radius, ui32 rings, ui32 sectors);
+        static mesh_shared_ptr create_sphere(f32 radius, i32 rings, i32 sectors);
     };
 };
 

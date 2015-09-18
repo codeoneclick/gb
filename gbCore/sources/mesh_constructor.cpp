@@ -93,7 +93,7 @@ namespace gb
         return mesh;
     }
     
-    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, ui32 rings, ui32 sectors)
+    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
     {
         vbo_shared_ptr vbo = std::make_shared<gb::vbo>(rings * sectors, GL_STATIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
@@ -111,8 +111,10 @@ namespace gb
             for(i32 s = 0; s < sectors; ++s)
             {
                 f32 y = sinf(-M_PI_2 + M_PI * r * f_rings);
-                f32 x = cosf(2 * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
-                f32 z = sinf(2 * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                f32 x = cosf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                f32 z = sinf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                
+                std::cout<<"sphere coords: x: "<<x<<" y: "<<y<<" z: "<<z<<std::endl;
                 
                 vertices[v_index].m_position = glm::vec3(x, y, z) * radius;
                 vertices[v_index].m_texcoord =  glm::packUnorm2x16(glm::vec2(s * f_sectors, r * f_rings));
@@ -120,13 +122,13 @@ namespace gb
                 i32 current_row = r * sectors;
                 i32 next_row = (r + 1 ) * sectors;
                 
-                indices[i_index++] = current_row + s;
-                indices[i_index++] = next_row + s;
-                indices[i_index++] = next_row + (s + 1);
+                indices[i_index++] = glm::clamp(current_row + s, 0, (i32)rings * (i32)sectors - 1);
+                indices[i_index++] = glm::clamp(next_row + s, 0, (i32)rings * (i32)sectors - 1);
+                indices[i_index++] = glm::clamp(next_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
                 
-                indices[i_index++] = current_row + s;
-                indices[i_index++] = next_row + (s + 1);
-                indices[i_index++] = current_row + (s + 1);
+                indices[i_index++] = glm::clamp(current_row + s, 0, (i32)rings * (i32)sectors - 1);
+                indices[i_index++] = glm::clamp(next_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
+                indices[i_index++] = glm::clamp(current_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
                 
                 ++v_index;
             }

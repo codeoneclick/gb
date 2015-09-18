@@ -313,6 +313,8 @@
 		21D78C401B9453EC00665BB6 /* input_context_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78C3E1B9453EC00665BB6 /* input_context_ios.cpp */; };
 		21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E411BAB011A009EA47B /* omni_light.cpp */; };
 		21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E411BAB011A009EA47B /* omni_light.cpp */; };
+		21DE0E461BAC5A41009EA47B /* shader_omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */; };
+		21DE0E471BAC5A41009EA47B /* shader_omni_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */; };
 		21DE30081B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE30091B832C150046EDF8 /* resource_commiter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE30061B832C150046EDF8 /* resource_commiter.cpp */; };
 		21DE300C1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */; };
@@ -894,6 +896,7 @@
 		21D78C3E1B9453EC00665BB6 /* input_context_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = input_context_ios.cpp; path = sources/input_context_ios.cpp; sourceTree = "<group>"; };
 		21DE0E411BAB011A009EA47B /* omni_light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = omni_light.cpp; path = sources/omni_light.cpp; sourceTree = "<group>"; };
 		21DE0E421BAB011A009EA47B /* omni_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = omni_light.h; path = sources/omni_light.h; sourceTree = "<group>"; };
+		21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_omni_light.cpp; path = sources/shader_omni_light.cpp; sourceTree = "<group>"; };
 		21DE30061B832C150046EDF8 /* resource_commiter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = resource_commiter.cpp; path = sources/resource_commiter.cpp; sourceTree = "<group>"; };
 		21DE30071B832C150046EDF8 /* resource_commiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = resource_commiter.h; path = sources/resource_commiter.h; sourceTree = "<group>"; };
 		21DE300A1B832DE30046EDF8 /* shader_commiter_glsl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_commiter_glsl.cpp; path = sources/shader_commiter_glsl.cpp; sourceTree = "<group>"; };
@@ -1671,6 +1674,7 @@
 				21B4059F1B7A0FDC003382AB /* built_in_shaders.h */,
 				212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */,
 				21613FE51B948256001562EB /* shader_bounding_box.cpp */,
+				21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */,
 			);
 			name = "built-in shaders";
 			sourceTree = "<group>";
@@ -2026,6 +2030,7 @@
 				21B404FC1B7A0A88003382AB /* pngread.c in Sources */,
 				21A846781B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */,
 				212B18931B81CD5400FFDCE7 /* ces_geometry_component.cpp in Sources */,
+				21DE0E461BAC5A41009EA47B /* shader_omni_light.cpp in Sources */,
 				21B406081B7B64FB003382AB /* model_configuration.cpp in Sources */,
 				21B404D21B7A0A88003382AB /* b2CircleShape.cpp in Sources */,
 				21B4060E1B7B662C003382AB /* ws_technique_configuration.cpp in Sources */,
@@ -2200,6 +2205,7 @@
 				2102EB311B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */,
 				21A846791B96DCC9002B95A1 /* ces_particle_emitter_system.cpp in Sources */,
 				21B406101B7B662D003382AB /* particle_emitter_configuration.cpp in Sources */,
+				21DE0E471BAC5A41009EA47B /* shader_omni_light.cpp in Sources */,
 				2102EB3C1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */,
 				21B405501B7A0AFA003382AB /* uncompr.c in Sources */,
 				21D78C3A1B943CB400665BB6 /* collision_manager.cpp in Sources */,

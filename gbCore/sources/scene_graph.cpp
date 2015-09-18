@@ -11,6 +11,7 @@
 #include "frustum.h"
 #include "global_light.h"
 #include "game_object.h"
+#include "omni_light.h"
 #include "ces_systems_feeder.h"
 
 namespace gb
@@ -72,5 +73,19 @@ namespace gb
         game_object->on_removed_from_scene();
         m_game_objects_container.erase(game_object);
         m_systems_feeder->remove_entity(game_object);
+    }
+    
+    void scene_graph::add_omni_light(const omni_light_shared_ptr& omni_light)
+    {
+        omni_light->on_added_to_scene(shared_from_this());
+        m_omni_lights_container.insert(omni_light);
+        m_systems_feeder->add_entity(omni_light);
+    }
+    
+    void scene_graph::remove_omni_light(const omni_light_shared_ptr& omni_light)
+    {
+        omni_light->on_removed_from_scene();
+        m_omni_lights_container.erase(omni_light);
+        m_systems_feeder->remove_entity(omni_light);
     }
 }

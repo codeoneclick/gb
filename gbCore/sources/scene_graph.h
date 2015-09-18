@@ -26,6 +26,7 @@ namespace gb
         camera_shared_ptr m_camera;
         global_light_shared_ptr m_global_light;
         std::set<game_object_shared_ptr> m_game_objects_container;
+        std::set<omni_light_shared_ptr> m_omni_lights_container;
         
         void on_update(f32 deltatime);
         
@@ -42,6 +43,9 @@ namespace gb
         
         void add_game_object(const game_object_shared_ptr& game_object);
         void remove_game_object(const game_object_shared_ptr& game_object);
+        
+        void add_omni_light(const omni_light_shared_ptr& omni_light);
+        void remove_omni_light(const omni_light_shared_ptr& omni_light);
     };
 };
 
