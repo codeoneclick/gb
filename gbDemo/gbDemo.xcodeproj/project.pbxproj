@@ -366,8 +366,8 @@
 			children = (
 				21275FEE1B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag */,
 				21275FEF1B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert */,
-				21275FCF1B9861FA00BEE033 /* shader_model3d_static.frag */,
 				21275FD01B9861FA00BEE033 /* shader_model3d_static.vert */,
+				21275FCF1B9861FA00BEE033 /* shader_model3d_static.frag */,
 				21EE3D571B96E705000AE51C /* shader_particle_emitter.vert */,
 				21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */,
 				21FA124F1B8F2BD300ACB9A5 /* shader_model3d_animated.vert */,

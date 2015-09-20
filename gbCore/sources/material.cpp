@@ -305,7 +305,7 @@ namespace gb
         m_parameters->m_textures.at(sampler) = texture;
     }
     
-    void material::set_custom_shader_uniform(const glm::mat4x4& matrix, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::mat4& matrix, const std::string& uniform)
     {
         const auto& iterator = m_custom_shader_uniforms.find(uniform);
         std::shared_ptr<shader_uniform> current_uniform = nullptr;
@@ -321,7 +321,7 @@ namespace gb
         current_uniform->set_mat4(matrix);
     }
     
-    void material::set_custom_shader_uniform(const glm::mat3x3& matrix, const std::string& uniform)
+    void material::set_custom_shader_uniform(const glm::mat3& matrix, const std::string& uniform)
     {
         const auto& iterator = m_custom_shader_uniforms.find(uniform);
         std::shared_ptr<shader_uniform> current_uniform = nullptr;

@@ -16,6 +16,7 @@ varying vec3 v_light_direction;
 uniform mat4 u_mat_m;
 uniform mat4 u_mat_v;
 uniform mat4 u_mat_p;
+uniform mat4 u_mat_n;
 uniform mat4 u_mat_bones[32];
 uniform vec4 u_vec_clip;
 uniform vec3 u_vec_global_light_position;
@@ -35,10 +36,9 @@ void main(void)
         bone_position += u_mat_bones[index] * position * weights[i];
         bone_normal += u_mat_bones[index] * normal * weights[i];
     }
-    position = bone_position;
-    normal = bone_normal;
+    position = u_mat_m * bone_position;
+    normal = u_mat_m * bone_normal;
 
-    position = u_mat_m * position;
     gl_Position = u_mat_p * u_mat_v * position;
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     v_texcoord = a_texcoord;

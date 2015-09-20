@@ -10,10 +10,12 @@
 #include "ces_transformation_component.h"
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
+#include "material.h"
 
 namespace gb
 {
-    omni_light::omni_light()
+    omni_light::omni_light() :
+    m_radius(1.f)
     {
         ces_transformation_component_shared_ptr transformation_component = std::make_shared<ces_transformation_component>();
         ces_entity::add_component(transformation_component);
@@ -34,6 +36,10 @@ namespace gb
     void omni_light::set_position(const glm::vec3& position)
     {
         unsafe_get_transformation_component_from_this->set_position(position);
+        unsafe_get_render_component_from_this->set_custom_shader_uniform(position,
+                                                                         "u_light_position",
+                                                                         "ws.deferred.lighting");
+
     }
     
     glm::vec3 omni_light::get_position() const
@@ -41,14 +47,18 @@ namespace gb
         return unsafe_get_transformation_component_from_this->get_position();
     }
     
-    void omni_light::set_scale(const glm::vec3& scale)
+    void omni_light::set_radius(f32 radius)
     {
-        unsafe_get_transformation_component_from_this->set_scale(scale);
+        m_radius = radius;
+        unsafe_get_render_component_from_this->set_custom_shader_uniform(m_radius,
+                                                                         "u_light_radius",
+                                                                         "ws.deferred.lighting");
+        unsafe_get_transformation_component_from_this->set_scale(glm::vec3(radius));
     }
     
-    glm::vec3 omni_light::get_scale() const
+    f32 omni_light::get_radius() const
     {
-        return unsafe_get_transformation_component_from_this->get_scale();
+        return m_radius;
     }
     
     void omni_light::set_scene_graph(const scene_graph_shared_ptr& scene_graph)
@@ -84,6 +94,9 @@ namespace gb
     
     void omni_light::add_material(const std::string& technique_name, const material_shared_ptr& material)
     {
+        material->set_custom_shader_uniform(unsafe_get_transformation_component_from_this->get_position(), "u_light_position");
+        material->set_custom_shader_uniform(m_radius, "u_light_radius");
+        
         unsafe_get_render_component_from_this->add_material(technique_name, material);
     }
     

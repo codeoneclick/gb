@@ -19,6 +19,8 @@ namespace gb
         
         std::weak_ptr<scene_graph> m_scene_graph;
         
+        f32 m_radius;
+        
     protected:
         
         void set_scene_graph(const scene_graph_shared_ptr& scene_graph);
@@ -32,8 +34,8 @@ namespace gb
         void set_position(const glm::vec3& position);
         glm::vec3 get_position() const;
         
-        void set_scale(const glm::vec3& scale);
-        glm::vec3 get_scale() const;
+        void set_radius(f32 radius);
+        f32 get_radius() const;
         
         virtual void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         virtual void on_removed_from_scene();

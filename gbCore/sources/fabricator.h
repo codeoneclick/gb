@@ -38,7 +38,7 @@ namespace gb
         camera_shared_ptr create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
         void destroy_camera(const camera_shared_ptr& camera);
         
-        omni_light_shared_ptr create_omni_light(f32 radius);
+        omni_light_shared_ptr create_omni_light();
         void destroy_omni_light(const omni_light_shared_ptr& omni_light);
         
         global_light_shared_ptr create_global_light(f32 fov, f32 near, f32 far);

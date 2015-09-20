@@ -21,6 +21,11 @@ namespace gb
         return m_matrix_i_v;
     }
     
+    inline glm::mat4 camera::get_matrix_i_vp() const
+    {
+        return m_matrix_i_vp;
+    }
+    
     inline glm::mat4 camera::get_matrix_p() const
     {
         return m_matrix_p;

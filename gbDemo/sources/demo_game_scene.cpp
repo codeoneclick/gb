@@ -20,8 +20,8 @@ demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transitio
 gb::game_scene(transition)
 {
     m_camera = game_scene::get_transition()->get_fabricator()->create_camera(45.f, .1f, 128.f, glm::ivec4(0.f, 0.f,
-                                                                                                           game_scene::get_transition()->get_width(),
-                                                                                                           game_scene::get_transition()->get_height()));
+                                                                                                          game_scene::get_transition()->get_width(),
+                                                                                                          game_scene::get_transition()->get_height()));
     m_global_light = game_scene::get_transition()->get_fabricator()->create_global_light(45.f , .1f, 128.f);
     
     m_models["human_02"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.human_02.xml");
@@ -53,29 +53,31 @@ gb::game_scene(transition)
     particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
     particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
     
-    m_global_light->set_position(glm::vec3(-4.f, 8.f, 4.f));
+    m_global_light->set_position(glm::vec3(-4.f, 4.f, 0.f));
     m_global_light->set_look_at(glm::vec3(0.f, 1.f, 0.f));
     
-    m_models["human_02"]->set_rotation(glm::vec3(0.f, -45.f, 0.f));
+    m_models["human_02"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     m_models["orc_01"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     m_models["orc_02"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     
-    m_models["orc_01"]->set_position(glm::vec3(0.f, 0.f, -2.f));
-    m_models["orc_02"]->set_position(glm::vec3(0.f, 0.f, 2.f));
-
+    m_models["orc_01"]->set_position(glm::vec3(3.f, 0.f, -2.f));
+    m_models["orc_02"]->set_position(glm::vec3(3.f, 0.f, 2.f));
+    
     m_models["human_02"]->set_touches_receives_enabled(true);
     m_models["human_02"]->set_debug_draw_enabled(true);
     
     m_models["orc_01"]->set_debug_draw_enabled(true);
     m_models["orc_02"]->set_debug_draw_enabled(true);
     
-    m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light(2.f);
+    m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
-    m_omni_lights["omni_light_01"]->set_position(glm::vec3(2.f, 0.f, 2.f));
+    m_omni_lights["omni_light_01"]->set_radius(5.f);
+    m_omni_lights["omni_light_01"]->set_position(glm::vec3(1.f, 2.f, -3.f));
     
-    m_omni_lights["omni_light_02"] = game_scene::get_transition()->get_fabricator()->create_omni_light(4.f);
-    game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_02"]);
-    m_omni_lights["omni_light_02"]->set_position(glm::vec3(2.f, 0.f, -2.f));
+    /*m_omni_lights["omni_light_02"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
+     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_02"]);
+     m_omni_lights["omni_light_02"]->set_radius(3.f);
+     m_omni_lights["omni_light_02"]->set_position(glm::vec3(8.f, 0.f, -2.f));*/
 }
 
 demo_game_scene::~demo_game_scene()
@@ -89,14 +91,17 @@ void demo_game_scene::update(f32 deltatime)
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
     
-    /*
-     static f32 angle = 0.f;
-     angle += 0.01f;
-     glm::vec2 light_xz_position = glm::vec2(0.f);
-     light_xz_position.x = m_global_light->get_look_at().x + cosf(angle) * -4.f;
-     light_xz_position.y = m_global_light->get_look_at().z + sinf(angle) * -4.f;
-     m_global_light->set_position(glm::vec3(light_xz_position.x, 8.f, light_xz_position.y));
-     */
+    static f32 angle = 0.f;
+    angle += .5f;
+    m_models["human_02"]->set_rotation(glm::vec3(0.f, angle, 0.f));
+    
+    /*static f32 angle = 0.f;
+    angle += 0.05f;
+    glm::vec2 light_xz_position = glm::vec2(0.f);
+    light_xz_position.x = m_global_light->get_look_at().x + cosf(angle) * -2.f;
+    light_xz_position.y = m_global_light->get_look_at().z + sinf(angle) * -2.f;
+    m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));*/
+    
 }
 
 void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,

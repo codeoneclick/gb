@@ -32,17 +32,15 @@ void main(void)
         bone_position += u_mat_bones[index] * position * weights[i];
         bone_normal += u_mat_bones[index] * normal * weights[i];
     }
-    position = bone_position;
-    normal = bone_normal;
-    
-    position = u_mat_m * position;
+    position = u_mat_m * bone_position;
+    normal = u_mat_m * bone_normal;
     
     gl_Position = u_mat_p * u_mat_v * position;
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     
-    v_depth.x = position.z;
-    v_depth.y = position.w;
+    v_depth.x = gl_Position.z;
+    v_depth.y = gl_Position.w;
     
     v_normal = normalize(normal).xyz;
-    v_normal = (v_normal + 1.0) / 2.0;
+    v_normal = 0.5 * (v_normal + 1.0);
 }

@@ -114,8 +114,6 @@ namespace gb
                 f32 x = cosf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
                 f32 z = sinf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
                 
-                std::cout<<"sphere coords: x: "<<x<<" y: "<<y<<" z: "<<z<<std::endl;
-                
                 vertices[v_index].m_position = glm::vec3(x, y, z) * radius;
                 vertices[v_index].m_texcoord =  glm::packUnorm2x16(glm::vec2(s * f_sectors, r * f_rings));
 

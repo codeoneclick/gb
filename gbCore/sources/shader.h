@@ -56,6 +56,7 @@ namespace gb
         e_shader_uniform_mat_v,
         e_shader_uniform_mat_p,
         e_shader_uniform_mat_n,
+        e_shader_uniform_mat_i_vp,
         e_shader_uniform_mat_bones,
         e_shader_uniform_vec_camera_position,
         e_shader_uniform_f32_camera_near,

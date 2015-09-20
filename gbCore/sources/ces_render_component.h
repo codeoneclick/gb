@@ -41,10 +41,10 @@ namespace gb
         virtual material_shared_ptr on_bind(const std::string& technique_name);
         
         virtual void on_draw(const std::string& technique_name, const std::shared_ptr<mesh>& mesh,
-                             const std::shared_ptr<material>& material = nullptr);
+                             const material_shared_ptr& material = nullptr);
         
         virtual void on_unbind(const std::string& technique_name,
-                               const std::shared_ptr<material>& material = nullptr);
+                               const material_shared_ptr& material = nullptr);
         
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler, const std::string& technique_name = "");
         
@@ -53,13 +53,13 @@ namespace gb
         {
             if(technique_name.length() != 0)
             {
-                std::shared_ptr<material> material = ces_render_component::get_material(technique_name);
+                material_shared_ptr material = ces_render_component::get_material(technique_name);
                 assert(material);
                 material->set_custom_shader_uniform(value, uniform);
             }
             else
             {
-                std::for_each(m_materials.cbegin(), m_materials.cend(), [value, uniform](std::pair<std::string, std::shared_ptr<material>> material) {
+                std::for_each(m_materials.cbegin(), m_materials.cend(), [value, uniform](std::pair<std::string, material_shared_ptr> material) {
                     material.second->set_custom_shader_uniform(value, uniform);
                 });
             }

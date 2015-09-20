@@ -20,6 +20,7 @@ namespace gb
         
         glm::mat4 m_matrix_v;
         glm::mat4 m_matrix_i_v;
+        glm::mat4 m_matrix_i_vp;
         glm::mat4 m_matrix_p;
         glm::mat4 m_matrix_n;
         
@@ -49,6 +50,7 @@ namespace gb
         
         inline glm::mat4 get_matrix_v() const;
         inline glm::mat4 get_matrix_i_v() const;
+        inline glm::mat4 get_matrix_i_vp() const;
         inline glm::mat4 get_matrix_p() const;
         inline glm::mat4 get_matrix_n() const;
         

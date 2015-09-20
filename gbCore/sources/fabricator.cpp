@@ -47,33 +47,41 @@ namespace gb
         m_cameras_container.erase(camera);
     }
     
-    std::once_flag g_omni_light_material_created;
-    omni_light_shared_ptr fabricator::create_omni_light(f32 radius)
+    std::once_flag g_omni_light_shader_created;
+    omni_light_shared_ptr fabricator::create_omni_light()
     {
-        static material_shared_ptr material = nullptr;
-        std::call_once(g_omni_light_material_created, []{
-            
-            material = std::make_shared<gb::material>();
-            shader_shared_ptr shader = shader::construct("omni_light",
-                                                         shader_omni_light_vert,
-                                                         shader_omni_light_frag);
+        static shader_shared_ptr shader = nullptr;
+        std::call_once(g_omni_light_shader_created, [this]{
+            shader = shader::construct("omni_light",
+                                       shader_omni_light_vert,
+                                       shader_omni_light_frag);
             assert(shader);
-            material->set_shader(shader);
-            material->set_culling(false);
-            material->set_culling_mode(GL_BACK);
-            material->set_blending(false);
-            material->set_blending_function_source(GL_SRC_ALPHA);
-            material->set_blending_function_destination(GL_ONE);
-            material->set_depth_test(true);
-            material->set_depth_mask(true);
-            material->set_clipping(false);
-            material->set_clipping_plane(glm::vec4(0.f));
-            material->set_reflecting(false);
-            material->set_shadowing(false);
-            material->set_debugging(false);
         });
         
-        mesh_shared_ptr mesh = mesh_constructor::create_sphere(radius, 16, 16);
+        material_shared_ptr material = std::make_shared<gb::material>();
+        material->set_shader(shader);
+        material->set_culling(false);
+        material->set_culling_mode(GL_BACK);
+        material->set_blending(false);
+        material->set_blending_function_source(GL_SRC_ALPHA);
+        material->set_blending_function_destination(GL_ONE);
+        material->set_depth_test(true);
+        material->set_depth_mask(true);
+        material->set_clipping(false);
+        material->set_clipping_plane(glm::vec4(0.f));
+        material->set_reflecting(false);
+        material->set_shadowing(false);
+        material->set_debugging(false);
+        
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.shadowmap.depth");
+        assert(texture_01);
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.shadowmap.color");
+        assert(texture_02);
+        
+        material->set_texture(texture_01, e_shader_sampler_01);
+        material->set_texture(texture_02, e_shader_sampler_02);
+        
+        mesh_shared_ptr mesh = mesh_constructor::create_sphere(1.f, 16, 16);
         omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
         
         omni_light->add_material("ws.deferred.lighting", material);

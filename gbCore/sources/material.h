@@ -118,8 +118,8 @@ namespace gb
         void set_shader(const std::shared_ptr<shader>& shader);
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler);
         
-        void set_custom_shader_uniform(const glm::mat4x4& matrix, const std::string& uniform);
-        void set_custom_shader_uniform(const glm::mat3x3& matrix, const std::string& uniform);
+        void set_custom_shader_uniform(const glm::mat4& matrix, const std::string& uniform);
+        void set_custom_shader_uniform(const glm::mat3& matrix, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec4& vector, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec3& vector, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec2& vector, const std::string& uniform);
