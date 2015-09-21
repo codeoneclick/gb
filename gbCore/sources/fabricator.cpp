@@ -73,9 +73,9 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.shadowmap.depth");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.position.color");
         assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.shadowmap.color");
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
         assert(texture_02);
         
         material->set_texture(texture_01, e_shader_sampler_01);

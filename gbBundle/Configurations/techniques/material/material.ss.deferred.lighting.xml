@@ -1,7 +1,7 @@
 <material
     render_operation_name=""
     is_cull_face="0"
-    is_depth_test="0"
+    is_depth_test="1"
     is_depth_mask="1"
     is_blending="0"
     cull_face_mode="GL_FRONT"
@@ -16,13 +16,20 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shader_screen_quad.vert"
-    fs_filename="shader_screen_quad.frag"/>
+    vs_filename="shader_screen_deferred_lighting.vert"
+    fs_filename="shader_screen_deferred_lighting.frag"/>
     <textures>
         <texture
         filename=""
-        render_operation_name="ss.deferred.lighting.color"
+        render_operation_name="ws.base.color"
         sampler_index="0"
+        wrap_mode="GL_CLAMP_TO_EDGE"
+        mag_filter="GL_LINEAR"
+        min_filter="GL_LINEAR"/>
+        <texture
+        filename=""
+        render_operation_name="ws.deferred.lighting.color"
+        sampler_index="1"
         wrap_mode="GL_CLAMP_TO_EDGE"
         mag_filter="GL_LINEAR"
         min_filter="GL_LINEAR"/>

@@ -15,7 +15,7 @@ namespace gb
     m_frame_height(height),
     m_name(name),
     m_index(index),
-    m_clear_color(glm::vec4(0.5, 0.5, 0.5, 1.0))
+    m_clear_color(glm::vec4(0.f, 0.f, 0.f, 1.f))
     {
         
     }

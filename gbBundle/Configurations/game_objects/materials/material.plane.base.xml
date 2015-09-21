@@ -16,8 +16,8 @@
     is_shadowing="0"
     is_debugging="1">
     <shader
-    vs_filename="shader_mode3d_static_shadowmap.vert"
-    fs_filename="shader_mode3d_static_shadowmap.frag"/>
+    vs_filename="shader_model3d_static_shadowmap.vert"
+    fs_filename="shader_model3d_static_shadowmap.frag"/>
     <textures>
         <texture
         filename="checker.png"

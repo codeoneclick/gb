@@ -1,7 +1,7 @@
 <ws_technique
     guid="ws.deferred.lighting"
     are_draw_bounding_boxes="0"
-    index="1"
+    index="3"
     screen_width="1024"
     screen_height="768"
     clear_color_r="0.0"

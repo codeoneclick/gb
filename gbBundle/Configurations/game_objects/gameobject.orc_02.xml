@@ -5,6 +5,8 @@
     <materials>
 		<material filename="material.orc_02.base.xml"/>
         <material filename="material.orc_02.shadowmap.xml"/>
+        <material filename="material.orc_02.forward.rendering.normal.xml"/>
+        <material filename="material.orc_02.forward.rendering.position.xml"/>
 	</materials>
     <animations>
         <animation name="IDLE" filename="orc_02_idle.IE3DANIMATION"/>

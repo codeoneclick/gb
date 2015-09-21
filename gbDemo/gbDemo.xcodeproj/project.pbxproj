@@ -49,10 +49,10 @@
 		21275FEB1B98658800BEE033 /* shader_model3d_animated_nd.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21275FE81B98658800BEE033 /* shader_model3d_animated_nd.frag */; };
 		21275FEC1B98658800BEE033 /* shader_model3d_animated_nd.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FE91B98658800BEE033 /* shader_model3d_animated_nd.vert */; };
 		21275FED1B98658800BEE033 /* shader_model3d_animated_nd.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FE91B98658800BEE033 /* shader_model3d_animated_nd.vert */; };
-		21275FF01B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEE1B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag */; };
-		21275FF11B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEE1B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag */; };
-		21275FF21B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEF1B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert */; };
-		21275FF31B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEF1B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert */; };
+		21275FF01B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEE1B986CF900BEE033 /* shader_model3d_static_shadowmap.frag */; };
+		21275FF11B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEE1B986CF900BEE033 /* shader_model3d_static_shadowmap.frag */; };
+		21275FF21B986CF900BEE033 /* shader_model3d_static_shadowmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEF1B986CF900BEE033 /* shader_model3d_static_shadowmap.vert */; };
+		21275FF31B986CF900BEE033 /* shader_model3d_static_shadowmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21275FEF1B986CF900BEE033 /* shader_model3d_static_shadowmap.vert */; };
 		21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */; };
 		21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */; };
 		21286AA31B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */; };
@@ -100,6 +100,54 @@
 		21D78C261B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C161B90AD6800665BB6 /* orc_02_run.IE3DANIMATION */; };
 		21DE0E491BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */; };
 		21DE0E4A1BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */; };
+		21DE0E511BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */; };
+		21DE0E521BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */; };
+		21DE0E531BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4E1BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml */; };
+		21DE0E541BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4E1BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml */; };
+		21DE0E551BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4F1BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml */; };
+		21DE0E561BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E4F1BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml */; };
+		21DE0E571BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E501BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml */; };
+		21DE0E581BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E501BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml */; };
+		21DE0E5A1BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E591BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml */; };
+		21DE0E5B1BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E591BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml */; };
+		21DE0E5D1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E5C1BAFE91B009EA47B /* material.ss.deferred.lighting.xml */; };
+		21DE0E5E1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E5C1BAFE91B009EA47B /* material.ss.deferred.lighting.xml */; };
+		21DE0E601BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E5F1BAFE933009EA47B /* ss.technique.deferred.lighting.xml */; };
+		21DE0E611BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E5F1BAFE933009EA47B /* ss.technique.deferred.lighting.xml */; };
+		21DE0E641BAFE994009EA47B /* shader_screen_deferred_lighting.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E621BAFE994009EA47B /* shader_screen_deferred_lighting.frag */; };
+		21DE0E651BAFE994009EA47B /* shader_screen_deferred_lighting.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E621BAFE994009EA47B /* shader_screen_deferred_lighting.frag */; };
+		21DE0E661BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E631BAFE994009EA47B /* shader_screen_deferred_lighting.vert */; };
+		21DE0E671BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E631BAFE994009EA47B /* shader_screen_deferred_lighting.vert */; };
+		21DE0E7D1BAFF736009EA47B /* material.human_01.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E791BAFF736009EA47B /* material.human_01.forward.rendering.position.xml */; };
+		21DE0E7E1BAFF736009EA47B /* material.human_01.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E791BAFF736009EA47B /* material.human_01.forward.rendering.position.xml */; };
+		21DE0E7F1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7A1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml */; };
+		21DE0E801BAFF736009EA47B /* material.human_02.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7A1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml */; };
+		21DE0E811BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7B1BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml */; };
+		21DE0E821BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7B1BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml */; };
+		21DE0E831BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7C1BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml */; };
+		21DE0E841BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E7C1BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml */; };
+		21DE0E861BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E851BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml */; };
+		21DE0E871BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E851BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml */; };
+		21DE0E8C1BAFF8B7009EA47B /* shader_model3d_animated_p.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E881BAFF8B7009EA47B /* shader_model3d_animated_p.frag */; };
+		21DE0E8D1BAFF8B7009EA47B /* shader_model3d_animated_p.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E881BAFF8B7009EA47B /* shader_model3d_animated_p.frag */; };
+		21DE0E8E1BAFF8B7009EA47B /* shader_model3d_animated_p.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E891BAFF8B7009EA47B /* shader_model3d_animated_p.vert */; };
+		21DE0E8F1BAFF8B7009EA47B /* shader_model3d_animated_p.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E891BAFF8B7009EA47B /* shader_model3d_animated_p.vert */; };
+		21DE0E901BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E8A1BAFF8B7009EA47B /* shader_model3d_animated_n.frag */; };
+		21DE0E911BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E8A1BAFF8B7009EA47B /* shader_model3d_animated_n.frag */; };
+		21DE0E921BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E8B1BAFF8B7009EA47B /* shader_model3d_animated_n.vert */; };
+		21DE0E931BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E8B1BAFF8B7009EA47B /* shader_model3d_animated_n.vert */; };
+		21DE0E981BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E941BB022E8009EA47B /* shader_model3d_static_n.frag */; };
+		21DE0E991BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E941BB022E8009EA47B /* shader_model3d_static_n.frag */; };
+		21DE0E9A1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */; };
+		21DE0E9B1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */; };
+		21DE0E9C1BB022E8009EA47B /* shader_model3d_static_p.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E961BB022E8009EA47B /* shader_model3d_static_p.frag */; };
+		21DE0E9D1BB022E8009EA47B /* shader_model3d_static_p.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E961BB022E8009EA47B /* shader_model3d_static_p.frag */; };
+		21DE0E9E1BB022E8009EA47B /* shader_model3d_static_p.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E971BB022E8009EA47B /* shader_model3d_static_p.vert */; };
+		21DE0E9F1BB022E8009EA47B /* shader_model3d_static_p.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E971BB022E8009EA47B /* shader_model3d_static_p.vert */; };
+		21DE0EA21BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */; };
+		21DE0EA31BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */; };
+		21DE0EA41BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */; };
+		21DE0EA51BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */; };
 		21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D521B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */; };
@@ -206,8 +254,8 @@
 		21275FDD1B98654E00BEE033 /* material.orc_02.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_02.shadowmap.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_02.shadowmap.xml; sourceTree = "<group>"; };
 		21275FE81B98658800BEE033 /* shader_model3d_animated_nd.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_nd.frag; path = ../gbBundle/Shaders/shader_model3d_animated_nd.frag; sourceTree = "<group>"; };
 		21275FE91B98658800BEE033 /* shader_model3d_animated_nd.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_nd.vert; path = ../gbBundle/Shaders/shader_model3d_animated_nd.vert; sourceTree = "<group>"; };
-		21275FEE1B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_mode3d_static_shadowmap.frag; path = ../gbBundle/Shaders/shader_mode3d_static_shadowmap.frag; sourceTree = "<group>"; };
-		21275FEF1B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_mode3d_static_shadowmap.vert; path = ../gbBundle/Shaders/shader_mode3d_static_shadowmap.vert; sourceTree = "<group>"; };
+		21275FEE1B986CF900BEE033 /* shader_model3d_static_shadowmap.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_shadowmap.frag; path = ../gbBundle/Shaders/shader_model3d_static_shadowmap.frag; sourceTree = "<group>"; };
+		21275FEF1B986CF900BEE033 /* shader_model3d_static_shadowmap.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_shadowmap.vert; path = ../gbBundle/Shaders/shader_model3d_static_shadowmap.vert; sourceTree = "<group>"; };
 		21286A9F1B8B8C35003AD8AC /* shader_screen_quad.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_quad.frag; path = ../gbBundle/Shaders/shader_screen_quad.frag; sourceTree = "<group>"; };
 		21286AA01B8B8C35003AD8AC /* shader_screen_quad.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_quad.vert; path = ../gbBundle/Shaders/shader_screen_quad.vert; sourceTree = "<group>"; };
 		212B185A1B7E3E1100FFDCE7 /* transition.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = transition.demo.xml; path = ../gbBundle/Configurations/transitions/transition.demo.xml; sourceTree = "<group>"; };
@@ -246,6 +294,30 @@
 		21D78C151B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_02_idle.IE3DANIMATION; path = ../gbBundle/Meshes/orc_02_idle.IE3DANIMATION; sourceTree = "<group>"; };
 		21D78C161B90AD6800665BB6 /* orc_02_run.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = orc_02_run.IE3DANIMATION; path = ../gbBundle/Meshes/orc_02_run.IE3DANIMATION; sourceTree = "<group>"; };
 		21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.deferred.lighting.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.deferred.lighting.xml; sourceTree = "<group>"; };
+		21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0E4E1BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_02.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_02.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0E4F1BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_01.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_01.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0E501BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_02.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_02.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0E591BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.forward.rendering.normal.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0E5C1BAFE91B009EA47B /* material.ss.deferred.lighting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.ss.deferred.lighting.xml; path = ../gbBundle/Configurations/techniques/material/material.ss.deferred.lighting.xml; sourceTree = "<group>"; };
+		21DE0E5F1BAFE933009EA47B /* ss.technique.deferred.lighting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ss.technique.deferred.lighting.xml; path = ../gbBundle/Configurations/techniques/ss_techniques/ss.technique.deferred.lighting.xml; sourceTree = "<group>"; };
+		21DE0E621BAFE994009EA47B /* shader_screen_deferred_lighting.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_deferred_lighting.frag; path = ../gbBundle/Shaders/shader_screen_deferred_lighting.frag; sourceTree = "<group>"; };
+		21DE0E631BAFE994009EA47B /* shader_screen_deferred_lighting.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_screen_deferred_lighting.vert; path = ../gbBundle/Shaders/shader_screen_deferred_lighting.vert; sourceTree = "<group>"; };
+		21DE0E791BAFF736009EA47B /* material.human_01.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21DE0E7A1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_02.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_02.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21DE0E7B1BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_01.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_01.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21DE0E7C1BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.orc_02.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.orc_02.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21DE0E851BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.forward.rendering.position.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21DE0E881BAFF8B7009EA47B /* shader_model3d_animated_p.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_p.frag; path = ../gbBundle/Shaders/shader_model3d_animated_p.frag; sourceTree = "<group>"; };
+		21DE0E891BAFF8B7009EA47B /* shader_model3d_animated_p.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_p.vert; path = ../gbBundle/Shaders/shader_model3d_animated_p.vert; sourceTree = "<group>"; };
+		21DE0E8A1BAFF8B7009EA47B /* shader_model3d_animated_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_n.frag; path = ../gbBundle/Shaders/shader_model3d_animated_n.frag; sourceTree = "<group>"; };
+		21DE0E8B1BAFF8B7009EA47B /* shader_model3d_animated_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_animated_n.vert; path = ../gbBundle/Shaders/shader_model3d_animated_n.vert; sourceTree = "<group>"; };
+		21DE0E941BB022E8009EA47B /* shader_model3d_static_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_n.frag; path = ../gbBundle/Shaders/shader_model3d_static_n.frag; sourceTree = "<group>"; };
+		21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_n.vert; path = ../gbBundle/Shaders/shader_model3d_static_n.vert; sourceTree = "<group>"; };
+		21DE0E961BB022E8009EA47B /* shader_model3d_static_p.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_p.frag; path = ../gbBundle/Shaders/shader_model3d_static_p.frag; sourceTree = "<group>"; };
+		21DE0E971BB022E8009EA47B /* shader_model3d_static_p.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_p.vert; path = ../gbBundle/Shaders/shader_model3d_static_p.vert; sourceTree = "<group>"; };
+		21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.forward.rendering.position.xml; sourceTree = "<group>"; };
 		21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.particle.emitter.fire.xml; path = ../gbBundle/Configurations/game_objects/gameobject.particle.emitter.fire.xml; sourceTree = "<group>"; };
 		21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.particle.emitter.fire.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.particle.emitter.fire.base.xml; sourceTree = "<group>"; };
 		21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_particle_emitter.frag; path = ../gbBundle/Shaders/shader_particle_emitter.frag; sourceTree = "<group>"; };
@@ -302,6 +374,7 @@
 		2102EB521B7E4E0000F20197 /* materials */ = {
 			isa = PBXGroup;
 			children = (
+				21DE0E5C1BAFE91B009EA47B /* material.ss.deferred.lighting.xml */,
 				2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */,
 			);
 			name = materials;
@@ -331,6 +404,9 @@
 				2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */,
 				2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */,
 				21DE0E481BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml */,
+				21DE0E591BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml */,
+				21DE0E851BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml */,
+				21DE0E5F1BAFE933009EA47B /* ss.technique.deferred.lighting.xml */,
 				2102EB551B7E4E4E00F20197 /* output.technique.demo.xml */,
 			);
 			name = render_techniques;
@@ -364,8 +440,18 @@
 		21286A9E1B8B8BD6003AD8AC /* shaders */ = {
 			isa = PBXGroup;
 			children = (
-				21275FEE1B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag */,
-				21275FEF1B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert */,
+				21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */,
+				21DE0E941BB022E8009EA47B /* shader_model3d_static_n.frag */,
+				21DE0E971BB022E8009EA47B /* shader_model3d_static_p.vert */,
+				21DE0E961BB022E8009EA47B /* shader_model3d_static_p.frag */,
+				21DE0E881BAFF8B7009EA47B /* shader_model3d_animated_p.frag */,
+				21DE0E891BAFF8B7009EA47B /* shader_model3d_animated_p.vert */,
+				21DE0E8A1BAFF8B7009EA47B /* shader_model3d_animated_n.frag */,
+				21DE0E8B1BAFF8B7009EA47B /* shader_model3d_animated_n.vert */,
+				21DE0E631BAFE994009EA47B /* shader_screen_deferred_lighting.vert */,
+				21DE0E621BAFE994009EA47B /* shader_screen_deferred_lighting.frag */,
+				21275FEE1B986CF900BEE033 /* shader_model3d_static_shadowmap.frag */,
+				21275FEF1B986CF900BEE033 /* shader_model3d_static_shadowmap.vert */,
 				21275FD01B9861FA00BEE033 /* shader_model3d_static.vert */,
 				21275FCF1B9861FA00BEE033 /* shader_model3d_static.frag */,
 				21EE3D571B96E705000AE51C /* shader_particle_emitter.vert */,
@@ -553,9 +639,35 @@
 			name = animations;
 			sourceTree = "<group>";
 		};
+		21DE0E4C1BAFE696009EA47B /* forward.rendering.normal */ = {
+			isa = PBXGroup;
+			children = (
+				21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */,
+				21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */,
+				21DE0E4E1BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml */,
+				21DE0E4F1BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml */,
+				21DE0E501BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml */,
+			);
+			name = forward.rendering.normal;
+			sourceTree = "<group>";
+		};
+		21DE0E781BAFF6ED009EA47B /* forward.rendering.position */ = {
+			isa = PBXGroup;
+			children = (
+				21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */,
+				21DE0E791BAFF736009EA47B /* material.human_01.forward.rendering.position.xml */,
+				21DE0E7A1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml */,
+				21DE0E7B1BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml */,
+				21DE0E7C1BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml */,
+			);
+			name = forward.rendering.position;
+			sourceTree = "<group>";
+		};
 		21FA12351B8F2B5800ACB9A5 /* materials */ = {
 			isa = PBXGroup;
 			children = (
+				21DE0E781BAFF6ED009EA47B /* forward.rendering.position */,
+				21DE0E4C1BAFE696009EA47B /* forward.rendering.normal */,
 				21275FE61B98655800BEE033 /* base */,
 				21275FE71B98655D00BEE033 /* shadowmap */,
 			);
@@ -691,12 +803,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D78C251B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */,
+				21DE0E641BAFE994009EA47B /* shader_screen_deferred_lighting.frag in Resources */,
 				21286AA31B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
+				21DE0E5D1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */,
 				21FA123A1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
 				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				21275FCD1B9861BB00BEE033 /* material.plane.base.xml in Resources */,
 				21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
+				21DE0E661BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
+				21DE0E831BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml in Resources */,
 				21D78C191B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */,
@@ -706,27 +822,41 @@
 				21FA123E1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
 				21FA12681B8F2C3A00ACB9A5 /* human_02.png in Resources */,
 				21B403451B7A0A23003382AB /* Images.xcassets in Resources */,
+				21DE0E531BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml in Resources */,
+				21DE0E5A1BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml in Resources */,
 				21286AA11B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
 				21275FD31B9861FA00BEE033 /* shader_model3d_static.vert in Resources */,
 				21EE3DB01B970C06000AE51C /* particle_02.png in Resources */,
 				21FA12481B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
+				21DE0E9A1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */,
 				21FA12661B8F2C3A00ACB9A5 /* human_01.png in Resources */,
+				21DE0E601BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */,
 				21EE3D5D1B96ECC1000AE51C /* particle_01.png in Resources */,
 				21FA125C1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
+				21DE0E8C1BAFF8B7009EA47B /* shader_model3d_animated_p.frag in Resources */,
 				2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
+				21DE0E7F1BAFF736009EA47B /* material.human_02.forward.rendering.position.xml in Resources */,
+				21DE0E9E1BB022E8009EA47B /* shader_model3d_static_p.vert in Resources */,
 				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
 				21D78C1B1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
 				21FA12601B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
+				21DE0E8E1BAFF8B7009EA47B /* shader_model3d_animated_p.vert in Resources */,
 				21FA124A1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
 				21275FDE1B98654E00BEE033 /* material.human_01.shadowmap.xml in Resources */,
 				2102EB561B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
+				21DE0E861BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml in Resources */,
 				21FA12401B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
+				21DE0EA41BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */,
 				21FA125A1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
 				21FA126A1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
+				21DE0E921BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
+				21DE0E901BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
+				21DE0E511BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
 				21FA12501B8F2BD300ACB9A5 /* shader_model3d_animated.frag in Resources */,
 				21D78C211B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
 				21B403441B7A0A23003382AB /* MainMenu.xib in Resources */,
-				21275FF01B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag in Resources */,
+				21275FF01B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
+				21DE0EA21BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */,
 				21275FEA1B98658800BEE033 /* shader_model3d_animated_nd.frag in Resources */,
 				21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */,
 				21D78C231B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION in Resources */,
@@ -734,22 +864,28 @@
 				21FA12461B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
 				21A624251B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */,
 				21A624281B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */,
+				21DE0E811BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml in Resources */,
 				21275FD81B9863D600BEE033 /* checker.png in Resources */,
 				21275FEC1B98658800BEE033 /* shader_model3d_animated_nd.vert in Resources */,
 				21FA12521B8F2BD300ACB9A5 /* shader_model3d_animated.vert in Resources */,
 				212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
+				21DE0E981BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
+				21DE0E9C1BB022E8009EA47B /* shader_model3d_static_p.frag in Resources */,
 				21275FE21B98654E00BEE033 /* material.orc_01.shadowmap.xml in Resources */,
 				21D78C1D1B90AD6800665BB6 /* human_02_run.IE3DANIMATION in Resources */,
 				21EE3D5A1B96E705000AE51C /* shader_particle_emitter.vert in Resources */,
 				21275FCA1B98619F00BEE033 /* gameobject.plane.xml in Resources */,
+				21DE0E7D1BAFF736009EA47B /* material.human_01.forward.rendering.position.xml in Resources */,
 				21275FE41B98654E00BEE033 /* material.orc_02.shadowmap.xml in Resources */,
 				21EE3D581B96E705000AE51C /* shader_particle_emitter.frag in Resources */,
 				21275FD11B9861FA00BEE033 /* shader_model3d_static.frag in Resources */,
+				21DE0E571BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml in Resources */,
 				21FA126C1B8F2C3A00ACB9A5 /* orc_02.png in Resources */,
 				21FA125E1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */,
 				21DE0E491BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */,
 				21275FE01B98654E00BEE033 /* material.human_02.shadowmap.xml in Resources */,
-				21275FF21B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */,
+				21DE0E551BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml in Resources */,
+				21275FF21B986CF900BEE033 /* shader_model3d_static_shadowmap.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,12 +894,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				21D78C1E1B90AD6800665BB6 /* human_02_run.IE3DANIMATION in Resources */,
+				21DE0E651BAFE994009EA47B /* shader_screen_deferred_lighting.frag in Resources */,
 				21D78C1A1B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
+				21DE0E5E1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */,
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
 				212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */,
 				21FA124D1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
 				21275FCB1B98619F00BEE033 /* gameobject.plane.xml in Resources */,
+				21DE0E671BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
+				21DE0E841BAFF736009EA47B /* material.orc_02.forward.rendering.position.xml in Resources */,
 				21275FD21B9861FA00BEE033 /* shader_model3d_static.frag in Resources */,
 				21D78C221B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
 				21D78C1C1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
@@ -773,27 +913,41 @@
 				21FA124B1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
 				21FA12491B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
 				21FA126D1B8F2C3A00ACB9A5 /* orc_02.png in Resources */,
+				21DE0E541BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml in Resources */,
+				21DE0E5B1BAFE7B6009EA47B /* ws.technique.forward.rendering.normal.xml in Resources */,
 				21EE3D551B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */,
 				21D78C241B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION in Resources */,
 				21EE3D521B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */,
 				21FA12611B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
+				21DE0E9B1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */,
 				21275FCE1B9861BB00BEE033 /* material.plane.base.xml in Resources */,
+				21DE0E611BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */,
 				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				21D78C181B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
+				21DE0E8D1BAFF8B7009EA47B /* shader_model3d_animated_p.frag in Resources */,
 				21275FD41B9861FA00BEE033 /* shader_model3d_static.vert in Resources */,
+				21DE0E801BAFF736009EA47B /* material.human_02.forward.rendering.position.xml in Resources */,
+				21DE0E9F1BB022E8009EA47B /* shader_model3d_static_p.vert in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				21FA12691B8F2C3A00ACB9A5 /* human_02.png in Resources */,
 				21FA125B1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
+				21DE0E8F1BAFF8B7009EA47B /* shader_model3d_animated_p.vert in Resources */,
 				21D78C201B90AD6800665BB6 /* orc_01_idle.IE3DANIMATION in Resources */,
 				21275FDF1B98654E00BEE033 /* material.human_01.shadowmap.xml in Resources */,
 				21FA125F1B8F2C2600ACB9A5 /* orc_01.IE3DMESH in Resources */,
+				21DE0E871BAFF7D0009EA47B /* ws.technique.forward.rendering.position.xml in Resources */,
 				21FA12531B8F2BD300ACB9A5 /* shader_model3d_animated.vert in Resources */,
+				21DE0EA51BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */,
 				21D78C261B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */,
 				212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */,
+				21DE0E931BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
+				21DE0E911BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
+				21DE0E521BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
 				21FA12471B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
 				21FA12671B8F2C3A00ACB9A5 /* human_01.png in Resources */,
 				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
-				21275FF11B986CF900BEE033 /* shader_mode3d_static_shadowmap.frag in Resources */,
+				21275FF11B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
+				21DE0EA31BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */,
 				21275FEB1B98658800BEE033 /* shader_model3d_animated_nd.frag in Resources */,
 				21FA123D1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
 				21FA12511B8F2BD300ACB9A5 /* shader_model3d_animated.frag in Resources */,
@@ -801,22 +955,28 @@
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				21A624261B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */,
 				21A624291B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */,
+				21DE0E821BAFF736009EA47B /* material.orc_01.forward.rendering.position.xml in Resources */,
 				21275FD91B9863D600BEE033 /* checker.png in Resources */,
 				21275FED1B98658800BEE033 /* shader_model3d_animated_nd.vert in Resources */,
 				21EE3D5E1B96ECC1000AE51C /* particle_01.png in Resources */,
 				21EE3D5B1B96E705000AE51C /* shader_particle_emitter.vert in Resources */,
+				21DE0E991BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
+				21DE0E9D1BB022E8009EA47B /* shader_model3d_static_p.frag in Resources */,
 				21275FE31B98654E00BEE033 /* material.orc_01.shadowmap.xml in Resources */,
 				2102EB5F1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				2102EB571B7E4E4E00F20197 /* output.technique.demo.xml in Resources */,
 				2102EB5D1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				21DE0E7E1BAFF736009EA47B /* material.human_01.forward.rendering.position.xml in Resources */,
 				21275FE51B98654E00BEE033 /* material.orc_02.shadowmap.xml in Resources */,
 				21275FD61B9862D700BEE033 /* info-ios.plist in Resources */,
 				21EE3D591B96E705000AE51C /* shader_particle_emitter.frag in Resources */,
+				21DE0E581BAFE70C009EA47B /* material.orc_02.forward.rendering.normal.xml in Resources */,
 				21FA125D1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
 				21286AA41B8B8C35003AD8AC /* shader_screen_quad.vert in Resources */,
 				21DE0E4A1BAC5AAF009EA47B /* ws.technique.deferred.lighting.xml in Resources */,
 				21275FE11B98654E00BEE033 /* material.human_02.shadowmap.xml in Resources */,
-				21275FF31B986CF900BEE033 /* shader_mode3d_static_shadowmap.vert in Resources */,
+				21DE0E561BAFE70C009EA47B /* material.orc_01.forward.rendering.normal.xml in Resources */,
+				21275FF31B986CF900BEE033 /* shader_model3d_static_shadowmap.vert in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

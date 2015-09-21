@@ -1,7 +1,7 @@
 <material
-    render_operation_name=""
+    render_operation_name="ws.forward.rendering.normal"
     is_cull_face="0"
-    is_depth_test="0"
+    is_depth_test="1"
     is_depth_mask="1"
     is_blending="0"
     cull_face_mode="GL_FRONT"
@@ -14,17 +14,10 @@
     clipping_w="0.0"
     is_reflecting="0"
     is_shadowing="0"
-    is_debugging="0">
+    is_debugging="1">
     <shader
-    vs_filename="shader_screen_quad.vert"
-    fs_filename="shader_screen_quad.frag"/>
+    vs_filename="shader_model3d_static_n.vert"
+    fs_filename="shader_model3d_static_n.frag"/>
     <textures>
-        <texture
-        filename=""
-        render_operation_name="ss.deferred.lighting.color"
-        sampler_index="0"
-        wrap_mode="GL_CLAMP_TO_EDGE"
-        mag_filter="GL_LINEAR"
-        min_filter="GL_LINEAR"/>
     </textures>
 </material>

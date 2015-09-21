@@ -33,10 +33,12 @@ namespace gb
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
         
         std::string color_attachment_guid = m_name;
+        color_attachment_guid.append(".color");
         m_color_attachment_texture = texture::construct(color_attachment_guid,
                                                         color_attachment_id,
                                                         m_frame_width,
                                                         m_frame_height);
+        
         m_color_attachment_texture->set_wrap_mode(GL_CLAMP_TO_EDGE);
         
         m_quad = std::make_shared<quad>();
@@ -65,18 +67,31 @@ namespace gb
         gl_viewport(0, 0, m_frame_width, m_frame_height);
         gl_clear_color(m_clear_color.r, m_clear_color.g, m_clear_color.b, m_clear_color.a);
         gl_clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        m_material->bind();
-        m_quad->bind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
+        
+        if(m_material->get_shader()->is_loaded() &&
+           m_material->get_shader()->is_commited())
+        {
+            m_material->bind();
+            m_quad->bind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
+        }
     }
     
     void render_technique_ss::unbind(void)
     {
-        m_quad->unbind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
-        m_material->unbind();
+        if(m_material->get_shader()->is_loaded() &&
+           m_material->get_shader()->is_commited())
+        {
+            m_quad->unbind(m_material->get_shader()->get_guid(), m_material->get_shader()->get_attributes());
+            m_material->unbind();
+        }
     }
     
     void render_technique_ss::draw(void)
     {
-        m_quad->draw();
+        if(m_material->get_shader()->is_loaded() &&
+           m_material->get_shader()->is_commited())
+        {
+            m_quad->draw();
+        }
     }
 }

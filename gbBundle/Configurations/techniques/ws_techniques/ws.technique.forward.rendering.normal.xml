@@ -1,9 +1,9 @@
 <ws_technique
-    guid="ws.shadowmap"
+    guid="ws.forward.rendering.normal"
     are_draw_bounding_boxes="0"
-    index="4"
+    index="2"
     screen_width="1024"
-    screen_height="1024"
+    screen_height="768"
     clear_color_r="0.0"
     clear_color_g="0.0"
     clear_color_b="0.0"
