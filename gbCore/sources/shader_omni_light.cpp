@@ -34,6 +34,7 @@ const char* shader_omni_light_vert = string_shader
     vec4 position = u_mat_m * vec4(a_position, 1.0);
     gl_Position = u_mat_p * u_mat_v * position;
     v_screen_position = gl_Position;
+    v_light_position = (u_mat_v * u_mat_m * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
 }
  );
 
@@ -53,10 +54,12 @@ const char* shader_omni_light_frag = string_shader
 #if defined(__OPENGL_30__)
  
  in vec4 v_screen_position;
+ in vec3 v_light_position;
  
 #else
  
  varying vec4 v_screen_position;
+ varying vec3 v_light_position;
  
 #endif
  
@@ -94,31 +97,31 @@ const char* shader_omni_light_frag = string_shader
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     texcoord -= vec2(0.5 / 1024.0, 0.5 / 768.0);
     
-    vec4 normal_color = texture2D(sampler_02, tex);
+    vec4 normal_color = texture2D(sampler_02, texcoord);
     vec4 position_color = texture2D(sampler_01, texcoord);
     
     vec3 normal = normal_color.rgb * 2.0 - 1.0;
-    vec3 position = get_position(texcoord);
-    //vec4(v_screen_position.x * 2.0 - 1.0, v_screen_position.y * 2.0 - 1.0, get_depth(texcoord), 1.0);
-    //position = u_mat_i_vp * position;
-    //position.xyz = position.xyz / position.w;
+    vec4 position = vec4(texcoord.x * 2.0 - 1.0, texcoord.y * 2.0 - 1.0, position_color.r * 2.0 - 1.0, 1.0);
+    position = u_mat_i_vp * position;
+    position.xyz = position.xyz / position.w;
     
     vec3 light_direction = u_light_position - position.xyz;
 
     //
     float a = radians(45.0);
     float attenuation = 1.0 - length(light_direction) / u_light_radius;
+    //float attenuation = 1.0 / (1.0 + 0.2 * pow(length(light_direction), 2));
+
     light_direction = normalize(light_direction);
 
     if(normal_color.a != 0.0)
     {
-        gl_FragColor = vec4(clamp(dot(normal, light_direction), 0.0, 1.0));
+        gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * vec4(vec3(1.0, 0.5, 0.5), 1.0);
     }
     else
     {
         gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
     }
-    
-    gl_FragColor = normal_color;
+    //gl_FragColor = vec4(position.xyz, 1.0);
 }
  );

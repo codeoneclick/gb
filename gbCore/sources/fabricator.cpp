@@ -66,7 +66,7 @@ namespace gb
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
         material->set_culling(true);
-        material->set_culling_mode(GL_BACK);
+        material->set_culling_mode(GL_FRONT);
         material->set_blending(true);
         //glBlendEquation(GL_FUNC_ADD);
         material->set_blending_function_source(GL_ONE);

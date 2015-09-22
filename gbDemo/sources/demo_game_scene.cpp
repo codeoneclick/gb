@@ -42,8 +42,8 @@ gb::game_scene(transition)
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_01"]);
     game_scene::get_transition()->get_scene_graph()->add_game_object(m_models["orc_02"]);
     
-    game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_fire);
-    game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_smoke);
+    //game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_fire);
+    //game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_smoke);
     
     game_scene::get_transition()->get_scene_graph()->add_game_object(plane);
     
@@ -51,8 +51,8 @@ gb::game_scene(transition)
     m_camera->set_look_at(glm::vec3(16.f, 1.f, 16.f));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
     
-    particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
-    particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
+    //particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
+    //particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
     
     m_global_light->set_position(glm::vec3(-4.f, 8.f, 4.f));
     m_global_light->set_look_at(glm::vec3(0.f, 1.f, 0.f));
@@ -74,16 +74,16 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
     m_omni_lights["omni_light_01"]->set_radius(4.f);
-    m_omni_lights["omni_light_01"]->set_position(glm::vec3(8.f, 1.f, 0.f));
+    m_omni_lights["omni_light_01"]->set_position(glm::vec3(16.f, 1.f, 16.f));
     
-    /*m_omni_lights["omni_light_02"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
+    m_omni_lights["omni_light_02"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_02"]);
     m_omni_lights["omni_light_02"]->set_radius(8.f);
-    m_omni_lights["omni_light_02"]->set_position(glm::vec3(-2.f, 3.f, 0.f));*/
+    m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));
     
-    /*m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
+    m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
     game_scene::get_transition()->get_scene_graph()->add_direction_light(m_direction_light);
-    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));*/
+    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
 }
 
 demo_game_scene::~demo_game_scene()
@@ -108,7 +108,7 @@ void demo_game_scene::update(f32 deltatime)
     light_xz_position.x = 16.f + m_global_light->get_look_at().x + cosf(angle) * -4.f;
     light_xz_position.y = 16.f + m_global_light->get_look_at().z + sinf(angle) * -4.f;
     m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
-    m_camera->set_rotation(angle * .1f);
+    //m_camera->set_rotation(angle * .1f);
 }
 
 void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,
