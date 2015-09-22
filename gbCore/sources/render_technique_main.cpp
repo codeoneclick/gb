@@ -8,19 +8,20 @@
 
 #include "render_technique_main.h"
 #include "material.h"
-#include "quad.h"
+#include "mesh.h"
 #include "shader.h"
+#include "mesh_constructor.h"
 
 namespace gb
 {
-    render_technique_main::render_technique_main(ui32 width, ui32 height, const std::shared_ptr<material> material, ui32 frame_buffer, ui32 render_buffer) :
+    render_technique_main::render_technique_main(ui32 width, ui32 height, const material_shared_ptr& material, ui32 frame_buffer, ui32 render_buffer) :
     render_technique_base (width, height, "render.technique.main", 0),
     m_render_buffer(render_buffer),
     m_material(material)
     {
         assert(m_material != nullptr);
         m_frame_buffer = frame_buffer;
-        m_quad = std::make_shared<quad>();
+        m_quad = mesh_constructor::create_screen_quad();
     }
     
     render_technique_main::~render_technique_main(void)

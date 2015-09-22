@@ -45,7 +45,7 @@ namespace gb
         m_matrix_n = glm::inverse(m_matrix_v);
         m_matrix_n = glm::transpose(m_matrix_n);
         
-        m_matrix_i_vp = glm::inverse(m_matrix_p * m_matrix_v);
+        m_matrix_i_vp = glm::inverse(m_matrix_p) * glm::inverse(m_matrix_v);
         
         m_frustum->update(m_fov, m_aspect, m_near, m_far, m_position, m_up, m_look_at);
     }

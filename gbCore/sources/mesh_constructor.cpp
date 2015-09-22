@@ -138,4 +138,35 @@ namespace gb
                                                    glm::vec3(-radius / 2.f), glm::vec3(radius / 2.f));
         return mesh;
     }
+    
+    mesh_shared_ptr mesh_constructor::create_screen_quad()
+    {
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(4, GL_STATIC_DRAW);
+        vbo::vertex_attribute * vertices = vbo->lock();
+        
+        vertices[0].m_position = glm::vec3(-1.0f, -1.0f, 0.0f);
+        vertices[0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 0.0f));
+        vertices[1].m_position = glm::vec3(-1.0f, 1.0f, 0.0f);
+        vertices[1].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 1.0f));
+        vertices[2].m_position = glm::vec3(1.0f, -1.0f, 0.0f);
+        vertices[2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 0.0f));
+        vertices[3].m_position = glm::vec3(1.0f, 1.0f, 0.0f);
+        vertices[3].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 1.0f));
+        vbo->unlock();
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(6, GL_STATIC_DRAW);
+        ui16* indices = ibo->lock();
+        indices[0] = 0;
+        indices[1] = 1;
+        indices[2] = 2;
+        indices[3] = 1;
+        indices[4] = 2;
+        indices[5] = 3;
+        ibo->unlock();
+        
+        mesh_shared_ptr mesh = gb::mesh::construct("screen_quad", vbo, ibo,
+                                                   glm::vec3(-4096.f),
+                                                   glm::vec3( 4096.f));
+        return mesh;
+    }
 }

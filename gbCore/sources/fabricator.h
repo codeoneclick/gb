@@ -28,6 +28,7 @@ namespace gb
         std::set<global_light_shared_ptr> m_global_lights_container;
         std::set<game_object_shared_ptr> m_game_objects_container;
         std::set<omni_light_shared_ptr> m_omni_lights_container;
+        std::set<direction_light_shared_ptr> m_direction_lights_container;
         
     public:
         
@@ -40,6 +41,9 @@ namespace gb
         
         omni_light_shared_ptr create_omni_light();
         void destroy_omni_light(const omni_light_shared_ptr& omni_light);
+        
+        direction_light_shared_ptr create_direction_light();
+        void destroy_direction_light(const direction_light_shared_ptr& direction_light);
         
         global_light_shared_ptr create_global_light(f32 fov, f32 near, f32 far);
         void destroy_global_light(const global_light_shared_ptr& global_light);

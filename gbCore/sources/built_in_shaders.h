@@ -18,4 +18,7 @@ extern const char* shader_bounding_box_frag;
 extern const char* shader_omni_light_vert;
 extern const char* shader_omni_light_frag;
 
+extern const char* shader_direction_light_vert;
+extern const char* shader_direction_light_frag;
+
 #endif

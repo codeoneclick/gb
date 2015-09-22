@@ -12,7 +12,8 @@
 #include "render_technique_ws.h"
 #include "render_technique_ss.h"
 #include "material.h"
-#include "quad.h"
+#include "mesh.h"
+#include "mesh_constructor.h"
 #include "built_in_shaders.h"
 
 #if defined(__OSX__)
@@ -52,17 +53,7 @@ namespace gb
                                                                           material,
                                                                           m_graphics_context->get_frame_buffer(),
                                                                           m_graphics_context->get_render_buffer());
-#if defined(__IOS__)
-        /*const auto& platform = g_platforms.find(getPlatform());
-        if(platform == g_platforms.end())
-        {
-            std::cout<<"[Device] : Simulator"<<std::endl;
-        }
-        else
-        {
-            std::cout<<"[Device] : "<<platform->second<<std::endl;
-        }*/
-#endif
+
         std::cout<<"[Output resolution] : "<<m_graphics_context->get_width()<<"x"<<m_graphics_context->get_height()<<std::endl;
         std::cout<<"["<<glGetString(GL_RENDERER)<<"] ["<<glGetString(GL_VERSION)<<"] ["<<glGetString(GL_SHADING_LANGUAGE_VERSION)<<"]"<<std::endl;
     }
@@ -98,10 +89,10 @@ namespace gb
         assert(texture != nullptr);
         assert(texture->is_loaded() && texture->is_commited());
         
-        std::shared_ptr<material> material = std::make_shared<gb::material>();
-        std::shared_ptr<shader> shader = gb::shader::construct("shader_texture_2d", shader_texure2d_vert, shader_texure2d_frag);
+        material_shared_ptr material = std::make_shared<gb::material>();
+        shader_shared_ptr shader = gb::shader::construct("shader_texture_2d", shader_texure2d_vert, shader_texure2d_frag);
         assert(shader != nullptr);
-        std::shared_ptr<quad> quad = std::make_shared<gb::quad>();
+        mesh_shared_ptr quad = mesh_constructor::create_screen_quad();
         material->set_shader(shader);
         material->set_texture(texture, e_shader_sampler_01);
         
@@ -122,11 +113,6 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        /*CSharedRenderTarget renderTarget = std::make_shared<CRenderTarget>(m_graphicsContext, GL_RGBA, width, height);
-        
-        renderTarget->begin();
-        renderTarget->clear();*/
-        
         material->bind();
         assert(material->get_shader()->get_attributes().at(e_shader_attribute_position) >= 0);
         assert(material->get_shader()->get_attributes().at(e_shader_attribute_texcoord) >= 0);
@@ -140,8 +126,6 @@ namespace gb
         ui32 rawdataSize = static_cast<ui32>(width) * static_cast<ui32>(height) * 4;
         ui8 *rawdata = new ui8[rawdataSize];
         glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, rawdata);
-        
-        /*renderTarget->end();*/
         
 #if defined(__OSX__)
         

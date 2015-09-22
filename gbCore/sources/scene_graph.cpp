@@ -12,6 +12,7 @@
 #include "global_light.h"
 #include "game_object.h"
 #include "omni_light.h"
+#include "direction_light.h"
 #include "ces_systems_feeder.h"
 
 namespace gb
@@ -87,5 +88,19 @@ namespace gb
         omni_light->on_removed_from_scene();
         m_omni_lights_container.erase(omni_light);
         m_systems_feeder->remove_entity(omni_light);
+    }
+    
+    void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)
+    {
+        direction_light->on_added_to_scene(shared_from_this());
+        m_direction_lights_container.insert(direction_light);
+        m_systems_feeder->add_entity(direction_light);
+    }
+    
+    void scene_graph::remove_direction_light(const direction_light_shared_ptr& direction_light)
+    {
+        direction_light->on_removed_from_scene();
+        m_direction_lights_container.erase(direction_light);
+        m_systems_feeder->remove_entity(direction_light);
     }
 }

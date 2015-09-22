@@ -187,6 +187,9 @@ namespace gb
     
     class omni_light;
     typedef std::shared_ptr<omni_light> omni_light_shared_ptr;
+    
+    class direction_light;
+    typedef std::shared_ptr<direction_light> direction_light_shared_ptr;
 };
 
 #endif

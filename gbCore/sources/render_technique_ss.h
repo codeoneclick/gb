@@ -13,26 +13,23 @@
 
 namespace gb
 {
-    class texture;
-    class material;
-    class quad;
     class render_technique_ss : public render_technique_base
     {
     private:
         
     protected:
         
-        std::shared_ptr<texture> m_color_attachment_texture;
-        std::shared_ptr<material> m_material;
-        std::shared_ptr<quad> m_quad;
+        texture_shared_ptr m_color_attachment_texture;
+        material_shared_ptr m_material;
+        mesh_shared_ptr m_quad;
         
     public:
         
-        render_technique_ss(ui32 width, ui32 height, const std::string& name, const std::shared_ptr<material>& material);
+        render_technique_ss(ui32 width, ui32 height, const std::string& name, const material_shared_ptr& material);
         ~render_technique_ss(void);
         
-        std::shared_ptr<texture> get_color_attachment_texture(void) const;
-        std::shared_ptr<material> get_material(void) const;
+        texture_shared_ptr get_color_attachment_texture(void) const;
+        material_shared_ptr get_material(void) const;
         
         void bind(void);
         void unbind(void);

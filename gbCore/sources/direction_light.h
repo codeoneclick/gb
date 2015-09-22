@@ -1,25 +1,25 @@
 //
-//  omni_light.h
+//  direction_light.h
 //  gbCore
 //
-//  Created by sergey.sergeev on 9/17/15.
+//  Created by sergey.sergeev on 9/22/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef omni_light_h
-#define omni_light_h
+#ifndef direction_light_h
+#define direction_light_h
 
 #include "ces_entity.h"
 
 namespace gb
 {
-    class omni_light : public ces_entity
+    class direction_light : public ces_entity
     {
     private:
         
         std::weak_ptr<scene_graph> m_scene_graph;
         
-        f32 m_radius;
+        glm::vec3 m_direction;
         
     protected:
         
@@ -28,14 +28,11 @@ namespace gb
         
     public:
         
-        omni_light();
-        ~omni_light();
+        direction_light();
+        ~direction_light();
         
-        void set_position(const glm::vec3& position);
-        glm::vec3 get_position() const;
-        
-        void set_radius(f32 radius);
-        f32 get_radius() const;
+        void set_direction(const glm::vec3& direction);
+        glm::vec3 get_direction() const;
         
         void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         void on_removed_from_scene();
@@ -47,6 +44,5 @@ namespace gb
         void set_mesh(const mesh_shared_ptr& mesh);
     };
 };
-
 
 #endif

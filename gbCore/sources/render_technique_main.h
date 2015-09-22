@@ -13,22 +13,20 @@
 
 namespace gb
 {
-    class material;
-    class quad;
     class render_technique_main : render_technique_base
     {
     private:
         
     protected:
         
-        std::shared_ptr<material> m_material;
-        std::shared_ptr<quad> m_quad;
+        material_shared_ptr m_material;
+        mesh_shared_ptr m_quad;
         ui32 m_render_buffer;
         
         
     public:
         
-        render_technique_main(ui32 width, ui32 height, const std::shared_ptr<material> material, ui32 frame_buffer, ui32 render_buffer);
+        render_technique_main(ui32 width, ui32 height, const material_shared_ptr& material, ui32 frame_buffer, ui32 render_buffer);
         ~render_technique_main();
         
         void bind();

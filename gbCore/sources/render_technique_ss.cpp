@@ -9,7 +9,8 @@
 #include "render_technique_ss.h"
 #include "texture.h"
 #include "material.h"
-#include "quad.h"
+#include "mesh.h"
+#include "mesh_constructor.h"
 
 namespace gb
 {
@@ -41,7 +42,7 @@ namespace gb
         
         m_color_attachment_texture->set_wrap_mode(GL_CLAMP_TO_EDGE);
         
-        m_quad = std::make_shared<quad>();
+        m_quad = mesh_constructor::create_screen_quad();
     }
     
     render_technique_ss::~render_technique_ss(void)

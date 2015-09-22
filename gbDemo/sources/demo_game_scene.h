@@ -19,6 +19,7 @@ private:
     
     gb::camera_shared_ptr m_camera;
     gb::global_light_shared_ptr m_global_light;
+    gb::direction_light_shared_ptr m_direction_light;
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
     
