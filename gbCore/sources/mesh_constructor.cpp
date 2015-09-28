@@ -95,41 +95,45 @@ namespace gb
     
     mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
     {
-        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(rings * sectors, GL_STATIC_DRAW);
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>((rings + 1) * (sectors + 1), GL_STATIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
         
-        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(rings * sectors * 6, GL_STATIC_DRAW);
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>((rings * sectors + rings) * 6, GL_STATIC_DRAW);
         ui16* indices = ibo->lock();
         
-        f32 f_rings = 1.f / static_cast<f32>(rings - 1);
-        f32 f_sectors = 1.f / static_cast<f32>(sectors - 1);
-        
-        i32 v_index = 0;
-        i32 i_index = 0;
-        for(i32 r = 0; r < rings; ++r)
+        i32 index = 0;
+        for(i32 i = 0; i <= sectors; ++i)
         {
-            for(i32 s = 0; s < sectors; ++s)
+            f32 v = i / static_cast<f32>(sectors);
+            f32 phi = v * M_PI;
+            
+            for (i32 j = 0; j <= rings; ++j )
             {
-                f32 y = sinf(-M_PI_2 + M_PI * r * f_rings);
-                f32 x = cosf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
-                f32 z = sinf(2.f * M_PI * s * f_sectors) * sinf(M_PI * r * f_rings);
+                f32 u = j / static_cast<f32>(rings);
+                f32 theta = u * M_PI * 2.f;
                 
-                vertices[v_index].m_position = glm::vec3(x, y, z) * radius;
-                vertices[v_index].m_texcoord =  glm::packUnorm2x16(glm::vec2(s * f_sectors, r * f_rings));
-
-                i32 current_row = r * sectors;
-                i32 next_row = (r + 1 ) * sectors;
+                f32 x = cos(theta) * sin(phi);
+                f32 y = cos(phi);
+                f32 z = sin(theta) * sin(phi);
                 
-                indices[i_index++] = glm::clamp(current_row + s, 0, (i32)rings * (i32)sectors - 1);
-                indices[i_index++] = glm::clamp(next_row + s, 0, (i32)rings * (i32)sectors - 1);
-                indices[i_index++] = glm::clamp(next_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
+                vertices[index].m_position = glm::vec3(x, y, z) * radius;
+                vertices[index].m_normal = glm::packSnorm4x8(glm::vec4(x, y, z, 0.f));
+                vertices[index].m_texcoord =  glm::packUnorm2x16(glm::vec2(u, v));
                 
-                indices[i_index++] = glm::clamp(current_row + s, 0, (i32)rings * (i32)sectors - 1);
-                indices[i_index++] = glm::clamp(next_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
-                indices[i_index++] = glm::clamp(current_row + (s + 1), 0, (i32)rings * (i32)sectors - 1);
-                
-                ++v_index;
+                ++index;
             }
+        }
+        
+        index = 0;
+        for(i32 i = 0; i < rings * sectors + rings; ++i)
+        {
+            indices[index++] = i;
+            indices[index++] = i + rings + 1;
+            indices[index++] = i + rings;
+            
+            indices[index++] = i + rings + 1;
+            indices[index++] = i;
+            indices[index++] = i + 1;
         }
         
         vbo->unlock();

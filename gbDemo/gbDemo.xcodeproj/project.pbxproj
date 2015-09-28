@@ -148,6 +148,8 @@
 		21DE0EA31BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */; };
 		21DE0EA41BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */; };
 		21DE0EA51BB023F7009EA47B /* material.plane.forward.rendering.position.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */; };
+		21E33E041BB9760C00B540E7 /* libgbUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E33DD51BB956C700B540E7 /* libgbUI.a */; };
+		21E33E051BB9761800B540E7 /* libgbUI-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E33DE41BB959B100B540E7 /* libgbUI-osx.a */; };
 		21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D521B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */; };
@@ -226,6 +228,34 @@
 			proxyType = 2;
 			remoteGlobalIDString = 21B4057B1B7A0AFA003382AB;
 			remoteInfo = "gbCore-ios";
+		};
+		21E33DD41BB956C700B540E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21E33DB51BB9567A00B540E7;
+			remoteInfo = gbUI;
+		};
+		21E33DE01BB959B100B540E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21E33DD81BB9571900B540E7;
+			remoteInfo = "gbUI-osx";
+		};
+		21E33DE31BB959B100B540E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 21E33DDF1BB9571900B540E7;
+			remoteInfo = "gbUI-osx";
+		};
+		21E33DE51BB959B800B540E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 21E33DB41BB9567A00B540E7;
+			remoteInfo = "gbUI-ios";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -318,6 +348,7 @@
 		21DE0E971BB022E8009EA47B /* shader_model3d_static_p.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_model3d_static_p.vert; path = ../gbBundle/Shaders/shader_model3d_static_p.vert; sourceTree = "<group>"; };
 		21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.forward.rendering.normal.xml; sourceTree = "<group>"; };
 		21DE0EA11BB023F7009EA47B /* material.plane.forward.rendering.position.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.forward.rendering.position.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.forward.rendering.position.xml; sourceTree = "<group>"; };
+		21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gbUI.xcodeproj; path = ../gbUI/gbUI.xcodeproj; sourceTree = "<group>"; };
 		21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.particle.emitter.fire.xml; path = ../gbBundle/Configurations/game_objects/gameobject.particle.emitter.fire.xml; sourceTree = "<group>"; };
 		21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.particle.emitter.fire.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.particle.emitter.fire.base.xml; sourceTree = "<group>"; };
 		21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_particle_emitter.frag; path = ../gbBundle/Shaders/shader_particle_emitter.frag; sourceTree = "<group>"; };
@@ -349,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21E33E051BB9761800B540E7 /* libgbUI-osx.a in Frameworks */,
 				2102EB4F1B7D34F900F20197 /* libgbCore-osx.a in Frameworks */,
 				21B405941B7A0CDE003382AB /* Cocoa.framework in Frameworks */,
 				21B405921B7A0CDA003382AB /* OpenGL.framework in Frameworks */,
@@ -365,6 +397,7 @@
 				212B18D91B82362600FFDCE7 /* QuartzCore.framework in Frameworks */,
 				212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */,
 				212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */,
+				21E33E041BB9760C00B540E7 /* libgbUI.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -566,6 +599,7 @@
 				212B18D61B82361F00FFDCE7 /* OpenGLES.framework */,
 				21B405931B7A0CDE003382AB /* Cocoa.framework */,
 				21B405911B7A0CDA003382AB /* OpenGL.framework */,
+				21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */,
 				21B403461B7A0A3B003382AB /* gbCore.xcodeproj */,
 			);
 			name = libraries;
@@ -663,6 +697,15 @@
 			name = forward.rendering.position;
 			sourceTree = "<group>";
 		};
+		21E33DD01BB956C700B540E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21E33DD51BB956C700B540E7 /* libgbUI.a */,
+				21E33DE41BB959B100B540E7 /* libgbUI-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		21FA12351B8F2B5800ACB9A5 /* materials */ = {
 			isa = PBXGroup;
 			children = (
@@ -713,6 +756,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21E33DE11BB959B100B540E7 /* PBXTargetDependency */,
 				2102EB4E1B7D34F200F20197 /* PBXTargetDependency */,
 			);
 			name = "gbDemo-osx";
@@ -731,6 +775,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				21E33DE61BB959B800B540E7 /* PBXTargetDependency */,
 				212B18D01B8234DA00FFDCE7 /* PBXTargetDependency */,
 			);
 			name = "gbDemo-ios";
@@ -771,6 +816,10 @@
 					ProductGroup = 21B403471B7A0A3B003382AB /* Products */;
 					ProjectRef = 21B403461B7A0A3B003382AB /* gbCore.xcodeproj */;
 				},
+				{
+					ProductGroup = 21E33DD01BB956C700B540E7 /* Products */;
+					ProjectRef = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -793,6 +842,20 @@
 			fileType = archive.ar;
 			path = "libgbCore-ios.a";
 			remoteRef = 21B4058B1B7A0C58003382AB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21E33DD51BB956C700B540E7 /* libgbUI.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgbUI.a;
+			remoteRef = 21E33DD41BB956C700B540E7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		21E33DE41BB959B100B540E7 /* libgbUI-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgbUI-osx.a";
+			remoteRef = 21E33DE31BB959B100B540E7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1022,6 +1085,16 @@
 			name = "gbCore-ios";
 			targetProxy = 212B18CF1B8234DA00FFDCE7 /* PBXContainerItemProxy */;
 		};
+		21E33DE11BB959B100B540E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gbUI-osx";
+			targetProxy = 21E33DE01BB959B100B540E7 /* PBXContainerItemProxy */;
+		};
+		21E33DE61BB959B800B540E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gbUI-ios";
+			targetProxy = 21E33DE51BB959B800B540E7 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1119,7 +1192,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1136,6 +1209,7 @@
 					"\"$(SRCROOT)/../gbCore/libraries\"",
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+					"\"$(SRCROOT)/../gbUI/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-osx.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1147,7 +1221,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -1160,6 +1234,7 @@
 					"\"$(SRCROOT)/../gbCore/libraries\"",
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+					"\"$(SRCROOT)/../gbUI/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-osx.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1191,6 +1266,7 @@
 					"\"$(SRCROOT)/../gbCore/libraries\"",
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+					"\"$(SRCROOT)/../gbUI/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1222,6 +1298,7 @@
 					"\"$(SRCROOT)/../gbCore/libraries\"",
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
+					"\"$(SRCROOT)/../gbUI/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

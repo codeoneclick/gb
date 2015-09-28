@@ -75,6 +75,6 @@ const char* shader_omni_light_frag = string_shader
     float attenuation = 1.0 - length(light_direction) / u_light_radius;
     light_direction = normalize(light_direction);
     
-    gl_FragData[0] = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * vec4(vec3(1.0, 0.5, 0.5), 1.0);
+    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * vec4(vec3(1.0, 0.5, 0.5), 1.0);
 }
  );

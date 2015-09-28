@@ -532,15 +532,6 @@ namespace gb
         gl_get_error();
 #endif
     };
-    
-    inline void gl_attach_draw_buffers(GLsizei count, const GLenum *buffers)
-    {
-        glDrawBuffers(count, buffers);
-        
-#if defined(DEBUG)
-        gl_get_error();
-#endif
-    };
 };
 
 #endif
