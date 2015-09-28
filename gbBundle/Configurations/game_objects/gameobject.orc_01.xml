@@ -4,9 +4,9 @@
     is_batching="0">
     <materials>
 		<material filename="material.orc_01.base.xml"/>
-        <material filename="material.orc_01.shadowmap.xml"/>
+        <!--<material filename="material.orc_01.shadowmap.xml"/>-->
         <material filename="material.orc_01.forward.rendering.normal.xml"/>
-        <material filename="material.orc_01.forward.rendering.position.xml"/>
+        <!--<material filename="material.orc_01.forward.rendering.position.xml"/>-->
 	</materials>
     <animations>
         <animation name="IDLE" filename="orc_01_idle.IE3DANIMATION"/>

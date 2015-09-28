@@ -6,7 +6,7 @@
         <!--<ws_technique filename="ws.technique.reflection.xml"/>-->
         <!--<ws_technique filename="ws.technique.refraction.xml"/>-->
         <ws_technique filename="ws.technique.forward.rendering.normal.xml"/>
-        <ws_technique filename="ws.technique.forward.rendering.position.xml"/>
+        <!--<ws_technique filename="ws.technique.forward.rendering.position.xml"/>-->
         <ws_technique filename="ws.technique.deferred.lighting.xml"/>
         <ws_technique filename="ws.technique.shadowmap.xml"/>
     </ws_techniques>

@@ -58,6 +58,9 @@ namespace gb
         gl_attach_frame_buffer_texture2d(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, color_attachment_id, 0);
         gl_attach_frame_buffer_texture2d(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depth_attachment_id, 0);
         
+        GLenum atachments[] = { GL_COLOR_ATTACHMENT0 };
+        gl_attach_draw_buffers(1, atachments);
+        
         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
         assert(status == GL_FRAMEBUFFER_COMPLETE);
         

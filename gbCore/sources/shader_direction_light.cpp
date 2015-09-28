@@ -54,13 +54,6 @@ const char* shader_direction_light_frag = string_shader
     vec4 normal_color = texture2D(sampler_02, v_texcoord);
     vec3 normal = normal_color.rgb * 2.0 - 1.0;
     
-    if(normal_color.a != 0.0)
-    {
-        gl_FragColor = vec4(clamp(dot(normal, u_light_direction), 0.0, 1.0) * 0.5);
-    }
-    else
-    {
-        gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-    }
+    gl_FragColor = vec4(clamp(dot(normal, u_light_direction), 0.0, 1.0) * 0.5);
 }
  );

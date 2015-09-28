@@ -108,6 +108,7 @@ void demo_game_scene::update(f32 deltatime)
     light_xz_position.x = 16.f + m_global_light->get_look_at().x + cosf(angle) * -4.f;
     light_xz_position.y = 16.f + m_global_light->get_look_at().z + sinf(angle) * -4.f;
     m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
+    m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 1.f, light_xz_position.y));
     //m_camera->set_rotation(angle * .1f);
 }
 

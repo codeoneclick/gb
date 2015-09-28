@@ -66,9 +66,8 @@ namespace gb
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
         material->set_culling(true);
-        material->set_culling_mode(GL_FRONT);
+        material->set_culling_mode(GL_BACK);
         material->set_blending(true);
-        //glBlendEquation(GL_FUNC_ADD);
         material->set_blending_function_source(GL_ONE);
         material->set_blending_function_destination(GL_ONE);
         material->set_depth_test(true);
@@ -130,7 +129,7 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.position.color");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
         assert(texture_01);
         texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
         assert(texture_02);

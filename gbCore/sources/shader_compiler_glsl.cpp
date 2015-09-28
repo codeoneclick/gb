@@ -12,7 +12,6 @@
 namespace gb
 {
     std::string shader_compiler_glsl::m_vs_shader_header = "#if defined(__IOS__)\n\
-    #define GL_APPLE_clip_distance 1\n\
     #extension GL_APPLE_clip_distance : enable\n\
     precision highp float;\n\
     #endif\n\
