@@ -84,13 +84,13 @@ namespace gb
         
     }
     
-    std::shared_ptr<texture> render_technique_ws::get_color_attachment_texture() const
+    texture_shared_ptr render_technique_ws::get_color_attachment_texture() const
     {
         assert(m_color_attachment_texture);
         return m_color_attachment_texture;
     }
     
-    std::shared_ptr<texture> render_technique_ws::get_depth_attachment_texture() const
+    texture_shared_ptr render_technique_ws::get_depth_attachment_texture() const
     {
         assert(m_depth_attachment_texture);
         return m_depth_attachment_texture;
@@ -142,7 +142,7 @@ namespace gb
         {
             while (!m_entities[i].empty())
             {
-                std::shared_ptr<ces_entity> entity = m_entities[i].front();
+                ces_entity_shared_ptr entity = m_entities[i].front();
                 
                 ces_render_component* render_component = unsafe_get_render_component(entity);
                 assert(render_component);

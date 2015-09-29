@@ -466,7 +466,6 @@ namespace gb
            material::get_cached_parameters()->m_is_culling != m_parameters->m_is_culling)
         {
             gl_enable(GL_CULL_FACE);
-            gl_cull_face(m_parameters->m_culling_mode);
             material::get_cached_parameters()->m_is_culling = m_parameters->m_is_culling;
         }
         else if(material::get_cached_parameters()->m_is_culling != m_parameters->m_is_culling)
@@ -475,17 +474,30 @@ namespace gb
             material::get_cached_parameters()->m_is_culling = m_parameters->m_is_culling;
         }
         
+        if(material::get_cached_parameters()->m_culling_mode != m_parameters->m_culling_mode)
+        {
+            gl_cull_face(m_parameters->m_culling_mode);
+            material::get_cached_parameters()->m_culling_mode = m_parameters->m_culling_mode;
+        }
+        
         if(m_parameters->m_is_blending &&
            material::get_cached_parameters()->m_is_blending != m_parameters->m_is_blending)
         {
             gl_enable(GL_BLEND);
-            gl_blend_function(m_parameters->m_blending_function_source, m_parameters->m_blending_function_destination);
             material::get_cached_parameters()->m_is_blending = m_parameters->m_is_blending;
         }
         else if(material::get_cached_parameters()->m_is_blending != m_parameters->m_is_blending)
         {
             gl_disable(GL_BLEND);
             material::get_cached_parameters()->m_is_blending = m_parameters->m_is_blending;
+        }
+        
+        if(material::get_cached_parameters()->m_blending_function_source != m_parameters->m_blending_function_source ||
+           material::get_cached_parameters()->m_blending_function_destination != m_parameters->m_blending_function_destination)
+        {
+            gl_blend_function(m_parameters->m_blending_function_source, m_parameters->m_blending_function_destination);
+            material::get_cached_parameters()->m_blending_function_source = m_parameters->m_blending_function_source;
+            material::get_cached_parameters()->m_blending_function_destination = m_parameters->m_blending_function_destination;
         }
         
         if(m_parameters->m_is_clipping &&

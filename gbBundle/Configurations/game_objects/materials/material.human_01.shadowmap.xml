@@ -16,8 +16,8 @@
     is_shadowing="1"
     is_debugging="0">
     <shader
-    vs_filename="shader_model3d_animated_nd.vert"
-    fs_filename="shader_model3d_animated_nd.frag"/>
+    vs_filename="shader_model3d_animated_n.vert"
+    fs_filename="shader_model3d_animated_n.frag"/>
     <textures>
     </textures>
 </material>

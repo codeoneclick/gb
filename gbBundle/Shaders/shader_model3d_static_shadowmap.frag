@@ -31,9 +31,9 @@ float get_current_depth(in float z)
 
 void main(void)
 {
-    vec2 shadow_texcoord = v_shadow_parameters.st / v_shadow_parameters.w;
+    vec2 shadow_texcoord = v_shadow_parameters.xy / v_shadow_parameters.w;
     float z = v_shadow_parameters.z / v_shadow_parameters.w;
-    float shadow = max(step(get_current_depth(z), get_shadow_map_pass_depth(shadow_texcoord)), 0.5);
+    float shadow = step(get_current_depth(z), get_shadow_map_pass_depth(shadow_texcoord));
     
     vec4 color = texture2D(sampler_01, v_texcoord);
     

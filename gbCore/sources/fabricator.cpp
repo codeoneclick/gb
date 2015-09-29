@@ -59,7 +59,7 @@ namespace gb
                                        shader_omni_light_frag);
             assert(shader);
             
-            mesh = mesh_constructor::create_sphere(1.f, 16, 16);
+            mesh = mesh_constructor::create_sphere(1.f, 8, 8);
             assert(mesh);
         });
         
