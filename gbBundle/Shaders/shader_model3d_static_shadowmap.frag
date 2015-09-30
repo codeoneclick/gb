@@ -12,7 +12,7 @@ varying vec4 v_shadow_parameters;
 
 uniform sampler2D sampler_01;
 
-#if defined(EXT_shadow_samplers)
+#if defined(__IOS__)
 
 #extension GL_EXT_shadow_samplers : require
 
@@ -20,9 +20,9 @@ uniform sampler2DShadow sampler_02;
 
 #else
 
-uniform sampler2D sampler_02;
+uniform sampler2DShadow sampler_02;
 
-uniform float u_f32_camera_near;
+/*uniform float u_f32_camera_near;
 uniform float u_f32_camera_far;
 
 float get_shadow_map_pass_depth(in vec2 texcoord)
@@ -36,21 +36,22 @@ float get_current_depth(in float z)
     float depth = z;
     depth = (2.0 * u_f32_camera_near) / (u_f32_camera_near + u_f32_camera_far - depth * (u_f32_camera_far - u_f32_camera_near));
     return depth;
-}
+}*/
 
 #endif
 
 void main(void)
 {
-#if defined(EXT_shadow_samplers)
+#if defined(__IOS__)
     
-    float shadow = shadow2DEXT(sampler_02, v_shadow_parameters.xyz);
+    float shadow = shadow2DProjEXT(sampler_02, v_shadow_parameters);
     
 #else
     
-    vec2 shadow_texcoord = v_shadow_parameters.xy / v_shadow_parameters.w;
+    float shadow = textureProj(sampler_02, v_shadow_parameters);
+    /*vec2 shadow_texcoord = v_shadow_parameters.xy / v_shadow_parameters.w;
     float z = v_shadow_parameters.z / v_shadow_parameters.w;
-    float shadow = step(get_current_depth(z), get_shadow_map_pass_depth(shadow_texcoord));
+    float shadow = step(get_current_depth(z), get_shadow_map_pass_depth(shadow_texcoord));*/
     
 #endif
     
