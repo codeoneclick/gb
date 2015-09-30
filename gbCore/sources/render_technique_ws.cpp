@@ -38,8 +38,8 @@ namespace gb
         ui32 depth_attachment_id;
         gl_create_textures(1, &depth_attachment_id);
         gl_bind_texture(GL_TEXTURE_2D, depth_attachment_id);
-        gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
         gl_texture_parameter_i(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         
@@ -185,7 +185,7 @@ namespace gb
                     assert(false);
                 }
                 
-                if(debug_render_component && m_name == "ws.base")
+                if(debug_render_component && material->is_debugging())
                 {
                     material_shared_ptr material = debug_render_component->on_bind(m_name);
                     material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);

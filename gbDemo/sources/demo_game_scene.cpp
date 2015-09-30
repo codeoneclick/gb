@@ -23,7 +23,7 @@ gb::game_scene(transition)
     m_camera = game_scene::get_transition()->get_fabricator()->create_camera(45.f, .1f, 128.f, glm::ivec4(0.f, 0.f,
                                                                                                           game_scene::get_transition()->get_width(),
                                                                                                           game_scene::get_transition()->get_height()));
-    m_global_light = game_scene::get_transition()->get_fabricator()->create_global_light(90.f , .1f, 128.f);
+    m_global_light = game_scene::get_transition()->get_fabricator()->create_global_light(90.f, .1f, 128.f);
     
     m_models["human_02"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.human_02.xml");
     m_models["orc_01"] = game_scene::get_transition()->get_fabricator()->create_model3d_animated("gameobject.orc_01.xml");

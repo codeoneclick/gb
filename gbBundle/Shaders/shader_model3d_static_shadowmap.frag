@@ -11,6 +11,15 @@ varying vec4 v_shadow_parameters;
 #endif
 
 uniform sampler2D sampler_01;
+
+#if defined(EXT_shadow_samplers)
+
+#extension GL_EXT_shadow_samplers : require
+
+uniform sampler2DShadow sampler_02;
+
+#else
+
 uniform sampler2D sampler_02;
 
 uniform float u_f32_camera_near;
@@ -29,14 +38,23 @@ float get_current_depth(in float z)
     return depth;
 }
 
+#endif
+
 void main(void)
 {
+#if defined(EXT_shadow_samplers)
+    
+    float shadow = shadow2DEXT(sampler_02, v_shadow_parameters.xyz);
+    
+#else
+    
     vec2 shadow_texcoord = v_shadow_parameters.xy / v_shadow_parameters.w;
     float z = v_shadow_parameters.z / v_shadow_parameters.w;
     float shadow = step(get_current_depth(z), get_shadow_map_pass_depth(shadow_texcoord));
     
-    vec4 color = texture2D(sampler_01, v_texcoord);
+#endif
     
+    vec4 color = texture2D(sampler_01, v_texcoord);
     color.rgb *= shadow;
     gl_FragColor = color;
 }
