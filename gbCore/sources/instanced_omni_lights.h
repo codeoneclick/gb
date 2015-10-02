@@ -18,10 +18,7 @@ namespace gb
     private:
         
         std::weak_ptr<scene_graph> m_scene_graph;
-        
         std::vector<glm::vec4> m_parameters;
-        std::vector<glm::mat4> m_matrices_m;
-        
         i32 m_num_instances;
         
     protected:

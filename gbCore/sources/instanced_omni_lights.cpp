@@ -29,7 +29,6 @@ namespace gb
         render_component->set_z_order(0);
         
         m_parameters.resize(num_instances, glm::vec4(0.f, 0.f, 0.f, 1.f));
-        m_matrices_m.resize(num_instances, glm::mat4(1.f));
     }
     
     instanced_omni_lights::~instanced_omni_lights()
@@ -41,19 +40,12 @@ namespace gb
     {
         if(instance_id < m_num_instances)
         {
-            
             m_parameters[instance_id].x = position.x;
             m_parameters[instance_id].y = position.y;
             m_parameters[instance_id].z = position.z;
-            m_matrices_m[instance_id] = glm::translate(glm::mat4(1.f), glm::vec3(m_parameters[instance_id].x,
-                                                                                 m_parameters[instance_id].y,
-                                                                                 m_parameters[instance_id].z)) * glm::scale(glm::mat4(1.f),
-                                                                                                                            glm::vec3(m_parameters[instance_id].w));
-            
+
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_parameters[0], static_cast<i32>(m_parameters.size()),
                                                                                    "u_parameters", "ws.deferred.lighting");
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_matrices_m[0], static_cast<i32>(m_parameters.size()),
-                                                                                   "u_matrices_m", "ws.deferred.lighting");
         }
         else
         {
@@ -81,15 +73,8 @@ namespace gb
         if(instance_id < m_num_instances)
         {
             m_parameters[instance_id].w = radius;
-            m_matrices_m[instance_id] = glm::translate(glm::mat4(1.f), glm::vec3(m_parameters[instance_id].x,
-                                                                                 m_parameters[instance_id].y,
-                                                                                 m_parameters[instance_id].z)) * glm::scale(glm::mat4(1.f),
-                                                                                                                            glm::vec3(m_parameters[instance_id].w));
-            
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_parameters[0], static_cast<i32>(m_parameters.size()),
                                                                                    "u_parameters", "ws.deferred.lighting");
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_matrices_m[0], static_cast<i32>(m_parameters.size()),
-                                                                                   "u_matrices_m", "ws.deferred.lighting");
         }
         else
         {

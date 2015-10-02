@@ -25,12 +25,23 @@ const char* shader_instanced_omni_light_vert = string_shader
  
  uniform mat4 u_mat_v;
  uniform mat4 u_mat_p;
- uniform mat4 u_matrices_m[8];
  uniform vec4 u_parameters[8];
+ 
+ mat4 mat_m = mat4(0.0, 0.0, 0.0, 0.0,
+                   0.0, 0.0, 0.0, 0.0,
+                   0.0, 0.0, 0.0, 0.0,
+                   0.0, 0.0, 0.0, 1.0);
  
  void main(void)
 {
-    vec4 position = u_matrices_m[gl_InstanceID] * vec4(a_position, 1.0);
+    mat_m[0][0] = u_parameters[gl_InstanceID].w;
+    mat_m[1][1] = u_parameters[gl_InstanceID].w;
+    mat_m[2][2] = u_parameters[gl_InstanceID].w;
+    mat_m[3][0] = u_parameters[gl_InstanceID].x;
+    mat_m[3][1] = u_parameters[gl_InstanceID].y;
+    mat_m[3][2] = u_parameters[gl_InstanceID].z;
+
+    vec4 position = mat_m * vec4(a_position, 1.0);
     gl_Position = u_mat_p * u_mat_v * position;
     
     v_screen_position = gl_Position;
