@@ -82,9 +82,9 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_radius(8.f);
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));
     
-    /*m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
+    m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
     game_scene::get_transition()->get_scene_graph()->add_direction_light(m_direction_light);
-    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));*/
+    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
     
     gb::instanced_omni_lights_shared_ptr instanced_omni_lights = game_scene::get_transition()->get_fabricator()->create_instanced_omni_lights(4);
     game_scene::get_transition()->get_scene_graph()->add_instanced_omni_lights(instanced_omni_lights);

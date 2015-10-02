@@ -28,6 +28,19 @@ void ws_technique_configuration::set_draw_bounding_boxes(bool are_draw_bounding_
 configuration::set_attribute("/ws_technique/are_draw_bounding_boxes", std::make_shared<configuration_attribute>(are_draw_bounding_boxes));
 }
 #endif
+bool ws_technique_configuration::get_is_depth_compare_mode_enabled(void) const
+{
+const auto& iterator = m_attributes.find("/ws_technique/is_depth_compare_mode_enabled");
+assert(iterator != m_attributes.end());
+bool value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void ws_technique_configuration::set_is_depth_compare_mode_enabled(bool is_depth_compare_mode_enabled)
+{
+configuration::set_attribute("/ws_technique/is_depth_compare_mode_enabled", std::make_shared<configuration_attribute>(is_depth_compare_mode_enabled));
+}
+#endif
 ui32 ws_technique_configuration::get_index(void) const
 {
 const auto& iterator = m_attributes.find("/ws_technique/index");
@@ -130,6 +143,8 @@ std::string guid = node.node().attribute("guid").as_string();
 configuration::set_attribute("/ws_technique/guid", std::make_shared<configuration_attribute>(guid));
 bool are_draw_bounding_boxes = node.node().attribute("are_draw_bounding_boxes").as_bool();
 configuration::set_attribute("/ws_technique/are_draw_bounding_boxes", std::make_shared<configuration_attribute>(are_draw_bounding_boxes));
+bool is_depth_compare_mode_enabled = node.node().attribute("is_depth_compare_mode_enabled").as_bool();
+configuration::set_attribute("/ws_technique/is_depth_compare_mode_enabled", std::make_shared<configuration_attribute>(is_depth_compare_mode_enabled));
 ui32 index = node.node().attribute("index").as_uint();
 configuration::set_attribute("/ws_technique/index", std::make_shared<configuration_attribute>(index));
 ui32 screen_width = node.node().attribute("screen_width").as_uint();
@@ -160,6 +175,9 @@ attribute.set_value(guid.c_str());
 attribute = node.append_attribute("are_draw_bounding_boxes");
 bool are_draw_bounding_boxes = ws_technique_configuration::get_draw_bounding_boxes();
 attribute.set_value(are_draw_bounding_boxes);
+attribute = node.append_attribute("is_depth_compare_mode_enabled");
+bool is_depth_compare_mode_enabled = ws_technique_configuration::get_is_depth_compare_mode_enabled();
+attribute.set_value(is_depth_compare_mode_enabled);
 attribute = node.append_attribute("index");
 ui32 index = ws_technique_configuration::get_index();
 attribute.set_value(index);

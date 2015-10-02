@@ -76,7 +76,8 @@ namespace gb
             std::make_shared<gb::render_technique_ws>(screen_width,
                                                       screen_height,
                                                       ws_technique_configuration->get_guid(),
-                                                      ws_technique_configuration->get_index());
+                                                      ws_technique_configuration->get_index(),
+                                                      ws_technique_configuration->get_is_depth_compare_mode_enabled());
             glm::vec4 color = glm::vec4(ws_technique_configuration->get_clear_color_r(),
                                         ws_technique_configuration->get_clear_color_g(),
                                         ws_technique_configuration->get_clear_color_b(),

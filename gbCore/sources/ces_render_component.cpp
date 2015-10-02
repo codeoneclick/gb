@@ -172,15 +172,7 @@ namespace gb
         material->get_shader()->set_mat4(matrix_v, e_shader_uniform_mat_v);
         material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
         material->get_shader()->set_mat4(camera->get_matrix_i_vp(), e_shader_uniform_mat_i_vp);
-        
-        std::cout<<camera->get_matrix_i_vp()[0][0]<<", "<<camera->get_matrix_i_vp()[0][1]<<", "<<camera->get_matrix_i_vp()[0][2]<<", "<<camera->get_matrix_i_vp()[0][3]<<std::endl;
-        std::cout<<camera->get_matrix_i_vp()[1][0]<<", "<<camera->get_matrix_i_vp()[1][1]<<", "<<camera->get_matrix_i_vp()[1][2]<<", "<<camera->get_matrix_i_vp()[1][3]<<std::endl;
-        std::cout<<camera->get_matrix_i_vp()[2][0]<<", "<<camera->get_matrix_i_vp()[2][1]<<", "<<camera->get_matrix_i_vp()[2][2]<<", "<<camera->get_matrix_i_vp()[2][3]<<std::endl;
-        std::cout<<camera->get_matrix_i_vp()[3][0]<<", "<<camera->get_matrix_i_vp()[3][1]<<", "<<camera->get_matrix_i_vp()[3][2]<<", "<<camera->get_matrix_i_vp()[3][3]<<std::endl;
-        
-        std::cout<<std::endl;
-        std::cout<<std::endl;
-        
+
         material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
         material->get_shader()->set_f32(camera->get_near(), e_shader_uniform_f32_camera_near);
         material->get_shader()->set_f32(camera->get_far(), e_shader_uniform_f32_camera_far);

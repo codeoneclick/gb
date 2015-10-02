@@ -26,7 +26,7 @@ namespace gb
         
     public:
         
-        render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index);
+        render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index, bool is_depth_compare_mode_enabled);
         ~render_technique_ws();
         
         texture_shared_ptr get_color_attachment_texture() const;

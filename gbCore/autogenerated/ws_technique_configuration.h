@@ -17,6 +17,10 @@ bool get_draw_bounding_boxes(void) const;
 #if defined(__EDITOR__)
 void set_draw_bounding_boxes(bool are_draw_bounding_boxes);
 #endif
+bool get_is_depth_compare_mode_enabled(void) const;
+#if defined(__EDITOR__)
+void set_is_depth_compare_mode_enabled(bool is_depth_compare_mode_enabled);
+#endif
 ui32 get_index(void) const;
 #if defined(__EDITOR__)
 void set_index(ui32 index);

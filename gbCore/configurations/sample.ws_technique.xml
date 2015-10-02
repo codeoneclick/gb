@@ -5,6 +5,7 @@
     <attributes>
         <attribute type="std::string" property="guid" path="/ws_technique" name="guid"/>
         <attribute type="bool" property="draw_bounding_boxes" path="/ws_technique" name="are_draw_bounding_boxes"/>
+        <attribute type="bool" property="is_depth_compare_mode_enabled" path="/ws_technique" name="is_depth_compare_mode_enabled"/>
         <attribute type="ui32" property="index" path="/ws_technique" name="index"/>
         <attribute type="ui32" property="screen_width" path="/ws_technique" name="screen_width"/>
         <attribute type="ui32" property="screen_height" path="/ws_technique" name="screen_height"/>
