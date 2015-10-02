@@ -108,32 +108,32 @@ namespace gb
                                                const std::shared_ptr<vbo>& vbo,
                                                const std::shared_ptr<ibo>& ibo,
                                                GLenum mode = GL_TRIANGLES);
-        ~mesh(void);
+        ~mesh();
         
-        std::shared_ptr<vbo> get_vbo(void) const;
-        std::shared_ptr<ibo> get_ibo(void) const;
+        std::shared_ptr<vbo> get_vbo() const;
+        std::shared_ptr<ibo> get_ibo() const;
         
-        const vbo::vertex_data* get_raw_vertices(void) const;
-        const ui16* get_raw_indices(void) const;
+        const vbo::vertex_data* get_raw_vertices() const;
+        const ui16* get_raw_indices() const;
         
-        ui32 get_num_raw_vertices(void) const;
-        ui32 get_num_raw_indices(void) const;
+        ui32 get_num_raw_vertices() const;
+        ui32 get_num_raw_indices() const;
         
-        const glm::vec3 get_min_bound(void) const;
-        const glm::vec3 get_max_bound(void) const;
+        const glm::vec3 get_min_bound() const;
+        const glm::vec3 get_max_bound() const;
         const std::tuple<glm::vec3, glm::vec3> get_bounds(void) const;
         
         const glm::vec3 get_min_bound(const glm::mat4& matrix) const;
         const glm::vec3 get_max_bound(const glm::mat4& matrix) const;
         const std::tuple<glm::vec3, glm::vec3> get_bounds(const glm::mat4& matrix) const;
         
-        const std::shared_ptr<skeleton_transfering_data> get_skeleton_data(void) const;
-        const std::shared_ptr<sequence_transfering_data> get_bindpose_data(void) const;
+        const std::shared_ptr<skeleton_transfering_data> get_skeleton_data() const;
+        const std::shared_ptr<sequence_transfering_data> get_bindpose_data() const;
         
-        void bind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
-        void draw() const;
-        void draw(ui32 indices) const;
-        void unbind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
+        virtual void bind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
+        virtual void draw() const;
+        virtual void draw(ui32 indices) const;
+        virtual void unbind(const std::string& attributes_guid, const std::array<i32, e_shader_attribute_max>& attributes);
     };
     
 }

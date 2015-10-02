@@ -18,7 +18,7 @@ namespace gb
     private:
         
     protected:
-        
+
         mesh_shared_ptr m_mesh;
         
     public:
@@ -27,7 +27,7 @@ namespace gb
         ~ces_geometry_component();
         
         virtual void set_mesh(const mesh_shared_ptr& mesh);
-        mesh_shared_ptr get_mesh() const;
+        virtual mesh_shared_ptr get_mesh() const;
         
         virtual const glm::vec3 get_min_bound() const;
         virtual const glm::vec3 get_max_bound() const;

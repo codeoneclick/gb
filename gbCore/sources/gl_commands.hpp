@@ -388,6 +388,19 @@ namespace gb
 #endif
     };
     
+    inline void gl_set_vertex_attribute_divisor(GLuint index, GLuint divisor)
+    {
+#if defined(__OSX__)
+        glVertexAttribDivisor(index, divisor);
+#elif defined(__IOS__)
+        glVertexAttribDivisorEXT(index, divisor);
+#endif
+        
+#if defined(DEBUG)
+        gl_get_error();
+#endif
+    }
+    
     inline void gl_bind_vertex_array(GLuint array)
     {
 #if defined(__OSX__)
@@ -441,6 +454,19 @@ namespace gb
         gl_get_error();
 #endif
     };
+    
+    inline void gl_draw_elements_instanced(GLenum mode, GLsizei count, GLenum type, const GLvoid *indices, GLsizei instancecount)
+    {
+#if defined(__OSX__)
+        glDrawElementsInstanced(mode, count, type, indices, instancecount);
+#elif defined(__IOS__)
+        glDrawElementsInstancedEXT(mode, count, type, indices, instancecount);
+#endif
+        
+#if defined(DEBUG)
+        gl_get_error();
+#endif
+    }
     
     inline GLint gl_get_uniform_location(GLuint program, const GLchar *name)
     {
@@ -527,7 +553,6 @@ namespace gb
     inline void gl_use_program(GLuint program)
     {
         glUseProgram(program);
-        
 #if defined(DEBUG)
         gl_get_error();
 #endif

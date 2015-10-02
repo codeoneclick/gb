@@ -64,6 +64,23 @@ namespace gb
                 });
             }
         };
+        
+        template<typename T_VALUE>
+        void set_custom_shader_uniform_array(T_VALUE array, i32 size, const std::string& uniform, const std::string& technique_name)
+        {
+            if(technique_name.length() != 0)
+            {
+                material_shared_ptr material = ces_render_component::get_material(technique_name);
+                assert(material);
+                material->set_custom_shader_uniform(array, size, uniform);
+            }
+            else
+            {
+                std::for_each(m_materials.cbegin(), m_materials.cend(), [array, size, uniform](std::pair<std::string, material_shared_ptr> material) {
+                    material.second->set_custom_shader_uniform(array, size, uniform);
+                });
+            }
+        };
     };
 };
 

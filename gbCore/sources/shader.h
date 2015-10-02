@@ -16,13 +16,20 @@ namespace gb
     class texture;
     enum e_uniform_type
     {
-        e_uniform_type_mat3 = 0,
-        e_uniform_type_mat4,
-        e_uniform_type_vec2,
-        e_uniform_type_vec3,
+        e_uniform_type_mat4 = 0,
+        e_uniform_type_mat4_array,
+        e_uniform_type_mat3,
+        e_uniform_type_mat3_array,
         e_uniform_type_vec4,
+        e_uniform_type_vec4_array,
+        e_uniform_type_vec3,
+        e_uniform_type_vec3_array,
+        e_uniform_type_vec2,
+        e_uniform_type_vec2_array,
         e_uniform_type_f32,
+        e_uniform_type_f32_array,
         e_uniform_type_i32,
+        e_uniform_type_i32_array,
         e_uniform_type_sampler
     };
     
@@ -79,13 +86,22 @@ namespace gb
         
         e_uniform_type m_type;
         
-        glm::mat4 m_mat4_value;
-        glm::mat3 m_mat3_value;
-        glm::vec4 m_vec4_value;
-        glm::vec3 m_vec3_value;
-        glm::vec2 m_vec2_value;
-        f32 m_f32_value;
-        i32 m_i32_value;
+        glm::mat4  m_mat4_value;
+        glm::mat4* m_mat4_array;
+        glm::mat3  m_mat3_value;
+        glm::mat3* m_mat3_array;
+        glm::vec4  m_vec4_value;
+        glm::vec4* m_vec4_array;
+        glm::vec3  m_vec3_value;
+        glm::vec3* m_vec3_array;
+        glm::vec2  m_vec2_value;
+        glm::vec2* m_vec2_array;
+        f32  m_f32_value;
+        f32* m_f32_array;
+        i32  m_i32_value;
+        i32* m_i32_array;
+        
+        i32 m_array_size;
         
         e_shader_sampler m_sampler_value;
         std::shared_ptr<texture> m_texture_value;
@@ -96,28 +112,44 @@ namespace gb
         
         shader_uniform(e_uniform_type type);
         
-        ~shader_uniform(void);
+        ~shader_uniform();
         
-        e_uniform_type get_type(void) const;
+        e_uniform_type get_type() const;
         
-        void set_mat3(const glm::mat3& matrix);
         void set_mat4(const glm::mat4& matrix);
-        void set_vec2(const glm::vec2& vector);
-        void set_vec3(const glm::vec3& vector);
+        void set_mat4_array(glm::mat4* matrices, i32 size);
+        void set_mat3(const glm::mat3& matrix);
+        void set_mat3_array(glm::mat3* matrices, i32 size);
         void set_vec4(const glm::vec4& vector);
+        void set_vec4_array(glm::vec4* vectors, i32 size);
+        void set_vec3(const glm::vec3& vector);
+        void set_vec3_array(glm::vec3* vectors, i32 size);
+        void set_vec2(const glm::vec2& vector);
+        void set_vec2_array(glm::vec2* vectors, i32 size);
         void set_f32(f32 value);
+        void set_f32_array(f32* values, i32 size);
         void set_i32(i32 value);
+        void set_i32_array(i32* values, i32 size);
         void set_sampler(const std::shared_ptr<texture>& texture, e_shader_sampler sampler);
         
-        const glm::mat3& get_mat3(void) const;
-        const glm::mat4& get_mat4(void) const;
-        const glm::vec2& get_vec2(void) const;
-        const glm::vec3& get_vec3(void) const;
-        const glm::vec4& get_vec4(void) const;
-        f32 get_f32(void) const;
-        i32 get_i32(void) const;
-        e_shader_sampler get_sampler(void) const;
-        std::shared_ptr<texture> get_texture(void) const;
+        const glm::mat4& get_mat4() const;
+        const glm::mat4* get_mat4_array() const;
+        const glm::mat3& get_mat3() const;
+        const glm::mat3* get_mat3_array() const;
+        const glm::vec4& get_vec4() const;
+        const glm::vec4* get_vec4_array() const;
+        const glm::vec3& get_vec3() const;
+        const glm::vec3* get_vec3_array() const;
+        const glm::vec2& get_vec2() const;
+        const glm::vec2* get_vec2_array() const;
+        f32 get_f32() const;
+        f32* get_f32_array() const;
+        i32 get_i32() const;
+        i32* get_i32_array() const;
+        e_shader_sampler get_sampler() const;
+        std::shared_ptr<texture> get_texture() const;
+        
+        i32 get_array_size() const;
     };
     
 #define k_max_cached_uniforms 512
@@ -157,7 +189,9 @@ namespace gb
         i32 m_uniforms[gb::e_shader_uniform_max];
         i32 m_samplers[gb::e_shader_sampler_max];
         std::array<i32, e_shader_attribute_max> m_attributes;
+        
         std::unordered_map<std::string, i32> m_custom_uniforms;
+        std::unordered_map<std::string, i32> m_custom_attributes;
         
         std::shared_ptr<shader_transfering_data> m_data;
         
@@ -200,11 +234,16 @@ namespace gb
         void set_custom_vec3_array(const glm::vec3* vectors, ui32 size, const std::string& uniform);
         void set_vec4(const glm::vec4& vector, e_shader_uniform uniform);
         void set_custom_vec4(const glm::vec4& vector, const std::string& uniform);
+        void set_custom_vec4_array(const glm::vec4* vectors, ui32 size, const std::string& uniform);
         void set_f32(f32 value, e_shader_uniform uniform);
         void set_custom_f32(f32 value, const std::string& uniform);
         void set_i32(i32 value, e_shader_uniform uniform);
         void set_custom_i32(i32 value, const std::string& uniform);
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler);
+        
+        i32 get_custom_attribute(const std::string& attribute_name);
+        const std::unordered_map<std::string, i32>& get_custom_attributes() const;
+        bool is_custom_attributes_exist() const;
         
         void bind(void) const;
         void unbind(void) const;

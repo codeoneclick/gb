@@ -15,12 +15,12 @@
 
 namespace gb
 {
-    ces_render_component::ces_render_component(void)
+    ces_render_component::ces_render_component()
     {
         m_type = e_ces_component_type_render;
     }
     
-    ces_render_component::~ces_render_component(void)
+    ces_render_component::~ces_render_component()
     {
         m_materials.clear();
     }
@@ -51,7 +51,7 @@ namespace gb
         m_z_order = z_order;
     }
     
-    i32 ces_render_component::get_z_order(void) const
+    i32 ces_render_component::get_z_order() const
     {
         return m_z_order;
     }
@@ -89,6 +89,14 @@ namespace gb
                 }
                     break;
                     
+                case e_uniform_type_mat4_array:
+                {
+                    material->get_shader()->set_custom_mat4_array(current_uniform->get_mat4_array(),
+                                                                  current_uniform->get_array_size(),
+                                                                  iterator.first);
+                }
+                    break;
+                    
                 case e_uniform_type_mat3:
                 {
                     material->get_shader()->set_custom_mat3(current_uniform->get_mat3(), iterator.first);
@@ -98,6 +106,14 @@ namespace gb
                 case e_uniform_type_vec4:
                 {
                     material->get_shader()->set_custom_vec4(current_uniform->get_vec4(), iterator.first);
+                }
+                    break;
+                    
+                case e_uniform_type_vec4_array:
+                {
+                    material->get_shader()->set_custom_vec4_array(current_uniform->get_vec4_array(),
+                                                                  current_uniform->get_array_size(),
+                                                                  iterator.first);
                 }
                     break;
                     
@@ -156,6 +172,14 @@ namespace gb
         material->get_shader()->set_mat4(matrix_v, e_shader_uniform_mat_v);
         material->get_shader()->set_mat4(camera->get_matrix_n(), e_shader_uniform_mat_n);
         material->get_shader()->set_mat4(camera->get_matrix_i_vp(), e_shader_uniform_mat_i_vp);
+        
+        std::cout<<camera->get_matrix_i_vp()[0][0]<<", "<<camera->get_matrix_i_vp()[0][1]<<", "<<camera->get_matrix_i_vp()[0][2]<<", "<<camera->get_matrix_i_vp()[0][3]<<std::endl;
+        std::cout<<camera->get_matrix_i_vp()[1][0]<<", "<<camera->get_matrix_i_vp()[1][1]<<", "<<camera->get_matrix_i_vp()[1][2]<<", "<<camera->get_matrix_i_vp()[1][3]<<std::endl;
+        std::cout<<camera->get_matrix_i_vp()[2][0]<<", "<<camera->get_matrix_i_vp()[2][1]<<", "<<camera->get_matrix_i_vp()[2][2]<<", "<<camera->get_matrix_i_vp()[2][3]<<std::endl;
+        std::cout<<camera->get_matrix_i_vp()[3][0]<<", "<<camera->get_matrix_i_vp()[3][1]<<", "<<camera->get_matrix_i_vp()[3][2]<<", "<<camera->get_matrix_i_vp()[3][3]<<std::endl;
+        
+        std::cout<<std::endl;
+        std::cout<<std::endl;
         
         material->get_shader()->set_vec3(camera->get_position(), e_shader_uniform_vec_camera_position);
         material->get_shader()->set_f32(camera->get_near(), e_shader_uniform_f32_camera_near);

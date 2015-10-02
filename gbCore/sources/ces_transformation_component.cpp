@@ -14,9 +14,9 @@ namespace gb
     m_is_matrix_m_computed(false)
     {
         m_type = e_ces_component_type_transformation;
-        ces_transformation_component::set_position(glm::vec3(0.0f));
-        ces_transformation_component::set_rotation(glm::vec3(0.0f));
-        ces_transformation_component::set_scale(glm::vec3(1.0f));
+        ces_transformation_component::set_position(glm::vec3(0.f));
+        ces_transformation_component::set_rotation(glm::vec3(0.f));
+        ces_transformation_component::set_scale(glm::vec3(1.f));
     }
     
     ces_transformation_component::~ces_transformation_component(void)
@@ -27,23 +27,23 @@ namespace gb
     void ces_transformation_component::set_position(const glm::vec3& position)
     {
         m_position = position;
-        m_matrix_t = glm::translate(glm::mat4(1.0f), m_position);
+        m_matrix_t = glm::translate(glm::mat4(1.f), m_position);
         m_is_matrix_m_computed = false;
     }
     
     void ces_transformation_component::set_rotation(const glm::vec3& rotation)
     {
         m_rotation = rotation;
-        m_matrix_r = glm::rotate(glm::mat4(1.0f), m_rotation.x, glm::vec3(1.0f, 0.0f, 0.0f));
-        m_matrix_r = glm::rotate(m_matrix_r, m_rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
-        m_matrix_r = glm::rotate(m_matrix_r, m_rotation.y, glm::vec3(0.0f, 1.0f, 0.0f));
+        m_matrix_r = glm::rotate(glm::mat4(1.f), m_rotation.x, glm::vec3(1.f, 0.f, 0.f));
+        m_matrix_r = glm::rotate(m_matrix_r, m_rotation.z, glm::vec3(0.f, 0.f, 1.f));
+        m_matrix_r = glm::rotate(m_matrix_r, m_rotation.y, glm::vec3(0.f, 1.f, 0.f));
         m_is_matrix_m_computed = false;
     }
     
     void ces_transformation_component::set_scale(const glm::vec3& scale)
     {
         m_scale = scale;
-        m_matrix_s = glm::scale(glm::mat4(1.0f), m_scale);
+        m_matrix_s = glm::scale(glm::mat4(1.f), m_scale);
         m_is_matrix_m_computed = false;
     }
     

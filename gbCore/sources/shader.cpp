@@ -108,14 +108,23 @@ namespace gb
     
     shader_uniform::shader_uniform(e_uniform_type type) :
     m_type(type),
-    m_mat3_value(0.0),
-    m_mat4_value(0.0),
-    m_vec2_value(0.0),
-    m_vec3_value(0.0),
-    m_vec4_value(0.0),
-    m_f32_value(0.0),
+    m_mat4_value(0.f),
+    m_mat4_array(nullptr),
+    m_mat3_value(0.f),
+    m_mat3_array(nullptr),
+    m_vec4_value(0.f),
+    m_vec4_array(nullptr),
+    m_vec3_value(0.f),
+    m_vec3_array(nullptr),
+    m_vec2_value(0.f),
+    m_vec2_array(nullptr),
+    m_f32_value(0.f),
+    m_f32_array(nullptr),
+    m_i32_value(0),
+    m_i32_array(nullptr),
     m_sampler_value(e_shader_sampler_01),
-    m_texture_value(nullptr)
+    m_texture_value(nullptr),
+    m_array_size(0)
     {
         
     }
@@ -130,28 +139,30 @@ namespace gb
         return m_type;
     }
     
-    void shader_uniform::set_mat3(const glm::mat3x3& matrix)
-    {
-        assert(m_type == e_uniform_type_mat3);
-        m_mat3_value = matrix;
-    }
-    
-    void shader_uniform::set_mat4(const glm::mat4x4& matrix)
+    void shader_uniform::set_mat4(const glm::mat4& matrix)
     {
         assert(m_type == e_uniform_type_mat4);
         m_mat4_value = matrix;
     }
     
-    void shader_uniform::set_vec2(const glm::vec2& vector)
+    void shader_uniform::set_mat4_array(glm::mat4 *matrices, i32 size)
     {
-        assert(m_type == e_uniform_type_vec2);
-        m_vec2_value = vector;
+        assert(m_type == e_uniform_type_mat4_array);
+        m_mat4_array = matrices;
+        m_array_size = size;
     }
     
-    void shader_uniform::set_vec3(const glm::vec3& vector)
+    void shader_uniform::set_mat3(const glm::mat3& matrix)
     {
-        assert(m_type == e_uniform_type_vec3);
-        m_vec3_value = vector;
+        assert(m_type == e_uniform_type_mat3);
+        m_mat3_value = matrix;
+    }
+    
+    void shader_uniform::set_mat3_array(glm::mat3 *matrices, i32 size)
+    {
+        assert(m_type == e_uniform_type_mat3_array);
+        m_mat3_array = matrices;
+        m_array_size = size;
     }
     
     void shader_uniform::set_vec4(const glm::vec4& vector)
@@ -160,16 +171,63 @@ namespace gb
         m_vec4_value = vector;
     }
     
+    void shader_uniform::set_vec4_array(glm::vec4 *vectors, i32 size)
+    {
+        assert(m_type = e_uniform_type_vec4_array);
+        m_vec4_array = vectors;
+        m_array_size = size;
+    }
+    
+    void shader_uniform::set_vec3(const glm::vec3& vector)
+    {
+        assert(m_type == e_uniform_type_vec3);
+        m_vec3_value = vector;
+    }
+    
+    void shader_uniform::set_vec3_array(glm::vec3 *vectors, i32 size)
+    {
+        assert(m_type = e_uniform_type_vec3_array);
+        m_vec3_array = vectors;
+        m_array_size = size;
+    }
+    
+    void shader_uniform::set_vec2(const glm::vec2& vector)
+    {
+        assert(m_type == e_uniform_type_vec2);
+        m_vec2_value = vector;
+    }
+    
+    void shader_uniform::set_vec2_array(glm::vec2 *vectors, i32 size)
+    {
+        assert(m_type = e_uniform_type_vec2_array);
+        m_vec2_array = vectors;
+        m_array_size = size;
+    }
+    
     void shader_uniform::set_f32(f32 value)
     {
         assert(m_type == e_uniform_type_f32);
         m_f32_value = value;
     }
     
+    void shader_uniform::set_f32_array(f32 *values, i32 size)
+    {
+        assert(m_type = e_uniform_type_f32_array);
+        m_f32_array = values;
+        m_array_size = size;
+    }
+    
     void shader_uniform::set_i32(i32 value)
     {
         assert(m_type == e_uniform_type_i32);
         m_i32_value = value;
+    }
+    
+    void shader_uniform::set_i32_array(i32* values, i32 size)
+    {
+        assert(m_type = e_uniform_type_f32_array);
+        m_i32_array = values;
+        m_array_size = size;
     }
     
     void shader_uniform::set_sampler(const std::shared_ptr<texture> &texture, gb::e_shader_sampler sampler)
@@ -179,58 +237,105 @@ namespace gb
         m_sampler_value = sampler;
     }
     
-    const glm::mat3x3& shader_uniform::get_mat3(void) const
-    {
-        assert(m_type == e_uniform_type_mat3);
-        return m_mat3_value;
-    }
-    
-    const glm::mat4x4& shader_uniform::get_mat4(void) const
+    const glm::mat4& shader_uniform::get_mat4() const
     {
         assert(m_type == e_uniform_type_mat4);
         return m_mat4_value;
     }
     
-    const glm::vec2& shader_uniform::get_vec2(void) const
+    const glm::mat4* shader_uniform::get_mat4_array() const
     {
-        assert(m_type == e_uniform_type_vec2);
-        return m_vec2_value;
+        assert(m_type == e_uniform_type_mat4_array);
+        return m_mat4_array;
     }
     
-    const glm::vec3& shader_uniform::get_vec3(void) const
+    const glm::mat3& shader_uniform::get_mat3() const
     {
-        assert(m_type == e_uniform_type_vec3);
-        return m_vec3_value;
+        assert(m_type == e_uniform_type_mat3);
+        return m_mat3_value;
     }
     
-    const glm::vec4& shader_uniform::get_vec4(void) const
+    const glm::mat3* shader_uniform::get_mat3_array() const
+    {
+        assert(m_type == e_uniform_type_mat3_array);
+        return m_mat3_array;
+    }
+    
+    const glm::vec4& shader_uniform::get_vec4() const
     {
         assert(m_type == e_uniform_type_vec4);
         return m_vec4_value;
     }
     
-    f32 shader_uniform::get_f32(void) const
+    const glm::vec4* shader_uniform::get_vec4_array() const
+    {
+        assert(m_type == e_uniform_type_vec4_array);
+        return m_vec4_array;
+    }
+    
+    const glm::vec3& shader_uniform::get_vec3() const
+    {
+        assert(m_type == e_uniform_type_vec3);
+        return m_vec3_value;
+    }
+    
+    const glm::vec3* shader_uniform::get_vec3_array() const
+    {
+        assert(m_type == e_uniform_type_vec3_array);
+        return m_vec3_array;
+    }
+    
+    const glm::vec2& shader_uniform::get_vec2() const
+    {
+        assert(m_type == e_uniform_type_vec2);
+        return m_vec2_value;
+    }
+    
+    const glm::vec2* shader_uniform::get_vec2_array() const
+    {
+        assert(m_type == e_uniform_type_vec2_array);
+        return m_vec2_array;
+    }
+    
+    f32 shader_uniform::get_f32() const
     {
         assert(m_type == e_uniform_type_f32);
         return m_f32_value;
     }
     
-    i32 shader_uniform::get_i32(void) const
+    f32* shader_uniform::get_f32_array() const
+    {
+        assert(m_type == e_uniform_type_f32_array);
+        return m_f32_array;
+    }
+    
+    i32 shader_uniform::get_i32() const
     {
         assert(m_type == e_uniform_type_i32);
         return m_i32_value;
     }
     
-    e_shader_sampler shader_uniform::get_sampler(void) const
+    i32* shader_uniform::get_i32_array() const
+    {
+        assert(m_type == e_uniform_type_i32_array);
+        return m_i32_array;
+    }
+    
+    e_shader_sampler shader_uniform::get_sampler() const
     {
         assert(m_type == e_uniform_type_sampler);
         return m_sampler_value;
     }
     
-    std::shared_ptr<texture> shader_uniform::get_texture(void) const
+    std::shared_ptr<texture> shader_uniform::get_texture() const
     {
         assert(m_type == e_uniform_type_sampler);
         return m_texture_value;
+    }
+    
+    i32 shader_uniform::get_array_size() const
+    {
+        return m_array_size;
     }
     
     shader_transfering_data::shader_transfering_data() :
@@ -593,6 +698,14 @@ namespace gb
         }
     }
     
+    void shader::set_custom_vec4_array(const glm::vec4* vectors, ui32 size, const std::string& uniform)
+    {
+        if(resource::is_loaded() && resource::is_commited())
+        {
+            gl_get_uniform_vector_4fv(shader::get_custom_uniform(uniform), size, &vectors[0][0]);
+        }
+    }
+    
     void shader::set_f32(f32 value, e_shader_uniform uniform)
     {
         if(resource::is_loaded() && resource::is_commited())
@@ -670,5 +783,25 @@ namespace gb
     void shader::unbind(void) const
     {
         
+    }
+    
+    i32 shader::get_custom_attribute(const std::string& attribute_name)
+    {
+        i32 attribute = gl_get_attribute_location(m_data->m_shader_id, attribute_name.c_str());
+        if(attribute != -1)
+        {
+            m_custom_attributes.insert(std::make_pair(attribute_name, attribute));
+        }
+        return attribute;
+    }
+    
+    const std::unordered_map<std::string, i32>& shader::get_custom_attributes() const
+    {
+        return m_custom_attributes;
+    }
+    
+    bool shader::is_custom_attributes_exist() const
+    {
+        return m_custom_attributes.size() != 0;
     }
 }

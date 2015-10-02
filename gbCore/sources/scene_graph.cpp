@@ -12,6 +12,7 @@
 #include "global_light.h"
 #include "game_object.h"
 #include "omni_light.h"
+#include "instanced_omni_lights.h"
 #include "direction_light.h"
 #include "ces_systems_feeder.h"
 
@@ -88,6 +89,20 @@ namespace gb
         omni_light->on_removed_from_scene();
         m_omni_lights_container.erase(omni_light);
         m_systems_feeder->remove_entity(omni_light);
+    }
+    
+    void scene_graph::add_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
+    {
+        instanced_omni_lights->on_added_to_scene(shared_from_this());
+        m_instanced_omni_lights_container.insert(instanced_omni_lights);
+        m_systems_feeder->add_entity(instanced_omni_lights);
+    }
+    
+    void scene_graph::remove_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
+    {
+        instanced_omni_lights->on_removed_from_scene();
+        m_instanced_omni_lights_container.erase(instanced_omni_lights);
+        m_systems_feeder->remove_entity(instanced_omni_lights);
     }
     
     void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)

@@ -119,12 +119,19 @@ namespace gb
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler);
         
         void set_custom_shader_uniform(const glm::mat4& matrix, const std::string& uniform);
+        void set_custom_shader_uniform(glm::mat4* matrices, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(const glm::mat3& matrix, const std::string& uniform);
+        void set_custom_shader_uniform(glm::mat3* matrices, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec4& vector, const std::string& uniform);
+        void set_custom_shader_uniform(glm::vec4* vectors, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec3& vector, const std::string& uniform);
+        void set_custom_shader_uniform(glm::vec3* vectors, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(const glm::vec2& vector, const std::string& uniform);
+        void set_custom_shader_uniform(glm::vec2* vectors, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(f32 value, const std::string& uniform);
+        void set_custom_shader_uniform(f32* values, i32 size, const std::string& uniform);
         void set_custom_shader_uniform(i32 value, const std::string& uniform);
+        void set_custom_shader_uniform(i32* values, i32 size, const std::string& uniform);
         
         const std::map<std::string, std::shared_ptr<shader_uniform>>& get_custom_uniforms(void) const;
         

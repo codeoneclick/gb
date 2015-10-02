@@ -12,10 +12,7 @@
 
 namespace gb
 {
-    vao::vao(const std::shared_ptr<vbo>& vbo,
-             const std::shared_ptr<ibo>& ibo) :
-    m_vbo(vbo),
-    m_ibo(ibo)
+    vao::vao()
     {
         gl_create_vertex_arrays(1, &m_handle);
         gl_bind_vertex_array(m_handle);
@@ -24,19 +21,6 @@ namespace gb
     vao::~vao(void)
     {
         gl_delete_vertex_arrays(1, &m_handle);
-    }
-    
-    void vao::init(const std::array<i32, e_shader_attribute_max>& attributes)
-    {
-        assert(m_vbo != nullptr);
-        assert(m_ibo != nullptr);
-        
-        gl_bind_vertex_array(m_handle);
-        
-        m_vbo->bind(attributes);
-        m_ibo->bind();
-        
-        vao::unbind();
     }
     
     void vao::bind(const std::shared_ptr<vao>& state)

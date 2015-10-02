@@ -342,11 +342,16 @@ namespace gb
             std::shared_ptr<vao> vao_state = m_vao_states[attributes_guid];
             if(!vao_state)
             {
-                vao_state = std::make_shared<vao>(m_vbo, m_ibo);
-                vao_state->init(attributes);
+                vao_state = std::make_shared<vao>();
+                vao::bind(vao_state);
+                m_vbo->bind(attributes);
+                m_ibo->bind();
                 m_vao_states[attributes_guid] = vao_state;
             }
-            vao::bind(vao_state);
+            else
+            {
+                vao::bind(vao_state);
+            }
         }
     }
     

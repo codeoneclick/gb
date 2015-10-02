@@ -146,6 +146,9 @@ namespace gb
     class ces_particle_emitter_component;
     typedef std::shared_ptr<ces_particle_emitter_component> ces_particle_emitter_component_shared_ptr;
     
+    class ces_instanced_geometry_component;
+    typedef std::shared_ptr<ces_instanced_geometry_component> ces_instanced_geometry_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     
@@ -190,6 +193,15 @@ namespace gb
     
     class direction_light;
     typedef std::shared_ptr<direction_light> direction_light_shared_ptr;
+    
+    class instanced_vbo;
+    typedef std::shared_ptr<instanced_vbo> instanced_vbo_shared_ptr;
+    
+    class instanced_mesh;
+    typedef std::shared_ptr<instanced_mesh> instanced_mesh_shared_ptr;
+    
+    class instanced_omni_lights;
+    typedef std::shared_ptr<instanced_omni_lights> instanced_omni_lights_shared_ptr;
 };
 
 #endif

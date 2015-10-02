@@ -10,6 +10,7 @@
 #include "mesh.h"
 #include "vbo.h"
 #include "ibo.h"
+#include "instanced_mesh.h"
 
 namespace gb
 {
@@ -93,7 +94,7 @@ namespace gb
         return mesh;
     }
     
-    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
+    std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> mesh_constructor::create_sphere_data(f32 radius, i32 rings, i32 sectors)
     {
         vbo_shared_ptr vbo = std::make_shared<gb::vbo>((rings + 1) * (sectors + 1), GL_STATIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
@@ -138,8 +139,16 @@ namespace gb
         
         vbo->unlock();
         ibo->unlock();
-        mesh_shared_ptr mesh = gb::mesh::construct("sphere", vbo, ibo,
-                                                   glm::vec3(-radius / 2.f), glm::vec3(radius / 2.f));
+        
+        return std::make_tuple(std::move(vbo), std::move(ibo), std::move( glm::vec3(-radius / 2.f)), std::move(glm::vec3(radius / 2.f)));
+    }
+    
+    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
+        mesh_shared_ptr mesh = gb::mesh::construct("sphere",
+                                                   std::get<0>(data), std::get<1>(data),
+                                                   std::get<2>(data), std::get<3>(data));
         return mesh;
     }
     
@@ -171,6 +180,16 @@ namespace gb
         mesh_shared_ptr mesh = gb::mesh::construct("screen_quad", vbo, ibo,
                                                    glm::vec3(-4096.f),
                                                    glm::vec3( 4096.f));
+        return mesh;
+    }
+    
+    instanced_mesh_shared_ptr mesh_constructor::create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
+        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("sphere",
+                                                                   std::get<0>(data), std::get<1>(data),
+                                                                   std::get<2>(data), std::get<3>(data),
+                                                                   num_instances);
         return mesh;
     }
 }

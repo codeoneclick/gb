@@ -16,6 +16,7 @@
 #include "direction_light.h"
 #include "particle_emitter.h"
 #include "model3d_animated.h"
+#include "instanced_omni_lights.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -81,9 +82,20 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_radius(8.f);
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));
     
-    m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
+    /*m_direction_light = game_scene::get_transition()->get_fabricator()->create_direction_light();
     game_scene::get_transition()->get_scene_graph()->add_direction_light(m_direction_light);
-    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
+    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));*/
+    
+    gb::instanced_omni_lights_shared_ptr instanced_omni_lights = game_scene::get_transition()->get_fabricator()->create_instanced_omni_lights(4);
+    game_scene::get_transition()->get_scene_graph()->add_instanced_omni_lights(instanced_omni_lights);
+    instanced_omni_lights->set_position(glm::vec3(0.f, 1.f, 0.f), 0);
+    instanced_omni_lights->set_radius(5.f, 0);
+    instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 1);
+    instanced_omni_lights->set_radius(5.f, 1);
+    instanced_omni_lights->set_position(glm::vec3(5.f, 1.f, 1.f), 2);
+    instanced_omni_lights->set_radius(5.f, 2);
+    instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 3);
+    instanced_omni_lights->set_radius(5.f, 3);
 }
 
 demo_game_scene::~demo_game_scene()
@@ -96,11 +108,6 @@ void demo_game_scene::update(f32 deltatime)
     m_models["human_02"]->set_animation("IDLE");
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
-    
-    /*static f32 angle = 0.f;
-    angle += .01f;
-    m_camera->set_rotation(angle);
-    m_models["human_02"]->set_rotation(glm::vec3(0.f, angle, 0.f));*/
     
     static f32 angle = 0.f;
     angle += 0.05f;

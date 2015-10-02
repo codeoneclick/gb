@@ -16,6 +16,16 @@
 		2102EB3F1B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
 		2102EB401B7D072B00F20197 /* ces_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2102EB3D1B7D072B00F20197 /* ces_system.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
+		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
+		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
+		21229D2E1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */; };
+		21229D2F1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */; };
+		21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */; };
+		21229D331BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */; };
+		21229D361BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */; };
+		21229D371BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */; };
+		21229D391BBD59730047CE4F /* shader_instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */; };
+		21229D3A1BBD59730047CE4F /* shader_instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */; };
 		212B18601B81A70100FFDCE7 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B185E1B81A70100FFDCE7 /* graphics_context.cpp */; };
 		212B18611B81A70100FFDCE7 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B185E1B81A70100FFDCE7 /* graphics_context.cpp */; };
 		212B18641B81A9AA00FFDCE7 /* graphics_context_osx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 212B18621B81A9AA00FFDCE7 /* graphics_context_osx.cpp */; };
@@ -379,6 +389,15 @@
 		2102EB3E1B7D072B00F20197 /* ces_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_system.h; path = sources/ces_system.h; sourceTree = "<group>"; };
 		2102EB411B7D074100F20197 /* ces_system_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_system_types.h; path = sources/ces_system_types.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
+		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
+		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
+		21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_vbo.cpp; path = sources/instanced_vbo.cpp; sourceTree = "<group>"; };
+		21229D2D1BBD0E0F0047CE4F /* instanced_vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_vbo.h; path = sources/instanced_vbo.h; sourceTree = "<group>"; };
+		21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_omni_lights.cpp; path = sources/instanced_omni_lights.cpp; sourceTree = "<group>"; };
+		21229D311BBD2F1C0047CE4F /* instanced_omni_lights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_omni_lights.h; path = sources/instanced_omni_lights.h; sourceTree = "<group>"; };
+		21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_instanced_geometry_component.cpp; path = sources/ces_instanced_geometry_component.cpp; sourceTree = "<group>"; };
+		21229D351BBD30FF0047CE4F /* ces_instanced_geometry_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_instanced_geometry_component.h; path = sources/ces_instanced_geometry_component.h; sourceTree = "<group>"; };
+		21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_instanced_omni_lights.cpp; path = sources/shader_instanced_omni_lights.cpp; sourceTree = "<group>"; };
 		212B185E1B81A70100FFDCE7 /* graphics_context.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = graphics_context.cpp; path = sources/graphics_context.cpp; sourceTree = "<group>"; };
 		212B185F1B81A70100FFDCE7 /* graphics_context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = graphics_context.h; path = sources/graphics_context.h; sourceTree = "<group>"; };
 		212B18621B81A9AA00FFDCE7 /* graphics_context_osx.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = graphics_context_osx.cpp; path = sources/graphics_context_osx.cpp; sourceTree = "<group>"; };
@@ -1042,6 +1061,8 @@
 				212B188D1B81C98300FFDCE7 /* ces_render_component.cpp */,
 				212B18921B81CD5400FFDCE7 /* ces_geometry_component.h */,
 				212B18911B81CD5400FFDCE7 /* ces_geometry_component.cpp */,
+				21229D351BBD30FF0047CE4F /* ces_instanced_geometry_component.h */,
+				21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */,
 				212B18B11B82032C00FFDCE7 /* ces_transformation_component.h */,
 				212B18B01B82032C00FFDCE7 /* ces_transformation_component.cpp */,
 				21D78BF21B90572F00665BB6 /* ces_animation_component.h */,
@@ -1676,6 +1697,7 @@
 				212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */,
 				21613FE51B948256001562EB /* shader_bounding_box.cpp */,
 				21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */,
+				21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */,
 				21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */,
 			);
 			name = "built-in shaders";
@@ -1715,6 +1737,8 @@
 				21DE32101B8DA1560046EDF8 /* global_light.cpp */,
 				21DE0E421BAB011A009EA47B /* omni_light.h */,
 				21DE0E411BAB011A009EA47B /* omni_light.cpp */,
+				21229D311BBD2F1C0047CE4F /* instanced_omni_lights.h */,
+				21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */,
 				21E33D941BB1758900B540E7 /* direction_light.h */,
 				21E33D931BB1758900B540E7 /* direction_light.cpp */,
 				21606C661B8DB500005EA908 /* game_object.h */,
@@ -1844,6 +1868,10 @@
 				2173D1EB1B7CAE7F002912BE /* sequence.cpp */,
 				2173D1E01B7CA774002912BE /* mesh.h */,
 				2173D1DF1B7CA774002912BE /* mesh.cpp */,
+				21229D291BBD08620047CE4F /* instanced_mesh.h */,
+				21229D281BBD08620047CE4F /* instanced_mesh.cpp */,
+				21229D2D1BBD0E0F0047CE4F /* instanced_vbo.h */,
+				21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -1944,6 +1972,7 @@
 				21DE30591B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B404F41B7A0A88003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4061C1B7B7FD3003382AB /* game_controller.cpp in Sources */,
+				21229D2E1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */,
 				2173D1E11B7CA774002912BE /* mesh.cpp in Sources */,
 				21B404D41B7A0A88003382AB /* b2PolygonShape.cpp in Sources */,
 				21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */,
@@ -1973,10 +2002,13 @@
 				212B187E1B81B6CF00FFDCE7 /* render_technique_main.cpp in Sources */,
 				21B405071B7A0A88003382AB /* adler32.c in Sources */,
 				21B404D81B7A0A88003382AB /* b2Settings.cpp in Sources */,
+				21229D391BBD59730047CE4F /* shader_instanced_omni_lights.cpp in Sources */,
 				21B404F21B7A0A88003382AB /* b2RevoluteJoint.cpp in Sources */,
 				21DE32121B8DA1560046EDF8 /* global_light.cpp in Sources */,
 				21A8466C1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
+				21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
+				21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
 				21B404CC1B7A0A88003382AB /* b2CollidePolygon.cpp in Sources */,
 				21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B404FF1B7A0A88003382AB /* pngrutil.c in Sources */,
@@ -2004,6 +2036,7 @@
 				21B405061B7A0A88003382AB /* pugixml.cpp in Sources */,
 				21D78BF71B90574600665BB6 /* ces_animation_system.cpp in Sources */,
 				21B405C51B7B1EB0003382AB /* game_loop.cpp in Sources */,
+				21229D361BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */,
 				21DE300C1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */,
 				21B404E21B7A0A88003382AB /* b2ChainAndPolygonContact.cpp in Sources */,
 				21613FE31B946B79001562EB /* ces_debug_render_component.cpp in Sources */,
@@ -2120,6 +2153,7 @@
 				21DE305A1B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B405291B7A0AFA003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4052A1B7A0AFA003382AB /* b2PolygonShape.cpp in Sources */,
+				21229D2F1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */,
 				21376BFC1B7C991600D293C5 /* ibo.cpp in Sources */,
 				2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */,
 				21B406091B7B64FC003382AB /* model_configuration.cpp in Sources */,
@@ -2149,10 +2183,13 @@
 				21B405381B7A0AFA003382AB /* b2RevoluteJoint.cpp in Sources */,
 				21B405391B7A0AFA003382AB /* b2CollidePolygon.cpp in Sources */,
 				21DE32131B8DA1560046EDF8 /* global_light.cpp in Sources */,
+				21229D3A1BBD59730047CE4F /* shader_instanced_omni_lights.cpp in Sources */,
 				21C0AB921B7BB0F4004B1B7C /* texture.cpp in Sources */,
 				21A8466D1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
 				21A846751B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
+				21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
+				21229D331BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
 				212B186E1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
 				21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B4053A1B7A0AFA003382AB /* pngrutil.c in Sources */,
@@ -2180,6 +2217,7 @@
 				21D78BF81B90574600665BB6 /* ces_animation_system.cpp in Sources */,
 				21B405461B7A0AFA003382AB /* b2Distance.cpp in Sources */,
 				21B405471B7A0AFA003382AB /* b2PolygonContact.cpp in Sources */,
+				21229D371BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */,
 				21B405481B7A0AFA003382AB /* gzread.c in Sources */,
 				21B4062A1B7B9004003382AB /* resource.cpp in Sources */,
 				21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */,

@@ -13,8 +13,6 @@
 
 namespace gb
 {
-    class vbo;
-    class ibo;
     class vao
     {
     private:
@@ -23,19 +21,13 @@ namespace gb
         
         ui32 m_handle;
         
-        std::shared_ptr<vbo> m_vbo;
-        std::shared_ptr<ibo> m_ibo;
-        
     public:
         
-        vao(const std::shared_ptr<vbo>& vbo,
-            const std::shared_ptr<ibo>& ibo);
-        ~vao(void);
-        
-        void init(const std::array<i32, e_shader_attribute_max>& attributes);
+        vao();
+        ~vao();
         
         static void bind(const std::shared_ptr<vao>& state);
-        static void unbind(void);
+        static void unbind();
     };
 };
 #endif

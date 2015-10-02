@@ -29,6 +29,5 @@ void main(void)
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     
     v_shadow_parameters = bias_matrix * u_mat_global_light_p * u_mat_global_light_v * position;
-    //v_shadow_parameters.z -= 0.01;
     v_texcoord = a_texcoord;
 }
