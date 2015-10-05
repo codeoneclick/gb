@@ -17,7 +17,7 @@ namespace gb
     {
         element::element() :
         m_position(glm::ivec2(0)),
-        m_size(glm::ivec2(16))
+        m_size(glm::ivec2(2))
         {
             ces_transformation_component_shared_ptr transformation_component = std::make_shared<ces_transformation_component>();
             ces_entity::add_component(transformation_component);

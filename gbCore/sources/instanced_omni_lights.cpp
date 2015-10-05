@@ -102,7 +102,7 @@ namespace gb
         {
             m_colors[instance_id] = color;
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
-                                                                                   "u_colors", "ws.deferred.lighting");
+                                                                                   "u_lights_colors", "ws.deferred.lighting");
         }
         else
         {
@@ -162,7 +162,7 @@ namespace gb
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
                                                                                "u_transform_parameters", "ws.deferred.lighting");
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
-                                                                               "u_colors", "ws.deferred.lighting");
+                                                                               "u_lights_colors", "ws.deferred.lighting");
 
     }
     

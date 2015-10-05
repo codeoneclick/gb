@@ -104,14 +104,20 @@ namespace gb
     class frustum;
     typedef std::shared_ptr<frustum> frustum_shared_ptr;
     
-    class global_light;
-    typedef std::shared_ptr<global_light> global_light_shared_ptr;
+    class shadow_cast_light;
+    typedef std::shared_ptr<shadow_cast_light> shadow_cast_light_shared_ptr;
+    
+    class game_graph_interface;
+    typedef std::shared_ptr<game_graph_interface> game_graph_interface_shared_ptr;
+    
+    class game_fabricator_interface;
+    typedef std::shared_ptr<game_fabricator_interface> game_fabricator_interface_shared_ptr;
     
     class scene_graph;
     typedef std::shared_ptr<scene_graph> scene_graph_shared_ptr;
     
-    class fabricator;
-    typedef std::shared_ptr<fabricator> fabricator_shared_ptr;
+    class scene_fabricator;
+    typedef std::shared_ptr<scene_fabricator> scene_fabricator_shared_ptr;
     
     class ces_entity;
     typedef std::shared_ptr<ces_entity> ces_entity_shared_ptr;

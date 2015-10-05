@@ -1,19 +1,19 @@
 //
-//  global_light.h
+//  shadow_cast_light.h
 //  gbCore
 //
 //  Created by sergey.sergeev on 8/17/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef global_light_h
-#define global_light_h
+#ifndef shadow_cast_light_h
+#define shadow_cast_light_h
 
 #include "main_headers.h"
 
 namespace gb
 {
-    class global_light
+    class shadow_cast_light
     {
     private:
         
@@ -27,8 +27,8 @@ namespace gb
         
     public:
         
-        global_light(f32 fov, f32 near, f32 far);
-        ~global_light();
+        shadow_cast_light(f32 fov, f32 near, f32 far);
+        ~shadow_cast_light();
         
         glm::vec3 get_position() const;
         void set_position(const glm::vec3& position);

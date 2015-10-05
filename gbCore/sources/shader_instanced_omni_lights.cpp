@@ -15,20 +15,20 @@ const char* shader_instanced_omni_light_vert = string_shader
  
  out vec4 v_screen_position;
  out vec4 v_transform_parameters;
- out vec4 v_color;
+ out vec4 v_light_color;
  
 #else
  
  varying vec4 v_screen_position;
  varying vec4 v_transform_parameters;
- varying vec4 v_color;
+ varying vec4 v_light_color;
  
 #endif
  
  uniform mat4 u_mat_v;
  uniform mat4 u_mat_p;
  uniform vec4 u_transform_parameters[32];
- uniform vec4 u_colors[32];
+ uniform vec4 u_lights_colors[32];
  
  mat4 mat_m = mat4(0.0, 0.0, 0.0, 0.0,
                    0.0, 0.0, 0.0, 0.0,
@@ -49,13 +49,14 @@ const char* shader_instanced_omni_light_vert = string_shader
     
     v_screen_position = gl_Position;
     v_transform_parameters = u_transform_parameters[gl_InstanceID];
-    v_color = u_colors[gl_InstanceID];
+    v_light_color = u_lights_colors[gl_InstanceID];
 }
  );
 
 const char* shader_instanced_omni_light_frag = string_shader
 (
  uniform mat4 u_mat_i_vp;
+ uniform vec3 u_vec_camera_position;
  
  uniform sampler2D sampler_01;
  uniform sampler2D sampler_02;
@@ -64,13 +65,13 @@ const char* shader_instanced_omni_light_frag = string_shader
  
  in vec4 v_screen_position;
  in vec4 v_transform_parameters;
- in vec4 v_color;
+ in vec4 v_light_color;
  
 #else
  
  varying vec4 v_screen_position;
  varying vec4 v_transform_parameters;
- varying vec4 v_color;
+ varying vec4 v_light_color;
  
 #endif
  
@@ -91,7 +92,21 @@ const char* shader_instanced_omni_light_frag = string_shader
     float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
     light_direction = normalize(light_direction);
     
-    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * v_color;
+    vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.0, 1.0));
+    
+#if defined(__SPECULAR__)
+    
+    vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
+    vec3 light_reflect = normalize(2.0 * diffuse * normal - light_direction);
+    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), 32.0);
+    
+#else
+    
+    float specular = 0.0;
+    
+#endif
+    
+    gl_FragColor = vec4(attenuation * diffuse + specular * v_light_color.rgb, 1.0) * v_light_color;
 }
  );
 

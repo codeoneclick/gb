@@ -11,6 +11,7 @@
 
 #include "game_scene.h"
 #include "declarations.h"
+#include "ui_declarations.h"
 #include "ces_input_system.h"
 
 class demo_game_scene : public gb::game_scene, public gb::touch_listener
@@ -18,11 +19,14 @@ class demo_game_scene : public gb::game_scene, public gb::touch_listener
 private:
     
     gb::camera_shared_ptr m_camera;
-    gb::global_light_shared_ptr m_global_light;
+    gb::shadow_cast_light_shared_ptr m_shadow_cast_light;
     gb::direction_light_shared_ptr m_direction_light;
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
+    
+    gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
+    gb::ui::ui_graph_shared_ptr m_ui_graph;
     
 protected:
     

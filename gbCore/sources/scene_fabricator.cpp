@@ -1,12 +1,12 @@
 //
-//  fabricator.cpp
+//  scene_fabricator.cpp
 //  gbCore
 //
 //  Created by sergey.sergeev on 8/26/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#include "fabricator.h"
+#include "scene_fabricator.h"
 #include "resource_accessor.h"
 #include "mesh.h"
 #include "instanced_mesh.h"
@@ -14,7 +14,7 @@
 #include "sequence.h"
 #include "animation_mixer.h"
 #include "camera.h"
-#include "global_light.h"
+#include "shadow_cast_light.h"
 #include "omni_light.h"
 #include "instanced_omni_lights.h"
 #include "direction_light.h"
@@ -25,33 +25,30 @@
 
 namespace gb
 {
-    fabricator::fabricator(const configuration_accessor_shared_ptr& configuration_accessor,
-                           const resource_accessor_shared_ptr& resource_accessor) :
-    m_configuration_accessor(configuration_accessor),
-    m_resource_accessor(resource_accessor)
+    scene_fabricator::scene_fabricator()
     {
         
     }
     
-    fabricator::~fabricator()
+    scene_fabricator::~scene_fabricator()
     {
         
     }
     
-    camera_shared_ptr fabricator::create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
+    camera_shared_ptr scene_fabricator::create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
     {
         camera_shared_ptr camera = std::make_shared<gb::camera>(fov, near, far, viewport);
         m_cameras_container.insert(camera);
         return camera;
     }
     
-    void fabricator::destroy_camera(const camera_shared_ptr& camera)
+    void scene_fabricator::destroy_camera(const camera_shared_ptr& camera)
     {
         m_cameras_container.erase(camera);
     }
     
     std::once_flag g_omni_light_adds_created;
-    omni_light_shared_ptr fabricator::create_omni_light()
+    omni_light_shared_ptr scene_fabricator::create_omni_light()
     {
         static shader_shared_ptr shader = nullptr;
         static mesh_shared_ptr mesh = nullptr;
@@ -96,13 +93,13 @@ namespace gb
         return omni_light;
     }
     
-    void fabricator::destroy_omni_light(const omni_light_shared_ptr& omni_light)
+    void scene_fabricator::destroy_omni_light(const omni_light_shared_ptr& omni_light)
     {
          m_omni_lights_container.erase(omni_light);
     }
     
     std::once_flag g_instanced_omni_light_adds_created;
-    instanced_omni_lights_shared_ptr fabricator::create_instanced_omni_lights(i32 num_instances)
+    instanced_omni_lights_shared_ptr scene_fabricator::create_instanced_omni_lights(i32 num_instances)
     {
         static shader_shared_ptr shader = nullptr;
         std::call_once(g_instanced_omni_light_adds_created, [this]{
@@ -145,13 +142,13 @@ namespace gb
         return instanced_omni_light;
     }
     
-    void fabricator::destroy_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
+    void scene_fabricator::destroy_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
     {
         m_instanced_omni_lights_container.erase(instanced_omni_lights);
     }
     
     std::once_flag g_direction_light_shader_created;
-    direction_light_shared_ptr fabricator::create_direction_light()
+    direction_light_shared_ptr scene_fabricator::create_direction_light()
     {
         static shader_shared_ptr shader = nullptr;
         static mesh_shared_ptr mesh = nullptr;
@@ -180,9 +177,9 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
         assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
         assert(texture_02);
         
         material->set_texture(texture_01, e_shader_sampler_01);
@@ -196,24 +193,24 @@ namespace gb
         return direction_light;
     }
     
-    void fabricator::destroy_direction_light(const direction_light_shared_ptr &direction_light)
+    void scene_fabricator::destroy_direction_light(const direction_light_shared_ptr &direction_light)
     {
         m_direction_lights_container.erase(direction_light);
     }
     
-    global_light_shared_ptr fabricator::create_global_light(f32 fov, f32 near, f32 far)
+    shadow_cast_light_shared_ptr scene_fabricator::create_shadow_cast_light(f32 fov, f32 near, f32 far)
     {
-        global_light_shared_ptr global_light = std::make_shared<gb::global_light>(fov, near, far);
-        m_global_lights_container.insert(global_light);
-        return global_light;
+        shadow_cast_light_shared_ptr shadow_cast_light = std::make_shared<gb::shadow_cast_light>(fov, near, far);
+        m_shadow_cast_lights_container.insert(shadow_cast_light);
+        return shadow_cast_light;
     }
     
-    void fabricator::destroy_global_light(const global_light_shared_ptr& global_light)
+    void scene_fabricator::destroy_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light)
     {
-        m_global_lights_container.erase(global_light);
+        m_shadow_cast_lights_container.erase(shadow_cast_light);
     }
     
-    model3d_static_shared_ptr fabricator::create_model3d_static(const std::string& filename)
+    model3d_static_shared_ptr scene_fabricator::create_model3d_static(const std::string& filename)
     {
         std::shared_ptr<model_configuration> model_configuration =
         std::static_pointer_cast<gb::model_configuration>(m_configuration_accessor->get_model_configuration(filename));
@@ -262,7 +259,7 @@ namespace gb
         return model3d_static;
     }
     
-    model3d_animated_shared_ptr fabricator::create_model3d_animated(const std::string &filename)
+    model3d_animated_shared_ptr scene_fabricator::create_model3d_animated(const std::string &filename)
     {
         std::shared_ptr<model_configuration> model_configuration =
         std::static_pointer_cast<gb::model_configuration>(m_configuration_accessor->get_model_configuration(filename));
@@ -315,7 +312,7 @@ namespace gb
         return model3d_animated;
     }
     
-    particle_emitter_shared_ptr fabricator::create_particle_emitter(const std::string& filename)
+    particle_emitter_shared_ptr scene_fabricator::create_particle_emitter(const std::string& filename)
     {
         std::shared_ptr<particle_emitter_configuration> particle_emitter_configuration =
         std::static_pointer_cast<gb::particle_emitter_configuration>(m_configuration_accessor->get_particle_emitter_configuration(filename));
@@ -341,7 +338,7 @@ namespace gb
         return particle_emitter;
     }
     
-    void fabricator::destroy_game_object(const game_object_shared_ptr& game_object)
+    void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)
     {
         m_game_objects_container.erase(game_object);
     }

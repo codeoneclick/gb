@@ -20,6 +20,8 @@ namespace gb
         std::weak_ptr<scene_graph> m_scene_graph;
         
         glm::vec3 m_direction;
+        glm::vec4 m_color;
+        f32 m_intensity;
         
     protected:
         
@@ -33,6 +35,12 @@ namespace gb
         
         void set_direction(const glm::vec3& direction);
         glm::vec3 get_direction() const;
+        
+        void set_color(const glm::vec4& color);
+        glm::vec4 get_color() const;
+        
+        void set_intensity(f32 intensity);
+        f32 get_intensity() const;
         
         void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         void on_removed_from_scene();

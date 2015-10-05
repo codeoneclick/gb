@@ -9,7 +9,7 @@
 #include "scene_graph.h"
 #include "camera.h"
 #include "frustum.h"
-#include "global_light.h"
+#include "shadow_cast_light.h"
 #include "game_object.h"
 #include "omni_light.h"
 #include "instanced_omni_lights.h"
@@ -18,10 +18,9 @@
 
 namespace gb
 {
-    scene_graph::scene_graph(const ces_systems_feeder_shared_ptr& systems_feeder) :
-    m_systems_feeder(systems_feeder),
+    scene_graph::scene_graph() :
     m_camera(nullptr),
-    m_global_light(nullptr)
+    m_shadow_cast_light(nullptr)
     {
 
     }
@@ -37,9 +36,9 @@ namespace gb
         {
             m_camera->update(deltatime);
         }
-        if(m_global_light)
+        if(m_shadow_cast_light)
         {
-            m_global_light->update(deltatime);
+            m_shadow_cast_light->update(deltatime);
         }
     }
     
@@ -53,14 +52,14 @@ namespace gb
         return m_camera;
     }
     
-    void scene_graph::set_global_light(const global_light_shared_ptr &global_light)
+    void scene_graph::set_shadow_cast_light(const shadow_cast_light_shared_ptr &shadow_cast_light)
     {
-        m_global_light = global_light;
+        m_shadow_cast_light = shadow_cast_light;
     }
     
-    global_light_shared_ptr scene_graph::get_global_light() const
+    shadow_cast_light_shared_ptr scene_graph::get_shadow_cast_light() const
     {
-        return m_global_light;
+        return m_shadow_cast_light;
     }
     
     void scene_graph::add_game_object(const game_object_shared_ptr& game_object)

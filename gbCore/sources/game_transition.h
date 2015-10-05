@@ -24,8 +24,6 @@ namespace gb
         std::string m_guid;
         bool m_offscreen;
         ces_systems_feeder_shared_ptr m_system_feeder;
-        fabricator_shared_ptr m_fabricator;
-        scene_graph_shared_ptr m_scene_graph;
         
         i32 m_width;
         i32 m_height;
@@ -38,6 +36,12 @@ namespace gb
         virtual void destroy_scene() = 0;
         
         game_scene_shared_ptr m_scene;
+        
+        configuration_accessor_shared_ptr m_configuration_accessor;
+        resource_accessor_shared_ptr m_resource_accessor;
+        
+        std::map<i32, game_fabricator_interface_shared_ptr> m_fabricators;
+        std::map<i32, game_graph_interface_shared_ptr> m_graps;
         
     public:
         
@@ -53,9 +57,15 @@ namespace gb
         
         std::string get_guid() const;
         
-        fabricator_shared_ptr get_fabricator() const;
-        scene_graph_shared_ptr get_scene_graph() const;
+        game_fabricator_interface_shared_ptr get_fabricator(i32 id) const;
+        game_graph_interface_shared_ptr get_graph(i32 id) const;
         ces_system_shared_ptr get_system(e_ces_system_type type);
+        
+        void add_fabricator(const game_fabricator_interface_shared_ptr& fabricator, i32 id);
+        void remove_fabricator(i32 id);
+        
+        void add_graph(const game_graph_interface_shared_ptr& graph, i32 id);
+        void remove_graph(i32 id);
         
         i32 get_width() const;
         i32 get_height() const;

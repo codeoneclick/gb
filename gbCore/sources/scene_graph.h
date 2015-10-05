@@ -11,20 +11,22 @@
 
 #include "main_headers.h"
 #include "declarations.h"
-#include "game_loop.h"
+#include "game_graph_interface.h"
+
+#define scene_graph_id 0
+#define scene_graph_inst std::static_pointer_cast<gb::scene_graph>(game_scene::get_transition()->get_graph(scene_graph_id))
 
 namespace gb
 {
-    class scene_graph : public game_loop_interface, public std::enable_shared_from_this<scene_graph>
+    class scene_graph : public game_graph_interface,
+    public std::enable_shared_from_this<scene_graph>
     {
     private:
         
     protected:
         
-        ces_systems_feeder_shared_ptr m_systems_feeder;
-        
         camera_shared_ptr m_camera;
-        global_light_shared_ptr m_global_light;
+        shadow_cast_light_shared_ptr m_shadow_cast_light;
         std::set<game_object_shared_ptr> m_game_objects_container;
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
@@ -34,14 +36,14 @@ namespace gb
         
     public:
         
-        scene_graph(const ces_systems_feeder_shared_ptr& systems_feeder);
+        scene_graph();
         ~scene_graph();
         
         void set_camera(const camera_shared_ptr& camera);
         camera_shared_ptr get_camera(void) const;
         
-        void set_global_light(const global_light_shared_ptr& global_light);
-        global_light_shared_ptr get_global_light(void) const;
+        void set_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light);
+        shadow_cast_light_shared_ptr get_shadow_cast_light(void) const;
         
         void add_game_object(const game_object_shared_ptr& game_object);
         void remove_game_object(const game_object_shared_ptr& game_object);

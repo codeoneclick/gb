@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		210F2A941BC29DAD00B0809F /* ui_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A921BC29DAD00B0809F /* ui_graph.cpp */; };
+		210F2A951BC29DAD00B0809F /* ui_graph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A921BC29DAD00B0809F /* ui_graph.cpp */; };
+		210F2A981BC29E1400B0809F /* ui_fabricator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A961BC29E1400B0809F /* ui_fabricator.cpp */; };
+		210F2A991BC29E1400B0809F /* ui_fabricator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A961BC29E1400B0809F /* ui_fabricator.cpp */; };
 		21E33DE91BB969AA00B540E7 /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33DE71BB969AA00B540E7 /* control.cpp */; };
 		21E33DEA1BB969AA00B540E7 /* control.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33DE71BB969AA00B540E7 /* control.cpp */; };
 		21E33DEE1BB9708700B540E7 /* dialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33DEC1BB9708700B540E7 /* dialog.cpp */; };
@@ -70,6 +74,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		210F2A921BC29DAD00B0809F /* ui_graph.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_graph.cpp; path = sources/ui_graph.cpp; sourceTree = SOURCE_ROOT; };
+		210F2A931BC29DAD00B0809F /* ui_graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ui_graph.h; path = sources/ui_graph.h; sourceTree = SOURCE_ROOT; };
+		210F2A961BC29E1400B0809F /* ui_fabricator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ui_fabricator.cpp; path = sources/ui_fabricator.cpp; sourceTree = SOURCE_ROOT; };
+		210F2A971BC29E1400B0809F /* ui_fabricator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ui_fabricator.h; path = sources/ui_fabricator.h; sourceTree = SOURCE_ROOT; };
 		21E33DB51BB9567A00B540E7 /* libgbUI-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libgbUI-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E33DDF1BB9571900B540E7 /* libgbUI-osx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libgbUI-osx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21E33DE71BB969AA00B540E7 /* control.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = control.cpp; path = sources/control.cpp; sourceTree = SOURCE_ROOT; };
@@ -102,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		210F2A911BC29D6D00B0809F /* ui managment */ = {
+			isa = PBXGroup;
+			children = (
+				210F2A971BC29E1400B0809F /* ui_fabricator.h */,
+				210F2A961BC29E1400B0809F /* ui_fabricator.cpp */,
+				210F2A931BC29DAD00B0809F /* ui_graph.h */,
+				210F2A921BC29DAD00B0809F /* ui_graph.cpp */,
+			);
+			name = "ui managment";
+			sourceTree = "<group>";
+		};
 		21E33DAC1BB9567A00B540E7 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +142,7 @@
 		21E33DB71BB9567A00B540E7 /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				210F2A911BC29D6D00B0809F /* ui managment */,
 				21E33DF11BB9751400B540E7 /* common */,
 				21E33E061BB97C0200B540E7 /* elements */,
 				21E33DF41BB9755300B540E7 /* controls */,
@@ -283,6 +303,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210F2A981BC29E1400B0809F /* ui_fabricator.cpp in Sources */,
+				210F2A941BC29DAD00B0809F /* ui_graph.cpp in Sources */,
 				21E33DE91BB969AA00B540E7 /* control.cpp in Sources */,
 				21E33E091BB97C1800B540E7 /* element.cpp in Sources */,
 				21E33DEE1BB9708700B540E7 /* dialog.cpp in Sources */,
@@ -293,6 +315,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210F2A991BC29E1400B0809F /* ui_fabricator.cpp in Sources */,
+				210F2A951BC29DAD00B0809F /* ui_graph.cpp in Sources */,
 				21E33DEA1BB969AA00B540E7 /* control.cpp in Sources */,
 				21E33E0A1BB97C1800B540E7 /* element.cpp in Sources */,
 				21E33DEF1BB9708700B540E7 /* dialog.cpp in Sources */,

@@ -10,7 +10,7 @@
 #include "texture.h"
 #include "mesh.h"
 #include "camera.h"
-#include "global_light.h"
+#include "shadow_cast_light.h"
 #include "scene_graph.h"
 
 namespace gb
@@ -150,9 +150,9 @@ namespace gb
     void ces_render_component::bind_main_shader_uniforms(const material_shared_ptr& material)
     {
         camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
-        global_light_shared_ptr global_light = ces_base_component::get_scene_graph()->get_global_light();
+        shadow_cast_light_shared_ptr shadow_cast_light = ces_base_component::get_scene_graph()->get_shadow_cast_light();
         
-        glm::mat4 matrix_p = material->is_shadowing() ? global_light->get_matrix_p() : camera->get_matrix_p();
+        glm::mat4 matrix_p = material->is_shadowing() ? shadow_cast_light->get_matrix_p() : camera->get_matrix_p();
         glm::mat4 matrix_v;
         
         if(material->is_reflecting())
@@ -161,7 +161,7 @@ namespace gb
         }
         else if(material->is_shadowing())
         {
-            matrix_v = global_light->get_matrix_v();
+            matrix_v = shadow_cast_light->get_matrix_v();
         }
         else
         {
@@ -178,9 +178,9 @@ namespace gb
         material->get_shader()->set_f32(camera->get_far(), e_shader_uniform_f32_camera_far);
         material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
         
-        material->get_shader()->set_vec3(global_light->get_position(), e_shader_uniform_vec_global_light_position);
-        material->get_shader()->set_mat4(global_light->get_matrix_p(), e_shader_uniform_mat_global_light_p);
-        material->get_shader()->set_mat4(global_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
+        material->get_shader()->set_vec3(shadow_cast_light->get_position(), e_shader_uniform_vec_global_light_position);
+        material->get_shader()->set_mat4(shadow_cast_light->get_matrix_p(), e_shader_uniform_mat_global_light_p);
+        material->get_shader()->set_mat4(shadow_cast_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
     }
     
     material_shared_ptr ces_render_component::on_bind(const std::string& technique_name)
