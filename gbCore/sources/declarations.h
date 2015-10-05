@@ -194,9 +194,6 @@ namespace gb
     class direction_light;
     typedef std::shared_ptr<direction_light> direction_light_shared_ptr;
     
-    class instanced_vbo;
-    typedef std::shared_ptr<instanced_vbo> instanced_vbo_shared_ptr;
-    
     class instanced_mesh;
     typedef std::shared_ptr<instanced_mesh> instanced_mesh_shared_ptr;
     

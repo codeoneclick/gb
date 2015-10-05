@@ -28,7 +28,8 @@ namespace gb
         ces_entity::add_component(render_component);
         render_component->set_z_order(0);
         
-        m_parameters.resize(num_instances, glm::vec4(0.f, 0.f, 0.f, 1.f));
+        m_transform_parameters.resize(num_instances, glm::vec4(0.f, 0.f, 0.f, 1.f));
+        m_colors.resize(num_instances, glm::vec4(1.f, 1.f, 1.f, 1.f));
     }
     
     instanced_omni_lights::~instanced_omni_lights()
@@ -40,12 +41,12 @@ namespace gb
     {
         if(instance_id < m_num_instances)
         {
-            m_parameters[instance_id].x = position.x;
-            m_parameters[instance_id].y = position.y;
-            m_parameters[instance_id].z = position.z;
+            m_transform_parameters[instance_id].x = position.x;
+            m_transform_parameters[instance_id].y = position.y;
+            m_transform_parameters[instance_id].z = position.z;
 
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_parameters[0], static_cast<i32>(m_parameters.size()),
-                                                                                   "u_parameters", "ws.deferred.lighting");
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
+                                                                                   "u_transform_parameters", "ws.deferred.lighting");
         }
         else
         {
@@ -57,9 +58,9 @@ namespace gb
     {
         if(instance_id < m_num_instances)
         {
-            return glm::vec3(m_parameters[instance_id].x,
-                             m_parameters[instance_id].y,
-                             m_parameters[instance_id].z);
+            return glm::vec3(m_transform_parameters[instance_id].x,
+                             m_transform_parameters[instance_id].y,
+                             m_transform_parameters[instance_id].z);
         }
         else
         {
@@ -72,9 +73,9 @@ namespace gb
     {
         if(instance_id < m_num_instances)
         {
-            m_parameters[instance_id].w = radius;
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_parameters[0], static_cast<i32>(m_parameters.size()),
-                                                                                   "u_parameters", "ws.deferred.lighting");
+            m_transform_parameters[instance_id].w = radius;
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
+                                                                                   "u_transform_parameters", "ws.deferred.lighting");
         }
         else
         {
@@ -86,12 +87,40 @@ namespace gb
     {
         if(instance_id < m_num_instances)
         {
-            return m_parameters[instance_id].w;
+            return m_transform_parameters[instance_id].w;
         }
         else
         {
             assert(false);
             return 0.f;
+        }
+    }
+    
+    void instanced_omni_lights::set_color(const glm::vec4& color, i32 instance_id)
+    {
+        if(instance_id < m_num_instances)
+        {
+            m_colors[instance_id] = color;
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
+                                                                                   "u_colors", "ws.deferred.lighting");
+        }
+        else
+        {
+            assert(false);
+        }
+
+    }
+    
+    glm::vec4 instanced_omni_lights::get_color(i32 instance_id) const
+    {
+        if(instance_id < m_num_instances)
+        {
+            return m_colors[instance_id];
+        }
+        else
+        {
+            assert(false);
+            return glm::vec4(0.f);
         }
     }
     
@@ -129,6 +158,12 @@ namespace gb
     void instanced_omni_lights::add_material(const std::string& technique_name, const material_shared_ptr& material)
     {
         unsafe_get_render_component_from_this->add_material(technique_name, material);
+        
+        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
+                                                                               "u_transform_parameters", "ws.deferred.lighting");
+        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
+                                                                               "u_colors", "ws.deferred.lighting");
+
     }
     
     void instanced_omni_lights::remove_material(const std::string& technique_name)

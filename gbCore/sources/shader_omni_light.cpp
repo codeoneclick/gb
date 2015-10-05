@@ -38,9 +38,6 @@ const char* shader_omni_light_frag = string_shader
  uniform float u_light_radius;
  uniform vec3 u_light_position;
  
- uniform float u_f32_camera_near;
- uniform float u_f32_camera_far;
- 
  uniform mat4 u_mat_i_vp;
  
  uniform sampler2D sampler_01;
@@ -60,9 +57,7 @@ const char* shader_omni_light_frag = string_shader
 {
     vec4 screen_position = v_screen_position;
     screen_position.xy /= screen_position.w;
-    
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
-    texcoord -= vec2(0.5 / 1024.0, 0.5 / 768.0);
     
     vec3 normal = texture2D(sampler_02, texcoord).rgb * 2.0 - 1.0;
     float depth = texture2D(sampler_01, texcoord).r;
@@ -75,6 +70,6 @@ const char* shader_omni_light_frag = string_shader
     float attenuation = 1.0 - length(light_direction) / u_light_radius;
     light_direction = normalize(light_direction);
     
-    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * vec4(vec3(1.0, 0.5, 0.5), 1.0);
+    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0);
 }
  );

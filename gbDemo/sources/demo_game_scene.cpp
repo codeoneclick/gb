@@ -112,8 +112,8 @@ void demo_game_scene::update(f32 deltatime)
     static f32 angle = 0.f;
     angle += 0.05f;
     glm::vec2 light_xz_position = glm::vec2(0.f);
-    light_xz_position.x = 4.f + m_global_light->get_look_at().x + cosf(angle) * -4.f;
-    light_xz_position.y = 4.f + m_global_light->get_look_at().z + sinf(angle) * -4.f;
+    light_xz_position.x = 4.f + m_global_light->get_look_at().x + cosf(angle) * -6.f;
+    light_xz_position.y = 4.f + m_global_light->get_look_at().z + sinf(angle) * -6.f;
     m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y), 0);
     m_instanced_omni_lights->set_position(glm::vec3(4.f, 1.f, light_xz_position.y), 1);
     /*m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));

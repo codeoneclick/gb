@@ -18,7 +18,8 @@ namespace gb
     private:
         
         std::weak_ptr<scene_graph> m_scene_graph;
-        std::vector<glm::vec4> m_parameters;
+        std::vector<glm::vec4> m_transform_parameters;
+        std::vector<glm::vec4> m_colors;
         i32 m_num_instances;
         
     protected:
@@ -36,6 +37,9 @@ namespace gb
         
         void set_radius(f32 radius, i32 instance_id);
         f32 get_radius(i32 instance_id) const;
+        
+        void set_color(const glm::vec4& color, i32 instance_id);
+        glm::vec4 get_color(i32 instance_id) const;
         
         void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         void on_removed_from_scene();

@@ -14,18 +14,21 @@ const char* shader_instanced_omni_light_vert = string_shader
 #if defined(__OPENGL_30__)
  
  out vec4 v_screen_position;
- out vec4 v_parameters;
+ out vec4 v_transform_parameters;
+ out vec4 v_color;
  
 #else
  
  varying vec4 v_screen_position;
- varying vec4 v_parameters;
+ varying vec4 v_transform_parameters;
+ varying vec4 v_color;
  
 #endif
  
  uniform mat4 u_mat_v;
  uniform mat4 u_mat_p;
- uniform vec4 u_parameters[8];
+ uniform vec4 u_transform_parameters[32];
+ uniform vec4 u_colors[32];
  
  mat4 mat_m = mat4(0.0, 0.0, 0.0, 0.0,
                    0.0, 0.0, 0.0, 0.0,
@@ -34,18 +37,19 @@ const char* shader_instanced_omni_light_vert = string_shader
  
  void main(void)
 {
-    mat_m[0][0] = u_parameters[gl_InstanceID].w;
-    mat_m[1][1] = u_parameters[gl_InstanceID].w;
-    mat_m[2][2] = u_parameters[gl_InstanceID].w;
-    mat_m[3][0] = u_parameters[gl_InstanceID].x;
-    mat_m[3][1] = u_parameters[gl_InstanceID].y;
-    mat_m[3][2] = u_parameters[gl_InstanceID].z;
+    mat_m[0][0] = u_transform_parameters[gl_InstanceID].w;
+    mat_m[1][1] = u_transform_parameters[gl_InstanceID].w;
+    mat_m[2][2] = u_transform_parameters[gl_InstanceID].w;
+    mat_m[3][0] = u_transform_parameters[gl_InstanceID].x;
+    mat_m[3][1] = u_transform_parameters[gl_InstanceID].y;
+    mat_m[3][2] = u_transform_parameters[gl_InstanceID].z;
 
     vec4 position = mat_m * vec4(a_position, 1.0);
     gl_Position = u_mat_p * u_mat_v * position;
     
     v_screen_position = gl_Position;
-    v_parameters = u_parameters[gl_InstanceID];
+    v_transform_parameters = u_transform_parameters[gl_InstanceID];
+    v_color = u_colors[gl_InstanceID];
 }
  );
 
@@ -59,12 +63,14 @@ const char* shader_instanced_omni_light_frag = string_shader
 #if defined(__OPENGL_30__)
  
  in vec4 v_screen_position;
- in vec4 v_parameters;
+ in vec4 v_transform_parameters;
+ in vec4 v_color;
  
 #else
  
  varying vec4 v_screen_position;
- varying vec4 v_parameters;
+ varying vec4 v_transform_parameters;
+ varying vec4 v_color;
  
 #endif
  
@@ -72,10 +78,8 @@ const char* shader_instanced_omni_light_frag = string_shader
 {
     vec4 screen_position = v_screen_position;
     screen_position.xy /= screen_position.w;
-    
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
-    texcoord -= vec2(0.5 / 1024.0, 0.5 / 768.0);
-    
+
     vec3 normal = texture2D(sampler_01, texcoord).rgb * 2.0 - 1.0;
     float depth = texture2D(sampler_02, texcoord).r;
     
@@ -83,11 +87,11 @@ const char* shader_instanced_omni_light_frag = string_shader
     position = u_mat_i_vp * position;
     position.xyz = position.xyz / position.w;
     
-    vec3 light_direction = v_parameters.xyz - position.xyz;
-    float attenuation = 1.0 - length(light_direction) / v_parameters.w;
+    vec3 light_direction = v_transform_parameters.xyz - position.xyz;
+    float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
     light_direction = normalize(light_direction);
     
-    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * vec4(vec3(1.0, 0.5, 0.5), 1.0);
+    gl_FragColor = vec4(vec3(attenuation * clamp(dot(normal, light_direction), 0.0, 1.0)), 1.0) * v_color;
 }
  );
 

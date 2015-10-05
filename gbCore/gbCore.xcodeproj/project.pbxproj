@@ -18,8 +18,6 @@
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
 		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
-		21229D2E1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */; };
-		21229D2F1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */; };
 		21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */; };
 		21229D331BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */; };
 		21229D361BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */; };
@@ -391,8 +389,6 @@
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
 		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
 		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
-		21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_vbo.cpp; path = sources/instanced_vbo.cpp; sourceTree = "<group>"; };
-		21229D2D1BBD0E0F0047CE4F /* instanced_vbo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_vbo.h; path = sources/instanced_vbo.h; sourceTree = "<group>"; };
 		21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_omni_lights.cpp; path = sources/instanced_omni_lights.cpp; sourceTree = "<group>"; };
 		21229D311BBD2F1C0047CE4F /* instanced_omni_lights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_omni_lights.h; path = sources/instanced_omni_lights.h; sourceTree = "<group>"; };
 		21229D341BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_instanced_geometry_component.cpp; path = sources/ces_instanced_geometry_component.cpp; sourceTree = "<group>"; };
@@ -1870,8 +1866,6 @@
 				2173D1DF1B7CA774002912BE /* mesh.cpp */,
 				21229D291BBD08620047CE4F /* instanced_mesh.h */,
 				21229D281BBD08620047CE4F /* instanced_mesh.cpp */,
-				21229D2D1BBD0E0F0047CE4F /* instanced_vbo.h */,
-				21229D2C1BBD0E0F0047CE4F /* instanced_vbo.cpp */,
 			);
 			name = resources;
 			sourceTree = "<group>";
@@ -1972,7 +1966,6 @@
 				21DE30591B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B404F41B7A0A88003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4061C1B7B7FD3003382AB /* game_controller.cpp in Sources */,
-				21229D2E1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */,
 				2173D1E11B7CA774002912BE /* mesh.cpp in Sources */,
 				21B404D41B7A0A88003382AB /* b2PolygonShape.cpp in Sources */,
 				21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */,
@@ -2153,7 +2146,6 @@
 				21DE305A1B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B405291B7A0AFA003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4052A1B7A0AFA003382AB /* b2PolygonShape.cpp in Sources */,
-				21229D2F1BBD0E0F0047CE4F /* instanced_vbo.cpp in Sources */,
 				21376BFC1B7C991600D293C5 /* ibo.cpp in Sources */,
 				2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */,
 				21B406091B7B64FC003382AB /* model_configuration.cpp in Sources */,

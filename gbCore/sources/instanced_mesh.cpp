@@ -13,7 +13,7 @@ namespace gb
 {
     instanced_mesh::instanced_mesh(const std::string& guid, i32 num_instances, GLenum mode) :
     gb::mesh(guid, mode),
-    m_num_instances(num_instances)
+    m_num_instances(std::max(1, num_instances))
     {
         
     }
@@ -81,7 +81,7 @@ namespace gb
     
     void instanced_mesh::set_num_instances(i32 num_instances)
     {
-        assert(false);
+        m_num_instances = num_instances;
     }
     
     void instanced_mesh::draw() const
