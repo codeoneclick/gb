@@ -53,8 +53,13 @@ namespace gb
         void destroy_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
+        
+        instanced_models3d_static_shared_ptr create_instanced_models3d_static(const std::string& filename, i32 num_instances);
+        
         model3d_animated_shared_ptr create_model3d_animated(const std::string& filename);
+        
         particle_emitter_shared_ptr create_particle_emitter(const std::string& filename);
+        
         void destroy_game_object(const game_object_shared_ptr& game_object);
     };
 };

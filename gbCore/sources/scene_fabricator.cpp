@@ -19,6 +19,7 @@
 #include "instanced_omni_lights.h"
 #include "direction_light.h"
 #include "model3d_static.h"
+#include "instanced_models3d_static.h"
 #include "model3d_animated.h"
 #include "particle_emitter.h"
 #include "mesh_constructor.h"
@@ -336,6 +337,51 @@ namespace gb
             m_game_objects_container.insert(particle_emitter);
         }
         return particle_emitter;
+    }
+    
+    instanced_models3d_static_shared_ptr scene_fabricator::create_instanced_models3d_static(const std::string& filename, i32 num_instances)
+    {
+        std::shared_ptr<model_configuration> model_configuration =
+        std::static_pointer_cast<gb::model_configuration>(m_configuration_accessor->get_model_configuration(filename));
+        assert(model_configuration);
+        instanced_models3d_static_shared_ptr instanced_models3d_static = nullptr;
+        if(model_configuration)
+        {
+            instanced_models3d_static = std::make_shared<gb::instanced_models3d_static>(num_instances);
+            
+            instanced_mesh_shared_ptr mesh = nullptr;
+            if(model_configuration->get_mesh_base_class().length() != 0)
+            {
+                if(model_configuration->get_mesh_base_class() == "box")
+                {
+                    mesh = mesh_constructor::create_boxes(num_instances);
+                }
+                else
+                {
+                    assert(false);
+                }
+            }
+            else
+            {
+                assert(false);
+            }
+            
+            assert(mesh);
+            instanced_models3d_static->set_mesh(mesh);
+            
+            for(const auto& iterator : model_configuration->get_materials_configurations())
+            {
+                std::shared_ptr<material_configuration> material_configuration =
+                std::static_pointer_cast<gb::material_configuration>(iterator);
+                
+                material_shared_ptr material = material::construct(material_configuration);
+                gb::material::set_shader(material, material_configuration, m_resource_accessor);
+                gb::material::set_textures(material, material_configuration, m_resource_accessor);
+                instanced_models3d_static->add_material(material_configuration->get_render_technique_name(), material);
+            }
+            m_game_objects_container.insert(instanced_models3d_static);
+        }
+        return instanced_models3d_static;
     }
     
     void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)

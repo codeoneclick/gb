@@ -22,6 +22,11 @@ namespace gb
         
         static std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> create_sphere_data(f32 radius, i32 rings, i32 sectors);
         
+        static glm::vec3 generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
+                                          const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03);
+        static glm::vec3 get_closest_point_on_line(const glm::vec3& a, const glm::vec3& b, const glm::vec3& p);
+        static glm::vec3 ortogonalize(const glm::vec3& v1, const glm::vec3& v2);
+        
     public:
         
         mesh_constructor() = default;
@@ -37,6 +42,8 @@ namespace gb
         static mesh_shared_ptr create_screen_quad();
         
         static instanced_mesh_shared_ptr create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors);
+        
+        static instanced_mesh_shared_ptr create_boxes(i32 num_instances);
     };
 };
 

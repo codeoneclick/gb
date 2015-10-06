@@ -84,7 +84,7 @@ namespace gb
                 string_error = "UNKNOWN OpenGL ERROR" + std::string(buffer);
             }
         }
-        if(string_error.length())
+        if(string_error.length() != 0)
         {
             std::cout<<"OpenGL error: "<<string_error<<std::endl;
         }

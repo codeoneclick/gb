@@ -205,6 +205,9 @@ namespace gb
     
     class instanced_omni_lights;
     typedef std::shared_ptr<instanced_omni_lights> instanced_omni_lights_shared_ptr;
+    
+    class instanced_models3d_static;
+    typedef std::shared_ptr<instanced_models3d_static> instanced_models3d_static_shared_ptr;
 };
 
 #endif

@@ -192,4 +192,235 @@ namespace gb
                                                                    num_instances);
         return mesh;
     }
+    
+    instanced_mesh_shared_ptr mesh_constructor::create_boxes(i32 num_instances)
+    {
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(24, GL_STATIC_DRAW);
+        vbo::vertex_attribute* vertices = vbo->lock();
+        
+        f32 raw_vertices[3 * 4 * 6] =
+        {
+            // front
+            -1.f, -1.f, 1.f,
+             1.f, -1.f, 1.f,
+             1.f,  1.f, 1.f,
+            -1.f,  1.f, 1.f,
+            // top
+            -1.f,  1.f,  1.f,
+             1.f,  1.f,  1.f,
+             1.f,  1.f, -1.f,
+            -1.f,  1.f, -1.f,
+            // back
+             1.f, -1.f, -1.f,
+            -1.f, -1.f, -1.f,
+            -1.f,  1.f, -1.f,
+             1.f,  1.f, -1.f,
+            // bottom
+            -1.f, -1.f, -1.f,
+             1.f, -1.f, -1.f,
+             1.f, -1.f,  1.f,
+            -1.f, -1.f,  1.f,
+            // left
+            -1.f, -1.f, -1.f,
+            -1.f, -1.f,  1.f,
+            -1.f,  1.f,  1.f,
+            -1.f,  1.f, -1.f,
+            // right
+             1.f, -1.f,  1.f,
+             1.f, -1.f, -1.f,
+             1.f,  1.f, -1.f,
+             1.f,  1.f,  1.f,
+        };
+        
+        f32 raw_normals[4 * 4 * 6] =
+        {
+            // front
+            0.f, 0.f, 1.f, 0.f,
+            0.f, 0.f, 1.f, 0.f,
+            0.f, 0.f, 1.f, 0.f,
+            0.f, 0.f, 1.f, 0.f,
+            // top
+            0.f, 1.f, 0.f, 0.f,
+            0.f, 1.f, 0.f, 0.f,
+            0.f, 1.f, 0.f, 0.f,
+            0.f, 1.f, 0.f, 0.f,
+            // back
+            0.f, 0.f, -1.f, 0.f,
+            0.f, 0.f, -1.f, 0.f,
+            0.f, 0.f, -1.f, 0.f,
+            0.f, 0.f, -1.f, 0.f,
+            // bottom
+            0.f, -1.f, 0.f, 0.f,
+            0.f, -1.f, 0.f, 0.f,
+            0.f, -1.f, 0.f, 0.f,
+            0.f, -1.f, 0.f, 0.f,
+            // left
+            -1.f, 0.f, 0.f, 0.f,
+            -1.f, 0.f, 0.f, 0.f,
+            -1.f, 0.f, 0.f, 0.f,
+            -1.f, 0.f, 0.f, 0.f,
+            // right
+            1.f, 0.f,  0.f, 0.f,
+            1.f, 0.f,  0.f, 0.f,
+            1.f, 0.f,  0.f, 0.f,
+            1.f, 0.f,  0.f, 0.f,
+        };
+        
+        f32 raw_texcoords[2 * 4 * 6] =
+        {
+            // front
+            0.f, 0.f,
+            1.f, 0.f,
+            1.f, 1.f,
+            0.f, 1.f,
+        };
+        
+        for(i32 i = 1; i < 6; i++)
+        {
+            memcpy(&raw_texcoords[i * 4 * 2], &raw_texcoords[0], 2 * 4 * sizeof(f32));
+        }
+        
+        ui16 raw_indices[3 * 2 * 6] =
+        {
+            // front
+            0,  1,  2,
+            2,  3,  0,
+            // top
+            4,  5,  6,
+            6,  7,  4,
+            // back
+            8,  9, 10,
+            10, 11, 8,
+            // bottom
+            12, 13, 14,
+            14, 15, 12,
+            // left
+            16, 17, 18,
+            18, 19, 16,
+            // right
+            20, 21, 22,
+            22, 23, 20,
+        };
+        
+        for (i32 i = 0; i < 24; ++i)
+        {
+            vertices[i].m_position = glm::vec3(raw_vertices[i * 3 + 0],
+                                               raw_vertices[i * 3 + 1],
+                                               raw_vertices[i * 3 + 2]);
+            
+            vertices[i].m_texcoord = glm::packUnorm2x16(glm::vec2(raw_texcoords[i * 2 + 0],
+                                                                  raw_texcoords[i * 2 + 1]));
+            
+            vertices[i].m_normal = glm::packSnorm4x8(glm::vec4(raw_normals[i * 4 + 0],
+                                                               raw_normals[i * 4 + 1],
+                                                               raw_normals[i * 4 + 2],
+                                                               raw_normals[i * 4 + 3]));
+        }
+        
+        
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(36, GL_STATIC_DRAW);
+        ui16* indices = ibo->lock();
+        memcpy(indices, raw_indices, sizeof(raw_indices));
+        
+        std::vector<std::pair<glm::vec3, ui32>> tangents;
+        tangents.resize(24, std::make_pair(glm::vec3(0.0f), 0));
+        
+        for (ui32 i = 0; i < 36; i += 3)
+        {
+            glm::vec3 point_01 = vertices[indices[i + 0]].m_position;
+            glm::vec3 point_02 = vertices[indices[i + 1]].m_position;
+            glm::vec3 point_03 = vertices[indices[i + 2]].m_position;
+            
+            glm::vec2 texcoord_01 = glm::unpackUnorm2x16(vertices[indices[i + 0]].m_texcoord);
+            glm::vec2 texcoord_02 = glm::unpackUnorm2x16(vertices[indices[i + 1]].m_texcoord);
+            glm::vec2 texcoord_03 = glm::unpackUnorm2x16(vertices[indices[i + 2]].m_texcoord);
+            
+            glm::vec3 tangent = mesh_constructor::generate_tangent(point_01, point_02, point_03,
+                                                                   texcoord_01, texcoord_02, texcoord_03);
+            
+            tangents[indices[i + 0]].first += tangent;
+            tangents[indices[i + 0]].second++;
+            
+            tangents[indices[i + 1]].first += tangent;
+            tangents[indices[i + 1]].second++;
+            
+            tangents[indices[i + 2]].first += tangent;
+            tangents[indices[i + 2]].second++;
+        }
+        
+        for(i32 i = 0; i <= tangents.size(); ++i)
+        {
+            glm::vec3 tangent = tangents[i].first / static_cast<f32>(tangents[i].second);
+            glm::vec4 normal = glm::unpackSnorm4x8(vertices[i].m_normal);
+            tangent = mesh_constructor::ortogonalize(glm::vec3(normal.x, normal.y, normal.z), tangent);
+            vertices[i].m_tangent = glm::packSnorm4x8(glm::vec4(tangent.x, tangent.y, tangent.z, 0.0));
+        }
+        
+        vbo->unlock();
+        ibo->unlock();
+        
+        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("box", vbo, ibo, num_instances);
+        return mesh;
+    }
+    
+    glm::vec3 mesh_constructor::generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
+                                                 const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03)
+    {
+        glm::vec3 P = point_02 - point_01;
+        glm::vec3 Q = point_03 - point_01;
+        f32 s1 = texcoord_02.x - texcoord_01.x;
+        f32 t1 = texcoord_02.y - texcoord_01.y;
+        f32 s2 = texcoord_03.x - texcoord_01.x;
+        f32 t2 = texcoord_03.y - texcoord_01.y;
+        f32 pqMatrix[2][3];
+        pqMatrix[0][0] = P[0];
+        pqMatrix[0][1] = P[1];
+        pqMatrix[0][2] = P[2];
+        pqMatrix[1][0] = Q[0];
+        pqMatrix[1][1] = Q[1];
+        pqMatrix[1][2] = Q[2];
+        f32 temp = 1.0f / ( s1 * t2 - s2 * t1);
+        f32 stMatrix[2][2];
+        stMatrix[0][0] = t2 * temp;
+        stMatrix[0][1] = -t1 * temp;
+        stMatrix[1][0] = -s2 * temp;
+        stMatrix[1][1] = s1 * temp;
+        f32 tbMatrix[2][3];
+        tbMatrix[0][0] = stMatrix[0][0] * pqMatrix[0][0] + stMatrix[0][1] * pqMatrix[1][0];
+        tbMatrix[0][1] = stMatrix[0][0] * pqMatrix[0][1] + stMatrix[0][1] * pqMatrix[1][1];
+        tbMatrix[0][2] = stMatrix[0][0] * pqMatrix[0][2] + stMatrix[0][1] * pqMatrix[1][2];
+        tbMatrix[1][0] = stMatrix[1][0] * pqMatrix[0][0] + stMatrix[1][1] * pqMatrix[1][0];
+        tbMatrix[1][1] = stMatrix[1][0] * pqMatrix[0][1] + stMatrix[1][1] * pqMatrix[1][1];
+        tbMatrix[1][2] = stMatrix[1][0] * pqMatrix[0][2] + stMatrix[1][1] * pqMatrix[1][2];
+        return glm::normalize(glm::vec3(tbMatrix[0][0], tbMatrix[0][1], tbMatrix[0][2]));
+    }
+    
+    glm::vec3 mesh_constructor::get_closest_point_on_line(const glm::vec3& a, const glm::vec3& b, const glm::vec3& p)
+    {
+        glm::vec3 c = p - a;
+        glm::vec3 v = b - a;
+        f32 d = v.length();
+        v = glm::normalize(v);
+        f32 t = glm::dot( v, c );
+        
+        if (t < .0f)
+        {
+            return a;
+        }
+        if ( t > d )
+        {
+            return b;
+        }
+        v *= t;
+        return ( a + v );
+    }
+    
+    glm::vec3 mesh_constructor::ortogonalize(const glm::vec3& v1, const glm::vec3& v2)
+    {
+        glm::vec3 v2ProjV1 = mesh_constructor::get_closest_point_on_line(v1, -v1, v2);
+        glm::vec3 res = v2 - v2ProjV1;
+        res = glm::normalize(res);
+        return res;
+    }
 }

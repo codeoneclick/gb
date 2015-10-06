@@ -25,6 +25,22 @@
 		2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
 		2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
+		210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
+		210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
+		210F2AAF1BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */; };
+		210F2AB01BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */; };
+		210F2AB21BC3B2EB00B0809F /* gameobject.instanced.boxes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB11BC3B2EB00B0809F /* gameobject.instanced.boxes.xml */; };
+		210F2AB31BC3B2EB00B0809F /* gameobject.instanced.boxes.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB11BC3B2EB00B0809F /* gameobject.instanced.boxes.xml */; };
+		210F2AB61BC3B34000B0809F /* shader_instanced_models3d_static.frag in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB41BC3B34000B0809F /* shader_instanced_models3d_static.frag */; };
+		210F2AB71BC3B34000B0809F /* shader_instanced_models3d_static.frag in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB41BC3B34000B0809F /* shader_instanced_models3d_static.frag */; };
+		210F2AB81BC3B34000B0809F /* shader_instanced_models3d_static.vert in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB51BC3B34000B0809F /* shader_instanced_models3d_static.vert */; };
+		210F2AB91BC3B34000B0809F /* shader_instanced_models3d_static.vert in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AB51BC3B34000B0809F /* shader_instanced_models3d_static.vert */; };
+		210F2ABC1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 210F2ABA1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag */; };
+		210F2ABD1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 210F2ABA1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag */; };
+		210F2ABE1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */; };
+		210F2ABF1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */; };
+		210F2AC11BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */; };
+		210F2AC21BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */; };
 		21275FCA1B98619F00BEE033 /* gameobject.plane.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FC91B98619F00BEE033 /* gameobject.plane.xml */; };
 		21275FCB1B98619F00BEE033 /* gameobject.plane.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FC91B98619F00BEE033 /* gameobject.plane.xml */; };
 		21275FCD1B9861BB00BEE033 /* material.plane.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FCC1B9861BB00BEE033 /* material.plane.base.xml */; };
@@ -65,6 +81,7 @@
 		212B18DB1B82363000FFDCE7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */; };
 		212B18DD1B82363800FFDCE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DC1B82363800FFDCE7 /* UIKit.framework */; };
 		212B18DF1B82363E00FFDCE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DE1B82363E00FFDCE7 /* Foundation.framework */; };
+		215D8F721BC406DA0057380A /* checker_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 215D8F711BC406DA0057380A /* checker_n.png */; };
 		21A624251B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624261B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624281B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */; };
@@ -124,7 +141,7 @@
 		21DE0E9B1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */; };
 		21DE0EA21BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */; };
 		21DE0EA31BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */; };
-		21E33E041BB9760C00B540E7 /* libgbUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E33DD51BB956C700B540E7 /* libgbUI.a */; };
+		21E33E041BB9760C00B540E7 /* libgbUI-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E33DD51BB956C700B540E7 /* libgbUI-ios.a */; };
 		21E33E051BB9761800B540E7 /* libgbUI-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21E33DE41BB959B100B540E7 /* libgbUI-osx.a */; };
 		21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
 		21EE3D521B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */; };
@@ -248,6 +265,15 @@
 		2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.refraction.xml; sourceTree = "<group>"; };
 		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
 		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
+		210F2AA31BC3A0CF00B0809F /* level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = level.cpp; path = sources/level.cpp; sourceTree = "<group>"; };
+		210F2AA41BC3A0CF00B0809F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = level.h; path = sources/level.h; sourceTree = "<group>"; };
+		210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.instanced.boxes.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.instanced.boxes.base.xml; sourceTree = "<group>"; };
+		210F2AB11BC3B2EB00B0809F /* gameobject.instanced.boxes.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.instanced.boxes.xml; path = ../gbBundle/Configurations/game_objects/gameobject.instanced.boxes.xml; sourceTree = "<group>"; };
+		210F2AB41BC3B34000B0809F /* shader_instanced_models3d_static.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static.frag; path = ../gbBundle/Shaders/shader_instanced_models3d_static.frag; sourceTree = "<group>"; };
+		210F2AB51BC3B34000B0809F /* shader_instanced_models3d_static.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static.vert; path = ../gbBundle/Shaders/shader_instanced_models3d_static.vert; sourceTree = "<group>"; };
+		210F2ABA1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static_n.frag; path = ../gbBundle/Shaders/shader_instanced_models3d_static_n.frag; sourceTree = "<group>"; };
+		210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static_n.vert; path = ../gbBundle/Shaders/shader_instanced_models3d_static_n.vert; sourceTree = "<group>"; };
+		210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.instanced.boxes.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.instanced.boxes.forward.rendering.normal.xml; sourceTree = "<group>"; };
 		211B31381B7E899B00178968 /* gbDemo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21275FC91B98619F00BEE033 /* gameobject.plane.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.plane.xml; path = ../gbBundle/Configurations/game_objects/gameobject.plane.xml; sourceTree = "<group>"; };
 		21275FCC1B9861BB00BEE033 /* material.plane.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.base.xml; sourceTree = "<group>"; };
@@ -274,6 +300,7 @@
 		212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		212B18DC1B82363800FFDCE7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		212B18DE1B82363E00FFDCE7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		215D8F711BC406DA0057380A /* checker_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checker_n.png; path = ../gbBundle/Textures/checker_n.png; sourceTree = "<group>"; };
 		21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.particle.emitter.smoke.xml; path = ../gbBundle/Configurations/game_objects/gameobject.particle.emitter.smoke.xml; sourceTree = "<group>"; };
 		21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.particle.emitter.smoke.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.particle.emitter.smoke.base.xml; sourceTree = "<group>"; };
 		21B403121B7A0968003382AB /* gbDemo-osx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-osx.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -361,7 +388,7 @@
 				212B18D91B82362600FFDCE7 /* QuartzCore.framework in Frameworks */,
 				212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */,
 				212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */,
-				21E33E041BB9760C00B540E7 /* libgbUI.a in Frameworks */,
+				21E33E041BB9760C00B540E7 /* libgbUI-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +407,7 @@
 		2102EB531B7E4E0D00F20197 /* game_objects */ = {
 			isa = PBXGroup;
 			children = (
+				210F2AB11BC3B2EB00B0809F /* gameobject.instanced.boxes.xml */,
 				21275FC91B98619F00BEE033 /* gameobject.plane.xml */,
 				21EE3D501B96E697000AE51C /* gameobject.particle.emitter.fire.xml */,
 				21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */,
@@ -408,9 +436,19 @@
 			name = render_techniques;
 			sourceTree = "<group>";
 		};
+		210F2AA21BC3A07E00B0809F /* level */ = {
+			isa = PBXGroup;
+			children = (
+				210F2AA41BC3A0CF00B0809F /* level.h */,
+				210F2AA31BC3A0CF00B0809F /* level.cpp */,
+			);
+			name = level;
+			sourceTree = "<group>";
+		};
 		21275FE61B98655800BEE033 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */,
 				21275FCC1B9861BB00BEE033 /* material.plane.base.xml */,
 				21EE3D531B96E6E6000AE51C /* material.particle.emitter.fire.base.xml */,
 				21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */,
@@ -438,6 +476,8 @@
 			children = (
 				21DE0E951BB022E8009EA47B /* shader_model3d_static_n.vert */,
 				21DE0E941BB022E8009EA47B /* shader_model3d_static_n.frag */,
+				210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */,
+				210F2ABA1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag */,
 				21DE0E8B1BAFF8B7009EA47B /* shader_model3d_animated_n.vert */,
 				21DE0E8A1BAFF8B7009EA47B /* shader_model3d_animated_n.frag */,
 				21DE0E631BAFE994009EA47B /* shader_screen_deferred_lighting.vert */,
@@ -446,6 +486,8 @@
 				21275FEF1B986CF900BEE033 /* shader_model3d_static_shadowmap.vert */,
 				21275FD01B9861FA00BEE033 /* shader_model3d_static.vert */,
 				21275FCF1B9861FA00BEE033 /* shader_model3d_static.frag */,
+				210F2AB51BC3B34000B0809F /* shader_instanced_models3d_static.vert */,
+				210F2AB41BC3B34000B0809F /* shader_instanced_models3d_static.frag */,
 				21EE3D571B96E705000AE51C /* shader_particle_emitter.vert */,
 				21EE3D561B96E705000AE51C /* shader_particle_emitter.frag */,
 				21FA124F1B8F2BD300ACB9A5 /* shader_model3d_animated.vert */,
@@ -533,6 +575,7 @@
 		21B403351B7A09D6003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				210F2AA21BC3A07E00B0809F /* level */,
 				212B18C01B82329600FFDCE7 /* osx */,
 				212B18BF1B82329100FFDCE7 /* ios */,
 				21B4033B1B7A09FD003382AB /* main.m */,
@@ -633,6 +676,7 @@
 		21DE0E4C1BAFE696009EA47B /* forward.rendering.normal */ = {
 			isa = PBXGroup;
 			children = (
+				210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */,
 				21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */,
 				21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */,
 				21DE0E4E1BAFE70C009EA47B /* material.human_02.forward.rendering.normal.xml */,
@@ -645,7 +689,7 @@
 		21E33DD01BB956C700B540E7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21E33DD51BB956C700B540E7 /* libgbUI.a */,
+				21E33DD51BB956C700B540E7 /* libgbUI-ios.a */,
 				21E33DE41BB959B100B540E7 /* libgbUI-osx.a */,
 			);
 			name = Products;
@@ -675,6 +719,7 @@
 		21FA12551B8F2C0E00ACB9A5 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				215D8F711BC406DA0057380A /* checker_n.png */,
 				21275FD71B9863D600BEE033 /* checker.png */,
 				21FA12621B8F2C3A00ACB9A5 /* human_01.png */,
 				21FA12631B8F2C3A00ACB9A5 /* human_02.png */,
@@ -788,10 +833,10 @@
 			remoteRef = 21B4058B1B7A0C58003382AB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		21E33DD51BB956C700B540E7 /* libgbUI.a */ = {
+		21E33DD51BB956C700B540E7 /* libgbUI-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libgbUI.a;
+			path = "libgbUI-ios.a";
 			remoteRef = 21E33DD41BB956C700B540E7 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -815,15 +860,18 @@
 				21DE0E5D1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */,
 				21FA123A1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
 				2102EB621B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
+				210F2AC11BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */,
 				21275FCD1B9861BB00BEE033 /* material.plane.base.xml in Resources */,
 				21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
 				21DE0E661BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
 				21D78C191B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
+				210F2AB21BC3B2EB00B0809F /* gameobject.instanced.boxes.xml in Resources */,
 				21EE3D511B96E697000AE51C /* gameobject.particle.emitter.fire.xml in Resources */,
 				21275FD51B9862D400BEE033 /* info-osx.plist in Resources */,
 				21FA123C1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
+				210F2AB81BC3B34000B0809F /* shader_instanced_models3d_static.vert in Resources */,
 				2102EB5E1B7E4E7900F20197 /* ws.technique.reflection.xml in Resources */,
 				21FA123E1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
 				21FA12681B8F2C3A00ACB9A5 /* human_02.png in Resources */,
@@ -840,7 +888,9 @@
 				21EE3D5D1B96ECC1000AE51C /* particle_01.png in Resources */,
 				21FA125C1B8F2C2600ACB9A5 /* human_02.IE3DMESH in Resources */,
 				2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
+				215D8F721BC406DA0057380A /* checker_n.png in Resources */,
 				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
+				210F2ABC1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */,
 				21D78C1B1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
 				21FA12601B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
 				21FA124A1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
@@ -849,12 +899,14 @@
 				21FA12401B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
 				21FA125A1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
 				21FA126A1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
+				210F2ABE1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert in Resources */,
 				21DE0E921BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
 				21DE0E901BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
 				21DE0E511BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
 				21FA12501B8F2BD300ACB9A5 /* shader_model3d_animated.frag in Resources */,
 				21D78C211B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
 				21B403441B7A0A23003382AB /* MainMenu.xib in Resources */,
+				210F2AAF1BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */,
 				21275FF01B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
 				21DE0EA21BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */,
 				21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */,
@@ -865,6 +917,7 @@
 				21A624281B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */,
 				21275FD81B9863D600BEE033 /* checker.png in Resources */,
 				21FA12521B8F2BD300ACB9A5 /* shader_model3d_animated.vert in Resources */,
+				210F2AB61BC3B34000B0809F /* shader_instanced_models3d_static.frag in Resources */,
 				212B185B1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21DE0E981BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
 				21275FE21B98654E00BEE033 /* material.orc_01.shadowmap.xml in Resources */,
@@ -894,15 +947,18 @@
 				21DE0E5E1BAFE91B009EA47B /* material.ss.deferred.lighting.xml in Resources */,
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
+				210F2AC21BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */,
 				212B18CD1B8232F400FFDCE7 /* demo_launch_screen_ios.xib in Resources */,
 				21FA124D1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
 				21275FCB1B98619F00BEE033 /* gameobject.plane.xml in Resources */,
 				21DE0E671BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
 				21275FD21B9861FA00BEE033 /* shader_model3d_static.frag in Resources */,
 				21D78C221B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
+				210F2AB31BC3B2EB00B0809F /* gameobject.instanced.boxes.xml in Resources */,
 				21D78C1C1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
 				21FA123B1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
 				21FA126B1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
+				210F2AB91BC3B34000B0809F /* shader_instanced_models3d_static.vert in Resources */,
 				21FA123F1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
 				21FA124B1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
 				21FA12491B8F2BAE00ACB9A5 /* material.human_02.base.xml in Resources */,
@@ -920,6 +976,7 @@
 				21D78C181B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21275FD41B9861FA00BEE033 /* shader_model3d_static.vert in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
+				210F2ABD1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */,
 				21FA12691B8F2C3A00ACB9A5 /* human_02.png in Resources */,
 				21FA125B1B8F2C2600ACB9A5 /* human_01.IE3DMESH in Resources */,
 				21D78C201B90AD6800665BB6 /* orc_01_idle.IE3DANIMATION in Resources */,
@@ -928,12 +985,14 @@
 				21FA12531B8F2BD300ACB9A5 /* shader_model3d_animated.vert in Resources */,
 				21D78C261B90AD6800665BB6 /* orc_02_run.IE3DANIMATION in Resources */,
 				212B18CE1B8232F900FFDCE7 /* demo_controller_ios.xib in Resources */,
+				210F2ABF1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert in Resources */,
 				21DE0E931BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
 				21DE0E911BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
 				21DE0E521BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
 				21FA12471B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
 				21FA12671B8F2C3A00ACB9A5 /* human_01.png in Resources */,
 				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
+				210F2AB01BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */,
 				21275FF11B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
 				21DE0EA31BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */,
 				21FA123D1B8F2B7600ACB9A5 /* gameobject.human_02.xml in Resources */,
@@ -944,6 +1003,7 @@
 				21A624291B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */,
 				21275FD91B9863D600BEE033 /* checker.png in Resources */,
 				21EE3D5E1B96ECC1000AE51C /* particle_01.png in Resources */,
+				210F2AB71BC3B34000B0809F /* shader_instanced_models3d_static.frag in Resources */,
 				21EE3D5B1B96E705000AE51C /* shader_particle_emitter.vert in Resources */,
 				21DE0E991BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
 				21275FE31B98654E00BEE033 /* material.orc_01.shadowmap.xml in Resources */,
@@ -970,6 +1030,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */,
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
@@ -983,6 +1044,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,

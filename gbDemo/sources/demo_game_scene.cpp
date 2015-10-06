@@ -17,8 +17,10 @@
 #include "particle_emitter.h"
 #include "model3d_animated.h"
 #include "instanced_omni_lights.h"
+#include "instanced_models3d_static.h"
 #include "ui_fabricator.h"
 #include "ui_graph.h"
+
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -64,9 +66,9 @@ gb::game_scene(transition)
     m_models["orc_01"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     m_models["orc_02"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     
-    m_models["human_02"]->set_position(glm::vec3(2.f, 0.f, 2.f));
-    m_models["orc_01"]->set_position(glm::vec3(2.f, 0.f, 0.f));
-    m_models["orc_02"]->set_position(glm::vec3(2.f, 0.f, 4.f));
+    m_models["human_02"]->set_position(glm::vec3(-2.f, 0.f, 2.f));
+    m_models["orc_01"]->set_position(glm::vec3(-2.f, 0.f, 0.f));
+    m_models["orc_02"]->set_position(glm::vec3(-2.f, 0.f, 4.f));
     
     m_models["human_02"]->set_touches_receives_enabled(true);
     m_models["human_02"]->set_debug_draw_enabled(true);
@@ -87,7 +89,7 @@ gb::game_scene(transition)
     m_direction_light = scene_fabricator_inst->create_direction_light();
     scene_graph_inst->add_direction_light(m_direction_light);
     m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
-    m_direction_light->set_intensity(0.25f);
+    m_direction_light->set_intensity(.5f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(4);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
@@ -100,6 +102,18 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 3);
     m_instanced_omni_lights->set_radius(7.f, 3);
     
+    m_instanced_boxes.resize(4, nullptr);
+    
+    for(i32 i = 0; i < 4; ++i)
+    {
+        m_instanced_boxes[i] = scene_fabricator_inst->create_instanced_models3d_static("gameobject.instanced.boxes.xml", 4);
+        scene_graph_inst->add_game_object(m_instanced_boxes[i]);
+        for (i32 j = 0; j < 4; ++j)
+        {
+            m_instanced_boxes[i]->set_position(glm::vec3(i * 2.2f, 1.f, j * 2.2f), j);
+        }
+    }
+
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
     
@@ -121,8 +135,8 @@ void demo_game_scene::update(f32 deltatime)
     static f32 angle = 0.f;
     angle += 0.05f;
     glm::vec2 light_xz_position = glm::vec2(0.f);
-    light_xz_position.x = 4.f + m_camera->get_look_at().x + cosf(angle) * -6.f;
-    light_xz_position.y = 4.f + m_camera->get_look_at().z + sinf(angle) * -6.f;
+    light_xz_position.x = 4.f + m_camera->get_look_at().x + cosf(angle) * -8.f;
+    light_xz_position.y = 4.f + m_camera->get_look_at().z + sinf(angle) * -8.f;
     m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y), 0);
     m_instanced_omni_lights->set_position(glm::vec3(4.f, 1.f, light_xz_position.y), 1);
     /*m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));

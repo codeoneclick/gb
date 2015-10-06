@@ -56,6 +56,10 @@ namespace gb
 
         std::cout<<"[Output resolution] : "<<m_graphics_context->get_width()<<"x"<<m_graphics_context->get_height()<<std::endl;
         std::cout<<"["<<glGetString(GL_RENDERER)<<"] ["<<glGetString(GL_VERSION)<<"] ["<<glGetString(GL_SHADING_LANGUAGE_VERSION)<<"]"<<std::endl;
+        
+        i32 max_uniform_vectors;
+        glGetIntegerv(GL_MAX_VERTEX_UNIFORM_VECTORS, &max_uniform_vectors);
+        std::cout<<"[Max uniform vectors] : "<<max_uniform_vectors<<std::endl;
     }
     
     void render_techniques_importer::add_ws_render_technique(const std::string &technique_name, const std::shared_ptr<render_technique_ws> &technique)

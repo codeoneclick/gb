@@ -19,6 +19,8 @@
 		210F2A9D1BC2A09300B0809F /* game_fabricator_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A9A1BC2A09300B0809F /* game_fabricator_interface.cpp */; };
 		210F2AA01BC2A0A600B0809F /* game_graph_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A9E1BC2A0A600B0809F /* game_graph_interface.cpp */; };
 		210F2AA11BC2A0A600B0809F /* game_graph_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A9E1BC2A0A600B0809F /* game_graph_interface.cpp */; };
+		210F2AA91BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */; };
+		210F2AAA1BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
 		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
@@ -394,6 +396,8 @@
 		210F2A9B1BC2A09300B0809F /* game_fabricator_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_fabricator_interface.h; path = sources/game_fabricator_interface.h; sourceTree = "<group>"; };
 		210F2A9E1BC2A0A600B0809F /* game_graph_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_graph_interface.cpp; path = sources/game_graph_interface.cpp; sourceTree = "<group>"; };
 		210F2A9F1BC2A0A600B0809F /* game_graph_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_graph_interface.h; path = sources/game_graph_interface.h; sourceTree = "<group>"; };
+		210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_models3d_static.cpp; path = sources/instanced_models3d_static.cpp; sourceTree = "<group>"; };
+		210F2AA81BC3A13200B0809F /* instanced_models3d_static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_models3d_static.h; path = sources/instanced_models3d_static.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
 		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
 		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
@@ -1749,6 +1753,8 @@
 				21606C651B8DB500005EA908 /* game_object.cpp */,
 				21606C621B8DB4EA005EA908 /* model3d_static.h */,
 				21606C611B8DB4EA005EA908 /* model3d_static.cpp */,
+				210F2AA81BC3A13200B0809F /* instanced_models3d_static.h */,
+				210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */,
 				21D78C281B90AD9700665BB6 /* model3d_animated.h */,
 				21D78C271B90AD9700665BB6 /* model3d_animated.cpp */,
 				21A846731B96D90B002B95A1 /* particle_emitter.h */,
@@ -2105,6 +2111,7 @@
 				21D78BEB1B8F463E00665BB6 /* game_scene.cpp in Sources */,
 				21B405101B7A0A88003382AB /* inffast.c in Sources */,
 				21B404D91B7A0A88003382AB /* b2StackAllocator.cpp in Sources */,
+				210F2AA91BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */,
 				212B18A31B81D33A00FFDCE7 /* camera.cpp in Sources */,
 				21B406241B7B8077003382AB /* ogl_window_osx.cpp in Sources */,
 				21B404E11B7A0A88003382AB /* b2ChainAndCircleContact.cpp in Sources */,
@@ -2287,6 +2294,7 @@
 				21B4055E1B7A0AFA003382AB /* infback.c in Sources */,
 				21B4055F1B7A0AFA003382AB /* b2GearJoint.cpp in Sources */,
 				21B405601B7A0AFA003382AB /* b2CircleContact.cpp in Sources */,
+				210F2AAA1BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */,
 				21B405611B7A0AFA003382AB /* b2Math.cpp in Sources */,
 				21B405621B7A0AFA003382AB /* inffast.c in Sources */,
 				21B406111B7B662D003382AB /* ss_technique_configuration.cpp in Sources */,

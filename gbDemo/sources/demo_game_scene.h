@@ -24,6 +24,7 @@ private:
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
+    std::vector<gb::instanced_models3d_static_shared_ptr> m_instanced_boxes;
     
     gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
     gb::ui::ui_graph_shared_ptr m_ui_graph;
