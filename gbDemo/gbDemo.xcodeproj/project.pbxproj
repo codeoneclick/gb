@@ -82,6 +82,7 @@
 		212B18DD1B82363800FFDCE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DC1B82363800FFDCE7 /* UIKit.framework */; };
 		212B18DF1B82363E00FFDCE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DE1B82363E00FFDCE7 /* Foundation.framework */; };
 		215D8F721BC406DA0057380A /* checker_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 215D8F711BC406DA0057380A /* checker_n.png */; };
+		215D8F731BC40E370057380A /* checker_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 215D8F711BC406DA0057380A /* checker_n.png */; };
 		21A624251B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624261B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624281B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */; };
@@ -975,6 +976,7 @@
 				2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */,
 				21D78C181B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21275FD41B9861FA00BEE033 /* shader_model3d_static.vert in Resources */,
+				215D8F731BC40E370057380A /* checker_n.png in Resources */,
 				2102EB611B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				210F2ABD1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */,
 				21FA12691B8F2C3A00ACB9A5 /* human_02.png in Resources */,
