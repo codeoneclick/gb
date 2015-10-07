@@ -13,7 +13,7 @@ using namespace gb;
 demo_game_controller::demo_game_controller(const std::shared_ptr<gb::ogl_window>& window) :
 gb::game_controller(window)
 {
-    
+
 }
 
 demo_game_controller::~demo_game_controller(void)

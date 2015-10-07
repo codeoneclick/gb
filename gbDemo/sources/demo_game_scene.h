@@ -39,6 +39,9 @@ protected:
     void on_touch(const glm::vec3& point, const gb::ces_entity_shared_ptr& listener,
                   gb::e_input_element input_element, gb::e_input_state input_state);
     
+    void on_key_down(i32 key);
+    void on_key_up(i32 key);
+    
 public:
     
     demo_game_scene(const gb::game_transition_shared_ptr& transition);

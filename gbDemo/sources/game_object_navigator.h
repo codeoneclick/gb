@@ -14,24 +14,6 @@
 
 namespace koth
 {
-    class navigation_listener
-    {
-    private:
-        
-        friend class navigator;
-        
-    protected:
-        
-        virtual std::tuple<glm::vec2, glm::vec2> get_box2d_bouning_box() = 0;
-        virtual void on_position_changed(const glm::vec3& position) = 0;
-        virtual void on_rotation_changed(const glm::vec3& rotation) = 0;
-        
-    public:
-        
-        navigation_listener() = default;
-        ~navigation_listener() = default;
-    };
-    
     enum e_navigation_state_move
     {
         e_navigation_state_move_none = 0,

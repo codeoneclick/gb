@@ -214,6 +214,12 @@ namespace gb
     
     class collision_manager;
     typedef std::shared_ptr<collision_manager> collision_manager_shared_ptr;
+    
+    class game_command_i;
+    typedef std::shared_ptr<game_command_i> game_command_i_shared_ptr;
+    
+    class game_commands_container;
+    typedef std::shared_ptr<game_commands_container> game_commands_container_shared_ptr;
 };
 
 #endif

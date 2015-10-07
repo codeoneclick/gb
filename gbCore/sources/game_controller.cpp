@@ -60,6 +60,7 @@ namespace gb
         if(m_current_transition != nullptr)
         {
             m_current_transition->on_deactivated();
+            m_input_context->remove_listener(m_current_transition);
             remove_listener_from_game_loop(m_current_transition);
         }
         m_current_transition = m_transitions.find(guid)->second;
@@ -68,6 +69,7 @@ namespace gb
                                            m_configuration_accessor,
                                            m_resource_accessor);
         
+        m_input_context->add_listener(m_current_transition);
         add_listener_to_game_loop(m_current_transition);
     }
 }

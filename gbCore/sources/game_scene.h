@@ -24,12 +24,18 @@ namespace gb
         
         game_transition_shared_ptr get_transition() const;
         
+        game_commands_container_shared_ptr m_internal_commands;
+        game_commands_container_shared_ptr m_external_commands;
+        
     public:
         
         game_scene(const game_transition_shared_ptr& transition);
         ~game_scene();
         
         virtual void update(f32 deltatime) = 0;
+        
+        void set_external_commands(const game_commands_container_shared_ptr& commands);
+        game_commands_container_shared_ptr get_internal_commands() const;
     };
 };
 

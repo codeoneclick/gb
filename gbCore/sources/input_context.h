@@ -24,7 +24,8 @@ namespace gb
     {
         e_input_element_none = 0,
         e_input_element_mouse_left,
-        e_input_element_mouse_right
+        e_input_element_mouse_right,
+        e_input_element_keyboard,
     };
     
     enum e_input_state
@@ -52,6 +53,9 @@ namespace gb
         virtual void on_gr_released(const glm::ivec2& point, e_input_element input_element) = 0;
         virtual void on_gr_moved(const glm::ivec2& point) = 0;
         virtual void on_gr_dragged(const glm::ivec2& point, e_input_element input_element) = 0;
+        
+        virtual void on_key_up(i32 key) = 0;
+        virtual void on_key_down(i32 key) = 0;
     };
     
     class input_context
@@ -73,6 +77,9 @@ namespace gb
         void gr_released(const glm::ivec2& point, e_input_element input_element);
         void gr_moved(const glm::ivec2& point);
         void gr_dragged(const glm::ivec2& point, e_input_element input_element);
+        
+        void key_up(i32 key);
+        void key_down(i32 key);
         
         void add_listener(const input_context_listener_shared_ptr& listener);
         void remove_listener(const input_context_listener_shared_ptr& listener);

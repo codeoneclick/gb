@@ -50,6 +50,9 @@ namespace gb
         void on_gr_moved(const glm::ivec2& point);
         void on_gr_dragged(const glm::ivec2& point, e_input_element input_element);
         
+        void on_key_up(i32 key);
+        void on_key_down(i32 key);
+        
     public:
         
         ces_input_system();

@@ -25,6 +25,10 @@
 		21176FCC1BC5188000890D7C /* ces_box2d_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC91BC5188000890D7C /* ces_box2d_system.cpp */; };
 		21176FCF1BC519AA00890D7C /* ces_box2d_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */; };
 		21176FD01BC519AA00890D7C /* ces_box2d_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */; };
+		21176FDA1BC55F5D00890D7C /* game_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FD81BC55F5D00890D7C /* game_command.cpp */; };
+		21176FDB1BC55F5D00890D7C /* game_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FD81BC55F5D00890D7C /* game_command.cpp */; };
+		21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
+		21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
 		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
@@ -406,6 +410,10 @@
 		21176FCA1BC5188000890D7C /* ces_box2d_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_box2d_system.h; path = sources/ces_box2d_system.h; sourceTree = "<group>"; };
 		21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_box2d_component.cpp; path = sources/ces_box2d_component.cpp; sourceTree = "<group>"; };
 		21176FCE1BC519AA00890D7C /* ces_box2d_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_box2d_component.h; path = sources/ces_box2d_component.h; sourceTree = "<group>"; };
+		21176FD81BC55F5D00890D7C /* game_command.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_command.cpp; path = sources/game_command.cpp; sourceTree = "<group>"; };
+		21176FD91BC55F5D00890D7C /* game_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_command.h; path = sources/game_command.h; sourceTree = "<group>"; };
+		21176FDC1BC5608300890D7C /* game_commands_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_commands_container.cpp; path = sources/game_commands_container.cpp; sourceTree = "<group>"; };
+		21176FDD1BC5608300890D7C /* game_commands_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_commands_container.h; path = sources/game_commands_container.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
 		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
 		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
@@ -1802,6 +1810,10 @@
 				210F2A9A1BC2A09300B0809F /* game_fabricator_interface.cpp */,
 				210F2A9F1BC2A0A600B0809F /* game_graph_interface.h */,
 				210F2A9E1BC2A0A600B0809F /* game_graph_interface.cpp */,
+				21176FD91BC55F5D00890D7C /* game_command.h */,
+				21176FD81BC55F5D00890D7C /* game_command.cpp */,
+				21176FDD1BC5608300890D7C /* game_commands_container.h */,
+				21176FDC1BC5608300890D7C /* game_commands_container.cpp */,
 			);
 			name = "state machine managment";
 			sourceTree = "<group>";
@@ -1993,6 +2005,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE30451B8B0C600046EDF8 /* shader_serializer_glsl.cpp in Sources */,
+				21176FDA1BC55F5D00890D7C /* game_command.cpp in Sources */,
 				21DE30591B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B404F41B7A0A88003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4061C1B7B7FD3003382AB /* game_controller.cpp in Sources */,
@@ -2032,6 +2045,7 @@
 				21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
+				21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */,
 				21B404CC1B7A0A88003382AB /* b2CollidePolygon.cpp in Sources */,
 				21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B404FF1B7A0A88003382AB /* pngrutil.c in Sources */,
@@ -2178,6 +2192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21DE30461B8B0C600046EDF8 /* shader_serializer_glsl.cpp in Sources */,
+				21176FDB1BC55F5D00890D7C /* game_command.cpp in Sources */,
 				21DE305A1B8B1D240046EDF8 /* resource_accessor.cpp in Sources */,
 				21B405291B7A0AFA003382AB /* b2WeldJoint.cpp in Sources */,
 				21B4052A1B7A0AFA003382AB /* b2PolygonShape.cpp in Sources */,
@@ -2217,6 +2232,7 @@
 				21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
 				21229D331BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
+				21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */,
 				212B186E1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
 				21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */,
 				21B4053A1B7A0AFA003382AB /* pngrutil.c in Sources */,

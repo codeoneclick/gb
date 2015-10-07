@@ -80,6 +80,18 @@
     self.m_context->gr_moved(glm::ivec2(point.x, self.frame.size.height - point.y));
 }
 
+- (void)keyDown:(NSEvent *)event
+{
+    unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
+    self.m_context->key_down(key);
+}
+
+- (void)keyUp:(NSEvent *)event
+{
+    unichar key = [[event charactersIgnoringModifiers] characterAtIndex:0];
+    self.m_context->key_up(key);
+}
+
 @end
 
 namespace gb

@@ -20,6 +20,9 @@ protected:
     void create_scene();
     void destroy_scene();
     
+    void on_key_up(i32 key);
+    void on_key_down(i32 key);
+    
 public:
     
     demo_game_transition(const std::string& guid, bool is_offscreen);

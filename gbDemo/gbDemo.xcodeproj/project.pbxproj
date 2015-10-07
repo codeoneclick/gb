@@ -284,6 +284,7 @@
 		21176FC21BC516A200890D7C /* game_object_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_object_navigator.h; path = sources/game_object_navigator.h; sourceTree = "<group>"; };
 		21176FC51BC516BB00890D7C /* character_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = character_controller.cpp; path = sources/character_controller.cpp; sourceTree = "<group>"; };
 		21176FC61BC516BB00890D7C /* character_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = character_controller.h; path = sources/character_controller.h; sourceTree = "<group>"; };
+		21176FD31BC55B5600890D7C /* koth_game_commands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = koth_game_commands.h; path = sources/koth_game_commands.h; sourceTree = "<group>"; };
 		211B31381B7E899B00178968 /* gbDemo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21275FC91B98619F00BEE033 /* gameobject.plane.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.plane.xml; path = ../gbBundle/Configurations/game_objects/gameobject.plane.xml; sourceTree = "<group>"; };
 		21275FCC1B9861BB00BEE033 /* material.plane.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.base.xml; sourceTree = "<group>"; };
@@ -474,6 +475,14 @@
 			name = gameplay;
 			sourceTree = "<group>";
 		};
+		21176FD11BC55A9100890D7C /* ui_commands */ = {
+			isa = PBXGroup;
+			children = (
+				21176FD31BC55B5600890D7C /* koth_game_commands.h */,
+			);
+			name = ui_commands;
+			sourceTree = "<group>";
+		};
 		21275FE61B98655800BEE033 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +613,7 @@
 		21B403351B7A09D6003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				21176FD11BC55A9100890D7C /* ui_commands */,
 				21176FC01BC5167800890D7C /* gameplay */,
 				21176FBE1BC5095200890D7C /* common */,
 				210F2AA21BC3A07E00B0809F /* level */,

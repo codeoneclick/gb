@@ -102,4 +102,14 @@ namespace gb
     {
         m_events.push(std::make_tuple(input_element, e_input_state_dragged, point));
     }
+    
+    void ces_input_system::on_key_up(i32 key)
+    {
+        
+    }
+    
+    void ces_input_system::on_key_down(i32 key)
+    {
+        
+    }
 }

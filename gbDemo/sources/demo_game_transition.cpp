@@ -10,6 +10,8 @@
 #include "demo_game_scene.h"
 #include "ces_input_system.h"
 #include "ces_system_types.h"
+#include "koth_game_commands.h"
+#include "game_commands_container.h"
 
 demo_game_transition::demo_game_transition(const std::string& guid, bool is_offscreen) :
 game_transition(guid, is_offscreen)
@@ -32,4 +34,14 @@ void demo_game_transition::create_scene()
 void demo_game_transition::destroy_scene()
 {
     m_scene = nullptr;
+}
+
+void demo_game_transition::on_key_down(i32 key)
+{
+    m_scene->get_internal_commands()->execute<koth::keyboard_on_key_down::t_command>(koth::keyboard_on_key_down::guid, key);
+}
+
+void demo_game_transition::on_key_up(i32 key)
+{
+    m_scene->get_internal_commands()->execute<koth::keyboard_on_key_up::t_command>(koth::keyboard_on_key_up::guid, key);
 }

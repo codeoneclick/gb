@@ -22,6 +22,9 @@
 #include "ui_graph.h"
 #include "level.h"
 #include "game_object_navigator.h"
+#include "koth_game_commands.h"
+#include "game_command.h"
+#include "game_commands_container.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -118,6 +121,17 @@ gb::game_scene(transition)
                                                                             3.f,
                                                                             m_models["human_02"]);
     m_game_object_navigator->set_position(glm::vec3(1.f));
+    
+    
+    gb::game_command_i_shared_ptr command = std::make_shared<gb::game_command<koth::keyboard_on_key_down::t_command>>(std::bind(&demo_game_scene::on_key_down,
+                                                                                                                                this,
+                                                                                                                                std::placeholders::_1));
+    m_internal_commands->add_command(koth::keyboard_on_key_down::guid, command);
+    
+    command = std::make_shared<gb::game_command<koth::keyboard_on_key_up::t_command>>(std::bind(&demo_game_scene::on_key_up,
+                                                                                                this,
+                                                                                                std::placeholders::_1));
+    m_internal_commands->add_command(koth::keyboard_on_key_up::guid, command);
 }
 
 demo_game_scene::~demo_game_scene()
@@ -154,4 +168,14 @@ void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shar
     {
         std::cout<<"on_touch"<<std::endl;
     }
+}
+
+void demo_game_scene::on_key_down(i32 key)
+{
+    std::cout<<"[on_key_down] : "<<key<<std::endl;
+}
+
+void demo_game_scene::on_key_up(i32 key)
+{
+    std::cout<<"[on_key_up] : "<<key<<std::endl;
 }

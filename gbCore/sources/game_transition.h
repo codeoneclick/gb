@@ -14,10 +14,13 @@
 #include "game_loop.h"
 #include "ces_entity.h"
 #include "ces_system_types.h"
+#include "input_context.h"
 
 namespace gb
 {
-    class game_transition : public game_loop_interface, public std::enable_shared_from_this<game_transition>
+    class game_transition : public input_context_listener,
+    public game_loop_interface,
+    public std::enable_shared_from_this<game_transition>
     {
     private:
         
@@ -42,6 +45,14 @@ namespace gb
         
         std::map<i32, game_fabricator_interface_shared_ptr> m_fabricators;
         std::map<i32, game_graph_interface_shared_ptr> m_graps;
+        
+        virtual void on_gr_pressed(const glm::ivec2& point, e_input_element input_element) { };
+        virtual void on_gr_released(const glm::ivec2& point, e_input_element input_element) { };
+        virtual void on_gr_moved(const glm::ivec2& point) { };
+        virtual void on_gr_dragged(const glm::ivec2& point, e_input_element input_element) { };
+        
+        virtual void on_key_up(i32 key) { };
+        virtual void on_key_down(i32 key) { };
         
     public:
         

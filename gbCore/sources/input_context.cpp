@@ -84,6 +84,22 @@ namespace gb
         }
     }
     
+    void input_context::key_up(i32 key)
+    {
+        for(const auto& listener : m_listeners)
+        {
+            listener->on_key_up(key);
+        }
+    }
+    
+    void input_context::key_down(i32 key)
+    {
+        for(const auto& listener : m_listeners)
+        {
+            listener->on_key_down(key);
+        }
+    }
+    
     void input_context::add_listener(const input_context_listener_shared_ptr &listener)
     {
         m_listeners.insert(listener);
