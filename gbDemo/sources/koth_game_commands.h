@@ -25,6 +25,18 @@ namespace koth
         typedef std::function<void(i32)> t_command;
         const std::string guid = "keyboard_on_key_up";
     };
+    
+    namespace on_move_state_changed
+    {
+        typedef std::function<void(i32)> t_command;
+        const std::string guid = "on_move_state_changed";
+    };
+    
+    namespace on_rotate_state_changed
+    {
+        typedef std::function<void(i32)> t_command;
+        const std::string guid = "on_rotate_state_changed";
+    };
 };
 
 #endif

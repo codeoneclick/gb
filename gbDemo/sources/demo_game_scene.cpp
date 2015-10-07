@@ -27,7 +27,9 @@
 #include "game_commands_container.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
-gb::game_scene(transition)
+gb::game_scene(transition),
+m_move_state(koth::e_navigation_state_move_none),
+m_rotate_state(koth::e_navigation_state_rotate_none)
 {
     m_camera = scene_fabricator_inst->create_camera(45.f, .1f, 128.f, glm::ivec4(0.f, 0.f,
                                                                                  game_scene::get_transition()->get_width(),
@@ -132,6 +134,16 @@ gb::game_scene(transition)
                                                                                                 this,
                                                                                                 std::placeholders::_1));
     m_internal_commands->add_command(koth::keyboard_on_key_up::guid, command);
+    
+    command = std::make_shared<gb::game_command<koth::on_move_state_changed::t_command>>(std::bind(&demo_game_scene::on_move_state_changed,
+                                                                                                this,
+                                                                                                std::placeholders::_1));
+    m_internal_commands->add_command(koth::on_move_state_changed::guid, command);
+    
+    command = std::make_shared<gb::game_command<koth::on_rotate_state_changed::t_command>>(std::bind(&demo_game_scene::on_rotate_state_changed,
+                                                                                                   this,
+                                                                                                   std::placeholders::_1));
+    m_internal_commands->add_command(koth::on_rotate_state_changed::guid, command);
 }
 
 demo_game_scene::~demo_game_scene()
@@ -156,8 +168,41 @@ void demo_game_scene::update(f32 deltatime)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(4.f, 1.f, light_xz_position.y));*/
     m_camera->set_rotation(angle * .1f);
     
-    m_game_object_navigator->move_forward();
-    m_game_object_navigator->rotate_left();
+    switch (m_move_state)
+    {
+        case koth::e_navigation_state_move_forward:
+        {
+            m_game_object_navigator->move_forward();
+        }
+            break;
+        case koth::e_navigation_state_move_backward:
+        {
+            m_game_object_navigator->move_backward();
+        }
+            break;
+            
+        default:
+            break;
+    }
+
+    switch (m_rotate_state)
+    {
+        case koth::e_navigation_state_rotate_left:
+        {
+            m_game_object_navigator->rotate_left();
+        }
+            break;
+            
+        case koth::e_navigation_state_rotate_right:
+        {
+            m_game_object_navigator->rotate_right();
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
     m_game_object_navigator->update(deltatime);
 }
 
@@ -178,4 +223,14 @@ void demo_game_scene::on_key_down(i32 key)
 void demo_game_scene::on_key_up(i32 key)
 {
     std::cout<<"[on_key_up] : "<<key<<std::endl;
+}
+
+void demo_game_scene::on_move_state_changed(i32 state)
+{
+    m_move_state = state;
+}
+
+void demo_game_scene::on_rotate_state_changed(i32 state)
+{
+    m_rotate_state = state;
 }

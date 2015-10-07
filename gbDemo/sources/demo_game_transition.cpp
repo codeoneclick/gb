@@ -12,11 +12,20 @@
 #include "ces_system_types.h"
 #include "koth_game_commands.h"
 #include "game_commands_container.h"
+#include "game_object_navigator.h"
+
+#define key_w 119
+#define key_a 97
+#define key_d 100
+#define key_s 115
 
 demo_game_transition::demo_game_transition(const std::string& guid, bool is_offscreen) :
 game_transition(guid, is_offscreen)
 {
-    
+    m_keys_state[key_w] = false;
+    m_keys_state[key_a] = false;
+    m_keys_state[key_d] = false;
+    m_keys_state[key_s] = false;
 }
 
 demo_game_transition::~demo_game_transition(void)
@@ -38,10 +47,62 @@ void demo_game_transition::destroy_scene()
 
 void demo_game_transition::on_key_down(i32 key)
 {
-    m_scene->get_internal_commands()->execute<koth::keyboard_on_key_down::t_command>(koth::keyboard_on_key_down::guid, key);
+    m_keys_state[key] = true;
+    demo_game_transition::update_key_state();
 }
 
 void demo_game_transition::on_key_up(i32 key)
 {
-    m_scene->get_internal_commands()->execute<koth::keyboard_on_key_up::t_command>(koth::keyboard_on_key_up::guid, key);
+    m_keys_state[key] = false;
+    demo_game_transition::update_key_state();
+}
+
+void demo_game_transition::update_key_state()
+{
+    gb::game_commands_container_shared_ptr game_commands = m_scene->get_internal_commands();
+    if(m_keys_state[key_s] && m_keys_state[key_a])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_left);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_backward);
+    }
+    else if(m_keys_state[key_w] && m_keys_state[key_d])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_right);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_forward);
+    }
+    else if(m_keys_state[key_s] && m_keys_state[key_d])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_right);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_backward);
+    }
+    else if(m_keys_state[key_w] && m_keys_state[key_a])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_left);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_forward);
+    }
+    else if(m_keys_state[key_d])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_right);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_none);
+    }
+    else if(m_keys_state[key_a])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_left);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_none);
+    }
+    else if(m_keys_state[key_s])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_backward);
+    }
+    else if(m_keys_state[key_w])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_forward);
+    }
+    else
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+        game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_none);
+    }
 }

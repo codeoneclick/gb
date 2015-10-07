@@ -32,6 +32,9 @@ private:
     gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
     gb::ui::ui_graph_shared_ptr m_ui_graph;
     
+    i32 m_move_state;
+    i32 m_rotate_state;
+    
 protected:
     
     void update(f32 deltatime);
@@ -41,6 +44,9 @@ protected:
     
     void on_key_down(i32 key);
     void on_key_up(i32 key);
+    
+    void on_move_state_changed(i32 state);
+    void on_rotate_state_changed(i32 state);
     
 public:
     
