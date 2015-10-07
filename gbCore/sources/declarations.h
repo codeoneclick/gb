@@ -155,6 +155,9 @@ namespace gb
     class ces_instanced_geometry_component;
     typedef std::shared_ptr<ces_instanced_geometry_component> ces_instanced_geometry_component_shared_ptr;
     
+    class ces_box2d_component;
+    typedef std::shared_ptr<ces_box2d_component> ces_box2d_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     
@@ -208,6 +211,9 @@ namespace gb
     
     class instanced_models3d_static;
     typedef std::shared_ptr<instanced_models3d_static> instanced_models3d_static_shared_ptr;
+    
+    class collision_manager;
+    typedef std::shared_ptr<collision_manager> collision_manager_shared_ptr;
 };
 
 #endif

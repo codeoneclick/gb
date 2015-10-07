@@ -15,7 +15,7 @@
 
 namespace gb
 {
-    class collision_manager
+    class collision_manager : public b2ContactListener
     {
     private:
         
@@ -27,7 +27,15 @@ namespace gb
         
     protected:
         
+        std::shared_ptr<b2World> m_box2d_world;
+        
+        void BeginContact(b2Contact* contact);
+        void EndContact(b2Contact* contact);
+        
     public:
+        
+        collision_manager();
+        ~collision_manager();
         
         static void unproject(const glm::ivec2& point,
                               const glm::mat4x4& mat_v, const glm::mat4x4& mat_p,
@@ -41,6 +49,13 @@ namespace gb
         static bool is_bounding_box_intersected(const glm::ray& ray,
                                                 const glm::vec3& min_bound, const glm::vec3& max_bound,
                                                 const glm::ivec2& point, glm::vec3* intersected_point);
+        
+        void create_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound);
+        
+        b2Body* create_box2d_body(const std::shared_ptr<b2BodyDef> box2d_body_definition);
+        void destroy_box2d_body(b2Body* box2d_body);
+        
+        void update(f32 deltatime);
     };
 };
 

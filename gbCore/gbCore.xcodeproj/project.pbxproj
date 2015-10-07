@@ -21,6 +21,10 @@
 		210F2AA11BC2A0A600B0809F /* game_graph_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2A9E1BC2A0A600B0809F /* game_graph_interface.cpp */; };
 		210F2AA91BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */; };
 		210F2AAA1BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */; };
+		21176FCB1BC5188000890D7C /* ces_box2d_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC91BC5188000890D7C /* ces_box2d_system.cpp */; };
+		21176FCC1BC5188000890D7C /* ces_box2d_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC91BC5188000890D7C /* ces_box2d_system.cpp */; };
+		21176FCF1BC519AA00890D7C /* ces_box2d_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */; };
+		21176FD01BC519AA00890D7C /* ces_box2d_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
 		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
@@ -398,6 +402,10 @@
 		210F2A9F1BC2A0A600B0809F /* game_graph_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_graph_interface.h; path = sources/game_graph_interface.h; sourceTree = "<group>"; };
 		210F2AA71BC3A13200B0809F /* instanced_models3d_static.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_models3d_static.cpp; path = sources/instanced_models3d_static.cpp; sourceTree = "<group>"; };
 		210F2AA81BC3A13200B0809F /* instanced_models3d_static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_models3d_static.h; path = sources/instanced_models3d_static.h; sourceTree = "<group>"; };
+		21176FC91BC5188000890D7C /* ces_box2d_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_box2d_system.cpp; path = sources/ces_box2d_system.cpp; sourceTree = "<group>"; };
+		21176FCA1BC5188000890D7C /* ces_box2d_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_box2d_system.h; path = sources/ces_box2d_system.h; sourceTree = "<group>"; };
+		21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_box2d_component.cpp; path = sources/ces_box2d_component.cpp; sourceTree = "<group>"; };
+		21176FCE1BC519AA00890D7C /* ces_box2d_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_box2d_component.h; path = sources/ces_box2d_component.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
 		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
 		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
@@ -1055,6 +1063,8 @@
 				21D78C2F1B94318600665BB6 /* ces_input_system.cpp */,
 				21A846771B96DCC9002B95A1 /* ces_particle_emitter_system.h */,
 				21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */,
+				21176FCA1BC5188000890D7C /* ces_box2d_system.h */,
+				21176FC91BC5188000890D7C /* ces_box2d_system.cpp */,
 			);
 			name = systems;
 			sourceTree = "<group>";
@@ -1081,6 +1091,8 @@
 				21613FE11B946B79001562EB /* ces_debug_render_component.cpp */,
 				21A8466B1B95BBAB002B95A1 /* ces_particle_emitter_component.h */,
 				21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */,
+				21176FCE1BC519AA00890D7C /* ces_box2d_component.h */,
+				21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -2095,6 +2107,7 @@
 				21B404F61B7A0A88003382AB /* b2Rope.cpp in Sources */,
 				2173D1E51B7CA8C0002912BE /* bone.cpp in Sources */,
 				21B404F11B7A0A88003382AB /* b2PulleyJoint.cpp in Sources */,
+				21176FCB1BC5188000890D7C /* ces_box2d_system.cpp in Sources */,
 				21D78C071B905D7600665BB6 /* animation_mixer.cpp in Sources */,
 				21B405131B7A0A88003382AB /* trees.c in Sources */,
 				2102EB341B7BDE1B00F20197 /* resource_serializer.cpp in Sources */,
@@ -2130,6 +2143,7 @@
 				21B406071B7B641F003382AB /* material_configuration.cpp in Sources */,
 				21B4060D1B7B662C003382AB /* transition_configuration.cpp in Sources */,
 				21DE301E1B834EF30046EDF8 /* texture_commiter_png.cpp in Sources */,
+				21176FCF1BC519AA00890D7C /* ces_box2d_component.cpp in Sources */,
 				21B404E61B7A0A88003382AB /* b2EdgeAndCircleContact.cpp in Sources */,
 				210F2AA01BC2A0A600B0809F /* game_graph_interface.cpp in Sources */,
 				21D78C351B943ACE00665BB6 /* ces_touch_component.cpp in Sources */,
@@ -2278,6 +2292,7 @@
 				21D78C081B905D7600665BB6 /* animation_mixer.cpp in Sources */,
 				21B405561B7A0AFA003382AB /* pngwio.c in Sources */,
 				21B405571B7A0AFA003382AB /* pngrtran.c in Sources */,
+				21176FCC1BC5188000890D7C /* ces_box2d_system.cpp in Sources */,
 				21B405FA1B7B4276003382AB /* configuration.cpp in Sources */,
 				21B405581B7A0AFA003382AB /* gzwrite.c in Sources */,
 				21B405591B7A0AFA003382AB /* b2Rope.cpp in Sources */,
@@ -2313,6 +2328,7 @@
 				212B18A41B81D33A00FFDCE7 /* camera.cpp in Sources */,
 				21DE301F1B834EF30046EDF8 /* texture_commiter_png.cpp in Sources */,
 				21D78C361B943ACE00665BB6 /* ces_touch_component.cpp in Sources */,
+				21176FD01BC519AA00890D7C /* ces_box2d_component.cpp in Sources */,
 				21B405691B7A0AFA003382AB /* b2World.cpp in Sources */,
 				210F2AA11BC2A0A600B0809F /* game_graph_interface.cpp in Sources */,
 				21B4056A1B7A0AFA003382AB /* b2EdgeAndCircleContact.cpp in Sources */,

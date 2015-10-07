@@ -10,9 +10,11 @@
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
 #include "ces_touch_component.h"
+#include "ces_debug_render_component.h"
+#include "ces_box2d_component.h"
 #include "mesh_constructor.h"
 #include "mesh.h"
-#include "ces_debug_render_component.h"
+#include "scene_graph.h"
 #include "input_context.h"
 
 namespace gb
@@ -88,6 +90,49 @@ namespace gb
         else
         {
             ces_entity::remove_component(e_ces_component_type_debug_render);
+        }
+    }
+    
+    void model3d_static::set_enable_box2d_physics(bool value, bool is_static)
+    {
+        if(value)
+        {
+            if(unsafe_get_geometry_component_from_this->get_mesh() && unsafe_get_geometry_component_from_this->get_mesh()->is_loaded())
+            {
+                ces_box2d_component_shared_ptr box2d_component = std::make_shared<ces_box2d_component>();
+                ces_entity::add_component(box2d_component);
+                std::shared_ptr<b2BodyDef> body_definition = box2d_component->get_box2d_body_definition();
+                
+                body_definition->type = is_static ? b2_staticBody : b2_dynamicBody;
+                body_definition->position.Set(game_object::get_position().x, game_object::get_position().z);
+                body_definition->userData = this;
+                
+                b2PolygonShape box2d_shape;
+                glm::vec2 min_bound = glm::vec2(unsafe_get_geometry_component_from_this->get_mesh()->get_min_bound().x,
+                                                unsafe_get_geometry_component_from_this->get_mesh()->get_min_bound().z);
+                glm::vec2 max_bound = glm::vec2(unsafe_get_geometry_component_from_this->get_mesh()->get_max_bound().x,
+                                                unsafe_get_geometry_component_from_this->get_mesh()->get_max_bound().z);
+                
+                box2d_shape.SetAsBox((max_bound.x - min_bound.x) / 2.f,
+                                    (max_bound.y - min_bound.y) / 2.f);
+                
+                b2Body* box2d_body = game_object::get_scene_graph()->add_box2d_body(body_definition);
+                assert(box2d_body);
+                box2d_body->CreateFixture(&box2d_shape, 1);
+                box2d_component->set_box2d_body(box2d_body);
+            }
+            else if(unsafe_get_geometry_component_from_this->get_mesh())
+            {
+                assert(false);
+            }
+            else
+            {
+                assert(false);
+            }
+        }
+        else
+        {
+            ces_entity::remove_component(e_ces_component_type_box2d);
         }
     }
 }

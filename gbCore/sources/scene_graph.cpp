@@ -15,6 +15,8 @@
 #include "instanced_omni_lights.h"
 #include "direction_light.h"
 #include "ces_systems_feeder.h"
+#include "ces_box2d_system.h"
+#include "collision_manager.h"
 
 namespace gb
 {
@@ -116,5 +118,26 @@ namespace gb
         direction_light->on_removed_from_scene();
         m_direction_lights_container.erase(direction_light);
         m_systems_feeder->remove_entity(direction_light);
+    }
+    
+    void scene_graph::set_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound)
+    {
+        std::shared_ptr<ces_box2d_system> box2d_system = std::static_pointer_cast<ces_box2d_system>(m_systems_feeder->get_system(e_ces_system_type_box2d));
+        assert(box2d_system);
+        box2d_system->set_box2d_world(min_bound, max_bound);
+    }
+    
+    b2Body* scene_graph::add_box2d_body(const std::shared_ptr<b2BodyDef> box2d_body_definition)
+    {
+        std::shared_ptr<ces_box2d_system> box2d_system = std::static_pointer_cast<ces_box2d_system>(m_systems_feeder->get_system(e_ces_system_type_box2d));
+        assert(box2d_system);
+        return box2d_system->get_collision_manager()->create_box2d_body(box2d_body_definition);
+    }
+    
+    void scene_graph::remove_box2d_body(b2Body* box2d_body)
+    {
+        std::shared_ptr<ces_box2d_system> box2d_system = std::static_pointer_cast<ces_box2d_system>(m_systems_feeder->get_system(e_ces_system_type_box2d));
+        assert(box2d_system);
+        box2d_system->get_collision_manager()->destroy_box2d_body(box2d_body);
     }
 }

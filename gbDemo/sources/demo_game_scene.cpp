@@ -20,7 +20,8 @@
 #include "instanced_models3d_static.h"
 #include "ui_fabricator.h"
 #include "ui_graph.h"
-
+#include "level.h"
+#include "game_object_navigator.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -66,7 +67,7 @@ gb::game_scene(transition)
     m_models["orc_01"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     m_models["orc_02"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     
-    m_models["human_02"]->set_position(glm::vec3(-2.f, 0.f, 2.f));
+    m_models["human_02"]->set_position(glm::vec3(1.f));
     m_models["orc_01"]->set_position(glm::vec3(-2.f, 0.f, 0.f));
     m_models["orc_02"]->set_position(glm::vec3(-2.f, 0.f, 4.f));
     
@@ -101,24 +102,22 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_radius(7.f, 2);
     m_instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 3);
     m_instanced_omni_lights->set_radius(7.f, 3);
-    
-    m_instanced_boxes.resize(4, nullptr);
-    
-    for(i32 i = 0; i < 4; ++i)
-    {
-        m_instanced_boxes[i] = scene_fabricator_inst->create_instanced_models3d_static("gameobject.instanced.boxes.xml", 4);
-        scene_graph_inst->add_game_object(m_instanced_boxes[i]);
-        for (i32 j = 0; j < 4; ++j)
-        {
-            m_instanced_boxes[i]->set_position(glm::vec3(i * 2.2f, 1.f, j * 2.2f), j);
-        }
-    }
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
     
     m_ui_graph = std::make_shared<gb::ui::ui_graph>();
     game_scene::get_transition()->add_graph(m_ui_graph, ui_graph_id);
+    
+    m_level = std::make_shared<koth::level>(scene_fabricator_inst, scene_graph_inst);
+    m_level->construct("");
+    
+    m_models["human_02"]->set_enable_box2d_physics(true, false);
+    m_game_object_navigator = std::make_shared<koth::game_object_navigator>(16.f,
+                                                                            8.f,
+                                                                            3.f,
+                                                                            m_models["human_02"]);
+    m_game_object_navigator->set_position(glm::vec3(1.f));
 }
 
 demo_game_scene::~demo_game_scene()
@@ -137,11 +136,15 @@ void demo_game_scene::update(f32 deltatime)
     glm::vec2 light_xz_position = glm::vec2(0.f);
     light_xz_position.x = 4.f + m_camera->get_look_at().x + cosf(angle) * -8.f;
     light_xz_position.y = 4.f + m_camera->get_look_at().z + sinf(angle) * -8.f;
-    m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y), 0);
-    m_instanced_omni_lights->set_position(glm::vec3(4.f, 1.f, light_xz_position.y), 1);
+    m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 3.f, light_xz_position.y), 0);
+    m_instanced_omni_lights->set_position(glm::vec3(4.f, 3.f, light_xz_position.y), 1);
     /*m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(4.f, 1.f, light_xz_position.y));*/
     m_camera->set_rotation(angle * .1f);
+    
+    m_game_object_navigator->move_forward();
+    m_game_object_navigator->rotate_left();
+    m_game_object_navigator->update(deltatime);
 }
 
 void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,

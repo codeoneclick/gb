@@ -18,6 +18,7 @@ namespace gb
         e_ces_system_type_animation,
         e_ces_system_type_input,
         e_ces_system_type_particle_emitter,
+        e_ces_system_type_box2d,
         e_ces_system_type_max
     };
 }

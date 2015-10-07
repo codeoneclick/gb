@@ -56,6 +56,11 @@ namespace gb
         
         void add_direction_light(const direction_light_shared_ptr& direction_light);
         void remove_direction_light(const direction_light_shared_ptr& direction_light);
+        
+        void set_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound);
+        
+        b2Body* add_box2d_body(const std::shared_ptr<b2BodyDef> box2d_body_definition);
+        void remove_box2d_body(b2Body* box2d_body);
     };
 };
 

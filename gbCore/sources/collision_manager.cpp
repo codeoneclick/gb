@@ -10,6 +10,17 @@
 
 namespace gb
 {
+    collision_manager::collision_manager() :
+    m_box2d_world(nullptr)
+    {
+        
+    }
+    
+    collision_manager::~collision_manager()
+    {
+        
+    }
+    
     void collision_manager::unproject(const glm::ivec2& point,
                                       const glm::mat4x4& mat_v, const glm::mat4x4& mat_p,
                                       const glm::ivec4& viewport,
@@ -88,5 +99,58 @@ namespace gb
         }
         (*intersected_point) = point_01 + (edge_01 * u) + (edge_02 * v);
         return true;
+    }
+    
+    void collision_manager::create_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound)
+    {
+        b2Vec2 gravity = b2Vec2(.0f, .0f);
+        m_box2d_world = std::make_shared<b2World>(gravity);
+        m_box2d_world->SetContinuousPhysics(true);
+        m_box2d_world->SetContactListener(this);
+        
+        b2BodyDef bound_body_definition;
+        bound_body_definition.position.Set(0, 0);
+        b2Body* bound_body = m_box2d_world->CreateBody(&bound_body_definition);
+        
+        b2EdgeShape bounding_box;
+        bounding_box.Set(b2Vec2(min_bound.x, min_bound.y), b2Vec2(max_bound.x, min_bound.y));
+        bound_body->CreateFixture(&bounding_box, 0);
+        bounding_box.Set(b2Vec2(min_bound.x, max_bound.y), b2Vec2(max_bound.x, max_bound.y));
+        bound_body->CreateFixture(&bounding_box, 0);
+        bounding_box.Set(b2Vec2(min_bound.x, max_bound.y), b2Vec2(min_bound.x, min_bound.y));
+        bound_body->CreateFixture(&bounding_box, 0);
+        bounding_box.Set(b2Vec2(max_bound.x, max_bound.y), b2Vec2(max_bound.x, min_bound.y));
+        bound_body->CreateFixture(&bounding_box, 0);
+    }
+    
+    b2Body* collision_manager::create_box2d_body(const std::shared_ptr<b2BodyDef> box2d_body_definition)
+    {
+        assert(m_box2d_world);
+        return m_box2d_world->CreateBody(box2d_body_definition.get());
+    }
+    
+    void collision_manager::destroy_box2d_body(b2Body* box2d_body)
+    {
+        assert(m_box2d_world);
+        m_box2d_world->DestroyBody(box2d_body);
+        box2d_body = nullptr;
+    }
+    
+    void collision_manager::update(f32 deltatime)
+    {
+        if(m_box2d_world)
+        {
+            m_box2d_world->Step(1.f / 60.f, 1, 1);
+        }
+    }
+    
+    void collision_manager::BeginContact(b2Contact* contact)
+    {
+        
+    }
+    
+    void collision_manager::EndContact(b2Contact* contact)
+    {
+        
     }
 }

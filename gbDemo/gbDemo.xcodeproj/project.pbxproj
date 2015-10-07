@@ -41,6 +41,10 @@
 		210F2ABF1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */; };
 		210F2AC11BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */; };
 		210F2AC21BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */; };
+		21176FC31BC516A200890D7C /* game_object_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC11BC516A200890D7C /* game_object_navigator.cpp */; };
+		21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC11BC516A200890D7C /* game_object_navigator.cpp */; };
+		21176FC71BC516BB00890D7C /* character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC51BC516BB00890D7C /* character_controller.cpp */; };
+		21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FC51BC516BB00890D7C /* character_controller.cpp */; };
 		21275FCA1B98619F00BEE033 /* gameobject.plane.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FC91B98619F00BEE033 /* gameobject.plane.xml */; };
 		21275FCB1B98619F00BEE033 /* gameobject.plane.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FC91B98619F00BEE033 /* gameobject.plane.xml */; };
 		21275FCD1B9861BB00BEE033 /* material.plane.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21275FCC1B9861BB00BEE033 /* material.plane.base.xml */; };
@@ -275,6 +279,11 @@
 		210F2ABA1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static_n.frag; path = ../gbBundle/Shaders/shader_instanced_models3d_static_n.frag; sourceTree = "<group>"; };
 		210F2ABB1BC3BB0100B0809F /* shader_instanced_models3d_static_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_instanced_models3d_static_n.vert; path = ../gbBundle/Shaders/shader_instanced_models3d_static_n.vert; sourceTree = "<group>"; };
 		210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.instanced.boxes.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.instanced.boxes.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		21176FBF1BC5096B00890D7C /* koth_declarations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = koth_declarations.h; path = sources/koth_declarations.h; sourceTree = "<group>"; };
+		21176FC11BC516A200890D7C /* game_object_navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_object_navigator.cpp; path = sources/game_object_navigator.cpp; sourceTree = "<group>"; };
+		21176FC21BC516A200890D7C /* game_object_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_object_navigator.h; path = sources/game_object_navigator.h; sourceTree = "<group>"; };
+		21176FC51BC516BB00890D7C /* character_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = character_controller.cpp; path = sources/character_controller.cpp; sourceTree = "<group>"; };
+		21176FC61BC516BB00890D7C /* character_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = character_controller.h; path = sources/character_controller.h; sourceTree = "<group>"; };
 		211B31381B7E899B00178968 /* gbDemo-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gbDemo-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21275FC91B98619F00BEE033 /* gameobject.plane.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.plane.xml; path = ../gbBundle/Configurations/game_objects/gameobject.plane.xml; sourceTree = "<group>"; };
 		21275FCC1B9861BB00BEE033 /* material.plane.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.plane.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.plane.base.xml; sourceTree = "<group>"; };
@@ -446,6 +455,25 @@
 			name = level;
 			sourceTree = "<group>";
 		};
+		21176FBE1BC5095200890D7C /* common */ = {
+			isa = PBXGroup;
+			children = (
+				21176FBF1BC5096B00890D7C /* koth_declarations.h */,
+			);
+			name = common;
+			sourceTree = "<group>";
+		};
+		21176FC01BC5167800890D7C /* gameplay */ = {
+			isa = PBXGroup;
+			children = (
+				21176FC21BC516A200890D7C /* game_object_navigator.h */,
+				21176FC11BC516A200890D7C /* game_object_navigator.cpp */,
+				21176FC61BC516BB00890D7C /* character_controller.h */,
+				21176FC51BC516BB00890D7C /* character_controller.cpp */,
+			);
+			name = gameplay;
+			sourceTree = "<group>";
+		};
 		21275FE61B98655800BEE033 /* base */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +604,8 @@
 		21B403351B7A09D6003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				21176FC01BC5167800890D7C /* gameplay */,
+				21176FBE1BC5095200890D7C /* common */,
 				210F2AA21BC3A07E00B0809F /* level */,
 				212B18C01B82329600FFDCE7 /* osx */,
 				212B18BF1B82329100FFDCE7 /* ios */,
@@ -1033,6 +1063,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */,
+				21176FC71BC516BB00890D7C /* character_controller.cpp in Sources */,
+				21176FC31BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
@@ -1047,6 +1079,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */,
+				21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */,
+				21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,

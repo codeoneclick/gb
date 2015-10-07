@@ -13,6 +13,7 @@
 #include "resource_accessor.h"
 #include "ces_render_system.h"
 #include "ces_animation_system.h"
+#include "ces_box2d_system.h"
 #include "ces_input_system.h"
 #include "ces_particle_emitter_system.h"
 #include "transition_configuration.h"
@@ -145,6 +146,9 @@ namespace gb
         
         std::shared_ptr<ces_particle_emitter_system> particle_emitter_system = std::make_shared<ces_particle_emitter_system>();
         m_system_feeder->add_system(particle_emitter_system, e_ces_system_type_particle_emitter);
+        
+        std::shared_ptr<ces_box2d_system> box2d_system = std::make_shared<ces_box2d_system>();
+        m_system_feeder->add_system(box2d_system, e_ces_system_type_box2d);
         
         add_listener_to_game_loop(m_system_feeder);
         

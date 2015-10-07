@@ -13,6 +13,7 @@
 #include "declarations.h"
 #include "ui_declarations.h"
 #include "ces_input_system.h"
+#include "koth_declarations.h"
 
 class demo_game_scene : public gb::game_scene, public gb::touch_listener
 {
@@ -24,7 +25,9 @@ private:
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
-    std::vector<gb::instanced_models3d_static_shared_ptr> m_instanced_boxes;
+    
+    koth::level_shared_ptr m_level;
+    koth::game_object_navigator_shared_ptr m_game_object_navigator;
     
     gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
     gb::ui::ui_graph_shared_ptr m_ui_graph;

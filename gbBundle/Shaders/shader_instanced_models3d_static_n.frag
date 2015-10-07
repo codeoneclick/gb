@@ -17,6 +17,6 @@ uniform sampler2D sampler_01;
 
 void main(void)
 {
-    vec3 normal = (v_tbn_matrix * texture2D(sampler_01, v_texcoord).rgb + 1.0) * 0.5;
+    vec3 normal = (v_tbn_matrix * (texture2D(sampler_01, v_texcoord).rgb * 2.0 - 1.0) + 1.0) * 0.5;
     gl_FragColor = vec4(normal, gl_FragCoord.z);
 }
