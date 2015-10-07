@@ -118,9 +118,9 @@ m_rotate_state(koth::e_navigation_state_rotate_none)
     m_level->construct("");
     
     m_models["human_02"]->set_enable_box2d_physics(true, false);
-    m_game_object_navigator = std::make_shared<koth::game_object_navigator>(16.f,
-                                                                            8.f,
-                                                                            3.f,
+    m_game_object_navigator = std::make_shared<koth::game_object_navigator>(8.f,
+                                                                            4.f,
+                                                                            2.f,
                                                                             m_models["human_02"]);
     m_game_object_navigator->set_position(glm::vec3(1.f));
     
@@ -153,7 +153,7 @@ demo_game_scene::~demo_game_scene()
 
 void demo_game_scene::update(f32 deltatime)
 {
-    m_models["human_02"]->set_animation("IDLE");
+    m_models["human_02"]->set_animation("RUN");
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
     
