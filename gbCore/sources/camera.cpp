@@ -31,9 +31,9 @@ namespace gb
     
     void camera::update(f32 deltatime)
     {
-        m_position.y = m_distance.y;
-        m_position.x = m_look_at.x + cosf(-m_rotation) * -m_distance.x;
-        m_position.z = m_look_at.z + sinf(-m_rotation) * -m_distance.z;
+        //m_position.y = m_distance.y;
+        //m_position.x = cosf(-m_rotation) * -m_distance.x;
+        //m_position.z = sinf(-m_rotation) * -m_distance.z;
         m_matrix_v = glm::lookAt(m_position, m_look_at, m_up);
         
         glm::vec3 position = m_position;

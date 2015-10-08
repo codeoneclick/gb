@@ -183,13 +183,14 @@ namespace gb
                 
                 if(geometry_component)
                 {
-                    glm::vec3 min_bound = geometry_component->get_min_bound();
+                    /*glm::vec3 min_bound = geometry_component->get_min_bound();
                     glm::vec3 max_bound = geometry_component->get_max_bound();
                     frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
                     if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
                     {
                         render_component->on_draw(m_name, geometry_component->get_mesh(), material);
-                    }
+                    }*/
+                    render_component->on_draw(m_name, geometry_component->get_mesh(), material);
                 }
                 else if(particle_emitter_component)
                 {

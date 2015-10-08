@@ -20,7 +20,7 @@
     fs_filename="shader_instanced_models3d_static.frag"/>
     <textures>
         <texture
-        filename="checker.png"
+        filename="box_01.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"

@@ -16,6 +16,9 @@ namespace koth
     
     class game_object_navigator;
     typedef std::shared_ptr<game_object_navigator> game_object_navigator_shared_ptr;
+    
+    class character_controller;
+    typedef std::shared_ptr<character_controller> character_controller_shared_ptr;
 };
 
 #endif

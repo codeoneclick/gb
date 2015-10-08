@@ -114,7 +114,7 @@ namespace gb
                                                 unsafe_get_geometry_component_from_this->get_mesh()->get_max_bound().z);
                 
                 box2d_shape.SetAsBox((max_bound.x - min_bound.x) / 2.f,
-                                    (max_bound.y - min_bound.y) / 2.f);
+                                     (max_bound.y - min_bound.y) / 2.f);
                 
                 b2Body* box2d_body = game_object::get_scene_graph()->add_box2d_body(body_definition);
                 assert(box2d_body);

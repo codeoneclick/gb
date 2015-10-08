@@ -27,13 +27,10 @@ private:
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
     
     koth::level_shared_ptr m_level;
-    koth::game_object_navigator_shared_ptr m_game_object_navigator;
+    koth::character_controller_shared_ptr m_character_controller;
     
     gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
     gb::ui::ui_graph_shared_ptr m_ui_graph;
-    
-    i32 m_move_state;
-    i32 m_rotate_state;
     
 protected:
     

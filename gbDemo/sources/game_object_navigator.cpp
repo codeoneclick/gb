@@ -102,7 +102,7 @@ namespace koth
             m_navigation_state_move = e_navigation_state_move_none;
             
             m_position = box2d_component->get_position();
-            m_position.y = 1.f;
+            m_position.y = .5f;
         }
         m_game_object->set_position(m_position);
         m_game_object->set_rotation(m_rotation);

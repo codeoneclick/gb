@@ -31,7 +31,7 @@ void main(void)
     vec3 tangent = normalize(u_transform_parameters[gl_InstanceID] * a_tangent).xyz;
     vec3 bitangent = cross(-normal, tangent);
     
-    v_tbn_matrix = mat3(a_tangent.xyz, bitangent, a_normal.xyz);
+    v_tbn_matrix = mat3(tangent, bitangent, normal);
     
     //v_normal = normalize(a_normal).xyz;
     //v_normal = 0.5 * (v_normal + 1.0);

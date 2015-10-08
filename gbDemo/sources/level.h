@@ -14,6 +14,13 @@
 
 namespace koth
 {
+    enum e_level_box_state
+    {
+        e_level_box_state_none = 0,
+        e_level_box_state_fall_down,
+        e_level_box_state_drop_down
+    };
+    
     class level
     {
     private:
@@ -29,6 +36,7 @@ namespace koth
         gb::scene_graph_shared_ptr m_graph;
         
         std::vector<gb::instanced_models3d_static_shared_ptr> m_boxes;
+        std::vector<i32> m_boxes_states;
         
     public:
         level(const gb::scene_fabricator_shared_ptr& fabricator,
@@ -36,6 +44,10 @@ namespace koth
         ~level();
         
         void construct(const std::string& filename);
+        
+        void update(f32 deltatime);
+        
+        void set_box_state(i32 x, i32 z);
     };
 };
 
