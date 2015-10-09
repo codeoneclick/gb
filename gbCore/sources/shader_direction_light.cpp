@@ -61,7 +61,7 @@ const char* shader_direction_light_frag = string_shader
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     
     vec3 normal = texture2D(sampler_01, texcoord).rgb * 2.0 - 1.0;
-    vec3 diffuse = vec3(clamp(dot(normal, u_light_direction), 0.0, 1.0));
+    vec3 diffuse = vec3(clamp(dot(normal, u_light_direction), 0.5, 1.0));
     
 #if defined(__SPECULAR__)
     

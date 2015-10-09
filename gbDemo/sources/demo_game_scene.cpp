@@ -63,8 +63,8 @@ gb::game_scene(transition)
     particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
     particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
     
-    m_shadow_cast_light->set_position(glm::vec3(-4.f, 8.f, 4.f));
-    m_shadow_cast_light->set_look_at(glm::vec3(0.f, 1.f, 0.f));
+    m_shadow_cast_light->set_position(glm::vec3(8.25f, 16.f, 8.25f));
+    m_shadow_cast_light->set_look_at(glm::vec3(7.75f, 1.f, 7.75f));
     
     m_models["human_02"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
     m_models["orc_01"]->set_rotation(glm::vec3(0.f, -90.f, 0.f));
@@ -99,17 +99,15 @@ gb::game_scene(transition)
     m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
     m_direction_light->set_intensity(.5f);
     
-    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(4);
+    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(3);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
-    m_instanced_omni_lights->set_position(glm::vec3(0.f, 1.f, 0.f), 0);
-    m_instanced_omni_lights->set_radius(4.f, 0);
+    m_instanced_omni_lights->set_radius(3.f, 0);
     m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 0.f, 1.f), 0);
-    m_instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 1);
+    
     m_instanced_omni_lights->set_radius(3.f, 1);
-    m_instanced_omni_lights->set_position(glm::vec3(5.f, 1.f, 1.f), 2);
-    m_instanced_omni_lights->set_radius(2.f, 2);
-    m_instanced_omni_lights->set_position(glm::vec3(1.f, 1.f, 5.f), 3);
-    m_instanced_omni_lights->set_radius(2.f, 3);
+   
+    m_instanced_omni_lights->set_position(glm::vec3(8.f, 1.f, 8.f), 2);
+    m_instanced_omni_lights->set_radius(3.f, 2);
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);

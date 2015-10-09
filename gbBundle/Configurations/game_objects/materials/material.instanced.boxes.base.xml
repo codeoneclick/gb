@@ -1,10 +1,10 @@
 <material
     render_operation_name="ws.base"
-    is_cull_face="0"
+    is_cull_face="1"
     is_depth_test="1"
     is_depth_mask="1"
     is_blending="0"
-    cull_face_mode="GL_FRONT"
+    cull_face_mode="GL_BACK"
     blending_function_source="GL_SRC_ALPHA"
     blending_function_destination="GL_ONE_MINUS_SRC_ALPHA"
     is_cliping="0"
@@ -16,15 +16,22 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shader_instanced_models3d_static.vert"
-    fs_filename="shader_instanced_models3d_static.frag"/>
+    vs_filename="shader_instanced_models3d_static_shadowmap.vert"
+    fs_filename="shader_instanced_models3d_static_shadowmap.frag"/>
     <textures>
         <texture
-        filename="box_01.png"
+        filename="box_02.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
+        <texture
+        filename=""
+        render_operation_name="ws.shadowmap.depth"
+        sampler_index="1"
+        wrap_mode="GL_CLAMP_TO_EDGE"
+        mag_filter="GL_LINEAR"
+        min_filter="GL_LINEAR"/>
     </textures>
 </material>

@@ -94,11 +94,12 @@ const char* shader_instanced_omni_light_frag = string_shader
     
     vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.0, 1.0));
     
+#define __SPECULAR__
 #if defined(__SPECULAR__)
     
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
     vec3 light_reflect = normalize(2.0 * diffuse * normal - light_direction);
-    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), 32.0);
+    float specular = pow(clamp(dot(reflect(-light_direction, normal), camera_direction), 0.0, 1.0), 16.0);
     
 #else
     

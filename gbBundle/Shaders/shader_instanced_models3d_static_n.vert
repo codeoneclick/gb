@@ -32,7 +32,4 @@ void main(void)
     vec3 bitangent = cross(-normal, tangent);
     
     v_tbn_matrix = mat3(tangent, bitangent, normal);
-    
-    //v_normal = normalize(a_normal).xyz;
-    //v_normal = 0.5 * (v_normal + 1.0);
 }
