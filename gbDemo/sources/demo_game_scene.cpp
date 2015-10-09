@@ -95,9 +95,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    scene_graph_inst->add_direction_light(m_direction_light);
-    m_direction_light->set_direction(glm::vec3(-1.f, 1.f, 0.f));
-    m_direction_light->set_intensity(.5f);
+    //scene_graph_inst->add_direction_light(m_direction_light);
+    m_direction_light->set_intensity(1.f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(3);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
@@ -106,8 +105,8 @@ gb::game_scene(transition)
     
     m_instanced_omni_lights->set_radius(3.f, 1);
    
-    m_instanced_omni_lights->set_position(glm::vec3(8.f, 1.f, 8.f), 2);
-    m_instanced_omni_lights->set_radius(3.f, 2);
+    m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 2);
+    m_instanced_omni_lights->set_radius(16.f, 2);
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
@@ -146,11 +145,14 @@ void demo_game_scene::update(f32 deltatime)
     m_models["orc_01"]->set_animation("IDLE");
     m_models["orc_02"]->set_animation("IDLE");
     
-    //static f32 angle = 0.f;
-    //angle += 0.05f;
-    //glm::vec2 light_xz_position = glm::vec2(0.f);
-    //light_xz_position.x = 4.f + m_camera->get_look_at().x + cosf(angle) * -8.f;
-    //light_xz_position.y = 4.f + m_camera->get_look_at().z + sinf(angle) * -8.f;
+    static f32 angle = 0.f;
+    angle += 0.05f;
+    glm::vec2 light_xz_position = glm::vec2(0.f);
+    light_xz_position.x = 8.f + cosf(angle) * -8.f;
+    light_xz_position.y = 8.f + sinf(angle) * -8.f;
+    m_direction_light->set_direction(glm::normalize(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y) - glm::vec3(8.f, 0.f, 8.f)));
+    m_models["orc_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
+    
     //m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 3.f, light_xz_position.y), 0);
     //m_instanced_omni_lights->set_position(glm::vec3(4.f, 3.f, light_xz_position.y), 1);
     /*m_omni_lights["omni_light_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));

@@ -75,13 +75,22 @@ const char* shader_instanced_omni_light_frag = string_shader
  
 #endif
  
+#define __SPECULAR__
+#if defined(__SPECULAR__)
+ 
+ float specular_square = 16.0;
+ float specular_power = 4.0;
+
+#endif
+ 
  void main()
 {
     vec4 screen_position = v_screen_position;
     screen_position.xy /= screen_position.w;
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
-
-    vec3 normal = texture2D(sampler_01, texcoord).rgb * 2.0 - 1.0;
+    
+    vec4 ns_color = texture2D(sampler_01, texcoord);
+    vec3 normal = ns_color.rgb * 2.0 - 1.0;
     float depth = texture2D(sampler_02, texcoord).r;
     
     vec4 position = vec4(texcoord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
@@ -94,12 +103,13 @@ const char* shader_instanced_omni_light_frag = string_shader
     
     vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.0, 1.0));
     
-#define __SPECULAR__
+
 #if defined(__SPECULAR__)
     
+    float specular_intensity = ns_color.a;
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
-    vec3 light_reflect = normalize(2.0 * diffuse * normal - light_direction);
-    float specular = pow(clamp(dot(reflect(-light_direction, normal), camera_direction), 0.0, 1.0), 16.0);
+    vec3 light_reflect = reflect(-light_direction, normal);
+    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
     
 #else
     
@@ -107,7 +117,7 @@ const char* shader_instanced_omni_light_frag = string_shader
     
 #endif
     
-    gl_FragColor = vec4(attenuation * diffuse + specular * v_light_color.rgb, 1.0) * v_light_color;
+    gl_FragColor = vec4(attenuation * diffuse + attenuation * specular * v_light_color.rgb, 1.0) * v_light_color;
 }
  );
 

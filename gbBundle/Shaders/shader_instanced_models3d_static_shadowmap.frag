@@ -33,6 +33,6 @@ void main(void)
 #endif
     
     vec4 color = texture2D(sampler_01, v_texcoord);
-    color.rgb *= shadow;
+    color.rgb *= clamp(shadow, 0.33, 1.0);
     gl_FragColor = color;
 }

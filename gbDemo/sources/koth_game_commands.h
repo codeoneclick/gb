@@ -37,6 +37,12 @@ namespace koth
         typedef std::function<void(i32)> t_command;
         const std::string guid = "on_rotate_state_changed";
     };
+    
+    namespace on_use_ability
+    {
+        typedef std::function<void(i32)> t_command;
+        const std::string guid = "on_use_ability";
+    };
 };
 
 #endif

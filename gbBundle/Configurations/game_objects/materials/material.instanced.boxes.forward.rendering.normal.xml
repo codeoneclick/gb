@@ -20,9 +20,16 @@
     fs_filename="shader_instanced_models3d_static_n.frag"/>
     <textures>
         <texture
-        filename="box_02_n.png"
+        filename="box_04_n.png"
         render_operation_name=""
         sampler_index="0"
+        wrap_mode="GL_REPEAT"
+        mag_filter="GL_LINEAR"
+        min_filter="GL_MIPMAP"/>
+        <texture
+        filename="box_04_s.png"
+        render_operation_name=""
+        sampler_index="1"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>

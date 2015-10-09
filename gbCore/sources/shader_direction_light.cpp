@@ -54,13 +54,22 @@ const char* shader_direction_light_frag = string_shader
  uniform sampler2D  sampler_01;
  uniform sampler2D  sampler_02;
  
+#define __SPECULAR__
+#if defined(__SPECULAR__)
+ 
+ float specular_square = 16.0;
+ float specular_power = 4.0;
+ 
+#endif
+ 
  void main()
 {
     vec4 screen_position = v_screen_position;
     screen_position.xy /= screen_position.w;
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     
-    vec3 normal = texture2D(sampler_01, texcoord).rgb * 2.0 - 1.0;
+    vec4 ns_color = texture2D(sampler_01, texcoord);
+    vec3 normal = ns_color.rgb * 2.0 - 1.0;
     vec3 diffuse = vec3(clamp(dot(normal, u_light_direction), 0.5, 1.0));
     
 #if defined(__SPECULAR__)
@@ -71,9 +80,10 @@ const char* shader_direction_light_frag = string_shader
     position = u_mat_i_vp * position;
     position.xyz = position.xyz / position.w;
     
+    float specular_intensity = ns_color.a;
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
-    vec3 light_reflect = normalize(2.0 * diffuse * normal - u_light_direction);
-    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), 32.0);
+    vec3 light_reflect = reflect(-u_light_direction, normal);
+    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
     
 #else
     

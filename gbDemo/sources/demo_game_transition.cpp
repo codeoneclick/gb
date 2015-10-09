@@ -18,6 +18,9 @@
 #define key_a 97
 #define key_d 100
 #define key_s 115
+#define key_1 49
+#define key_2 50
+#define key_3 51
 
 demo_game_transition::demo_game_transition(const std::string& guid, bool is_offscreen) :
 game_transition(guid, is_offscreen)
@@ -26,6 +29,10 @@ game_transition(guid, is_offscreen)
     m_keys_state[key_a] = false;
     m_keys_state[key_d] = false;
     m_keys_state[key_s] = false;
+    
+    m_keys_state[key_1] = false;
+    m_keys_state[key_2] = false;
+    m_keys_state[key_3] = false;
 }
 
 demo_game_transition::~demo_game_transition(void)
@@ -104,5 +111,18 @@ void demo_game_transition::update_key_state()
     {
         game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
         game_commands->execute<koth::on_move_state_changed::t_command>(koth::on_move_state_changed::guid, koth::e_navigation_state_move_none);
+    }
+    
+    if(m_keys_state[key_1])
+    {
+        game_commands->execute<koth::on_use_ability::t_command>(koth::on_use_ability::guid, koth::e_navigation_state_rotate_none);
+    }
+    if(m_keys_state[key_2])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+    }
+    if(m_keys_state[key_3])
+    {
+        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
     }
 }

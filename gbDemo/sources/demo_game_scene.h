@@ -45,6 +45,8 @@ protected:
     void on_move_state_changed(i32 state);
     void on_rotate_state_changed(i32 state);
     
+    void on_use_ability(i32 ability_id);
+    
 public:
     
     demo_game_scene(const gb::game_transition_shared_ptr& transition);
