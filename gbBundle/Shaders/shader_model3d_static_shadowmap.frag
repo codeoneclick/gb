@@ -11,13 +11,6 @@ varying vec4 v_shadow_parameters;
 #endif
 
 uniform sampler2D sampler_01;
-
-#if defined(__IOS__)
-
-#extension GL_EXT_shadow_samplers : require
-
-#endif
-
 uniform sampler2DShadow sampler_02;
 
 void main(void)

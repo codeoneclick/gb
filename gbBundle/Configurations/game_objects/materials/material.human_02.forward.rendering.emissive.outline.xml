@@ -1,5 +1,5 @@
 <material
-    technique_name="ws.base"
+    technique_name="ws.forward.rendering.emissive"
     technique_pass="1"
     z_order="0"
     is_cull_face="0"

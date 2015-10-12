@@ -34,6 +34,7 @@ namespace gb
     #endif\n";
     
     std::string shader_compiler_glsl::m_fs_shader_header = "#if defined(__IOS__)\n\
+    #extension GL_EXT_shadow_samplers : require\n\
     precision highp float;\n\
     #endif\n\
     #if defined(__OPENGL_30__)\n\

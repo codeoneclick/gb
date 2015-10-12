@@ -176,6 +176,7 @@ void demo_game_scene::update(f32 deltatime)
     gb::ces_render_component_shared_ptr render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["human_02"]->get_component(gb::e_ces_component_type_render));
     render_component->set_custom_shader_uniform(.025f, "u_outline_width", "ws.base", 1);
+    render_component->set_custom_shader_uniform(.025f, "u_outline_width", "ws.forward.rendering.emissive", 1);
     
     /*light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_right() * 1.5f;
     light_position.y = 1.5f;

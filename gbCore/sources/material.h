@@ -66,7 +66,6 @@ namespace gb
         i32 m_z_order;
         
         static std::shared_ptr<material_cached_parameters> m_cached_parameters;
-        static std::shared_ptr<material_cached_parameters> get_cached_parameters(void);
         
     public:
         
@@ -74,6 +73,8 @@ namespace gb
         ~material(void);
         
         static std::shared_ptr<material> construct(const std::shared_ptr<material_configuration>& configuration);
+        
+        static std::shared_ptr<material_cached_parameters> get_cached_parameters();
         
         static void set_shader(const material_shared_ptr& material,
                                const std::shared_ptr<material_configuration>& configuration,

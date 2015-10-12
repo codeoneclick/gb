@@ -2,7 +2,7 @@
 guid="ws.shadowmap"
 num_passes="1"
 is_depth_compare_mode_enabled="1"
-index="4"
+index="5"
 screen_width="512"
 screen_height="512"
 clear_color_r="0.0"

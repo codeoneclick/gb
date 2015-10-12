@@ -7,6 +7,8 @@
         <material filename="material.human_02.base.outline.xml"/>
         <material filename="material.human_02.shadowmap.xml"/>
         <material filename="material.human_02.forward.rendering.normal.xml"/>
+        <material filename="material.human_02.forward.rendering.emissive.xml"/>
+        <material filename="material.human_02.forward.rendering.emissive.outline.xml"/>
     </materials>
     <animations>
         <animation name="IDLE" filename="human_02_idle.IE3DANIMATION"/>

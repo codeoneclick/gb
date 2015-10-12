@@ -157,11 +157,14 @@ namespace gb
     {
         gl_bind_frame_buffer(GL_FRAMEBUFFER, m_frame_buffer);
         gl_viewport(0, 0, m_frame_width, m_frame_height);
-        gl_enable(GL_DEPTH_TEST);
-        gl_enable(GL_STENCIL_TEST);
-        gl_depth_mask(GL_TRUE);
         
-        //glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        gl_enable(GL_DEPTH_TEST);
+        material::get_cached_parameters()->m_is_depth_test = true;
+        gl_depth_mask(GL_TRUE);
+        material::get_cached_parameters()->m_is_depth_mask = true;
+        gl_enable(GL_STENCIL_TEST);
+        material::get_cached_parameters()->m_is_stencil_test = true;
+
         glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
         
         gl_clear_color(m_clear_color.r, m_clear_color.g, m_clear_color.b, m_clear_color.a);

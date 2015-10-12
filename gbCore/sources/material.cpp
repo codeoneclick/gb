@@ -40,6 +40,9 @@ namespace gb
             m_cached_parameters->m_stencil_function_parameter_1 = 1;
             m_cached_parameters->m_stencil_function_parameter_2 = 255;
             m_cached_parameters->m_stencil_mask_parameter = 255;
+            
+            gl_enable(GL_DEPTH_TEST);
+            gl_depth_mask(true);
         });
         return m_cached_parameters;
     }
