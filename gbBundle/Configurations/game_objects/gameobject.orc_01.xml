@@ -7,6 +7,8 @@
         <material filename="material.orc_01.base.outline.xml"/>
         <material filename="material.orc_01.shadowmap.xml"/>
         <material filename="material.orc_01.forward.rendering.normal.xml"/>
+        <material filename="material.orc_01.forward.rendering.emissive.xml"/>
+        <material filename="material.orc_01.forward.rendering.emissive.outline.xml"/>
 	</materials>
     <animations>
         <animation name="IDLE" filename="orc_01_idle.IE3DANIMATION"/>

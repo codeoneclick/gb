@@ -1,10 +1,7 @@
-#if defined(__OPENGL_30__)
 
-#else
-
-#endif
+uniform vec3 u_outline_color;
 
 void main(void)
 {
-    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0);
+    gl_FragColor = vec4(u_outline_color, 1.0);
 }

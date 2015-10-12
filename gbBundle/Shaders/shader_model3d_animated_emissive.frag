@@ -1,8 +1,4 @@
-#if defined(__OPENGL_30__)
 
-#else
-
-#endif
 
 void main(void)
 {
