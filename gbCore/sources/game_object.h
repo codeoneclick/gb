@@ -9,20 +9,15 @@
 #ifndef game_object_h
 #define game_object_h
 
-#include "ces_entity.h"
+#include "renderable_interface.h"
 
 namespace gb
 {
-    class game_object : public ces_entity
+    class game_object : public renderable_interface
     {
     private:
         
-        std::weak_ptr<scene_graph> m_scene_graph;
-        
     protected:
-        
-        void set_scene_graph(const scene_graph_shared_ptr& scene_graph);
-        scene_graph_shared_ptr get_scene_graph() const;
         
     public:
         
@@ -41,9 +36,6 @@ namespace gb
         glm::vec3 get_forward() const;
         glm::vec3 get_up() const;
         glm::vec3 get_right() const;
-        
-        virtual void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
-        virtual void on_removed_from_scene();
     };
 };
 

@@ -24,10 +24,6 @@ namespace gb
         model3d_static();
         ~model3d_static();
         
-        void add_material(const std::string& technique_name, const material_shared_ptr& material);
-        void remove_material(const std::string& technique_name);
-        material_shared_ptr get_material(const std::string& technique_name) const;
-        
         void set_mesh(const mesh_shared_ptr& mesh);
         
         void set_touches_receives_enabled(bool value);

@@ -25,6 +25,7 @@
 #include "koth_game_commands.h"
 #include "game_command.h"
 #include "game_commands_container.h"
+#include "ces_render_component.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -171,6 +172,10 @@ void demo_game_scene::update(f32 deltatime)
     light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
     light_position.y = 1.5f;
     m_instanced_omni_lights->set_position(light_position, 1);
+    
+    gb::ces_render_component_shared_ptr render_component =
+    std::static_pointer_cast<gb::ces_render_component>(m_models["human_02"]->get_component(gb::e_ces_component_type_render));
+    render_component->set_custom_shader_uniform(.025f, "u_outline_width", "ws.base", 1);
     
     /*light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_right() * 1.5f;
     light_position.y = 1.5f;

@@ -51,21 +51,24 @@ namespace gb
             std::static_pointer_cast<ces_particle_emitter_component>(entity->get_component(e_ces_component_type_particle_emitter));
             assert(render_component);
             
-            material_shared_ptr using_material = render_component->get_material(iterator.first);
-            mesh_shared_ptr mesh = nullptr;
-            if(geometry_component)
+            for(i32 technique_pass = 0; technique_pass < technique->get_num_passes(); ++technique_pass)
             {
-                mesh = geometry_component->get_mesh();
-            }
-            else if(particle_emitter_component)
-            {
-                mesh = particle_emitter_component->get_mesh();
-            }
-            
-            if(using_material && using_material->get_shader()->is_commited() &&
-               mesh && mesh->is_commited())
-            {
-                technique->add_entity(entity);
+                material_shared_ptr using_material = render_component->get_material(iterator.first, technique_pass);
+                mesh_shared_ptr mesh = nullptr;
+                if(geometry_component)
+                {
+                    mesh = geometry_component->get_mesh();
+                }
+                else if(particle_emitter_component)
+                {
+                    mesh = particle_emitter_component->get_mesh();
+                }
+                
+                if(using_material && using_material->get_shader()->is_commited() &&
+                   mesh && mesh->is_commited())
+                {
+                    technique->add_entity(entity, technique_pass, using_material);
+                }
             }
         }
     }
@@ -75,7 +78,6 @@ namespace gb
         for(const auto& iterator : m_ws_render_techniques)
         {
             std::shared_ptr<render_technique_ws> technique = iterator.second;
-            
             technique->bind();
             technique->draw();
             technique->unbind();

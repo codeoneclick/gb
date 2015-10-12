@@ -25,10 +25,6 @@ namespace gb
         particle_emitter();
         ~particle_emitter();
         
-        void add_material(const std::string& technique_name, const material_shared_ptr& material);
-        void remove_material(const std::string& technique_name);
-        material_shared_ptr get_material(const std::string& technique_name) const;
-        
         void set_settings(const std::shared_ptr<particle_emitter_configuration>& settings);
     };
 };

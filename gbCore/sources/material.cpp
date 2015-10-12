@@ -34,12 +34,19 @@ namespace gb
             m_cached_parameters->m_is_depth_mask = true;
             m_cached_parameters->m_is_culling = false;
             m_cached_parameters->m_is_blending = false;
+            
+            m_cached_parameters->m_is_stencil_test = false;
+            m_cached_parameters->m_stencil_function = GL_ALWAYS;
+            m_cached_parameters->m_stencil_function_parameter_1 = 1;
+            m_cached_parameters->m_stencil_function_parameter_2 = 255;
+            m_cached_parameters->m_stencil_mask_parameter = 255;
         });
         return m_cached_parameters;
     }
     
     material::material(void) :
-    m_parameters(std::make_shared<material_cached_parameters>())
+    m_parameters(std::make_shared<material_cached_parameters>()),
+    m_z_order(0)
     {
         
     }
@@ -61,6 +68,12 @@ namespace gb
         material->set_blending_function_source(configuration->get_blending_function_source());
         material->set_blending_function_destination(configuration->get_blending_function_destination());
         
+        material->set_stencil_test(configuration->get_stencil_test());
+        material->set_stencil_function(configuration->get_stencil_function());
+        material->set_stencil_function_parameter_1(configuration->get_stencil_function_parameter_1());
+        material->set_stencil_function_parameter_2(configuration->get_stencil_function_parameter_2());
+        material->set_stencil_mask_parameter(configuration->get_stencil_mask_parameter());
+        
         material->set_depth_test(configuration->get_depth_test());
         material->set_depth_mask(configuration->get_depth_mask());
         
@@ -73,6 +86,8 @@ namespace gb
         material->set_reflecting(configuration->get_reflecting());
         material->set_shadowing(configuration->get_shadowing());
         material->set_debugging(configuration->get_debugging());
+        
+        material->set_z_order(configuration->get_z_order());
         
         return material;
     }
@@ -151,6 +166,36 @@ namespace gb
         return m_parameters->m_blending_function_destination;
     }
     
+    bool material::is_stencil_test() const
+    {
+        assert(m_parameters != nullptr);
+        return m_parameters->m_is_stencil_test;
+    }
+    
+    GLenum material::get_stencil_function() const
+    {
+        assert(m_parameters != nullptr);
+        return m_parameters->m_stencil_function;
+    }
+    
+    i32 material::get_stencil_function_parameter_1() const
+    {
+        assert(m_parameters != nullptr);
+        return m_parameters->m_stencil_function_parameter_1;
+    }
+    
+    i32 material::get_stencil_function_parameter_2() const
+    {
+        assert(m_parameters != nullptr);
+        return m_parameters->m_stencil_function_parameter_2;
+    }
+    
+    i32 material::get_stencil_mask_parameter() const
+    {
+        assert(m_parameters != nullptr);
+        return m_parameters->m_stencil_mask_parameter;
+    }
+    
     bool material::is_depth_test(void) const
     {
         assert(m_parameters != nullptr);
@@ -191,6 +236,11 @@ namespace gb
     {
         assert(m_parameters != nullptr);
         return m_parameters->m_is_debugging;
+    }
+    
+    i32 material::get_z_order() const
+    {
+        return m_z_order;
     }
     
     std::shared_ptr<shader> material::get_shader(void) const
@@ -249,6 +299,36 @@ namespace gb
         m_parameters->m_blending_function_destination = value;
     }
     
+    void material::set_stencil_test(bool value)
+    {
+        assert(m_parameters != nullptr);
+        m_parameters->m_is_stencil_test = value;
+    }
+    
+    void material::set_stencil_function(GLenum value)
+    {
+        assert(m_parameters != nullptr);
+        m_parameters->m_stencil_function = value;
+    }
+    
+    void material::set_stencil_function_parameter_1(i32 value)
+    {
+        assert(m_parameters != nullptr);
+        m_parameters->m_stencil_function_parameter_1 = value;
+    }
+    
+    void material::set_stencil_function_parameter_2(i32 value)
+    {
+        assert(m_parameters != nullptr);
+        m_parameters->m_stencil_function_parameter_2 = value;
+    }
+    
+    void material::set_stencil_mask_parameter(i32 value)
+    {
+        assert(m_parameters != nullptr);
+        m_parameters->m_stencil_mask_parameter = value;
+    }
+    
     void material::set_depth_test(bool value)
     {
         assert(m_parameters != nullptr);
@@ -289,6 +369,11 @@ namespace gb
     {
         assert(m_parameters != nullptr);
         m_parameters->m_is_debugging = value;
+    }
+    
+    void material::set_z_order(i32 z_order)
+    {
+        m_z_order = z_order;
     }
     
     void material::set_shader(const std::shared_ptr<shader>& shader)
@@ -531,6 +616,36 @@ namespace gb
             gl_blend_function(m_parameters->m_blending_function_source, m_parameters->m_blending_function_destination);
             material::get_cached_parameters()->m_blending_function_source = m_parameters->m_blending_function_source;
             material::get_cached_parameters()->m_blending_function_destination = m_parameters->m_blending_function_destination;
+        }
+        
+        if(m_parameters->m_is_stencil_test &&
+           material::get_cached_parameters()->m_is_stencil_test != m_parameters->m_is_stencil_test)
+        {
+            gl_enable(GL_STENCIL_TEST);
+            material::get_cached_parameters()->m_is_stencil_test = m_parameters->m_is_stencil_test;
+        }
+        else if(material::get_cached_parameters()->m_is_stencil_test != m_parameters->m_is_stencil_test)
+        {
+            gl_disable(GL_STENCIL_TEST);
+            material::get_cached_parameters()->m_is_stencil_test = m_parameters->m_is_stencil_test;
+        }
+        
+        if(material::get_cached_parameters()->m_stencil_function != m_parameters->m_stencil_function ||
+           material::get_cached_parameters()->m_stencil_function_parameter_1 != m_parameters->m_stencil_function_parameter_1 ||
+           material::get_cached_parameters()->m_stencil_function_parameter_2 != m_parameters->m_stencil_function_parameter_2)
+        {
+            gl_stencil_function(m_parameters->m_stencil_function, m_parameters->m_stencil_function_parameter_1,
+                                m_parameters->m_stencil_function_parameter_2);
+            
+            material::get_cached_parameters()->m_stencil_function = m_parameters->m_stencil_function;
+            material::get_cached_parameters()->m_stencil_function_parameter_1 = m_parameters->m_stencil_function_parameter_1;
+            material::get_cached_parameters()->m_stencil_function_parameter_2 = m_parameters->m_stencil_function_parameter_2;
+        }
+        
+        if(material::get_cached_parameters()->m_stencil_mask_parameter != m_parameters->m_stencil_mask_parameter)
+        {
+            gl_stencil_mask(m_parameters->m_stencil_mask_parameter);
+            material::get_cached_parameters()->m_stencil_mask_parameter = m_parameters->m_stencil_mask_parameter;
         }
         
         if(m_parameters->m_is_clipping &&

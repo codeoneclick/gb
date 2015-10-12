@@ -1,6 +1,6 @@
 <ws_technique
 guid="ws.base"
-are_draw_bounding_boxes="1"
+num_passes="2"
 is_depth_compare_mode_enabled="0"
 index="5"
 screen_width="1024"

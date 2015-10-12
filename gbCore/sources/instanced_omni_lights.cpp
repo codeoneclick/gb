@@ -24,10 +24,6 @@ namespace gb
         ces_instanced_geometry_component_shared_ptr geometry_component = std::make_shared<ces_instanced_geometry_component>();
         ces_entity::add_component(geometry_component);
         
-        ces_render_component_shared_ptr render_component = std::make_shared<ces_render_component>();
-        ces_entity::add_component(render_component);
-        render_component->set_z_order(0);
-        
         m_transform_parameters.resize(num_instances, glm::vec4(0.f, 0.f, 0.f, 1.f));
         m_colors.resize(num_instances, glm::vec4(1.f, 1.f, 1.f, 1.f));
     }
@@ -46,7 +42,7 @@ namespace gb
             m_transform_parameters[instance_id].z = position.z;
 
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                                   "u_transform_parameters", "ws.deferred.lighting");
+                                                                                   "u_transform_parameters");
         }
         else
         {
@@ -75,7 +71,7 @@ namespace gb
         {
             m_transform_parameters[instance_id].w = radius;
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                                   "u_transform_parameters", "ws.deferred.lighting");
+                                                                                   "u_transform_parameters");
         }
         else
         {
@@ -102,7 +98,7 @@ namespace gb
         {
             m_colors[instance_id] = color;
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
-                                                                                   "u_lights_colors", "ws.deferred.lighting");
+                                                                                   "u_lights_colors");
         }
         else
         {
@@ -124,56 +120,14 @@ namespace gb
         }
     }
     
-    void instanced_omni_lights::set_scene_graph(const scene_graph_shared_ptr& scene_graph)
+    void instanced_omni_lights::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
-        m_scene_graph = scene_graph;
-    }
-    
-    scene_graph_shared_ptr instanced_omni_lights::get_scene_graph() const
-    {
-        return m_scene_graph.lock();
-    }
-    
-    void instanced_omni_lights::on_added_to_scene(const scene_graph_shared_ptr& scene_graph)
-    {
-        instanced_omni_lights::set_scene_graph(scene_graph);
-        for(const auto& component : ces_entity::get_components())
-        {
-            if(component != nullptr)
-            {
-                component->set_scene_graph(scene_graph);
-            }
-        }
-    }
-    
-    void instanced_omni_lights::on_removed_from_scene()
-    {
-        instanced_omni_lights::set_scene_graph(nullptr);
-        for(const auto& component : ces_entity::get_components())
-        {
-            component->set_scene_graph(nullptr);
-        }
-    }
-    
-    void instanced_omni_lights::add_material(const std::string& technique_name, const material_shared_ptr& material)
-    {
-        unsafe_get_render_component_from_this->add_material(technique_name, material);
-        
+        renderable_interface::add_material(technique_name, technique_pass, material);
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                               "u_transform_parameters", "ws.deferred.lighting");
+                                                                               "u_transform_parameters");
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors[0], static_cast<i32>(m_colors.size()),
-                                                                               "u_lights_colors", "ws.deferred.lighting");
+                                                                               "u_lights_colors");
 
-    }
-    
-    void instanced_omni_lights::remove_material(const std::string& technique_name)
-    {
-        unsafe_get_render_component_from_this->remove_material(technique_name);
-    }
-    
-    material_shared_ptr instanced_omni_lights::get_material(const std::string& technique_name) const
-    {
-        return unsafe_get_render_component_from_this->get_material(technique_name);
     }
     
     void instanced_omni_lights::set_mesh(const instanced_mesh_shared_ptr& mesh)

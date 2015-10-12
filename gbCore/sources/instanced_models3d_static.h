@@ -36,9 +36,7 @@ namespace gb
         instanced_models3d_static(i32 num_instances);
         ~instanced_models3d_static();
         
-        void add_material(const std::string& technique_name, const material_shared_ptr& material);
-        void remove_material(const std::string& technique_name);
-        material_shared_ptr get_material(const std::string& technique_name) const;
+        void add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material);
         
         void set_mesh(const mesh_shared_ptr& mesh);
         

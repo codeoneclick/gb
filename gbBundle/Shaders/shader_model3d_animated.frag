@@ -24,7 +24,5 @@ void main(void)
 {
     vec4 diffuse_color = texture2D(sampler_01, v_texcoord);
     vec3 camera_direction = normalize(u_vec_camera_position - v_position);
-    float rim_light = pow(1.0 + rim_bias - max(dot(v_normal, camera_direction), 0.0), rim_power);
-    
-    gl_FragColor = diffuse_color + rim_light * rim_color;
+    gl_FragColor = diffuse_color;
 }

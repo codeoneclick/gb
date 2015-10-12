@@ -57,17 +57,17 @@ namespace gb
         
         void element::add_material(const std::string& technique_name, const material_shared_ptr& material)
         {
-            unsafe_get_render_component_from_this->add_material(technique_name, material);
+            unsafe_get_render_component_from_this->add_material(technique_name, 0, material);
         }
         
         void element::remove_material(const std::string& technique_name)
         {
-            unsafe_get_render_component_from_this->remove_material(technique_name);
+            unsafe_get_render_component_from_this->remove_material(technique_name , 0);
         }
         
         material_shared_ptr element::get_material(const std::string& technique_name) const
         {
-            return unsafe_get_render_component_from_this->get_material(technique_name);
+            return unsafe_get_render_component_from_this->get_material(technique_name, 0);
         }
         
         void element::set_mesh(const mesh_shared_ptr& mesh)

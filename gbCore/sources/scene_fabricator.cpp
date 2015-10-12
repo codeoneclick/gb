@@ -65,15 +65,26 @@ namespace gb
         
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
+        
         material->set_culling(true);
         material->set_culling_mode(GL_BACK);
+        
         material->set_blending(true);
         material->set_blending_function_source(GL_ONE);
         material->set_blending_function_destination(GL_ONE);
+        
+        material->set_stencil_test(false);
+        material->set_stencil_function(GL_ALWAYS);
+        material->set_stencil_function_parameter_1(1);
+        material->set_stencil_function_parameter_2(255);
+        material->set_stencil_mask_parameter(255);
+        
         material->set_depth_test(false);
         material->set_depth_mask(false);
+        
         material->set_clipping(false);
         material->set_clipping_plane(glm::vec4(0.f));
+        
         material->set_reflecting(false);
         material->set_shadowing(false);
         material->set_debugging(false);
@@ -88,7 +99,7 @@ namespace gb
         
         omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
         
-        omni_light->add_material("ws.deferred.lighting", material);
+        omni_light->add_material("ws.deferred.lighting", 0, material);
         omni_light->set_mesh(mesh);
         m_omni_lights_container.insert(omni_light);
         return omni_light;
@@ -112,15 +123,26 @@ namespace gb
         
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
+        
         material->set_culling(true);
         material->set_culling_mode(GL_BACK);
+        
         material->set_blending(true);
         material->set_blending_function_source(GL_ONE);
         material->set_blending_function_destination(GL_ONE);
+        
+        material->set_stencil_test(false);
+        material->set_stencil_function(GL_ALWAYS);
+        material->set_stencil_function_parameter_1(1);
+        material->set_stencil_function_parameter_2(255);
+        material->set_stencil_mask_parameter(255);
+        
         material->set_depth_test(false);
         material->set_depth_mask(false);
+        
         material->set_clipping(false);
         material->set_clipping_plane(glm::vec4(0.f));
+        
         material->set_reflecting(false);
         material->set_shadowing(false);
         material->set_debugging(false);
@@ -137,7 +159,7 @@ namespace gb
         
         instanced_omni_lights_shared_ptr instanced_omni_light = std::make_shared<gb::instanced_omni_lights>(num_instances);
         
-        instanced_omni_light->add_material("ws.deferred.lighting", material);
+        instanced_omni_light->add_material("ws.deferred.lighting", 0, material);
         instanced_omni_light->set_mesh(mesh);
         m_instanced_omni_lights_container.insert(instanced_omni_light);
         return instanced_omni_light;
@@ -165,15 +187,26 @@ namespace gb
         
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
+        
         material->set_culling(false);
         material->set_culling_mode(GL_BACK);
+        
         material->set_blending(true);
         material->set_blending_function_source(GL_ONE);
         material->set_blending_function_destination(GL_ONE);
+        
+        material->set_stencil_test(false);
+        material->set_stencil_function(GL_ALWAYS);
+        material->set_stencil_function_parameter_1(1);
+        material->set_stencil_function_parameter_2(255);
+        material->set_stencil_mask_parameter(255);
+        
         material->set_depth_test(false);
         material->set_depth_mask(false);
+        
         material->set_clipping(false);
         material->set_clipping_plane(glm::vec4(0.f));
+        
         material->set_reflecting(false);
         material->set_shadowing(false);
         material->set_debugging(false);
@@ -188,7 +221,7 @@ namespace gb
         
         direction_light_shared_ptr direction_light = std::make_shared<gb::direction_light>();
         
-        direction_light->add_material("ws.deferred.lighting", material);
+        direction_light->add_material("ws.deferred.lighting", 0, material);
         direction_light->set_mesh(mesh);
         m_direction_lights_container.insert(direction_light);
         return direction_light;
@@ -253,7 +286,7 @@ namespace gb
                 material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                model3d_static->add_material(material_configuration->get_render_technique_name(), material);
+                model3d_static->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
             }
             m_game_objects_container.insert(model3d_static);
         }
@@ -306,7 +339,7 @@ namespace gb
                 material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                model3d_animated->add_material(material_configuration->get_render_technique_name(), material);
+                model3d_animated->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
             }
             m_game_objects_container.insert(model3d_animated);
         }
@@ -332,7 +365,7 @@ namespace gb
                 std::shared_ptr<material> material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                particle_emitter->add_material(material_configuration->get_render_technique_name(), material);
+                particle_emitter->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
             }
             m_game_objects_container.insert(particle_emitter);
         }
@@ -377,7 +410,7 @@ namespace gb
                 material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                instanced_models3d_static->add_material(material_configuration->get_render_technique_name(), material);
+                instanced_models3d_static->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
             }
             m_game_objects_container.insert(instanced_models3d_static);
         }

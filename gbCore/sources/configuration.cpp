@@ -18,11 +18,14 @@ namespace gb
         {"GL_ONE", GL_ONE},
         {"GL_ONE_MINUS_SRC_ALPHA", GL_ONE_MINUS_SRC_ALPHA},
         {"GL_REPEAT", GL_REPEAT},
-        {"GL_CLAMP_TO_EDGE", GL_CLAMP_TO_EDGE },
-        {"GL_MIRRORED_REPEAT", GL_MIRRORED_REPEAT },
-        {"GL_NEAREST", GL_NEAREST },
-        {"GL_LINEAR", GL_LINEAR },
-        {"GL_MIPMAP", GL_LINEAR_MIPMAP_NEAREST }
+        {"GL_CLAMP_TO_EDGE", GL_CLAMP_TO_EDGE},
+        {"GL_MIRRORED_REPEAT", GL_MIRRORED_REPEAT},
+        {"GL_NEAREST", GL_NEAREST},
+        {"GL_LINEAR", GL_LINEAR},
+        {"GL_MIPMAP", GL_LINEAR_MIPMAP_NEAREST},
+        {"GL_ALWAYS", GL_ALWAYS},
+        {"GL_EQUAL", GL_EQUAL},
+        {"GL_NOTEQUAL", GL_NOTEQUAL}
     };
     
     std::map<GLenum, std::string> g_glenum_to_string = {
@@ -36,7 +39,10 @@ namespace gb
         {GL_MIRRORED_REPEAT, "GL_MIRRORED_REPEAT"},
         {GL_NEAREST, "GL_NEAREST"},
         {GL_LINEAR, "GL_LINEAR"},
-        {GL_LINEAR_MIPMAP_NEAREST, "GL_MIPMAP"}
+        {GL_LINEAR_MIPMAP_NEAREST, "GL_MIPMAP"},
+        {GL_ALWAYS, "GL_ALWAYS" },
+        {GL_EQUAL, "GL_EQUAL"},
+        {GL_NOTEQUAL, "GL_NOTEQUAL"}
     };
     
     configuration::configuration(void)

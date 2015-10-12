@@ -23,30 +23,11 @@ namespace gb
     {
         ces_geometry_component_shared_ptr geometry_component = std::make_shared<ces_geometry_component>();
         ces_entity::add_component(geometry_component);
-        
-        ces_render_component_shared_ptr render_component = std::make_shared<ces_render_component>();
-        ces_entity::add_component(render_component);
-        render_component->set_z_order(0);
     }
     
     model3d_static::~model3d_static()
     {
 
-    }
-    
-    void model3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)
-    {
-        unsafe_get_render_component_from_this->add_material(technique_name, material);
-    }
-    
-    void model3d_static::remove_material(const std::string& technique_name)
-    {
-        unsafe_get_render_component_from_this->remove_material(technique_name);
-    }
-    
-    material_shared_ptr model3d_static::get_material(const std::string& technique_name) const
-    {
-        return unsafe_get_render_component_from_this->get_material(technique_name);
     }
     
     void model3d_static::set_mesh(const mesh_shared_ptr& mesh)

@@ -22,11 +22,14 @@ namespace gb
         texture_shared_ptr m_color_attachment_texture;
         texture_shared_ptr m_depth_attachment_texture;
         
-        std::vector<std::queue<ces_entity_shared_ptr>> m_entities;
+        std::vector<std::vector<std::queue<ces_entity_shared_ptr>>> m_entities;
+        
+        i32 m_num_passes;
         
     public:
         
-        render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index, bool is_depth_compare_mode_enabled);
+        render_technique_ws(ui32 width, ui32 height, const std::string& name, ui32 index,
+                            bool is_depth_compare_mode_enabled, i32 num_passes);
         ~render_technique_ws();
         
         texture_shared_ptr get_color_attachment_texture() const;
@@ -36,9 +39,11 @@ namespace gb
         void unbind();
         void draw();
         
-        void add_entity(const ces_entity_shared_ptr& entity);
+        void add_entity(const ces_entity_shared_ptr& entity, i32 technique_pass, const material_shared_ptr& material);
         
         bool is_need_to_draw() const;
+        
+        i32 get_num_passes() const;
     };
 };
 

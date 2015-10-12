@@ -557,6 +557,22 @@ namespace gb
         gl_get_error();
 #endif
     };
+    
+    inline void gl_stencil_function(GLenum function, GLint reference, GLuint mask)
+    {
+        glStencilFunc(function, reference, mask);
+#if defined(DEBUG)
+        gl_get_error();
+#endif
+    };
+    
+    inline void gl_stencil_mask(GLuint mask)
+    {
+        glStencilMask(mask);
+#if defined(DEBUG)
+        gl_get_error();
+#endif
+    };
 };
 
 #endif

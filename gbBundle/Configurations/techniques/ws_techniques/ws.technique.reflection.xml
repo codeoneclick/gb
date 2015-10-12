@@ -1,6 +1,6 @@
 <ws_technique
 guid="ws.reflection"
-are_draw_bounding_boxes="0"
+num_passes="1"
 is_depth_compare_mode_enabled="0"
 index="0"
 screen_width="512"

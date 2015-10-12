@@ -9,23 +9,19 @@
 #ifndef instanced_omni_lights_h
 #define instanced_omni_lights_h
 
-#include "ces_entity.h"
+#include "renderable_interface.h"
 
 namespace gb
 {
-    class instanced_omni_lights : public ces_entity
+    class instanced_omni_lights : public renderable_interface
     {
     private:
         
-        std::weak_ptr<scene_graph> m_scene_graph;
         std::vector<glm::vec4> m_transform_parameters;
         std::vector<glm::vec4> m_colors;
         i32 m_num_instances;
         
     protected:
-        
-        void set_scene_graph(const scene_graph_shared_ptr& scene_graph);
-        scene_graph_shared_ptr get_scene_graph() const;
         
     public:
         
@@ -41,12 +37,7 @@ namespace gb
         void set_color(const glm::vec4& color, i32 instance_id);
         glm::vec4 get_color(i32 instance_id) const;
         
-        void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
-        void on_removed_from_scene();
-        
-        void add_material(const std::string& technique_name, const material_shared_ptr& material);
-        void remove_material(const std::string& technique_name);
-        material_shared_ptr get_material(const std::string& technique_name) const;
+        void add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material);
         
         void set_mesh(const instanced_mesh_shared_ptr& mesh);
     };

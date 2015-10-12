@@ -11,9 +11,17 @@ class material_configuration : public configuration
 public:
 material_configuration(void) = default;
 ~material_configuration(void) = default;
-std::string get_render_technique_name(void) const;
+std::string get_technique_name(void) const;
 #if defined(__EDITOR__)
-void set_render_technique_name(std::string render_operation_name);
+void set_technique_name(std::string technique_name);
+#endif
+i32 get_technique_pass(void) const;
+#if defined(__EDITOR__)
+void set_technique_pass(i32 technique_pass);
+#endif
+i32 get_z_order(void) const;
+#if defined(__EDITOR__)
+void set_z_order(i32 z_order);
 #endif
 bool get_depth_test(void) const;
 #if defined(__EDITOR__)
@@ -42,6 +50,26 @@ void set_blending_function_source(GLenum blending_function_source);
 GLenum get_blending_function_destination(void) const;
 #if defined(__EDITOR__)
 void set_blending_function_destination(GLenum blending_function_destination);
+#endif
+bool get_stencil_test(void) const;
+#if defined(__EDITOR__)
+void set_stencil_test(bool is_stencil_test);
+#endif
+GLenum get_stencil_function(void) const;
+#if defined(__EDITOR__)
+void set_stencil_function(GLenum stencil_function);
+#endif
+i32 get_stencil_function_parameter_1(void) const;
+#if defined(__EDITOR__)
+void set_stencil_function_parameter_1(i32 stencil_function_parameter_1);
+#endif
+i32 get_stencil_function_parameter_2(void) const;
+#if defined(__EDITOR__)
+void set_stencil_function_parameter_2(i32 stencil_function_parameter_2);
+#endif
+i32 get_stencil_mask_parameter(void) const;
+#if defined(__EDITOR__)
+void set_stencil_mask_parameter(i32 stencil_mask_parameter);
 #endif
 bool get_clipping(void) const;
 #if defined(__EDITOR__)

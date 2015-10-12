@@ -2,17 +2,43 @@
 #include "material_configuration.h"
 namespace gb
 {
-std::string material_configuration::get_render_technique_name(void) const
+std::string material_configuration::get_technique_name(void) const
 {
-const auto& iterator = m_attributes.find("/material/render_operation_name");
+const auto& iterator = m_attributes.find("/material/technique_name");
 assert(iterator != m_attributes.end());
 std::string value; iterator->second->get(&value);
 return value;
 }
 #if defined(__EDITOR__)
-void material_configuration::set_render_technique_name(std::string render_operation_name)
+void material_configuration::set_technique_name(std::string technique_name)
 {
-configuration::set_attribute("/material/render_operation_name", std::make_shared<configuration_attribute>(render_operation_name));
+configuration::set_attribute("/material/technique_name", std::make_shared<configuration_attribute>(technique_name));
+}
+#endif
+i32 material_configuration::get_technique_pass(void) const
+{
+const auto& iterator = m_attributes.find("/material/technique_pass");
+assert(iterator != m_attributes.end());
+i32 value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_technique_pass(i32 technique_pass)
+{
+configuration::set_attribute("/material/technique_pass", std::make_shared<configuration_attribute>(technique_pass));
+}
+#endif
+i32 material_configuration::get_z_order(void) const
+{
+const auto& iterator = m_attributes.find("/material/z_order");
+assert(iterator != m_attributes.end());
+i32 value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_z_order(i32 z_order)
+{
+configuration::set_attribute("/material/z_order", std::make_shared<configuration_attribute>(z_order));
 }
 #endif
 bool material_configuration::get_depth_test(void) const
@@ -104,6 +130,71 @@ return value;
 void material_configuration::set_blending_function_destination(GLenum blending_function_destination)
 {
 configuration::set_attribute("/material/blending_function_destination", std::make_shared<configuration_attribute>(blending_function_destination));
+}
+#endif
+bool material_configuration::get_stencil_test(void) const
+{
+const auto& iterator = m_attributes.find("/material/is_stencil_test");
+assert(iterator != m_attributes.end());
+bool value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_stencil_test(bool is_stencil_test)
+{
+configuration::set_attribute("/material/is_stencil_test", std::make_shared<configuration_attribute>(is_stencil_test));
+}
+#endif
+GLenum material_configuration::get_stencil_function(void) const
+{
+const auto& iterator = m_attributes.find("/material/stencil_function");
+assert(iterator != m_attributes.end());
+GLenum value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_stencil_function(GLenum stencil_function)
+{
+configuration::set_attribute("/material/stencil_function", std::make_shared<configuration_attribute>(stencil_function));
+}
+#endif
+i32 material_configuration::get_stencil_function_parameter_1(void) const
+{
+const auto& iterator = m_attributes.find("/material/stencil_function_parameter_1");
+assert(iterator != m_attributes.end());
+i32 value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_stencil_function_parameter_1(i32 stencil_function_parameter_1)
+{
+configuration::set_attribute("/material/stencil_function_parameter_1", std::make_shared<configuration_attribute>(stencil_function_parameter_1));
+}
+#endif
+i32 material_configuration::get_stencil_function_parameter_2(void) const
+{
+const auto& iterator = m_attributes.find("/material/stencil_function_parameter_2");
+assert(iterator != m_attributes.end());
+i32 value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_stencil_function_parameter_2(i32 stencil_function_parameter_2)
+{
+configuration::set_attribute("/material/stencil_function_parameter_2", std::make_shared<configuration_attribute>(stencil_function_parameter_2));
+}
+#endif
+i32 material_configuration::get_stencil_mask_parameter(void) const
+{
+const auto& iterator = m_attributes.find("/material/stencil_mask_parameter");
+assert(iterator != m_attributes.end());
+i32 value; iterator->second->get(&value);
+return value;
+}
+#if defined(__EDITOR__)
+void material_configuration::set_stencil_mask_parameter(i32 stencil_mask_parameter)
+{
+configuration::set_attribute("/material/stencil_mask_parameter", std::make_shared<configuration_attribute>(stencil_mask_parameter));
 }
 #endif
 bool material_configuration::get_clipping(void) const
@@ -256,8 +347,12 @@ pugi::xml_parse_result result = configuration::open_xml_document(document, filen
 assert(result.status == pugi::status_ok);
 pugi::xpath_node node;
 node = document.select_single_node("/material");
-std::string render_operation_name = node.node().attribute("render_operation_name").as_string();
-configuration::set_attribute("/material/render_operation_name", std::make_shared<configuration_attribute>(render_operation_name));
+std::string technique_name = node.node().attribute("technique_name").as_string();
+configuration::set_attribute("/material/technique_name", std::make_shared<configuration_attribute>(technique_name));
+i32 technique_pass = node.node().attribute("technique_pass").as_int();
+configuration::set_attribute("/material/technique_pass", std::make_shared<configuration_attribute>(technique_pass));
+i32 z_order = node.node().attribute("z_order").as_int();
+configuration::set_attribute("/material/z_order", std::make_shared<configuration_attribute>(z_order));
 bool is_depth_test = node.node().attribute("is_depth_test").as_bool();
 configuration::set_attribute("/material/is_depth_test", std::make_shared<configuration_attribute>(is_depth_test));
 bool is_depth_mask = node.node().attribute("is_depth_mask").as_bool();
@@ -278,6 +373,18 @@ std::string blending_function_destination = node.node().attribute("blending_func
 assert(g_string_to_glenum.find(blending_function_destination) != g_string_to_glenum.end());
 GLenum blending_function_destination_enum = g_string_to_glenum.find(blending_function_destination)->second;
 configuration::set_attribute("/material/blending_function_destination", std::make_shared<configuration_attribute>(blending_function_destination_enum));
+bool is_stencil_test = node.node().attribute("is_stencil_test").as_bool();
+configuration::set_attribute("/material/is_stencil_test", std::make_shared<configuration_attribute>(is_stencil_test));
+std::string stencil_function = node.node().attribute("stencil_function").as_string();
+assert(g_string_to_glenum.find(stencil_function) != g_string_to_glenum.end());
+GLenum stencil_function_enum = g_string_to_glenum.find(stencil_function)->second;
+configuration::set_attribute("/material/stencil_function", std::make_shared<configuration_attribute>(stencil_function_enum));
+i32 stencil_function_parameter_1 = node.node().attribute("stencil_function_parameter_1").as_int();
+configuration::set_attribute("/material/stencil_function_parameter_1", std::make_shared<configuration_attribute>(stencil_function_parameter_1));
+i32 stencil_function_parameter_2 = node.node().attribute("stencil_function_parameter_2").as_int();
+configuration::set_attribute("/material/stencil_function_parameter_2", std::make_shared<configuration_attribute>(stencil_function_parameter_2));
+i32 stencil_mask_parameter = node.node().attribute("stencil_mask_parameter").as_int();
+configuration::set_attribute("/material/stencil_mask_parameter", std::make_shared<configuration_attribute>(stencil_mask_parameter));
 bool is_cliping = node.node().attribute("is_cliping").as_bool();
 configuration::set_attribute("/material/is_cliping", std::make_shared<configuration_attribute>(is_cliping));
 f32 clipping_x = node.node().attribute("clipping_x").as_float();
@@ -315,9 +422,15 @@ assert(result.status == pugi::status_ok);
 pugi::xml_node node = document.append_child("material");
 pugi::xml_node parent_node = node;
 pugi::xml_attribute attribute;
-attribute = node.append_attribute("render_operation_name");
-std::string render_operation_name = material_configuration::get_render_technique_name();
-attribute.set_value(render_operation_name.c_str());
+attribute = node.append_attribute("technique_name");
+std::string technique_name = material_configuration::get_technique_name();
+attribute.set_value(technique_name.c_str());
+attribute = node.append_attribute("technique_pass");
+i32 technique_pass = material_configuration::get_technique_pass();
+attribute.set_value(technique_pass);
+attribute = node.append_attribute("z_order");
+i32 z_order = material_configuration::get_z_order();
+attribute.set_value(z_order);
 attribute = node.append_attribute("is_depth_test");
 bool is_depth_test = material_configuration::get_depth_test();
 attribute.set_value(is_depth_test);
@@ -345,6 +458,23 @@ GLenum blending_function_destination_enum = material_configuration::get_blending
 assert(g_glenum_to_string.find(blending_function_destination_enum) != g_glenum_to_string.end());
 std::string blending_function_destination = g_glenum_to_string.find(blending_function_destination_enum)->second;
 attribute.set_value(blending_function_destination.c_str());
+attribute = node.append_attribute("is_stencil_test");
+bool is_stencil_test = material_configuration::get_stencil_test();
+attribute.set_value(is_stencil_test);
+attribute = node.append_attribute("stencil_function");
+GLenum stencil_function_enum = material_configuration::get_stencil_function();
+assert(g_glenum_to_string.find(stencil_function_enum) != g_glenum_to_string.end());
+std::string stencil_function = g_glenum_to_string.find(stencil_function_enum)->second;
+attribute.set_value(stencil_function.c_str());
+attribute = node.append_attribute("stencil_function_parameter_1");
+i32 stencil_function_parameter_1 = material_configuration::get_stencil_function_parameter_1();
+attribute.set_value(stencil_function_parameter_1);
+attribute = node.append_attribute("stencil_function_parameter_2");
+i32 stencil_function_parameter_2 = material_configuration::get_stencil_function_parameter_2();
+attribute.set_value(stencil_function_parameter_2);
+attribute = node.append_attribute("stencil_mask_parameter");
+i32 stencil_mask_parameter = material_configuration::get_stencil_mask_parameter();
+attribute.set_value(stencil_mask_parameter);
 attribute = node.append_attribute("is_cliping");
 bool is_cliping = material_configuration::get_clipping();
 attribute.set_value(is_cliping);

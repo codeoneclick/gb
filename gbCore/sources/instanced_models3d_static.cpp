@@ -20,10 +20,6 @@ namespace gb
         ces_instanced_geometry_component_shared_ptr geometry_component = std::make_shared<ces_instanced_geometry_component>();
         ces_entity::add_component(geometry_component);
         
-        ces_render_component_shared_ptr render_component = std::make_shared<ces_render_component>();
-        ces_entity::add_component(render_component);
-        render_component->set_z_order(0);
-        
         m_positions.resize(num_instances, glm::vec3(0.f));
         m_rotations.resize(num_instances, glm::vec3(0.f));
         m_scales.resize(num_instances, glm::vec3(1.f));
@@ -45,22 +41,12 @@ namespace gb
         
     }
     
-    void instanced_models3d_static::add_material(const std::string& technique_name, const material_shared_ptr& material)
+    void instanced_models3d_static::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
-        unsafe_get_render_component_from_this->add_material(technique_name, material);
+        renderable_interface::add_material(technique_name, technique_pass, material);
         
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                               "u_transform_parameters", "");
-    }
-    
-    void instanced_models3d_static::remove_material(const std::string& technique_name)
-    {
-        unsafe_get_render_component_from_this->remove_material(technique_name);
-    }
-    
-    material_shared_ptr instanced_models3d_static::get_material(const std::string& technique_name) const
-    {
-        return unsafe_get_render_component_from_this->get_material(technique_name);
+                                                                               "u_transform_parameters");
     }
 
     void instanced_models3d_static::set_mesh(const mesh_shared_ptr& mesh)
@@ -76,7 +62,7 @@ namespace gb
             m_matrices_t[instance_id] = glm::translate(glm::mat4(1.f), position);
             m_transform_parameters[instance_id] = m_matrices_t[instance_id] * m_matrices_r[instance_id] * m_matrices_s[instance_id];
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                                   "u_transform_parameters", "");
+                                                                                   "u_transform_parameters");
         }
         else
         {
@@ -109,7 +95,7 @@ namespace gb
             m_matrices_r[instance_id] = matrix_r;
             m_transform_parameters[instance_id] = m_matrices_t[instance_id] * m_matrices_r[instance_id] * m_matrices_s[instance_id];
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                                   "u_transform_parameters", "");
+                                                                                   "u_transform_parameters");
         }
         else
         {
@@ -138,7 +124,7 @@ namespace gb
             m_matrices_s[instance_id] = glm::scale(glm::mat4(1.f), scale);
             m_transform_parameters[instance_id] = m_matrices_t[instance_id] * m_matrices_r[instance_id] * m_matrices_s[instance_id];
             unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
-                                                                                   "u_transform_parameters", "");
+                                                                                   "u_transform_parameters");
         }
         else
         {

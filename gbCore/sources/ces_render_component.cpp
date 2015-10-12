@@ -25,24 +25,36 @@ namespace gb
         m_materials.clear();
     }
     
-    void ces_render_component::add_material(const std::string& technique_name, const std::shared_ptr<material>& material)
+    void ces_render_component::add_material(const std::string& technique_name, i32 pass, const std::shared_ptr<material>& material)
     {
-        m_materials[technique_name] = material;
+        m_materials[technique_name][pass] = material;
     }
     
-    void ces_render_component::remove_material(const std::string& technique_name)
+    void ces_render_component::remove_material(const std::string& technique_name, i32 pass)
     {
-        const auto& iterator = m_materials.find(technique_name);
-        if(iterator != m_materials.end())
+        const auto& iterator_01 = m_materials.find(technique_name);
+        if(iterator_01 != m_materials.end())
         {
-            m_materials.erase(iterator);
+            const auto& iterator_02 = iterator_01->second.find(pass);
+            if(iterator_02 != iterator_01->second.end())
+            {
+                m_materials[technique_name].erase(iterator_02);
+            }
         }
     }
     
-    material_shared_ptr ces_render_component::get_material(const std::string& technique_name) const
+    material_shared_ptr ces_render_component::get_material(const std::string& technique_name, i32 pass) const
     {
-        const auto& iterator = m_materials.find(technique_name);
-        material_shared_ptr material = iterator != m_materials.end() ? iterator->second : nullptr;
+        material_shared_ptr material = nullptr;
+        const auto& iterator_01 = m_materials.find(technique_name);
+        if(iterator_01 != m_materials.end())
+        {
+            const auto& iterator_02 = iterator_01->second.find(pass);
+            if(iterator_02 != iterator_01->second.end())
+            {
+                material = iterator_02->second;
+            }
+        }
         return material;
     }
     
@@ -56,19 +68,34 @@ namespace gb
         return m_z_order;
     }
     
-    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler,  const std::string& technique_name)
+    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler,  const std::string& technique_name, i32 pass)
     {
         if(technique_name.length() != 0)
         {
-            material_shared_ptr material = ces_render_component::get_material(technique_name);
-            assert(material);
-            material->set_texture(texture, sampler);
+            if(pass != -1)
+            {
+                material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
+                assert(material);
+                material->set_texture(texture, sampler);
+            }
+            else
+            {
+                const auto& iterator = m_materials.find(technique_name);
+                for(const auto& material : iterator->second)
+                {
+                    material.second->set_texture(texture, sampler);
+                }
+            }
         }
         else
         {
-            std::for_each(m_materials.cbegin(), m_materials.cend(), [texture, sampler](std::pair<std::string, material_shared_ptr> material) {
-                material.second->set_texture(texture, sampler);
-            });
+            for(const auto& iterator : m_materials)
+            {
+                for(const auto& material : iterator.second)
+                {
+                    material.second->set_texture(texture, sampler);
+                }
+            }
         }
     }
     
@@ -183,9 +210,9 @@ namespace gb
         material->get_shader()->set_mat4(shadow_cast_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
     }
     
-    material_shared_ptr ces_render_component::on_bind(const std::string& technique_name)
+    material_shared_ptr ces_render_component::on_bind(const std::string& technique_name, i32 pass)
     {
-        material_shared_ptr material = ces_render_component::get_material(technique_name);
+        material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
         assert(material);
         
         material->bind();
@@ -196,24 +223,25 @@ namespace gb
         return material;
     }
     
-    void ces_render_component::on_unbind(const std::string& technique_name,
+    void ces_render_component::on_unbind(const std::string& technique_name, i32 pass,
                                          const material_shared_ptr& material)
     {
         material_shared_ptr using_material = material;
         if(!using_material)
         {
-            using_material = ces_render_component::get_material(technique_name);
+            using_material = ces_render_component::get_material(technique_name, pass);
         }
         assert(using_material);
         using_material->unbind();
     }
 
-    void ces_render_component::on_draw(const std::string& technique_name, const mesh_shared_ptr& mesh, const material_shared_ptr& material)
+    void ces_render_component::on_draw(const std::string& technique_name, i32 pass,
+                                       const mesh_shared_ptr& mesh, const material_shared_ptr& material)
     {
         material_shared_ptr using_material = material;
         if(!using_material)
         {
-            using_material = ces_render_component::get_material(technique_name);
+            using_material = ces_render_component::get_material(technique_name, pass);
         }
         assert(using_material);
         assert(using_material->get_shader()->is_commited());

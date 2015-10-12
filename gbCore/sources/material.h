@@ -35,6 +35,12 @@ namespace gb
         GLenum m_blending_function_source;
         GLenum m_blending_function_destination;
         
+        bool m_is_stencil_test;
+        GLenum m_stencil_function;
+        i32 m_stencil_function_parameter_1;
+        i32 m_stencil_function_parameter_2;
+        i32 m_stencil_mask_parameter;
+        
         bool m_is_depth_test;
         bool m_is_depth_mask;
         
@@ -57,6 +63,8 @@ namespace gb
         
         std::map<std::string, std::shared_ptr<shader_uniform>> m_custom_shader_uniforms;
         std::shared_ptr<material_cached_parameters> m_parameters;
+        i32 m_z_order;
+        
         static std::shared_ptr<material_cached_parameters> m_cached_parameters;
         static std::shared_ptr<material_cached_parameters> get_cached_parameters(void);
         
@@ -77,24 +85,32 @@ namespace gb
                                  const resource_accessor_shared_ptr& resource_accessor,
                                  const resource_loading_interface_shared_ptr& listener = nullptr);
         
-        bool is_culling(void) const;
+        bool is_culling() const;
         GLenum get_culling_mode(void) const;
         
-        bool is_blending(void) const;
-        GLenum get_blending_function_source(void) const;
-        GLenum get_blending_function_destination(void) const;
+        bool is_blending() const;
+        GLenum get_blending_function_source() const;
+        GLenum get_blending_function_destination() const;
         
-        bool is_depth_test(void) const;
-        bool is_depth_mask(void) const;
+        bool is_stencil_test() const;
+        GLenum get_stencil_function() const;
+        i32 get_stencil_function_parameter_1() const;
+        i32 get_stencil_function_parameter_2() const;
+        i32 get_stencil_mask_parameter() const;
         
-        bool is_clipping(void) const;
-        glm::vec4 get_clipping_plane(void) const;
+        bool is_depth_test() const;
+        bool is_depth_mask() const;
         
-        bool is_reflecting(void) const;
-        bool is_shadowing(void) const;
-        bool is_debugging(void) const;
+        bool is_clipping() const;
+        glm::vec4 get_clipping_plane() const;
         
-        std::shared_ptr<shader> get_shader(void) const;
+        bool is_reflecting() const;
+        bool is_shadowing() const;
+        bool is_debugging() const;
+        
+        i32 get_z_order() const;
+        
+        std::shared_ptr<shader> get_shader() const;
         std::shared_ptr<texture> get_texture(e_shader_sampler sampler) const;
         e_shader_sampler get_sampler_index(const std::shared_ptr<texture>& texture) const;
         
@@ -105,6 +121,12 @@ namespace gb
         void set_blending_function_source(GLenum value);
         void set_blending_function_destination(GLenum value);
         
+        void set_stencil_test(bool value);
+        void set_stencil_function(GLenum value);
+        void set_stencil_function_parameter_1(i32 value);
+        void set_stencil_function_parameter_2(i32 value);
+        void set_stencil_mask_parameter(i32 value);
+        
         void set_depth_test(bool value);
         void set_depth_mask(bool value);
         
@@ -114,6 +136,8 @@ namespace gb
         void set_reflecting(bool value);
         void set_shadowing(bool value);
         void set_debugging(bool value);
+        
+        void set_z_order(i32 z_order);
         
         void set_shader(const std::shared_ptr<shader>& shader);
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler);
@@ -135,8 +159,8 @@ namespace gb
         
         const std::map<std::string, std::shared_ptr<shader_uniform>>& get_custom_uniforms(void) const;
         
-        void bind(void);
-        void unbind(void);
+        void bind();
+        void unbind();
     };
 };
 

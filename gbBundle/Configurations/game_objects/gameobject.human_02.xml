@@ -4,6 +4,7 @@
     is_batching="0">
     <materials>
         <material filename="material.human_02.base.xml"/>
+        <material filename="material.human_02.base.outline.xml"/>
         <material filename="material.human_02.shadowmap.xml"/>
         <material filename="material.human_02.forward.rendering.normal.xml"/>
     </materials>

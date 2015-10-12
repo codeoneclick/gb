@@ -86,6 +86,8 @@
 		21613FE41B946B79001562EB /* ces_debug_render_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE11B946B79001562EB /* ces_debug_render_component.cpp */; };
 		21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
 		21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
+		216DF2AB1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF2AC1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; settings = {ASSET_TAGS = (); }; };
 		2173D1DD1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1E11B7CA774002912BE /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DF1B7CA774002912BE /* mesh.cpp */; };
@@ -470,6 +472,8 @@
 		21613FE11B946B79001562EB /* ces_debug_render_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_debug_render_component.cpp; path = sources/ces_debug_render_component.cpp; sourceTree = "<group>"; };
 		21613FE21B946B79001562EB /* ces_debug_render_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_debug_render_component.h; path = sources/ces_debug_render_component.h; sourceTree = "<group>"; };
 		21613FE51B948256001562EB /* shader_bounding_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_bounding_box.cpp; path = sources/shader_bounding_box.cpp; sourceTree = "<group>"; };
+		216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderable_interface.cpp; path = sources/renderable_interface.cpp; sourceTree = "<group>"; };
+		216DF2AA1BCBAB53008E4B2B /* renderable_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderable_interface.h; path = sources/renderable_interface.h; sourceTree = "<group>"; };
 		2173D1DB1B7C9AD5002912BE /* vao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vao.cpp; path = sources/vao.cpp; sourceTree = "<group>"; };
 		2173D1DC1B7C9AD5002912BE /* vao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vao.h; path = sources/vao.h; sourceTree = "<group>"; };
 		2173D1DF1B7CA774002912BE /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh.cpp; path = sources/mesh.cpp; sourceTree = "<group>"; };
@@ -1714,6 +1718,8 @@
 				212B186F1B81B43800FFDCE7 /* render_techniques_accessor.cpp */,
 				212B18741B81B44C00FFDCE7 /* render_techniques_importer.h */,
 				212B18731B81B44C00FFDCE7 /* render_techniques_importer.cpp */,
+				216DF2AA1BCBAB53008E4B2B /* renderable_interface.h */,
+				216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */,
 			);
 			name = "render managment";
 			sourceTree = "<group>";
@@ -2031,6 +2037,7 @@
 				212B18871B81C04100FFDCE7 /* render_technique_ws.cpp in Sources */,
 				212B18711B81B43800FFDCE7 /* render_techniques_accessor.cpp in Sources */,
 				21B405011B7A0A88003382AB /* pngtrans.c in Sources */,
+				216DF2AB1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */,
 				21D78C031B905A5400665BB6 /* animation_loading_operation.cpp in Sources */,
 				21B404D01B7A0A88003382AB /* b2TimeOfImpact.cpp in Sources */,
 				2102EB3B1B7D06CC00F20197 /* ces_systems_feeder.cpp in Sources */,
@@ -2218,6 +2225,7 @@
 				21D78C041B905A5400665BB6 /* animation_loading_operation.cpp in Sources */,
 				21B405341B7A0AFA003382AB /* pngtrans.c in Sources */,
 				21B405351B7A0AFA003382AB /* b2TimeOfImpact.cpp in Sources */,
+				216DF2AC1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */,
 				21B405361B7A0AFA003382AB /* adler32.c in Sources */,
 				212B186A1B81B3FA00FFDCE7 /* ces_render_system.cpp in Sources */,
 				21B405371B7A0AFA003382AB /* b2Settings.cpp in Sources */,
