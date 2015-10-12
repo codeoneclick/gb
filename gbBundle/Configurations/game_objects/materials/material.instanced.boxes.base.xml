@@ -27,7 +27,7 @@
     fs_filename="shader_instanced_models3d_static_shadowmap.frag"/>
     <textures>
         <texture
-        filename="box_04.png"
+        filename="box_06.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"

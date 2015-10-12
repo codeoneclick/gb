@@ -27,7 +27,7 @@
     fs_filename="shader_instanced_models3d_static_n.frag"/>
     <textures>
         <texture
-        filename="box_04_n.png"
+        filename="box_06_n.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"

@@ -52,8 +52,8 @@ gb::game_scene(transition)
     scene_graph_inst->add_game_object(m_models["orc_01"]);
     scene_graph_inst->add_game_object(m_models["orc_02"]);
     
-    //game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_fire);
-    //game_scene::get_transition()->get_scene_graph()->add_game_object(particle_emitter_smoke);
+    /*scene_graph_inst->add_game_object(particle_emitter_fire);
+    scene_graph_inst->add_game_object(particle_emitter_smoke);*/
     
     //scene_graph_inst->add_game_object(plane);
     
@@ -61,8 +61,8 @@ gb::game_scene(transition)
     //m_camera->set_look_at(glm::vec3(2.f, 1.f, 2.f));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
     
-    particle_emitter_fire->set_position(glm::vec3(2.f, 0.f, 2.f));
-    particle_emitter_smoke->set_position(glm::vec3(2.f, 0.f, -2.f));
+    particle_emitter_fire->set_position(glm::vec3(8.f, .5f, 10.f));
+    particle_emitter_smoke->set_position(glm::vec3(8.f, .5f, 6.f));
     
     m_shadow_cast_light->set_position(glm::vec3(8.25f, 16.f, 8.25f));
     m_shadow_cast_light->set_look_at(glm::vec3(7.75f, 1.f, 7.75f));
