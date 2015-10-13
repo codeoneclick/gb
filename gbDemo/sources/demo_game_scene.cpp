@@ -18,6 +18,7 @@
 #include "model3d_animated.h"
 #include "instanced_omni_lights.h"
 #include "instanced_models3d_static.h"
+#include "sky_box.h"
 #include "ui_fabricator.h"
 #include "ui_graph.h"
 #include "level.h"
@@ -116,6 +117,9 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_radius(3.f, 4);
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 4);
     m_instanced_omni_lights->set_position(glm::vec3(2.f, 1.5f, 4.f), 4);
+    
+    m_sky_box = scene_fabricator_inst->create_sky_box("gameobject.skybox.xml");
+    scene_graph_inst->set_sky_box(m_sky_box);
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
@@ -195,6 +199,8 @@ void demo_game_scene::update(f32 deltatime)
     std::static_pointer_cast<gb::ces_render_component>(m_models["orc_02"]->get_component(gb::e_ces_component_type_render));
     render_component->set_custom_shader_uniform(.025f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(1.f, 1.f, 0.f), "u_outline_color");
+    
+    m_sky_box->set_position(m_camera->get_position());
     
     /*light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_right() * 1.5f;
     light_position.y = 1.5f;

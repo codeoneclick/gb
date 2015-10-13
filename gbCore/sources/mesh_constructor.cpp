@@ -143,57 +143,8 @@ namespace gb
         return std::make_tuple(std::move(vbo), std::move(ibo), std::move( glm::vec3(-radius / 2.f)), std::move(glm::vec3(radius / 2.f)));
     }
     
-    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
-    {
-        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
-        mesh_shared_ptr mesh = gb::mesh::construct("sphere",
-                                                   std::get<0>(data), std::get<1>(data),
-                                                   std::get<2>(data), std::get<3>(data));
-        return mesh;
-    }
-    
-    mesh_shared_ptr mesh_constructor::create_screen_quad()
-    {
-        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(4, GL_STATIC_DRAW);
-        vbo::vertex_attribute * vertices = vbo->lock();
-        
-        vertices[0].m_position = glm::vec3(-1.0f, -1.0f, 0.0f);
-        vertices[0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 0.0f));
-        vertices[1].m_position = glm::vec3(-1.0f, 1.0f, 0.0f);
-        vertices[1].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 1.0f));
-        vertices[2].m_position = glm::vec3(1.0f, -1.0f, 0.0f);
-        vertices[2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 0.0f));
-        vertices[3].m_position = glm::vec3(1.0f, 1.0f, 0.0f);
-        vertices[3].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 1.0f));
-        vbo->unlock();
-        
-        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(6, GL_STATIC_DRAW);
-        ui16* indices = ibo->lock();
-        indices[0] = 0;
-        indices[1] = 1;
-        indices[2] = 2;
-        indices[3] = 1;
-        indices[4] = 2;
-        indices[5] = 3;
-        ibo->unlock();
-        
-        mesh_shared_ptr mesh = gb::mesh::construct("screen_quad", vbo, ibo,
-                                                   glm::vec3(-4096.f),
-                                                   glm::vec3( 4096.f));
-        return mesh;
-    }
-    
-    instanced_mesh_shared_ptr mesh_constructor::create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors)
-    {
-        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
-        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("sphere",
-                                                                   std::get<0>(data), std::get<1>(data),
-                                                                   std::get<2>(data), std::get<3>(data),
-                                                                   num_instances);
-        return mesh;
-    }
-    
-    instanced_mesh_shared_ptr mesh_constructor::create_boxes(i32 num_instances)
+    std::tuple<vbo_shared_ptr, ibo_shared_ptr> mesh_constructor::create_box_data(const glm::vec3& min_bound,
+                                                                                 const glm::vec3& max_bound)
     {
         vbo_shared_ptr vbo = std::make_shared<gb::vbo>(24, GL_STATIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
@@ -201,35 +152,35 @@ namespace gb
         f32 raw_vertices[3 * 4 * 6] =
         {
             // front
-            -.5f, -.5f, .5f,
-             .5f, -.5f, .5f,
-             .5f,  .5f, .5f,
-            -.5f,  .5f, .5f,
+            min_bound.x, min_bound.y, max_bound.z,
+            max_bound.x, min_bound.y, max_bound.z,
+            max_bound.x, max_bound.y, max_bound.z,
+            min_bound.x, max_bound.y, max_bound.z,
             // top
-            -.5f,  .5f,  .5f,
-             .5f,  .5f,  .5f,
-             .5f,  .5f, -.5f,
-            -.5f,  .5f, -.5f,
+            min_bound.x, max_bound.y, max_bound.z,
+            max_bound.x, max_bound.y, max_bound.z,
+            max_bound.x, max_bound.y, min_bound.z,
+            min_bound.x, max_bound.y, min_bound.z,
             // back
-             .5f, -.5f, -.5f,
-            -.5f, -.5f, -.5f,
-            -.5f,  .5f, -.5f,
-             .5f,  .5f, -.5f,
+            max_bound.x, min_bound.y, min_bound.z,
+            min_bound.x, min_bound.y, min_bound.z,
+            min_bound.x, max_bound.y, min_bound.z,
+            max_bound.x, max_bound.y, min_bound.z,
             // bottom
-            -.5f, -.5f, -.5f,
-             .5f, -.5f, -.5f,
-             .5f, -.5f,  .5f,
-            -.5f, -.5f,  .5f,
+            min_bound.x, min_bound.y, min_bound.z,
+            max_bound.x, min_bound.y, min_bound.z,
+            max_bound.x, min_bound.y, max_bound.z,
+            min_bound.x, min_bound.y, max_bound.z,
             // left
-            -.5f, -.5f, -.5f,
-            -.5f, -.5f,  .5f,
-            -.5f,  .5f,  .5f,
-            -.5f,  .5f, -.5f,
+            min_bound.x, min_bound.y, min_bound.z,
+            min_bound.x, min_bound.y, max_bound.z,
+            min_bound.x, max_bound.y, max_bound.z,
+            min_bound.x, max_bound.y, min_bound.z,
             // right
-             .5f, -.5f,  .5f,
-             .5f, -.5f, -.5f,
-             .5f,  .5f, -.5f,
-             .5f,  .5f,  .5f,
+            max_bound.x, min_bound.y, max_bound.z,
+            max_bound.x, min_bound.y, min_bound.z,
+            max_bound.x, max_bound.y, min_bound.z,
+            max_bound.x, max_bound.y, max_bound.z,
         };
         
         f32 raw_normals[4 * 4 * 6] =
@@ -360,7 +311,73 @@ namespace gb
         vbo->unlock();
         ibo->unlock();
         
-        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("box", vbo, ibo, num_instances);
+        return std::make_tuple(vbo, ibo);
+    }
+    
+    mesh_shared_ptr mesh_constructor::create_sphere(f32 radius, i32 rings, i32 sectors)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
+        mesh_shared_ptr mesh = gb::mesh::construct("sphere",
+                                                   std::get<0>(data), std::get<1>(data),
+                                                   std::get<2>(data), std::get<3>(data));
+        return mesh;
+    }
+    
+    mesh_shared_ptr mesh_constructor::create_screen_quad()
+    {
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(4, GL_STATIC_DRAW);
+        vbo::vertex_attribute * vertices = vbo->lock();
+        
+        vertices[0].m_position = glm::vec3(-1.0f, -1.0f, 0.0f);
+        vertices[0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 0.0f));
+        vertices[1].m_position = glm::vec3(-1.0f, 1.0f, 0.0f);
+        vertices[1].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 1.0f));
+        vertices[2].m_position = glm::vec3(1.0f, -1.0f, 0.0f);
+        vertices[2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 0.0f));
+        vertices[3].m_position = glm::vec3(1.0f, 1.0f, 0.0f);
+        vertices[3].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f, 1.0f));
+        vbo->unlock();
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(6, GL_STATIC_DRAW);
+        ui16* indices = ibo->lock();
+        indices[0] = 0;
+        indices[1] = 1;
+        indices[2] = 2;
+        indices[3] = 1;
+        indices[4] = 2;
+        indices[5] = 3;
+        ibo->unlock();
+        
+        mesh_shared_ptr mesh = gb::mesh::construct("screen_quad", vbo, ibo,
+                                                   glm::vec3(-4096.f),
+                                                   glm::vec3( 4096.f));
+        return mesh;
+    }
+    
+    instanced_mesh_shared_ptr mesh_constructor::create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
+        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("sphere",
+                                                                   std::get<0>(data), std::get<1>(data),
+                                                                   std::get<2>(data), std::get<3>(data),
+                                                                   num_instances);
+        return mesh;
+    }
+    
+    instanced_mesh_shared_ptr mesh_constructor::create_boxes(const glm::vec3& min_bound,
+                                                             const glm::vec3& max_bound,
+                                                             i32 num_instances)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr> box_data = mesh_constructor::create_box_data(min_bound, max_bound);
+        instanced_mesh_shared_ptr mesh = instanced_mesh::construct("box", std::get<0>(box_data), std::get<1>(box_data), num_instances);
+        return mesh;
+    }
+    
+    mesh_shared_ptr mesh_constructor::create_box(const glm::vec3& min_bound,
+                                                 const glm::vec3& max_bound)
+    {
+        std::tuple<vbo_shared_ptr, ibo_shared_ptr> box_data = mesh_constructor::create_box_data(min_bound, max_bound);
+        mesh_shared_ptr mesh = mesh::construct("box", std::get<0>(box_data), std::get<1>(box_data), min_bound, max_bound);
         return mesh;
     }
     

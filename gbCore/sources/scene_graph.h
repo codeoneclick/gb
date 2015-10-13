@@ -27,6 +27,7 @@ namespace gb
         
         camera_shared_ptr m_camera;
         shadow_cast_light_shared_ptr m_shadow_cast_light;
+        sky_box_shared_ptr m_sky_box;
         std::set<game_object_shared_ptr> m_game_objects_container;
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
@@ -40,10 +41,12 @@ namespace gb
         ~scene_graph();
         
         void set_camera(const camera_shared_ptr& camera);
-        camera_shared_ptr get_camera(void) const;
+        camera_shared_ptr get_camera() const;
         
         void set_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light);
-        shadow_cast_light_shared_ptr get_shadow_cast_light(void) const;
+        shadow_cast_light_shared_ptr get_shadow_cast_light() const;
+        
+        void set_sky_box(const sky_box_shared_ptr& sky_box);
         
         void add_game_object(const game_object_shared_ptr& game_object);
         void remove_game_object(const game_object_shared_ptr& game_object);

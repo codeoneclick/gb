@@ -223,6 +223,12 @@ namespace gb
     
     class game_commands_container;
     typedef std::shared_ptr<game_commands_container> game_commands_container_shared_ptr;
+    
+    class sky_box;
+    typedef std::shared_ptr<sky_box> sky_box_shared_ptr;
+    
+    class renderable_interface;
+    typedef std::shared_ptr<renderable_interface> renderable_interface_shared_ptr;
 };
 
 #endif

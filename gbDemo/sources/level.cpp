@@ -20,7 +20,7 @@ namespace koth
     {
         m_size = glm::ivec2(16);
         m_boxes_size = glm::vec2(1.f);
-        m_boxes_offset = .05f;
+        m_boxes_offset = .005f;
     }
     
     level::~level()

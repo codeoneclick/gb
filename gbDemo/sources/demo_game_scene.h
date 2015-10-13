@@ -25,6 +25,7 @@ private:
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
+    gb::sky_box_shared_ptr m_sky_box;
     
     koth::level_shared_ptr m_level;
     koth::character_controller_shared_ptr m_character_controller;

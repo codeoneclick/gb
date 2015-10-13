@@ -14,6 +14,7 @@
 #include "omni_light.h"
 #include "instanced_omni_lights.h"
 #include "direction_light.h"
+#include "sky_box.h"
 #include "ces_systems_feeder.h"
 #include "ces_box2d_system.h"
 #include "collision_manager.h"
@@ -62,6 +63,13 @@ namespace gb
     shadow_cast_light_shared_ptr scene_graph::get_shadow_cast_light() const
     {
         return m_shadow_cast_light;
+    }
+    
+    void scene_graph::set_sky_box(const sky_box_shared_ptr& sky_box)
+    {
+        m_sky_box = sky_box;
+        m_sky_box->on_added_to_scene(shared_from_this());
+        m_systems_feeder->add_entity(m_sky_box);
     }
     
     void scene_graph::add_game_object(const game_object_shared_ptr& game_object)

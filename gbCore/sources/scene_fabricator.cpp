@@ -22,6 +22,7 @@
 #include "instanced_models3d_static.h"
 #include "model3d_animated.h"
 #include "particle_emitter.h"
+#include "sky_box.h"
 #include "mesh_constructor.h"
 
 namespace gb
@@ -34,6 +35,20 @@ namespace gb
     scene_fabricator::~scene_fabricator()
     {
         
+    }
+    
+    void scene_fabricator::add_materials(const renderable_interface_shared_ptr& renderable_object, const std::vector<std::shared_ptr<configuration>>& configurations)
+    {
+        for(const auto& iterator : configurations)
+        {
+            std::shared_ptr<material_configuration> material_configuration =
+            std::static_pointer_cast<gb::material_configuration>(iterator);
+            
+            material_shared_ptr material = material::construct(material_configuration);
+            gb::material::set_shader(material, material_configuration, m_resource_accessor);
+            gb::material::set_textures(material, material_configuration, m_resource_accessor);
+            renderable_object->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
+        }
     }
     
     camera_shared_ptr scene_fabricator::create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
@@ -277,17 +292,7 @@ namespace gb
         
             assert(mesh);
             model3d_static->set_mesh(mesh);
-            
-            for(const auto& iterator : model_configuration->get_materials_configurations())
-            {
-                std::shared_ptr<material_configuration> material_configuration =
-                std::static_pointer_cast<gb::material_configuration>(iterator);
-                
-                material_shared_ptr material = material::construct(material_configuration);
-                gb::material::set_shader(material, material_configuration, m_resource_accessor);
-                gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                model3d_static->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
-            }
+            scene_fabricator::add_materials(model3d_static, model_configuration->get_materials_configurations());
             m_game_objects_container.insert(model3d_static);
         }
         return model3d_static;
@@ -331,16 +336,7 @@ namespace gb
                 model3d_animated->create_animation_linkage(model_configuration);
             }));
             
-            for(const auto& iterator : model_configuration->get_materials_configurations())
-            {
-                std::shared_ptr<material_configuration> material_configuration =
-                std::static_pointer_cast<gb::material_configuration>(iterator);
-                
-                material_shared_ptr material = material::construct(material_configuration);
-                gb::material::set_shader(material, material_configuration, m_resource_accessor);
-                gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                model3d_animated->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
-            }
+            scene_fabricator::add_materials(model3d_animated, model_configuration->get_materials_configurations());
             m_game_objects_container.insert(model3d_animated);
         }
         return model3d_animated;
@@ -357,16 +353,7 @@ namespace gb
             particle_emitter = std::make_shared<gb::particle_emitter>();
             particle_emitter->set_settings(particle_emitter_configuration);
             
-            for(const auto& iterator : particle_emitter_configuration->get_materials_configurations())
-            {
-                std::shared_ptr<material_configuration> material_configuration =
-                std::static_pointer_cast<gb::material_configuration>(iterator);
-                
-                std::shared_ptr<material> material = material::construct(material_configuration);
-                gb::material::set_shader(material, material_configuration, m_resource_accessor);
-                gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                particle_emitter->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
-            }
+            scene_fabricator::add_materials(particle_emitter, particle_emitter_configuration->get_materials_configurations());
             m_game_objects_container.insert(particle_emitter);
         }
         return particle_emitter;
@@ -387,7 +374,7 @@ namespace gb
             {
                 if(model_configuration->get_mesh_base_class() == "box")
                 {
-                    mesh = mesh_constructor::create_boxes(num_instances);
+                    mesh = mesh_constructor::create_boxes(glm::vec3(-.5f), glm::vec3(.5f), num_instances);
                 }
                 else
                 {
@@ -402,16 +389,7 @@ namespace gb
             assert(mesh);
             instanced_models3d_static->set_mesh(mesh);
             
-            for(const auto& iterator : model_configuration->get_materials_configurations())
-            {
-                std::shared_ptr<material_configuration> material_configuration =
-                std::static_pointer_cast<gb::material_configuration>(iterator);
-                
-                material_shared_ptr material = material::construct(material_configuration);
-                gb::material::set_shader(material, material_configuration, m_resource_accessor);
-                gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                instanced_models3d_static->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
-            }
+            scene_fabricator::add_materials(instanced_models3d_static, model_configuration->get_materials_configurations());
             m_game_objects_container.insert(instanced_models3d_static);
         }
         return instanced_models3d_static;
@@ -420,5 +398,30 @@ namespace gb
     void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)
     {
         m_game_objects_container.erase(game_object);
+    }
+    
+    sky_box_shared_ptr scene_fabricator::create_sky_box(const std::string& filename)
+    {
+        std::shared_ptr<skybox_configuration> skybox_configuration =
+        std::static_pointer_cast<gb::skybox_configuration>(m_configuration_accessor->get_skybox_configuration(filename));
+        assert(skybox_configuration);
+        sky_box_shared_ptr sky_box = nullptr;
+        if(skybox_configuration)
+        {
+            sky_box = std::make_shared<gb::sky_box>();
+            
+            mesh_shared_ptr mesh = mesh_constructor::create_box(glm::vec3(-.5f), glm::vec3(.5f));
+            assert(mesh);
+            sky_box->set_mesh(mesh);
+            
+            scene_fabricator::add_materials(sky_box, skybox_configuration->get_materials_configurations());
+            m_sky_boxes_container.insert(sky_box);
+        }
+        return sky_box;
+    }
+    
+    void scene_fabricator::destroy_sky_box(const sky_box_shared_ptr& sky_box)
+    {
+        m_sky_boxes_container.erase(sky_box);
     }
 }

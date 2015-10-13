@@ -21,6 +21,8 @@ namespace gb
     protected:
         
         static std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> create_sphere_data(f32 radius, i32 rings, i32 sectors);
+        static std::tuple<vbo_shared_ptr, ibo_shared_ptr> create_box_data(const glm::vec3& min_bound,
+                                                                          const glm::vec3& max_bound);
         
         static glm::vec3 generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
                                           const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03);
@@ -43,7 +45,12 @@ namespace gb
         
         static instanced_mesh_shared_ptr create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors);
         
-        static instanced_mesh_shared_ptr create_boxes(i32 num_instances);
+        static mesh_shared_ptr create_box(const glm::vec3& min_bound,
+                                          const glm::vec3& max_bound);
+        
+        static instanced_mesh_shared_ptr create_boxes(const glm::vec3& min_bound,
+                                                      const glm::vec3& max_bound,
+                                                      i32 num_instances);
     };
 };
 
