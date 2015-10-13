@@ -5,6 +5,7 @@
 #include "model_configuration.h"
 #include "output_technique_configuration.h"
 #include "particle_emitter_configuration.h"
+#include "skybox_configuration.h"
 #include "ss_technique_configuration.h"
 #include "transition_configuration.h"
 #include "ws_technique_configuration.h"
@@ -19,6 +20,7 @@ std::shared_ptr<configuration> get_material_configuration(const std::string& fil
 std::shared_ptr<configuration> get_model_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_output_technique_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_particle_emitter_configuration(const std::string& filename) const;
+std::shared_ptr<configuration> get_skybox_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_ss_technique_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_transition_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_ws_technique_configuration(const std::string& filename) const;

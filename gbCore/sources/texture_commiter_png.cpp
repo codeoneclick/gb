@@ -39,8 +39,7 @@ namespace gb
         
         gl_texture_image2d(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, (GLvoid*)&data[0]);
         gl_generate_mipmap(GL_TEXTURE_2D);
-        
-        
+    
         m_status = e_commiter_status_success;
         
         std::shared_ptr<texture_transfering_data> transfering_data = std::make_shared<texture_transfering_data>();

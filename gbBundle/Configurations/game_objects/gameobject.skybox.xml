@@ -2,6 +2,5 @@
     z_order="0">
     <materials>
         <material filename="material.skybox.base.xml"/>
-        <material filename="material.skybox.reflection.xml"/>
     </materials>
 </skybox>

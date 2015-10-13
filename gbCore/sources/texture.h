@@ -32,8 +32,6 @@ namespace gb
     {
     private:
         
-        std::shared_ptr<texture_transfering_data> m_data;
-        
         mutable ui32 m_setted_wrap_mode;
         ui32 m_presetted_wrap_mode;
         
@@ -45,6 +43,8 @@ namespace gb
         
     protected:
         
+        std::shared_ptr<texture_transfering_data> m_data;
+        
         void on_transfering_data_serialized(const std::shared_ptr<resource_transfering_data>& data);
         void on_transfering_data_commited(const std::shared_ptr<resource_transfering_data>& data);
         
@@ -55,7 +55,7 @@ namespace gb
                                                   ui32 texture_id,
                                                   ui32 width,
                                                   ui32 height);
-        ~texture(void);
+        virtual ~texture(void);
         
         ui32 get_width(void) const;
         ui32 get_height(void) const;

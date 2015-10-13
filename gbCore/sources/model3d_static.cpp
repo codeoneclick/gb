@@ -8,14 +8,12 @@
 
 #include "model3d_static.h"
 #include "ces_geometry_component.h"
-#include "ces_render_component.h"
 #include "ces_touch_component.h"
 #include "ces_debug_render_component.h"
 #include "ces_box2d_component.h"
 #include "mesh_constructor.h"
 #include "mesh.h"
 #include "scene_graph.h"
-#include "input_context.h"
 
 namespace gb
 {

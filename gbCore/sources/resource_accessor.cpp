@@ -15,6 +15,7 @@
 #include "resource.h"
 #include "shader.h"
 #include "texture.h"
+#include "cubemap_texture.h"
 #include "mesh.h"
 #include "sequence.h"
 
@@ -151,6 +152,31 @@ namespace gb
             }
         }
         return resource;
+    }
+    
+    cubemap_texture_shared_ptr resource_accessor::get_cubemap_texture(const std::string& xpositive, const std::string& xnegative,
+                                                                      const std::string& ypositive, const std::string& ynegative,
+                                                                      const std::string& zpositive, const std::string& znegative,
+                                                                      bool sync)
+    {
+        texture_shared_ptr texture_xpositive = resource_accessor::get_texture(xpositive, sync);
+        texture_shared_ptr texture_xnegative = resource_accessor::get_texture(xnegative, sync);
+        texture_shared_ptr texture_ypositive = resource_accessor::get_texture(ypositive, sync);
+        texture_shared_ptr texture_ynegative = resource_accessor::get_texture(ynegative, sync);
+        texture_shared_ptr texture_zpositive = resource_accessor::get_texture(zpositive, sync);
+        texture_shared_ptr texture_znegative = resource_accessor::get_texture(znegative, sync);
+        
+        cubemap_texture_shared_ptr cubemap_texture = std::make_shared<gb::cubemap_texture>(xpositive + xnegative + ypositive + ynegative + zpositive + znegative,
+                                                                                           texture_xpositive, texture_xnegative,
+                                                                                           texture_ypositive, texture_ynegative,
+                                                                                           texture_zpositive, texture_znegative);
+        texture_xpositive->add_resource_loading_listener(cubemap_texture);
+        texture_xnegative->add_resource_loading_listener(cubemap_texture);
+        texture_ypositive->add_resource_loading_listener(cubemap_texture);
+        texture_ynegative->add_resource_loading_listener(cubemap_texture);
+        texture_zpositive->add_resource_loading_listener(cubemap_texture);
+        texture_znegative->add_resource_loading_listener(cubemap_texture);
+        return cubemap_texture;
     }
     
     mesh_shared_ptr resource_accessor::get_mesh(const std::string& filename, bool sync)

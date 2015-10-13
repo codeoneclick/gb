@@ -44,6 +44,9 @@ namespace gb
     class texture_transfering_data;
     typedef std::shared_ptr<texture_transfering_data> texture_transfering_data_shared_ptr;
     
+    class cubemap_texture;
+    typedef std::shared_ptr<cubemap_texture> cubemap_texture_shared_ptr;
+    
     class mesh;
     typedef std::shared_ptr<mesh> mesh_shared_ptr;
     

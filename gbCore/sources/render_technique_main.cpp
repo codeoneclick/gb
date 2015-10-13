@@ -34,6 +34,14 @@ namespace gb
         gl_bind_frame_buffer(GL_FRAMEBUFFER, m_frame_buffer);
         gl_bind_render_buffer(GL_RENDERBUFFER, m_render_buffer);
         gl_viewport(0, 0, m_frame_width, m_frame_height);
+        
+        gl_disable(GL_DEPTH_TEST);
+        material::get_cached_parameters()->m_is_depth_test = false;
+        gl_depth_mask(GL_FALSE);
+        material::get_cached_parameters()->m_is_depth_mask = false;
+        gl_disable(GL_STENCIL_TEST);
+        material::get_cached_parameters()->m_is_stencil_test = false;
+        
         gl_clear_color(m_clear_color.r, m_clear_color.g, m_clear_color.b, m_clear_color.a);
         gl_clear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         

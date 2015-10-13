@@ -30,6 +30,13 @@ configuration->serialize(filename);
 assert(configuration);
 return configuration;
 }
+std::shared_ptr<configuration> configuration_accessor::get_skybox_configuration(const std::string& filename) const
+{
+std::shared_ptr<skybox_configuration> configuration = std::make_shared<skybox_configuration>();
+configuration->serialize(filename);
+assert(configuration);
+return configuration;
+}
 std::shared_ptr<configuration> configuration_accessor::get_ss_technique_configuration(const std::string& filename) const
 {
 std::shared_ptr<ss_technique_configuration> configuration = std::make_shared<ss_technique_configuration>();

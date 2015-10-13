@@ -43,6 +43,10 @@ namespace gb
                                      const std::string& fs_filename, bool sync = false);
         
         texture_shared_ptr get_texture(const std::string& filename, bool sync = false);
+        cubemap_texture_shared_ptr get_cubemap_texture(const std::string& xpositive, const std::string& xnegative,
+                                                       const std::string& ypositive, const std::string& ynegative,
+                                                       const std::string& zpositive, const std::string& znegative,
+                                                       bool sync = false);
         
         mesh_shared_ptr get_mesh(const std::string& filename, bool sync = false);
         

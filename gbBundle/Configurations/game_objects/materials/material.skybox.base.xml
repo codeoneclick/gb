@@ -1,5 +1,7 @@
 <material
-    render_operation_name="ws.base"
+    technique_name="ws.base"
+    technique_pass="0"
+    z_order="0"
     is_cull_face="1"
     is_depth_test="0"
     is_depth_mask="1"
@@ -7,6 +9,11 @@
     cull_face_mode="GL_FRONT"
     blending_function_source="GL_SRC_ALPHA"
     blending_function_destination="GL_ONE_MINUS_SRC_ALPHA"
+    is_stencil_test="1"
+    stencil_function="GL_ALWAYS"
+    stencil_function_parameter_1="1"
+    stencil_function_parameter_2="255"
+    stencil_mask_parameter="255"
     is_cliping="0"
     clipping_x="0.0"
     clipping_y="0.0"
@@ -16,8 +23,8 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shaderSkybox.vert"
-    fs_filename="shaderSkybox.frag"/>
+    vs_filename="shader_skybox.vert"
+    fs_filename="shader_skybox.frag"/>
     <textures>
         <texture
             is_cubemap="1"

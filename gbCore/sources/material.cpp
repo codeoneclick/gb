@@ -8,6 +8,8 @@
 
 #include "material.h"
 #include "resource.h"
+#include "texture.h"
+#include "cubemap_texture.h"
 
 namespace gb
 {
@@ -122,9 +124,24 @@ namespace gb
             std::shared_ptr<texture_configuration> texture_configuration =
             std::static_pointer_cast<gb::texture_configuration>(iterator);
             assert(texture_configuration != nullptr);
-            std::string texture_filename = texture_configuration->get_texture_filename().length() != 0 ?
-            texture_configuration->get_texture_filename() : texture_configuration->get_render_technique_name();
-            texture_shared_ptr texture = resource_accessor->get_texture(texture_filename);
+            
+            texture_shared_ptr texture = nullptr;
+            if(texture_configuration->get_cubemap())
+            {
+                texture = resource_accessor->get_cubemap_texture(texture_configuration->get_texture_filename_x_positive(),
+                                                                 texture_configuration->get_texture_filename_x_negative(),
+                                                                 texture_configuration->get_texture_filename_y_positive(),
+                                                                 texture_configuration->get_texture_filename_y_negative(),
+                                                                 texture_configuration->get_texture_filename_z_positive(),
+                                                                 texture_configuration->get_texture_filename_z_negative());
+            }
+            else
+            {
+                std::string texture_filename = texture_configuration->get_texture_filename().length() != 0 ?
+                texture_configuration->get_texture_filename() : texture_configuration->get_render_technique_name();
+                texture = resource_accessor->get_texture(texture_filename);
+            }
+            
             assert(texture != nullptr);
             texture->set_wrap_mode(texture_configuration->get_wrap_mode());
             texture->set_mag_filter(texture_configuration->get_mag_filter());
@@ -132,6 +149,7 @@ namespace gb
             assert(texture_configuration->get_sampler_index() >= 0 &&
                    texture_configuration->get_sampler_index() < e_shader_sampler_max);
             material->set_texture(texture, static_cast<e_shader_sampler>(texture_configuration->get_sampler_index()));
+            
             if(listener)
             {
                 texture->add_resource_loading_listener(listener);

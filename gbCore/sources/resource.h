@@ -39,9 +39,9 @@ namespace gb
         
     public:
         
-        virtual  ~resource_loading_interface() = default;
+        virtual ~resource_loading_interface() = default;
         
-        virtual void on_resource_loaded(const resource_shared_ptr& resource, bool success);
+        virtual void on_resource_loaded(const resource_shared_ptr& resource, bool success) = 0;
     };
     
     class resource : public std::enable_shared_from_this<resource>
