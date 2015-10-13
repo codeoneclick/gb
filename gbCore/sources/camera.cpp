@@ -31,21 +31,18 @@ namespace gb
     
     void camera::update(f32 deltatime)
     {
-        //m_position.y = m_distance.y;
-        //m_position.x = cosf(-m_rotation) * -m_distance.x;
-        //m_position.z = sinf(-m_rotation) * -m_distance.z;
         m_matrix_v = glm::lookAt(m_position, m_look_at, m_up);
         
-        glm::vec3 position = m_position;
-        position.y = -position.y;
-        glm::vec3 look_at = m_look_at;
-        look_at.y = -look_at.y;
-        m_matrix_i_v = glm::lookAt(position, look_at, m_up * -1.f);
+        glm::vec3 inv_position = m_position;
+        inv_position.y = -inv_position.y;
+        glm::vec3 inv_look_at = m_look_at;
+        inv_look_at.y = -inv_look_at.y;
+        m_matrix_i_v = glm::lookAt(inv_position, inv_look_at, m_up * -1.f);
         
         m_matrix_n = glm::inverse(m_matrix_v);
         m_matrix_n = glm::transpose(m_matrix_n);
         
-        m_matrix_i_vp = glm::inverse(m_matrix_p * m_matrix_v);// * glm::inverse(m_matrix_v);
+        m_matrix_i_vp = glm::inverse(m_matrix_p * m_matrix_v);
         
         m_frustum->update(m_fov, m_aspect, m_near, m_far, m_position, m_up, m_look_at);
     }

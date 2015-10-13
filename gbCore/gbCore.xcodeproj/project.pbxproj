@@ -88,12 +88,24 @@
 		21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
 		216DF2AB1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2AC1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; settings = {ASSET_TAGS = (); }; };
-		216DF2C41BCCCDFF008E4B2B /* sky_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C21BCCCDFF008E4B2B /* sky_box.cpp */; settings = {ASSET_TAGS = (); }; };
-		216DF2C51BCCCDFF008E4B2B /* sky_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C21BCCCDFF008E4B2B /* sky_box.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF2C41BCCCDFF008E4B2B /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C21BCCCDFF008E4B2B /* skybox.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF2C51BCCCDFF008E4B2B /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C21BCCCDFF008E4B2B /* skybox.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2CB1BCCD093008E4B2B /* skybox_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C91BCCD093008E4B2B /* skybox_configuration.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2CC1BCCD093008E4B2B /* skybox_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C91BCCD093008E4B2B /* skybox_configuration.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2ED1BCCD44A008E4B2B /* cubemap_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2EB1BCCD44A008E4B2B /* cubemap_texture.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2EE1BCCD44A008E4B2B /* cubemap_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2EB1BCCD44A008E4B2B /* cubemap_texture.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3051BCCF898008E4B2B /* ocean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3031BCCF898008E4B2B /* ocean.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3061BCCF898008E4B2B /* ocean.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3031BCCF898008E4B2B /* ocean.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3091BCCF9EC008E4B2B /* ocean_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3071BCCF9EC008E4B2B /* ocean_configuration.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF30A1BCCF9EC008E4B2B /* ocean_configuration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3071BCCF9EC008E4B2B /* ocean_configuration.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF33F1BCD0D3F008E4B2B /* ces_skybox_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF33D1BCD0D3F008E4B2B /* ces_skybox_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3401BCD0D3F008E4B2B /* ces_skybox_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF33D1BCD0D3F008E4B2B /* ces_skybox_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3431BCD0D53008E4B2B /* ces_ocean_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3441BCD0D53008E4B2B /* ces_ocean_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3471BCD0DAC008E4B2B /* ces_skybox_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF3481BCD0DAC008E4B2B /* ces_skybox_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF34B1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */; settings = {ASSET_TAGS = (); }; };
+		216DF34C1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */; settings = {ASSET_TAGS = (); }; };
 		2173D1DD1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1E11B7CA774002912BE /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DF1B7CA774002912BE /* mesh.cpp */; };
@@ -480,12 +492,24 @@
 		21613FE51B948256001562EB /* shader_bounding_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_bounding_box.cpp; path = sources/shader_bounding_box.cpp; sourceTree = "<group>"; };
 		216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderable_interface.cpp; path = sources/renderable_interface.cpp; sourceTree = "<group>"; };
 		216DF2AA1BCBAB53008E4B2B /* renderable_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderable_interface.h; path = sources/renderable_interface.h; sourceTree = "<group>"; };
-		216DF2C21BCCCDFF008E4B2B /* sky_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = sky_box.cpp; path = sources/sky_box.cpp; sourceTree = "<group>"; };
-		216DF2C31BCCCDFF008E4B2B /* sky_box.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sky_box.h; path = sources/sky_box.h; sourceTree = "<group>"; };
+		216DF2C21BCCCDFF008E4B2B /* skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = skybox.cpp; path = sources/skybox.cpp; sourceTree = "<group>"; };
+		216DF2C31BCCCDFF008E4B2B /* skybox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skybox.h; path = sources/skybox.h; sourceTree = "<group>"; };
 		216DF2C91BCCD093008E4B2B /* skybox_configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = skybox_configuration.cpp; path = autogenerated/skybox_configuration.cpp; sourceTree = "<group>"; };
 		216DF2CA1BCCD093008E4B2B /* skybox_configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = skybox_configuration.h; path = autogenerated/skybox_configuration.h; sourceTree = "<group>"; };
 		216DF2EB1BCCD44A008E4B2B /* cubemap_texture.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cubemap_texture.cpp; path = sources/cubemap_texture.cpp; sourceTree = "<group>"; };
 		216DF2EC1BCCD44A008E4B2B /* cubemap_texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cubemap_texture.h; path = sources/cubemap_texture.h; sourceTree = "<group>"; };
+		216DF3031BCCF898008E4B2B /* ocean.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ocean.cpp; path = sources/ocean.cpp; sourceTree = "<group>"; };
+		216DF3041BCCF898008E4B2B /* ocean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ocean.h; path = sources/ocean.h; sourceTree = "<group>"; };
+		216DF3071BCCF9EC008E4B2B /* ocean_configuration.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ocean_configuration.cpp; path = autogenerated/ocean_configuration.cpp; sourceTree = "<group>"; };
+		216DF3081BCCF9EC008E4B2B /* ocean_configuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ocean_configuration.h; path = autogenerated/ocean_configuration.h; sourceTree = "<group>"; };
+		216DF33D1BCD0D3F008E4B2B /* ces_skybox_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_skybox_system.cpp; path = sources/ces_skybox_system.cpp; sourceTree = "<group>"; };
+		216DF33E1BCD0D3F008E4B2B /* ces_skybox_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_skybox_system.h; path = sources/ces_skybox_system.h; sourceTree = "<group>"; };
+		216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_ocean_system.cpp; path = sources/ces_ocean_system.cpp; sourceTree = "<group>"; };
+		216DF3421BCD0D53008E4B2B /* ces_ocean_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_ocean_system.h; path = sources/ces_ocean_system.h; sourceTree = "<group>"; };
+		216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_skybox_component.cpp; path = sources/ces_skybox_component.cpp; sourceTree = "<group>"; };
+		216DF3461BCD0DAC008E4B2B /* ces_skybox_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_skybox_component.h; path = sources/ces_skybox_component.h; sourceTree = "<group>"; };
+		216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_ocean_component.cpp; path = sources/ces_ocean_component.cpp; sourceTree = "<group>"; };
+		216DF34A1BCD0DD9008E4B2B /* ces_ocean_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_ocean_component.h; path = sources/ces_ocean_component.h; sourceTree = "<group>"; };
 		2173D1DB1B7C9AD5002912BE /* vao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vao.cpp; path = sources/vao.cpp; sourceTree = "<group>"; };
 		2173D1DC1B7C9AD5002912BE /* vao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vao.h; path = sources/vao.h; sourceTree = "<group>"; };
 		2173D1DF1B7CA774002912BE /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh.cpp; path = sources/mesh.cpp; sourceTree = "<group>"; };
@@ -1089,6 +1113,10 @@
 				21A846761B96DCC9002B95A1 /* ces_particle_emitter_system.cpp */,
 				21176FCA1BC5188000890D7C /* ces_box2d_system.h */,
 				21176FC91BC5188000890D7C /* ces_box2d_system.cpp */,
+				216DF33E1BCD0D3F008E4B2B /* ces_skybox_system.h */,
+				216DF33D1BCD0D3F008E4B2B /* ces_skybox_system.cpp */,
+				216DF3421BCD0D53008E4B2B /* ces_ocean_system.h */,
+				216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */,
 			);
 			name = systems;
 			sourceTree = "<group>";
@@ -1117,6 +1145,10 @@
 				21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */,
 				21176FCE1BC519AA00890D7C /* ces_box2d_component.h */,
 				21176FCD1BC519AA00890D7C /* ces_box2d_component.cpp */,
+				216DF3461BCD0DAC008E4B2B /* ces_skybox_component.h */,
+				216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */,
+				216DF34A1BCD0DD9008E4B2B /* ces_ocean_component.h */,
+				216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1797,8 +1829,10 @@
 				21D78C271B90AD9700665BB6 /* model3d_animated.cpp */,
 				21A846731B96D90B002B95A1 /* particle_emitter.h */,
 				21A846721B96D90B002B95A1 /* particle_emitter.cpp */,
-				216DF2C31BCCCDFF008E4B2B /* sky_box.h */,
-				216DF2C21BCCCDFF008E4B2B /* sky_box.cpp */,
+				216DF2C31BCCCDFF008E4B2B /* skybox.h */,
+				216DF2C21BCCCDFF008E4B2B /* skybox.cpp */,
+				216DF3041BCCF898008E4B2B /* ocean.h */,
+				216DF3031BCCF898008E4B2B /* ocean.cpp */,
 				21DE320D1B8D9FCD0046EDF8 /* scene_graph.h */,
 				21DE320C1B8D9FCD0046EDF8 /* scene_graph.cpp */,
 				21606C5E1B8DB21A005EA908 /* scene_fabricator.h */,
@@ -1895,6 +1929,8 @@
 				21B405D51B7B3F6D003382AB /* particle_emitter_configuration.cpp */,
 				216DF2C91BCCD093008E4B2B /* skybox_configuration.cpp */,
 				216DF2CA1BCCD093008E4B2B /* skybox_configuration.h */,
+				216DF3081BCCF9EC008E4B2B /* ocean_configuration.h */,
+				216DF3071BCCF9EC008E4B2B /* ocean_configuration.cpp */,
 				21B405DA1B7B3F6D003382AB /* ss_technique_configuration.h */,
 				21B405D91B7B3F6D003382AB /* ss_technique_configuration.cpp */,
 				21B405DE1B7B3F6D003382AB /* transition_configuration.h */,
@@ -2045,7 +2081,7 @@
 				21B406201B7B7FEB003382AB /* game_transition.cpp in Sources */,
 				21B404F51B7A0A88003382AB /* b2WheelJoint.cpp in Sources */,
 				21B404D61B7A0A88003382AB /* b2Draw.cpp in Sources */,
-				216DF2C41BCCCDFF008E4B2B /* sky_box.cpp in Sources */,
+				216DF2C41BCCCDFF008E4B2B /* skybox.cpp in Sources */,
 				212B18641B81A9AA00FFDCE7 /* graphics_context_osx.cpp in Sources */,
 				21B404CA1B7A0A88003382AB /* b2CollideCircle.cpp in Sources */,
 				21B405081B7A0A88003382AB /* compress.c in Sources */,
@@ -2087,6 +2123,7 @@
 				21B404FB1B7A0A88003382AB /* pngpread.c in Sources */,
 				212B18691B81B3FA00FFDCE7 /* ces_render_system.cpp in Sources */,
 				21D78BFB1B9057AB00665BB6 /* animation_commiter_seq.cpp in Sources */,
+				216DF3471BCD0DAC008E4B2B /* ces_skybox_component.cpp in Sources */,
 				21D78BF31B90572F00665BB6 /* ces_animation_component.cpp in Sources */,
 				21B404D51B7A0A88003382AB /* b2BlockAllocator.cpp in Sources */,
 				21B404DC1B7A0A88003382AB /* b2ContactManager.cpp in Sources */,
@@ -2123,6 +2160,7 @@
 				21D78BFF1B9058A300665BB6 /* animation_serializer_seq.cpp in Sources */,
 				21E33D981BB17B8600B540E7 /* shader_direction_light.cpp in Sources */,
 				21B404EF1B7A0A88003382AB /* b2MouseJoint.cpp in Sources */,
+				216DF3051BCCF898008E4B2B /* ocean.cpp in Sources */,
 				21B4060C1B7B662C003382AB /* ss_technique_configuration.cpp in Sources */,
 				21B404DE1B7A0A88003382AB /* b2Island.cpp in Sources */,
 				21B405A01B7A1031003382AB /* gl_commands.hpp in Sources */,
@@ -2138,8 +2176,10 @@
 				212B186D1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
 				2102EB301B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */,
 				21D78C391B943CB400665BB6 /* collision_manager.cpp in Sources */,
+				216DF34B1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */,
 				21B404C91B7A0A88003382AB /* b2BroadPhase.cpp in Sources */,
 				21B405021B7A0A88003382AB /* pngwio.c in Sources */,
+				216DF3431BCD0D53008E4B2B /* ces_ocean_system.cpp in Sources */,
 				21DE30081B832C150046EDF8 /* resource_commiter.cpp in Sources */,
 				21B404FE1B7A0A88003382AB /* pngrtran.c in Sources */,
 				21DE30551B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */,
@@ -2168,6 +2208,7 @@
 				210F2AA91BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */,
 				212B18A31B81D33A00FFDCE7 /* camera.cpp in Sources */,
 				21B406241B7B8077003382AB /* ogl_window_osx.cpp in Sources */,
+				216DF3091BCCF9EC008E4B2B /* ocean_configuration.cpp in Sources */,
 				21B404E11B7A0A88003382AB /* b2ChainAndCircleContact.cpp in Sources */,
 				21B405001B7A0A88003382AB /* pngset.c in Sources */,
 				21B404F91B7A0A88003382AB /* pngget.c in Sources */,
@@ -2185,6 +2226,7 @@
 				21B4060D1B7B662C003382AB /* transition_configuration.cpp in Sources */,
 				21DE301E1B834EF30046EDF8 /* texture_commiter_png.cpp in Sources */,
 				21176FCF1BC519AA00890D7C /* ces_box2d_component.cpp in Sources */,
+				216DF33F1BCD0D3F008E4B2B /* ces_skybox_system.cpp in Sources */,
 				21B404E61B7A0A88003382AB /* b2EdgeAndCircleContact.cpp in Sources */,
 				210F2AA01BC2A0A600B0809F /* game_graph_interface.cpp in Sources */,
 				21D78C351B943ACE00665BB6 /* ces_touch_component.cpp in Sources */,
@@ -2236,7 +2278,7 @@
 				21B4052E1B7A0AFA003382AB /* b2Draw.cpp in Sources */,
 				21B406051B7B631B003382AB /* shader_configuration.cpp in Sources */,
 				21B4052F1B7A0AFA003382AB /* b2CollideCircle.cpp in Sources */,
-				216DF2C51BCCCDFF008E4B2B /* sky_box.cpp in Sources */,
+				216DF2C51BCCCDFF008E4B2B /* skybox.cpp in Sources */,
 				21B405301B7A0AFA003382AB /* compress.c in Sources */,
 				212B18611B81A70100FFDCE7 /* graphics_context.cpp in Sources */,
 				212B18BE1B82184F00FFDCE7 /* shader_texture_2d.cpp in Sources */,
@@ -2278,6 +2320,7 @@
 				21C46F9F1B7BC1350070CF14 /* shader.cpp in Sources */,
 				21D78BFC1B9057AB00665BB6 /* animation_commiter_seq.cpp in Sources */,
 				21D78BF41B90572F00665BB6 /* ces_animation_component.cpp in Sources */,
+				216DF3481BCD0DAC008E4B2B /* ces_skybox_component.cpp in Sources */,
 				21B405411B7A0AFA003382AB /* pngpread.c in Sources */,
 				21B405421B7A0AFA003382AB /* b2BlockAllocator.cpp in Sources */,
 				212B187F1B81B6CF00FFDCE7 /* render_technique_main.cpp in Sources */,
@@ -2314,6 +2357,7 @@
 				21B4054E1B7A0AFA003382AB /* gzclose.c in Sources */,
 				21E33D991BB17B8600B540E7 /* shader_direction_light.cpp in Sources */,
 				21DE32071B8D93A70046EDF8 /* mesh_serializer_3dmesh.cpp in Sources */,
+				216DF3061BCCF898008E4B2B /* ocean.cpp in Sources */,
 				212B18D51B8235AA00FFDCE7 /* graphics_context_ios.cpp in Sources */,
 				21B406011B7B62DE003382AB /* animation_configuration.cpp in Sources */,
 				21B4054F1B7A0AFA003382AB /* crc32.c in Sources */,
@@ -2329,8 +2373,10 @@
 				21B405511B7A0AFA003382AB /* b2MouseJoint.cpp in Sources */,
 				21B405521B7A0AFA003382AB /* b2Island.cpp in Sources */,
 				21B405A11B7A1031003382AB /* gl_commands.hpp in Sources */,
+				216DF34C1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */,
 				21B4060F1B7B662D003382AB /* output_technique_configuration.cpp in Sources */,
 				21DE30091B832C150046EDF8 /* resource_commiter.cpp in Sources */,
+				216DF3441BCD0D53008E4B2B /* ces_ocean_system.cpp in Sources */,
 				21B405531B7A0AFA003382AB /* pngread.c in Sources */,
 				21DE30561B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */,
 				21B405541B7A0AFA003382AB /* b2CircleShape.cpp in Sources */,
@@ -2359,6 +2405,7 @@
 				210F2AAA1BC3A13200B0809F /* instanced_models3d_static.cpp in Sources */,
 				21B405611B7A0AFA003382AB /* b2Math.cpp in Sources */,
 				21B405621B7A0AFA003382AB /* inffast.c in Sources */,
+				216DF30A1BCCF9EC008E4B2B /* ocean_configuration.cpp in Sources */,
 				21B406111B7B662D003382AB /* ss_technique_configuration.cpp in Sources */,
 				21B405631B7A0AFA003382AB /* b2StackAllocator.cpp in Sources */,
 				21B405641B7A0AFA003382AB /* b2ChainAndCircleContact.cpp in Sources */,
@@ -2376,6 +2423,7 @@
 				21DE301F1B834EF30046EDF8 /* texture_commiter_png.cpp in Sources */,
 				21D78C361B943ACE00665BB6 /* ces_touch_component.cpp in Sources */,
 				21176FD01BC519AA00890D7C /* ces_box2d_component.cpp in Sources */,
+				216DF3401BCD0D3F008E4B2B /* ces_skybox_system.cpp in Sources */,
 				21B405691B7A0AFA003382AB /* b2World.cpp in Sources */,
 				210F2AA11BC2A0A600B0809F /* game_graph_interface.cpp in Sources */,
 				21B4056A1B7A0AFA003382AB /* b2EdgeAndCircleContact.cpp in Sources */,

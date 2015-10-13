@@ -59,6 +59,12 @@ namespace gb
 #define unsafe_get_instanced_geometry_component(entity) static_cast<ces_instanced_geometry_component*>(entity->get_component(e_ces_component_type_geometry).get())
 #define unsafe_get_instanced_geometry_component_from_this static_cast<ces_instanced_geometry_component*>(ces_entity::get_component(e_ces_component_type_geometry).get())
     
+#define unsafe_get_ocean_component(entity) static_cast<ces_ocean_component*>(entity->get_component(e_ces_component_type_ocean).get())
+#define unsafe_get_ocean_component_from_this static_cast<ces_ocean_component*>(ces_entity::get_component(e_ces_component_type_ocean).get())
+    
+#define unsafe_get_skybox_component(entity) static_cast<ces_skybox_component*>(entity->get_component(e_ces_component_type_skybox).get())
+#define unsafe_get_skybox_component_from_this static_cast<ces_skybox_component*>(ces_entity::get_component(e_ces_component_type_skybox).get())
+    
 };
 
 #endif

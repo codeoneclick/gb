@@ -326,7 +326,7 @@ namespace gb
     mesh_shared_ptr mesh_constructor::create_screen_quad()
     {
         vbo_shared_ptr vbo = std::make_shared<gb::vbo>(4, GL_STATIC_DRAW);
-        vbo::vertex_attribute * vertices = vbo->lock();
+        vbo::vertex_attribute *vertices = vbo->lock();
         
         vertices[0].m_position = glm::vec3(-1.0f, -1.0f, 0.0f);
         vertices[0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f, 0.0f));
@@ -378,6 +378,62 @@ namespace gb
     {
         std::tuple<vbo_shared_ptr, ibo_shared_ptr> box_data = mesh_constructor::create_box_data(min_bound, max_bound);
         mesh_shared_ptr mesh = mesh::construct("box", std::get<0>(box_data), std::get<1>(box_data), min_bound, max_bound);
+        return mesh;
+    }
+    
+    mesh_shared_ptr mesh_constructor::create_ocean_plane(i32 size, f32 altitude)
+    {
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(9 * 4, GL_STATIC_DRAW);
+        vbo::vertex_attribute *vertices = vbo->lock();
+        ui32 index = 0;
+        for(i32 i = -1; i <= 1; ++i)
+        {
+            for(i32 j = -1; j <= 1; ++j)
+            {
+                vertices[index * 4 + 0].m_position = glm::vec3(size * i, altitude, size * j);
+                vertices[index * 4 + 1].m_position = glm::vec3(size * i + size, altitude, size * j);
+                vertices[index * 4 + 2].m_position = glm::vec3(size * i + size, altitude, size * j + size);
+                vertices[index * 4 + 3].m_position = glm::vec3(size * i, altitude, size * j + size);
+                
+                vertices[index * 4 + 0].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
+                vertices[index * 4 + 1].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
+                vertices[index * 4 + 2].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
+                vertices[index * 4 + 3].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
+                
+                vertices[index * 4 + 0].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
+                vertices[index * 4 + 1].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
+                vertices[index * 4 + 2].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
+                vertices[index * 4 + 3].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
+                
+                vertices[index * 4 + 0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  0.0f));
+                vertices[index * 4 + 1].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  0.0f));
+                vertices[index * 4 + 2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  1.0f));
+                vertices[index * 4 + 3].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  1.0f));
+                
+                index++;
+            }
+        }
+        vbo->unlock();
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(9 * 6, GL_STATIC_DRAW);
+        ui16* indices = ibo->lock();
+        index = 0;
+        for(i32 i = -1; i <= 1; ++i)
+        {
+            for(i32 j = -1; j <= 1; ++j)
+            {
+                indices[index * 6 + 0] = index * 4 + 0;
+                indices[index * 6 + 1] = index * 4 + 1;
+                indices[index * 6 + 2] = index * 4 + 2;
+                indices[index * 6 + 3] = index * 4 + 0;
+                indices[index * 6 + 4] = index * 4 + 2;
+                indices[index * 6 + 5] = index * 4 + 3;
+                
+                index++;
+            }
+        }
+        ibo->unlock();
+        mesh_shared_ptr mesh = mesh::construct("ocean_plane", vbo, ibo, glm::vec3(INT16_MIN), glm::vec3(INT16_MAX));
         return mesh;
     }
     

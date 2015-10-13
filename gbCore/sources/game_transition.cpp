@@ -16,6 +16,8 @@
 #include "ces_box2d_system.h"
 #include "ces_input_system.h"
 #include "ces_particle_emitter_system.h"
+#include "ces_skybox_system.h"
+#include "ces_ocean_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
 #include "graphics_context.h"
@@ -150,6 +152,12 @@ namespace gb
         
         std::shared_ptr<ces_box2d_system> box2d_system = std::make_shared<ces_box2d_system>();
         m_system_feeder->add_system(box2d_system, e_ces_system_type_box2d);
+        
+        std::shared_ptr<ces_skybox_system> skybox_system = std::make_shared<ces_skybox_system>();
+        m_system_feeder->add_system(skybox_system, e_ces_system_type_skybox);
+        
+        std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>();
+        m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
         
         add_listener_to_game_loop(m_system_feeder);
         

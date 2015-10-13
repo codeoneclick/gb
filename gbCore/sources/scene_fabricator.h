@@ -31,7 +31,6 @@ namespace gb
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
         std::set<direction_light_shared_ptr> m_direction_lights_container;
-        std::set<sky_box_shared_ptr> m_sky_boxes_container;
         
         void add_materials(const renderable_interface_shared_ptr& renderable_object, const std::vector<std::shared_ptr<configuration>>& configurations);
         
@@ -55,8 +54,11 @@ namespace gb
         shadow_cast_light_shared_ptr create_shadow_cast_light(f32 fov, f32 near, f32 far);
         void destroy_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light);
         
-        sky_box_shared_ptr create_sky_box(const std::string& filename);
-        void destroy_sky_box(const sky_box_shared_ptr& sky_box);
+        skybox_shared_ptr create_skybox(const std::string& filename);
+        void destroy_skybox(const skybox_shared_ptr& sky_box);
+        
+        ocean_shared_ptr create_ocean(const std::string& filename);
+        void destroy_ocean(const ocean_shared_ptr& ocean);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
         

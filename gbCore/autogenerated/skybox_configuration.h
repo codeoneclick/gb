@@ -10,10 +10,6 @@ class skybox_configuration : public game_object_configuration
 public:
 skybox_configuration(void) = default;
 ~skybox_configuration(void) = default;
-i32 get_z_order(void) const;
-#if defined(__EDITOR__)
-void set_z_order(i32 z_order);
-#endif
 std::vector<std::shared_ptr<configuration>> get_materials_configurations(void) const;
 #if defined(__EDITOR__)
 void add_materials_configurations(const std::shared_ptr<gb::material_configuration>& material);

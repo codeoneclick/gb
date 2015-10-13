@@ -3,6 +3,7 @@
 #define configuration_accessor_h
 #include "material_configuration.h"
 #include "model_configuration.h"
+#include "ocean_configuration.h"
 #include "output_technique_configuration.h"
 #include "particle_emitter_configuration.h"
 #include "skybox_configuration.h"
@@ -18,6 +19,7 @@ configuration_accessor(void) = default;
 ~configuration_accessor(void) = default;
 std::shared_ptr<configuration> get_material_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_model_configuration(const std::string& filename) const;
+std::shared_ptr<configuration> get_ocean_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_output_technique_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_particle_emitter_configuration(const std::string& filename) const;
 std::shared_ptr<configuration> get_skybox_configuration(const std::string& filename) const;

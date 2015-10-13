@@ -16,6 +16,13 @@ configuration->serialize(filename);
 assert(configuration);
 return configuration;
 }
+std::shared_ptr<configuration> configuration_accessor::get_ocean_configuration(const std::string& filename) const
+{
+std::shared_ptr<ocean_configuration> configuration = std::make_shared<ocean_configuration>();
+configuration->serialize(filename);
+assert(configuration);
+return configuration;
+}
 std::shared_ptr<configuration> configuration_accessor::get_output_technique_configuration(const std::string& filename) const
 {
 std::shared_ptr<output_technique_configuration> configuration = std::make_shared<output_technique_configuration>();

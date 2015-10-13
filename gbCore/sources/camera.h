@@ -81,6 +81,10 @@ namespace gb
         
         glm::mat4 get_matrix_s(const glm::vec3& position); // spherical
         glm::mat4 get_matrix_c(const glm::vec3& position); // cylindrical
+        
+        inline f32 get_yaw() const;
+        inline f32 get_pitch() const;
+        inline f32 get_roll() const;
     };
 };
 

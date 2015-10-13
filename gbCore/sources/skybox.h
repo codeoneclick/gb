@@ -1,19 +1,19 @@
 //
-//  sky_box.h
+//  skybox.h
 //  gbCore
 //
 //  Created by sergey.sergeev on 10/13/15.
 //  Copyright © 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef sky_box_h
-#define sky_box_h
+#ifndef skybox_h
+#define skybox_h
 
 #include "game_object.h"
 
 namespace gb
 {
-    class sky_box : public game_object
+    class skybox : public game_object
     {
     private:
         
@@ -21,8 +21,8 @@ namespace gb
         
     public:
         
-        sky_box();
-        ~sky_box();
+        skybox();
+        ~skybox();
         
         void set_mesh(const mesh_shared_ptr& mesh);
     };

@@ -7,6 +7,8 @@
         <material filename="material.instanced.boxes.base.xml"/>
         <material filename="material.instanced.boxes.forward.rendering.normal.xml"/>
         <material filename="material.instanced.boxes.forward.rendering.emissive.xml"/>
+        <material filename="material.instanced.boxes.refraction.xml"/>
+        <material filename="material.instanced.boxes.reflection.xml"/>
     </materials>
     <animations>
     </animations>

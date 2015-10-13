@@ -22,7 +22,8 @@
 #include "instanced_models3d_static.h"
 #include "model3d_animated.h"
 #include "particle_emitter.h"
-#include "sky_box.h"
+#include "skybox.h"
+#include "ocean.h"
 #include "mesh_constructor.h"
 
 namespace gb
@@ -400,28 +401,55 @@ namespace gb
         m_game_objects_container.erase(game_object);
     }
     
-    sky_box_shared_ptr scene_fabricator::create_sky_box(const std::string& filename)
+    skybox_shared_ptr scene_fabricator::create_skybox(const std::string& filename)
     {
         std::shared_ptr<skybox_configuration> skybox_configuration =
         std::static_pointer_cast<gb::skybox_configuration>(m_configuration_accessor->get_skybox_configuration(filename));
         assert(skybox_configuration);
-        sky_box_shared_ptr sky_box = nullptr;
+        skybox_shared_ptr skybox = nullptr;
         if(skybox_configuration)
         {
-            sky_box = std::make_shared<gb::sky_box>();
+            skybox = std::make_shared<gb::skybox>();
             
-            mesh_shared_ptr mesh = mesh_constructor::create_box(glm::vec3(-.5f), glm::vec3(.5f));
+            mesh_shared_ptr mesh = mesh_constructor::create_box(glm::vec3(-1.f), glm::vec3(1.f));
             assert(mesh);
-            sky_box->set_mesh(mesh);
+            skybox->set_mesh(mesh);
             
-            scene_fabricator::add_materials(sky_box, skybox_configuration->get_materials_configurations());
-            m_sky_boxes_container.insert(sky_box);
+            scene_fabricator::add_materials(skybox, skybox_configuration->get_materials_configurations());
+            m_game_objects_container.insert(skybox);
         }
-        return sky_box;
+        return skybox;
     }
     
-    void scene_fabricator::destroy_sky_box(const sky_box_shared_ptr& sky_box)
+    void scene_fabricator::destroy_skybox(const skybox_shared_ptr& skybox)
     {
-        m_sky_boxes_container.erase(sky_box);
+        m_game_objects_container.erase(skybox);
+    }
+    
+    ocean_shared_ptr scene_fabricator::create_ocean(const std::string& filename)
+    {
+        std::shared_ptr<ocean_configuration> ocean_configuration =
+        std::static_pointer_cast<gb::ocean_configuration>(m_configuration_accessor->get_ocean_configuration(filename));
+        assert(ocean_configuration);
+        ocean_shared_ptr ocean = nullptr;
+        if(ocean_configuration)
+        {
+            ocean = std::make_shared<gb::ocean>();
+            
+            mesh_shared_ptr mesh = mesh_constructor::create_ocean_plane(ocean_configuration->get_size(), ocean_configuration->get_altitude());
+            assert(mesh);
+            ocean->set_mesh(mesh);
+            
+            ocean->set_wave_generator_interval(ocean_configuration->get_wave_generation_interval());
+            
+            scene_fabricator::add_materials(ocean, ocean_configuration->get_materials_configurations());
+            m_game_objects_container.insert(ocean);
+        }
+        return ocean;
+    }
+    
+    void scene_fabricator::destroy_ocean(const ocean_shared_ptr& ocean)
+    {
+        m_game_objects_container.erase(ocean);
     }
 }

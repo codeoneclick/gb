@@ -116,6 +116,37 @@ namespace gb
     {
         return m_frustum;
     }
+    
+    
+    inline f32 camera::get_yaw() const
+    {
+        if (m_matrix_v[0][0] == 1.f ||
+            m_matrix_v[0][0] == -1.f)
+        {
+            return atan2f(m_matrix_v[0][2], m_matrix_v[2][3]);
+        }
+        return atan2(-m_matrix_v[2][0], m_matrix_v[0][0]);
+    }
+    
+    inline f32 camera::get_pitch() const
+    {
+        if (m_matrix_v[0][0] == 1.f ||
+            m_matrix_v[0][0] == -1.f)
+        {
+            return 0.f;
+        }
+        return asin(-m_matrix_v[1][0]);
+    }
+    
+    inline f32 camera::get_roll() const
+    {
+        if (m_matrix_v[0][0] == 1.f ||
+            m_matrix_v[0][0] == -1.f)
+        {
+            return 0.f;
+        }
+        return atan2(-m_matrix_v[1][2], m_matrix_v[1][1]);
+    }
 }
 
 #endif

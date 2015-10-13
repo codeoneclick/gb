@@ -2,19 +2,6 @@
 #include "skybox_configuration.h"
 namespace gb
 {
-i32 skybox_configuration::get_z_order(void) const
-{
-const auto& iterator = m_attributes.find("/skybox/z_order");
-assert(iterator != m_attributes.end());
-i32 value; iterator->second->get(&value);
-return value;
-}
-#if defined(__EDITOR__)
-void skybox_configuration::set_z_order(i32 z_order)
-{
-configuration::set_attribute("/skybox/z_order", std::make_shared<configuration_attribute>(z_order));
-}
-#endif
 std::vector<std::shared_ptr<configuration>> skybox_configuration::get_materials_configurations(void) const
 {
 const auto& iterator = m_configurations.find("/skybox/materials/material");
@@ -44,8 +31,6 @@ pugi::xml_parse_result result = configuration::open_xml_document(document, filen
 assert(result.status == pugi::status_ok);
 pugi::xpath_node node;
 node = document.select_single_node("/skybox");
-i32 z_order = node.node().attribute("z_order").as_int();
-configuration::set_attribute("/skybox/z_order", std::make_shared<configuration_attribute>(z_order));
 pugi::xpath_node_set material_nodes = document.select_nodes("/skybox/materials/material");
 for (pugi::xpath_node_set::const_iterator iterator = material_nodes.begin(); iterator != material_nodes.end(); ++iterator)
 {
@@ -63,9 +48,6 @@ assert(result.status == pugi::status_ok);
 pugi::xml_node node = document.append_child("skybox");
 pugi::xml_node parent_node = node;
 pugi::xml_attribute attribute;
-attribute = node.append_attribute("z_order");
-i32 z_order = skybox_configuration::get_z_order();
-attribute.set_value(z_order);
 node = parent_node.append_child("materials");
 for(const auto& iterator : skybox_configuration::get_materials_configurations())
 {
