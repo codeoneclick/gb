@@ -23,11 +23,11 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-    vs_filename="shader_instanced_models3d_static_shadowmap.vert"
-    fs_filename="shader_instanced_models3d_static_shadowmap.frag"/>
+    vs_filename="shader_instanced_models3d_static_reflection_refraction.vert"
+    fs_filename="shader_instanced_models3d_static_reflection_refraction.frag"/>
     <textures>
         <texture
-        filename="box_06.png"
+        filename="box_07.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"

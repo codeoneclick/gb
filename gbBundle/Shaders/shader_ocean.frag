@@ -44,7 +44,7 @@ const  vec3 k_binormal = vec3(k_1, k_0, k_0);
 const  vec3 k_tangent = vec3(k_0, k_0, k_1);
 const  vec3 k_normal = vec3(k_0, k_1, k_0);
 
-const vec4 k_water_color_blue = vec4(0.16, 0.32, 0.32, 1.0);
+const vec4 k_water_color_blue = vec4(0.1, 0.15, 0.25, 1.0);
 const vec4 k_water_color_green = vec4(0.16, 0.32, 0.16, 1.0);
 
 const vec4 fog_color = vec4(0.85, 0.95, 1.0, 1.0);
@@ -70,7 +70,7 @@ void main(void)
     float fresnel = dot(k_normal, eye_direction_ws);
     
     vec4 color = mix(reflection_color, refraction_color, fresnel);
-    //color += diffuse_color;
+    color += diffuse_color;
     color.a = 1.0;
     
     /*float fog_distance = (length(vec3(256.0, 0.0, 256.0) - v_vertex_position_ws) - 128.0) / 512.0;
