@@ -2,10 +2,12 @@
 #if defined(__OPENGL_30__)
 
 out vec2 v_texcoord;
+out vec4 v_ss_position;
 
 #else
 
 varying vec2 v_texcoord;
+varying vec4 v_ss_position;
 
 #endif
 
@@ -23,7 +25,10 @@ void main(void)
 {
     vec4 position = vec4(a_position, 1.0);
     position = u_transform_parameters[gl_InstanceID] * position;
+    
     gl_Position = u_mat_p * u_mat_v * position;
-    gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
+    gl_ClipDistance[0] = dot(position, u_vec_clip);
+    
     v_texcoord = a_texcoord;
+    v_ss_position = gl_Position;
 }

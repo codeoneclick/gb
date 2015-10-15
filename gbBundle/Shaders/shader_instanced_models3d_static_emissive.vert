@@ -8,6 +8,7 @@ void main(void)
 {
     vec4 position = vec4(a_position, 1.0);
     position = u_transform_parameters[gl_InstanceID] * position;
+    
     gl_Position = u_mat_p * u_mat_v * position;
-    gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
+    gl_ClipDistance[0] = dot(position, u_vec_clip);
 }

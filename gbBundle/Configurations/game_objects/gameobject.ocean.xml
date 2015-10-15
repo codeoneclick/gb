@@ -1,7 +1,7 @@
 <ocean
     z_order="3"
     size="512"
-    altitude="-0.25"
+    altitude="0.0"
     wave_generation_interval="0.005">
 	<materials>
 		<material filename="material.ocean.base.xml"/>
