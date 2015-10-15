@@ -86,7 +86,7 @@ namespace koth
                         
                         if(position.y > 0.f)
                         {
-                            position.y -= 0.1;
+                            position.y -= .1f;
                         }
                         else
                         {
@@ -95,6 +95,16 @@ namespace koth
                         
                         m_boxes[i]->set_position(position, j);
                         m_boxes[i]->set_rotation(rotation, j);
+                    }
+                        break;
+                        
+                    case e_level_box_state_none:
+                    {
+                        /*static f32 time = 0.f;
+                        time += .0001f;
+                        glm::vec3 position = m_boxes[i]->get_position(j);
+                        position.y = sinf(.5f * position.x + time) * cosf(.5f * position.z + time) * .25f;
+                        m_boxes[i]->set_position(position, j);*/
                     }
                         break;
                         

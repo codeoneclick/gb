@@ -35,7 +35,6 @@ namespace koth
     void character_controller::update(f32 deltatime)
     {
         bool isMoved = false;
-        
         switch (m_move_state)
         {
             case koth::e_navigation_state_move_forward:
@@ -91,12 +90,14 @@ namespace koth
         }
         m_game_object_navigator->update(deltatime);
         
-        f32 fov = glm::mix(45.f, 50.f, m_camera_move_speed);
-        m_camera->set_fov(fov);
-        m_camera->set_look_at(glm::vec3(std::max(std::min(m_game_object->get_position().x, 12.f), 4.f),
-                                        m_game_object->get_position().y + glm::mix(.5f, 1.5f, m_camera_move_speed),
-                                        std::max(std::min(m_game_object->get_position().z, 12.f), 4.f)));
-        m_camera->set_position(glm::vec3(-12.f, 12.f, 8.f));
+        if(m_camera)
+        {
+            f32 fov = glm::mix(45.f, 50.f, m_camera_move_speed);
+            m_camera->set_fov(fov);
+            m_camera->set_look_at(glm::vec3(std::max(std::min(m_game_object->get_position().x, 12.f), 4.f),
+                                            m_game_object->get_position().y + glm::mix(.5f, 1.5f, m_camera_move_speed),
+                                            std::max(std::min(m_game_object->get_position().z, 12.f), 4.f)));
+        }
     }
     
     void character_controller::set_position(const glm::vec3& position)

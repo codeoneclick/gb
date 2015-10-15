@@ -30,6 +30,7 @@ private:
     
     koth::level_shared_ptr m_level;
     koth::character_controller_shared_ptr m_character_controller;
+    std::map<std::string, koth::ai_character_controller_shared_ptr> m_ai_character_controllers;
     
     gb::ui::ui_fabricator_shared_ptr m_ui_fabricator;
     gb::ui::ui_graph_shared_ptr m_ui_graph;

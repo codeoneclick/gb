@@ -23,7 +23,7 @@ namespace koth
         
         gb::game_object_shared_ptr m_game_object;
         gb::camera_shared_ptr m_camera;
-        koth::game_object_navigator_shared_ptr m_game_object_navigator;
+        game_object_navigator_shared_ptr m_game_object_navigator;
         
         i32 m_move_state;
         i32 m_rotate_state;
@@ -39,7 +39,7 @@ namespace koth
                              const gb::camera_shared_ptr& camera);
         ~character_controller();
         
-        void update(f32 deltatime);
+        virtual void update(f32 deltatime);
         
         void set_position(const glm::vec3& position);
         void set_rotation(const glm::vec3& rotation);
