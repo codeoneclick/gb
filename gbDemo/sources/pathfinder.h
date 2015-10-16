@@ -2,8 +2,8 @@
 //  pathfinder.h
 //  gbDemo
 //
-//  Created by sergey.sergeev on 10/15/15.
-//  Copyright © 2015 sergey.sergeev. All rights reserved.
+//  Created by sergey.sergeev on 10/7/15.
+//  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
 #ifndef pathfinder_h
@@ -11,55 +11,63 @@
 
 #include "main_headers.h"
 #include "declarations.h"
-
-#define k_directions 8
+#include "astar.h"
 
 namespace koth
 {
     class pathfinder
     {
-    public:
-        
-        class node
-        {
-        private:
-            
-            glm::ivec2 m_position;
-            i32 m_distance;
-            i32 m_priority;
-            
-        public:
-            
-            node(const glm::ivec2& position, i32 distance, i32 priority);
-            ~node();
-            
-            glm::ivec2 get_position() const;
-            i32 get_distance() const;
-            i32 get_priority() const;
-            
-            void update_priority(const glm::ivec2& destination_position);
-            void next_distance(i32 direction);
-            const i32 estimate(const glm::ivec2& destination_position) const;
-        };
-        
     private:
         
-    protected:
-        
-        glm::ivec2 m_size;
-        
-        i32* m_map;
-        i32* m_closed_nodes_map;
-        i32* m_open_nodes_map;
-        i32* m_directions_map;
+        std::shared_ptr<astar_node> m_start;
+        std::shared_ptr<astar_node> m_goal;
         
     public:
         
-        pathfinder(const glm::ivec2& size);
-        ~pathfinder();
+        explicit pathfinder() :
+        m_start(nullptr), m_goal(nullptr)
+        {
+            
+        }
+
+        void set_start(const std::shared_ptr<astar_node>& start)
+        {
+            m_start = start;
+        }
+
+        void set_goal(const std::shared_ptr<astar_node>& goal)
+        {
+            m_goal = goal;
+        }
         
-        std::vector<glm::ivec2> get_path(const glm::ivec2& start_position,
-                                         const glm::ivec2& end_position);
+        std::shared_ptr<astar_node> get_start() const
+        {
+            return m_start;
+        }
+        
+        std::shared_ptr<astar_node> get_goal() const
+        {
+            return m_goal;
+        }
+        
+        bool find_path(std::vector<std::shared_ptr<astar_node>>& solution)
+        {
+            std::shared_ptr<astar> algorithm = std::make_shared<astar>();
+
+            std::vector<std::shared_ptr<astar_node>> path = algorithm->get_path(m_start, m_goal);
+            algorithm->clear();
+            
+            bool is_found = path.size() != 0;
+            if(!is_found)
+            {
+                return false;
+            }
+            for(const auto& iterator : path)
+            {
+                solution.push_back(iterator);
+            }
+            return true;
+        }
     };
 };
 

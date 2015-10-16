@@ -10,6 +10,8 @@
 #define ai_character_controller_h
 
 #include "character_controller.h"
+#include "pathfinder.h"
+#include "level.h"
 
 namespace koth
 {
@@ -19,7 +21,8 @@ namespace koth
         
     protected:
         
-        pathfinder_shared_ptr m_pathfinder;
+        std::shared_ptr<pathfinder> m_pathfinder;
+        std::shared_ptr<level_node> **m_map;
         glm::ivec2 m_target_position;
         
     public:

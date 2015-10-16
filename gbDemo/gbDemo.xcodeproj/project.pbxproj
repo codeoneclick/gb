@@ -125,6 +125,8 @@
 		212B18DB1B82363000FFDCE7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */; };
 		212B18DD1B82363800FFDCE7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DC1B82363800FFDCE7 /* UIKit.framework */; };
 		212B18DF1B82363E00FFDCE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 212B18DE1B82363E00FFDCE7 /* Foundation.framework */; };
+		2150586D1BD0E7C70060C308 /* astar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215058681BD0E7C70060C308 /* astar.cpp */; settings = {ASSET_TAGS = (); }; };
+		2150586E1BD0E7C70060C308 /* path_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2150586B1BD0E7C70060C308 /* path_node.cpp */; settings = {ASSET_TAGS = (); }; };
 		215D8F721BC406DA0057380A /* checker_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 215D8F711BC406DA0057380A /* checker_n.png */; };
 		215D8F731BC40E370057380A /* checker_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 215D8F711BC406DA0057380A /* checker_n.png */; };
 		215FAE291BCE982C00FE7D80 /* box_09.png in Resources */ = {isa = PBXBuildFile; fileRef = 211C37CE1BCE56D2000B22C8 /* box_09.png */; settings = {ASSET_TAGS = (); }; };
@@ -141,8 +143,6 @@
 		215FAE341BCE982C00FE7D80 /* box_12_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 211C37D91BCE56D2000B22C8 /* box_12_s.png */; settings = {ASSET_TAGS = (); }; };
 		215FAE351BCE983600FE7D80 /* shader_instanced_models3d_static_reflection_refraction.vert in Resources */ = {isa = PBXBuildFile; fileRef = 2118C2961BCE90CE00287595 /* shader_instanced_models3d_static_reflection_refraction.vert */; settings = {ASSET_TAGS = (); }; };
 		215FAE361BCE983600FE7D80 /* shader_instanced_models3d_static_reflection_refraction.frag in Resources */ = {isa = PBXBuildFile; fileRef = 2118C2951BCE90CE00287595 /* shader_instanced_models3d_static_reflection_refraction.frag */; settings = {ASSET_TAGS = (); }; };
-		215FAE391BCFD46500FE7D80 /* pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE371BCFD46500FE7D80 /* pathfinder.cpp */; settings = {ASSET_TAGS = (); }; };
-		215FAE3A1BCFD46500FE7D80 /* pathfinder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE371BCFD46500FE7D80 /* pathfinder.cpp */; settings = {ASSET_TAGS = (); }; };
 		215FAE3D1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */; settings = {ASSET_TAGS = (); }; };
 		215FAE3E1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2AF1BCBCE1C008E4B2B /* material.human_02.base.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216DF2AE1BCBCE1C008E4B2B /* material.human_02.base.outline.xml */; settings = {ASSET_TAGS = (); }; };
@@ -514,9 +514,12 @@
 		212B18DA1B82363000FFDCE7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		212B18DC1B82363800FFDCE7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		212B18DE1B82363E00FFDCE7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.4.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		215058681BD0E7C70060C308 /* astar.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = astar.cpp; path = sources/astar.cpp; sourceTree = "<group>"; };
+		215058691BD0E7C70060C308 /* astar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = astar.h; path = sources/astar.h; sourceTree = "<group>"; };
+		2150586B1BD0E7C70060C308 /* path_node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = path_node.cpp; path = sources/path_node.cpp; sourceTree = "<group>"; };
+		2150586C1BD0E7C70060C308 /* path_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = path_node.h; path = sources/path_node.h; sourceTree = "<group>"; };
+		2150586F1BD0E8050060C308 /* pathfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pathfinder.h; path = sources/pathfinder.h; sourceTree = "<group>"; };
 		215D8F711BC406DA0057380A /* checker_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checker_n.png; path = ../gbBundle/Textures/checker_n.png; sourceTree = "<group>"; };
-		215FAE371BCFD46500FE7D80 /* pathfinder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = pathfinder.cpp; path = sources/pathfinder.cpp; sourceTree = "<group>"; };
-		215FAE381BCFD46500FE7D80 /* pathfinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pathfinder.h; path = sources/pathfinder.h; sourceTree = "<group>"; };
 		215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_character_controller.cpp; path = sources/ai_character_controller.cpp; sourceTree = "<group>"; };
 		215FAE3C1BCFEBEC00FE7D80 /* ai_character_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_character_controller.h; path = sources/ai_character_controller.h; sourceTree = "<group>"; };
 		216DF2AE1BCBCE1C008E4B2B /* material.human_02.base.outline.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_02.base.outline.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_02.base.outline.xml; sourceTree = "<group>"; };
@@ -736,12 +739,11 @@
 		21176FC01BC5167800890D7C /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
+				215058671BD0E7AE0060C308 /* pathfinder */,
 				21176FC21BC516A200890D7C /* game_object_navigator.h */,
 				21176FC11BC516A200890D7C /* game_object_navigator.cpp */,
 				21176FC61BC516BB00890D7C /* character_controller.h */,
 				21176FC51BC516BB00890D7C /* character_controller.cpp */,
-				215FAE381BCFD46500FE7D80 /* pathfinder.h */,
-				215FAE371BCFD46500FE7D80 /* pathfinder.cpp */,
 				215FAE3C1BCFEBEC00FE7D80 /* ai_character_controller.h */,
 				215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */,
 			);
@@ -883,6 +885,18 @@
 				2102EB421B7D2D6700F20197 /* demo_conroller_osx.cpp */,
 			);
 			name = osx;
+			sourceTree = "<group>";
+		};
+		215058671BD0E7AE0060C308 /* pathfinder */ = {
+			isa = PBXGroup;
+			children = (
+				2150586F1BD0E8050060C308 /* pathfinder.h */,
+				215058691BD0E7C70060C308 /* astar.h */,
+				215058681BD0E7C70060C308 /* astar.cpp */,
+				2150586C1BD0E7C70060C308 /* path_node.h */,
+				2150586B1BD0E7C70060C308 /* path_node.cpp */,
+			);
+			name = pathfinder;
 			sourceTree = "<group>";
 		};
 		216DF2AD1BCBCDE6008E4B2B /* base.outline */ = {
@@ -1641,9 +1655,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				215FAE3D1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */,
+				2150586D1BD0E7C70060C308 /* astar.cpp in Sources */,
 				210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */,
 				21176FC71BC516BB00890D7C /* character_controller.cpp in Sources */,
-				215FAE391BCFD46500FE7D80 /* pathfinder.cpp in Sources */,
 				21176FC31BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
@@ -1651,6 +1665,7 @@
 				21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */,
 				2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
+				2150586E1BD0E7C70060C308 /* path_node.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1661,7 +1676,6 @@
 				215FAE3E1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */,
 				210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */,
 				21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */,
-				215FAE3A1BCFD46500FE7D80 /* pathfinder.cpp in Sources */,
 				21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,

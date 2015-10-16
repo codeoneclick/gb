@@ -22,9 +22,6 @@ namespace koth
     
     class ai_character_controller;
     typedef std::shared_ptr<ai_character_controller> ai_character_controller_shared_ptr;
-    
-    class pathfinder;
-    typedef std::shared_ptr<pathfinder> pathfinder_shared_ptr;
 };
 
 #endif
