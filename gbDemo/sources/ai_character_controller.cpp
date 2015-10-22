@@ -84,8 +84,7 @@ namespace koth
                             
                             character_controller::set_rotation(glm::vec3(.0f, glm::mix(current_angle, goal_angle, .1f), .0f));
                             
-                            f32 distance = glm::distance(move_action->get_position(), m_goal_position);
-                            if(distance <= m_trashhold_distance || angle_delta > 45.f)
+                            if(angle_delta > 45.f)
                             {
                                 character_controller::set_move_state(e_navigation_state_move_none);
                             }
