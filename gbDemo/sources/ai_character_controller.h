@@ -11,7 +11,6 @@
 
 #include "character_controller.h"
 #include "pathfinder.h"
-#include "level.h"
 
 namespace koth
 {
@@ -22,15 +21,19 @@ namespace koth
     protected:
         
         std::shared_ptr<pathfinder> m_pathfinder;
-        std::shared_ptr<level_node> **m_map;
+        level_shared_ptr m_level;
         
         ai_actions_processor_shared_ptr m_actions_processor;
         
+        glm::vec3 m_goal_position;
         glm::ivec2 m_goal_position_index;
+        
+        static f32 m_trashhold_distance;
         
     public:
         
-        ai_character_controller(const gb::game_object_shared_ptr& game_object);
+        ai_character_controller(const gb::game_object_shared_ptr& game_object,
+                                const level_shared_ptr& level);
         ~ai_character_controller();
         
         void update(f32 deltatime);

@@ -13,6 +13,7 @@
 #include "declarations.h"
 #include "pathfinder.h"
 #include "astar.h"
+#include "koth_declarations.h"
 
 namespace koth
 {
@@ -27,7 +28,7 @@ namespace koth
     {
     private:
         
-        bool m_type;
+        bool m_passable;
         
     protected:
         
@@ -43,14 +44,14 @@ namespace koth
             
         }
         
-        void set_type(const bool type)
+        void set_passable(const bool passable)
         {
-            m_type = type;
+            m_passable = passable;
         }
         
-        bool get_type() const
+        bool get_passable() const
         {
-            return m_type;
+            return m_passable;
         }
         
         f32 distance_to_local(const std::shared_ptr<astar_node>& node) const
@@ -89,6 +90,10 @@ namespace koth
         std::vector<gb::instanced_models3d_static_shared_ptr> m_boxes;
         std::vector<i32> m_boxes_states;
         
+        std::vector<level_node_shared_ptr> m_navigation_map;
+        
+        void update_navigation_map();
+        
     public:
         level(const gb::scene_fabricator_shared_ptr& fabricator,
               const gb::scene_graph_shared_ptr& graph);
@@ -99,6 +104,10 @@ namespace koth
         void update(f32 deltatime);
         
         void set_box_state(i32 x, i32 z);
+        
+        level_node_shared_ptr get_path_node(i32 x, i32 y);
+        
+        glm::ivec2 get_size() const;
     };
 };
 

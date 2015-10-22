@@ -20,7 +20,6 @@ namespace koth
         
     protected:
         
-        void remove_children();
         std::weak_ptr<path_node> m_parent;
         std::vector<std::pair<std::shared_ptr<path_node>, f32>> m_children;
         
@@ -34,6 +33,8 @@ namespace koth
 
         void add_child(const std::shared_ptr<path_node>& child, f32 distance);
         std::vector<std::pair<std::shared_ptr<path_node>, f32>>& get_children();
+        
+        void remove_children();
     };
 };
 

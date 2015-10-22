@@ -19,6 +19,9 @@ namespace gb
         
     protected:
         
+        void create_physics_component();
+        std::pair<bool, bool> m_physics_cached_parameters;
+        
     public:
         
         model3d_static();

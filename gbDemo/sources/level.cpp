@@ -35,6 +35,7 @@ namespace koth
         
         m_boxes.resize(m_size.x, nullptr);
         m_boxes_states.resize(m_size.x * m_size.y, e_level_box_state_none);
+        m_navigation_map.resize(m_size.x * m_size.y, nullptr);
         
         for(i32 i = 0; i < m_size.x; ++i)
         {
@@ -44,8 +45,13 @@ namespace koth
             {
                 m_boxes[i]->set_position(glm::vec3(i * (m_boxes_size.x + m_boxes_offset), 0.f, j * (m_boxes_size.y + m_boxes_offset)), j);
                 m_boxes[i]->set_scale(glm::vec3(m_boxes_size.x), j);
+                
+                m_navigation_map[i + j * m_size.x] = std::make_shared<level_node>();
+                m_navigation_map[i + j * m_size.x]->set_position(i, j);
+                m_navigation_map[i + j * m_size.x]->set_passable(true);
             }
         }
+        level::update_navigation_map();
     }
     
     void level::update(f32 deltatime)
@@ -63,9 +69,9 @@ namespace koth
                         
                         if(position.y > -24.f)
                         {
-                            position.y -= 0.05;
-                            rotation.x += 2.5;
-                            rotation.z += 0.5;
+                            position.y -= .05f;
+                            rotation.x += 2.5f;
+                            rotation.z += .5f;
                         }
                         else
                         {
@@ -76,6 +82,8 @@ namespace koth
                         
                         m_boxes[i]->set_position(position, j);
                         m_boxes[i]->set_rotation(rotation, j);
+                        
+                        m_navigation_map[i + j * m_size.x]->set_passable(false);
                     }
                         break;
                         
@@ -100,6 +108,7 @@ namespace koth
                         
                     case e_level_box_state_none:
                     {
+                        m_navigation_map[i + j * m_size.x]->set_passable(true);
                         /*static f32 time = 0.f;
                         time += .0001f;
                         glm::vec3 position = m_boxes[i]->get_position(j);
@@ -113,6 +122,7 @@ namespace koth
                 }
             }
         }
+        level::update_navigation_map();
     }
     
     void level::set_box_state(i32 x, i32 z)
@@ -123,5 +133,50 @@ namespace koth
         {
             m_boxes_states[x + z * m_size.x] = e_level_box_state_fall_down;
         }
+    }
+    
+    void level::update_navigation_map()
+    {
+        std::shared_ptr<level_node> current_child = nullptr;
+        for(i32 x = 0; x < m_size.x; ++x)
+        {
+            for(i32 y = 0; y < m_size.y; ++y)
+            {
+                m_navigation_map[x + y * m_size.x]->remove_children();
+                
+                for(i32 i = -1; i < 2; ++i)
+                {
+                    i32 new_x = m_navigation_map[x + y * m_size.x]->get_x() + i;
+                    for(i32 j = -1; j < 2; ++j)
+                    {
+                        i32 new_y = m_navigation_map[x + y * m_size.x]->get_y() + j;
+                        if(new_x > -1 && new_x < m_size.x && new_y > -1 && new_y < m_size.y)
+                        {
+                            current_child = m_navigation_map[new_x + new_y * m_size.x];
+                            if(current_child->get_passable() && (new_x != x || new_y != y))
+                            {
+                                m_navigation_map[x + y * m_size.x]->add_child(current_child,
+                                                                              m_navigation_map[x + y * m_size.x]->distance_to_local(current_child));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    level_node_shared_ptr level::get_path_node(i32 x, i32 y)
+    {
+        level_node_shared_ptr path_node = nullptr;
+        if(x > -1 && x < m_size.x && y > -1 && y < m_size.y)
+        {
+            path_node = m_navigation_map[x + y * m_size.x];
+        }
+        return path_node;
+    }
+    
+    glm::ivec2 level::get_size() const
+    {
+        return m_size;
     }
 }

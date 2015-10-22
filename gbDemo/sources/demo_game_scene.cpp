@@ -139,15 +139,17 @@ gb::game_scene(transition)
     m_level->construct("");
     
     m_models["human_02"]->set_enable_box2d_physics(true, false);
+    m_models["orc_01"]->set_enable_box2d_physics(true, false);
+    m_models["orc_02"]->set_enable_box2d_physics(true, false);
     
     m_character_controller = std::make_shared<koth::character_controller>(m_models["human_02"],
                                                                           m_camera);
     m_character_controller->set_position(glm::vec3(8.f));
     
-    m_ai_character_controllers["orc_01"] = std::make_shared<koth::ai_character_controller>(m_models["orc_01"]);
+    m_ai_character_controllers["orc_01"] = std::make_shared<koth::ai_character_controller>(m_models["orc_01"], m_level);
     m_ai_character_controllers["orc_01"]->set_position(glm::vec3(4.f, .5f, 8.f));
     
-    m_ai_character_controllers["orc_02"] = std::make_shared<koth::ai_character_controller>(m_models["orc_02"]);
+    m_ai_character_controllers["orc_02"] = std::make_shared<koth::ai_character_controller>(m_models["orc_02"], m_level);
     m_ai_character_controllers["orc_02"]->set_position(glm::vec3(2.f, .5f, 4.f));
     
     gb::game_command_i_shared_ptr command = std::make_shared<gb::game_command<koth::on_move_state_changed::t_command>>(std::bind(&demo_game_scene::on_move_state_changed,
@@ -187,8 +189,8 @@ void demo_game_scene::update(f32 deltatime)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(4.f, 1.f, light_xz_position.y));*/
     //m_camera->set_rotation(angle * .1f);
     
-    m_level->set_box_state(static_cast<i32>(m_models["human_02"]->get_position().x),
-                           static_cast<i32>(m_models["human_02"]->get_position().z));
+    //m_level->set_box_state(static_cast<i32>(m_models["human_02"]->get_position().x),
+    //                       static_cast<i32>(m_models["human_02"]->get_position().z));
     m_level->update(deltatime);
     m_character_controller->update(deltatime);
     

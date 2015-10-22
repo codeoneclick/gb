@@ -14,6 +14,9 @@ namespace koth
     class level;
     typedef std::shared_ptr<level> level_shared_ptr;
     
+    class level_node;
+    typedef std::shared_ptr<level_node> level_node_shared_ptr;
+    
     class game_object_navigator;
     typedef std::shared_ptr<game_object_navigator> game_object_navigator_shared_ptr;
     

@@ -176,7 +176,7 @@ namespace glm
         {
             radians += M_PI * 2.f;
         }
-        while (radians > M_PI * 2.f)
+        while (radians >= M_PI * 2.f)
         {
             radians -= M_PI * 2.f;
         }

@@ -13,52 +13,19 @@
 #include "ai_move_action.h"
 #include "model3d_animated.h"
 #include "glm_extensions.h"
+#include "game_object_navigator.h"
 
 namespace koth
 {
-    ai_character_controller::ai_character_controller(const gb::game_object_shared_ptr& game_object) :
+    f32 ai_character_controller::m_trashhold_distance = 2.f;
+    
+    ai_character_controller::ai_character_controller(const gb::game_object_shared_ptr& game_object,
+                                                     const level_shared_ptr& level) :
     koth::character_controller(game_object, nullptr),
-    m_goal_position_index(glm::ivec2(-1))
+    m_goal_position_index(glm::ivec2(-1)),
+    m_level(level)
     {
         m_pathfinder = std::make_shared<pathfinder>();
-        
-        m_map = new std::shared_ptr<level_node>*[16];
-        for(ui32 x = 0; x < 16; ++x)
-        {
-            m_map[x] = new std::shared_ptr<level_node>[16];
-            for(ui32 y = 0; y < 16; ++y)
-            {
-                m_map[x][y] = std::make_shared<level_node>();
-                m_map[x][y]->set_position(x, y);
-                m_map[x][y]->set_type(true);
-            }
-        }
-        
-        int newX, newY;
-        std::shared_ptr<level_node> child;
-        for(int x = 0; x < 16; ++x)
-        {
-            for(int y = 0; y < 16; ++y)
-            {
-                for(int i = -1; i < 2; ++i)
-                {
-                    newX = m_map[x][y]->get_x() + i;
-                    for(int j = -1; j < 2; ++j)
-                    {
-                        newY = m_map[x][y]->get_y() + j;
-                        if( newX > -1 && newX < 16 && newY > -1 && newY < 16)
-                        {
-                            child = m_map[newX][newY];
-                            if(child->get_type() && (newX != x || newY != y) )
-                            {
-                                m_map[x][y]->add_child(child, m_map[x][y]->distance_to_local(child));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
         m_actions_processor = std::make_shared<ai_actions_processor>();
     }
     
@@ -73,16 +40,19 @@ namespace koth
         
         gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
         
-        if(!m_actions_processor->is_actions_exist() &&
+        f32 distance = glm::distance(m_game_object->get_position(), m_goal_position);
+        
+        if(!m_actions_processor->is_actions_exist() && distance > m_trashhold_distance &&
            m_goal_position_index.x != -1 && m_goal_position_index.y != -1)
         {
             std::vector<std::shared_ptr<astar_node>> path;
             
-            glm::ivec2 current_position_index = glm::ivec2(ceilf(m_game_object->get_position().x),
-                                                           ceilf(m_game_object->get_position().z));
+            glm::ivec2 current_position_index;
+            current_position_index.x = std::max(0, std::min(static_cast<i32>(m_game_object->get_position().x), m_level->get_size().x - 1));
+            current_position_index.y = std::max(0, std::min(static_cast<i32>(m_game_object->get_position().z), m_level->get_size().y - 1));
             
-            m_pathfinder->set_start(m_map[current_position_index.x][current_position_index.y]);
-            m_pathfinder->set_goal(m_map[m_goal_position_index.x][m_goal_position_index.y]);
+            m_pathfinder->set_start(m_level->get_path_node(current_position_index.x, current_position_index.y));
+            m_pathfinder->set_goal(m_level->get_path_node(m_goal_position_index.x, m_goal_position_index.y));
             
             bool is_found = m_pathfinder->find_path(path);
             if(is_found)
@@ -107,19 +77,25 @@ namespace koth
                         move_action->set_in_progress_callback([this, animated_model](const ai_action_shared_ptr& action) {
                             
                             ai_move_action_shared_ptr move_action = std::static_pointer_cast<ai_move_action>(action);
-                            character_controller::set_position(move_action->get_position());
-                            character_controller::set_rotation(glm::mix(m_game_object->get_rotation(),
-                                                                        glm::vec3(.0f, glm::degrees(glm::wrap_angle(move_action->get_rotation())), .0f), .1f));
                             
-                            animated_model->set_animation("RUN");
+                            f32 current_angle = m_game_object->get_rotation().y;
+                            f32 goal_angle = glm::degrees(glm::wrap_angle(move_action->get_rotation()));
+                            f32 angle_delta = fabsf(current_angle - goal_angle);
+                            
+                            character_controller::set_rotation(glm::vec3(.0f, glm::mix(current_angle, goal_angle, .1f), .0f));
+                            
+                            f32 distance = glm::distance(move_action->get_position(), m_goal_position);
+                            if(distance <= m_trashhold_distance || angle_delta > 45.f)
+                            {
+                                character_controller::set_move_state(e_navigation_state_move_none);
+                            }
+                            else
+                            {
+                                character_controller::set_move_state(e_navigation_state_move_forward);
+                            }
                         });
-                        
                         m_actions_processor->add_action(move_action);
                     }
-                }
-                else
-                {
-                    animated_model->set_animation("IDLE");
                 }
             }
         }
@@ -128,8 +104,9 @@ namespace koth
     
     void ai_character_controller::set_goal_position(const glm::vec3& position)
     {
-        m_goal_position_index.x = std::max(0, std::min(static_cast<i32>(position.x), 16));
-        m_goal_position_index.y = std::max(0, std::min(static_cast<i32>(position.z), 16));
+        m_goal_position = position;
+        m_goal_position_index.x = std::max(0, std::min(static_cast<i32>(position.x), m_level->get_size().x - 1));
+        m_goal_position_index.y = std::max(0, std::min(static_cast<i32>(position.z), m_level->get_size().y - 1));
     }
     
     void ai_character_controller::set_position(const glm::vec3& position)
