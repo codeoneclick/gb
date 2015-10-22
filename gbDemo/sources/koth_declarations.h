@@ -22,6 +22,15 @@ namespace koth
     
     class ai_character_controller;
     typedef std::shared_ptr<ai_character_controller> ai_character_controller_shared_ptr;
+    
+    class ai_action;
+    typedef std::shared_ptr<ai_action> ai_action_shared_ptr;
+    
+    class ai_actions_processor;
+    typedef std::shared_ptr<ai_actions_processor> ai_actions_processor_shared_ptr;
+    
+    class ai_move_action;
+    typedef std::shared_ptr<ai_move_action> ai_move_action_shared_ptr;
 };
 
 #endif

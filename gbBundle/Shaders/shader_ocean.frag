@@ -47,7 +47,7 @@ const  vec3 k_normal = vec3(k_0, k_1, k_0);
 const vec4 k_water_color_blue = vec4(0.1, 0.15, 0.25, 1.0);
 const vec4 k_water_color_green = vec4(0.16, 0.32, 0.16, 1.0);
 
-const vec4 fog_color = vec4(0.85, 0.95, 1.0, 1.0);
+const vec4 fog_color = vec4(0.0);
 
 void main(void)
 {
@@ -73,9 +73,9 @@ void main(void)
     color += diffuse_color;
     color.a = 1.0;
     
-    /*float fog_distance = (length(vec3(256.0, 0.0, 256.0) - v_vertex_position_ws) - 128.0) / 512.0;
+    float fog_distance = length(-v_vertex_position_ws) / 128.0;
     fog_distance = clamp(fog_distance, 0.0, 1.0);
-    color = mix(color, fog_color, fog_distance);*/
+    color = mix(color, fog_color, fog_distance);
     
     gl_FragColor = color;
 }

@@ -9,12 +9,16 @@
 #include "ai_character_controller.h"
 #include "game_object.h"
 #include "level.h"
+#include "ai_actions_processor.h"
+#include "ai_move_action.h"
+#include "model3d_animated.h"
+#include "glm_extensions.h"
 
 namespace koth
 {
     ai_character_controller::ai_character_controller(const gb::game_object_shared_ptr& game_object) :
     koth::character_controller(game_object, nullptr),
-    m_target_position(glm::ivec2(0))
+    m_goal_position_index(glm::ivec2(-1))
     {
         m_pathfinder = std::make_shared<pathfinder>();
         
@@ -54,6 +58,8 @@ namespace koth
                 }
             }
         }
+        
+        m_actions_processor = std::make_shared<ai_actions_processor>();
     }
     
     ai_character_controller::~ai_character_controller()
@@ -63,51 +69,71 @@ namespace koth
     
     void ai_character_controller::update(f32 deltatime)
     {
-        std::vector<std::shared_ptr<astar_node>> path;
+        m_actions_processor->update(deltatime);
         
-        glm::ivec2 current_position = glm::ivec2(m_game_object->get_position().x,
-                                                 m_game_object->get_position().z);
+        gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
         
-        m_pathfinder->set_start(m_map[current_position.x][current_position.y]);
-        m_pathfinder->set_goal(m_map[m_target_position.x][m_target_position.y]);
-        
-        bool is_found = m_pathfinder->find_path(path);
-        if(is_found)
+        if(!m_actions_processor->is_actions_exist() &&
+           m_goal_position_index.x != -1 && m_goal_position_index.y != -1)
         {
-            if(path.size() > 1)
-            {
-                path.resize(path.size() - 1);
-                std::reverse(path.begin(), path.end());
-                
-                character_controller::set_position(glm::mix(m_game_object->get_position(), glm::vec3(path.at(0)->get_x(),
-                                                                                                     m_game_object->get_position().y,
-                                                                                                     path.at(0)->get_y()),
-                                                            .51f));
-            }
+            std::vector<std::shared_ptr<astar_node>> path;
             
-        }
-        /*
-         if(current_position != m_target_position)
-         {
-            current_position = glm::ivec2(1, 1);
-            m_target_position = glm::ivec2(1, 7);
-            std::vector<glm::ivec2> path = m_pathfinder->get_path(current_position,
-                                                                  m_target_position);
-            if(path.size() > 1)
+            glm::ivec2 current_position_index = glm::ivec2(ceilf(m_game_object->get_position().x),
+                                                           ceilf(m_game_object->get_position().z));
+            
+            m_pathfinder->set_start(m_map[current_position_index.x][current_position_index.y]);
+            m_pathfinder->set_goal(m_map[m_goal_position_index.x][m_goal_position_index.y]);
+            
+            bool is_found = m_pathfinder->find_path(path);
+            if(is_found)
             {
-                path.resize(path.size() - 1);
-                std::reverse(path.begin(), path.end());
-                
-                character_controller::set_position(glm::mix(m_game_object->get_position(), glm::vec3(path.at(0).x, m_game_object->get_position().y, path.at(0).y),
-                                                            .05f));
+                if(path.size() > 1)
+                {
+                    path.resize(path.size() - 1);
+                    std::reverse(path.begin(), path.end());
+                    
+                    glm::vec3 previous_position = m_game_object->get_position();
+                    for(const auto& point : path)
+                    {
+                        ai_move_action_shared_ptr move_action = std::make_shared<ai_move_action>();
+                        move_action->set_parameters(previous_position, glm::vec3(point->get_x(),
+                                                                                 m_game_object->get_position().y,
+                                                                                 point->get_y()));
+                        
+                        previous_position = glm::vec3(point->get_x(),
+                                                      m_game_object->get_position().y,
+                                                      point->get_y());
+                        
+                        move_action->set_in_progress_callback([this, animated_model](const ai_action_shared_ptr& action) {
+                            
+                            ai_move_action_shared_ptr move_action = std::static_pointer_cast<ai_move_action>(action);
+                            character_controller::set_position(move_action->get_position());
+                            character_controller::set_rotation(glm::mix(m_game_object->get_rotation(),
+                                                                        glm::vec3(.0f, glm::degrees(glm::wrap_angle(move_action->get_rotation())), .0f), .1f));
+                            
+                            animated_model->set_animation("RUN");
+                        });
+                        
+                        m_actions_processor->add_action(move_action);
+                    }
+                }
+                else
+                {
+                    animated_model->set_animation("IDLE");
+                }
             }
-        }*/
+        }
         character_controller::update(deltatime);
     }
     
-    void ai_character_controller::set_target_position(const glm::vec3& position)
+    void ai_character_controller::set_goal_position(const glm::vec3& position)
     {
-        m_target_position.x = std::max(0, std::min(static_cast<i32>(position.x), 15));
-        m_target_position.y = std::max(0, std::min(static_cast<i32>(position.z), 15));
+        m_goal_position_index.x = std::max(0, std::min(static_cast<i32>(position.x), 16));
+        m_goal_position_index.y = std::max(0, std::min(static_cast<i32>(position.z), 16));
+    }
+    
+    void ai_character_controller::set_position(const glm::vec3& position)
+    {
+        character_controller::set_position(position);
     }
 }

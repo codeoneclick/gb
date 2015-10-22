@@ -169,6 +169,19 @@ namespace glm
         }
         return true;
     };
+    
+    inline f32 wrap_angle(f32 radians)
+    {
+        while (radians < .0f)
+        {
+            radians += M_PI * 2.f;
+        }
+        while (radians > M_PI * 2.f)
+        {
+            radians -= M_PI * 2.f;
+        }
+        return radians;
+    }
 };
 
 #endif

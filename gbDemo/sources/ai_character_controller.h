@@ -23,7 +23,10 @@ namespace koth
         
         std::shared_ptr<pathfinder> m_pathfinder;
         std::shared_ptr<level_node> **m_map;
-        glm::ivec2 m_target_position;
+        
+        ai_actions_processor_shared_ptr m_actions_processor;
+        
+        glm::ivec2 m_goal_position_index;
         
     public:
         
@@ -32,7 +35,8 @@ namespace koth
         
         void update(f32 deltatime);
         
-        void set_target_position(const glm::vec3& position);
+        void set_position(const glm::vec3& position);
+        void set_goal_position(const glm::vec3& position);
     };
 };
 

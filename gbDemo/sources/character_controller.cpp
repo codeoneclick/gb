@@ -80,11 +80,11 @@ namespace koth
         }
         
         gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
-        if(isMoved)
+        if(isMoved && m_camera)
         {
             animated_model->set_animation("RUN");
         }
-        else
+        else if(m_camera)
         {
             animated_model->set_animation("IDLE");
         }

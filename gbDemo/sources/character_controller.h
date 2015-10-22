@@ -41,7 +41,7 @@ namespace koth
         
         virtual void update(f32 deltatime);
         
-        void set_position(const glm::vec3& position);
+        virtual void set_position(const glm::vec3& position);
         void set_rotation(const glm::vec3& rotation);
         
         void set_move_state(i32 state);

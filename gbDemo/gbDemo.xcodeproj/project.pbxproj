@@ -25,6 +25,12 @@
 		2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
 		2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
+		210A09D51BD8C6BE002E86C3 /* ai_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D31BD8C6BE002E86C3 /* ai_action.cpp */; settings = {ASSET_TAGS = (); }; };
+		210A09D61BD8C6BE002E86C3 /* ai_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D31BD8C6BE002E86C3 /* ai_action.cpp */; settings = {ASSET_TAGS = (); }; };
+		210A09D91BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */; settings = {ASSET_TAGS = (); }; };
+		210A09DA1BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */; settings = {ASSET_TAGS = (); }; };
+		210A09DD1BD8C702002E86C3 /* ai_move_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */; settings = {ASSET_TAGS = (); }; };
+		210A09DE1BD8C702002E86C3 /* ai_move_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */; settings = {ASSET_TAGS = (); }; };
 		210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
 		210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
 		210F2AAF1BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */; };
@@ -145,6 +151,8 @@
 		215FAE361BCE983600FE7D80 /* shader_instanced_models3d_static_reflection_refraction.frag in Resources */ = {isa = PBXBuildFile; fileRef = 2118C2951BCE90CE00287595 /* shader_instanced_models3d_static_reflection_refraction.frag */; settings = {ASSET_TAGS = (); }; };
 		215FAE3D1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */; settings = {ASSET_TAGS = (); }; };
 		215FAE3E1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */; settings = {ASSET_TAGS = (); }; };
+		2168C4F51BD8D6A9000F76F1 /* astar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 215058681BD0E7C70060C308 /* astar.cpp */; settings = {ASSET_TAGS = (); }; };
+		2168C4F61BD8D6AD000F76F1 /* path_node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2150586B1BD0E7C70060C308 /* path_node.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF2AF1BCBCE1C008E4B2B /* material.human_02.base.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 216DF2AE1BCBCE1C008E4B2B /* material.human_02.base.outline.xml */; settings = {ASSET_TAGS = (); }; };
 		216DF2B21BCBCE6E008E4B2B /* shader_model3d_animated_outline.frag in Resources */ = {isa = PBXBuildFile; fileRef = 216DF2B01BCBCE6E008E4B2B /* shader_model3d_animated_outline.frag */; settings = {ASSET_TAGS = (); }; };
 		216DF2B31BCBCE6E008E4B2B /* shader_model3d_animated_outline.vert in Resources */ = {isa = PBXBuildFile; fileRef = 216DF2B11BCBCE6E008E4B2B /* shader_model3d_animated_outline.vert */; settings = {ASSET_TAGS = (); }; };
@@ -446,6 +454,12 @@
 		2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.refraction.xml; sourceTree = "<group>"; };
 		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
 		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
+		210A09D31BD8C6BE002E86C3 /* ai_action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_action.cpp; path = sources/ai_action.cpp; sourceTree = "<group>"; };
+		210A09D41BD8C6BE002E86C3 /* ai_action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_action.h; path = sources/ai_action.h; sourceTree = "<group>"; };
+		210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_actions_processor.cpp; path = sources/ai_actions_processor.cpp; sourceTree = "<group>"; };
+		210A09D81BD8C6D4002E86C3 /* ai_actions_processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_actions_processor.h; path = sources/ai_actions_processor.h; sourceTree = "<group>"; };
+		210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_move_action.cpp; path = sources/ai_move_action.cpp; sourceTree = "<group>"; };
+		210A09DC1BD8C702002E86C3 /* ai_move_action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_move_action.h; path = sources/ai_move_action.h; sourceTree = "<group>"; };
 		210F2AA31BC3A0CF00B0809F /* level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = level.cpp; path = sources/level.cpp; sourceTree = "<group>"; };
 		210F2AA41BC3A0CF00B0809F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = level.h; path = sources/level.h; sourceTree = "<group>"; };
 		210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.instanced.boxes.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.instanced.boxes.base.xml; sourceTree = "<group>"; };
@@ -719,6 +733,22 @@
 			name = render_techniques;
 			sourceTree = "<group>";
 		};
+		210A09D21BD8C68C002E86C3 /* ai */ = {
+			isa = PBXGroup;
+			children = (
+				215058671BD0E7AE0060C308 /* pathfinder */,
+				215FAE3C1BCFEBEC00FE7D80 /* ai_character_controller.h */,
+				215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */,
+				210A09D41BD8C6BE002E86C3 /* ai_action.h */,
+				210A09D31BD8C6BE002E86C3 /* ai_action.cpp */,
+				210A09D81BD8C6D4002E86C3 /* ai_actions_processor.h */,
+				210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */,
+				210A09DC1BD8C702002E86C3 /* ai_move_action.h */,
+				210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */,
+			);
+			name = ai;
+			sourceTree = "<group>";
+		};
 		210F2AA21BC3A07E00B0809F /* level */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,13 +769,11 @@
 		21176FC01BC5167800890D7C /* gameplay */ = {
 			isa = PBXGroup;
 			children = (
-				215058671BD0E7AE0060C308 /* pathfinder */,
+				210A09D21BD8C68C002E86C3 /* ai */,
 				21176FC21BC516A200890D7C /* game_object_navigator.h */,
 				21176FC11BC516A200890D7C /* game_object_navigator.cpp */,
 				21176FC61BC516BB00890D7C /* character_controller.h */,
 				21176FC51BC516BB00890D7C /* character_controller.cpp */,
-				215FAE3C1BCFEBEC00FE7D80 /* ai_character_controller.h */,
-				215FAE3B1BCFEBEC00FE7D80 /* ai_character_controller.cpp */,
 			);
 			name = gameplay;
 			sourceTree = "<group>";
@@ -1662,10 +1690,13 @@
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
+				210A09D91BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
+				210A09DD1BD8C702002E86C3 /* ai_move_action.cpp in Sources */,
 				21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */,
 				2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 				2150586E1BD0E7C70060C308 /* path_node.cpp in Sources */,
+				210A09D51BD8C6BE002E86C3 /* ai_action.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1675,6 +1706,9 @@
 			files = (
 				215FAE3E1BCFEBEC00FE7D80 /* ai_character_controller.cpp in Sources */,
 				210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */,
+				210A09D61BD8C6BE002E86C3 /* ai_action.cpp in Sources */,
+				2168C4F51BD8D6A9000F76F1 /* astar.cpp in Sources */,
+				210A09DE1BD8C702002E86C3 /* ai_move_action.cpp in Sources */,
 				21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */,
 				21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
@@ -1682,6 +1716,8 @@
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,
 				212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */,
 				212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */,
+				2168C4F61BD8D6AD000F76F1 /* path_node.cpp in Sources */,
+				210A09DA1BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
 				21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
