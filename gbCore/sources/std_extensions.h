@@ -20,7 +20,7 @@
 
 namespace std
 {
-    ui64 get_tick_count()
+    inline ui64 get_tick_count()
     {
 #if defined(__IOS__) || defined(__OSX__)
         static mach_timebase_info_data_t timebase_data;
@@ -35,10 +35,10 @@ namespace std
         return 0;
     }
     
-    f32 get_random_f(f32 min, f32 max)
+    inline f32 get_random_f(f32 min, f32 max)
     {
 #if defined(__IOS__) || defined(__OSX__)
-        f32 random = (((f32)arc4random()/0x100000000)*(max - min) + min);
+        f32 random = (((f32)arc4random() / 0x100000000) * (max - min) + min);
         return random;
 #endif
         return 0;

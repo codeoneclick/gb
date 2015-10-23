@@ -111,6 +111,11 @@ namespace koth
     void game_object_navigator::set_position(const glm::vec3& position)
     {
         m_position = position;
+        gb::ces_box2d_component_shared_ptr box2d_component = std::static_pointer_cast<gb::ces_box2d_component>(m_game_object->get_component(gb::e_ces_component_type_box2d));
+        if(box2d_component && box2d_component->get_box2d_body())
+        {
+            box2d_component->get_box2d_body()->SetTransform(b2Vec2(m_position.x, m_position.z), .0f);
+        }
     }
     
     void game_object_navigator::set_rotation(const glm::vec3& rotation)

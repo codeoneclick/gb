@@ -18,9 +18,9 @@ namespace koth
     m_fabricator(fabricator),
     m_graph(graph)
     {
-        m_size = glm::ivec2(16);
-        m_boxes_size = glm::vec2(1.f);
-        m_boxes_offset = .005f;
+        m_size = glm::ivec2(20);
+        m_boxes_size = glm::vec2(.85f);
+        m_boxes_offset = .15f;
     }
     
     level::~level()
@@ -109,11 +109,11 @@ namespace koth
                     case e_level_box_state_none:
                     {
                         m_navigation_map[i + j * m_size.x]->set_passable(true);
-                        /*static f32 time = 0.f;
+                        static f32 time = 0.f;
                         time += .0001f;
                         glm::vec3 position = m_boxes[i]->get_position(j);
                         position.y = sinf(.5f * position.x + time) * cosf(.5f * position.z + time) * .25f;
-                        m_boxes[i]->set_position(position, j);*/
+                        m_boxes[i]->set_position(position, j);
                     }
                         break;
                         

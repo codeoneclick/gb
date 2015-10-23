@@ -38,8 +38,6 @@ namespace koth
     {
         m_actions_processor->update(deltatime);
         
-        gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
-        
         f32 distance = glm::distance(m_game_object->get_position(), m_goal_position);
         
         if(!m_actions_processor->is_actions_exist() && distance > m_trashhold_distance &&
@@ -74,31 +72,41 @@ namespace koth
                                                       m_game_object->get_position().y,
                                                       point->get_y());
                         
-                        move_action->set_in_progress_callback([this, animated_model](const ai_action_shared_ptr& action) {
+                        move_action->set_in_progress_callback([this](const ai_action_shared_ptr& action) {
                             
                             ai_move_action_shared_ptr move_action = std::static_pointer_cast<ai_move_action>(action);
                             
-                            f32 current_angle = m_game_object->get_rotation().y;
-                            f32 goal_angle = glm::degrees(glm::wrap_angle(move_action->get_rotation()));
-                            f32 angle_delta = fabsf(current_angle - goal_angle);
+                            f32 current_angle = glm::wrap_degrees(m_game_object->get_rotation().y);
+                            f32 goal_angle =  glm::wrap_degrees(glm::degrees(move_action->get_rotation()));
                             
-                            character_controller::set_rotation(glm::vec3(.0f, glm::mix(current_angle, goal_angle, .1f), .0f));
-                            
-                            if(angle_delta > 45.f)
-                            {
-                                character_controller::set_move_state(e_navigation_state_move_none);
-                            }
-                            else
-                            {
-                                character_controller::set_move_state(e_navigation_state_move_forward);
-                            }
+                            character_controller::set_rotation(glm::vec3(.0f, glm::mix_angles_degrees(current_angle, goal_angle, .1f), .0f));
+                            character_controller::set_position(move_action->get_position());
                         });
                         m_actions_processor->add_action(move_action);
+                        m_current_actions.push_back(move_action);
                     }
                 }
             }
         }
-        character_controller::update(deltatime);
+        
+        gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
+        if(m_actions_processor->is_actions_exist())
+        {
+            animated_model->set_animation("RUN");
+        }
+        else
+        {
+            if(m_goal_position != m_game_object->get_position())
+            {
+                f32 current_angle = glm::wrap_degrees(m_game_object->get_rotation().y);
+                glm::vec3 direction = glm::normalize(m_goal_position - m_game_object->get_position());
+                f32 goal_angle =  glm::wrap_degrees(glm::degrees(atan2f(direction.x, direction.z)));
+                character_controller::set_rotation(glm::vec3(.0f, glm::mix_angles_degrees(current_angle, goal_angle, .1f), .0f));
+            }
+            
+            animated_model->set_animation("IDLE");
+        }
+        m_game_object_navigator->update(deltatime);
     }
     
     void ai_character_controller::set_goal_position(const glm::vec3& position)

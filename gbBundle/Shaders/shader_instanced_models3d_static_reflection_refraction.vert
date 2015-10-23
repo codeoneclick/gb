@@ -14,7 +14,7 @@ varying vec4 v_ss_position;
 uniform mat4 u_mat_v;
 uniform mat4 u_mat_p;
 uniform vec4 u_vec_clip;
-uniform mat4 u_transform_parameters[16];
+uniform mat4 u_transform_parameters[24];
 
 const mat4 bias_matrix = mat4(0.5, 0.0, 0.0, 0.0,
                               0.0, 0.5, 0.0, 0.0,

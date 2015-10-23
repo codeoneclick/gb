@@ -37,10 +37,11 @@ gb::game_scene(transition)
                                                                                  game_scene::get_transition()->get_width(),
                                                                                  game_scene::get_transition()->get_height()));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
-    m_camera->set_position(glm::vec3(-12.f, 12.f, 8.f));
+    m_camera->set_position(glm::vec3(-12.f, 12.f, 10.f));
     
     m_shadow_cast_light = scene_fabricator_inst->create_shadow_cast_light(90.f, .1f, 128.f);
     
+    m_models["human_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_01.xml");
     m_models["human_02"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_02.xml");
     m_models["orc_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.orc_01.xml");
     m_models["orc_02"] = scene_fabricator_inst->create_model3d_animated("gameobject.orc_02.xml");
@@ -54,6 +55,7 @@ gb::game_scene(transition)
     
     scene_graph_inst->set_camera(m_camera);
     scene_graph_inst->set_shadow_cast_light(m_shadow_cast_light);
+    scene_graph_inst->add_game_object(m_models["human_01"]);
     scene_graph_inst->add_game_object(m_models["human_02"]);
     scene_graph_inst->add_game_object(m_models["orc_01"]);
     scene_graph_inst->add_game_object(m_models["orc_02"]);
@@ -81,6 +83,7 @@ gb::game_scene(transition)
     //m_models["orc_01"]->set_position(glm::vec3(4.f, .5f, 8.f));
     //m_models["orc_02"]->set_position(glm::vec3(2.f, .5f, 4.f));
     
+    m_models["human_01"]->set_scale(glm::vec3(.5f));
     m_models["human_02"]->set_scale(glm::vec3(.5f));
     m_models["orc_01"]->set_scale(glm::vec3(.5f));
     m_models["orc_02"]->set_scale(glm::vec3(.5f));
@@ -105,23 +108,27 @@ gb::game_scene(transition)
     scene_graph_inst->add_direction_light(m_direction_light);
     m_direction_light->set_intensity(.1f);
     
-    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(5);
+    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(9);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
+   
     m_instanced_omni_lights->set_radius(3.f, 0);
     m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 0.f, 1.f), 0);
-    
     m_instanced_omni_lights->set_radius(3.f, 1);
-   
-    m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 2);
-    m_instanced_omni_lights->set_radius(16.f, 2);
     
+    m_instanced_omni_lights->set_radius(3.f, 2);
+    m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 1.f, 1.f), 2);
     m_instanced_omni_lights->set_radius(3.f, 3);
-    m_instanced_omni_lights->set_color(glm::vec4(1.f, 0.f, 0.f, 1.f), 3);
-    m_instanced_omni_lights->set_position(glm::vec3(4.f, 1.5f, 8.f), 3);
     
     m_instanced_omni_lights->set_radius(3.f, 4);
-    m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 4);
-    m_instanced_omni_lights->set_position(glm::vec3(2.f, 1.5f, 4.f), 4);
+    m_instanced_omni_lights->set_color(glm::vec4(1.f, 0.f, 0.f, 1.f), 4);
+    m_instanced_omni_lights->set_radius(3.f, 5);
+    
+    m_instanced_omni_lights->set_radius(3.f, 6);
+    m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
+    m_instanced_omni_lights->set_radius(3.f, 7);
+    
+    m_instanced_omni_lights->set_position(glm::vec3(10.f, 10.f, 10.f), 8);
+    m_instanced_omni_lights->set_radius(16.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
     scene_graph_inst->set_skybox(m_skybox);
@@ -138,19 +145,23 @@ gb::game_scene(transition)
     m_level = std::make_shared<koth::level>(scene_fabricator_inst, scene_graph_inst);
     m_level->construct("");
     
+    m_models["human_01"]->set_enable_box2d_physics(true, false);
     m_models["human_02"]->set_enable_box2d_physics(true, false);
     m_models["orc_01"]->set_enable_box2d_physics(true, false);
     m_models["orc_02"]->set_enable_box2d_physics(true, false);
     
-    m_character_controller = std::make_shared<koth::character_controller>(m_models["human_02"],
+    m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
                                                                           m_camera);
-    m_character_controller->set_position(glm::vec3(8.f));
+    m_character_controller->set_position(glm::vec3(2.f));
+    
+    m_ai_character_controllers["human_02"] = std::make_shared<koth::ai_character_controller>(m_models["human_02"], m_level);
+    m_ai_character_controllers["human_02"]->set_position(glm::vec3(2.f, .5f, 18.f));
     
     m_ai_character_controllers["orc_01"] = std::make_shared<koth::ai_character_controller>(m_models["orc_01"], m_level);
-    m_ai_character_controllers["orc_01"]->set_position(glm::vec3(4.f, .5f, 8.f));
+    m_ai_character_controllers["orc_01"]->set_position(glm::vec3(18.f, .5f, 18.f));
     
     m_ai_character_controllers["orc_02"] = std::make_shared<koth::ai_character_controller>(m_models["orc_02"], m_level);
-    m_ai_character_controllers["orc_02"]->set_position(glm::vec3(2.f, .5f, 4.f));
+    m_ai_character_controllers["orc_02"]->set_position(glm::vec3(18.f, .5f, 2.f));
     
     gb::game_command_i_shared_ptr command = std::make_shared<gb::game_command<koth::on_move_state_changed::t_command>>(std::bind(&demo_game_scene::on_move_state_changed,
                                                                                                                                  this,
@@ -194,24 +205,67 @@ void demo_game_scene::update(f32 deltatime)
     m_level->update(deltatime);
     m_character_controller->update(deltatime);
     
+    m_ai_character_controllers["human_02"]->update(deltatime);
     m_ai_character_controllers["orc_01"]->update(deltatime);
     m_ai_character_controllers["orc_02"]->update(deltatime);
     
-    m_ai_character_controllers["orc_01"]->set_goal_position(m_models["human_02"]->get_position());
-    m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_02"]->get_position());
+    m_ai_character_controllers["human_02"]->set_goal_position(m_models["human_01"]->get_position());
+    m_ai_character_controllers["orc_01"]->set_goal_position(m_models["human_01"]->get_position());
+    m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
-    glm::vec3 light_position = m_models["human_02"]->get_position();
+    glm::vec3 light_position = m_models["human_01"]->get_position();
     light_position.y = 1.5f;
     m_instanced_omni_lights->set_position(light_position, 0);
     
-    light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
+    light_position = m_models["human_01"]->get_position() + m_models["human_01"]->get_forward() * 2.5f;
     light_position.y = 1.5f;
     m_instanced_omni_lights->set_position(light_position, 1);
     
+    
+    
+    
+    light_position = m_models["human_02"]->get_position();
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 2);
+    
+    light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 3);
+    
+    
+    
+    
+    light_position = m_models["orc_01"]->get_position();
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 4);
+    
+    light_position = m_models["orc_01"]->get_position() + m_models["orc_01"]->get_forward() * 2.5f;
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 5);
+    
+    
+    
+    
+    light_position = m_models["orc_02"]->get_position();
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 6);
+    
+    light_position = m_models["orc_02"]->get_position() + m_models["orc_02"]->get_forward() * 2.5f;
+    light_position.y = 1.5f;
+    m_instanced_omni_lights->set_position(light_position, 7);
+    
+    
+    
+    
     gb::ces_render_component_shared_ptr render_component =
-    std::static_pointer_cast<gb::ces_render_component>(m_models["human_02"]->get_component(gb::e_ces_component_type_render));
+    std::static_pointer_cast<gb::ces_render_component>(m_models["human_01"]->get_component(gb::e_ces_component_type_render));
     render_component->set_custom_shader_uniform(.025f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(0.f, 1.f, 0.f), "u_outline_color");
+    
+    render_component =
+    std::static_pointer_cast<gb::ces_render_component>(m_models["human_02"]->get_component(gb::e_ces_component_type_render));
+    render_component->set_custom_shader_uniform(.025f, "u_outline_width");
+    render_component->set_custom_shader_uniform(glm::vec3(0.f, 1.f, 1.f), "u_outline_color");
     
     render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["orc_01"]->get_component(gb::e_ces_component_type_render));
@@ -222,6 +276,8 @@ void demo_game_scene::update(f32 deltatime)
     std::static_pointer_cast<gb::ces_render_component>(m_models["orc_02"]->get_component(gb::e_ces_component_type_render));
     render_component->set_custom_shader_uniform(.025f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(1.f, 1.f, 0.f), "u_outline_color");
+    
+    
     
     /*light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_right() * 1.5f;
     light_position.y = 1.5f;

@@ -16,7 +16,7 @@ varying mat3 v_tbn_matrix;
 uniform vec4 u_vec_clip;
 uniform mat4 u_mat_v;
 uniform mat4 u_mat_p;
-uniform mat4 u_transform_parameters[16];
+uniform mat4 u_transform_parameters[24];
 
 void main(void)
 {

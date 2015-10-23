@@ -10,6 +10,7 @@
 #define glm_extensions_h
 
 #include "main_headers.h"
+#include "std_extensions.h"
 
 namespace glm
 {
@@ -170,18 +171,57 @@ namespace glm
         return true;
     };
     
-    inline f32 wrap_angle(f32 radians)
+    inline f32 wrap_radians(f32 radians)
     {
         while (radians < .0f)
         {
             radians += M_PI * 2.f;
         }
-        while (radians >= M_PI * 2.f)
+        while (radians > M_PI * 2.f)
         {
             radians -= M_PI * 2.f;
         }
         return radians;
-    }
+    };
+    
+    inline f32 wrap_degrees(f32 degrees)
+    {
+        while (degrees < .0f)
+        {
+            degrees += 360.f;
+        }
+        while (degrees > 360.f)
+        {
+            degrees -= 360.f;
+        }
+        return degrees;
+    };
+    
+    inline f32 mix_angles_degrees(f32 start, f32 end, f32 amount)
+    {
+        f32 difference = fabsf(end - start);
+        if (difference > 180.f)
+        {
+            if (end > start)
+            {
+                start += 360.f;
+            }
+            else
+            {
+                end += 360.f;
+            }
+        }
+        
+        f32 value = (start + ((end - start) * amount));
+        return wrap_degrees(value);
+    };
+    
+    inline glm::vec3 random_inside_sphere(f32 radius)
+    {
+        return glm::vec3(std::get_random_f(-radius, radius),
+                         std::get_random_f(-radius, radius),
+                         std::get_random_f(-radius, radius));
+    };
 };
 
 #endif

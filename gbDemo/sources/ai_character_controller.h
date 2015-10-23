@@ -30,6 +30,8 @@ namespace koth
         
         static f32 m_trashhold_distance;
         
+        std::list<ai_action_shared_ptr> m_current_actions;
+        
     public:
         
         ai_character_controller(const gb::game_object_shared_ptr& game_object,
