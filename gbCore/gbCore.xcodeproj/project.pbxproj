@@ -124,6 +124,10 @@
 		2173D1EE1B7CAE7F002912BE /* sequence.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1EB1B7CAE7F002912BE /* sequence.cpp */; };
 		2173D1FA1B7CC0A9002912BE /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1F81B7CC0A9002912BE /* material.cpp */; };
 		2173D1FB1B7CC0A9002912BE /* material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1F81B7CC0A9002912BE /* material.cpp */; };
+		218CE8791BE12E5C0095DE94 /* thread_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218CE8771BE12E5C0095DE94 /* thread_operation.cpp */; settings = {ASSET_TAGS = (); }; };
+		218CE87A1BE12E5C0095DE94 /* thread_operation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218CE8771BE12E5C0095DE94 /* thread_operation.cpp */; settings = {ASSET_TAGS = (); }; };
+		218CE87D1BE12E820095DE94 /* thread_operations_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218CE87B1BE12E820095DE94 /* thread_operations_pool.cpp */; settings = {ASSET_TAGS = (); }; };
+		218CE87E1BE12E820095DE94 /* thread_operations_pool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218CE87B1BE12E820095DE94 /* thread_operations_pool.cpp */; settings = {ASSET_TAGS = (); }; };
 		21A8466C1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */; };
 		21A8466D1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */; };
 		21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A846721B96D90B002B95A1 /* particle_emitter.cpp */; };
@@ -534,6 +538,10 @@
 		2173D1EC1B7CAE7F002912BE /* sequence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sequence.h; path = sources/sequence.h; sourceTree = "<group>"; };
 		2173D1F81B7CC0A9002912BE /* material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = material.cpp; path = sources/material.cpp; sourceTree = "<group>"; };
 		2173D1F91B7CC0A9002912BE /* material.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = material.h; path = sources/material.h; sourceTree = "<group>"; };
+		218CE8771BE12E5C0095DE94 /* thread_operation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_operation.cpp; path = sources/thread_operation.cpp; sourceTree = "<group>"; };
+		218CE8781BE12E5C0095DE94 /* thread_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread_operation.h; path = sources/thread_operation.h; sourceTree = "<group>"; };
+		218CE87B1BE12E820095DE94 /* thread_operations_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_operations_pool.cpp; path = sources/thread_operations_pool.cpp; sourceTree = "<group>"; };
+		218CE87C1BE12E820095DE94 /* thread_operations_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread_operations_pool.h; path = sources/thread_operations_pool.h; sourceTree = "<group>"; };
 		21A8466A1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_particle_emitter_component.cpp; path = sources/ces_particle_emitter_component.cpp; sourceTree = "<group>"; };
 		21A8466B1B95BBAB002B95A1 /* ces_particle_emitter_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_particle_emitter_component.h; path = sources/ces_particle_emitter_component.h; sourceTree = "<group>"; };
 		21A8466E1B95F011002B95A1 /* std_extensions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = std_extensions.h; path = sources/std_extensions.h; sourceTree = "<group>"; };
@@ -1202,6 +1210,17 @@
 			name = extensions;
 			sourceTree = "<group>";
 		};
+		218CE8761BE12D930095DE94 /* thread pool managment */ = {
+			isa = PBXGroup;
+			children = (
+				218CE8781BE12E5C0095DE94 /* thread_operation.h */,
+				218CE8771BE12E5C0095DE94 /* thread_operation.cpp */,
+				218CE87C1BE12E820095DE94 /* thread_operations_pool.h */,
+				218CE87B1BE12E820095DE94 /* thread_operations_pool.cpp */,
+			);
+			name = "thread pool managment";
+			sourceTree = "<group>";
+		};
 		21B402B41B7A07E9003382AB = {
 			isa = PBXGroup;
 			children = (
@@ -1223,6 +1242,7 @@
 		21B402D71B7A0864003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				218CE8761BE12D930095DE94 /* thread pool managment */,
 				212B18AE1B81F8C800FFDCE7 /* extensions */,
 				21B405B71B7A4068003382AB /* ces */,
 				21B405B61B7A3BEA003382AB /* gesture recognizers managment */,
@@ -2149,6 +2169,7 @@
 				21B4050A1B7A0A88003382AB /* deflate.c in Sources */,
 				21B404E41B7A0A88003382AB /* b2Contact.cpp in Sources */,
 				2102EB3F1B7D072B00F20197 /* ces_system.cpp in Sources */,
+				218CE87D1BE12E820095DE94 /* thread_operations_pool.cpp in Sources */,
 				21B404CE1B7A0A88003382AB /* b2Distance.cpp in Sources */,
 				21B404E91B7A0A88003382AB /* b2PolygonContact.cpp in Sources */,
 				21B4050D1B7A0A88003382AB /* gzread.c in Sources */,
@@ -2217,6 +2238,7 @@
 				21B4059B1B7A0EB3003382AB /* common_osx.cpp in Sources */,
 				21B405BC1B7A413C003382AB /* ces_entity.cpp in Sources */,
 				21B404F01B7A0A88003382AB /* b2PrismaticJoint.cpp in Sources */,
+				218CE8791BE12E5C0095DE94 /* thread_operation.cpp in Sources */,
 				21B4050F1B7A0A88003382AB /* infback.c in Sources */,
 				216DF2ED1BCCD44A008E4B2B /* cubemap_texture.cpp in Sources */,
 				21B404EC1B7A0A88003382AB /* b2GearJoint.cpp in Sources */,
@@ -2349,6 +2371,7 @@
 				2102EB351B7BDE1B00F20197 /* resource_serializer.cpp in Sources */,
 				21B406131B7B662D003382AB /* ws_technique_configuration.cpp in Sources */,
 				212B18E11B82375800FFDCE7 /* game_loop_ios.cpp in Sources */,
+				218CE87E1BE12E820095DE94 /* thread_operations_pool.cpp in Sources */,
 				21B405431B7A0AFA003382AB /* b2ContactManager.cpp in Sources */,
 				21B405441B7A0AFA003382AB /* deflate.c in Sources */,
 				21B405451B7A0AFA003382AB /* b2Contact.cpp in Sources */,
@@ -2417,6 +2440,7 @@
 				21B4055B1B7A0AFA003382AB /* trees.c in Sources */,
 				21B406121B7B662D003382AB /* transition_configuration.cpp in Sources */,
 				21B4055C1B7A0AFA003382AB /* b2Timer.cpp in Sources */,
+				218CE87A1BE12E5C0095DE94 /* thread_operation.cpp in Sources */,
 				21B405BD1B7A413C003382AB /* ces_entity.cpp in Sources */,
 				216DF2EE1BCCD44A008E4B2B /* cubemap_texture.cpp in Sources */,
 				21B4055D1B7A0AFA003382AB /* b2PrismaticJoint.cpp in Sources */,
