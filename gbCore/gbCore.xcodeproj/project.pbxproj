@@ -1246,7 +1246,6 @@
 				212B18AE1B81F8C800FFDCE7 /* extensions */,
 				21B405B71B7A4068003382AB /* ces */,
 				21B405B61B7A3BEA003382AB /* gesture recognizers managment */,
-				21B405B51B7A3BD8003382AB /* thread pool managment */,
 				21B405B41B7A3BCC003382AB /* collision managment */,
 				21B405B31B7A3BB1003382AB /* state machine managment */,
 				21B405B21B7A39E2003382AB /* scene graph managment */,
@@ -1917,13 +1916,6 @@
 				21D78C371B943CB400665BB6 /* collision_manager.cpp */,
 			);
 			name = "collision managment";
-			sourceTree = "<group>";
-		};
-		21B405B51B7A3BD8003382AB /* thread pool managment */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "thread pool managment";
 			sourceTree = "<group>";
 		};
 		21B405B61B7A3BEA003382AB /* gesture recognizers managment */ = {
