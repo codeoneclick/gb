@@ -1,13 +1,11 @@
 
 #if defined(__OPENGL_30__)
 
-out vec3 v_normal;
 out vec2 v_texcoord;
 out mat3 v_tbn_matrix;
 
 #else
 
-varying vec3 v_normal;
 varying vec2 v_texcoord;
 varying mat3 v_tbn_matrix;
 

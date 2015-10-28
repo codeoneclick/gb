@@ -29,11 +29,14 @@ namespace gb
         ces_debug_render_component(void);
         ~ces_debug_render_component(void);
         
-        virtual material_shared_ptr on_bind(const std::string& technique_name);
+        virtual void on_bind(const std::string& technique_name, i32 technique_pass,
+                             const material_shared_ptr& material = nullptr);
         virtual void on_draw(const std::string& technique_name);
         virtual void on_unbind(const std::string& technique_name);
         
         void set_mesh(const mesh_shared_ptr& mesh);
+        
+        material_shared_ptr get_material() const;
     };
 };
 

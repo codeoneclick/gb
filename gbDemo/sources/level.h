@@ -87,7 +87,7 @@ namespace koth
         gb::scene_fabricator_shared_ptr m_fabricator;
         gb::scene_graph_shared_ptr m_graph;
         
-        std::vector<gb::instanced_models3d_static_shared_ptr> m_boxes;
+        std::vector<gb::model3d_static_shared_ptr> m_boxes;
         std::vector<i32> m_boxes_states;
         
         std::vector<level_node_shared_ptr> m_navigation_map;

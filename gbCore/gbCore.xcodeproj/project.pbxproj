@@ -30,6 +30,10 @@
 		21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
 		21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
+		211F55911BE0D67900590B0D /* ces_batch_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211F558F1BE0D67900590B0D /* ces_batch_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		211F55921BE0D67900590B0D /* ces_batch_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211F558F1BE0D67900590B0D /* ces_batch_system.cpp */; settings = {ASSET_TAGS = (); }; };
+		211F55951BE0DAF700590B0D /* batch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211F55931BE0DAF700590B0D /* batch.cpp */; settings = {ASSET_TAGS = (); }; };
+		211F55961BE0DAF700590B0D /* batch.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211F55931BE0DAF700590B0D /* batch.cpp */; settings = {ASSET_TAGS = (); }; };
 		21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D281BBD08620047CE4F /* instanced_mesh.cpp */; };
 		21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */; };
@@ -106,6 +110,8 @@
 		216DF3481BCD0DAC008E4B2B /* ces_skybox_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF34B1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */; settings = {ASSET_TAGS = (); }; };
 		216DF34C1BCD0DD9008E4B2B /* ces_ocean_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */; settings = {ASSET_TAGS = (); }; };
+		2172BDBA1BE0BFFC000AE75F /* ces_batch_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2172BDB81BE0BFFC000AE75F /* ces_batch_component.cpp */; settings = {ASSET_TAGS = (); }; };
+		2172BDBB1BE0BFFC000AE75F /* ces_batch_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2172BDB81BE0BFFC000AE75F /* ces_batch_component.cpp */; settings = {ASSET_TAGS = (); }; };
 		2173D1DD1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1DE1B7C9AD5002912BE /* vao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DB1B7C9AD5002912BE /* vao.cpp */; };
 		2173D1E11B7CA774002912BE /* mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2173D1DF1B7CA774002912BE /* mesh.cpp */; };
@@ -435,6 +441,10 @@
 		21176FDC1BC5608300890D7C /* game_commands_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_commands_container.cpp; path = sources/game_commands_container.cpp; sourceTree = "<group>"; };
 		21176FDD1BC5608300890D7C /* game_commands_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_commands_container.h; path = sources/game_commands_container.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
+		211F558F1BE0D67900590B0D /* ces_batch_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_batch_system.cpp; path = sources/ces_batch_system.cpp; sourceTree = "<group>"; };
+		211F55901BE0D67900590B0D /* ces_batch_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_batch_system.h; path = sources/ces_batch_system.h; sourceTree = "<group>"; };
+		211F55931BE0DAF700590B0D /* batch.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = batch.cpp; path = sources/batch.cpp; sourceTree = "<group>"; };
+		211F55941BE0DAF700590B0D /* batch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = batch.h; path = sources/batch.h; sourceTree = "<group>"; };
 		21229D281BBD08620047CE4F /* instanced_mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_mesh.cpp; path = sources/instanced_mesh.cpp; sourceTree = "<group>"; };
 		21229D291BBD08620047CE4F /* instanced_mesh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = instanced_mesh.h; path = sources/instanced_mesh.h; sourceTree = "<group>"; };
 		21229D301BBD2F1C0047CE4F /* instanced_omni_lights.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = instanced_omni_lights.cpp; path = sources/instanced_omni_lights.cpp; sourceTree = "<group>"; };
@@ -510,6 +520,8 @@
 		216DF3461BCD0DAC008E4B2B /* ces_skybox_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_skybox_component.h; path = sources/ces_skybox_component.h; sourceTree = "<group>"; };
 		216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_ocean_component.cpp; path = sources/ces_ocean_component.cpp; sourceTree = "<group>"; };
 		216DF34A1BCD0DD9008E4B2B /* ces_ocean_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_ocean_component.h; path = sources/ces_ocean_component.h; sourceTree = "<group>"; };
+		2172BDB81BE0BFFC000AE75F /* ces_batch_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_batch_component.cpp; path = sources/ces_batch_component.cpp; sourceTree = "<group>"; };
+		2172BDB91BE0BFFC000AE75F /* ces_batch_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_batch_component.h; path = sources/ces_batch_component.h; sourceTree = "<group>"; };
 		2173D1DB1B7C9AD5002912BE /* vao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = vao.cpp; path = sources/vao.cpp; sourceTree = "<group>"; };
 		2173D1DC1B7C9AD5002912BE /* vao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vao.h; path = sources/vao.h; sourceTree = "<group>"; };
 		2173D1DF1B7CA774002912BE /* mesh.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = mesh.cpp; path = sources/mesh.cpp; sourceTree = "<group>"; };
@@ -1117,6 +1129,8 @@
 				216DF33D1BCD0D3F008E4B2B /* ces_skybox_system.cpp */,
 				216DF3421BCD0D53008E4B2B /* ces_ocean_system.h */,
 				216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */,
+				211F55901BE0D67900590B0D /* ces_batch_system.h */,
+				211F558F1BE0D67900590B0D /* ces_batch_system.cpp */,
 			);
 			name = systems;
 			sourceTree = "<group>";
@@ -1149,6 +1163,8 @@
 				216DF3451BCD0DAC008E4B2B /* ces_skybox_component.cpp */,
 				216DF34A1BCD0DD9008E4B2B /* ces_ocean_component.h */,
 				216DF3491BCD0DD9008E4B2B /* ces_ocean_component.cpp */,
+				2172BDB91BE0BFFC000AE75F /* ces_batch_component.h */,
+				2172BDB81BE0BFFC000AE75F /* ces_batch_component.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1764,6 +1780,8 @@
 				212B18731B81B44C00FFDCE7 /* render_techniques_importer.cpp */,
 				216DF2AA1BCBAB53008E4B2B /* renderable_interface.h */,
 				216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */,
+				211F55941BE0DAF700590B0D /* batch.h */,
+				211F55931BE0DAF700590B0D /* batch.cpp */,
 			);
 			name = "render managment";
 			sourceTree = "<group>";
@@ -2079,6 +2097,7 @@
 				21B404E01B7A0A88003382AB /* b2WorldCallbacks.cpp in Sources */,
 				21C46F9E1B7BC1350070CF14 /* shader.cpp in Sources */,
 				21B406201B7B7FEB003382AB /* game_transition.cpp in Sources */,
+				2172BDBA1BE0BFFC000AE75F /* ces_batch_component.cpp in Sources */,
 				21B404F51B7A0A88003382AB /* b2WheelJoint.cpp in Sources */,
 				21B404D61B7A0A88003382AB /* b2Draw.cpp in Sources */,
 				216DF2C41BCCCDFF008E4B2B /* skybox.cpp in Sources */,
@@ -2164,6 +2183,7 @@
 				21B4060C1B7B662C003382AB /* ss_technique_configuration.cpp in Sources */,
 				21B404DE1B7A0A88003382AB /* b2Island.cpp in Sources */,
 				21B405A01B7A1031003382AB /* gl_commands.hpp in Sources */,
+				211F55911BE0D67900590B0D /* ces_batch_system.cpp in Sources */,
 				21606C5F1B8DB21A005EA908 /* scene_fabricator.cpp in Sources */,
 				21B404FC1B7A0A88003382AB /* pngread.c in Sources */,
 				210F2A9C1BC2A09300B0809F /* game_fabricator_interface.cpp in Sources */,
@@ -2183,6 +2203,7 @@
 				21DE30081B832C150046EDF8 /* resource_commiter.cpp in Sources */,
 				21B404FE1B7A0A88003382AB /* pngrtran.c in Sources */,
 				21DE30551B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */,
+				211F55951BE0DAF700590B0D /* batch.cpp in Sources */,
 				21B4050E1B7A0A88003382AB /* gzwrite.c in Sources */,
 				21B404F61B7A0A88003382AB /* b2Rope.cpp in Sources */,
 				2173D1E51B7CA8C0002912BE /* bone.cpp in Sources */,
@@ -2276,6 +2297,7 @@
 				21B4052C1B7A0AFA003382AB /* b2WorldCallbacks.cpp in Sources */,
 				21B4052D1B7A0AFA003382AB /* b2WheelJoint.cpp in Sources */,
 				21B4052E1B7A0AFA003382AB /* b2Draw.cpp in Sources */,
+				2172BDBB1BE0BFFC000AE75F /* ces_batch_component.cpp in Sources */,
 				21B406051B7B631B003382AB /* shader_configuration.cpp in Sources */,
 				21B4052F1B7A0AFA003382AB /* b2CollideCircle.cpp in Sources */,
 				216DF2C51BCCCDFF008E4B2B /* skybox.cpp in Sources */,
@@ -2361,6 +2383,7 @@
 				212B18D51B8235AA00FFDCE7 /* graphics_context_ios.cpp in Sources */,
 				21B406011B7B62DE003382AB /* animation_configuration.cpp in Sources */,
 				21B4054F1B7A0AFA003382AB /* crc32.c in Sources */,
+				211F55921BE0D67900590B0D /* ces_batch_system.cpp in Sources */,
 				21606C601B8DB21A005EA908 /* scene_fabricator.cpp in Sources */,
 				2102EB311B7BDD2E00F20197 /* shader_compiler_glsl.cpp in Sources */,
 				210F2A9D1BC2A09300B0809F /* game_fabricator_interface.cpp in Sources */,
@@ -2380,6 +2403,7 @@
 				21B405531B7A0AFA003382AB /* pngread.c in Sources */,
 				21DE30561B8B16C50046EDF8 /* texture_loading_operation.cpp in Sources */,
 				21B405541B7A0AFA003382AB /* b2CircleShape.cpp in Sources */,
+				211F55961BE0DAF700590B0D /* batch.cpp in Sources */,
 				21B405551B7A0AFA003382AB /* b2BroadPhase.cpp in Sources */,
 				21D78C081B905D7600665BB6 /* animation_mixer.cpp in Sources */,
 				21B405561B7A0AFA003382AB /* pngwio.c in Sources */,

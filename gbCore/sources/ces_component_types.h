@@ -24,6 +24,7 @@ namespace gb
         e_ces_component_type_box2d,
         e_ces_component_type_skybox,
         e_ces_component_type_ocean,
+        e_ces_component_type_batch,
         e_ces_component_type_max
     };
 };

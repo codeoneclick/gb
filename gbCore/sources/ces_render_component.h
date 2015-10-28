@@ -31,31 +31,34 @@ namespace gb
         ces_render_component();
         ~ces_render_component();
         
-        void add_material(const std::string& technique_name, i32 pass, const material_shared_ptr& material);
-        void remove_material(const std::string& technique_name, i32 pass);
-        material_shared_ptr get_material(const std::string& technique_name, i32 pass) const;
+        void add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material);
+        void remove_material(const std::string& technique_name, i32 technique_pass);
+        material_shared_ptr get_material(const std::string& technique_name, i32 technique_pass) const;
+        const std::unordered_map<std::string, std::unordered_map<i32, material_shared_ptr>>& get_materials() const;
         
         void set_z_order(i32 z_order);
         i32 get_z_order() const;
         
-        virtual material_shared_ptr on_bind(const std::string& technique_name, i32 pass);
+        virtual void on_bind(const std::string& technique_name, i32 technique_pass,
+                                            const material_shared_ptr& material = nullptr);
         
-        virtual void on_draw(const std::string& technique_name, i32 pass, const std::shared_ptr<mesh>& mesh,
+        virtual void on_draw(const std::string& technique_name, i32 technique_pass, const std::shared_ptr<mesh>& mesh,
                              const material_shared_ptr& material = nullptr);
         
-        virtual void on_unbind(const std::string& technique_name, i32 pass,
+        virtual void on_unbind(const std::string& technique_name, i32 technique_pass,
                                const material_shared_ptr& material = nullptr);
         
-        void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler, const std::string& technique_name = "", i32 pass = -1);
+        void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler, const std::string& technique_name = "", i32 technique_pass = -1);
         
         template<typename T_VALUE>
-        void set_custom_shader_uniform(T_VALUE value, const std::string& uniform, const std::string& technique_name = "", i32 pass = -1)
+        void set_custom_shader_uniform(T_VALUE value, const std::string& uniform,
+                                       const std::string& technique_name = "", i32 technique_pass = -1)
         {
             if(technique_name.length() != 0)
             {
-                if(pass != -1)
+                if(technique_pass != -1)
                 {
-                    material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
+                    material_shared_ptr material = ces_render_component::get_material(technique_name, technique_pass);
                     assert(material);
                     material->set_custom_shader_uniform(value, uniform);
                 }
@@ -84,13 +87,14 @@ namespace gb
         };
         
         template<typename T_VALUE>
-        void set_custom_shader_uniform_array(T_VALUE array, i32 size, const std::string& uniform, const std::string& technique_name = "", i32 pass = -1)
+        void set_custom_shader_uniform_array(T_VALUE array, i32 size, const std::string& uniform,
+                                             const std::string& technique_name = "", i32 technique_pass = -1)
         {
             if(technique_name.length() != 0)
             {
-                if(pass != -1)
+                if(technique_pass != -1)
                 {
-                    material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
+                    material_shared_ptr material = ces_render_component::get_material(technique_name, technique_pass);
                     assert(material);
                     material->set_custom_shader_uniform(array, size, uniform);
                 }

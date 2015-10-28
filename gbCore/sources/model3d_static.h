@@ -32,6 +32,7 @@ namespace gb
         void set_touches_receives_enabled(bool value);
         void set_debug_draw_enabled(bool value);
         void set_enable_box2d_physics(bool value, bool is_static);
+        void set_is_batched(bool value);
     };
 };
 

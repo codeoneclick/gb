@@ -15,6 +15,7 @@
 #include "ces_animation_system.h"
 #include "ces_box2d_system.h"
 #include "ces_input_system.h"
+#include "ces_batch_system.h"
 #include "ces_particle_emitter_system.h"
 #include "ces_skybox_system.h"
 #include "ces_ocean_system.h"
@@ -158,6 +159,9 @@ namespace gb
         
         std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>();
         m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
+        
+        ces_batch_system_shared_ptr batch_system = std::make_shared<ces_batch_system>();
+        m_system_feeder->add_system(batch_system, e_ces_system_type_batch);
         
         add_listener_to_game_loop(m_system_feeder);
         

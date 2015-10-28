@@ -58,6 +58,11 @@ namespace gb
         return material;
     }
     
+    const std::unordered_map<std::string, std::unordered_map<i32, material_shared_ptr>>& ces_render_component::get_materials() const
+    {
+        return m_materials;
+    }
+    
     void ces_render_component::set_z_order(i32 z_order)
     {
         m_z_order = z_order;
@@ -210,41 +215,46 @@ namespace gb
         material->get_shader()->set_mat4(shadow_cast_light->get_matrix_v(), e_shader_uniform_mat_global_light_v);
     }
     
-    material_shared_ptr ces_render_component::on_bind(const std::string& technique_name, i32 pass)
+    void ces_render_component::on_bind(const std::string& technique_name, i32 technique_pass,
+                                       const material_shared_ptr& material)
     {
-        material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
-        assert(material);
+        material_shared_ptr using_material = material;
+        if(!using_material)
+        {
+            using_material = ces_render_component::get_material(technique_name, technique_pass);
+        }
+        assert(using_material);
+        assert(using_material->get_shader()->is_commited());
         
-        material->bind();
+        using_material->bind();
         
-        ces_render_component::bind_main_shader_uniforms(material);
-        ces_render_component::bind_custom_shader_uniforms(material);
-        
-        return material;
+        ces_render_component::bind_main_shader_uniforms(using_material);
+        ces_render_component::bind_custom_shader_uniforms(using_material);
     }
     
-    void ces_render_component::on_unbind(const std::string& technique_name, i32 pass,
+    void ces_render_component::on_unbind(const std::string& technique_name, i32 technique_pass,
                                          const material_shared_ptr& material)
     {
         material_shared_ptr using_material = material;
         if(!using_material)
         {
-            using_material = ces_render_component::get_material(technique_name, pass);
+            using_material = ces_render_component::get_material(technique_name, technique_pass);
         }
         assert(using_material);
         using_material->unbind();
     }
 
-    void ces_render_component::on_draw(const std::string& technique_name, i32 pass,
+    void ces_render_component::on_draw(const std::string& technique_name, i32 technique_pass,
                                        const mesh_shared_ptr& mesh, const material_shared_ptr& material)
     {
         material_shared_ptr using_material = material;
         if(!using_material)
         {
-            using_material = ces_render_component::get_material(technique_name, pass);
+            using_material = ces_render_component::get_material(technique_name, technique_pass);
         }
         assert(using_material);
         assert(using_material->get_shader()->is_commited());
+        
         assert(mesh->is_commited());
         
         mesh->bind(using_material->get_shader()->get_guid(), using_material->get_shader()->get_attributes());

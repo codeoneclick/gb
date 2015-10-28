@@ -281,6 +281,10 @@ namespace gb
                 {
                     mesh = mesh_constructor::create_plane(glm::vec2(1.f));
                 }
+                else if(model_configuration->get_mesh_base_class() == "box")
+                {
+                    mesh = mesh_constructor::create_box(glm::vec3(-.5f), glm::vec3(.5f));
+                }
                 else
                 {
                     assert(false);

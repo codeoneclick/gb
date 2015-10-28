@@ -11,6 +11,7 @@
 #include "ces_touch_component.h"
 #include "ces_debug_render_component.h"
 #include "ces_box2d_component.h"
+#include "ces_batch_component.h"
 #include "mesh_constructor.h"
 #include "mesh.h"
 #include "scene_graph.h"
@@ -121,6 +122,20 @@ namespace gb
         else
         {
             ces_entity::remove_component(e_ces_component_type_box2d);
+        }
+    }
+    
+    void model3d_static::set_is_batched(bool value)
+    {
+        if(value)
+        {
+            ces_batch_component_shared_ptr batch_component = std::make_shared<ces_batch_component>();
+            ces_entity::add_component(batch_component);
+            batch_component->set_scene_graph(game_object::get_scene_graph());
+        }
+        else
+        {
+            ces_entity::remove_component(e_ces_component_type_batch);
         }
     }
 }

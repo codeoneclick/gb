@@ -238,6 +238,15 @@ namespace gb
     
     class ces_ocean_component;
     typedef std::shared_ptr<ces_ocean_component> ces_ocean_component_shared_ptr;
+    
+    class ces_batch_component;
+    typedef std::shared_ptr<ces_batch_component> ces_batch_component_shared_ptr;
+    
+    class ces_batch_system;
+    typedef std::shared_ptr<ces_batch_system> ces_batch_system_shared_ptr;
+    
+    class batch;
+    typedef std::shared_ptr<batch> batch_shared_ptr;
 };
 
 #endif

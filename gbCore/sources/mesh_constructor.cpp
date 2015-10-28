@@ -231,7 +231,7 @@ namespace gb
             memcpy(&raw_texcoords[i * 4 * 2], &raw_texcoords[0], 2 * 4 * sizeof(f32));
         }
         
-        ui16 raw_indices[3 * 2 * 6] =
+        ui16 raw_indices[36] =
         {
             // front
             0,  1,  2,
@@ -272,7 +272,7 @@ namespace gb
         
         ibo_shared_ptr ibo = std::make_shared<gb::ibo>(36, GL_STATIC_DRAW);
         ui16* indices = ibo->lock();
-        memcpy(indices, raw_indices, sizeof(raw_indices));
+        memcpy(indices, raw_indices, sizeof(ui16) * 36);
         
         std::vector<std::pair<glm::vec3, ui32>> tangents;
         tangents.resize(24, std::make_pair(glm::vec3(0.0f), 0));

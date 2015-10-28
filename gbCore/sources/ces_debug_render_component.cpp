@@ -65,7 +65,8 @@ namespace gb
         material->get_shader()->set_vec4(material->get_clipping_plane(), e_shader_uniform_vec_clip);
     }
     
-    material_shared_ptr ces_debug_render_component::on_bind(const std::string& technique_name)
+    void ces_debug_render_component::on_bind(const std::string& technique_name, i32 technique_pass,
+                                             const material_shared_ptr& material)
     {
         if(m_mesh)
         {
@@ -74,7 +75,6 @@ namespace gb
             
             ces_debug_render_component::bind_main_shader_uniforms(m_material);
         }
-        return m_material;
     }
     
     void ces_debug_render_component::on_draw(const std::string& technique_name)
@@ -103,5 +103,10 @@ namespace gb
     void ces_debug_render_component::set_mesh(const mesh_shared_ptr& mesh)
     {
         m_mesh = mesh;
+    }
+    
+    material_shared_ptr ces_debug_render_component::get_material() const
+    {
+        return m_material;
     }
 }

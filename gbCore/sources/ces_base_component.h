@@ -65,6 +65,9 @@ namespace gb
 #define unsafe_get_skybox_component(entity) static_cast<ces_skybox_component*>(entity->get_component(e_ces_component_type_skybox).get())
 #define unsafe_get_skybox_component_from_this static_cast<ces_skybox_component*>(ces_entity::get_component(e_ces_component_type_skybox).get())
     
+#define unsafe_get_batch_component(entity) static_cast<ces_batch_component*>(entity->get_component(e_ces_component_type_batch).get())
+#define unsafe_get_batch_component_from_this static_cast<ces_batch_component*>(ces_entity::get_component(e_ces_component_type_batch).get())
+    
 };
 
 #endif

@@ -21,6 +21,8 @@
 #include "ces_debug_render_component.h"
 #include "ces_particle_emitter_component.h"
 #include "ces_skybox_component.h"
+#include "ces_batch_component.h"
+#include "batch.h"
 
 namespace gb
 {
@@ -197,50 +199,73 @@ namespace gb
                     
                     ces_debug_render_component* debug_render_component = unsafe_get_debug_render_component(entity);
                     
-                    material_shared_ptr material = render_component->on_bind(m_name, technique_pass);
-                    material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
-                    
-                    if(animation_component)
-                    {
-                        material->get_shader()->set_mat4_array(animation_component->get_animation_mixer()->get_transformations(),
-                                                               animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
-                    }
+                    ces_batch_component* batch_component = unsafe_get_batch_component(entity);
                     
                     ces_geometry_component* geometry_component = unsafe_get_geometry_component(entity);
+                    
                     ces_particle_emitter_component* particle_emitter_component = unsafe_get_particle_emitter_component(entity);
                     
                     ces_skybox_component* skybox_component = unsafe_get_skybox_component(entity);
-                    if(skybox_component && material->is_reflecting())
+                    
+                    material_shared_ptr material = render_component->get_material(m_name, technique_pass);
+                    mesh_shared_ptr mesh = nullptr;
+                    
+                    bool is_need_to_draw = true;
+                    bool is_batched = false;
+        
+                    if(batch_component)
                     {
-                        transformation_component->set_position(glm::vec3(render_component->get_scene_graph()->get_camera()->get_position().x,
-                                                                        -render_component->get_scene_graph()->get_camera()->get_position().y,
-                                                                         render_component->get_scene_graph()->get_camera()->get_position().z));
-                        material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+                        batch_shared_ptr batch = batch_component->get_batch(m_name, technique_pass, material->get_shader()->get_guid());
+                        if(batch)
+                        {
+                            is_need_to_draw = !batch->get_is_processed();
+                            is_batched = true;
+                            mesh = batch->get_mesh();
+                            batch->set_is_processed(true);
+                        }
                     }
                     
-                    if(geometry_component)
+                    if(!mesh && geometry_component)
                     {
-                        /*glm::vec3 min_bound = geometry_component->get_min_bound();
-                         glm::vec3 max_bound = geometry_component->get_max_bound();
-                         frustum_shared_ptr frustum = render_component->get_scene_graph()->get_camera()->get_frustum();
-                         if(frustum->is_bounding_box_in_frustum(min_bound, max_bound))
-                         {
-                         render_component->on_draw(m_name, geometry_component->get_mesh(), material);
-                         }*/
-                        render_component->on_draw(m_name, technique_pass, geometry_component->get_mesh(), material);
+                         mesh = geometry_component->get_mesh();
                     }
-                    else if(particle_emitter_component)
+                    else if(!mesh && particle_emitter_component)
                     {
-                        render_component->on_draw(m_name, technique_pass, particle_emitter_component->get_mesh(), material);
+                        mesh = particle_emitter_component->get_mesh();
                     }
-                    else
+                    else if(!mesh)
                     {
                         assert(false);
                     }
                     
+                    if(is_need_to_draw)
+                    {
+                        render_component->on_bind(m_name, technique_pass, material);
+                        
+                        material->get_shader()->set_mat4(is_batched ? glm::mat4(1.f) : transformation_component->get_matrix_m(),
+                                                         e_shader_uniform_mat_m);
+                        
+                        if(animation_component)
+                        {
+                            material->get_shader()->set_mat4_array(animation_component->get_animation_mixer()->get_transformations(),
+                                                                   animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
+                        }
+                        
+                        if(skybox_component && material->is_reflecting())
+                        {
+                            transformation_component->set_position(glm::vec3(render_component->get_scene_graph()->get_camera()->get_position().x,
+                                                                             -render_component->get_scene_graph()->get_camera()->get_position().y,
+                                                                             render_component->get_scene_graph()->get_camera()->get_position().z));
+                            material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+                        }
+                        
+                        render_component->on_draw(m_name, technique_pass, mesh, material);
+                    }
+                    
                     if(debug_render_component && material->is_debugging())
                     {
-                        material_shared_ptr material = debug_render_component->on_bind(m_name);
+                        material_shared_ptr material = debug_render_component->get_material();
+                        debug_render_component->on_bind(m_name, 0, material);
                         material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
                         
                         debug_render_component->on_draw(m_name);

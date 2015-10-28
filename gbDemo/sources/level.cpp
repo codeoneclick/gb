@@ -10,6 +10,7 @@
 #include "scene_fabricator.h"
 #include "scene_graph.h"
 #include "instanced_models3d_static.h"
+#include "model3d_static.h"
 
 namespace koth
 {
@@ -18,7 +19,7 @@ namespace koth
     m_fabricator(fabricator),
     m_graph(graph)
     {
-        m_size = glm::ivec2(20);
+        m_size = glm::ivec2(12);
         m_boxes_size = glm::vec2(.85f);
         m_boxes_offset = .15f;
     }
@@ -33,18 +34,21 @@ namespace koth
         m_graph->set_box2d_world(-(m_boxes_size * 2.f), glm::vec2(m_size.x * (m_boxes_size.x + m_boxes_offset) + m_boxes_size.x,
                                                                   m_size.y * (m_boxes_size.y + m_boxes_offset) + m_boxes_size.y));
         
-        m_boxes.resize(m_size.x, nullptr);
+        m_boxes.resize(m_size.x * m_size.y, nullptr);
         m_boxes_states.resize(m_size.x * m_size.y, e_level_box_state_none);
         m_navigation_map.resize(m_size.x * m_size.y, nullptr);
         
         for(i32 i = 0; i < m_size.x; ++i)
         {
-            m_boxes[i] = m_fabricator->create_instanced_models3d_static("gameobject.instanced.boxes.xml", m_size.x);
-            m_graph->add_game_object(m_boxes[i]);
             for (i32 j = 0; j < m_size.y; ++j)
             {
-                m_boxes[i]->set_position(glm::vec3(i * (m_boxes_size.x + m_boxes_offset), 0.f, j * (m_boxes_size.y + m_boxes_offset)), j);
-                m_boxes[i]->set_scale(glm::vec3(m_boxes_size.x), j);
+                m_boxes[i + j * m_size.x] = m_fabricator->create_model3d_static("gameobject.box.xml");
+                m_graph->add_game_object(m_boxes[i + j * m_size.x]);
+                
+                m_boxes[i + j * m_size.x]->set_is_batched(true);
+                
+                m_boxes[i + j * m_size.x]->set_position(glm::vec3(i * (m_boxes_size.x + m_boxes_offset), 0.f, j * (m_boxes_size.y + m_boxes_offset)));
+                m_boxes[i + j * m_size.x]->set_scale(glm::vec3(m_boxes_size.x));
                 
                 m_navigation_map[i + j * m_size.x] = std::make_shared<level_node>();
                 m_navigation_map[i + j * m_size.x]->set_position(i, j);
@@ -64,8 +68,8 @@ namespace koth
                 {
                     case e_level_box_state_fall_down:
                     {
-                        glm::vec3 position = m_boxes[i]->get_position(j);
-                        glm::vec3 rotation = m_boxes[i]->get_rotation(j);
+                        glm::vec3 position = m_boxes[i + j * m_size.x]->get_position();
+                        glm::vec3 rotation = m_boxes[i + j * m_size.x]->get_rotation();
                         
                         if(position.y > -24.f)
                         {
@@ -80,8 +84,8 @@ namespace koth
                             rotation = glm::vec3(0.f);
                         }
                         
-                        m_boxes[i]->set_position(position, j);
-                        m_boxes[i]->set_rotation(rotation, j);
+                        m_boxes[i + j * m_size.x]->set_position(position);
+                        m_boxes[i + j * m_size.x]->set_rotation(rotation);
                         
                         m_navigation_map[i + j * m_size.x]->set_passable(false);
                     }
@@ -89,8 +93,8 @@ namespace koth
                         
                     case e_level_box_state_drop_down:
                     {
-                        glm::vec3 position = m_boxes[i]->get_position(j);
-                        glm::vec3 rotation = m_boxes[i]->get_rotation(j);
+                        glm::vec3 position = m_boxes[i + j * m_size.x]->get_position();
+                        glm::vec3 rotation = m_boxes[i + j * m_size.x]->get_rotation();
                         
                         if(position.y > 0.f)
                         {
@@ -101,8 +105,8 @@ namespace koth
                             m_boxes_states[i + j * m_size.x] = e_level_box_state_none;
                         }
                         
-                        m_boxes[i]->set_position(position, j);
-                        m_boxes[i]->set_rotation(rotation, j);
+                        m_boxes[i + j * m_size.x]->set_position(position);
+                        m_boxes[i + j * m_size.x]->set_rotation(rotation);
                     }
                         break;
                         
@@ -111,9 +115,9 @@ namespace koth
                         m_navigation_map[i + j * m_size.x]->set_passable(true);
                         static f32 time = 0.f;
                         time += .0001f;
-                        glm::vec3 position = m_boxes[i]->get_position(j);
+                        glm::vec3 position = m_boxes[i + j * m_size.x]->get_position();
                         position.y = sinf(.5f * position.x + time) * cosf(.5f * position.z + time) * .25f;
-                        m_boxes[i]->set_position(position, j);
+                        m_boxes[i + j * m_size.x]->set_position(position);
                     }
                         break;
                         
