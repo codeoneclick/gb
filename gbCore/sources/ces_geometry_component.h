@@ -19,6 +19,7 @@ namespace gb
         
     protected:
 
+        std::string m_guid;
         mesh_shared_ptr m_mesh;
         
     public:
@@ -36,6 +37,8 @@ namespace gb
         virtual const glm::vec3 get_min_bound(const glm::mat4& mat) const;
         virtual const glm::vec3 get_max_bound(const glm::mat4& mat) const;
         virtual const std::tuple<glm::vec3, glm::vec3> get_bounds(const glm::mat4& mat) const;
+        
+        std::string get_guid() const;
     };
 };
 

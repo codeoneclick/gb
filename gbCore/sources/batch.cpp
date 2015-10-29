@@ -11,6 +11,7 @@
 #include "vbo.h"
 #include "ibo.h"
 #include "glm_extensions.h"
+#include "thread_operation.h"
 
 namespace gb
 {
@@ -21,7 +22,7 @@ namespace gb
     m_mesh(nullptr),
     m_num_vertices(0),
     m_num_indices(0),
-    m_is_processed(false)
+    m_data_state(e_batch_data_state_waiting)
     {
         vbo_shared_ptr vbo = std::make_shared<gb::vbo>(k_max_num_vertices, GL_DYNAMIC_DRAW);
         vbo::vertex_attribute* vertices = vbo->lock();
@@ -46,19 +47,33 @@ namespace gb
         return m_mesh;
     }
     
-    bool batch::get_is_processed() const
+    batch::e_batch_data_state batch::get_data_state() const
     {
-        return m_is_processed;
+        return m_data_state;
     }
     
-    void batch::set_is_processed(bool value)
+    batch::e_batch_render_state batch::get_render_state(const std::string& guid) const
     {
-        m_is_processed = value;
+        const auto& iterator = m_render_states.find(guid);
+        if(iterator != m_render_states.end())
+        {
+            return iterator->second;
+        }
+        return e_batch_render_state_not_exist;
     }
     
-    void batch::add_data(const mesh_shared_ptr& mesh, const glm::mat4& mat_m)
+    void batch::set_render_state(const std::string& guid, e_batch_render_state state)
     {
-        m_data.push_back(std::make_pair(mesh, mat_m));
+        m_render_states[guid] = state;
+    }
+    
+    void batch::add_data(const std::string& guid, const mesh_shared_ptr& mesh, const glm::mat4& mat_m)
+    {
+        const auto& iterator = m_data.find(guid);
+        if(iterator == m_data.end())
+        {
+            m_data[guid] = std::make_pair(mesh, mat_m);
+        }
     }
     
     void batch::cleanup()
@@ -66,49 +81,59 @@ namespace gb
         m_num_vertices = 0;
         m_num_indices = 0;
         
-        m_is_processed = false;
-        
         m_data.clear();
+        
+        m_data_state = e_batch_data_state_waiting;
     }
     
     void batch::generate()
     {
-        for(const auto& data_iterator : m_data)
-        {
-            mesh_shared_ptr mesh = data_iterator.first;
-            glm::mat4 m_mat = data_iterator.second;
+        m_data_state = e_batch_data_state_generating;
+        
+        thread_operation_shared_ptr completion_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
+        completion_operation->set_execution_callback([this]() {
+            m_mesh->get_vbo()->unlock(m_num_vertices);
+            m_mesh->get_ibo()->unlock(m_num_indices);
             
-            ui16* main_indices = m_mesh->get_ibo()->lock();
-            ui16* sub_indices = mesh->get_ibo()->lock();
-            
-            for(ui32 i = 0; i < mesh->get_ibo()->get_used_size(); ++i)
+            m_data_state = e_batch_data_state_generated;
+        });
+        
+        thread_operation_shared_ptr generate_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        generate_operation->set_execution_callback([this](void) {
+            for(const auto& data_iterator : m_data)
             {
-                main_indices[m_num_indices + i] = sub_indices[i] + m_num_vertices;
-            }
-            
-            vbo::vertex_attribute* main_vertices = m_mesh->get_vbo()->lock();
-            vbo::vertex_attribute* sub_vertices = mesh->get_vbo()->lock();
-            
-            glm::vec3 position = glm::vec3(0.f);
-            glm::vec4 normal = glm::vec4(0.f);
-            glm::vec4 tangent = glm::vec4(0.f);
-            
-            for(ui32 i = 0; i < mesh->get_vbo()->get_used_size(); ++i)
-            {
-                position = sub_vertices[i].m_position;
-                normal = glm::unpackSnorm4x8(sub_vertices[i].m_normal);
-                tangent = glm::unpackSnorm4x8(sub_vertices[i].m_tangent);
+                mesh_shared_ptr mesh = data_iterator.second.first;
+                glm::mat4 m_mat = data_iterator.second.second;
                 
-                main_vertices[m_num_vertices + i] = sub_vertices[i];
-                main_vertices[m_num_vertices + i].m_position = glm::transform(position, m_mat);
-                main_vertices[m_num_vertices + i].m_normal = glm::packSnorm4x8(glm::transform(normal, m_mat));
-                main_vertices[m_num_vertices + i].m_tangent = glm::packSnorm4x8(glm::transform(tangent, m_mat));
+                ui16* main_indices = m_mesh->get_ibo()->lock();
+                ui16* sub_indices = mesh->get_ibo()->lock();
+                
+                for(ui32 i = 0; i < mesh->get_ibo()->get_used_size(); ++i)
+                {
+                    main_indices[m_num_indices + i] = sub_indices[i] + m_num_vertices;
+                }
+                
+                vbo::vertex_attribute* main_vertices = m_mesh->get_vbo()->lock();
+                vbo::vertex_attribute* sub_vertices = mesh->get_vbo()->lock();
+                
+                for(ui32 i = 0; i < mesh->get_vbo()->get_used_size(); ++i)
+                {
+                    glm::vec3 position = sub_vertices[i].m_position;
+                    glm::vec4 normal = glm::unpackSnorm4x8(sub_vertices[i].m_normal);
+                    glm::vec4 tangent = glm::unpackSnorm4x8(sub_vertices[i].m_tangent);
+                    
+                    main_vertices[m_num_vertices + i] = sub_vertices[i];
+                    main_vertices[m_num_vertices + i].m_position = glm::transform(position, m_mat);
+                    main_vertices[m_num_vertices + i].m_normal = glm::packSnorm4x8(glm::transform(normal, m_mat));
+                    main_vertices[m_num_vertices + i].m_tangent = glm::packSnorm4x8(glm::transform(tangent, m_mat));
+                }
+                
+                m_num_vertices += mesh->get_vbo()->get_used_size();
+                m_num_indices += mesh->get_ibo()->get_used_size();
             }
-            
-            m_num_vertices += mesh->get_vbo()->get_used_size();
-            m_num_indices += mesh->get_ibo()->get_used_size();
-        }
-        m_mesh->get_vbo()->unlock(m_num_vertices);
-        m_mesh->get_ibo()->unlock(m_num_indices);
+        });
+        
+        completion_operation->add_dependency(generate_operation);
+        completion_operation->add_to_execution_queue();
     }
 }

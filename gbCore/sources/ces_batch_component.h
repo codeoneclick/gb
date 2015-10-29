@@ -10,24 +10,33 @@
 #define ces_batch_component_h
 
 #include "ces_base_component.h"
+#include "batch.h"
 
 namespace gb
 {
     class ces_batch_component : public ces_base_component
     {
+    public:
+        
     private:
         
     protected:
         
-        std::map<std::string, batch_shared_ptr> m_batches;
+        batch_shared_ptr m_batch;
+        std::string m_guid;
         
     public:
         
-        ces_batch_component();
+        ces_batch_component(const std::string& guid);
         ~ces_batch_component();
         
-        void add_batch(const batch_shared_ptr& batch, const std::string& guid);
-        batch_shared_ptr get_batch(const std::string& technique_name, i32 technique_pass, const std::string& material_guid);
+        batch::e_batch_render_state get_render_state(const std::string& guid) const;
+        void set_render_state(const std::string& guid, batch::e_batch_render_state state);
+        
+        void set_batch(const batch_shared_ptr& batch);
+        batch_shared_ptr get_batch() const;
+        
+        const std::string& get_guid() const;
         
         void cleanup();
     };

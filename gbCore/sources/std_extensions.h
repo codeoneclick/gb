@@ -43,6 +43,24 @@ namespace std
 #endif
         return 0;
     };
+    
+    inline std::string get_guid()
+    {
+        static const i8 alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+        
+        char c_string[16];
+        
+        for (i32 i = 0; i < 15; ++i)
+        {
+            c_string[i] = alphanum[rand() % (sizeof(alphanum) - 1)];
+        }
+        c_string[15] = 0;
+        
+        return std::string(c_string);
+    };
 }
 
 #endif

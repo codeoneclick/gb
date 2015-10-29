@@ -11,6 +11,7 @@
 #include "scene_graph.h"
 #include "instanced_models3d_static.h"
 #include "model3d_static.h"
+#include "std_extensions.h"
 
 namespace koth
 {
@@ -19,7 +20,7 @@ namespace koth
     m_fabricator(fabricator),
     m_graph(graph)
     {
-        m_size = glm::ivec2(12);
+        m_size = glm::ivec2(16);
         m_boxes_size = glm::vec2(.85f);
         m_boxes_offset = .15f;
     }
@@ -38,6 +39,8 @@ namespace koth
         m_boxes_states.resize(m_size.x * m_size.y, e_level_box_state_none);
         m_navigation_map.resize(m_size.x * m_size.y, nullptr);
         
+        std::string batch_guid = std::get_guid();
+        
         for(i32 i = 0; i < m_size.x; ++i)
         {
             for (i32 j = 0; j < m_size.y; ++j)
@@ -45,7 +48,7 @@ namespace koth
                 m_boxes[i + j * m_size.x] = m_fabricator->create_model3d_static("gameobject.box.xml");
                 m_graph->add_game_object(m_boxes[i + j * m_size.x]);
                 
-                m_boxes[i + j * m_size.x]->set_is_batched(true);
+                m_boxes[i + j * m_size.x]->set_is_batched(true, batch_guid);
                 
                 m_boxes[i + j * m_size.x]->set_position(glm::vec3(i * (m_boxes_size.x + m_boxes_offset), 0.f, j * (m_boxes_size.y + m_boxes_offset)));
                 m_boxes[i + j * m_size.x]->set_scale(glm::vec3(m_boxes_size.x));

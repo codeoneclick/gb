@@ -34,7 +34,10 @@ namespace gb
         for(const auto& iterator : m_batches)
         {
             batch = iterator.second;
-            batch->cleanup();
+            if(batch->get_data_state() == batch::e_batch_data_state_generated)
+            {
+                batch->cleanup();
+            }
         }
     }
     
@@ -69,9 +72,7 @@ namespace gb
                     {
                         batch_shared_ptr batch = nullptr;
                         
-                        std::stringstream guid_string_stream;
-                        guid_string_stream<<techniques_iterator.first<<pass_iterator.first<<material->get_shader()->get_guid();
-                        std::string guid = guid_string_stream.str();
+                        std::string guid = batch_component->get_guid();
                         
                         auto batch_iterator = m_batches.find(guid);
                         if(batch_iterator != m_batches.end())
@@ -85,8 +86,14 @@ namespace gb
                         }
                         assert(batch);
                         
-                        batch->add_data(geometry_component->get_mesh(), transformation_component->get_matrix_m());
-                        batch_component->add_batch(batch, guid);
+                        if(batch->get_data_state() == batch::e_batch_data_state_waiting)
+                        {
+                            batch->add_data(geometry_component->get_guid(), geometry_component->get_mesh(),
+                                            transformation_component->get_matrix_m());
+                        }
+                        
+                        batch_component->set_batch(batch);
+                        batch_component->set_render_state(material->get_guid(), batch::e_batch_render_state_waiting);
                     }
                 }
             }
@@ -99,7 +106,10 @@ namespace gb
         for(const auto& iterator : m_batches)
         {
             batch = iterator.second;
-            batch->generate();
+            if(batch->get_data_state() == batch::e_batch_data_state_waiting)
+            {
+                batch->generate();
+            }
         }
     }
 }

@@ -212,16 +212,20 @@ namespace gb
                     
                     bool is_need_to_draw = true;
                     bool is_batched = false;
-        
+                    
                     if(batch_component)
                     {
-                        batch_shared_ptr batch = batch_component->get_batch(m_name, technique_pass, material->get_shader()->get_guid());
+                        batch_shared_ptr batch = batch_component->get_batch();
                         if(batch)
                         {
-                            is_need_to_draw = !batch->get_is_processed();
+                            is_need_to_draw = batch_component->get_render_state(material->get_guid()) == batch::e_batch_render_state_waiting;
                             is_batched = true;
                             mesh = batch->get_mesh();
-                            batch->set_is_processed(true);
+                            batch_component->set_render_state(material->get_guid(), batch::e_batch_render_state_done);
+                        }
+                        else
+                        {
+                            assert(false);
                         }
                     }
                     

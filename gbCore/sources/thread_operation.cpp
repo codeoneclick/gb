@@ -20,7 +20,7 @@ namespace gb
         
     }
     
-    thread_operation::~thread_operation(void)
+    thread_operation::~thread_operation()
     {
         m_execution_callback = nullptr;
         m_cancel_callback = nullptr;
@@ -91,7 +91,7 @@ namespace gb
         thread_operations_pool::shared_instance()->add_operation(shared_from_this(), m_operation_queue);
     }
     
-    void thread_operation::cancel(void)
+    void thread_operation::cancel()
     {
         for(const auto& operation : m_dependecies)
         {
@@ -123,7 +123,7 @@ namespace gb
         return m_status & e_thread_operation_status_completed;
     }
     
-    bool thread_operation::is_queue_empty()
+    bool thread_operation::is_queue_empty() const
     {
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
         return m_dependecies.empty();

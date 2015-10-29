@@ -8,6 +8,7 @@
 
 #include "ces_geometry_component.h"
 #include "mesh.h"
+#include "std_extensions.h"
 
 namespace gb
 {
@@ -15,6 +16,7 @@ namespace gb
     m_mesh(nullptr)
     {
         m_type = e_ces_component_type_geometry;
+        m_guid = std::get_guid();
     }
     
     ces_geometry_component::~ces_geometry_component()
@@ -90,5 +92,10 @@ namespace gb
             return std::make_tuple(glm::vec3(0.f), glm::vec3(0.f));
         }
         return m_mesh->get_bounds(mat);
+    }
+    
+    std::string ces_geometry_component::get_guid() const
+    {
+        return m_guid;
     }
 }

@@ -25,17 +25,17 @@ namespace gb
         m_materials.clear();
     }
     
-    void ces_render_component::add_material(const std::string& technique_name, i32 pass, const std::shared_ptr<material>& material)
+    void ces_render_component::add_material(const std::string& technique_name, i32 technique_pass, const std::shared_ptr<material>& material)
     {
-        m_materials[technique_name][pass] = material;
+        m_materials[technique_name][technique_pass] = material;
     }
     
-    void ces_render_component::remove_material(const std::string& technique_name, i32 pass)
+    void ces_render_component::remove_material(const std::string& technique_name, i32 technique_pass)
     {
         const auto& iterator_01 = m_materials.find(technique_name);
         if(iterator_01 != m_materials.end())
         {
-            const auto& iterator_02 = iterator_01->second.find(pass);
+            const auto& iterator_02 = iterator_01->second.find(technique_pass);
             if(iterator_02 != iterator_01->second.end())
             {
                 m_materials[technique_name].erase(iterator_02);
@@ -43,13 +43,13 @@ namespace gb
         }
     }
     
-    material_shared_ptr ces_render_component::get_material(const std::string& technique_name, i32 pass) const
+    material_shared_ptr ces_render_component::get_material(const std::string& technique_name, i32 technique_pass) const
     {
         material_shared_ptr material = nullptr;
         const auto& iterator_01 = m_materials.find(technique_name);
         if(iterator_01 != m_materials.end())
         {
-            const auto& iterator_02 = iterator_01->second.find(pass);
+            const auto& iterator_02 = iterator_01->second.find(technique_pass);
             if(iterator_02 != iterator_01->second.end())
             {
                 material = iterator_02->second;
@@ -73,13 +73,13 @@ namespace gb
         return m_z_order;
     }
     
-    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler,  const std::string& technique_name, i32 pass)
+    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler,  const std::string& technique_name, i32 technique_pass)
     {
         if(technique_name.length() != 0)
         {
-            if(pass != -1)
+            if(technique_pass != -1)
             {
-                material_shared_ptr material = ces_render_component::get_material(technique_name, pass);
+                material_shared_ptr material = ces_render_component::get_material(technique_name, technique_pass);
                 assert(material);
                 material->set_texture(texture, sampler);
             }

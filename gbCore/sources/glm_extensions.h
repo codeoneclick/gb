@@ -63,7 +63,7 @@ namespace glm
     
     inline glm::vec4 transform(const glm::vec4 &vertex, const glm::mat4x4 &matrix)
     {
-        glm::vec4 result = matrix * glm::vec4(vertex.x, vertex.y, vertex.z, 1.0f);
+        glm::vec4 result = matrix * vertex;
         return glm::vec4(result.x, result.y, result.z, vertex.w);
     };
     

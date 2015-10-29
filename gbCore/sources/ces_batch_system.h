@@ -17,7 +17,7 @@ namespace gb
     {
     private:
         
-        std::map<std::string, batch_shared_ptr> m_batches;
+        std::unordered_map<std::string, batch_shared_ptr> m_batches;
         
     protected:
         

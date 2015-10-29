@@ -51,7 +51,8 @@ namespace gb
     
     material::material(void) :
     m_parameters(std::make_shared<material_cached_parameters>()),
-    m_z_order(0)
+    m_z_order(0),
+    m_guid("unknown")
     {
         
     }
@@ -94,7 +95,17 @@ namespace gb
         
         material->set_z_order(configuration->get_z_order());
         
+        std::stringstream guid_string_stream;
+        guid_string_stream<<configuration->get_technique_name()<<configuration->get_technique_pass();
+        guid_string_stream<<configuration->get_shader_configuration()->get_vs_filename()<<configuration->get_shader_configuration()->get_fs_filename();
+        material->m_guid = guid_string_stream.str();
+        
         return material;
+    }
+    
+    const std::string& material::get_guid() const
+    {
+        return m_guid;
     }
     
     void material::set_shader(const material_shared_ptr& material,

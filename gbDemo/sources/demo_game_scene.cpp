@@ -33,11 +33,11 @@
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
 {
-    m_camera = scene_fabricator_inst->create_camera(45.f, 0.5f, 128.f, glm::ivec4(0.f, 0.f,
+    m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 128.f, glm::ivec4(0.f, 0.f,
                                                                                   game_scene::get_transition()->get_width(),
                                                                                   game_scene::get_transition()->get_height()));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
-    m_camera->set_position(glm::vec3(-12.f, 12.f, 10.f));
+    m_camera->set_position(glm::vec3(-8.f, 8.f, 8.f));
     
     m_shadow_cast_light = scene_fabricator_inst->create_shadow_cast_light(90.f, .1f, 128.f);
     
@@ -127,7 +127,7 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
     m_instanced_omni_lights->set_radius(3.f, 7);
     
-    m_instanced_omni_lights->set_position(glm::vec3(10.f, 10.f, 10.f), 8);
+    m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 8);
     m_instanced_omni_lights->set_radius(16.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
@@ -259,22 +259,22 @@ void demo_game_scene::update(f32 deltatime)
     
     gb::ces_render_component_shared_ptr render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["human_01"]->get_component(gb::e_ces_component_type_render));
-    render_component->set_custom_shader_uniform(.025f, "u_outline_width");
+    render_component->set_custom_shader_uniform(.033f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(0.f, 1.f, 0.f), "u_outline_color");
     
     render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["human_02"]->get_component(gb::e_ces_component_type_render));
-    render_component->set_custom_shader_uniform(.025f, "u_outline_width");
+    render_component->set_custom_shader_uniform(.033f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(0.f, 1.f, 1.f), "u_outline_color");
     
     render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["orc_01"]->get_component(gb::e_ces_component_type_render));
-    render_component->set_custom_shader_uniform(.025f, "u_outline_width");
+    render_component->set_custom_shader_uniform(.033f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(1.f, 0.f, 0.f), "u_outline_color");
     
     render_component =
     std::static_pointer_cast<gb::ces_render_component>(m_models["orc_02"]->get_component(gb::e_ces_component_type_render));
-    render_component->set_custom_shader_uniform(.025f, "u_outline_width");
+    render_component->set_custom_shader_uniform(.033f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(1.f, 1.f, 0.f), "u_outline_color");
     
     

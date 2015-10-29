@@ -65,6 +65,8 @@ namespace gb
         std::shared_ptr<material_cached_parameters> m_parameters;
         i32 m_z_order;
         
+        std::string m_guid;
+        
         static std::shared_ptr<material_cached_parameters> m_cached_parameters;
         
     public:
@@ -110,6 +112,8 @@ namespace gb
         bool is_debugging() const;
         
         i32 get_z_order() const;
+        
+        const std::string& get_guid() const;
         
         std::shared_ptr<shader> get_shader() const;
         std::shared_ptr<texture> get_texture(e_shader_sampler sampler) const;

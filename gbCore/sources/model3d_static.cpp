@@ -125,11 +125,11 @@ namespace gb
         }
     }
     
-    void model3d_static::set_is_batched(bool value)
+    void model3d_static::set_is_batched(bool value, const std::string& guid)
     {
         if(value)
         {
-            ces_batch_component_shared_ptr batch_component = std::make_shared<ces_batch_component>();
+            ces_batch_component_shared_ptr batch_component = std::make_shared<ces_batch_component>(guid);
             ces_entity::add_component(batch_component);
             batch_component->set_scene_graph(game_object::get_scene_graph());
         }
