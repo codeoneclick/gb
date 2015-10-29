@@ -247,6 +247,9 @@ namespace gb
     
     class batch;
     typedef std::shared_ptr<batch> batch_shared_ptr;
+    
+    class thread_operation;
+    typedef std::shared_ptr<thread_operation> thread_operation_shared_ptr;
 };
 
 #endif

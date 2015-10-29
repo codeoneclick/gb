@@ -7,6 +7,7 @@
 //
 
 #include "game_loop.h"
+#include "thread_operations_pool.h"
 
 namespace gb
 {
@@ -44,6 +45,7 @@ namespace gb
                 listener->on_update(deltatime);
             }
         }
+        thread_operations_pool::shared_instance()->update();
     }
     
     void game_loop::add_listener(const std::shared_ptr<game_loop_interface>& listener)
