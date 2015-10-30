@@ -128,7 +128,7 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_radius(3.f, 7);
     
     m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 8);
-    m_instanced_omni_lights->set_radius(16.f, 8);
+    m_instanced_omni_lights->set_radius(12.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
     scene_graph_inst->set_skybox(m_skybox);

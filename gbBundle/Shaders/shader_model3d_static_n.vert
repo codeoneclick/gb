@@ -2,11 +2,13 @@
 
 out vec2 v_texcoord;
 out mat3 v_tbn_matrix;
+out vec3 v_position;
 
 #else
 
 varying vec2 v_texcoord;
 varying mat3 v_tbn_matrix;
+varying vec3 v_position;
 
 #endif
 
@@ -29,4 +31,6 @@ void main(void)
     vec3 bitangent = cross(-normal, tangent);
     
     v_tbn_matrix = mat3(tangent, bitangent, normal);
+    
+    v_position = position.xyz;
 }

@@ -300,7 +300,7 @@ namespace gb
             tangents[indices[i + 2]].second++;
         }
         
-        for(i32 i = 0; i <= tangents.size(); ++i)
+        for(i32 i = 0; i < tangents.size(); ++i)
         {
             glm::vec3 tangent = tangents[i].first / static_cast<f32>(tangents[i].second);
             glm::vec4 normal = glm::unpackSnorm4x8(vertices[i].m_normal);

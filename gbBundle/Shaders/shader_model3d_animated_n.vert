@@ -37,5 +37,4 @@ void main(void)
     gl_ClipDistance[0] = dot(position.xyz, u_vec_clip.xyz);
     
     v_normal = normalize(normal).xyz;
-    v_normal = 0.5 * (v_normal + 1.0);
 }

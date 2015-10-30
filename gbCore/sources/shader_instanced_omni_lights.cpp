@@ -89,13 +89,29 @@ const char* shader_instanced_omni_light_frag = string_shader
     screen_position.xy /= screen_position.w;
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     
-    vec4 ns_color = texture2D(sampler_01, texcoord);
-    vec3 normal = ns_color.rgb * 2.0 - 1.0;
+    vec4 normal_color = texture2D(sampler_01, texcoord);
     float depth = texture2D(sampler_02, texcoord).r;
     
     vec4 position = vec4(texcoord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
     position = u_mat_i_vp * position;
     position.xyz = position.xyz / position.w;
+    
+    vec3 normal = vec3(0.0);
+    
+#define __DECODE_NORMAL_SPHEREMAP__
+#if defined(__DECODE_NORMAL_XYZ__)
+    
+    normal = normal_color.rgb * 2.0 - 1.0;
+    
+#elif defined(__DECODE_NORMAL_SPHEREMAP__)
+    
+    vec2 fenc = normal_color.xy * 4.0 - 2.0;
+    float f = dot(fenc, fenc);
+    float g = sqrt(1.0 - f / 4.0);
+    normal.xy = fenc * g;
+    normal.z = 1.0 - f / 2.0;
+    
+#endif
     
     vec3 light_direction = v_transform_parameters.xyz - position.xyz;
     float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
@@ -106,7 +122,7 @@ const char* shader_instanced_omni_light_frag = string_shader
 
 #if defined(__SPECULAR__)
     
-    float specular_intensity = ns_color.a;
+    float specular_intensity = normal_color.a;
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
     vec3 light_reflect = reflect(-light_direction, normal);
     float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), specular_square) * specular_intensity * specular_power;

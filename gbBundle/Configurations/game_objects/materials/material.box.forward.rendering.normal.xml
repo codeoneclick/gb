@@ -27,14 +27,14 @@
     fs_filename="shader_model3d_static_n.frag"/>
     <textures>
         <texture
-        filename="box_11_n.png"
+        filename="box_14_n.png"
         render_operation_name=""
         sampler_index="0"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="box_11_s.png"
+        filename="box_14_d.png"
         render_operation_name=""
         sampler_index="1"
         wrap_mode="GL_REPEAT"
