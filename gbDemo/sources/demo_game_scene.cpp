@@ -128,7 +128,7 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_radius(3.f, 7);
     
     m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 8);
-    m_instanced_omni_lights->set_radius(12.f, 8);
+    m_instanced_omni_lights->set_radius(14.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
     scene_graph_inst->set_skybox(m_skybox);
@@ -202,6 +202,15 @@ void demo_game_scene::update(f32 deltatime)
     
     //m_level->set_box_state(static_cast<i32>(m_models["human_02"]->get_position().x),
     //                       static_cast<i32>(m_models["human_02"]->get_position().z));
+    m_level->cleanup();
+    m_level->set_box_under_strain(m_models["human_01"]->get_position().x,
+                                  m_models["human_01"]->get_position().z);
+    m_level->set_box_under_strain(m_models["human_02"]->get_position().x,
+                                  m_models["human_02"]->get_position().z);
+    m_level->set_box_under_strain(m_models["orc_01"]->get_position().x,
+                                  m_models["orc_01"]->get_position().z);
+    m_level->set_box_under_strain(m_models["orc_02"]->get_position().x,
+                                  m_models["orc_02"]->get_position().z);
     m_level->update(deltatime);
     m_character_controller->update(deltatime);
     
@@ -253,7 +262,7 @@ void demo_game_scene::update(f32 deltatime)
     light_position = m_models["orc_02"]->get_position() + m_models["orc_02"]->get_forward() * 2.5f;
     light_position.y = 1.5f;
     m_instanced_omni_lights->set_position(light_position, 7);
-    
+
     
     
     

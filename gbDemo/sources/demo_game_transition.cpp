@@ -119,10 +119,10 @@ void demo_game_transition::update_key_state()
     }
     if(m_keys_state[key_2])
     {
-        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+        game_commands->execute<koth::on_use_ability::t_command>(koth::on_use_ability::guid, koth::e_navigation_state_rotate_none);
     }
     if(m_keys_state[key_3])
     {
-        game_commands->execute<koth::on_rotate_state_changed::t_command>(koth::on_rotate_state_changed::guid, koth::e_navigation_state_rotate_none);
+        game_commands->execute<koth::on_use_ability::t_command>(koth::on_use_ability::guid, koth::e_navigation_state_rotate_none);
     }
 }

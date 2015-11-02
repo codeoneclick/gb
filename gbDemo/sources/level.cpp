@@ -37,6 +37,7 @@ namespace koth
         
         m_boxes.resize(m_size.x * m_size.y, nullptr);
         m_boxes_states.resize(m_size.x * m_size.y, e_level_box_state_none);
+        m_boxes_under_strain.resize(m_size.x * m_size.y, 0.f);
         m_navigation_map.resize(m_size.x * m_size.y, nullptr);
         
         std::string batch_guid = std::get_guid();
@@ -116,11 +117,23 @@ namespace koth
                     case e_level_box_state_none:
                     {
                         m_navigation_map[i + j * m_size.x]->set_passable(true);
-                        static f32 time = 0.f;
-                        time += .0001f;
                         glm::vec3 position = m_boxes[i + j * m_size.x]->get_position();
-                        position.y = sinf(.5f * position.x + time) * cosf(.5f * position.z + time) * .25f;
+                        if(m_boxes_under_strain[i + j * m_size.x] < position.y)
+                        {
+                            position.y -= .01f;
+                            
+                        }
+                        else if(m_boxes_under_strain[i + j * m_size.x] > position.y)
+                        {
+                            position.y += .01f;
+                        }
+                        
                         m_boxes[i + j * m_size.x]->set_position(position);
+                        /*static f32 time = 0.f;
+                        time += .0001f;
+                        
+                        position.y = sinf(.5f * position.x + time) * cosf(.5f * position.z + time) * .25f;
+                        m_boxes[i + j * m_size.x]->set_position(position);*/
                     }
                         break;
                         
@@ -139,6 +152,32 @@ namespace koth
            m_boxes_states[x + z * m_size.x] == e_level_box_state_none)
         {
             m_boxes_states[x + z * m_size.x] = e_level_box_state_fall_down;
+        }
+    }
+    
+    void level::set_box_under_strain(f32 x, f32 y)
+    {
+        for(i32 i = 0; i < m_size.x; ++i)
+        {
+            for(i32 j = 0; j < m_size.y; ++j)
+            {
+                f32 distance = glm::distance(glm::vec2(x, y), glm::vec2(i, j));
+                distance /= 3.f;
+                
+                f32 value = glm::mix(-.4f, 0.f, std::min(distance, 1.f));
+                m_boxes_under_strain[i + j * m_size.x] = m_boxes_under_strain[i + j * m_size.x] > value ? value : m_boxes_under_strain[i + j * m_size.x];
+            }
+        }
+    }
+    
+    void level::cleanup()
+    {
+        for(i32 x = 0; x < m_size.x; ++x)
+        {
+            for(i32 y = 0; y < m_size.y; ++y)
+            {
+                 m_boxes_under_strain[x + y * m_size.x] = 0.f;
+            }
         }
     }
     

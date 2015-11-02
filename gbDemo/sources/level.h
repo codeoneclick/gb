@@ -89,6 +89,7 @@ namespace koth
         
         std::vector<gb::model3d_static_shared_ptr> m_boxes;
         std::vector<i32> m_boxes_states;
+        std::vector<f32> m_boxes_under_strain;
         
         std::vector<level_node_shared_ptr> m_navigation_map;
         
@@ -104,6 +105,9 @@ namespace koth
         void update(f32 deltatime);
         
         void set_box_state(i32 x, i32 z);
+        void set_box_under_strain(f32 x, f32 z);
+        
+        void cleanup();
         
         level_node_shared_ptr get_path_node(i32 x, i32 y);
         

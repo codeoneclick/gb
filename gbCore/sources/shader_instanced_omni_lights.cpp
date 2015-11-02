@@ -133,7 +133,7 @@ const char* shader_instanced_omni_light_frag = string_shader
     
 #endif
     
-    gl_FragColor = vec4(attenuation * diffuse + attenuation * specular * v_light_color.rgb, 1.0) * v_light_color;
+    gl_FragColor = vec4((attenuation * diffuse + attenuation * specular) * v_light_color.rgb, 1.0);
 }
  );
 

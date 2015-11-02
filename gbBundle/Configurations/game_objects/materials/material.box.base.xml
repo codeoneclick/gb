@@ -35,8 +35,15 @@
         min_filter="GL_MIPMAP"/>
         <texture
         filename=""
-        render_operation_name="ws.shadowmap.depth"
+        render_operation_name="box_14_d.png"
         sampler_index="1"
+        wrap_mode="GL_CLAMP_TO_EDGE"
+        mag_filter="GL_LINEAR"
+        min_filter="GL_LINEAR"/>
+        <texture
+        filename=""
+        render_operation_name="ws.shadowmap.depth"
+        sampler_index="2"
         wrap_mode="GL_CLAMP_TO_EDGE"
         mag_filter="GL_LINEAR"
         min_filter="GL_LINEAR"/>
