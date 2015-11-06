@@ -24,8 +24,8 @@ namespace gb
         ui32 m_mips;
         bool m_compressed;
         
-        texture_transfering_data(void);
-        ~texture_transfering_data(void);
+        texture_transfering_data();
+        ~texture_transfering_data();
     };
     
     class texture : public resource
@@ -51,30 +51,30 @@ namespace gb
     public:
         
         texture(const std::string& guid);
-        static std::shared_ptr<texture> construct(const std::string& guid,
-                                                  ui32 texture_id,
-                                                  ui32 width,
-                                                  ui32 height);
-        virtual ~texture(void);
         
-        ui32 get_width(void) const;
-        ui32 get_height(void) const;
+        static texture_shared_ptr construct(const std::string& guid,
+                                            ui32 texture_id,
+                                            ui32 width, ui32 height);
+        virtual ~texture();
         
-        const ui8* get_data(void) const;
-        ui32 get_texture_id(void) const;
+        ui32 get_width() const;
+        ui32 get_height() const;
         
-        GLenum get_format(void) const;
-        ui32 get_bpp(void) const;
-        ui32 get_num_mips(void) const;
+        const ui8* get_data() const;
+        ui32 get_texture_id() const;
         
-        bool is_compressed(void) const;
+        GLenum get_format() const;
+        ui32 get_bpp() const;
+        ui32 get_num_mips() const;
+        
+        bool is_compressed() const;
         
         void set_wrap_mode(ui32 wrap_mode);
         void set_mag_filter(ui32 mag_filter);
         void set_min_filter(ui32 min_filter);
         
-        virtual void bind(void) const;
-        virtual void unbind(void) const;
+        virtual void bind() const;
+        virtual void unbind() const;
     };
 };
 

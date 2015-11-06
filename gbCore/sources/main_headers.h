@@ -65,5 +65,7 @@ typedef long long i64;
 typedef unsigned long long ui64;
 typedef float f32;
 
+#define TO_RGB565(r, g, b) (unsigned short) (((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3))
+#define TO_RGBA4444(r, g, b, a) (unsigned short) ((r >> 4) << 12 | (g >> 4) << 8 | (b >> 4) << 4 | (a >> 4))
 
 #endif
