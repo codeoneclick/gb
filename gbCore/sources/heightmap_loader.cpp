@@ -26,7 +26,7 @@ namespace gb
     static const std::string k_compressed_vertices_data_suffix = "-compressed.vertices.data";
     static const std::string k_faces_data_suffix = "-faces.data";
     static const std::string k_vbos_data_suffix = "-vbos.data";
-    static const std::string k_ibox_data_suffix = "-ibos.data";
+    static const std::string k_ibos_data_suffix = "-ibos.data";
     static const std::string k_splatting_mask_textures_data_suffix = "-splatting.textures.m.data";
     static const std::string k_splatting_diffuse_textures_data_suffix = "-splatting.textures.d.data";
     static const std::string k_splatting_normal_textures_data_suffix = "-splatting.textures.n.data";
@@ -124,10 +124,10 @@ namespace gb
         return std::make_tuple(size, heights);
     }
     
-    std::string CHeightmapLoader::getUncompressedVerticesMMAPFilename(const std::string &filename)
+    std::string heightmap_loader::get_uncompressed_vertices_mmap_filename(const std::string &filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kUncompressedVerticesMetadataFilename;
+        stringstream<<filename<<k_uncompressed_vertices_data_suffix;
         
 #if defined(__IOS__)
         
@@ -138,10 +138,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getCompressedVerticesMMAPFilename(const std::string& filename)
+    std::string heightmap_loader::get_compressed_vertices_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kCompressedVerticesMetadataFilename;
+        stringstream<<filename<<k_compressed_vertices_data_suffix;
         
 #if defined(__IOS__)
         
@@ -152,10 +152,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getFacesMMAPFilename(const std::string& filename)
+    std::string heightmap_loader::get_faces_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kFacesMetadataFilename;
+        stringstream<<filename<<k_faces_data_suffix;
         
 #if defined(__IOS__)
         
@@ -166,10 +166,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getVBOsMMAPFilename(const std::string &filename)
+    std::string heightmap_loader::get_vbos_mmap_filename(const std::string &filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kVBOsMetadataFilename;
+        stringstream<<filename<<k_vbos_data_suffix;
         
 #if defined(__IOS__)
         
@@ -180,10 +180,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getIBOsMMAPFilename(const std::string &filename)
+    std::string heightmap_loader::get_ibos_mmap_filename(const std::string &filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kIBOsMetadataFilename;
+        stringstream<<filename<<k_ibos_data_suffix;
         
 #if defined(__IOS__)
         
@@ -194,10 +194,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getSplattingTexturesM_MMapFilename(const std::string &filename)
+    std::string heightmap_loader::get_splatting_mask_textures_mmap_filename(const std::string &filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kSplattingTexturesM_MetadataFilename;
+        stringstream<<filename<<k_splatting_mask_textures_data_suffix;
         
 #if defined(__IOS__)
         
@@ -208,10 +208,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getSplattingTexturesN_MMapFilename(const std::string& filename)
+    std::string heightmap_loader::get_splatting_normal_textures_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kSplattingTexturesN_MetadataFilename;
+        stringstream<<filename<<k_splatting_normal_textures_data_suffix;
         
 #if defined(__IOS__)
         
@@ -222,10 +222,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getSplattingTexturesH_MMapFilename(const std::string& filename)
+    std::string heightmap_loader::get_splatting_displace_textures_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kSplattingTexturesH_MetadataFilename;
+        stringstream<<filename<<k_splatting_displace_textures_data_suffix;
         
 #if defined(__IOS__)
         
@@ -236,10 +236,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getSplattingTexturesD_MMapFilename(const std::string& filename)
+    std::string heightmap_loader::get_splatting_diffuse_textures_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kSplattingTexturesD_MetadataFilename;
+        stringstream<<filename<<k_splatting_diffuse_textures_data_suffix;
         
 #if defined(__IOS__)
         
@@ -250,10 +250,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getTangentSpace_MMapFilename(const std::string& filename)
+    std::string heightmap_loader::get_tangent_space_mmap_filename(const std::string& filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kTangentSpace_MetadataFilename;
+        stringstream<<filename<<k_tangent_space_data_suffix;
         
 #if defined(__IOS__)
         
@@ -264,10 +264,10 @@ namespace gb
         return stringstream.str();
     }
     
-    std::string CHeightmapLoader::getAttachesToVBO_MMapFilename(const std::string &filename)
+    std::string heightmap_loader::get_attaches_to_vbo_mmap_filename(const std::string &filename)
     {
         std::ostringstream stringstream;
-        stringstream<<filename<<kAttachesToVBO_MetadataFilename;
+        stringstream<<filename<<k_attaches_to_vbo_data_suffix;
         
 #if defined(__IOS__)
         
@@ -278,92 +278,92 @@ namespace gb
         return stringstream.str();
     }
     
-    bool CHeightmapLoader::isUncompressedVerticesMMAPExist(const std::string& filename)
+    bool heightmap_loader::is_uncompressed_vertices_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getUncompressedVerticesMMAPFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_uncompressed_vertices_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isCompressedVerticesMMAPExist(const std::string& filename)
+    bool heightmap_loader::is_compressed_vertices_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getCompressedVerticesMMAPFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_compressed_vertices_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isFacesMMAPExist(const std::string& filename)
+    bool heightmap_loader::is_faces_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getFacesMMAPFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_faces_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isVBOsMMAPExist(const std::string& filename)
+    bool heightmap_loader::is_vbos_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getVBOsMMAPFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_vbos_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isIBOsMMAPExist(const std::string& filename)
+    bool heightmap_loader::is_ibos_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getIBOsMMAPFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_ibos_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isSplattingTexturesM_MMapExist(const std::string &filename)
+    bool heightmap_loader::is_splatting_mask_textures_mmap_exist(const std::string &filename)
     {
-        std::ifstream stream(CHeightmapLoader::getSplattingTexturesM_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_splatting_mask_textures_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isSplattingTexturesN_MMapExist(const std::string& filename)
+    bool heightmap_loader::is_splatting_normal_textures_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getSplattingTexturesN_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_splatting_normal_textures_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isSplattingTexturesH_MMapExist(const std::string& filename)
+    bool heightmap_loader::is_splatting_displace_textures_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getSplattingTexturesH_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_splatting_displace_textures_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isSplattingTexturesD_MMapExist(const std::string& filename)
+    bool heightmap_loader::is_splatting_diffuse_textures_mmap_exist(const std::string& filename)
     {
-        std::ifstream stream(CHeightmapLoader::getSplattingTexturesD_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_splatting_diffuse_textures_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isTangentSpace_MMapExist(const std::string &filename)
+    bool heightmap_loader::is_tangent_space_mmap_exist(const std::string &filename)
     {
-        std::ifstream stream(CHeightmapLoader::getTangentSpace_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_tangent_space_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
     
-    bool CHeightmapLoader::isAttachesToVBO_MMapExist(const std::string &filename)
+    bool heightmap_loader::is_attaches_to_vbo_mmap_exist(const std::string &filename)
     {
-        std::ifstream stream(CHeightmapLoader::getAttachesToVBO_MMapFilename(filename));
-        bool isExist = stream.good();
+        std::ifstream stream(heightmap_loader::get_attaches_to_vbo_mmap_filename(filename));
+        bool exist = stream.good();
         stream.close();
-        return isExist;
+        return exist;
     }
 }
 

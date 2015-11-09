@@ -16,8 +16,6 @@ namespace gb
 {
     class ces_batch_component : public ces_base_component
     {
-    public:
-        
     private:
         
     protected:

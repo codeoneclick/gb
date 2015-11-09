@@ -32,10 +32,10 @@ namespace gb
         gl_texture_parameter_i(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     }
     
-    cubemap_texture_shared_ptr  cubemap_texture::construct(const std::string& guid,
-                                                           const texture_shared_ptr& xpositive, const texture_shared_ptr& xnegative,
-                                                           const texture_shared_ptr& ypositive, const texture_shared_ptr& ynegative,
-                                                           const texture_shared_ptr& zpositive, const texture_shared_ptr& znegative)
+    cubemap_texture_shared_ptr cubemap_texture::construct(const std::string& guid,
+                                                          const texture_shared_ptr& xpositive, const texture_shared_ptr& xnegative,
+                                                          const texture_shared_ptr& ypositive, const texture_shared_ptr& ynegative,
+                                                          const texture_shared_ptr& zpositive, const texture_shared_ptr& znegative)
     {
         cubemap_texture_shared_ptr texture = std::make_shared<cubemap_texture>(guid,
                                                                                xpositive, xnegative,
@@ -89,6 +89,8 @@ namespace gb
         i32 height = texture->get_height();
         i32 num_mips = texture->get_num_mips();
         const ui8* data = texture->get_data();
+        
+        assert(data != nullptr);
         
         if(num_mips != 0)
         {

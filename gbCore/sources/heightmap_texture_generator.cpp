@@ -267,41 +267,38 @@ namespace gb
         }
     }
     
-    void heightmap_texture_generator::create_splatting_diffuse_DTextures(const graphics_context_shared_ptr&  graphics_context,
-                                                              const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                              const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures)
+    void heightmap_texture_generator::create_splatting_diffuse_textures(const graphics_context_shared_ptr&  graphics_context,
+                                                                        const std::shared_ptr<heightmap_container>& container, const std::string& filename,
+                                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures)
     {
-        renderTechniqueAccessor->getGraphicsContext()->beginBackgroundContext();
         
-        CSharedMaterial material = CHeightmapTextureGenerator::getSplattingTexturesMaterial(splattingDTextures);
-        CSharedQuad quad = std::make_shared<CQuad>();
+        material_shared_ptr material = heightmap_texture_generator::get_splatting_textures_material(splatting_diffuse_textures);
+        mesh_shared_ptr screen_quad = mesh_constructor::create_screen_quad();
         
         std::shared_ptr<std::ofstream> stream = std::make_shared<std::ofstream>();
-        stream->open(CHeightmapLoader::getSplattingTexturesD_MMapFilename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
+        stream->open(heightmap_loader::get_splatting_diffuse_textures_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
         if(!stream->is_open())
         {
             assert(false);
         }
         
-        for(ui32 i = 0; i < container->getChunksNum().x; ++i)
+        for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
         {
-            for(ui32 j = 0; j < container->getChunksNum().y; ++j)
+            for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
             {
-                CHeightmapTextureGenerator::generateSplattingDTexture(renderTechniqueAccessor, container, splattingDTextures, i, j, stream);
+                heightmap_texture_generator::generate_splatting_diffuse_texture(graphics_context, container, splatting_diffuse_textures, i, j, stream);
             }
         }
-        
-        renderTechniqueAccessor->getGraphicsContext()->endBackgroundContext();
         stream->close();
     }
     
-    void CHeightmapTextureGenerator::generateSplattingDTexture(ISharedRenderTechniqueAccessorRef renderTechniqueAccessor,
-                                                               const std::shared_ptr<CHeightmapContainer>& container,
-                                                               const std::array<CSharedTexture, E_SPLATTING_TEXTURE_MAX>& splattingDTextures,
-                                                               ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
+    void heightmap_texture_generator::generate_splatting_diffuse_texture(const graphics_context_shared_ptr& graphics_context,
+                                                                         const std::shared_ptr<heightmap_container>& container,
+                                                                         const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures,
+                                                                         ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
     {
-        ui32 index = i + j * container->getChunksNum().x;
-        CHeightmapTextureGenerator::generateSplattingTexture(renderTechniqueAccessor, container, splattingDTextures, i, j, [stream, container, index](ui8 *data, ui32 size, E_LANDSCAPE_CHUNK_LOD LOD) {
+        ui32 index = i + j * container->get_chunks_num().x;
+        heightmap_texture_generator::generate_splatting_texture(graphics_context, container, splatting_diffuse_textures, i, j, [stream, container, index](ui8 *data, ui32 size, heightmap_container::e_heigtmap_chunk_lod lod) {
             
             ui32 size_565 = size / 4;
             ui16* data_565 = new ui16[size_565];
@@ -318,136 +315,185 @@ namespace gb
             }
             else
             {
-                assert(container->getSplattingDTexturesMmap(index, LOD)->getPointer());
-                memcpy(container->getSplattingDTexturesMmap(index, LOD)->getPointer(), data_565, size_565 * sizeof(ui16));
+                assert(container->get_splatting_diffuse_textures_mmap(index, lod)->get_pointer());
+                memcpy(container->get_splatting_diffuse_textures_mmap(index, lod)->get_pointer(), data_565, size_565 * sizeof(ui16));
             }
             delete[] data_565;
         });
     }
     
-    void CHeightmapTextureGenerator::generateSplattingNTextures(ISharedRenderTechniqueAccessorRef renderTechniqueAccessor,
-                                                                const std::shared_ptr<CHeightmapContainer>& container, const std::string& filename,
-                                                                const std::array<CSharedTexture, E_SPLATTING_TEXTURE_MAX>& splattingNTextures)
+    void heightmap_texture_generator::generate_splatting_normal_textures(const graphics_context_shared_ptr& graphics_context,
+                                                                         const std::shared_ptr<heightmap_container>& container, const std::string& filename,
+                                                                         const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures)
     {
-        if(!CHeightmapLoader::isSplattingTexturesN_MMapExist(filename))
+        if(!heightmap_loader::is_splatting_normal_textures_mmap_exist(filename))
         {
-            CHeightmapTextureGenerator::createSplattingNTextures(renderTechniqueAccessor, container, filename, splattingNTextures);
+            heightmap_texture_generator::create_splatting_normal_textures(graphics_context, container, filename, splatting_normal_textures);
         }
     }
     
-    void CHeightmapTextureGenerator::createSplattingNTextures(ISharedRenderTechniqueAccessorRef renderTechniqueAccessor,
-                                                              const std::shared_ptr<CHeightmapContainer>& container, const std::string& filename,
-                                                              const std::array<CSharedTexture, E_SPLATTING_TEXTURE_MAX>& splattingNTextures)
+    void heightmap_texture_generator::create_splatting_normal_textures(const graphics_context_shared_ptr& graphics_context,
+                                                                       const std::shared_ptr<heightmap_container>& container, const std::string& filename,
+                                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures)
     {
-        renderTechniqueAccessor->getGraphicsContext()->beginBackgroundContext();
-        
-        CSharedMaterial material = CHeightmapTextureGenerator::getSplattingTexturesMaterial(splattingNTextures);
-        CSharedQuad quad = std::make_shared<CQuad>();
+        material_shared_ptr material = heightmap_texture_generator::get_splatting_textures_material(splatting_normal_textures);
+        mesh_shared_ptr screen_quad = mesh_constructor::create_screen_quad();
         
         std::shared_ptr<std::ofstream> stream = std::make_shared<std::ofstream>();
-        stream->open(CHeightmapLoader::getSplattingTexturesN_MMapFilename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
+        stream->open(heightmap_loader::get_splatting_normal_textures_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
         if(!stream->is_open())
         {
             assert(false);
         }
         
-        for(ui32 i = 0; i < container->getChunksNum().x; ++i)
+        for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
         {
-            for(ui32 j = 0; j < container->getChunksNum().y; ++j)
+            for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
             {
-                CHeightmapTextureGenerator::generateSplattingNTexture(renderTechniqueAccessor, container, splattingNTextures, i, j, stream);
+                heightmap_texture_generator::generate_splatting_normal_texture(graphics_context, container, splatting_normal_textures, i, j, stream);
             }
         }
-        
-        renderTechniqueAccessor->getGraphicsContext()->endBackgroundContext();
         stream->close();
     }
     
-    void CHeightmapTextureGenerator::generateSplattingNTexture(ISharedRenderTechniqueAccessorRef renderTechniqueAccessor,
-                                                               const std::shared_ptr<CHeightmapContainer>& container,
-                                                               const std::array<CSharedTexture, E_SPLATTING_TEXTURE_MAX>& splattingNTextures,
-                                                               ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
+    void heightmap_texture_generator::generate_splatting_normal_texture(const graphics_context_shared_ptr& graphics_context,
+                                                                        const std::shared_ptr<heightmap_container>& container,
+                                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures,
+                                                                        ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
     {
-        ui32 index = i + j * container->getChunksNum().x;
-        CHeightmapTextureGenerator::generateSplattingTexture(renderTechniqueAccessor, container, splattingNTextures, i, j, [stream, container, index](ui8 *data, ui32 size, E_LANDSCAPE_CHUNK_LOD LOD) {
+        ui32 index = i + j * container->get_chunks_num().x;
+        heightmap_texture_generator::generate_splatting_texture(graphics_context, container, splatting_normal_textures, i, j, [stream, container, index](ui8 *data, ui32 size, heightmap_container::e_heigtmap_chunk_lod lod) {
             if(stream)
             {
                 stream->write((char *)data, size * sizeof(ui8));
             }
             else
             {
-                assert(container->getSplattingNTexturesMmap(index, LOD)->getPointer());
-                memcpy(container->getSplattingNTexturesMmap(index, LOD)->getPointer(), data, size * sizeof(ui8));
+                assert(container->get_splatting_normal_textures_mmap(index, lod)->get_pointer());
+                memcpy(container->get_splatting_normal_textures_mmap(index, lod)->get_pointer(), data, size * sizeof(ui8));
             }
         });
     }
     
-    void CHeightmapTextureGenerator::generateDeepTexture(const std::shared_ptr<CHeightmapContainer>& container, bool create,
-                                                         ui32 offsetX, ui32 offsetY,
-                                                         ui32 subWidth, ui32 subHeight)
+    void heightmap_texture_generator::generate_splatting_displace_textures(const graphics_context_shared_ptr& graphics_context,
+                                                                           const std::shared_ptr<heightmap_container>& container, const std::string& filename,
+                                                                           const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures)
     {
-        assert(container->getDeepTexture());
-        container->getDeepTexture()->bind();
+        if(!heightmap_loader::is_splatting_displace_textures_mmap_exist(filename))
+        {
+            heightmap_texture_generator::create_splatting_displace_textures(graphics_context, container, filename, splatting_displace_textures);
+        }
+    }
+    
+    void heightmap_texture_generator::create_splatting_displace_textures(const graphics_context_shared_ptr& graphics_context,
+                                                                         const std::shared_ptr<heightmap_container>& container, const std::string& filename,
+                                                                         const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures)
+    {
+        material_shared_ptr material = heightmap_texture_generator::get_splatting_textures_material(splatting_displace_textures);
+        mesh_shared_ptr screen_quad = mesh_constructor::create_screen_quad();
+        
+        std::shared_ptr<std::ofstream> stream = std::make_shared<std::ofstream>();
+        stream->open(heightmap_loader::get_splatting_displace_textures_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
+        if(!stream->is_open())
+        {
+            assert(false);
+        }
+        
+        for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
+        {
+            for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
+            {
+                heightmap_texture_generator::generate_splatting_displace_texture(graphics_context, container, splatting_displace_textures, i, j, stream);
+            }
+        }
+        stream->close();
+    }
+    
+    void heightmap_texture_generator::generate_splatting_displace_texture(const graphics_context_shared_ptr& graphics_context,
+                                                                          const std::shared_ptr<heightmap_container>& container,
+                                                                          const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures,
+                                                                          ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
+    {
+        ui32 index = i + j * container->get_chunks_num().x;
+        heightmap_texture_generator::generate_splatting_texture(graphics_context, container, splatting_displace_textures, i, j, [stream, container, index](ui8 *data, ui32 size, heightmap_container::e_heigtmap_chunk_lod lod) {
+            if(stream)
+            {
+                stream->write((char *)data, size * sizeof(ui8));
+            }
+            else
+            {
+                assert(container->get_splatting_displace_textures_mmap(index, lod)->get_pointer());
+                memcpy(container->get_splatting_displace_textures_mmap(index, lod)->get_pointer(), data, size * sizeof(ui8));
+            }
+        });
+    }
+    
+    void heightmap_texture_generator::generate_deep_texture(const std::shared_ptr<heightmap_container>& container, bool create,
+                                                            ui32 offset_x, ui32 offset_y,
+                                                            ui32 sub_width, ui32 sub_height)
+    {
+        assert(container->get_deep_texture());
+        container->get_deep_texture()->bind();
         
         ui8* data = nullptr;
         if(create)
         {
-            data = new ui8[container->getMainSize().x * container->getMainSize().y];
-            f32 maxDeep = kMaxSplattingTextureHeight;
-            for(int i = 0; i < container->getMainSize().x; i++)
+            data = new ui8[container->get_main_size().x * container->get_main_size().y];
+            f32 max_deep = k_max_splatting_texture_height;
+            for(int i = 0; i < container->get_main_size().x; i++)
             {
-                for(int j = 0; j < container->getMainSize().y; j++)
+                for(int j = 0; j < container->get_main_size().y; j++)
                 {
-                    f32 height = CHeightmapAccessor::getHeight(container, glm::vec3(i, 0.0f, j));
-                    height = height <= 0.0f ? height : 0.0f;
-                    height /= maxDeep;
-                    height = std::max(0.0f, std::min((height + 1.0f) / 2.0f, 1.0f));
+                    f32 height = heightmap_accessor::get_height(container, glm::vec3(i, 0.f, j));
+                    height = height <= 0.f ? height : 0.f;
+                    height /= max_deep;
+                    height = std::max(0.f, std::min((height + 1.f) / 2.f, 1.f));
                     ui8 color = static_cast<ui8>(height * 255);
-                    data[i + j * container->getMainSize().x] = color;
+                    data[i + j * container->get_main_size().x] = color;
                 }
             }
             
-            ieTexImage2D(GL_TEXTURE_2D, 0,
+            gl_texture_image2d(GL_TEXTURE_2D, 0,
 #if defined(__OPENGL_30__)
-                         GL_RED,
+                               GL_RED,
 #else
-                         GL_ALPHA,
+                               GL_ALPHA,
 #endif
-                         container->getMainSize().x,
-                         container->getMainSize().y,
-                         0,
+                               container->get_main_size().x,
+                               container->get_main_size().y,
+                               0,
 #if defined(__OPENGL_30__)
-                         GL_RED,
+                               GL_RED,
 #else
-                         GL_ALPHA,
+                               GL_ALPHA,
 #endif
-                         GL_UNSIGNED_BYTE, data);
+                               GL_UNSIGNED_BYTE, data);
         }
         else
         {
-            assert(offsetX >= 0);
-            assert(offsetX + subWidth < container->getDeepTexture()->getWidth());
-            assert(offsetY >= 0);
-            assert(offsetY + subHeight < container->getDeepTexture()->getHeight());
+            assert(offset_x >= 0);
+            assert(offset_x + sub_width < container->get_deep_texture()->get_width());
+            assert(offset_y >= 0);
+            assert(offset_y + sub_height < container->get_deep_texture()->get_height());
             
-            f32 maxDeep = kMaxSplattingTextureHeight;
+            f32 max_deep = k_max_splatting_texture_height;
             
-            data = new ui8[subWidth * subHeight];
-            for(int i = 0; i < subWidth; i++)
+            data = new ui8[sub_width * sub_height];
+            for(int i = 0; i < sub_width; i++)
             {
-                for(int j = 0; j < subHeight; j++)
+                for(int j = 0; j < sub_height; j++)
                 {
-                    f32 height = CHeightmapAccessor::getHeight(container, glm::vec3(i + offsetX , 0.0, j + offsetY));
-                    height = height <= 0.0f ? height : 0.0f;
-                    height /= maxDeep;
-                    height = std::max(0.0f, std::min((height + 1.0f) / 2.0f, 1.0f));
+                    f32 height = heightmap_accessor::get_height(container, glm::vec3(i + offset_x , 0.f, j + offset_y));
+                    height = height <= 0.f ? height : 0.f;
+                    height /= max_deep;
+                    height = std::max(0.f, std::min((height + 1.f) / 2.f, 1.f));
                     ui8 color = static_cast<ui8>(height * 255);
-                    data[i + j * subWidth] = color;
+                    data[i + j * sub_width] = color;
                 }
             }
             glTexSubImage2D(GL_TEXTURE_2D, 0,
-                            offsetX, offsetY,
-                            subWidth, subHeight,
+                            offset_x, offset_y,
+                            sub_width, sub_height,
 #if defined(__OPENGL_30__)
                             GL_RED,
 #else

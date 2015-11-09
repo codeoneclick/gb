@@ -26,6 +26,7 @@ namespace gb
         
         std::array<std::queue<texture_shared_ptr>, heightmap_container::e_heigtmap_chunk_lod_max> m_splatting_diffuse_textures_cache;
         std::array<std::queue<texture_shared_ptr>, heightmap_container::e_heigtmap_chunk_lod_max> m_splatting_normal_textures_cache;
+        std::array<std::queue<texture_shared_ptr>, heightmap_container::e_heigtmap_chunk_lod_max> m_splatting_displace_textures_cache;
         
         std::vector<thread_operation_shared_ptr> m_executed_operations;
         
@@ -73,11 +74,11 @@ namespace gb
         
         f32 get_height(const glm::vec3& position) const;
         glm::vec3 get_normal(const glm::vec3& position) const;
-        glm::vec2 get_angles(const glm::vec3& position) const;
+        glm::vec2 get_angles_xz(const glm::vec3& position) const;
         
         static f32 get_height(std::shared_ptr<heightmap_container> container, const glm::vec3& position);
         static glm::vec3 get_normal(std::shared_ptr<heightmap_container> container, const glm::vec3& position);
-        static glm::vec2 get_angles(std::shared_ptr<heightmap_container> container, const glm::vec3& position);
+        static glm::vec2 get_angles_xz(std::shared_ptr<heightmap_container> container, const glm::vec3& position);
         
         void generate(const std::string& filename, const graphics_context_shared_ptr& graphics_context,
                       const std::array<texture_shared_ptr, 3>& splatting_diffuse_textures,

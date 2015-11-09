@@ -22,6 +22,7 @@ namespace gb
         e_ces_system_type_skybox,
         e_ces_system_type_ocean,
         e_ces_system_type_batch,
+        e_ces_system_type_heightmap,
         e_ces_system_type_max
     };
 }

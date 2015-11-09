@@ -87,8 +87,8 @@ namespace gb
                 m_data->m_texture_id = std::static_pointer_cast<texture_transfering_data>(data)->m_texture_id;
                 assert(m_data->m_texture_id != 0);
                 
-                delete[] m_data->m_data;
-                m_data->m_data = nullptr;
+                /* delete[] m_data->m_data;
+                   m_data->m_data = nullptr; */
                 
                 m_status |= e_resource_status_commited;
             }
