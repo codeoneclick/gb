@@ -2,6 +2,13 @@
 #include "configuration_accessor.h"
 namespace gb
 {
+std::shared_ptr<configuration> configuration_accessor::get_heightmap_configuration(const std::string& filename) const
+{
+std::shared_ptr<heightmap_configuration> configuration = std::make_shared<heightmap_configuration>();
+configuration->serialize(filename);
+assert(configuration);
+return configuration;
+}
 std::shared_ptr<configuration> configuration_accessor::get_material_configuration(const std::string& filename) const
 {
 std::shared_ptr<material_configuration> configuration = std::make_shared<material_configuration>();

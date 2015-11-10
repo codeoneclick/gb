@@ -47,7 +47,7 @@ namespace koth
             for (i32 j = 0; j < m_size.y; ++j)
             {
                 m_boxes[i + j * m_size.x] = m_fabricator->create_model3d_static("gameobject.box.xml");
-                m_graph->add_game_object(m_boxes[i + j * m_size.x]);
+                //m_graph->add_game_object(m_boxes[i + j * m_size.x]);
                 
                 m_boxes[i + j * m_size.x]->set_is_batched(true, batch_guid);
                 

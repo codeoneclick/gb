@@ -271,7 +271,6 @@ namespace gb
                                                                         const std::shared_ptr<heightmap_container>& container, const std::string& filename,
                                                                         const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures)
     {
-        
         material_shared_ptr material = heightmap_texture_generator::get_splatting_textures_material(splatting_diffuse_textures);
         mesh_shared_ptr screen_quad = mesh_constructor::create_screen_quad();
         

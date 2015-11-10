@@ -15,7 +15,8 @@
 
 namespace gb
 {
-    ces_render_component::ces_render_component()
+    ces_render_component::ces_render_component() :
+    m_bind_material_imposer_callback(nullptr)
     {
         m_type = e_ces_component_type_render;
     }
@@ -73,7 +74,7 @@ namespace gb
         return m_z_order;
     }
     
-    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler,  const std::string& technique_name, i32 technique_pass)
+    void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler, const std::string& technique_name, i32 technique_pass)
     {
         if(technique_name.length() != 0)
         {
@@ -230,6 +231,11 @@ namespace gb
         
         ces_render_component::bind_main_shader_uniforms(using_material);
         ces_render_component::bind_custom_shader_uniforms(using_material);
+        
+        if(m_bind_material_imposer_callback)
+        {
+            m_bind_material_imposer_callback(using_material);
+        }
     }
     
     void ces_render_component::on_unbind(const std::string& technique_name, i32 technique_pass,
@@ -242,6 +248,11 @@ namespace gb
         }
         assert(using_material);
         using_material->unbind();
+    }
+    
+    void ces_render_component::set_bind_material_imposer_callback(const std::function<void(const material_shared_ptr&)>& callback)
+    {
+        m_bind_material_imposer_callback = callback;
     }
 
     void ces_render_component::on_draw(const std::string& technique_name, i32 technique_pass,

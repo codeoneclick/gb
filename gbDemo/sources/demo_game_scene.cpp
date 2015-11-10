@@ -135,6 +135,9 @@ gb::game_scene(transition)
     
     m_ocean = scene_fabricator_inst->create_ocean("gameobject.ocean.xml");
     scene_graph_inst->set_ocean(m_ocean);
+    
+    m_heightmap = scene_fabricator_inst->create_heightmap("gameobject.heightmap.xml");
+    scene_graph_inst->set_heightmap(m_heightmap);
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);

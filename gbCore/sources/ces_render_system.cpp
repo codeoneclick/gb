@@ -9,6 +9,7 @@
 #include "ces_render_system.h"
 #include "render_pipeline.h"
 #include "ces_system_types.h"
+#include "ces_render_component.h"
 
 namespace gb
 {
@@ -35,7 +36,12 @@ namespace gb
     
     void ces_render_system::on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime)
     {
-        m_render_pipeline->on_draw(entity);
+        ces_render_component_shared_ptr render_component =
+        std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
+        if(render_component)
+        {
+            m_render_pipeline->on_draw(entity);
+        }
     }
     
     void ces_render_system::on_feed_end(f32 deltatime)

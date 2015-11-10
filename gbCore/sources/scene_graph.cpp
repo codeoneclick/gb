@@ -16,6 +16,7 @@
 #include "direction_light.h"
 #include "skybox.h"
 #include "ocean.h"
+#include "heightmap.h"
 #include "ces_systems_feeder.h"
 #include "ces_box2d_system.h"
 #include "collision_manager.h"
@@ -78,6 +79,13 @@ namespace gb
         m_ocean = ocean;
         m_ocean->on_added_to_scene(shared_from_this());
         m_systems_feeder->add_entity(m_ocean);
+    }
+    
+    void scene_graph::set_heightmap(const heightmap_shared_ptr& heightmap)
+    {
+        m_heightmap = heightmap;
+        m_heightmap->on_added_to_scene(shared_from_this());
+        m_systems_feeder->add_entity(m_heightmap);
     }
     
     void scene_graph::add_game_object(const game_object_shared_ptr& game_object)

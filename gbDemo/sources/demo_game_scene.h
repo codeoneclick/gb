@@ -27,6 +27,7 @@ private:
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
     gb::skybox_shared_ptr m_skybox;
     gb::ocean_shared_ptr m_ocean;
+    gb::heightmap_shared_ptr m_heightmap;
     
     koth::level_shared_ptr m_level;
     koth::character_controller_shared_ptr m_character_controller;

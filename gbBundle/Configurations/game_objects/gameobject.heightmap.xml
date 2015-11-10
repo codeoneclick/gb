@@ -1,0 +1,7 @@
+<heightmap
+    heightmap_data_filename="heightmap.data"
+    splatting_material_filename="material.heightmap.splatting.xml">
+	<materials>
+		<material filename="material.heightmap.base.xml"/>
+	</materials>
+</heightmap>

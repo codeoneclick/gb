@@ -16,6 +16,10 @@
 
 namespace gb
 {
+    
+#define k_max_contains_in_face 32
+#define k_max_contains_in_vbo 4
+    
     class heightmap_container
     {
     public:
@@ -29,10 +33,6 @@ namespace gb
             e_heigtmap_chunk_lod_04,
             e_heigtmap_chunk_lod_max
         };
-        
-        static const i32 k_max_contains_in_face = 32;
-        static const i32 k_max_contains_in_vbo = 4;
-        static const i32 k_max_chunk_size = 65;
         
         struct uncompressed_vertex
         {
@@ -263,6 +263,8 @@ namespace gb
         static const f32 k_layer_section_01;
         static const f32 k_layer_section_02;
         static const f32 k_layer_section_offset;
+        
+        static const i32 k_max_chunk_size;
         
         void init(const glm::ivec2& size);
         void mmap_geometry(const std::string& filename);

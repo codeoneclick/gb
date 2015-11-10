@@ -20,6 +20,8 @@ namespace gb
     const f32 heightmap_container::k_layer_section_02 = .66f;
     const f32 heightmap_container::k_layer_section_offset = .11f;
     
+    const i32 heightmap_container::k_max_chunk_size = 65;
+    
     static const std::string k_deep_texture_name = "deep.texture";
     
     heightmap_container::heightmap_container() :

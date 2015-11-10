@@ -26,6 +26,8 @@ namespace gb
         void bind_custom_shader_uniforms(const material_shared_ptr& material);
         void bind_main_shader_uniforms(const material_shared_ptr& material);
         
+        std::function<void(const material_shared_ptr&)> m_bind_material_imposer_callback;
+        
     public:
         
         ces_render_component();
@@ -47,6 +49,8 @@ namespace gb
         
         virtual void on_unbind(const std::string& technique_name, i32 technique_pass,
                                const material_shared_ptr& material = nullptr);
+        
+        void set_bind_material_imposer_callback(const std::function<void(const material_shared_ptr&)>& callback);
         
         void set_texture(const std::shared_ptr<texture>& texture, e_shader_sampler sampler, const std::string& technique_name = "", i32 technique_pass = -1);
         

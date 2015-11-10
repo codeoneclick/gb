@@ -24,7 +24,11 @@
 #include "particle_emitter.h"
 #include "skybox.h"
 #include "ocean.h"
+#include "heightmap.h"
 #include "mesh_constructor.h"
+#include "heightmap_configuration.h"
+#include "texture_configuration.h"
+#include "heightmap_texture_generator.h"
 
 namespace gb
 {
@@ -455,5 +459,72 @@ namespace gb
     void scene_fabricator::destroy_ocean(const ocean_shared_ptr& ocean)
     {
         m_game_objects_container.erase(ocean);
+    }
+    
+    heightmap_shared_ptr scene_fabricator::create_heightmap(const std::string& filename)
+    {
+        std::shared_ptr<heightmap_configuration> heightmap_configuration =
+        std::static_pointer_cast<gb::heightmap_configuration>(m_configuration_accessor->get_heightmap_configuration(filename));
+        assert(heightmap_configuration);
+        
+        heightmap_shared_ptr heightmap = nullptr;
+        
+        if(heightmap_configuration)
+        {
+            std::shared_ptr<material_configuration> splatting_configuration = std::make_shared<material_configuration>();
+            splatting_configuration->serialize(heightmap_configuration->get_splatting_material_filename());
+            
+            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_diffuse_textures;
+            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_normal_textures;
+            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_displace_textures;
+            
+            assert(splatting_configuration->get_textures_configurations().size() == 9);
+            ui32 index = 0;
+            for(const auto& iterator : splatting_configuration->get_textures_configurations())
+            {
+                std::shared_ptr<texture_configuration> texture_configuration = std::static_pointer_cast<gb::texture_configuration>(iterator);
+                assert(texture_configuration);
+                assert(texture_configuration->get_texture_filename().length() != 0);
+                texture_shared_ptr texture = m_resource_accessor->get_texture(texture_configuration->get_texture_filename(), true);
+                if(index >= 6)
+                {
+                    splatting_displace_textures[index - 6] = texture;
+                }
+                else if(index >= 3)
+                {
+                    splatting_normal_textures[index - 3] = texture;
+                }
+                else
+                {
+                    splatting_diffuse_textures[index] = texture;
+                }
+                index++;
+            }
+            
+            heightmap = std::make_shared<gb::heightmap>(heightmap_configuration->get_heightmap_data_filename());
+            
+            heightmap->set_splatting_diffuse_textures(splatting_diffuse_textures);
+            heightmap->set_splatting_normal_textures(splatting_normal_textures);
+            heightmap->set_splatting_displace_textures(splatting_displace_textures);
+            
+            for(const auto& iterator : heightmap_configuration->get_materials_configurations())
+            {
+                std::shared_ptr<material_configuration> material_configuration =
+                std::static_pointer_cast<gb::material_configuration>(iterator);
+                
+                material_shared_ptr material = material::construct(material_configuration);
+                gb::material::set_shader(material, material_configuration, m_resource_accessor);
+                gb::material::set_textures(material, material_configuration, m_resource_accessor);
+                heightmap->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
+            }
+            
+            m_heightmaps_container.insert(heightmap);
+        }
+        return heightmap;
+    }
+    
+    void scene_fabricator::destroy_heightmap(const heightmap_shared_ptr& heightmap)
+    {
+        m_heightmaps_container.erase(heightmap);
     }
 }

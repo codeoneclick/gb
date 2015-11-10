@@ -25,7 +25,6 @@ varying float v_fog_distance;
 
 #endif
 
-
 uniform mat4 u_mat_m;
 uniform mat4 u_mat_v;
 uniform mat4 u_mat_p;

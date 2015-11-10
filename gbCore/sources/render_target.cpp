@@ -39,6 +39,8 @@ namespace gb
         gl_attach_frame_buffer_render_buffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, m_depth_attachment);
         assert(glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
         
+#if defined(__PBO__)
+        
         ui32 size = m_size.x * m_size.y;
         if(m_format == GL_RGBA)
         {
@@ -53,6 +55,8 @@ namespace gb
         gl_bind_buffer(GL_PIXEL_PACK_BUFFER, m_pixel_buffer);
         gl_push_buffer_data(GL_PIXEL_PACK_BUFFER, size, NULL, GL_STREAM_READ);
         gl_bind_buffer(GL_PIXEL_PACK_BUFFER, 0);
+        
+#endif
     }
     
     render_target::~render_target()
@@ -70,10 +74,14 @@ namespace gb
             gl_delete_render_buffers(1, &m_depth_attachment);
         }
         
+#if defined(__PBO__)
+        
         if(m_pixel_buffer != 0)
         {
             gl_delete_buffers(1, &m_pixel_buffer);
         }
+        
+#endif
     }
     
     void render_target::clear()
@@ -91,6 +99,8 @@ namespace gb
     {
         if(data)
         {
+#if defined(__PBO__)
+            
             glReadBuffer(GL_COLOR_ATTACHMENT0);
             gl_bind_buffer(GL_PIXEL_PACK_BUFFER, m_pixel_buffer);
             glReadPixels(0, 0, m_size.x, m_size.y, m_format, GL_UNSIGNED_BYTE, NULL);
@@ -111,11 +121,18 @@ namespace gb
                 memcpy(data, pointer, size);
                 glUnmapBuffer(GL_PIXEL_PACK_BUFFER);
             }
+            
+#else
+            
+            glReadPixels(0, 0, m_size.x, m_size.y, m_format, GL_UNSIGNED_BYTE, data);
+            
+            
+#endif
         }
         
         assert(m_graphics_context != nullptr);
         
-        gl_bind_buffer(GL_FRAMEBUFFER, m_graphics_context->get_frame_buffer());
+        gl_bind_frame_buffer(GL_FRAMEBUFFER, m_graphics_context->get_frame_buffer());
         gl_viewport(0, 0, m_graphics_context->get_width(), m_graphics_context->get_height());
     }
 }

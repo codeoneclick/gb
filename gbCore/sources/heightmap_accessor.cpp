@@ -186,7 +186,7 @@ namespace gb
             callback();
         });
         
-        thread_operation_shared_ptr generate_geometry_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr generate_geometry_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         generate_geometry_operation->set_execution_callback([this, filename]() {
             
             std::tuple<glm::ivec2, std::vector<f32>> heights_data = heightmap_loader::get_heights_data(filename);;
@@ -200,7 +200,7 @@ namespace gb
         });
         completion_operation->add_dependency(generate_geometry_operation);
         
-        thread_operation_shared_ptr mmap_geometry_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr mmap_geometry_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         mmap_geometry_operation->set_execution_callback([this, filename]() {
             
             m_container->mmap_geometry(filename);
@@ -220,42 +220,42 @@ namespace gb
         });
         completion_operation->add_dependency(generate_heightmap_texture_operation);
         
-        thread_operation_shared_ptr generate_splatting_masks_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr generate_splatting_masks_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         generate_splatting_masks_operation->set_execution_callback([this, filename]() {
             
             heightmap_texture_generator::generate_splatting_mask_textures(m_container, filename);
         });
         completion_operation->add_dependency(generate_splatting_masks_operation);
         
-        thread_operation_shared_ptr mmap_masks_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr mmap_masks_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         mmap_masks_operation->set_execution_callback([this, filename]() {
             
             m_container->mmap_mask_textures(filename);
         });
         completion_operation->add_dependency(mmap_masks_operation);
         
-        thread_operation_shared_ptr generate_splatting_diffuse_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr generate_splatting_diffuse_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         generate_splatting_diffuse_textures_operation->set_execution_callback([this, filename, graphics_context, splatting_diffuse_textures]() {
             
             heightmap_texture_generator::generate_splatting_diffuse_textures(graphics_context, m_container, filename, splatting_diffuse_textures);
         });
         completion_operation->add_dependency(generate_splatting_diffuse_textures_operation);
         
-        thread_operation_shared_ptr mmap_diffuse_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr mmap_diffuse_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         mmap_diffuse_textures_operation->set_execution_callback([this, filename]() {
             
             m_container->mmap_diffuse_textures(filename);
         });
         completion_operation->add_dependency(mmap_diffuse_textures_operation);
         
-        thread_operation_shared_ptr generate_splatting_normal_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr generate_splatting_normal_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         generate_splatting_normal_textures_operation->set_execution_callback([this, filename, graphics_context, splatting_normal_textures]() {
             
             heightmap_texture_generator::generate_splatting_normal_textures(graphics_context, m_container, filename, splatting_normal_textures);
         });
         completion_operation->add_dependency(generate_splatting_normal_textures_operation);
         
-        thread_operation_shared_ptr mmap_normal_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_background);
+        thread_operation_shared_ptr mmap_normal_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         mmap_normal_textures_operation->set_execution_callback([this, filename]() {
             
             m_container->mmap_normal_textures(filename);

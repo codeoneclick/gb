@@ -250,6 +250,21 @@ namespace gb
     
     class thread_operation;
     typedef std::shared_ptr<thread_operation> thread_operation_shared_ptr;
+    
+    class heightmap_accessor;
+    typedef std::shared_ptr<heightmap_accessor> heightmap_accessor_shared_ptr;
+    
+    class heightmap_container;
+    typedef std::shared_ptr<heightmap_accessor> heightmap_container_shared_ptr;
+    
+    class ces_heightmap_component;
+    typedef std::shared_ptr<ces_heightmap_component> ces_heightmap_component_shared_ptr;
+    
+    class heightmap;
+    typedef std::shared_ptr<heightmap> heightmap_shared_ptr;
+    
+    class heightmap_chunk;
+    typedef std::shared_ptr<heightmap_chunk> heightmap_chunk_shared_ptr;
 };
 
 #endif

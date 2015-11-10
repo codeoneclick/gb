@@ -100,7 +100,7 @@ namespace gb
         
         for(ui32 i = 0; i < size.x * size.y; ++i)
         {
-            assert(uncompressed_vertices[i].m_contains_in_face_size != 0 && uncompressed_vertices[i].m_contains_in_face_size <= heightmap_container::k_max_contains_in_face);
+            assert(uncompressed_vertices[i].m_contains_in_face_size != 0 && uncompressed_vertices[i].m_contains_in_face_size <= k_max_contains_in_face);
             glm::vec3 normal = faces[uncompressed_vertices[i].m_contains_in_face[0]].m_normal;
             for(ui32 j = 1; j < uncompressed_vertices[i].m_contains_in_face_size; ++j)
             {
