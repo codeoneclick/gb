@@ -13,6 +13,7 @@
 
 namespace gb
 {
+    const f32 heightmap_container::k_max_height = 32.f;
     const f32 heightmap_container::k_raise = 32.f;
     const f32 heightmap_container::k_deep = heightmap_container::k_raise * .25f;
     

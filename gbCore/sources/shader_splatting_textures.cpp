@@ -8,7 +8,7 @@
 
 #include "main_headers.h"
 
-const char* shader_splatting_textures_vert = string_shader
+const char* shader_splatting_vert = string_shader
 (
 #if defined(__OPENGL_30__)
  
@@ -33,7 +33,7 @@ const char* shader_splatting_textures_vert = string_shader
 }
  );
 
-const char* shader_splatting_textures_frag = string_shader
+const char* shader_splatting_frag = string_shader
 (
 #if defined(__OPENGL_30__)
  
@@ -47,10 +47,15 @@ const char* shader_splatting_textures_frag = string_shader
  
 #endif
  
+ uniform int u_num_textures;
+ 
  uniform sampler2D  sampler_01;
  uniform sampler2D  sampler_02;
  uniform sampler2D  sampler_03;
  uniform sampler2D  sampler_04;
+ uniform sampler2D  sampler_05;
+ uniform sampler2D  sampler_06;
+ uniform sampler2D  sampler_07;
  
  void main()
 {

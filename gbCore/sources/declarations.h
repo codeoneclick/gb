@@ -255,7 +255,7 @@ namespace gb
     typedef std::shared_ptr<heightmap_accessor> heightmap_accessor_shared_ptr;
     
     class heightmap_container;
-    typedef std::shared_ptr<heightmap_accessor> heightmap_container_shared_ptr;
+    typedef std::shared_ptr<heightmap_container> heightmap_container_shared_ptr;
     
     class ces_heightmap_component;
     typedef std::shared_ptr<ces_heightmap_component> ces_heightmap_component_shared_ptr;

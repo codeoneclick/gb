@@ -29,35 +29,32 @@ namespace gb
         
     private:
         
-        static void create_splatting_mask_textures(const std::shared_ptr<heightmap_container>& container, const std::string& filename);
+        static void create_splatting_rgb565_mask(const heightmap_container_shared_ptr& container, const std::string& filename);
         
-        static void create_splatting_diffuse_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                      const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                      const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures);
+        static void create_splatting_rgb565_diffuse_textures(const graphics_context_shared_ptr& graphics_context,
+                                                             const heightmap_container_shared_ptr& container, const std::string& filename,
+                                                             const std::array<texture_shared_ptr, e_splatting_texture_max>& diffuse_textures);
         
-        static void create_splatting_normal_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                     const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                     const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures);
+        static void create_splatting_rgb888_normal_a8_displace_textures(const graphics_context_shared_ptr& graphics_context,
+                                                                        const heightmap_container_shared_ptr& container, const std::string& filename,
+                                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& normal_textures,
+                                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& displace_textures);
         
-        static void create_splatting_displace_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                       const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures);
+        static void create_splatting_texture(const graphics_context_shared_ptr& graphics_context,
+                                             const heightmap_container_shared_ptr& container,
+                                             const std::vector<texture_shared_ptr>& textures,
+                                             ui32 offset_x, ui32 offset_y, const std::function<void(ui8 *, ui32, heightmap_container::e_heigtmap_chunk_lod lod)>& callback);
         
-        static void generate_splatting_texture(const std::shared_ptr<graphics_context>& graphics_context,
-                                               const std::shared_ptr<heightmap_container>& container,
-                                               const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_textures,
-                                               ui32 i, ui32 j, const std::function<void(ui8 *, ui32, heightmap_container::e_heigtmap_chunk_lod lod)>& callback);
-        
-        static material_shared_ptr get_splatting_textures_material(const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_textures);
+        static material_shared_ptr get_splatting_material(const std::vector<texture_shared_ptr>& textures);
         
     protected:
         
     public:
         
-        static const f32 k_min_splatting_texture_height;
-        static const f32 k_max_splatting_texture_height;
         static const ui8 k_splatting_texture_channels;
+        
         static const glm::ivec2 k_splatting_texture_mask_size;
+        
         static const glm::ivec2 k_splatting_texture_size_lod_01;
         static const glm::ivec2 k_splatting_texture_size_lod_02;
         static const glm::ivec2 k_splatting_texture_size_lod_03;

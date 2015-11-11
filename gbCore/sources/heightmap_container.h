@@ -257,6 +257,7 @@ namespace gb
         heightmap_container();
         ~heightmap_container();
         
+        static const f32 k_max_height;
         static const f32 k_raise;
         static const f32 k_deep;
         

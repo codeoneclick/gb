@@ -20,23 +20,22 @@
 
 namespace gb
 {
-    const f32 heightmap_texture_generator::k_min_splatting_texture_height = 32.f;
-    const f32 heightmap_texture_generator::k_max_splatting_texture_height = 32.f;
     const ui8 heightmap_texture_generator::k_splatting_texture_channels = 4;
+    
     const glm::ivec2 heightmap_texture_generator::k_splatting_texture_mask_size = glm::ivec2(64);
+    
     const glm::ivec2 heightmap_texture_generator::k_splatting_texture_size_lod_01 = glm::ivec2(1024);
     const glm::ivec2 heightmap_texture_generator::k_splatting_texture_size_lod_02 = glm::ivec2(512);
     const glm::ivec2 heightmap_texture_generator::k_splatting_texture_size_lod_03 = glm::ivec2(128);
     const glm::ivec2 heightmap_texture_generator::k_splatting_texture_size_lod_04 = glm::ivec2(64);
     
-    std::once_flag g_create_splatting_textures_material_once;
-    material_shared_ptr heightmap_texture_generator::get_splatting_textures_material(const std::array<texture_shared_ptr,
-                                                                                     e_splatting_texture_max>& splatting_textures)
+    std::once_flag g_create_splatting_material_once;
+    material_shared_ptr heightmap_texture_generator::get_splatting_material(const std::vector<texture_shared_ptr> &textures)
     {
         static material_shared_ptr material = std::make_shared<gb::material>();
-        std::call_once(g_create_splatting_textures_material_once, []() {
+        std::call_once(g_create_splatting_material_once, []() {
             
-            shader_shared_ptr shader = shader::construct("splatting_textures", shader_splatting_textures_vert, shader_splatting_textures_frag);
+            shader_shared_ptr shader = shader::construct("shader_splatting", shader_splatting_vert, shader_splatting_frag);
             assert(shader != nullptr);
             material->set_shader(shader);
             
@@ -57,31 +56,61 @@ namespace gb
             material->set_depth_mask(true);
             
             material->set_clipping(false);
-            material->set_clipping_plane(glm::vec4(0.0, 0.0, 0.0, 0.0));
+            material->set_clipping_plane(glm::vec4(0.f, 0.f, 0.f, 0.f));
             
             material->set_reflecting(false);
             material->set_shadowing(false);
             material->set_debugging(false);
         });
+
+        for(ui32 i = 0; i < textures.size(); ++i)
+        {
+            e_shader_sampler sampler = static_cast<e_shader_sampler>(i);
+            texture_shared_ptr texture = textures[i];
+            if(i < e_shader_sampler_max && texture->is_loaded() && texture->is_commited())
+            {
+                material->set_texture(texture, sampler);
+            }
+            else
+            {
+                assert(false);
+            }
+        }
         
-        assert(splatting_textures[0]->is_loaded() && splatting_textures[0]->is_commited());
-        material->set_texture(splatting_textures[0], e_shader_sampler_01);
-        assert(splatting_textures[1]->is_loaded() && splatting_textures[1]->is_commited());
-        material->set_texture(splatting_textures[1], e_shader_sampler_02);
-        assert(splatting_textures[2]->is_loaded() && splatting_textures[2]->is_commited());
-        material->set_texture(splatting_textures[2], e_shader_sampler_03);
+        i32 num_textures = static_cast<i32>(textures.size()) - 1;
+        material->set_custom_shader_uniform(num_textures, "u_num_textures");
         
         return material;
     }
     
     std::once_flag g_create_render_targets_once;
-    std::once_flag g_create_splatting_mask_texture;
-    void heightmap_texture_generator::generate_splatting_texture(const std::shared_ptr<graphics_context> &graphics_context,
-                                                                 const std::shared_ptr<heightmap_container> &container,
-                                                                 const std::array<texture_shared_ptr, e_splatting_texture_max> &splatting_textures,
-                                                                 ui32 i, ui32 j, const std::function<void (ui8 *, ui32, heightmap_container::e_heigtmap_chunk_lod)> &callback)
+    std::once_flag g_create_splatting_mask;
+    void heightmap_texture_generator::create_splatting_texture(const graphics_context_shared_ptr& graphics_context,
+                                                               const heightmap_container_shared_ptr &container,
+                                                               const std::vector<texture_shared_ptr> &textures,
+                                                               ui32 offset_x, ui32 offset_y,
+                                                               const std::function<void (ui8 *, ui32, heightmap_container::e_heigtmap_chunk_lod)> &callback)
     {
-        material_shared_ptr material = heightmap_texture_generator::get_splatting_textures_material(splatting_textures);
+        glm::ivec2 mask_size = glm::ivec2(sqrt(container->get_splatting_mask_textures_mmap(0)->get_size()));
+        static texture_shared_ptr splatting_mask = nullptr;
+        std::call_once(g_create_splatting_mask, [container, mask_size]() {
+            
+            ui32 texture_id;
+            gl_create_textures(1, &texture_id);
+            
+            splatting_mask = texture::construct("splatting_mask", texture_id,
+                                                mask_size.x, mask_size.y);
+            
+            splatting_mask->set_wrap_mode(GL_CLAMP_TO_EDGE);
+            splatting_mask->set_mag_filter(GL_LINEAR);
+            splatting_mask->set_min_filter(GL_LINEAR);
+        });
+        
+        std::vector<texture_shared_ptr> textures_container;
+        textures_container.push_back(splatting_mask);
+        textures_container.insert(textures.begin() + 1, textures.begin(), textures.end());
+        
+        material_shared_ptr material = heightmap_texture_generator::get_splatting_material(textures_container);
         mesh_shared_ptr screen_quad = mesh_constructor::create_screen_quad();
         
         static std::array<std::shared_ptr<render_target>, heightmap_container::e_heigtmap_chunk_lod_max> render_targets;
@@ -94,33 +123,17 @@ namespace gb
             }
         });
         
-        glm::ivec2 mask_texture_size = glm::ivec2(sqrt(container->get_splatting_mask_textures_mmap(0)->get_size()));
-        static texture_shared_ptr splatting_mask_texture = nullptr;
-        std::call_once(g_create_splatting_mask_texture, [container, material, mask_texture_size]() {
-            
-            ui32 texture_id;
-            gl_create_textures(1, &texture_id);
-            
-            splatting_mask_texture = texture::construct("splatting.MTexture", texture_id,
-                                                        mask_texture_size.x, mask_texture_size.y);
-            
-            splatting_mask_texture->set_wrap_mode(GL_CLAMP_TO_EDGE);
-            splatting_mask_texture->set_mag_filter(GL_LINEAR);
-            splatting_mask_texture->set_min_filter(GL_LINEAR);
-            material->set_texture(splatting_mask_texture, e_shader_sampler_04);
-        });
-        
         for(ui32 lod = 0; lod < heightmap_container::e_heigtmap_chunk_lod_max; ++lod)
         {
             glm::ivec2 diffuse_texture_size = container->get_textures_lod_size(static_cast<heightmap_container::e_heigtmap_chunk_lod>(lod));
             ui32 data_size = static_cast<ui32>(diffuse_texture_size.x) * static_cast<ui32>(diffuse_texture_size.y) * k_splatting_texture_channels;
             ui8 *data = new ui8[data_size];
             
-            ui32 index = i + j * container->get_chunks_num().x;
-            splatting_mask_texture->bind();
+            ui32 index = offset_x + offset_y * container->get_chunks_num().x;
+            splatting_mask->bind();
             
             gl_texture_image2d(GL_TEXTURE_2D, 0, GL_RGB,
-                               mask_texture_size.x, mask_texture_size.y,
+                               mask_size.x, mask_size.y,
                                0, GL_RGB, GL_UNSIGNED_SHORT_5_6_5,
                                container->get_splatting_mask_textures_mmap(index)->get_pointer());
             
@@ -149,11 +162,11 @@ namespace gb
     {
         if(!heightmap_loader::is_splatting_mask_textures_mmap_exist(filename))
         {
-            heightmap_texture_generator::create_splatting_mask_textures(container, filename);
+            heightmap_texture_generator::create_splatting_rgb565_mask(container, filename);
         }
     }
     
-    void heightmap_texture_generator::create_splatting_mask_textures(const std::shared_ptr<heightmap_container>& container, const std::string& filename)
+    void heightmap_texture_generator::create_splatting_rgb565_mask(const heightmap_container_shared_ptr& container, const std::string& filename)
     {
         std::shared_ptr<std::ofstream> stream = std::make_shared<std::ofstream>();
         stream->open(heightmap_loader::get_splatting_mask_textures_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
@@ -175,7 +188,7 @@ namespace gb
     void heightmap_texture_generator::generate_splatting_mask_texture(const std::shared_ptr<heightmap_container> &container,
                                                                       ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream)
     {
-        glm::ivec2 vertices_offset( i * (container->get_chunk_size().x - 1), j * (container->get_chunk_size().y - 1));
+        glm::ivec2 vertices_offset(i * (container->get_chunk_size().x - 1), j * (container->get_chunk_size().y - 1));
         glm::vec2 step = glm::vec2(static_cast<f32>(container->get_chunk_size().x) / static_cast<f32>(k_splatting_texture_mask_size.x) ,
                                    static_cast<f32>(container->get_chunk_size().y) / static_cast<f32>(k_splatting_texture_mask_size.y));
         
