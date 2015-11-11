@@ -95,10 +95,19 @@ namespace koth
         {
             f32 fov = glm::mix(45.f, 50.f, m_camera_move_speed);
             m_camera->set_fov(fov);
-            glm::vec3 look_at = glm::vec3(std::max(std::min(m_game_object->get_position().x, 12.f), 4.f),
+            glm::vec3 look_at = glm::vec3(m_game_object->get_position().x,
                                           m_game_object->get_position().y + glm::mix(.5f, 1.5f, m_camera_move_speed),
-                                          std::max(std::min(m_game_object->get_position().z, 12.f), 4.f));
+                                          m_game_object->get_position().z);
             m_camera->set_look_at(look_at);
+            
+            glm::vec3 camera_position = m_camera->get_position();
+            
+            camera_position.x = look_at.x + cosf(-m_camera->get_rotation()) * -16.f;
+            camera_position.z = look_at.z + sinf(-m_camera->get_rotation()) * -16.f;
+            
+            m_camera->set_position(camera_position);
+            
+            m_camera->set_rotation(glm::radians(m_game_object->get_rotation().y - 90.f));
         }
     }
     

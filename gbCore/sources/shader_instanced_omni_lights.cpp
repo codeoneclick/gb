@@ -60,6 +60,7 @@ const char* shader_instanced_omni_light_frag = string_shader
  
  uniform sampler2D sampler_01;
  uniform sampler2D sampler_02;
+ uniform sampler2D sampler_03;
  
 #if defined(__OPENGL_30__)
  
@@ -75,7 +76,7 @@ const char* shader_instanced_omni_light_frag = string_shader
  
 #endif
  
-#define __SPECULAR__
+//#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;
@@ -89,7 +90,7 @@ const char* shader_instanced_omni_light_frag = string_shader
     screen_position.xy /= screen_position.w;
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     
-    vec4 normal_color = texture2D(sampler_01, texcoord);
+    vec4 ts_color = texture2D(sampler_01, texcoord);
     float depth = texture2D(sampler_02, texcoord).r;
     
     vec4 position = vec4(texcoord * 2.0 - 1.0, depth * 2.0 - 1.0, 1.0);
@@ -97,27 +98,31 @@ const char* shader_instanced_omni_light_frag = string_shader
     position.xyz = position.xyz / position.w;
     
     vec3 normal = vec3(0.0);
+    vec3 tangent = vec3(0.0);
     
-#define __DECODE_NORMAL_SPHEREMAP__
-#if defined(__DECODE_NORMAL_XYZ__)
-    
-    normal = normal_color.rgb * 2.0 - 1.0;
-    
-#elif defined(__DECODE_NORMAL_SPHEREMAP__)
-    
-    vec2 fenc = normal_color.xy * 4.0 - 2.0;
+    vec2 fenc = ts_color.xy * 4.0 - 2.0;
     float f = dot(fenc, fenc);
     float g = sqrt(1.0 - f / 4.0);
     normal.xy = fenc * g;
     normal.z = 1.0 - f / 2.0;
     
-#endif
+    fenc = ts_color.zw * 4.0 - 2.0;
+    f = dot(fenc, fenc);
+    g = sqrt(1.0 - f / 4.0);
+    tangent.xy = fenc * g;
+    tangent.z = 1.0 - f / 2.0;
     
     vec3 light_direction = v_transform_parameters.xyz - position.xyz;
     float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
     light_direction = normalize(light_direction);
     
-    vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.0, 1.0));
+    mat3 mat_tbn = mat3(tangent, cross(-normal, tangent), normal);
+    
+    vec3 light_direction_ts = normalize(light_direction * mat_tbn);
+    
+    vec3 normal_color = texture2D(sampler_03, texcoord).rgb * 2.0 - 1.0;
+    
+    vec3 diffuse = vec3(clamp(dot(normal_color, light_direction_ts), 0.0, 1.0));
     
 
 #if defined(__SPECULAR__)

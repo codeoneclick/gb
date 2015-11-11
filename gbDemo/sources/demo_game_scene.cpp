@@ -20,6 +20,7 @@
 #include "instanced_models3d_static.h"
 #include "skybox.h"
 #include "ocean.h"
+#include "heightmap.h"
 #include "ui_fabricator.h"
 #include "ui_graph.h"
 #include "level.h"
@@ -33,7 +34,7 @@
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
 {
-    m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 128.f, glm::ivec4(0.f, 0.f,
+    m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
                                                                                   game_scene::get_transition()->get_width(),
                                                                                   game_scene::get_transition()->get_height()));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
@@ -105,8 +106,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    scene_graph_inst->add_direction_light(m_direction_light);
-    m_direction_light->set_intensity(.1f);
+    //scene_graph_inst->add_direction_light(m_direction_light);
+    //m_direction_light->set_intensity(.1f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(9);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
@@ -127,17 +128,18 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
     m_instanced_omni_lights->set_radius(3.f, 7);
     
-    m_instanced_omni_lights->set_position(glm::vec3(8.f, 8.f, 8.f), 8);
-    m_instanced_omni_lights->set_radius(14.f, 8);
+    m_instanced_omni_lights->set_position(glm::vec3(48.f, 8.f, 48.f), 8);
+    m_instanced_omni_lights->set_radius(32.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
     scene_graph_inst->set_skybox(m_skybox);
     
     m_ocean = scene_fabricator_inst->create_ocean("gameobject.ocean.xml");
-    scene_graph_inst->set_ocean(m_ocean);
+    //scene_graph_inst->set_ocean(m_ocean);
     
     m_heightmap = scene_fabricator_inst->create_heightmap("gameobject.heightmap.xml");
     scene_graph_inst->set_heightmap(m_heightmap);
+
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
@@ -195,6 +197,8 @@ void demo_game_scene::update(f32 deltatime)
     light_xz_position.y = 8.f + sinf(angle) * -8.f;
     m_direction_light->set_direction(glm::normalize(m_camera->get_position() - glm::vec3(8.f, 0.f, 8.f)));*/
     m_skybox->set_rotation(glm::vec3(0.f, 90.f, 0.f));
+    
+    m_heightmap->set_position(glm::vec3(-64.f, 0.f, -64.f));
     //m_models["orc_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
     
     //m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 3.f, light_xz_position.y), 0);

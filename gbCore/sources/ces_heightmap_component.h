@@ -59,6 +59,9 @@ namespace gb
         
         void add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material);
         
+        void set_position(const glm::vec3& position);
+        glm::vec3 get_position() const;
+        
         void set_splatting_diffuse_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_diffuse_textures);
         void set_splatting_normal_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_normal_textures);
         void set_splatting_displace_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_displace_textures);

@@ -3,5 +3,8 @@
     splatting_material_filename="material.heightmap.splatting.xml">
 	<materials>
 		<material filename="material.heightmap.base.xml"/>
+        <material filename="material.heightmap.forward.rendering.normal.xml"/>
+        <material filename="material.heigthmap.forward.rendering.emissive.xml"/>
+        <material filename="material.heightmap.forward.rendering.tangent.space.xml"/>
 	</materials>
 </heightmap>

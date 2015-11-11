@@ -227,15 +227,15 @@ namespace gb
         assert(using_material);
         assert(using_material->get_shader()->is_commited());
         
-        using_material->bind();
-        
-        ces_render_component::bind_main_shader_uniforms(using_material);
-        ces_render_component::bind_custom_shader_uniforms(using_material);
-        
         if(m_bind_material_imposer_callback)
         {
             m_bind_material_imposer_callback(using_material);
         }
+        
+        using_material->bind();
+        
+        ces_render_component::bind_main_shader_uniforms(using_material);
+        ces_render_component::bind_custom_shader_uniforms(using_material);
     }
     
     void ces_render_component::on_unbind(const std::string& technique_name, i32 technique_pass,

@@ -43,7 +43,7 @@ namespace gb
         std::vector<f32> heights;
         glm::ivec2 size;
         
-        UIImage* image = [UIImage imageNamed:[NSString stringWithCString:"map_01" encoding:NSUTF8StringEncoding]];
+        UIImage* image = [UIImage imageNamed:[NSString stringWithCString:"map_06" encoding:NSUTF8StringEncoding]];
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         size_t bytesPerRow = image.size.width * 4;
         data = (ui8 *)malloc(image.size.height * bytesPerRow);
@@ -78,7 +78,7 @@ namespace gb
         std::vector<f32> heights;
         glm::ivec2 size;
         
-        NSImage* image = [NSImage imageNamed:[NSString stringWithCString:"map_01" encoding:NSUTF8StringEncoding]];
+        NSImage* image = [NSImage imageNamed:[NSString stringWithCString:"map_06" encoding:NSUTF8StringEncoding]];
         CGImageSourceRef source = CGImageSourceCreateWithData((__bridge CFDataRef)[image TIFFRepresentation], NULL);
         CGImageRef mask =  CGImageSourceCreateImageAtIndex(source, 0, NULL);
         NSBitmapImageRep *bitmap = [[NSBitmapImageRep alloc] initWithCGImage:mask];

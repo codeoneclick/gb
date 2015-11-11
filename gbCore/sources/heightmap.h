@@ -30,6 +30,9 @@ namespace gb
         heightmap(const std::string& filename);
         ~heightmap();
         
+        void set_position(const glm::vec3& position);
+        glm::vec3 get_position() const;
+        
         void on_added_to_scene(const scene_graph_shared_ptr& scene_graph);
         void on_removed_from_scene();
         

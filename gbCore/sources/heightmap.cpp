@@ -58,6 +58,16 @@ namespace gb
         unsafe_get_heightmap_component_from_this->add_material(technique_name, technique_pass, material);
     }
     
+    void heightmap::set_position(const glm::vec3& position)
+    {
+        unsafe_get_heightmap_component_from_this->set_position(position);
+    }
+    
+    glm::vec3 heightmap::get_position() const
+    {
+        return unsafe_get_heightmap_component_from_this->get_position();
+    }
+    
     void heightmap::set_splatting_diffuse_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_diffuse_textures)
     {
         unsafe_get_heightmap_component_from_this->set_splatting_diffuse_textures(splatting_diffuse_textures);

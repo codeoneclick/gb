@@ -11,6 +11,7 @@
 #include "heightmap_chunk.h"
 #include "scene_graph.h"
 #include "camera.h"
+#include "frustum.h"
 
 namespace gb
 {
@@ -84,25 +85,40 @@ namespace gb
             for(i32 j = 0; j < m_heightmap_accessor->get_chunks_num().y; ++j)
             {
                 i32 index = i + j * m_heightmap_accessor->get_chunks_num().x;
-                glm::vec3 min_bound = std::get<0>(m_heightmap_accessor->get_chunk_bounds(i, j));
-                glm::vec3 max_bound = std::get<1>(m_heightmap_accessor->get_chunk_bounds(i, j));
+                
+                glm::vec3 position = m_chunks[index]->get_position();
+                
+                glm::vec3 min_bound = std::get<0>(m_heightmap_accessor->get_chunk_bounds(i, j)) + position;
+                glm::vec3 max_bound = std::get<1>(m_heightmap_accessor->get_chunk_bounds(i, j)) + position;
                 
                 camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
+                frustum_shared_ptr frustum = camera->get_frustum();
                 
-                heightmap_container::e_heigtmap_chunk_lod lod = ces_heightmap_component::get_current_lod(camera->get_look_at(), min_bound, max_bound);
+                e_frustum_bound_result result = frustum->is_bounding_box_in_frustum(min_bound, max_bound);
                 
-                if(m_chunks[index]->get_inprogress_lod() == m_chunks[index]->get_current_lod() &&
-                   m_chunks[index]->get_current_lod() != lod)
+                if(result == e_frustum_bound_result_inside || result == e_frustum_bound_result_intersect)
                 {
-                    m_chunks[index]->set_inprogress_lod(lod);
+                    heightmap_container::e_heigtmap_chunk_lod lod = ces_heightmap_component::get_current_lod(camera->get_look_at(), min_bound, max_bound);
                     
-                    m_heightmap_accessor->start_chunk_loading(i, j, lod, [this, index] (const mesh_shared_ptr& mesh) {
-                        m_chunks[index]->set_mesh(mesh);
-                    }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_texture) {
-                        m_chunks[index]->set_diffuse_texture(diffuse_texture);
-                        m_chunks[index]->set_normal_texture(normal_texture);
-                        m_chunks[index]->set_current_lod(lod);
-                    });
+                    if(m_chunks[index]->get_inprogress_lod() == m_chunks[index]->get_current_lod() &&
+                       m_chunks[index]->get_current_lod() != lod)
+                    {
+                        m_chunks[index]->set_inprogress_lod(lod);
+                        
+                        m_heightmap_accessor->start_chunk_loading(i, j, lod, [this, index] (const mesh_shared_ptr& mesh) {
+                            m_chunks[index]->set_mesh(mesh);
+                        }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_texture) {
+                            m_chunks[index]->set_diffuse_texture(diffuse_texture);
+                            m_chunks[index]->set_normal_texture(normal_texture);
+                            m_chunks[index]->set_current_lod(lod);
+                        });
+                    }
+                }
+                else
+                {
+                    m_chunks[index]->set_mesh(nullptr);
+                    m_chunks[index]->set_inprogress_lod(heightmap_container::e_heigtmap_chunk_lod_unknown);
+                    m_chunks[index]->set_current_lod(heightmap_container::e_heigtmap_chunk_lod_unknown);
                 }
             }
         }
@@ -111,6 +127,19 @@ namespace gb
     void ces_heightmap_component::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
         m_materials.push_back(std::make_tuple(technique_name, technique_pass, material));
+    }
+    
+    void ces_heightmap_component::set_position(const glm::vec3& position)
+    {
+        for(i32 i = 0; i < m_chunks.size(); ++i)
+        {
+            m_chunks[i]->set_position(position);
+        }
+    }
+    
+    glm::vec3 ces_heightmap_component::get_position() const
+    {
+        return m_chunks[0]->get_position();
     }
     
     void ces_heightmap_component::set_splatting_diffuse_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_diffuse_textures)

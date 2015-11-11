@@ -167,13 +167,17 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.technique.forward.rendering.tangent.space.color");
         assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.technique.forward.rendering.tangent.space.depth");
         assert(texture_02);
+        texture_shared_ptr texture_03 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
+        assert(texture_03);
+
         
         material->set_texture(texture_01, e_shader_sampler_01);
         material->set_texture(texture_02, e_shader_sampler_02);
+        material->set_texture(texture_03, e_shader_sampler_03);
         
         instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 8, 8);
         
@@ -231,9 +235,9 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.technique.forward.rendering.tangent.space.color");
         assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.technique.forward.rendering.tangent.space.depth");
         assert(texture_02);
         
         material->set_texture(texture_01, e_shader_sampler_01);
