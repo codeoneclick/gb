@@ -144,7 +144,7 @@ namespace gb
         material_shared_ptr material = std::make_shared<gb::material>();
         material->set_shader(shader);
         
-        material->set_culling(true);
+        material->set_culling(false);
         material->set_culling_mode(GL_BACK);
         
         material->set_blending(true);
@@ -179,7 +179,7 @@ namespace gb
         material->set_texture(texture_02, e_shader_sampler_02);
         material->set_texture(texture_03, e_shader_sampler_03);
         
-        instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 8, 8);
+        instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 16, 16);
         
         instanced_omni_lights_shared_ptr instanced_omni_light = std::make_shared<gb::instanced_omni_lights>(num_instances);
         

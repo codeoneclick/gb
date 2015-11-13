@@ -76,12 +76,20 @@ const char* shader_instanced_omni_light_frag = string_shader
  
 #endif
  
-#define __SPECULAR__
+//#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;
  float specular_power = 4.0;
 
+#endif
+ 
+#define __PARALLAX_MAPPING__
+#if defined(__PARALLAX_MAPPING__)
+ 
+ float scale = 0.04;
+ float bias = -0.02;
+ 
 #endif
  
  vec3 decode_spheremap(vec2 encoded)
@@ -109,14 +117,26 @@ const char* shader_instanced_omni_light_frag = string_shader
     vec3 tangent = decode_spheremap(ts_color.zw);
     
     vec3 light_direction = v_transform_parameters.xyz - position.xyz;
-    float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
+    float attenuation = 1.0 - length(light_direction) / (v_transform_parameters.w - 0.33);
     light_direction = normalize(light_direction);
     
     mat3 mat_tbn = mat3(tangent, cross(-normal, tangent), normal);
     
     vec3 light_direction_ts = normalize(light_direction * mat_tbn);
     
-    vec4 normal_color = texture2D(sampler_03, texcoord);
+    vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
+    vec3 camera_direction_ts = normalize(camera_direction * mat_tbn);
+    
+    vec2 texcoord_offset = vec2(0.0);
+    
+#if defined(__PARALLAX_MAPPING__)
+    
+    float displace = texture2D(sampler_03, texcoord).a * scale + bias;
+    texcoord_offset = displace * camera_direction_ts.xy;
+    
+#endif
+    
+    vec4 normal_color = texture2D(sampler_03, texcoord + texcoord_offset);
     vec3 normal_ts = normal_color.xyz * 2.0 - 1.0;
     
     vec3 diffuse = vec3(clamp(dot(normal_ts, light_direction_ts), 0.0, 1.0));
@@ -125,10 +145,6 @@ const char* shader_instanced_omni_light_frag = string_shader
 #if defined(__SPECULAR__)
     
     float specular_intensity = normal_color.a;
-    
-    vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
-    vec3 camera_direction_ts = normalize(camera_direction * mat_tbn);
-    
     vec3 half_vector = normalize(light_direction_ts + camera_direction_ts);
     float specular = pow(clamp(dot(normal_ts, half_vector), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
     
@@ -138,7 +154,7 @@ const char* shader_instanced_omni_light_frag = string_shader
     
 #endif
     
-    gl_FragColor = vec4((attenuation * diffuse + attenuation * specular) * v_light_color.rgb, 1.0);
+    gl_FragColor = vec4((diffuse + specular) * v_light_color.rgb * attenuation, 1.0);
 }
  );
 
