@@ -76,13 +76,21 @@ const char* shader_instanced_omni_light_frag = string_shader
  
 #endif
  
-//#define __SPECULAR__
+#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;
  float specular_power = 4.0;
 
 #endif
+ 
+ vec3 decode_spheremap(vec2 encoded)
+ {
+     vec2 f_encoded = encoded * 4.0 - 2.0;
+     float f = dot(f_encoded, f_encoded);
+     float g = sqrt(1.0 - f / 4.0);
+     return vec3(f_encoded * g, 1.0 - f / 2.0);
+ }
  
  void main()
 {
@@ -97,20 +105,8 @@ const char* shader_instanced_omni_light_frag = string_shader
     position = u_mat_i_vp * position;
     position.xyz = position.xyz / position.w;
     
-    vec3 normal = vec3(0.0);
-    vec3 tangent = vec3(0.0);
-    
-    vec2 fenc = ts_color.xy * 4.0 - 2.0;
-    float f = dot(fenc, fenc);
-    float g = sqrt(1.0 - f / 4.0);
-    normal.xy = fenc * g;
-    normal.z = 1.0 - f / 2.0;
-    
-    fenc = ts_color.zw * 4.0 - 2.0;
-    f = dot(fenc, fenc);
-    g = sqrt(1.0 - f / 4.0);
-    tangent.xy = fenc * g;
-    tangent.z = 1.0 - f / 2.0;
+    vec3 normal = decode_spheremap(ts_color.xy);
+    vec3 tangent = decode_spheremap(ts_color.zw);
     
     vec3 light_direction = v_transform_parameters.xyz - position.xyz;
     float attenuation = 1.0 - length(light_direction) / v_transform_parameters.w;
@@ -120,17 +116,21 @@ const char* shader_instanced_omni_light_frag = string_shader
     
     vec3 light_direction_ts = normalize(light_direction * mat_tbn);
     
-    vec3 normal_color = texture2D(sampler_03, texcoord).rgb * 2.0 - 1.0;
+    vec4 normal_color = texture2D(sampler_03, texcoord);
+    vec3 normal_ts = normal_color.xyz * 2.0 - 1.0;
     
-    vec3 diffuse = vec3(clamp(dot(normal_color, light_direction_ts), 0.0, 1.0));
+    vec3 diffuse = vec3(clamp(dot(normal_ts, light_direction_ts), 0.0, 1.0));
     
 
 #if defined(__SPECULAR__)
     
     float specular_intensity = normal_color.a;
+    
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
-    vec3 light_reflect = reflect(-light_direction, normal);
-    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
+    vec3 camera_direction_ts = normalize(camera_direction * mat_tbn);
+    
+    vec3 half_vector = normalize(light_direction_ts + camera_direction_ts);
+    float specular = pow(clamp(dot(normal_ts, half_vector), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
     
 #else
     

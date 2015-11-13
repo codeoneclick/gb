@@ -29,9 +29,9 @@ namespace gb
     {
         for(ui32 i = 0; i < heightmap_texture_generator::e_splatting_texture_max; ++i)
         {
-            m_splatting_diffuse_textures[i] = nullptr;
-            m_splatting_normal_textures[i] = nullptr;
-            m_splatting_displace_textures[i] = nullptr;
+            m_diffuse_textures[i] = nullptr;
+            m_normal_textures[i] = nullptr;
+            m_displace_textures[i] = nullptr;
         }
     }
     
@@ -39,9 +39,9 @@ namespace gb
     {
         for(ui32 i = 0; i < heightmap_texture_generator::e_splatting_texture_max; ++i)
         {
-            m_splatting_diffuse_textures[i] = nullptr;
-            m_splatting_normal_textures[i] = nullptr;
-            m_splatting_displace_textures[i] = nullptr;
+            m_diffuse_textures[i] = nullptr;
+            m_normal_textures[i] = nullptr;
+            m_displace_textures[i] = nullptr;
         }
     }
     
@@ -165,18 +165,18 @@ namespace gb
     }
     
     void heightmap_accessor::generate(const std::string& filename, const graphics_context_shared_ptr& graphics_context,
-                                      const std::array<texture_shared_ptr, 3>& splatting_diffuse_textures,
-                                      const std::array<texture_shared_ptr, 3>& splatting_normal_textures,
-                                      const std::array<texture_shared_ptr, 3>& splatting_displace_textures,
+                                      const std::array<texture_shared_ptr, 3>& diffuse_textures,
+                                      const std::array<texture_shared_ptr, 3>& normal_textures,
+                                      const std::array<texture_shared_ptr, 3>& displace_textures,
                                       const std::function<void()>& callback)
     {
         m_isGenerated = false;
        
         for(ui32 i = 0; i < heightmap_texture_generator::e_splatting_texture_max; ++i)
         {
-            m_splatting_diffuse_textures[i] = splatting_diffuse_textures[i];
-            m_splatting_normal_textures[i] = splatting_normal_textures[i];
-            m_splatting_displace_textures[i] = splatting_displace_textures[i];
+            m_diffuse_textures[i] = diffuse_textures[i];
+            m_normal_textures[i] = normal_textures[i];
+            m_displace_textures[i] = displace_textures[i];
         }
         m_graphics_context = graphics_context;
         
@@ -223,7 +223,7 @@ namespace gb
         thread_operation_shared_ptr generate_splatting_masks_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
         generate_splatting_masks_operation->set_execution_callback([this, filename]() {
             
-            heightmap_texture_generator::generate_splatting_mask_textures(m_container, filename);
+            heightmap_texture_generator::splatting_masks(m_container, filename);
         });
         completion_operation->add_dependency(generate_splatting_masks_operation);
         
@@ -235,9 +235,9 @@ namespace gb
         completion_operation->add_dependency(mmap_masks_operation);
         
         thread_operation_shared_ptr generate_splatting_diffuse_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
-        generate_splatting_diffuse_textures_operation->set_execution_callback([this, filename, graphics_context, splatting_diffuse_textures]() {
+        generate_splatting_diffuse_textures_operation->set_execution_callback([this, filename, graphics_context]() {
             
-            heightmap_texture_generator::generate_splatting_diffuse_textures(graphics_context, m_container, filename, splatting_diffuse_textures);
+            heightmap_texture_generator::splatting_diffuse_textures(graphics_context, m_container, filename, m_diffuse_textures);
         });
         completion_operation->add_dependency(generate_splatting_diffuse_textures_operation);
         
@@ -249,9 +249,9 @@ namespace gb
         completion_operation->add_dependency(mmap_diffuse_textures_operation);
         
         thread_operation_shared_ptr generate_splatting_normal_textures_operation = std::make_shared<thread_operation>(thread_operation::e_thread_operation_queue_main);
-        generate_splatting_normal_textures_operation->set_execution_callback([this, filename, graphics_context, splatting_normal_textures]() {
+        generate_splatting_normal_textures_operation->set_execution_callback([this, filename, graphics_context]() {
             
-            heightmap_texture_generator::generate_splatting_normal_textures(graphics_context, m_container, filename, splatting_normal_textures);
+            heightmap_texture_generator::splatting_normal_displace_textures(graphics_context, m_container, filename, m_normal_textures, m_displace_textures);
         });
         completion_operation->add_dependency(generate_splatting_normal_textures_operation);
         

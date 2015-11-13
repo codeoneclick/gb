@@ -102,8 +102,8 @@ namespace koth
             
             glm::vec3 camera_position = m_camera->get_position();
             
-            camera_position.x = look_at.x + cosf(-m_camera->get_rotation()) * -16.f;
-            camera_position.z = look_at.z + sinf(-m_camera->get_rotation()) * -16.f;
+            camera_position.x = look_at.x + cosf(-m_camera->get_rotation()) * -8.f;
+            camera_position.z = look_at.z + sinf(-m_camera->get_rotation()) * -8.f;
             
             m_camera->set_position(camera_position);
             

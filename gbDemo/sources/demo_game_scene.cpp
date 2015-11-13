@@ -230,44 +230,44 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
     glm::vec3 light_position = m_models["human_01"]->get_position();
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 0);
     
     light_position = m_models["human_01"]->get_position() + m_models["human_01"]->get_forward() * 2.5f;
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 1);
     
     
     
     
     light_position = m_models["human_02"]->get_position();
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 2);
     
     light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 3);
     
     
     
     
     light_position = m_models["orc_01"]->get_position();
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 4);
     
     light_position = m_models["orc_01"]->get_position() + m_models["orc_01"]->get_forward() * 2.5f;
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 5);
     
     
     
     
     light_position = m_models["orc_02"]->get_position();
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 6);
     
     light_position = m_models["orc_02"]->get_position() + m_models["orc_02"]->get_forward() * 2.5f;
-    light_position.y = 1.5f;
+    light_position.y = m_heightmap->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 7);
 
     

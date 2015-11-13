@@ -34,9 +34,9 @@ namespace gb
         std::vector<std::tuple<mesh_shared_ptr, texture_shared_ptr, texture_shared_ptr, heightmap_container::e_heigtmap_chunk_lod, std::shared_ptr<std::mutex>>> m_chunks_data;
         std::vector<std::tuple<glm::vec3, glm::vec3>> m_chunks_bounds;
         
-        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_splatting_diffuse_textures;
-        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_splatting_normal_textures;
-        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_splatting_displace_textures;
+        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_diffuse_textures;
+        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_normal_textures;
+        std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> m_displace_textures;
         
         std::queue<thread_operation_shared_ptr> m_update_heightmap_operations;
         

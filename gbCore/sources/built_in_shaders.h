@@ -24,7 +24,10 @@ extern const char* shader_direction_light_frag;
 extern const char* shader_instanced_omni_light_vert;
 extern const char* shader_instanced_omni_light_frag;
 
-extern const char* shader_splatting_vert;
-extern const char* shader_splatting_frag;
+extern const char* shader_splatting_rgb565_vert;
+extern const char* shader_splatting_rgb565_frag;
+
+extern const char* shader_splatting_rgba8888_vert;
+extern const char* shader_splatting_rgba8888_frag;
 
 #endif

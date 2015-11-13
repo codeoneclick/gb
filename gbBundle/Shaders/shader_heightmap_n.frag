@@ -9,11 +9,9 @@ varying vec2 v_texcoord;
 
 #endif
 
-uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
-uniform sampler2D sampler_03;
 
 void main(void)
 {
-    gl_FragColor = vec4(texture2D(sampler_02, v_texcoord).rgb, texture2D(sampler_03, v_texcoord).r);
+    gl_FragColor = texture2D(sampler_02, v_texcoord);
 }

@@ -8,7 +8,7 @@
 
 #include "main_headers.h"
 
-const char* shader_splatting_vert = string_shader
+const char* shader_splatting_rgb565_vert = string_shader
 (
 #if defined(__OPENGL_30__)
  
@@ -33,7 +33,7 @@ const char* shader_splatting_vert = string_shader
 }
  );
 
-const char* shader_splatting_frag = string_shader
+const char* shader_splatting_rgb565_frag = string_shader
 (
 #if defined(__OPENGL_30__)
  
@@ -47,32 +47,27 @@ const char* shader_splatting_frag = string_shader
  
 #endif
  
- uniform int u_num_textures;
- 
  uniform sampler2D  sampler_01;
  uniform sampler2D  sampler_02;
  uniform sampler2D  sampler_03;
  uniform sampler2D  sampler_04;
- uniform sampler2D  sampler_05;
- uniform sampler2D  sampler_06;
- uniform sampler2D  sampler_07;
  
  void main()
 {
-    vec4 splatting_color = texture2D(sampler_04, v_texcoord);
+    vec4 splatting_color = texture2D(sampler_01, v_texcoord);
     vec4 diffuse_color = vec4(0.0, 0.0, 0.0, 1.0);
     
     if(splatting_color.x > 0.0)
     {
-        diffuse_color = diffuse_color + texture2D(sampler_03, v_texcoord_scaled) * splatting_color.x;
+        diffuse_color = diffuse_color + texture2D(sampler_02, v_texcoord_scaled) * splatting_color.x;
     }
     if(splatting_color.y > 0.0)
     {
-        diffuse_color = diffuse_color + texture2D(sampler_01, v_texcoord_scaled) * splatting_color.y;
+        diffuse_color = diffuse_color + texture2D(sampler_03, v_texcoord_scaled) * splatting_color.y;
     }
     if(splatting_color.z > 0.0)
     {
-        diffuse_color = diffuse_color + texture2D(sampler_02, v_texcoord_scaled) * splatting_color.z;
+        diffuse_color = diffuse_color + texture2D(sampler_04, v_texcoord_scaled) * splatting_color.z;
     }
     
     gl_FragColor = diffuse_color;

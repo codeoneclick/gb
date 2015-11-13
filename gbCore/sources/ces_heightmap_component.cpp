@@ -162,4 +162,14 @@ namespace gb
         m_splatting_displace_textures[heightmap_texture_generator::e_splatting_texture_02] = splatting_displace_textures[heightmap_texture_generator::e_splatting_texture_02];
         m_splatting_displace_textures[heightmap_texture_generator::e_splatting_texture_03] = splatting_displace_textures[heightmap_texture_generator::e_splatting_texture_03];
     }
+    
+    f32 ces_heightmap_component::get_height(const glm::vec3& position) const
+    {
+        return m_heightmap_accessor->get_height(position);
+    }
+    
+    glm::vec2 ces_heightmap_component::get_angles_xz(const glm::vec3& position) const
+    {
+        return m_heightmap_accessor->get_angles_xz(position);
+    }
 }

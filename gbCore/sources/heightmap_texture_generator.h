@@ -46,6 +46,8 @@ namespace gb
                                              ui32 offset_x, ui32 offset_y, const std::function<void(ui8 *, ui32, heightmap_container::e_heigtmap_chunk_lod lod)>& callback);
         
         static material_shared_ptr get_splatting_material(const std::vector<texture_shared_ptr>& textures);
+        static material_shared_ptr get_splatting_material_rgb565(const std::vector<texture_shared_ptr>& textures);
+        static material_shared_ptr get_splatting_material_rgba8888(const std::vector<texture_shared_ptr>& textures);
         
     protected:
         
@@ -63,37 +65,31 @@ namespace gb
         heightmap_texture_generator() = default;
         ~heightmap_texture_generator() = default;
         
-        static void generate_splatting_mask_textures(const std::shared_ptr<heightmap_container>& container, const std::string& filename);
-        static void generate_splatting_mask_texture(const std::shared_ptr<heightmap_container>& container,
-                                                    ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream = nullptr);
+        static void splatting_masks(const heightmap_container_shared_ptr& container, const std::string& filename);
+        static void splatting_mask(const heightmap_container_shared_ptr& container,
+                                   ui32 offset_x, ui32 offset_y, const std::shared_ptr<std::ofstream> stream = nullptr);
         
-        static void generate_splatting_diffuse_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                        const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures);
-        static void generate_splatting_diffuse_texture(const std::shared_ptr<graphics_context>& graphics_context,
-                                                       const std::shared_ptr<heightmap_container>& container,
-                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_diffuse_textures,
-                                                       ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream = nullptr);
+        static void splatting_diffuse_textures(const graphics_context_shared_ptr& graphics_context,
+                                               const heightmap_container_shared_ptr& container, const std::string& filename,
+                                               const std::array<texture_shared_ptr, e_splatting_texture_max>& textures);
         
-        static void generate_splatting_normal_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                       const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures);
+        static void splatting_diffuse_texture(const graphics_context_shared_ptr& graphics_context,
+                                              const heightmap_container_shared_ptr& container,
+                                              const std::array<texture_shared_ptr, e_splatting_texture_max>& textures,
+                                              ui32 offset_x, ui32 offset_y, const std::shared_ptr<std::ofstream> stream = nullptr);
         
-        static void generate_splatting_normal_texture(const std::shared_ptr<graphics_context>& graphics_context,
-                                                      const std::shared_ptr<heightmap_container>& container,
-                                                      const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_normal_textures,
-                                                      ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream = nullptr);
+        static void splatting_normal_displace_textures(const graphics_context_shared_ptr& graphics_context,
+                                                       const heightmap_container_shared_ptr& container, const std::string& filename,
+                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& normal_textures,
+                                                       const std::array<texture_shared_ptr, e_splatting_texture_max>& displace_textures);
         
-        static void generate_splatting_displace_textures(const std::shared_ptr<graphics_context>& graphics_context,
-                                                         const std::shared_ptr<heightmap_container>& container, const std::string& filename,
-                                                         const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures);
+        static void splatting_normal_displace_texture(const graphics_context_shared_ptr& graphics_context,
+                                                      const heightmap_container_shared_ptr& container,
+                                                      const std::array<texture_shared_ptr, e_splatting_texture_max>& normal_textures,
+                                                      const std::array<texture_shared_ptr, e_splatting_texture_max>& displace_textures,
+                                                      ui32 offset_x, ui32 offset_y, const std::shared_ptr<std::ofstream> stream = nullptr);
         
-        static void generate_splatting_displace_texture(const std::shared_ptr<graphics_context>& graphics_context,
-                                                        const std::shared_ptr<heightmap_container>& container,
-                                                        const std::array<texture_shared_ptr, e_splatting_texture_max>& splatting_displace_textures,
-                                                        ui32 i, ui32 j, const std::shared_ptr<std::ofstream> stream = nullptr);
-        
-        static void generate_deep_texture(const std::shared_ptr<heightmap_container>& container, bool create,
+        static void generate_deep_texture(const heightmap_container_shared_ptr& container, bool create,
                                           ui32 offset_x, ui32 offset_y,
                                           ui32 sub_width, ui32 sub_height);
         

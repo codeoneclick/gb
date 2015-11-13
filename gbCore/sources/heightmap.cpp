@@ -82,4 +82,14 @@ namespace gb
     {
         unsafe_get_heightmap_component_from_this->set_splatting_displace_textures(splatting_displace_textures);
     }
+    
+    f32 heightmap::get_height(const glm::vec3& position) const
+    {
+        return unsafe_get_heightmap_component_from_this->get_height(position);
+    }
+    
+    glm::vec2 heightmap::get_angles_xz(const glm::vec3& position) const
+    {
+        return unsafe_get_heightmap_component_from_this->get_angles_xz(position);
+    }
 }

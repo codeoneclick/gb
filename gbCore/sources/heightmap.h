@@ -41,6 +41,9 @@ namespace gb
         void set_splatting_diffuse_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_diffuse_textures);
         void set_splatting_normal_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_normal_textures);
         void set_splatting_displace_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_displace_textures);
+        
+        f32 get_height(const glm::vec3& position) const;
+        glm::vec2 get_angles_xz(const glm::vec3& position) const;
     };
 };
 

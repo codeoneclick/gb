@@ -134,8 +134,8 @@
 		218E405B1BECD49D0002C01B /* heightmap_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21157F9B1BECAB6300A40792 /* heightmap_container.cpp */; settings = {ASSET_TAGS = (); }; };
 		218E405F1BECDD680002C01B /* heightmap_texture_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21157FA41BECAB6300A40792 /* heightmap_texture_generator.cpp */; settings = {ASSET_TAGS = (); }; };
 		218E40601BECDD690002C01B /* heightmap_texture_generator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21157FA41BECAB6300A40792 /* heightmap_texture_generator.cpp */; settings = {ASSET_TAGS = (); }; };
-		218E40621BECE6990002C01B /* shader_splatting_textures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40611BECE6990002C01B /* shader_splatting_textures.cpp */; settings = {ASSET_TAGS = (); }; };
-		218E40631BECE6990002C01B /* shader_splatting_textures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40611BECE6990002C01B /* shader_splatting_textures.cpp */; settings = {ASSET_TAGS = (); }; };
+		218E40621BECE6990002C01B /* shader_splatting_rgb565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40611BECE6990002C01B /* shader_splatting_rgb565.cpp */; settings = {ASSET_TAGS = (); }; };
+		218E40631BECE6990002C01B /* shader_splatting_rgb565.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40611BECE6990002C01B /* shader_splatting_rgb565.cpp */; settings = {ASSET_TAGS = (); }; };
 		218E40661BECE98B0002C01B /* render_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40641BECE98B0002C01B /* render_target.cpp */; settings = {ASSET_TAGS = (); }; };
 		218E40671BECE98B0002C01B /* render_target.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 218E40641BECE98B0002C01B /* render_target.cpp */; settings = {ASSET_TAGS = (); }; };
 		218E40681BECF8C60002C01B /* heightmap_accessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21157F981BECAB6300A40792 /* heightmap_accessor.cpp */; settings = {ASSET_TAGS = (); }; };
@@ -423,6 +423,8 @@
 		21E33D961BB1758900B540E7 /* direction_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33D931BB1758900B540E7 /* direction_light.cpp */; };
 		21E33D981BB17B8600B540E7 /* shader_direction_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */; };
 		21E33D991BB17B8600B540E7 /* shader_direction_light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */; };
+		21EBF3F51BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBF3F41BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp */; settings = {ASSET_TAGS = (); }; };
+		21EBF3F61BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21EBF3F41BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -582,7 +584,7 @@
 		218CE8781BE12E5C0095DE94 /* thread_operation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread_operation.h; path = sources/thread_operation.h; sourceTree = "<group>"; };
 		218CE87B1BE12E820095DE94 /* thread_operations_pool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = thread_operations_pool.cpp; path = sources/thread_operations_pool.cpp; sourceTree = "<group>"; };
 		218CE87C1BE12E820095DE94 /* thread_operations_pool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread_operations_pool.h; path = sources/thread_operations_pool.h; sourceTree = "<group>"; };
-		218E40611BECE6990002C01B /* shader_splatting_textures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_splatting_textures.cpp; path = sources/shader_splatting_textures.cpp; sourceTree = "<group>"; };
+		218E40611BECE6990002C01B /* shader_splatting_rgb565.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_splatting_rgb565.cpp; path = sources/shader_splatting_rgb565.cpp; sourceTree = "<group>"; };
 		218E40641BECE98B0002C01B /* render_target.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = render_target.cpp; path = sources/render_target.cpp; sourceTree = "<group>"; };
 		218E40651BECE98B0002C01B /* render_target.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = render_target.h; path = sources/render_target.h; sourceTree = "<group>"; };
 		218E406E1BF0E2D40002C01B /* ces_heightmap_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_heightmap_system.cpp; path = sources/ces_heightmap_system.cpp; sourceTree = "<group>"; };
@@ -1085,6 +1087,7 @@
 		21E33D931BB1758900B540E7 /* direction_light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = direction_light.cpp; path = sources/direction_light.cpp; sourceTree = "<group>"; };
 		21E33D941BB1758900B540E7 /* direction_light.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = direction_light.h; path = sources/direction_light.h; sourceTree = "<group>"; };
 		21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_direction_light.cpp; path = sources/shader_direction_light.cpp; sourceTree = "<group>"; };
+		21EBF3F41BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_splatting_rgba8888.cpp; path = sources/shader_splatting_rgba8888.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1895,7 +1898,8 @@
 				21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */,
 				21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */,
 				21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */,
-				218E40611BECE6990002C01B /* shader_splatting_textures.cpp */,
+				218E40611BECE6990002C01B /* shader_splatting_rgb565.cpp */,
+				21EBF3F41BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp */,
 			);
 			name = "built-in shaders";
 			sourceTree = "<group>";
@@ -2335,6 +2339,7 @@
 				21157F961BECA6BE00A40792 /* memory_map.cpp in Sources */,
 				218E406B1BF09ECC0002C01B /* heightmap_loader.cpp in Sources */,
 				21B404E31B7A0A88003382AB /* b2CircleContact.cpp in Sources */,
+				21EBF3F51BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp in Sources */,
 				21B404D71B7A0A88003382AB /* b2Math.cpp in Sources */,
 				218E40801BF1D9810002C01B /* heightmap_configuration.cpp in Sources */,
 				21D78BEB1B8F463E00665BB6 /* game_scene.cpp in Sources */,
@@ -2371,7 +2376,7 @@
 				21B4060B1B7B662C003382AB /* particle_emitter_configuration.cpp in Sources */,
 				21B404EA1B7A0A88003382AB /* b2DistanceJoint.cpp in Sources */,
 				21B405C01B7A4154003382AB /* ces_base_component.cpp in Sources */,
-				218E40621BECE6990002C01B /* shader_splatting_textures.cpp in Sources */,
+				218E40621BECE6990002C01B /* shader_splatting_rgb565.cpp in Sources */,
 				21B405F91B7B4276003382AB /* configuration.cpp in Sources */,
 				21B404F81B7A0A88003382AB /* pngerror.c in Sources */,
 				21376BF71B7C8FC100D293C5 /* vbo.cpp in Sources */,
@@ -2550,6 +2555,7 @@
 				21157F971BECA6BE00A40792 /* memory_map.cpp in Sources */,
 				218E406A1BF09ECC0002C01B /* heightmap_loader.cpp in Sources */,
 				212B18B31B82032C00FFDCE7 /* ces_transformation_component.cpp in Sources */,
+				21EBF3F61BF5CAD600E7AC15 /* shader_splatting_rgba8888.cpp in Sources */,
 				2102EB401B7D072B00F20197 /* ces_system.cpp in Sources */,
 				218E40811BF1D9810002C01B /* heightmap_configuration.cpp in Sources */,
 				21B4055E1B7A0AFA003382AB /* infback.c in Sources */,
@@ -2586,7 +2592,7 @@
 				21B405C11B7A4154003382AB /* ces_base_component.cpp in Sources */,
 				21D78C401B9453EC00665BB6 /* input_context_ios.cpp in Sources */,
 				21B4056D1B7A0AFA003382AB /* pngerror.c in Sources */,
-				218E40631BECE6990002C01B /* shader_splatting_textures.cpp in Sources */,
+				218E40631BECE6990002C01B /* shader_splatting_rgb565.cpp in Sources */,
 				21B4056E1B7A0AFA003382AB /* b2DynamicTree.cpp in Sources */,
 				21B4056F1B7A0AFA003382AB /* b2EdgeShape.cpp in Sources */,
 				21B405701B7A0AFA003382AB /* b2Joint.cpp in Sources */,

@@ -7,6 +7,7 @@
         <material filename="material.orc_02.base.outline.xml"/>
         <material filename="material.orc_02.shadowmap.xml"/>
         <material filename="material.orc_02.forward.rendering.normal.xml"/>
+        <material filename="material.orc_02.forward.rendering.tangent.space.xml"/>
         <material filename="material.orc_02.forward.rendering.emissive.xml"/>
         <material filename="material.orc_02.forward.rendering.emissive.outline.xml"/>
 	</materials>
