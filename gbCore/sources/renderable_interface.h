@@ -35,6 +35,9 @@ namespace gb
         virtual void add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material);
         virtual void remove_material(const std::string& technique_name, i32 technique_pass);
         virtual material_shared_ptr get_material(const std::string& technique_name, i32 technique_pass) const;
+        
+        void set_visible(bool value);
+        bool get_visible() const;
     };
 };
 

@@ -5,6 +5,7 @@
 		<material filename="material.heightmap.base.xml"/>
         <material filename="material.heightmap.forward.rendering.normal.xml"/>
         <material filename="material.heigthmap.forward.rendering.emissive.xml"/>
-        <material filename="material.heightmap.forward.rendering.tangent.space.xml"/>
+        <material filename="material.heightmap.reflection.xml"/>
+        <material filename="material.heightmap.refraction.xml"/>
 	</materials>
 </heightmap>

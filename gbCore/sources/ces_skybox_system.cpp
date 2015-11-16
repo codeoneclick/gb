@@ -26,6 +26,7 @@ namespace gb
     
     void ces_skybox_system::on_feed_start(f32 deltatime)
     {
+        
     }
     
     void ces_skybox_system::on_feed(const ces_entity_shared_ptr& entity, f32 deltatime)

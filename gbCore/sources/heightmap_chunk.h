@@ -24,8 +24,7 @@ namespace gb
         heightmap_container::e_heigtmap_chunk_lod m_inprogress_lod;
         
         texture_shared_ptr m_diffuse_texture;
-        texture_shared_ptr m_normal_texture;
-        texture_shared_ptr m_displace_texture;
+        texture_shared_ptr m_normal_displace_texture;
         
         void on_bind_material_imposer_callback(const material_shared_ptr& material);
         
@@ -43,8 +42,7 @@ namespace gb
         void set_inprogress_lod(heightmap_container::e_heigtmap_chunk_lod lod);
         
         void set_diffuse_texture(const texture_shared_ptr& texture);
-        void set_normal_texture(const texture_shared_ptr& texture);
-        void set_displace_texture(const texture_shared_ptr& texture);
+        void set_normal_displace_texture(const texture_shared_ptr& texture);
         
         void create_bind_material_imposer_link();
     };

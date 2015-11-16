@@ -16,7 +16,8 @@
 namespace gb
 {
     ces_render_component::ces_render_component() :
-    m_bind_material_imposer_callback(nullptr)
+    m_bind_material_imposer_callback(nullptr),
+    m_visible(true)
     {
         m_type = e_ces_component_type_render;
     }
@@ -64,14 +65,14 @@ namespace gb
         return m_materials;
     }
     
-    void ces_render_component::set_z_order(i32 z_order)
+    void ces_render_component::set_visible(bool value)
     {
-        m_z_order = z_order;
+        m_visible = value;
     }
     
-    i32 ces_render_component::get_z_order() const
+    bool ces_render_component::get_visible() const
     {
-        return m_z_order;
+        return m_visible;
     }
     
     void ces_render_component::set_texture(const std::shared_ptr<texture> &texture, e_shader_sampler sampler, const std::string& technique_name, i32 technique_pass)

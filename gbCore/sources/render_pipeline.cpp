@@ -19,7 +19,7 @@
 
 namespace gb
 {
-    render_pipeline::render_pipeline(const std::shared_ptr<graphics_context>& graphic_context, bool is_offscreen) :
+    render_pipeline::render_pipeline(const graphics_context_shared_ptr& graphic_context, bool is_offscreen) :
     gb::render_techniques_importer(graphic_context, is_offscreen),
     gb::render_techniques_accessor()
     {
@@ -65,7 +65,7 @@ namespace gb
                 }
                 
                 if(using_material && using_material->get_shader()->is_commited() &&
-                   mesh && mesh->is_commited())
+                   mesh && mesh->is_commited() && render_component->get_visible())
                 {
                     technique->add_entity(entity, technique_pass, using_material);
                 }
@@ -137,7 +137,7 @@ namespace gb
         return m_graphics_context->get_height();
     }
     
-    std::shared_ptr<graphics_context> render_pipeline::get_graphics_context(void) const
+    graphics_context_shared_ptr render_pipeline::get_graphics_context(void) const
     {
         return m_graphics_context;
     }

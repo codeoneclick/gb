@@ -67,4 +67,14 @@ namespace gb
     {
         return unsafe_get_render_component_from_this->get_material(technique_name, technique_pass);
     }
+    
+    void renderable_interface::set_visible(bool value)
+    {
+        unsafe_get_render_component_from_this->set_visible(value);
+    }
+    
+    bool renderable_interface::get_visible() const
+    {
+        return unsafe_get_render_component_from_this->get_visible();
+    }
 }

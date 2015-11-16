@@ -31,7 +31,7 @@ uniform sampler2D sampler_03;
 
 const vec4 k_specular_color = vec4(1.2, 1.0, 0.75, 1.0);
 const float k_specular_shine = 512.0;
-const vec2 k_perturbation_factor = vec2(0.025, 0.025);
+const vec2 k_perturbation_factor = vec2(0.015, 0.015);
 
 const float k_0 = 0.0;
 const float k_1 = 1.0;
@@ -77,5 +77,5 @@ void main(void)
     fog_distance = clamp(fog_distance, 0.0, 1.0);
     color = mix(color, fog_color, fog_distance);
     
-    gl_FragColor = color;
+    gl_FragColor = texture2D(sampler_01, texcoord_proj);
 }

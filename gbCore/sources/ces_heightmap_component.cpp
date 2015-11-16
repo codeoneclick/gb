@@ -98,6 +98,8 @@ namespace gb
                 
                 if(result == e_frustum_bound_result_inside || result == e_frustum_bound_result_intersect)
                 {
+                    m_chunks[index]->set_visible(true);
+                    
                     heightmap_container::e_heigtmap_chunk_lod lod = ces_heightmap_component::get_current_lod(camera->get_look_at(), min_bound, max_bound);
                     
                     if(m_chunks[index]->get_inprogress_lod() == m_chunks[index]->get_current_lod() &&
@@ -107,18 +109,16 @@ namespace gb
                         
                         m_heightmap_accessor->start_chunk_loading(i, j, lod, [this, index] (const mesh_shared_ptr& mesh) {
                             m_chunks[index]->set_mesh(mesh);
-                        }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_texture) {
+                        }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_displace_texture) {
                             m_chunks[index]->set_diffuse_texture(diffuse_texture);
-                            m_chunks[index]->set_normal_texture(normal_texture);
+                            m_chunks[index]->set_normal_displace_texture(normal_displace_texture);
                             m_chunks[index]->set_current_lod(lod);
                         });
                     }
                 }
                 else
                 {
-                    m_chunks[index]->set_mesh(nullptr);
-                    m_chunks[index]->set_inprogress_lod(heightmap_container::e_heigtmap_chunk_lod_unknown);
-                    m_chunks[index]->set_current_lod(heightmap_container::e_heigtmap_chunk_lod_unknown);
+                    m_chunks[index]->set_visible(false);
                 }
             }
         }
@@ -139,7 +139,7 @@ namespace gb
     
     glm::vec3 ces_heightmap_component::get_position() const
     {
-        return m_chunks[0]->get_position();
+        return m_chunks.size() > 0 && m_chunks.at(0) ? m_chunks.at(0)->get_position() : glm::vec3(0.f);
     }
     
     void ces_heightmap_component::set_splatting_diffuse_textures(const std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max>& splatting_diffuse_textures)

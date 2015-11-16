@@ -27,7 +27,6 @@ namespace gb
             
             ces_render_component_shared_ptr render_component = std::make_shared<ces_render_component>();
             ces_entity::add_component(render_component);
-            render_component->set_z_order(0);
         }
         
         element::~element()

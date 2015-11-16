@@ -21,7 +21,8 @@ namespace gb
     protected:
         
         std::unordered_map<std::string, std::unordered_map<i32, material_shared_ptr>> m_materials;
-        i32 m_z_order;
+        
+        bool m_visible;
         
         void bind_custom_shader_uniforms(const material_shared_ptr& material);
         void bind_main_shader_uniforms(const material_shared_ptr& material);
@@ -38,8 +39,8 @@ namespace gb
         material_shared_ptr get_material(const std::string& technique_name, i32 technique_pass) const;
         const std::unordered_map<std::string, std::unordered_map<i32, material_shared_ptr>>& get_materials() const;
         
-        void set_z_order(i32 z_order);
-        i32 get_z_order() const;
+        void set_visible(bool value);
+        bool get_visible() const;
         
         virtual void on_bind(const std::string& technique_name, i32 technique_pass,
                                             const material_shared_ptr& material = nullptr);

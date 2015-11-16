@@ -37,7 +37,7 @@ gb::game_scene(transition)
     m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
                                                                                   game_scene::get_transition()->get_width(),
                                                                                   game_scene::get_transition()->get_height()));
-    m_camera->set_distance_to_look_at(glm::vec3(16.f));
+    m_camera->set_distance_to_look_at(glm::vec3(48.f));
     m_camera->set_position(glm::vec3(-8.f, 8.f, 8.f));
     
     m_shadow_cast_light = scene_fabricator_inst->create_shadow_cast_light(90.f, .1f, 128.f);
@@ -106,8 +106,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    //scene_graph_inst->add_direction_light(m_direction_light);
-    //m_direction_light->set_intensity(.1f);
+    scene_graph_inst->add_direction_light(m_direction_light);
+    m_direction_light->set_intensity(.33f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(9);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
@@ -135,7 +135,7 @@ gb::game_scene(transition)
     scene_graph_inst->set_skybox(m_skybox);
     
     m_ocean = scene_fabricator_inst->create_ocean("gameobject.ocean.xml");
-    //scene_graph_inst->set_ocean(m_ocean);
+    scene_graph_inst->set_ocean(m_ocean);
     
     m_heightmap = scene_fabricator_inst->create_heightmap("gameobject.heightmap.xml");
     scene_graph_inst->set_heightmap(m_heightmap);
@@ -224,6 +224,10 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["human_02"]->update(deltatime);
     m_ai_character_controllers["orc_01"]->update(deltatime);
     m_ai_character_controllers["orc_02"]->update(deltatime);
+    
+    glm::vec3 position = m_models["human_01"]->get_position();
+    position.y = m_heightmap->get_height(position);
+    m_models["human_01"]->set_position(position);
     
     m_ai_character_controllers["human_02"]->set_goal_position(m_models["human_01"]->get_position());
     m_ai_character_controllers["orc_01"]->set_goal_position(m_models["human_01"]->get_position());

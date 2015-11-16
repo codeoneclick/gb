@@ -54,7 +54,7 @@ const char* shader_direction_light_frag = string_shader
  uniform sampler2D  sampler_01;
  uniform sampler2D  sampler_02;
  
-#define __SPECULAR__
+//#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;
@@ -68,8 +68,8 @@ const char* shader_direction_light_frag = string_shader
     screen_position.xy /= screen_position.w;
     vec2 texcoord = 0.5 * (screen_position.xy + 1.0);
     
-    vec4 ns_color = texture2D(sampler_01, texcoord);
-    vec3 normal = ns_color.rgb * 2.0 - 1.0;
+    vec4 color = texture2D(sampler_01, texcoord);
+    vec3 normal = color.rgb * 2.0 - 1.0;
     vec3 diffuse = vec3(clamp(dot(normal, u_light_direction), 0.5, 1.0));
     
 #if defined(__SPECULAR__)
