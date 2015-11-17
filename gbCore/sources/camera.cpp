@@ -34,9 +34,9 @@ namespace gb
         m_matrix_v = glm::lookAt(m_position, m_look_at, m_up);
         
         glm::vec3 inv_position = m_position;
-        inv_position.y = -inv_position.y;
+        inv_position.y = -inv_position.y + 1.f;
         glm::vec3 inv_look_at = m_look_at;
-        inv_look_at.y = -inv_look_at.y;
+        inv_look_at.y = -inv_look_at.y + 1.f;
         m_matrix_i_v = glm::lookAt(inv_position, inv_look_at, m_up * -1.f);
         
         m_matrix_n = glm::inverse(m_matrix_v);

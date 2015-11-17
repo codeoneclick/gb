@@ -16,9 +16,9 @@
     stencil_mask_parameter="0"
     is_cliping="0"
     clipping_x="0.0"
-    clipping_y="0.0"
+    clipping_y="1.0"
     clipping_z="0.0"
-    clipping_w="0.0"
+    clipping_w="-0.5"
     is_reflecting="0"
     is_shadowing="0"
     is_debugging="0">
@@ -26,5 +26,12 @@
     vs_filename="shader_heightmap_n.vert"
     fs_filename="shader_heightmap_n.frag"/>
     <textures>
+        <texture
+        filename="ocean_ripples.png"
+        render_operation_name=""
+        sampler_index="2"
+        wrap_mode="GL_MIRRORED_REPEAT"
+        mag_filter="GL_LINEAR"
+        min_filter="GL_LINEAR"/>
     </textures>
 </material>

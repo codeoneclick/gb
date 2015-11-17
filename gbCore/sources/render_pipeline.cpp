@@ -43,6 +43,10 @@ namespace gb
         {
             std::shared_ptr<render_technique_ws> technique = iterator.second;
             
+            std::size_t name_position = iterator.first.find("_") + 1;
+            assert(name_position < iterator.first.size());
+            std::string technique_name = iterator.first.substr(name_position);
+            
             ces_render_component_shared_ptr render_component =
             std::static_pointer_cast<ces_render_component>(entity->get_component(e_ces_component_type_render));
             ces_geometry_component_shared_ptr geometry_component =
@@ -53,7 +57,7 @@ namespace gb
             
             for(i32 technique_pass = 0; technique_pass < technique->get_num_passes(); ++technique_pass)
             {
-                material_shared_ptr using_material = render_component->get_material(iterator.first, technique_pass);
+                material_shared_ptr using_material = render_component->get_material(technique_name, technique_pass);
                 mesh_shared_ptr mesh = nullptr;
                 if(geometry_component)
                 {

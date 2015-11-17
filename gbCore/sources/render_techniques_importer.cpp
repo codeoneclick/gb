@@ -38,12 +38,12 @@ namespace gb
         assert(m_graphics_context);
     }
     
-    render_techniques_importer::~render_techniques_importer(void)
+    render_techniques_importer::~render_techniques_importer()
     {
         
     }
     
-    void render_techniques_importer::create_main_render_technique(const std::shared_ptr<material>& material)
+    void render_techniques_importer::create_main_render_technique(const material_shared_ptr& material)
     {
         assert(m_offscreen == false);
         assert(m_graphics_context != nullptr);
@@ -62,15 +62,24 @@ namespace gb
         std::cout<<"[Max uniform vectors] : "<<max_uniform_vectors<<std::endl;
     }
     
-    void render_techniques_importer::add_ws_render_technique(const std::string &technique_name, const std::shared_ptr<render_technique_ws> &technique)
+    void render_techniques_importer::add_ws_render_technique(const std::string &technique_name, i32 technique_index,
+                                                             const std::shared_ptr<render_technique_ws> &technique)
     {
-        assert(m_ws_render_techniques.find(technique_name) == m_ws_render_techniques.end());
-        m_ws_render_techniques.insert(std::make_pair(technique_name, technique));
+        std::stringstream guid_stream;
+        guid_stream<<technique_index<<"_"<<technique_name;
+        std::string guid = guid_stream.str();
+        
+        assert(m_ws_render_techniques.find(guid) == m_ws_render_techniques.end());
+        m_ws_render_techniques.insert(std::make_pair(guid, technique));
     }
     
-    void render_techniques_importer::remove_ws_render_technique(const std::string &technique_name)
+    void render_techniques_importer::remove_ws_render_technique(const std::string &technique_name, i32 technique_index)
     {
-        const auto& iterator = m_ws_render_techniques.find(technique_name);
+        std::stringstream guid_stream;
+        guid_stream<<technique_index<<technique_name;
+        std::string guid = guid_stream.str();
+        
+        const auto& iterator = m_ws_render_techniques.find(guid);
         assert(iterator != m_ws_render_techniques.end());
         m_ws_render_techniques.erase(iterator);
     }

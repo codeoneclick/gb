@@ -3,6 +3,6 @@
     <materials>
         <material filename="material.skybox.base.xml"/>
         <material filename="material.skybox.forward.rendering.emissive.xml"/>
-        <!--<material filename="material.skybox.reflection.xml"/>-->
+        <material filename="material.skybox.reflection.xml"/>
     </materials>
 </skybox>

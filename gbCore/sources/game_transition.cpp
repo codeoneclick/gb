@@ -90,7 +90,7 @@ namespace gb
                                         ws_technique_configuration->get_clear_color_b(),
                                         ws_technique_configuration->get_clear_color_a());
             render_technique_ws->set_clear_color(color);
-            render_pipeline->add_ws_render_technique(ws_technique_configuration->get_guid(), render_technique_ws);
+            render_pipeline->add_ws_render_technique(ws_technique_configuration->get_guid(), ws_technique_configuration->get_index(), render_technique_ws);
             
             resource_accessor->add_custom_resource(ws_technique_configuration->get_guid() + ".color",
                                                    render_technique_ws->get_color_attachment_texture());

@@ -40,7 +40,7 @@ namespace gb
         if(skybox_component && transformation_component)
         {
             transformation_component->set_position(glm::vec3(skybox_component->get_scene_graph()->get_camera()->get_position().x,
-                                                             skybox_component->get_scene_graph()->get_camera()->get_position().y - .2f,
+                                                             skybox_component->get_scene_graph()->get_camera()->get_position().y,
                                                              skybox_component->get_scene_graph()->get_camera()->get_position().z));
         }
     }

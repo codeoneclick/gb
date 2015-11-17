@@ -10,15 +10,14 @@
 #define render_techniques_importer_h
 
 #include "main_headers.h"
+#include "declarations.h"
 
 namespace gb
 {
-    class graphics_context;
     class render_technique_main;
     class render_technique_ws;
     class render_technique_ss;
-    class material;
-    class texture;
+    
     class render_techniques_importer
     {
     private:
@@ -34,14 +33,15 @@ namespace gb
     public:
         
         render_techniques_importer(const std::shared_ptr<graphics_context>& graphics_context, bool is_offscreen);
-        virtual ~render_techniques_importer(void);
+        virtual ~render_techniques_importer();
         
-        void create_main_render_technique(const std::shared_ptr<material>& material);
+        void create_main_render_technique(const material_shared_ptr& material);
         
-        void save_texture(const std::shared_ptr<texture>& texture, const std::string& filename, ui32 width, ui32 height);
+        void save_texture(const texture_shared_ptr& texture, const std::string& filename, ui32 width, ui32 height);
         
-        void add_ws_render_technique(const std::string& technique_name, const std::shared_ptr<render_technique_ws>& technique);
-        void remove_ws_render_technique(const std::string& technique_name);
+        void add_ws_render_technique(const std::string& technique_name, i32 technique_index,
+                                     const std::shared_ptr<render_technique_ws>& technique);
+        void remove_ws_render_technique(const std::string& technique_name, i32 technique_index);
         
         void add_ss_render_technique(const std::string& technique_name, const std::shared_ptr<render_technique_ss>& technique);
         void remove_ss_render_technique(const std::string& technique_name);

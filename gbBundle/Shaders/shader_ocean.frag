@@ -49,7 +49,7 @@ const vec4 k_water_color_green = vec4(0.16, 0.32, 0.16, 1.0);
 
 const vec4 fog_color = vec4(0.0);
 
-void main(void)
+void main()
 {
     vec3 eye_direction_ws = normalize(v_eye_position_ws - v_vertex_position_ws);
     
@@ -77,5 +77,5 @@ void main(void)
     fog_distance = clamp(fog_distance, 0.0, 1.0);
     color = mix(color, fog_color, fog_distance);
     
-    gl_FragColor = texture2D(sampler_01, texcoord_proj);
+    gl_FragColor = color;
 }

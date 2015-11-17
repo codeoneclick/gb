@@ -198,7 +198,7 @@ void demo_game_scene::update(f32 deltatime)
     m_direction_light->set_direction(glm::normalize(m_camera->get_position() - glm::vec3(8.f, 0.f, 8.f)));*/
     m_skybox->set_rotation(glm::vec3(0.f, 90.f, 0.f));
     
-    m_heightmap->set_position(glm::vec3(-64.f, 0.f, -64.f));
+    //m_heightmap->set_position(glm::vec3(-64.f, 0.f, -64.f));
     //m_models["orc_01"]->set_position(glm::vec3(light_xz_position.x, 1.f, light_xz_position.y));
     
     //m_instanced_omni_lights->set_position(glm::vec3(light_xz_position.x, 3.f, light_xz_position.y), 0);
