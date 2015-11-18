@@ -1,11 +1,11 @@
 <material
-    technique_name="ws.base"
+    technique_name="ws.forward.rendering.normal"
     technique_pass="0"
-    z_order="2"
+    z_order="1"
     is_cull_face="1"
-    is_depth_test="1"
-    is_depth_mask="1"
-    is_blending="0"
+    is_depth_test="0"
+    is_depth_mask="0"
+    is_blending="1"
     cull_face_mode="GL_FRONT"
     blending_function_source="GL_SRC_ALPHA"
     blending_function_destination="GL_ONE_MINUS_SRC_ALPHA"
@@ -23,27 +23,20 @@
     is_shadowing="0"
     is_debugging="0">
     <shader
-        vs_filename="shader_ocean.vert"
-        fs_filename="shader_ocean.frag"/>
+        vs_filename="shader_ocean_n.vert"
+        fs_filename="shader_ocean_n.frag"/>
     <textures>
         <texture
             filename=""
-            render_operation_name="ws.reflection.color"
+            render_operation_name="ws.normal.refraction.color"
             sampler_index="0"
-            wrap_mode="GL_CLAMP_TO_EDGE"
-            mag_filter="GL_LINEAR"
-            min_filter="GL_LINEAR"/>
-        <texture
-            filename=""
-            render_operation_name="ws.refraction.color"
-            sampler_index="1"
             wrap_mode="GL_CLAMP_TO_EDGE"
             mag_filter="GL_LINEAR"
             min_filter="GL_LINEAR"/>
         <texture
             filename="ocean_ripples.png"
             render_operation_name=""
-            sampler_index="2"
+            sampler_index="1"
             wrap_mode="GL_MIRRORED_REPEAT"
             mag_filter="GL_NEAREST"
             min_filter="GL_NEAREST"/>

@@ -53,7 +53,8 @@ namespace gb
         ~ces_heightmap_component();
         
         e_heightmap_generation_state get_generation_state() const;
-        void generate(const graphics_context_shared_ptr& graphics_context);
+        void generate(const graphics_context_shared_ptr& graphics_context,
+                      const resource_accessor_shared_ptr& resource_accessor);
         
         void update(f32 deltatime);
         

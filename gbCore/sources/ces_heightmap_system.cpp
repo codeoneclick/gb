@@ -11,8 +11,10 @@
 
 namespace gb
 {
-    ces_heightmap_system::ces_heightmap_system(const std::shared_ptr<graphics_context>& graphic_context_ptr) :
-    m_graphic_context(graphic_context_ptr)
+    ces_heightmap_system::ces_heightmap_system(const graphics_context_shared_ptr& graphic_context,
+                                               const resource_accessor_shared_ptr& resource_accessor) :
+    m_graphic_context(graphic_context),
+    m_resource_accessor(resource_accessor)
     {
          m_type = e_ces_system_type_heightmap;
     }
@@ -36,7 +38,7 @@ namespace gb
         {
             if(heightmap_component->get_generation_state() == ces_heightmap_component::e_heightmap_generation_state_none)
             {
-                heightmap_component->generate(m_graphic_context);
+                heightmap_component->generate(m_graphic_context, m_resource_accessor);
             }
             else if(heightmap_component->get_generation_state() == ces_heightmap_component::e_heightmap_generation_state_generated)
             {

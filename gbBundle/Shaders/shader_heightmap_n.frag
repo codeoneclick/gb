@@ -6,6 +6,7 @@ in vec2 v_texcoord;
 in vec3 v_normal;
 in vec3 v_tangent;
 
+
 #else
 
 varying vec3 v_position;

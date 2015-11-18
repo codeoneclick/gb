@@ -12,6 +12,8 @@
 #include "scene_graph.h"
 #include "camera.h"
 #include "frustum.h"
+#include "resource_accessor.h"
+#include "texture.h"
 
 namespace gb
 {
@@ -56,10 +58,12 @@ namespace gb
         return lod;
     }
     
-    void ces_heightmap_component::generate(const graphics_context_shared_ptr& graphics_context)
+    void ces_heightmap_component::generate(const graphics_context_shared_ptr& graphics_context,
+                                           const resource_accessor_shared_ptr& resource_accessor)
     {
         m_generation_state = e_heightmap_generation_state_generating;
-        m_heightmap_accessor->generate(m_filename, graphics_context, m_splatting_diffuse_textures, m_splatting_normal_textures, m_splatting_displace_textures, [this] {
+        m_heightmap_accessor->generate(m_filename, graphics_context, m_splatting_diffuse_textures, m_splatting_normal_textures, m_splatting_displace_textures,
+                                       [this, resource_accessor] {
             
             i32 chunks_num = m_heightmap_accessor->get_chunks_num().x * m_heightmap_accessor->get_chunks_num().y;
             m_chunks.resize(chunks_num);
@@ -74,6 +78,8 @@ namespace gb
                 }
                 m_chunks[i]->create_bind_material_imposer_link();
             }
+            
+            resource_accessor->add_custom_resource("heightmap.deep.texture", m_heightmap_accessor->get_deep_texture());
             m_generation_state = e_heightmap_generation_state_generated;
         });
     }

@@ -17,6 +17,8 @@ namespace gb
     {
     private:
         
+        resource_accessor_shared_ptr m_resource_accessor;
+        
     protected:
         
         void on_feed_start(f32 deltatime);
@@ -25,7 +27,7 @@ namespace gb
         
     public:
         
-        ces_ocean_system();
+        ces_ocean_system(const resource_accessor_shared_ptr& resource_accessor);
         ~ces_ocean_system();
     };
 };

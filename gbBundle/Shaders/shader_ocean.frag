@@ -28,6 +28,7 @@ varying float v_fog_distance;
 uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
 uniform sampler2D sampler_03;
+uniform sampler2D sampler_04;
 
 const vec4 k_specular_color = vec4(1.2, 1.0, 0.75, 1.0);
 const float k_specular_shine = 512.0;
@@ -60,7 +61,8 @@ void main()
     vec2 texcoord_proj = v_texcoord_proj.xy;
     texcoord_proj = k_05 + k_05 * texcoord_proj / v_texcoord_proj.w * vec2(-k_1, k_1);
     
-    vec2 perturbation_intensity = k_perturbation_factor * normal.xy;
+    float deep = pow(clamp(1.0 - texture2D(sampler_04, v_texcoord).r, 0.0, 1.0), 2.0);
+    vec2 perturbation_intensity = k_perturbation_factor * normal.xy * deep;
     vec2 perturbated_texcoord = texcoord_proj + perturbation_intensity;
     
     vec4 reflection_color = texture2D(sampler_01, perturbated_texcoord);
@@ -73,9 +75,9 @@ void main()
     color += diffuse_color;
     color.a = 1.0;
     
-    float fog_distance = length(-v_vertex_position_ws) / 128.0;
-    fog_distance = clamp(fog_distance, 0.0, 1.0);
-    color = mix(color, fog_color, fog_distance);
+    //float fog_distance = length(-v_vertex_position_ws) / 128.0;
+    //fog_distance = clamp(fog_distance, 0.0, 1.0);
+    //color = mix(color, fog_color, fog_distance);
     
-    gl_FragColor = color;
+    gl_FragColor = vec4(deep);//color;
 }

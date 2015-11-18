@@ -24,6 +24,7 @@ void main(void)
     vec4 position = vec4(a_position, 1.0);
     position = u_mat_m * position;
     gl_Position = u_mat_p * u_mat_v * position;
+    gl_ClipDistance[0] = dot(position, u_vec_clip);
     
     v_position = position.xyz;
     v_texcoord = a_texcoord;

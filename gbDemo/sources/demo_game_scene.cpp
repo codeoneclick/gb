@@ -109,7 +109,7 @@ gb::game_scene(transition)
     scene_graph_inst->add_direction_light(m_direction_light);
     m_direction_light->set_intensity(.33f);
     
-    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(9);
+    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
    
     m_instanced_omni_lights->set_radius(3.f, 0);
@@ -128,8 +128,8 @@ gb::game_scene(transition)
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
     m_instanced_omni_lights->set_radius(3.f, 7);
     
-    m_instanced_omni_lights->set_position(glm::vec3(48.f, 8.f, 48.f), 8);
-    m_instanced_omni_lights->set_radius(32.f, 8);
+    //m_instanced_omni_lights->set_position(glm::vec3(192.f * .5f, 192.f * .33f, 192.f * .5f), 8);
+    //m_instanced_omni_lights->set_radius(192.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
     scene_graph_inst->set_skybox(m_skybox);

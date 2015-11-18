@@ -17,7 +17,8 @@ namespace gb
     {
     private:
         
-        std::shared_ptr<graphics_context> m_graphic_context;
+        graphics_context_shared_ptr m_graphic_context;
+        resource_accessor_shared_ptr m_resource_accessor;
         
     protected:
         
@@ -27,7 +28,8 @@ namespace gb
         
     public:
         
-        ces_heightmap_system(const std::shared_ptr<graphics_context>& graphic_context);
+        ces_heightmap_system(const graphics_context_shared_ptr& graphic_context,
+                             const resource_accessor_shared_ptr& resource_accessor);
         ~ces_heightmap_system();
     };
 };

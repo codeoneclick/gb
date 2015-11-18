@@ -9,10 +9,13 @@
 #include "ces_ocean_system.h"
 #include "ces_ocean_component.h"
 #include "ces_render_component.h"
+#include "resource_accessor.h"
+#include "texture.h"
 
 namespace gb
 {
-    ces_ocean_system::ces_ocean_system()
+    ces_ocean_system::ces_ocean_system(const resource_accessor_shared_ptr& resource_accessor) :
+    m_resource_accessor(resource_accessor)
     {
         m_type = e_ces_system_type_ocean;
     }
@@ -37,6 +40,12 @@ namespace gb
         if(ocean_component && render_component)
         {
             ocean_component->update(deltatime);
+            
+            texture_shared_ptr heightmap_deep_texture = m_resource_accessor->get_texture("heightmap.deep.texture", true, false);
+            if(heightmap_deep_texture)
+            {
+                render_component->set_texture(heightmap_deep_texture, e_shader_sampler_04);
+            }
             render_component->set_custom_shader_uniform(ocean_component->get_wave_generator_time(), "u_f32_timer");
         }
     }

@@ -125,7 +125,7 @@ namespace gb
         return resource;
     }
     
-    texture_shared_ptr resource_accessor::get_texture(const std::string &filename, bool sync)
+    texture_shared_ptr resource_accessor::get_texture(const std::string &filename, bool sync, bool mandatory)
     {
         std::string guid = filename;
         texture_shared_ptr resource = nullptr;
@@ -133,7 +133,7 @@ namespace gb
         {
             resource = std::static_pointer_cast<texture>(m_resources.find(guid)->second);
         }
-        else
+        else if(mandatory)
         {
             resource = std::make_shared<texture>(guid);
             texture_loading_operation_shared_ptr operation = std::make_shared<texture_loading_operation>(filename,

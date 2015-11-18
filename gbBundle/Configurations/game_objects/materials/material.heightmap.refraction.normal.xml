@@ -1,5 +1,5 @@
 <material
-    technique_name="ws.forward.rendering.normal"
+    technique_name="ws.normal.refraction"
     technique_pass="0"
     z_order="2"
     is_cull_face="1"
@@ -16,9 +16,9 @@
     stencil_mask_parameter="0"
     is_cliping="1"
     clipping_x="0.0"
-    clipping_y="1.0"
+    clipping_y="-1.0"
     clipping_z="0.0"
-    clipping_w="0.0"
+    clipping_w="0.25"
     is_reflecting="0"
     is_shadowing="0"
     is_debugging="0">

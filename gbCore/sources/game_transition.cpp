@@ -158,10 +158,11 @@ namespace gb
         std::shared_ptr<ces_skybox_system> skybox_system = std::make_shared<ces_skybox_system>();
         m_system_feeder->add_system(skybox_system, e_ces_system_type_skybox);
         
-        std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>();
+        std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>(resource_accessor);
         m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
         
-        std::shared_ptr<ces_heightmap_system> heightmap_system = std::make_shared<ces_heightmap_system>(graphics_context);
+        std::shared_ptr<ces_heightmap_system> heightmap_system = std::make_shared<ces_heightmap_system>(graphics_context,
+                                                                                                        resource_accessor);
         m_system_feeder->add_system(heightmap_system, e_ces_system_type_heightmap);
         
         ces_batch_system_shared_ptr batch_system = std::make_shared<ces_batch_system>();
