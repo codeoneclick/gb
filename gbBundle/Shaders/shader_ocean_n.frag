@@ -38,21 +38,25 @@ const float k_05 = 0.5;
 const float k_025 = 0.25;
 const float k_033 = 0.33;
 
+const float deep_contast = 3.0;
+
 void main()
 {
     vec3 normal = texture2D(sampler_02, v_texcoord_displace_01).rgb;
     normal += texture2D(sampler_02, v_texcoord_displace_02).rgb;
-    normal -= 1.0;
+    normal -= k_1;
     
     vec2 texcoord_proj = v_texcoord_proj.xy;
     texcoord_proj = k_05 + k_05 * texcoord_proj / v_texcoord_proj.w * vec2(-k_1, k_1);
     
-    float deep = pow(clamp(1.0 - texture2D(sampler_04, v_texcoord).r, 0.0, 1.0), 2.0);
+    float deep = texture2D(sampler_04, v_texcoord).r;
+    
     vec2 perturbation_intensity = k_perturbation_factor * normal.xy * deep;
     vec2 perturbated_texcoord = texcoord_proj + perturbation_intensity;
     
     vec4 color = texture2D(sampler_01, vec2(k_05 + (k_05 - perturbated_texcoord.x), perturbated_texcoord.y));
-    color.a = 1.0;
+    color = mix(vec4(k_0, k_1, k_0, k_1), color, deep);
+    color.a = k_1;
     
     gl_FragColor = color;
 }

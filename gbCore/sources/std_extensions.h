@@ -61,6 +61,13 @@ namespace std
         
         return std::string(c_string);
     };
+    
+    inline i32 next_pot_2(i32 value)
+    {
+        i32 rval = 1;
+        while(rval < value) rval <<= 1;
+        return rval;
+    };
 }
 
 #endif

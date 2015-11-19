@@ -490,14 +490,12 @@ namespace gb
         return heightmap_accessor::get_angles_xz(m_container, position);
     }
     
-    f32 heightmap_accessor::get_height(std::shared_ptr<heightmap_container> container, const glm::vec3& position)
+    f32 heightmap_accessor::get_height(const heightmap_container_shared_ptr& container, const glm::vec3& position)
     {
-        f32 _x = position.x / 1.f;
-        f32 _z = position.z / 1.f;
-        i32 x = static_cast<i32>(floor(_x));
-        i32 z = static_cast<i32>(floor(_z));
-        f32 dx = _x - x;
-        f32 dy = _z - z;
+        i32 x = static_cast<i32>(floor(position.x));
+        i32 z = static_cast<i32>(floor(position.z));
+        f32 dx = position.x - x;
+        f32 dy = position.z - z;
         
         if((x < 0) || (z < 0) || (x > (container->get_main_size().x - 1)) || (z > (container->get_main_size().y - 1)))
         {
@@ -523,17 +521,15 @@ namespace gb
             height_11 = container->get_vertex_position(x + 1, z + 1).y;
         }
         
-        f32 height_0 = height_00 * (1.0f - dy) + height_01 * dy;
-        f32 height_1 = height_10 * (1.0f - dy) + height_11 * dy;
-        return height_0 * (1.0f - dx) + height_1 * dx;
+        f32 height_0 = height_00 * (1.f - dy) + height_01 * dy;
+        f32 height_1 = height_10 * (1.f - dy) + height_11 * dy;
+        return height_0 * (1.f - dx) + height_1 * dx;
     }
     
-    glm::vec3 heightmap_accessor::get_normal(std::shared_ptr<heightmap_container> container, const glm::vec3& position)
+    glm::vec3 heightmap_accessor::get_normal(const heightmap_container_shared_ptr& container, const glm::vec3& position)
     {
-        f32 _x = position.x / 1.f;
-        f32 _z = position.z / 1.f;
-        i32 x = static_cast<i32>(floor(_x));
-        i32 z = static_cast<i32>(floor(_z));
+        i32 x = static_cast<i32>(floor(position.x));
+        i32 z = static_cast<i32>(floor(position.z));
         
         if((x < 0) || (z < 0) || (x > (container->get_main_size().x - 1)) || (z > (container->get_main_size().y - 1)))
         {
@@ -564,7 +560,7 @@ namespace gb
         return glm::normalize(glm::vec3(normal.x, normal.y, normal.z));
     }
     
-    glm::vec2 heightmap_accessor::get_angles_xz(std::shared_ptr<heightmap_container> container, const glm::vec3& position)
+    glm::vec2 heightmap_accessor::get_angles_xz(const heightmap_container_shared_ptr& container, const glm::vec3& position)
     {
         f32 offset = .25f;
         glm::vec3 point_01 = position;
