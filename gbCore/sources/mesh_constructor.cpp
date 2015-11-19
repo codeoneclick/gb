@@ -11,6 +11,7 @@
 #include "vbo.h"
 #include "ibo.h"
 #include "instanced_mesh.h"
+#include "std_extensions.h"
 
 namespace gb
 {
@@ -400,15 +401,16 @@ namespace gb
                 vertices[index * 4 + 2].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
                 vertices[index * 4 + 3].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
                 
-                vertices[index * 4 + 0].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
-                vertices[index * 4 + 1].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
-                vertices[index * 4 + 2].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
-                vertices[index * 4 + 3].m_normal = glm::packSnorm4x8(glm::vec4(0.0f, 1.0f, 0.0f, 0.0f));
+                vertices[index * 4 + 0].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));
+                vertices[index * 4 + 1].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));
+                vertices[index * 4 + 2].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));
+                vertices[index * 4 + 3].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));
                 
-                vertices[index * 4 + 0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  0.0f));
-                vertices[index * 4 + 1].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  0.0f));
-                vertices[index * 4 + 2].m_texcoord = glm::packUnorm2x16(glm::vec2(1.0f,  1.0f));
-                vertices[index * 4 + 3].m_texcoord = glm::packUnorm2x16(glm::vec2(0.0f,  1.0f));
+                vertices[index * 4 + 0].m_texcoord = glm::packUnorm2x16(glm::vec2(0.f,  0.f));
+                vertices[index * 4 + 1].m_texcoord = glm::packUnorm2x16(glm::vec2(static_cast<f32>(size) / static_cast<f32>(std::next_pot_2(size)), 0.f));
+                vertices[index * 4 + 2].m_texcoord = glm::packUnorm2x16(glm::vec2(static_cast<f32>(size) / static_cast<f32>(std::next_pot_2(size)),
+                                                                                  static_cast<f32>(size) / static_cast<f32>(std::next_pot_2(size))));
+                vertices[index * 4 + 3].m_texcoord = glm::packUnorm2x16(glm::vec2(0.f, static_cast<f32>(size) / static_cast<f32>(std::next_pot_2(size))));
                 
                 index++;
             }

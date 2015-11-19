@@ -435,8 +435,8 @@ namespace gb
             }
         });
     }
-
-    void heightmap_texture_generator::generate_deep_texture(const std::shared_ptr<heightmap_container>& container, bool create,
+    
+    void heightmap_texture_generator::generate_deep_texture(const heightmap_container_shared_ptr& container, bool create,
                                                             ui32 offset_x, ui32 offset_y,
                                                             ui32 sub_width, ui32 sub_height)
     {
@@ -446,18 +446,25 @@ namespace gb
         ui8* data = nullptr;
         if(create)
         {
-            data = new ui8[container->get_main_size().x * container->get_main_size().y];
-            f32 max_deep = heightmap_container::k_max_height;
-            for(int i = 0; i < container->get_main_size().x; i++)
+            data = new ui8[256 * 256];
+            f32 max_deep = container->get_min_height();
+            for(i32 i = 0; i < 256; ++i)
             {
-                for(int j = 0; j < container->get_main_size().y; j++)
+                for(i32 j = 0; j < 256; ++j)
                 {
-                    f32 height = heightmap_accessor::get_height(container, glm::vec3(i, 0.f, j));
-                    height = height <= 0.f ? height : 0.f;
-                    height /= max_deep;
-                    height = std::max(0.f, std::min((height + 1.f) / 2.f, 1.f));
-                    ui8 color = static_cast<ui8>(height * 255);
-                    data[i + j * container->get_main_size().x] = color;
+                    if(i < container->get_main_size().x && j < container->get_main_size().y)
+                    {
+                        f32 height = heightmap_accessor::get_height(container, glm::vec3(i, 0.f, j));
+                        height = height < 0.f ? height : 0.f;
+                        height /= max_deep;
+                        height = std::max(0.f, std::min((height + 1.f) / 2.f, 1.f));
+                        ui8 color = static_cast<ui8>(height * 255);
+                        data[i + j * 256] = color;
+                    }
+                    else
+                    {
+                        data[i + j * 256] = 0;
+                    }
                 }
             }
             
@@ -467,8 +474,8 @@ namespace gb
 #else
                                GL_ALPHA,
 #endif
-                               container->get_main_size().x,
-                               container->get_main_size().y,
+                               256,
+                               256,
                                0,
 #if defined(__OPENGL_30__)
                                GL_RED,
@@ -487,9 +494,9 @@ namespace gb
             f32 max_deep = heightmap_container::k_max_height;
             
             data = new ui8[sub_width * sub_height];
-            for(int i = 0; i < sub_width; i++)
+            for(i32 i = 0; i < sub_width; i++)
             {
-                for(int j = 0; j < sub_height; j++)
+                for(i32 j = 0; j < sub_height; j++)
                 {
                     f32 height = heightmap_accessor::get_height(container, glm::vec3(i + offset_x , 0.f, j + offset_y));
                     height = height <= 0.f ? height : 0.f;
