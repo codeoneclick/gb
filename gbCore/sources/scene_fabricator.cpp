@@ -24,11 +24,11 @@
 #include "particle_emitter.h"
 #include "skybox.h"
 #include "ocean.h"
-#include "heightmap.h"
+#include "terrain.h"
 #include "mesh_constructor.h"
-#include "heightmap_configuration.h"
+#include "terrain_configuration.h"
 #include "texture_configuration.h"
-#include "heightmap_texture_generator.h"
+#include "terrain_texture_generator.h"
 
 namespace gb
 {
@@ -461,22 +461,22 @@ namespace gb
         m_game_objects_container.erase(ocean);
     }
     
-    heightmap_shared_ptr scene_fabricator::create_heightmap(const std::string& filename)
+    terrain_shared_ptr scene_fabricator::create_terrain(const std::string& filename)
     {
-        std::shared_ptr<heightmap_configuration> heightmap_configuration =
-        std::static_pointer_cast<gb::heightmap_configuration>(m_configuration_accessor->get_heightmap_configuration(filename));
-        assert(heightmap_configuration);
+        std::shared_ptr<terrain_configuration> terrain_configuration =
+        std::static_pointer_cast<gb::terrain_configuration>(m_configuration_accessor->get_terrain_configuration(filename));
+        assert(terrain_configuration);
         
-        heightmap_shared_ptr heightmap = nullptr;
+        terrain_shared_ptr terrain = nullptr;
         
-        if(heightmap_configuration)
+        if(terrain_configuration)
         {
             std::shared_ptr<material_configuration> splatting_configuration = std::make_shared<material_configuration>();
-            splatting_configuration->serialize(heightmap_configuration->get_splatting_material_filename());
+            splatting_configuration->serialize(terrain_configuration->get_splatting_material_filename());
             
-            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_diffuse_textures;
-            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_normal_textures;
-            std::array<texture_shared_ptr, heightmap_texture_generator::e_splatting_texture_max> splatting_displace_textures;
+            std::array<texture_shared_ptr, terrain_texture_generator::e_splatting_texture_max> splatting_diffuse_textures;
+            std::array<texture_shared_ptr, terrain_texture_generator::e_splatting_texture_max> splatting_normal_textures;
+            std::array<texture_shared_ptr, terrain_texture_generator::e_splatting_texture_max> splatting_displace_textures;
             
             assert(splatting_configuration->get_textures_configurations().size() == 9);
             ui32 index = 0;
@@ -501,13 +501,13 @@ namespace gb
                 index++;
             }
             
-            heightmap = std::make_shared<gb::heightmap>(heightmap_configuration->get_heightmap_data_filename());
+            terrain = std::make_shared<gb::terrain>(terrain_configuration->get_terrain_data_filename());
             
-            heightmap->set_splatting_diffuse_textures(splatting_diffuse_textures);
-            heightmap->set_splatting_normal_textures(splatting_normal_textures);
-            heightmap->set_splatting_displace_textures(splatting_displace_textures);
+            terrain->set_splatting_diffuse_textures(splatting_diffuse_textures);
+            terrain->set_splatting_normal_textures(splatting_normal_textures);
+            terrain->set_splatting_displace_textures(splatting_displace_textures);
             
-            for(const auto& iterator : heightmap_configuration->get_materials_configurations())
+            for(const auto& iterator : terrain_configuration->get_materials_configurations())
             {
                 std::shared_ptr<material_configuration> material_configuration =
                 std::static_pointer_cast<gb::material_configuration>(iterator);
@@ -515,16 +515,16 @@ namespace gb
                 material_shared_ptr material = material::construct(material_configuration);
                 gb::material::set_shader(material, material_configuration, m_resource_accessor);
                 gb::material::set_textures(material, material_configuration, m_resource_accessor);
-                heightmap->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
+                terrain->add_material(material_configuration->get_technique_name(), material_configuration->get_technique_pass(), material);
             }
             
-            m_heightmaps_container.insert(heightmap);
+            m_terrains_container.insert(terrain);
         }
-        return heightmap;
+        return terrain;
     }
     
-    void scene_fabricator::destroy_heightmap(const heightmap_shared_ptr& heightmap)
+    void scene_fabricator::destroy_terrain(const terrain_shared_ptr& terrain)
     {
-        m_heightmaps_container.erase(heightmap);
+        m_terrains_container.erase(terrain);
     }
 }

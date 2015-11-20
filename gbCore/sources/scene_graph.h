@@ -29,7 +29,7 @@ namespace gb
         shadow_cast_light_shared_ptr m_shadow_cast_light;
         skybox_shared_ptr m_skybox;
         ocean_shared_ptr m_ocean;
-        heightmap_shared_ptr m_heightmap;
+        terrain_shared_ptr m_terrain;
         std::set<game_object_shared_ptr> m_game_objects_container;
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
@@ -52,7 +52,7 @@ namespace gb
         
         void set_ocean(const ocean_shared_ptr& ocean);
         
-        void set_heightmap(const heightmap_shared_ptr& heightmap);
+        void set_terrain(const terrain_shared_ptr& terrain);
         
         void add_game_object(const game_object_shared_ptr& game_object);
         void remove_game_object(const game_object_shared_ptr& game_object);

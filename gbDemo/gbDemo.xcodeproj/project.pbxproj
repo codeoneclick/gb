@@ -25,16 +25,16 @@
 		2102EB631B7E4E7900F20197 /* ws.technique.shadowmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */; };
 		2102EB651B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
 		2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */; };
-		2106EA971BFA1B3200BF87D2 /* material.heightmap.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2106EA961BFA1B3200BF87D2 /* material.heightmap.reflection.xml */; };
-		2106EA981BFA1B3500BF87D2 /* material.heightmap.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2106EA961BFA1B3200BF87D2 /* material.heightmap.reflection.xml */; };
+		2106EA971BFA1B3200BF87D2 /* material.terrain.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2106EA961BFA1B3200BF87D2 /* material.terrain.reflection.xml */; };
+		2106EA981BFA1B3500BF87D2 /* material.terrain.reflection.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2106EA961BFA1B3200BF87D2 /* material.terrain.reflection.xml */; };
 		210A09D51BD8C6BE002E86C3 /* ai_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D31BD8C6BE002E86C3 /* ai_action.cpp */; };
 		210A09D61BD8C6BE002E86C3 /* ai_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D31BD8C6BE002E86C3 /* ai_action.cpp */; };
 		210A09D91BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */; };
 		210A09DA1BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */; };
 		210A09DD1BD8C702002E86C3 /* ai_move_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */; };
 		210A09DE1BD8C702002E86C3 /* ai_move_action.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */; };
-		210F09AB1BFA26B30067B272 /* material.heightmap.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F09AA1BFA26B30067B272 /* material.heightmap.refraction.xml */; };
-		210F09AC1BFB0EB50067B272 /* material.heightmap.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F09AA1BFA26B30067B272 /* material.heightmap.refraction.xml */; };
+		210F09AB1BFA26B30067B272 /* material.terrain.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F09AA1BFA26B30067B272 /* material.terrain.refraction.xml */; };
+		210F09AC1BFB0EB50067B272 /* material.terrain.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F09AA1BFA26B30067B272 /* material.terrain.refraction.xml */; };
 		210F2AA51BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
 		210F2AA61BC3A0CF00B0809F /* level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 210F2AA31BC3A0CF00B0809F /* level.cpp */; };
 		210F2AAF1BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */; };
@@ -255,36 +255,38 @@
 		217A87791BF32A4B00A6AFE7 /* landscapeD_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87731BF32A1800A6AFE7 /* landscapeD_03.png */; };
 		217A877B1BF346A300A6AFE7 /* map_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A877A1BF346A300A6AFE7 /* map_06.png */; };
 		217A877C1BF346A600A6AFE7 /* map_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A877A1BF346A300A6AFE7 /* map_06.png */; };
-		217A877E1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A877D1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml */; };
-		217A877F1BF3488100A6AFE7 /* material.heightmap.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A877D1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml */; };
-		217A87821BF3488D00A6AFE7 /* shader_heightmap_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87801BF3488D00A6AFE7 /* shader_heightmap_n.frag */; };
-		217A87831BF3488D00A6AFE7 /* shader_heightmap_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87811BF3488D00A6AFE7 /* shader_heightmap_n.vert */; };
-		217A87851BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A87841BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml */; };
-		217A87861BF34A7F00A6AFE7 /* shader_heightmap_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87811BF3488D00A6AFE7 /* shader_heightmap_n.vert */; };
-		217A87871BF34A7F00A6AFE7 /* shader_heightmap_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87801BF3488D00A6AFE7 /* shader_heightmap_n.frag */; };
-		217A878A1BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87881BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag */; };
-		217A878B1BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87891BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert */; };
-		217A878C1BF3657C00A6AFE7 /* shader_heightmap_emissive.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87881BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag */; };
-		217A878D1BF3657C00A6AFE7 /* shader_heightmap_emissive.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87891BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert */; };
-		217A878E1BF365A400A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A87841BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml */; };
+		217A877E1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A877D1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml */; };
+		217A877F1BF3488100A6AFE7 /* material.terrain.forward.rendering.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A877D1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml */; };
+		217A87821BF3488D00A6AFE7 /* shader_terrain_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87801BF3488D00A6AFE7 /* shader_terrain_n.frag */; };
+		217A87831BF3488D00A6AFE7 /* shader_terrain_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87811BF3488D00A6AFE7 /* shader_terrain_n.vert */; };
+		217A87851BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A87841BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml */; };
+		217A87861BF34A7F00A6AFE7 /* shader_terrain_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87811BF3488D00A6AFE7 /* shader_terrain_n.vert */; };
+		217A87871BF34A7F00A6AFE7 /* shader_terrain_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87801BF3488D00A6AFE7 /* shader_terrain_n.frag */; };
+		217A878A1BF34A8B00A6AFE7 /* shader_terrain_emissive.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87881BF34A8B00A6AFE7 /* shader_terrain_emissive.frag */; };
+		217A878B1BF34A8B00A6AFE7 /* shader_terrain_emissive.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87891BF34A8B00A6AFE7 /* shader_terrain_emissive.vert */; };
+		217A878C1BF3657C00A6AFE7 /* shader_terrain_emissive.frag in Resources */ = {isa = PBXBuildFile; fileRef = 217A87881BF34A8B00A6AFE7 /* shader_terrain_emissive.frag */; };
+		217A878D1BF3657C00A6AFE7 /* shader_terrain_emissive.vert in Resources */ = {isa = PBXBuildFile; fileRef = 217A87891BF34A8B00A6AFE7 /* shader_terrain_emissive.vert */; };
+		217A878E1BF365A400A6AFE7 /* material.terrain.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 217A87841BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml */; };
 		217A87921BF3674800A6AFE7 /* landscapeN_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A878F1BF3674800A6AFE7 /* landscapeN_01.png */; };
 		217A87931BF3674800A6AFE7 /* landscapeN_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87901BF3674800A6AFE7 /* landscapeN_02.png */; };
 		217A87941BF3674800A6AFE7 /* landscapeN_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87911BF3674800A6AFE7 /* landscapeN_03.png */; };
 		217A87951BF3674B00A6AFE7 /* landscapeN_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A878F1BF3674800A6AFE7 /* landscapeN_01.png */; };
 		217A87961BF3674B00A6AFE7 /* landscapeN_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87901BF3674800A6AFE7 /* landscapeN_02.png */; };
 		217A87971BF3674B00A6AFE7 /* landscapeN_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87911BF3674800A6AFE7 /* landscapeN_03.png */; };
-		218E40831BF1E8A60002C01B /* gameobject.heightmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40821BF1E8A60002C01B /* gameobject.heightmap.xml */; };
-		218E40861BF1E9270002C01B /* material.heightmap.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40841BF1E9270002C01B /* material.heightmap.base.xml */; };
-		218E40871BF1E9270002C01B /* material.heightmap.splatting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40851BF1E9270002C01B /* material.heightmap.splatting.xml */; };
-		218E408B1BF1E9880002C01B /* shader_heightmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 218E40891BF1E9880002C01B /* shader_heightmap.frag */; };
-		218E408C1BF1E9880002C01B /* shader_heightmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 218E408A1BF1E9880002C01B /* shader_heightmap.vert */; };
+		218B72631BFF5C6800C20CD6 /* libgbEditor-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B72621BFF5C6100C20CD6 /* libgbEditor-osx.a */; };
+		218B72661BFF5C7F00C20CD6 /* libgbEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B72451BFF594A00C20CD6 /* libgbEditor.a */; };
+		218E40831BF1E8A60002C01B /* gameobject.terrain.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40821BF1E8A60002C01B /* gameobject.terrain.xml */; };
+		218E40861BF1E9270002C01B /* material.terrain.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40841BF1E9270002C01B /* material.terrain.base.xml */; };
+		218E40871BF1E9270002C01B /* material.terrain.splatting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40851BF1E9270002C01B /* material.terrain.splatting.xml */; };
+		218E408B1BF1E9880002C01B /* shader_terrain.frag in Resources */ = {isa = PBXBuildFile; fileRef = 218E40891BF1E9880002C01B /* shader_terrain.frag */; };
+		218E408C1BF1E9880002C01B /* shader_terrain.vert in Resources */ = {isa = PBXBuildFile; fileRef = 218E408A1BF1E9880002C01B /* shader_terrain.vert */; };
 		218E408F1BF1FF340002C01B /* map_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E408E1BF1FF340002C01B /* map_01.png */; };
 		218E40901BF1FF380002C01B /* map_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 218E408E1BF1FF340002C01B /* map_01.png */; };
-		218E40911BF2296D0002C01B /* gameobject.heightmap.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40821BF1E8A60002C01B /* gameobject.heightmap.xml */; };
-		218E40921BF229740002C01B /* material.heightmap.splatting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40851BF1E9270002C01B /* material.heightmap.splatting.xml */; };
-		218E40931BF229770002C01B /* material.heightmap.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40841BF1E9270002C01B /* material.heightmap.base.xml */; };
-		218E40941BF229810002C01B /* shader_heightmap.vert in Resources */ = {isa = PBXBuildFile; fileRef = 218E408A1BF1E9880002C01B /* shader_heightmap.vert */; };
-		218E40951BF229830002C01B /* shader_heightmap.frag in Resources */ = {isa = PBXBuildFile; fileRef = 218E40891BF1E9880002C01B /* shader_heightmap.frag */; };
+		218E40911BF2296D0002C01B /* gameobject.terrain.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40821BF1E8A60002C01B /* gameobject.terrain.xml */; };
+		218E40921BF229740002C01B /* material.terrain.splatting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40851BF1E9270002C01B /* material.terrain.splatting.xml */; };
+		218E40931BF229770002C01B /* material.terrain.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40841BF1E9270002C01B /* material.terrain.base.xml */; };
+		218E40941BF229810002C01B /* shader_terrain.vert in Resources */ = {isa = PBXBuildFile; fileRef = 218E408A1BF1E9880002C01B /* shader_terrain.vert */; };
+		218E40951BF229830002C01B /* shader_terrain.frag in Resources */ = {isa = PBXBuildFile; fileRef = 218E40891BF1E9880002C01B /* shader_terrain.frag */; };
 		2192318B1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2192318A1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml */; };
 		2192318C1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2192318A1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml */; };
 		2192318E1BDA61670080CB39 /* material.human_01.base.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2192318D1BDA61670080CB39 /* material.human_01.base.outline.xml */; };
@@ -359,8 +361,8 @@
 		21BD42631BC7B5E200D72B28 /* box_04_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 21BD42581BC7B5E200D72B28 /* box_04_s.png */; };
 		21BD42641BC7B5E200D72B28 /* box_04_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 21BD42581BC7B5E200D72B28 /* box_04_s.png */; };
 		21C259231BFCA0B7004F34C8 /* ws.technique.normal.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259221BFCA0B7004F34C8 /* ws.technique.normal.refraction.xml */; };
-		21C259251BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259241BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml */; };
-		21C259261BFCA345004F34C8 /* material.heightmap.refraction.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259241BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml */; };
+		21C259251BFCA32E004F34C8 /* material.terrain.refraction.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259241BFCA32E004F34C8 /* material.terrain.refraction.normal.xml */; };
+		21C259261BFCA345004F34C8 /* material.terrain.refraction.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259241BFCA32E004F34C8 /* material.terrain.refraction.normal.xml */; };
 		21C259271BFCA3C3004F34C8 /* ws.technique.normal.refraction.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259221BFCA0B7004F34C8 /* ws.technique.normal.refraction.xml */; };
 		21C259291BFCA691004F34C8 /* material.ocean.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259281BFCA691004F34C8 /* material.ocean.normal.xml */; };
 		21C2592C1BFCA7E2004F34C8 /* shader_ocean_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */; };
@@ -485,6 +487,34 @@
 			remoteGlobalIDString = 21B405271B7A0AFA003382AB;
 			remoteInfo = "gbCore-ios";
 		};
+		218B72441BFF594A00C20CD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 218B72341BFF58D300C20CD6;
+			remoteInfo = gbEditor;
+		};
+		218B725E1BFF5C6000C20CD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 218B72471BFF59CD00C20CD6;
+			remoteInfo = "gbEditor-osx";
+		};
+		218B72611BFF5C6100C20CD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 218B724E1BFF59CD00C20CD6;
+			remoteInfo = "gbEditor-osx";
+		};
+		218B72641BFF5C7200C20CD6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 218B72331BFF58D300C20CD6;
+			remoteInfo = "gbEditor-ios";
+		};
 		21B4034A1B7A0A3B003382AB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 21B403461B7A0A3B003382AB /* gbCore.xcodeproj */;
@@ -542,14 +572,14 @@
 		2102EB5A1B7E4E7900F20197 /* ws.technique.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.refraction.xml; sourceTree = "<group>"; };
 		2102EB5B1B7E4E7900F20197 /* ws.technique.shadowmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.shadowmap.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.shadowmap.xml; sourceTree = "<group>"; };
 		2102EB641B7E4E9E00F20197 /* material.output.technique.demo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.output.technique.demo.xml; path = ../gbBundle/Configurations/techniques/material/material.output.technique.demo.xml; sourceTree = "<group>"; };
-		2106EA961BFA1B3200BF87D2 /* material.heightmap.reflection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.reflection.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.reflection.xml; sourceTree = "<group>"; };
+		2106EA961BFA1B3200BF87D2 /* material.terrain.reflection.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.reflection.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.reflection.xml; sourceTree = "<group>"; };
 		210A09D31BD8C6BE002E86C3 /* ai_action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_action.cpp; path = sources/ai_action.cpp; sourceTree = "<group>"; };
 		210A09D41BD8C6BE002E86C3 /* ai_action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_action.h; path = sources/ai_action.h; sourceTree = "<group>"; };
 		210A09D71BD8C6D4002E86C3 /* ai_actions_processor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_actions_processor.cpp; path = sources/ai_actions_processor.cpp; sourceTree = "<group>"; };
 		210A09D81BD8C6D4002E86C3 /* ai_actions_processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_actions_processor.h; path = sources/ai_actions_processor.h; sourceTree = "<group>"; };
 		210A09DB1BD8C702002E86C3 /* ai_move_action.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ai_move_action.cpp; path = sources/ai_move_action.cpp; sourceTree = "<group>"; };
 		210A09DC1BD8C702002E86C3 /* ai_move_action.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ai_move_action.h; path = sources/ai_move_action.h; sourceTree = "<group>"; };
-		210F09AA1BFA26B30067B272 /* material.heightmap.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.refraction.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.refraction.xml; sourceTree = "<group>"; };
+		210F09AA1BFA26B30067B272 /* material.terrain.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.refraction.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.refraction.xml; sourceTree = "<group>"; };
 		210F2AA31BC3A0CF00B0809F /* level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = level.cpp; path = sources/level.cpp; sourceTree = "<group>"; };
 		210F2AA41BC3A0CF00B0809F /* level.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = level.h; path = sources/level.h; sourceTree = "<group>"; };
 		210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.instanced.boxes.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.instanced.boxes.base.xml; sourceTree = "<group>"; };
@@ -675,20 +705,21 @@
 		217A87721BF32A1800A6AFE7 /* landscapeD_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landscapeD_02.png; path = ../gbBundle/Textures/landscapeD_02.png; sourceTree = "<group>"; };
 		217A87731BF32A1800A6AFE7 /* landscapeD_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landscapeD_03.png; path = ../gbBundle/Textures/landscapeD_03.png; sourceTree = "<group>"; };
 		217A877A1BF346A300A6AFE7 /* map_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_06.png; path = ../gbBundle/Temp/map_06.png; sourceTree = "<group>"; };
-		217A877D1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.forward.rendering.normal.xml; sourceTree = "<group>"; };
-		217A87801BF3488D00A6AFE7 /* shader_heightmap_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap_n.frag; path = ../gbBundle/Shaders/shader_heightmap_n.frag; sourceTree = "<group>"; };
-		217A87811BF3488D00A6AFE7 /* shader_heightmap_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap_n.vert; path = ../gbBundle/Shaders/shader_heightmap_n.vert; sourceTree = "<group>"; };
-		217A87841BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heigthmap.forward.rendering.emissive.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heigthmap.forward.rendering.emissive.xml; sourceTree = "<group>"; };
-		217A87881BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap_emissive.frag; path = ../gbBundle/Shaders/shader_heightmap_emissive.frag; sourceTree = "<group>"; };
-		217A87891BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap_emissive.vert; path = ../gbBundle/Shaders/shader_heightmap_emissive.vert; sourceTree = "<group>"; };
+		217A877D1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.forward.rendering.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.forward.rendering.normal.xml; sourceTree = "<group>"; };
+		217A87801BF3488D00A6AFE7 /* shader_terrain_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain_n.frag; path = ../gbBundle/Shaders/shader_terrain_n.frag; sourceTree = "<group>"; };
+		217A87811BF3488D00A6AFE7 /* shader_terrain_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain_n.vert; path = ../gbBundle/Shaders/shader_terrain_n.vert; sourceTree = "<group>"; };
+		217A87841BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.forward.rendering.emissive.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.forward.rendering.emissive.xml; sourceTree = "<group>"; };
+		217A87881BF34A8B00A6AFE7 /* shader_terrain_emissive.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain_emissive.frag; path = ../gbBundle/Shaders/shader_terrain_emissive.frag; sourceTree = "<group>"; };
+		217A87891BF34A8B00A6AFE7 /* shader_terrain_emissive.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain_emissive.vert; path = ../gbBundle/Shaders/shader_terrain_emissive.vert; sourceTree = "<group>"; };
 		217A878F1BF3674800A6AFE7 /* landscapeN_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landscapeN_01.png; path = ../gbBundle/Textures/landscapeN_01.png; sourceTree = "<group>"; };
 		217A87901BF3674800A6AFE7 /* landscapeN_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landscapeN_02.png; path = ../gbBundle/Textures/landscapeN_02.png; sourceTree = "<group>"; };
 		217A87911BF3674800A6AFE7 /* landscapeN_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = landscapeN_03.png; path = ../gbBundle/Textures/landscapeN_03.png; sourceTree = "<group>"; };
-		218E40821BF1E8A60002C01B /* gameobject.heightmap.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.heightmap.xml; path = ../gbBundle/Configurations/game_objects/gameobject.heightmap.xml; sourceTree = "<group>"; };
-		218E40841BF1E9270002C01B /* material.heightmap.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.base.xml; sourceTree = "<group>"; };
-		218E40851BF1E9270002C01B /* material.heightmap.splatting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.splatting.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.splatting.xml; sourceTree = "<group>"; };
-		218E40891BF1E9880002C01B /* shader_heightmap.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap.frag; path = ../gbBundle/Shaders/shader_heightmap.frag; sourceTree = "<group>"; };
-		218E408A1BF1E9880002C01B /* shader_heightmap.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_heightmap.vert; path = ../gbBundle/Shaders/shader_heightmap.vert; sourceTree = "<group>"; };
+		218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = gbEditor.xcodeproj; path = ../gbEditor/gbEditor.xcodeproj; sourceTree = "<group>"; };
+		218E40821BF1E8A60002C01B /* gameobject.terrain.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.terrain.xml; path = ../gbBundle/Configurations/game_objects/gameobject.terrain.xml; sourceTree = "<group>"; };
+		218E40841BF1E9270002C01B /* material.terrain.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.base.xml; sourceTree = "<group>"; };
+		218E40851BF1E9270002C01B /* material.terrain.splatting.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.splatting.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.splatting.xml; sourceTree = "<group>"; };
+		218E40891BF1E9880002C01B /* shader_terrain.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain.frag; path = ../gbBundle/Shaders/shader_terrain.frag; sourceTree = "<group>"; };
+		218E408A1BF1E9880002C01B /* shader_terrain.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_terrain.vert; path = ../gbBundle/Shaders/shader_terrain.vert; sourceTree = "<group>"; };
 		218E408E1BF1FF340002C01B /* map_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = map_01.png; path = ../gbBundle/Temp/map_01.png; sourceTree = "<group>"; };
 		2192318A1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.forward.rendering.emissive.outline.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.forward.rendering.emissive.outline.xml; sourceTree = "<group>"; };
 		2192318D1BDA61670080CB39 /* material.human_01.base.outline.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.base.outline.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.base.outline.xml; sourceTree = "<group>"; };
@@ -735,7 +766,7 @@
 		21BD42571BC7B5E200D72B28 /* box_04_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = box_04_n.png; path = ../gbBundle/Textures/box_04_n.png; sourceTree = "<group>"; };
 		21BD42581BC7B5E200D72B28 /* box_04_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = box_04_s.png; path = ../gbBundle/Textures/box_04_s.png; sourceTree = "<group>"; };
 		21C259221BFCA0B7004F34C8 /* ws.technique.normal.refraction.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.normal.refraction.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.normal.refraction.xml; sourceTree = "<group>"; };
-		21C259241BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.heightmap.refraction.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.heightmap.refraction.normal.xml; sourceTree = "<group>"; };
+		21C259241BFCA32E004F34C8 /* material.terrain.refraction.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.terrain.refraction.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.terrain.refraction.normal.xml; sourceTree = "<group>"; };
 		21C259281BFCA691004F34C8 /* material.ocean.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.ocean.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.ocean.normal.xml; sourceTree = "<group>"; };
 		21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.frag; path = ../gbBundle/Shaders/shader_ocean_n.frag; sourceTree = "<group>"; };
 		21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.vert; path = ../gbBundle/Shaders/shader_ocean_n.vert; sourceTree = "<group>"; };
@@ -797,6 +828,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				218B72631BFF5C6800C20CD6 /* libgbEditor-osx.a in Frameworks */,
 				21E33E051BB9761800B540E7 /* libgbUI-osx.a in Frameworks */,
 				2102EB4F1B7D34F900F20197 /* libgbCore-osx.a in Frameworks */,
 				21B405941B7A0CDE003382AB /* Cocoa.framework in Frameworks */,
@@ -815,6 +847,7 @@
 				212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */,
 				212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */,
 				21E33E041BB9760C00B540E7 /* libgbUI-ios.a in Frameworks */,
+				218B72661BFF5C7F00C20CD6 /* libgbEditor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,7 +866,7 @@
 		2102EB531B7E4E0D00F20197 /* game_objects */ = {
 			isa = PBXGroup;
 			children = (
-				218E40821BF1E8A60002C01B /* gameobject.heightmap.xml */,
+				218E40821BF1E8A60002C01B /* gameobject.terrain.xml */,
 				211F55971BE100FE00590B0D /* gameobject.box.xml */,
 				216DF30B1BCD0165008E4B2B /* gameobject.ocean.xml */,
 				216DF2CD1BCCD0DB008E4B2B /* gameobject.skybox.xml */,
@@ -924,7 +957,7 @@
 		21275FE61B98655800BEE033 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				218E40841BF1E9270002C01B /* material.heightmap.base.xml */,
+				218E40841BF1E9270002C01B /* material.terrain.base.xml */,
 				211F55991BE1019300590B0D /* material.box.base.xml */,
 				210F2AAE1BC3B2D200B0809F /* material.instanced.boxes.base.xml */,
 				21275FCC1B9861BB00BEE033 /* material.plane.base.xml */,
@@ -956,12 +989,12 @@
 			children = (
 				21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */,
 				21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */,
-				217A87881BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag */,
-				217A87891BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert */,
-				217A87811BF3488D00A6AFE7 /* shader_heightmap_n.vert */,
-				217A87801BF3488D00A6AFE7 /* shader_heightmap_n.frag */,
-				218E408A1BF1E9880002C01B /* shader_heightmap.vert */,
-				218E40891BF1E9880002C01B /* shader_heightmap.frag */,
+				217A87881BF34A8B00A6AFE7 /* shader_terrain_emissive.frag */,
+				217A87891BF34A8B00A6AFE7 /* shader_terrain_emissive.vert */,
+				217A87811BF3488D00A6AFE7 /* shader_terrain_n.vert */,
+				217A87801BF3488D00A6AFE7 /* shader_terrain_n.frag */,
+				218E408A1BF1E9880002C01B /* shader_terrain.vert */,
+				218E40891BF1E9880002C01B /* shader_terrain.frag */,
 				216DF3261BCD0B24008E4B2B /* shader_ocean_emissive.vert */,
 				216DF3251BCD0B24008E4B2B /* shader_ocean_emissive.frag */,
 				216DF3281BCD0B24008E4B2B /* shader_ocean.vert */,
@@ -1091,7 +1124,7 @@
 		216DF31A1BCD084D008E4B2B /* reflection */ = {
 			isa = PBXGroup;
 			children = (
-				2106EA961BFA1B3200BF87D2 /* material.heightmap.reflection.xml */,
+				2106EA961BFA1B3200BF87D2 /* material.terrain.reflection.xml */,
 				211C34211BCD28DF000B22C8 /* material.skybox.reflection.xml */,
 				216DF31C1BCD0895008E4B2B /* material.instanced.boxes.reflection.xml */,
 				211F559C1BE1019300590B0D /* material.box.reflection.xml */,
@@ -1102,17 +1135,26 @@
 		216DF31B1BCD0857008E4B2B /* refraction */ = {
 			isa = PBXGroup;
 			children = (
-				210F09AA1BFA26B30067B272 /* material.heightmap.refraction.xml */,
+				210F09AA1BFA26B30067B272 /* material.terrain.refraction.xml */,
 				211F559D1BE1019300590B0D /* material.box.refraction.xml */,
 				216DF31D1BCD0895008E4B2B /* material.instanced.boxes.refraction.xml */,
 			);
 			name = refraction;
 			sourceTree = "<group>";
 		};
+		218B72411BFF594900C20CD6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				218B72451BFF594A00C20CD6 /* libgbEditor.a */,
+				218B72621BFF5C6100C20CD6 /* libgbEditor-osx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		218E40881BF1E92A0002C01B /* splatting */ = {
 			isa = PBXGroup;
 			children = (
-				218E40851BF1E9270002C01B /* material.heightmap.splatting.xml */,
+				218E40851BF1E9270002C01B /* material.terrain.splatting.xml */,
 			);
 			name = splatting;
 			sourceTree = "<group>";
@@ -1129,7 +1171,7 @@
 		21A7435F1BCC1F3800674F36 /* forward.rendering.emissive */ = {
 			isa = PBXGroup;
 			children = (
-				217A87841BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml */,
+				217A87841BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml */,
 				211F559A1BE1019300590B0D /* material.box.forward.rendering.emissive.xml */,
 				216DF2F81BCCF209008E4B2B /* material.instanced.boxes.forward.rendering.emissive.xml */,
 				216DF2F51BCCF136008E4B2B /* material.skybox.forward.rendering.emissive.xml */,
@@ -1206,6 +1248,7 @@
 				21B405911B7A0CDA003382AB /* OpenGL.framework */,
 				21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */,
 				21B403461B7A0A3B003382AB /* gbCore.xcodeproj */,
+				218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */,
 			);
 			name = libraries;
 			sourceTree = "<group>";
@@ -1283,8 +1326,8 @@
 			children = (
 				21C259281BFCA691004F34C8 /* material.ocean.normal.xml */,
 				211F559B1BE1019300590B0D /* material.box.forward.rendering.normal.xml */,
-				217A877D1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml */,
-				21C259241BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml */,
+				217A877D1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml */,
+				21C259241BFCA32E004F34C8 /* material.terrain.refraction.normal.xml */,
 				210F2AC01BC3BB5C00B0809F /* material.instanced.boxes.forward.rendering.normal.xml */,
 				21DE0EA01BB023F7009EA47B /* material.plane.forward.rendering.normal.xml */,
 				21DE0E4D1BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml */,
@@ -1416,6 +1459,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				218B725F1BFF5C6000C20CD6 /* PBXTargetDependency */,
 				21E33DE11BB959B100B540E7 /* PBXTargetDependency */,
 				2102EB4E1B7D34F200F20197 /* PBXTargetDependency */,
 			);
@@ -1435,6 +1479,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				218B72651BFF5C7200C20CD6 /* PBXTargetDependency */,
 				21E33DE61BB959B800B540E7 /* PBXTargetDependency */,
 				212B18D01B8234DA00FFDCE7 /* PBXTargetDependency */,
 			);
@@ -1477,6 +1522,10 @@
 					ProjectRef = 21B403461B7A0A3B003382AB /* gbCore.xcodeproj */;
 				},
 				{
+					ProductGroup = 218B72411BFF594900C20CD6 /* Products */;
+					ProjectRef = 218B72401BFF594900C20CD6 /* gbEditor.xcodeproj */;
+				},
+				{
 					ProductGroup = 21E33DD01BB956C700B540E7 /* Products */;
 					ProjectRef = 21E33DCF1BB956C700B540E7 /* gbUI.xcodeproj */;
 				},
@@ -1490,6 +1539,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		218B72451BFF594A00C20CD6 /* libgbEditor.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libgbEditor.a;
+			remoteRef = 218B72441BFF594A00C20CD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		218B72621BFF5C6100C20CD6 /* libgbEditor-osx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libgbEditor-osx.a";
+			remoteRef = 218B72611BFF5C6100C20CD6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		21B4034B1B7A0A3B003382AB /* libgbCore-osx.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1555,14 +1618,14 @@
 				21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */,
 				21FA124C1B8F2BAE00ACB9A5 /* material.orc_02.base.xml in Resources */,
 				21A7435E1BCC1EBC00674F36 /* ws.technique.forward.rendering.emissive.xml in Resources */,
-				217A878B1BF34A8B00A6AFE7 /* shader_heightmap_emissive.vert in Resources */,
+				217A878B1BF34A8B00A6AFE7 /* shader_terrain_emissive.vert in Resources */,
 				21BD42331BC685EF00D72B28 /* box_01.png in Resources */,
 				21DE0E661BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
 				21D78C191B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				216DF2E01BCCD17E008E4B2B /* skybox_posy.png in Resources */,
 				21C2592D1BFCA7E2004F34C8 /* shader_ocean_n.vert in Resources */,
-				2106EA971BFA1B3200BF87D2 /* material.heightmap.reflection.xml in Resources */,
-				218E408C1BF1E9880002C01B /* shader_heightmap.vert in Resources */,
+				2106EA971BFA1B3200BF87D2 /* material.terrain.reflection.xml in Resources */,
+				218E408C1BF1E9880002C01B /* shader_terrain.vert in Resources */,
 				2102EB601B7E4E7900F20197 /* ws.technique.refraction.xml in Resources */,
 				217A87931BF3674800A6AFE7 /* landscapeN_02.png in Resources */,
 				216DF3311BCD0B24008E4B2B /* shader_skybox_emissive.frag in Resources */,
@@ -1595,7 +1658,7 @@
 				21DE0E9A1BB022E8009EA47B /* shader_model3d_static_n.vert in Resources */,
 				216DF2FC1BCCF24B008E4B2B /* shader_instanced_models3d_static_emissive.frag in Resources */,
 				216DF2B21BCBCE6E008E4B2B /* shader_model3d_animated_outline.frag in Resources */,
-				218E40831BF1E8A60002C01B /* gameobject.heightmap.xml in Resources */,
+				218E40831BF1E8A60002C01B /* gameobject.terrain.xml in Resources */,
 				211F55B01BE1029100590B0D /* shader_model3d_static_emissive.vert in Resources */,
 				2118C2971BCE90CE00287595 /* shader_instanced_models3d_static_reflection_refraction.frag in Resources */,
 				216DF30E1BCD0181008E4B2B /* material.ocean.base.xml in Resources */,
@@ -1605,7 +1668,7 @@
 				216179CD1BE363890002E179 /* box_14_d.png in Resources */,
 				21DE0E601BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */,
 				211C345A1BCD50E0000B22C8 /* grimmnight_skybox_posx.png in Resources */,
-				218E408B1BF1E9880002C01B /* shader_heightmap.frag in Resources */,
+				218E408B1BF1E9880002C01B /* shader_terrain.frag in Resources */,
 				21EE3D5D1B96ECC1000AE51C /* particle_01.png in Resources */,
 				211F559E1BE1019300590B0D /* material.box.base.xml in Resources */,
 				211F55A21BE1019300590B0D /* material.box.refraction.xml in Resources */,
@@ -1618,12 +1681,12 @@
 				216DF2DD1BCCD17E008E4B2B /* skybox_negx.png in Resources */,
 				211C37E51BCE56D2000B22C8 /* box_12_s.png in Resources */,
 				21EBF3F21BF38F0C00E7AC15 /* base_DISP.png in Resources */,
-				218E40861BF1E9270002C01B /* material.heightmap.base.xml in Resources */,
+				218E40861BF1E9270002C01B /* material.terrain.base.xml in Resources */,
 				2102EB5C1B7E4E7900F20197 /* ws.technique.base.xml in Resources */,
 				210F2ABC1BC3BB0100B0809F /* shader_instanced_models3d_static_n.frag in Resources */,
 				211C37E21BCE56D2000B22C8 /* box_11_s.png in Resources */,
 				21BD425D1BC7B5E200D72B28 /* box_03_s.png in Resources */,
-				21C259251BFCA32E004F34C8 /* material.heightmap.refraction.normal.xml in Resources */,
+				21C259251BFCA32E004F34C8 /* material.terrain.refraction.normal.xml in Resources */,
 				21D78C1B1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
 				211C37C71BCE50BB000B22C8 /* box_08_s.png in Resources */,
 				21FA12601B8F2C2600ACB9A5 /* orc_02.IE3DMESH in Resources */,
@@ -1644,9 +1707,9 @@
 				211C37C31BCE50BB000B22C8 /* box_07_n.png in Resources */,
 				21DE0E921BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
 				21DE0E901BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
-				218E40871BF1E9270002C01B /* material.heightmap.splatting.xml in Resources */,
-				217A877E1BF3487900A6AFE7 /* material.heightmap.forward.rendering.normal.xml in Resources */,
-				210F09AB1BFA26B30067B272 /* material.heightmap.refraction.xml in Resources */,
+				218E40871BF1E9270002C01B /* material.terrain.splatting.xml in Resources */,
+				217A877E1BF3487900A6AFE7 /* material.terrain.forward.rendering.normal.xml in Resources */,
+				210F09AB1BFA26B30067B272 /* material.terrain.refraction.xml in Resources */,
 				21DE0E511BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
 				216DF30C1BCD0165008E4B2B /* gameobject.ocean.xml in Resources */,
 				217A87751BF32A1800A6AFE7 /* landscapeD_02.png in Resources */,
@@ -1654,17 +1717,17 @@
 				219231911BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml in Resources */,
 				211C37DE1BCE56D2000B22C8 /* box_10_n.png in Resources */,
 				21A743721BCC3CF400674F36 /* material.orc_01.forward.rendering.emissive.xml in Resources */,
-				217A87831BF3488D00A6AFE7 /* shader_heightmap_n.vert in Resources */,
+				217A87831BF3488D00A6AFE7 /* shader_terrain_n.vert in Resources */,
 				21FA12501B8F2BD300ACB9A5 /* shader_model3d_animated.frag in Resources */,
 				21D78C211B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
 				21B403441B7A0A23003382AB /* MainMenu.xib in Resources */,
 				21BD424B1BC79B3D00D72B28 /* box_02_n.png in Resources */,
 				21A7438B1BCC4A1F00674F36 /* shader_particle_emitter_emissive.frag in Resources */,
 				210F2AAF1BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */,
-				217A87851BF34A3000A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml in Resources */,
+				217A87851BF34A3000A6AFE7 /* material.terrain.forward.rendering.emissive.xml in Resources */,
 				21275FF01B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
 				21DE0EA21BB023F7009EA47B /* material.plane.forward.rendering.normal.xml in Resources */,
-				217A87821BF3488D00A6AFE7 /* shader_heightmap_n.frag in Resources */,
+				217A87821BF3488D00A6AFE7 /* shader_terrain_n.frag in Resources */,
 				21EE3D541B96E6E6000AE51C /* material.particle.emitter.fire.base.xml in Resources */,
 				21D78C231B90AD6800665BB6 /* orc_02_idle.IE3DANIMATION in Resources */,
 				21D78C1F1B90AD6800665BB6 /* orc_01_idle.IE3DANIMATION in Resources */,
@@ -1690,7 +1753,7 @@
 				217A87741BF32A1800A6AFE7 /* landscapeD_01.png in Resources */,
 				21DE0E981BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
 				21577A641BDA680E00F4040C /* box_14.png in Resources */,
-				217A878A1BF34A8B00A6AFE7 /* shader_heightmap_emissive.frag in Resources */,
+				217A878A1BF34A8B00A6AFE7 /* shader_terrain_emissive.frag in Resources */,
 				21275FE21B98654E00BEE033 /* material.orc_01.shadowmap.xml in Resources */,
 				216DF3231BCD0A54008E4B2B /* material.ocean.forward.rendering.emissive.xml in Resources */,
 				217A87941BF3674800A6AFE7 /* landscapeN_03.png in Resources */,
@@ -1744,7 +1807,7 @@
 			files = (
 				21D78C1E1B90AD6800665BB6 /* human_02_run.IE3DANIMATION in Resources */,
 				21BD42361BC68AB000D72B28 /* box_01_n.png in Resources */,
-				217A878D1BF3657C00A6AFE7 /* shader_heightmap_emissive.vert in Resources */,
+				217A878D1BF3657C00A6AFE7 /* shader_terrain_emissive.vert in Resources */,
 				21DE0E651BAFE994009EA47B /* shader_screen_deferred_lighting.frag in Resources */,
 				21D78C1A1B90AD6800665BB6 /* human_01_run.IE3DANIMATION in Resources */,
 				215FAE321BCE982C00FE7D80 /* box_12.png in Resources */,
@@ -1757,7 +1820,7 @@
 				211F55A71BE101A600590B0D /* material.box.refraction.xml in Resources */,
 				211C345F1BCD5128000B22C8 /* grimmnight_skybox_negz.png in Resources */,
 				216DF2B61BCBCEDF008E4B2B /* shader_model3d_animated_outline.vert in Resources */,
-				217A878E1BF365A400A6AFE7 /* material.heigthmap.forward.rendering.emissive.xml in Resources */,
+				217A878E1BF365A400A6AFE7 /* material.terrain.forward.rendering.emissive.xml in Resources */,
 				21A743841BCC46E700674F36 /* box_06.png in Resources */,
 				212B185C1B7E3E1100FFDCE7 /* transition.demo.xml in Resources */,
 				21FA12411B8F2B7600ACB9A5 /* gameobject.orc_02.xml in Resources */,
@@ -1771,20 +1834,20 @@
 				211F55A31BE101A600590B0D /* gameobject.box.xml in Resources */,
 				21275FCB1B98619F00BEE033 /* gameobject.plane.xml in Resources */,
 				21BD42351BC68AB000D72B28 /* box_01.png in Resources */,
-				21C259261BFCA345004F34C8 /* material.heightmap.refraction.normal.xml in Resources */,
+				21C259261BFCA345004F34C8 /* material.terrain.refraction.normal.xml in Resources */,
 				21A7438E1BCC4C0C00674F36 /* shader_particle_emitter_emissive.frag in Resources */,
 				21DE0E671BAFE994009EA47B /* shader_screen_deferred_lighting.vert in Resources */,
 				21275FD21B9861FA00BEE033 /* shader_model3d_static.frag in Resources */,
 				21D78C221B90AD6800665BB6 /* orc_01_run.IE3DANIMATION in Resources */,
 				210F2AB31BC3B2EB00B0809F /* gameobject.instanced.boxes.xml in Resources */,
 				21D78C1C1B90AD6800665BB6 /* human_02_idle.IE3DANIMATION in Resources */,
-				2106EA981BFA1B3500BF87D2 /* material.heightmap.reflection.xml in Resources */,
+				2106EA981BFA1B3500BF87D2 /* material.terrain.reflection.xml in Resources */,
 				21FA123B1B8F2B7600ACB9A5 /* gameobject.human_01.xml in Resources */,
 				21FA126B1B8F2C3A00ACB9A5 /* orc_01.png in Resources */,
 				217A87961BF3674B00A6AFE7 /* landscapeN_02.png in Resources */,
 				216DF3391BCD0B3C008E4B2B /* shader_skybox_emissive.frag in Resources */,
 				210F2AB91BC3B34000B0809F /* shader_instanced_models3d_static.vert in Resources */,
-				218E40941BF229810002C01B /* shader_heightmap.vert in Resources */,
+				218E40941BF229810002C01B /* shader_terrain.vert in Resources */,
 				21FA123F1B8F2B7600ACB9A5 /* gameobject.orc_01.xml in Resources */,
 				21FA124B1B8F2BAE00ACB9A5 /* material.orc_01.base.xml in Resources */,
 				215FAE291BCE982C00FE7D80 /* box_09.png in Resources */,
@@ -1811,7 +1874,7 @@
 				216DF2B51BCBCEDF008E4B2B /* shader_model3d_animated_outline.frag in Resources */,
 				216DF3171BCD0631008E4B2B /* ocean_ripples.png in Resources */,
 				216DF3371BCD0B3C008E4B2B /* shader_ocean.frag in Resources */,
-				218E40931BF229770002C01B /* material.heightmap.base.xml in Resources */,
+				218E40931BF229770002C01B /* material.terrain.base.xml in Resources */,
 				211C34771BCD5C7A000B22C8 /* material.skybox.reflection.xml in Resources */,
 				21275FCE1B9861BB00BEE033 /* material.plane.base.xml in Resources */,
 				21DE0E611BAFE933009EA47B /* ss.technique.deferred.lighting.xml in Resources */,
@@ -1852,10 +1915,10 @@
 				216DF2E61BCCD182008E4B2B /* skybox_posy.png in Resources */,
 				217A87951BF3674B00A6AFE7 /* landscapeN_01.png in Resources */,
 				21DE0E931BAFF8B7009EA47B /* shader_model3d_animated_n.vert in Resources */,
-				218E40921BF229740002C01B /* material.heightmap.splatting.xml in Resources */,
+				218E40921BF229740002C01B /* material.terrain.splatting.xml in Resources */,
 				21DE0E911BAFF8B7009EA47B /* shader_model3d_animated_n.frag in Resources */,
 				21DE0E521BAFE70C009EA47B /* material.human_01.forward.rendering.normal.xml in Resources */,
-				217A87871BF34A7F00A6AFE7 /* shader_heightmap_n.frag in Resources */,
+				217A87871BF34A7F00A6AFE7 /* shader_terrain_n.frag in Resources */,
 				21FA12471B8F2BAE00ACB9A5 /* material.human_01.base.xml in Resources */,
 				21FA12671B8F2C3A00ACB9A5 /* human_01.png in Resources */,
 				211C37C91BCE56C2000B22C8 /* box_07_n.png in Resources */,
@@ -1864,9 +1927,9 @@
 				211F55B11BE102D500590B0D /* shader_model3d_static_emissive.frag in Resources */,
 				21286AA21B8B8C35003AD8AC /* shader_screen_quad.frag in Resources */,
 				21BD424C1BC79B3D00D72B28 /* box_02_n.png in Resources */,
-				210F09AC1BFB0EB50067B272 /* material.heightmap.refraction.xml in Resources */,
+				210F09AC1BFB0EB50067B272 /* material.terrain.refraction.xml in Resources */,
 				210F2AB01BC3B2D200B0809F /* material.instanced.boxes.base.xml in Resources */,
-				217A877F1BF3488100A6AFE7 /* material.heightmap.forward.rendering.normal.xml in Resources */,
+				217A877F1BF3488100A6AFE7 /* material.terrain.forward.rendering.normal.xml in Resources */,
 				21275FF11B986CF900BEE033 /* shader_model3d_static_shadowmap.frag in Resources */,
 				219231921BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml in Resources */,
 				217A87781BF32A4B00A6AFE7 /* landscapeD_02.png in Resources */,
@@ -1879,7 +1942,7 @@
 				21EE3DB11B970C06000AE51C /* particle_02.png in Resources */,
 				2102EB661B7E4E9E00F20197 /* material.output.technique.demo.xml in Resources */,
 				216DF2E51BCCD182008E4B2B /* skybox_negy.png in Resources */,
-				217A87861BF34A7F00A6AFE7 /* shader_heightmap_n.vert in Resources */,
+				217A87861BF34A7F00A6AFE7 /* shader_terrain_n.vert in Resources */,
 				21A624261B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */,
 				21A624291B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */,
 				21275FD91B9863D600BEE033 /* checker.png in Resources */,
@@ -1888,9 +1951,9 @@
 				21EE3D5E1B96ECC1000AE51C /* particle_01.png in Resources */,
 				216179D01BE363F40002E179 /* box_14_n.png in Resources */,
 				21BD425A1BC7B5E200D72B28 /* box_03.png in Resources */,
-				218E40951BF229830002C01B /* shader_heightmap.frag in Resources */,
+				218E40951BF229830002C01B /* shader_terrain.frag in Resources */,
 				216DF30F1BCD01C9008E4B2B /* material.ocean.base.xml in Resources */,
-				218E40911BF2296D0002C01B /* gameobject.heightmap.xml in Resources */,
+				218E40911BF2296D0002C01B /* gameobject.terrain.xml in Resources */,
 				210F2AB71BC3B34000B0809F /* shader_instanced_models3d_static.frag in Resources */,
 				21EE3D5B1B96E705000AE51C /* shader_particle_emitter.vert in Resources */,
 				21DE0E991BB022E8009EA47B /* shader_model3d_static_n.frag in Resources */,
@@ -1927,7 +1990,7 @@
 				217A877C1BF346A600A6AFE7 /* map_06.png in Resources */,
 				211C34611BCD5128000B22C8 /* grimmnight_skybox_posy.png in Resources */,
 				211C345E1BCD5128000B22C8 /* grimmnight_skybox_negy.png in Resources */,
-				217A878C1BF3657C00A6AFE7 /* shader_heightmap_emissive.frag in Resources */,
+				217A878C1BF3657C00A6AFE7 /* shader_terrain_emissive.frag in Resources */,
 				21A7436B1BCC258D00674F36 /* material.human_02.forward.rendering.emissive.outline.xml in Resources */,
 				21A743781BCC3D7800674F36 /* material.orc_02.forward.rendering.emissive.outline.xml in Resources */,
 				211C37C81BCE56C2000B22C8 /* box_07.png in Resources */,
@@ -2014,6 +2077,16 @@
 			isa = PBXTargetDependency;
 			name = "gbCore-ios";
 			targetProxy = 212B18CF1B8234DA00FFDCE7 /* PBXContainerItemProxy */;
+		};
+		218B725F1BFF5C6000C20CD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gbEditor-osx";
+			targetProxy = 218B725E1BFF5C6000C20CD6 /* PBXContainerItemProxy */;
+		};
+		218B72651BFF5C7200C20CD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "gbEditor-ios";
+			targetProxy = 218B72641BFF5C7200C20CD6 /* PBXContainerItemProxy */;
 		};
 		21E33DE11BB959B100B540E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2140,6 +2213,7 @@
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 					"\"$(SRCROOT)/../gbUI/sources\"",
+					"\"$(SRCROOT)/../gbEditor/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-osx.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -2165,6 +2239,7 @@
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 					"\"$(SRCROOT)/../gbUI/sources\"",
+					"\"$(SRCROOT)/../gbEditor/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-osx.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -2197,6 +2272,7 @@
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 					"\"$(SRCROOT)/../gbUI/sources\"",
+					"\"$(SRCROOT)/../gbEditor/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -2230,6 +2306,7 @@
 					"\"$(SRCROOT)/../gbCore/sources\"",
 					"\"$(SRCROOT)/../gbCore/autogenerated\"",
 					"\"$(SRCROOT)/../gbUI/sources\"",
+					"\"$(SRCROOT)/../gbEditor/sources\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/support/info-ios.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

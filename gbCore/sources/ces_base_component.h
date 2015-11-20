@@ -68,8 +68,8 @@ namespace gb
 #define unsafe_get_batch_component(entity) static_cast<ces_batch_component*>(entity->get_component(e_ces_component_type_batch).get())
 #define unsafe_get_batch_component_from_this static_cast<ces_batch_component*>(ces_entity::get_component(e_ces_component_type_batch).get())
     
-#define unsafe_get_heightmap_component(entity) static_cast<ces_heightmap_component*>(entity->get_component(e_ces_component_type_heightmap).get())
-#define unsafe_get_heightmap_component_from_this static_cast<ces_heightmap_component*>(ces_entity::get_component(e_ces_component_type_heightmap).get())
+#define unsafe_get_terrain_component(entity) static_cast<ces_terrain_component*>(entity->get_component(e_ces_component_type_terrain).get())
+#define unsafe_get_terrain_component_from_this static_cast<ces_terrain_component*>(ces_entity::get_component(e_ces_component_type_terrain).get())
     
 };
 

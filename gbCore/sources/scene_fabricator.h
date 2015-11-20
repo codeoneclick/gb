@@ -31,7 +31,7 @@ namespace gb
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
         std::set<direction_light_shared_ptr> m_direction_lights_container;
-        std::set<heightmap_shared_ptr> m_heightmaps_container;
+        std::set<terrain_shared_ptr> m_terrains_container;
         
         void add_materials(const renderable_interface_shared_ptr& renderable_object, const std::vector<std::shared_ptr<configuration>>& configurations);
         
@@ -61,8 +61,8 @@ namespace gb
         ocean_shared_ptr create_ocean(const std::string& filename);
         void destroy_ocean(const ocean_shared_ptr& ocean);
         
-        heightmap_shared_ptr create_heightmap(const std::string& filename);
-        void destroy_heightmap(const heightmap_shared_ptr& heightmap);
+        terrain_shared_ptr create_terrain(const std::string& filename);
+        void destroy_terrain(const terrain_shared_ptr& terrain);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
         

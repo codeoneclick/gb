@@ -41,10 +41,10 @@ namespace gb
         {
             ocean_component->update(deltatime);
             
-            texture_shared_ptr heightmap_deep_texture = m_resource_accessor->get_texture("heightmap.deep.texture", true, false);
-            if(heightmap_deep_texture)
+            texture_shared_ptr terrain_deep_texture = m_resource_accessor->get_texture("terrain.deep.texture", true, false);
+            if(terrain_deep_texture)
             {
-                render_component->set_texture(heightmap_deep_texture, e_shader_sampler_04);
+                render_component->set_texture(terrain_deep_texture, e_shader_sampler_04);
             }
             render_component->set_custom_shader_uniform(ocean_component->get_wave_generator_time(), "u_f32_timer");
         }

@@ -19,7 +19,7 @@
 #include "ces_particle_emitter_system.h"
 #include "ces_skybox_system.h"
 #include "ces_ocean_system.h"
-#include "ces_heightmap_system.h"
+#include "ces_terrain_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
 #include "graphics_context.h"
@@ -161,9 +161,9 @@ namespace gb
         std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>(resource_accessor);
         m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
         
-        std::shared_ptr<ces_heightmap_system> heightmap_system = std::make_shared<ces_heightmap_system>(graphics_context,
+        std::shared_ptr<ces_terrain_system> terrain_system = std::make_shared<ces_terrain_system>(graphics_context,
                                                                                                         resource_accessor);
-        m_system_feeder->add_system(heightmap_system, e_ces_system_type_heightmap);
+        m_system_feeder->add_system(terrain_system, e_ces_system_type_terrain);
         
         ces_batch_system_shared_ptr batch_system = std::make_shared<ces_batch_system>();
         m_system_feeder->add_system(batch_system, e_ces_system_type_batch);
