@@ -11,12 +11,12 @@
 
 namespace gb
 {
-    frustum::frustum(void)
+    frustum::frustum()
     {
         
     }
     
-    frustum::~frustum(void)
+    frustum::~frustum()
     {
         
     }
@@ -33,11 +33,11 @@ namespace gb
     
     inline f32 frustum::get_distance_to_plane(const glm::vec4& plane, const glm::vec3& point)
     {
-        static glm::vec3 abc = glm::vec3(0.0);
+        static glm::vec3 abc = glm::vec3(0.f);
         abc = frustum::get_plane_abc(plane);
-        static f32 d = 0.0;
+        static f32 d = 0.f;
         d = frustum::get_plane_d(plane);
-        return (d + glm::dot(abc, point)) * -1.0;
+        return (d + glm::dot(abc, point)) * -1.f;
     }
     
     inline glm::vec3 frustum::get_plane_abc(const glm::vec4& plane)
@@ -52,7 +52,7 @@ namespace gb
     
     void frustum::update(f32 fov, f32 aspect, f32 near, f32 far, const glm::vec3 &position, const glm::vec3& up, const glm::vec3 &look_at)
     {
-        f32 tan = tanf(glm::radians(fov));
+        f32 tan = tanf(glm::radians(fov * .5f));
         f32 near_height = near * tan;
         f32 near_width = near_height * aspect;
         f32 far_height = far  * tan;
@@ -88,7 +88,7 @@ namespace gb
     {
         for(ui32 i = 0; i < e_frustum_plane_max; ++i)
         {
-            if(frustum::get_distance_to_plane(m_planes[i], point) < 0.0f)
+            if(frustum::get_distance_to_plane(m_planes[i], point) < 0.f)
             {
                 return e_frustum_bound_result_outside;
             }
@@ -144,7 +144,7 @@ namespace gb
             points_out = 0;
             for (ui32 j = 0; j < kMaxPointsInBoundingBox && (points_in == 0 || points_out == 0); ++j)
             {
-                frustum::get_distance_to_plane(m_planes[i], points[j]) < 0.0 ? ++points_out : ++points_in;
+                frustum::get_distance_to_plane(m_planes[i], points[j]) < 0.f ? ++points_out : ++points_in;
             }
             if (!points_in)
             {

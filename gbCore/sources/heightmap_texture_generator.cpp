@@ -472,7 +472,7 @@ namespace gb
 #if defined(__OPENGL_30__)
                                GL_RED,
 #else
-                               GL_ALPHA,
+                               GL_RED_EXT,
 #endif
                                deep_texture_size,
                                deep_texture_size,
@@ -480,7 +480,7 @@ namespace gb
 #if defined(__OPENGL_30__)
                                GL_RED,
 #else
-                               GL_ALPHA,
+                               GL_RED_EXT,
 #endif
                                GL_UNSIGNED_BYTE, data);
         }

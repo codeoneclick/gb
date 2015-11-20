@@ -396,10 +396,10 @@ namespace gb
                 vertices[index * 4 + 2].m_position = glm::vec3(size * i + size, altitude, size * j + size);
                 vertices[index * 4 + 3].m_position = glm::vec3(size * i, altitude, size * j + size);
                 
-                vertices[index * 4 + 0].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
-                vertices[index * 4 + 1].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
-                vertices[index * 4 + 2].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
-                vertices[index * 4 + 3].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, i == 0 && j == 0 ? 1 : 2, 0, 0);
+                vertices[index * 4 + 0].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, 0, 0, 0);
+                vertices[index * 4 + 1].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, 0, 0, 0);
+                vertices[index * 4 + 2].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, 0, 0, 0);
+                vertices[index * 4 + 3].m_extra = glm::u8vec4(i == 0 && j == 0 ? 1 : 0, 0, 0, 0);
                 
                 vertices[index * 4 + 0].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));
                 vertices[index * 4 + 1].m_normal = glm::packSnorm4x8(glm::vec4(0.f, 1.f, 0.f, 0.f));

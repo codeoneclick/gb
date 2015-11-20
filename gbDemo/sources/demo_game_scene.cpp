@@ -157,16 +157,16 @@ gb::game_scene(transition)
     
     m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
                                                                           m_camera);
-    m_character_controller->set_position(glm::vec3(2.f));
+    m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
     
     m_ai_character_controllers["human_02"] = std::make_shared<koth::ai_character_controller>(m_models["human_02"], m_level);
-    m_ai_character_controllers["human_02"]->set_position(glm::vec3(2.f, .5f, 18.f));
+    m_ai_character_controllers["human_02"]->set_position(glm::vec3(66.f, 0.f, 126.f));
     
     m_ai_character_controllers["orc_01"] = std::make_shared<koth::ai_character_controller>(m_models["orc_01"], m_level);
-    m_ai_character_controllers["orc_01"]->set_position(glm::vec3(18.f, .5f, 18.f));
+    m_ai_character_controllers["orc_01"]->set_position(glm::vec3(126.f, 0.f, 126.f));
     
     m_ai_character_controllers["orc_02"] = std::make_shared<koth::ai_character_controller>(m_models["orc_02"], m_level);
-    m_ai_character_controllers["orc_02"]->set_position(glm::vec3(18.f, .5f, 2.f));
+    m_ai_character_controllers["orc_02"]->set_position(glm::vec3(126.f, 0.f, 66.f));
     
     gb::game_command_i_shared_ptr command = std::make_shared<gb::game_command<koth::on_move_state_changed::t_command>>(std::bind(&demo_game_scene::on_move_state_changed,
                                                                                                                                  this,

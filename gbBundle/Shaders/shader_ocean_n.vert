@@ -5,11 +5,7 @@ out vec2 v_texcoord;
 out vec4 v_texcoord_proj;
 out vec2 v_texcoord_displace_01;
 out vec2 v_texcoord_displace_02;
-
-out vec3 v_eye_position_ws;
-out vec3 v_vertex_position_ws;
-
-out float v_fog_distance;
+out float v_extra_parameter;
 
 #else
 
@@ -17,11 +13,7 @@ varying vec2 v_texcoord;
 varying vec4 v_texcoord_proj;
 varying vec2 v_texcoord_displace_01;
 varying vec2 v_texcoord_displace_02;
-
-varying vec3 v_eye_position_ws;
-varying vec3 v_vertex_position_ws;
-
-varying float v_fog_distance;
+varying float v_extra_parameter;
 
 #endif
 
@@ -29,19 +21,16 @@ uniform mat4 u_mat_m;
 uniform mat4 u_mat_v;
 uniform mat4 u_mat_p;
 
-uniform vec3 u_vec_camera_position;
 uniform float u_f32_timer;
 
 const float k_texcoord_scale = 24.0;
-
-const  vec3 k_binormal = vec3(1.0, 0.0, 0.0);
-const  vec3 k_tangent = vec3(0.0, 0.0, 1.0);
-const  vec3 k_normal = vec3(0.0, 1.0, 0.0);
 
 void main(void)
 {
     vec4 position = u_mat_m * vec4(a_position, 1.0);
     gl_Position = u_mat_p * u_mat_v * position;
+    
+    v_extra_parameter = a_extra.x / 255.0;
     
     v_texcoord = a_texcoord;
     vec2 texcoord = a_texcoord;

@@ -391,9 +391,18 @@ namespace gb
     inline void gl_set_vertex_attribute_divisor(GLuint index, GLuint divisor)
     {
 #if defined(__OSX__)
+        
         glVertexAttribDivisor(index, divisor);
+        
 #elif defined(__IOS__)
+#if defined(__OPENGL_20__)
+        
         glVertexAttribDivisorEXT(index, divisor);
+#else
+        
+        glVertexAttribDivisor(index, divisor);
+        
+#endif
 #endif
         
 #if defined(DEBUG)
@@ -458,9 +467,19 @@ namespace gb
     inline void gl_draw_elements_instanced(GLenum mode, GLsizei count, GLenum type, const GLvoid *indices, GLsizei instancecount)
     {
 #if defined(__OSX__)
+        
         glDrawElementsInstanced(mode, count, type, indices, instancecount);
+        
 #elif defined(__IOS__)
+#if defined(__OPENGL_20__)
+        
         glDrawElementsInstancedEXT(mode, count, type, indices, instancecount);
+        
+#else
+        
+        glDrawElementsInstanced(mode, count, type, indices, instancecount);
+        
+#endif
 #endif
         
 #if defined(DEBUG)

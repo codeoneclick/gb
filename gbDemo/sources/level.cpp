@@ -32,7 +32,7 @@ namespace koth
     
     void level::construct(const std::string& filename)
     {
-        m_graph->set_box2d_world(glm::vec2(0.f), glm::vec2(64.f));
+        m_graph->set_box2d_world(glm::vec2(64.f), glm::vec2(128.f));
         
         m_boxes.resize(m_size.x * m_size.y, nullptr);
         m_boxes_states.resize(m_size.x * m_size.y, e_level_box_state_none);
