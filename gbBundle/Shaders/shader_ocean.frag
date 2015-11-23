@@ -75,9 +75,9 @@ void main()
     color += k_water_color_blue * (k_1 - deep);
     color.a = k_1;
     
-    //float fog_distance = length(-v_vertex_position_ws) / 128.0;
-    //fog_distance = clamp(fog_distance, 0.0, 1.0);
-    //color = mix(color, fog_color, fog_distance);
+    float fog_distance = length(vec3(192.0 * 0.5, 0.0, 192.0 * 0.5) - v_vertex_position_ws) / (192.0 * 2.0);
+    fog_distance = clamp(fog_distance, 0.0, 1.0);
+    color = mix(color, fog_color, fog_distance);
     
     gl_FragColor = color;
 }

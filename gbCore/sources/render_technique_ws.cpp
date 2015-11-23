@@ -262,6 +262,14 @@ namespace gb
                                                                              render_component->get_scene_graph()->get_camera()->get_position().z));
                             material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
                         }
+                        else if(skybox_component)
+                        {
+                            transformation_component->set_position(glm::vec3(render_component->get_scene_graph()->get_camera()->get_position().x,
+                                                                             render_component->get_scene_graph()->get_camera()->get_position().y,
+                                                                             render_component->get_scene_graph()->get_camera()->get_position().z));
+                            material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
+
+                        }
                         
                         render_component->on_draw(m_name, technique_pass, mesh, material);
                     }

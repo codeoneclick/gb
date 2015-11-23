@@ -107,7 +107,7 @@ namespace koth
             
             camera_position.x = look_at.x + cosf(-m_camera->get_rotation()) * -16.f;
             camera_position.z = look_at.z + sinf(-m_camera->get_rotation()) * -16.f;
-            camera_position.y = 12.f;
+            camera_position.y = 8.f;
             
             m_camera->set_position(camera_position);
             

@@ -6,7 +6,6 @@ in vec2 v_texcoord;
 in vec3 v_normal;
 in vec3 v_tangent;
 
-
 #else
 
 varying vec3 v_position;
@@ -20,8 +19,8 @@ uniform vec3 u_vec_camera_position;
 
 uniform sampler2D sampler_02;
 
-float scale = 0.01;
-float bias = 0.005;
+float scale = 0.005;
+float bias = 0.0025;
 
 void main(void)
 {

@@ -22,8 +22,8 @@ uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
 uniform sampler2DShadow sampler_03;
 
-float scale = 0.01;
-float bias = 0.005;
+float scale = 0.005;
+float bias = 0.0025;
 
 void main(void)
 {

@@ -58,5 +58,5 @@ void main(void)
     v_eye_position_ws = u_vec_camera_position;
     v_vertex_position_ws = position.xyz;
     
-    //v_fog_distance = length(vec3(256.0, 0.0, 256.0) - v_vertex_position_ws.xyz);
+    v_fog_distance = length(vec3(256.0, 0.0, 256.0) - v_vertex_position_ws.xyz);
 }
