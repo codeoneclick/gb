@@ -17,11 +17,20 @@ namespace koth
     class level_node;
     typedef std::shared_ptr<level_node> level_node_shared_ptr;
     
+    class common_navigator;
+    typedef std::shared_ptr<common_navigator> common_navigator_shared_ptr;
+    
     class game_object_navigator;
     typedef std::shared_ptr<game_object_navigator> game_object_navigator_shared_ptr;
     
+    class camera_navigator;
+    typedef std::shared_ptr<camera_navigator> camera_navigator_shared_ptr;
+    
     class character_controller;
     typedef std::shared_ptr<character_controller> character_controller_shared_ptr;
+    
+    class camera_controller;
+    typedef std::shared_ptr<camera_controller> camera_controller_shared_ptr;
     
     class ai_character_controller;
     typedef std::shared_ptr<ai_character_controller> ai_character_controller_shared_ptr;

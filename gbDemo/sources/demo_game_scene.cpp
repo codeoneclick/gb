@@ -30,6 +30,7 @@
 #include "game_command.h"
 #include "game_commands_container.h"
 #include "ces_render_component.h"
+#include "camera_controller.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
@@ -155,9 +156,11 @@ gb::game_scene(transition)
     m_models["orc_01"]->set_enable_box2d_physics(true, false);
     m_models["orc_02"]->set_enable_box2d_physics(true, false);
     
-    m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
-                                                                          m_camera);
-    m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
+    //m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
+    //                                                                      m_camera);
+    //m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
+    
+    m_camera_controller = std::make_shared<koth::camera_controller>(m_camera);
     
     m_ai_character_controllers["human_02"] = std::make_shared<koth::ai_character_controller>(m_models["human_02"], m_level);
     m_ai_character_controllers["human_02"]->set_position(glm::vec3(66.f, 0.f, 126.f));
@@ -219,7 +222,8 @@ void demo_game_scene::update(f32 deltatime)
     m_level->set_box_under_strain(m_models["orc_02"]->get_position().x,
                                   m_models["orc_02"]->get_position().z);
     m_level->update(deltatime);
-    m_character_controller->update(deltatime);
+    //m_character_controller->update(deltatime);
+    m_camera_controller->update(deltatime);
     
     m_ai_character_controllers["human_02"]->update(deltatime);
     m_ai_character_controllers["orc_01"]->update(deltatime);
@@ -297,7 +301,14 @@ void demo_game_scene::update(f32 deltatime)
     render_component->set_custom_shader_uniform(.033f, "u_outline_width");
     render_component->set_custom_shader_uniform(glm::vec3(1.f, 1.f, 0.f), "u_outline_color");
     
-    
+    static f32 angle = 0.f;
+    angle += .1f;
+    glm::vec3 direction_light_position;
+    direction_light_position.x = 192.f * .5f + cosf(angle) * -192.f * .5f;
+    direction_light_position.z = 192.f * .5f + sinf(angle) * -192.f * .5f;
+    direction_light_position.y = 192.f * .5f;
+    glm::vec3 direction_light_direction = glm::normalize(direction_light_position - glm::vec3(192.f * .5f, 0.f, 192.f * .5f));
+    m_direction_light->set_direction(direction_light_direction);
     
     /*light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_right() * 1.5f;
     light_position.y = 1.5f;
@@ -329,10 +340,12 @@ void demo_game_scene::on_key_up(i32 key)
 
 void demo_game_scene::on_move_state_changed(i32 state)
 {
-    m_character_controller->set_move_state(state);
+    m_camera_controller->set_move_state(state);
+    //m_character_controller->set_move_state(state);
 }
 
 void demo_game_scene::on_rotate_state_changed(i32 state)
 {
-    m_character_controller->set_rotate_state(state);
+    m_camera_controller->set_rotate_state(state);
+    //m_character_controller->set_rotate_state(state);
 }

@@ -274,7 +274,7 @@
 		217A87961BF3674B00A6AFE7 /* landscapeN_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87901BF3674800A6AFE7 /* landscapeN_02.png */; };
 		217A87971BF3674B00A6AFE7 /* landscapeN_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 217A87911BF3674800A6AFE7 /* landscapeN_03.png */; };
 		218B72631BFF5C6800C20CD6 /* libgbEditor-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B72621BFF5C6100C20CD6 /* libgbEditor-osx.a */; };
-		218B72661BFF5C7F00C20CD6 /* libgbEditor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B72451BFF594A00C20CD6 /* libgbEditor.a */; };
+		218B72661BFF5C7F00C20CD6 /* libgbEditor-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 218B72451BFF594A00C20CD6 /* libgbEditor-ios.a */; };
 		218E40831BF1E8A60002C01B /* gameobject.terrain.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40821BF1E8A60002C01B /* gameobject.terrain.xml */; };
 		218E40861BF1E9270002C01B /* material.terrain.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40841BF1E9270002C01B /* material.terrain.base.xml */; };
 		218E40871BF1E9270002C01B /* material.terrain.splatting.xml in Resources */ = {isa = PBXBuildFile; fileRef = 218E40851BF1E9270002C01B /* material.terrain.splatting.xml */; };
@@ -370,6 +370,12 @@
 		21C2592E1BFCA857004F34C8 /* shader_ocean_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */; };
 		21C2592F1BFCA85A004F34C8 /* shader_ocean_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */; };
 		21C259301BFCA960004F34C8 /* material.ocean.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259281BFCA691004F34C8 /* material.ocean.normal.xml */; };
+		21D149111C0465240091CE50 /* camera_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1490F1C0465240091CE50 /* camera_navigator.cpp */; };
+		21D149121C0465240091CE50 /* camera_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1490F1C0465240091CE50 /* camera_navigator.cpp */; };
+		21D149151C0465740091CE50 /* common_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149131C0465740091CE50 /* common_navigator.cpp */; };
+		21D149161C0465740091CE50 /* common_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149131C0465740091CE50 /* common_navigator.cpp */; };
+		21D1494B1C04B2ED0091CE50 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149491C04B2ED0091CE50 /* camera_controller.cpp */; };
+		21D1494C1C04B2EE0091CE50 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149491C04B2ED0091CE50 /* camera_controller.cpp */; };
 		21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */; };
 		21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */; };
 		21D78C171B90AD6800665BB6 /* human_01_idle.IE3DANIMATION in Resources */ = {isa = PBXBuildFile; fileRef = 21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */; };
@@ -770,6 +776,12 @@
 		21C259281BFCA691004F34C8 /* material.ocean.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.ocean.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.ocean.normal.xml; sourceTree = "<group>"; };
 		21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.frag; path = ../gbBundle/Shaders/shader_ocean_n.frag; sourceTree = "<group>"; };
 		21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.vert; path = ../gbBundle/Shaders/shader_ocean_n.vert; sourceTree = "<group>"; };
+		21D1490F1C0465240091CE50 /* camera_navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera_navigator.cpp; path = sources/camera_navigator.cpp; sourceTree = "<group>"; };
+		21D149101C0465240091CE50 /* camera_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera_navigator.h; path = sources/camera_navigator.h; sourceTree = "<group>"; };
+		21D149131C0465740091CE50 /* common_navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = common_navigator.cpp; path = sources/common_navigator.cpp; sourceTree = "<group>"; };
+		21D149141C0465740091CE50 /* common_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common_navigator.h; path = sources/common_navigator.h; sourceTree = "<group>"; };
+		21D149491C04B2ED0091CE50 /* camera_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera_controller.cpp; path = sources/camera_controller.cpp; sourceTree = "<group>"; };
+		21D1494A1C04B2ED0091CE50 /* camera_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera_controller.h; path = sources/camera_controller.h; sourceTree = "<group>"; };
 		21D78BED1B8F4F6200665BB6 /* demo_game_scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = demo_game_scene.cpp; path = sources/demo_game_scene.cpp; sourceTree = "<group>"; };
 		21D78BEE1B8F4F6200665BB6 /* demo_game_scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = demo_game_scene.h; path = sources/demo_game_scene.h; sourceTree = "<group>"; };
 		21D78C0F1B90AD6800665BB6 /* human_01_idle.IE3DANIMATION */ = {isa = PBXFileReference; lastKnownFileType = file; name = human_01_idle.IE3DANIMATION; path = ../gbBundle/Meshes/human_01_idle.IE3DANIMATION; sourceTree = "<group>"; };
@@ -847,7 +859,7 @@
 				212B18D71B82361F00FFDCE7 /* OpenGLES.framework in Frameworks */,
 				212B18D11B8234E100FFDCE7 /* libgbCore-ios.a in Frameworks */,
 				21E33E041BB9760C00B540E7 /* libgbUI-ios.a in Frameworks */,
-				218B72661BFF5C7F00C20CD6 /* libgbEditor.a in Frameworks */,
+				218B72661BFF5C7F00C20CD6 /* libgbEditor-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,6 +954,12 @@
 				21176FC11BC516A200890D7C /* game_object_navigator.cpp */,
 				21176FC61BC516BB00890D7C /* character_controller.h */,
 				21176FC51BC516BB00890D7C /* character_controller.cpp */,
+				21D149141C0465740091CE50 /* common_navigator.h */,
+				21D149131C0465740091CE50 /* common_navigator.cpp */,
+				21D149101C0465240091CE50 /* camera_navigator.h */,
+				21D1490F1C0465240091CE50 /* camera_navigator.cpp */,
+				21D1494A1C04B2ED0091CE50 /* camera_controller.h */,
+				21D149491C04B2ED0091CE50 /* camera_controller.cpp */,
 			);
 			name = gameplay;
 			sourceTree = "<group>";
@@ -1145,7 +1163,7 @@
 		218B72411BFF594900C20CD6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				218B72451BFF594A00C20CD6 /* libgbEditor.a */,
+				218B72451BFF594A00C20CD6 /* libgbEditor-ios.a */,
 				218B72621BFF5C6100C20CD6 /* libgbEditor-osx.a */,
 			);
 			name = Products;
@@ -1539,10 +1557,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		218B72451BFF594A00C20CD6 /* libgbEditor.a */ = {
+		218B72451BFF594A00C20CD6 /* libgbEditor-ios.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = libgbEditor.a;
+			path = "libgbEditor-ios.a";
 			remoteRef = 218B72441BFF594A00C20CD6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -2033,12 +2051,15 @@
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
+				21D149111C0465240091CE50 /* camera_navigator.cpp in Sources */,
 				210A09D91BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
 				210A09DD1BD8C702002E86C3 /* ai_move_action.cpp in Sources */,
 				21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */,
 				2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 				2150586E1BD0E7C70060C308 /* path_node.cpp in Sources */,
+				21D149151C0465740091CE50 /* common_navigator.cpp in Sources */,
+				21D1494B1C04B2ED0091CE50 /* camera_controller.cpp in Sources */,
 				210A09D51BD8C6BE002E86C3 /* ai_action.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2055,12 +2076,15 @@
 				21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */,
 				21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
+				21D149121C0465240091CE50 /* camera_navigator.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,
 				212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */,
 				212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */,
 				2168C4F61BD8D6AD000F76F1 /* path_node.cpp in Sources */,
 				210A09DA1BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
+				21D149161C0465740091CE50 /* common_navigator.cpp in Sources */,
+				21D1494C1C04B2EE0091CE50 /* camera_controller.cpp in Sources */,
 				21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

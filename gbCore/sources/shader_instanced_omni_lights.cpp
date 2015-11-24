@@ -122,7 +122,7 @@ const char* shader_instanced_omni_light_frag = string_shader
     vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
     camera_direction = normalize(camera_direction);
     
-    vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.33, 1.0));
+    vec3 diffuse = vec3(clamp(dot(normal, light_direction), 0.0, 1.0));
     
 
 #if defined(__SPECULAR__)

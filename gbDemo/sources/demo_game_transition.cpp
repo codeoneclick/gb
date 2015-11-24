@@ -64,6 +64,11 @@ void demo_game_transition::on_key_up(i32 key)
     demo_game_transition::update_key_state();
 }
 
+void demo_game_transition::on_gr_dragged(const glm::ivec2& point, gb::e_input_element input_element)
+{
+    
+}
+
 void demo_game_transition::update_key_state()
 {
     gb::game_commands_container_shared_ptr game_commands = m_scene->get_internal_commands();

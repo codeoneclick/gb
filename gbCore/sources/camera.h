@@ -60,6 +60,7 @@ namespace gb
         inline void set_look_at(const glm::vec3& look_at);
         inline glm::vec3 get_look_at() const;
         
+        inline void set_up(const glm::vec3& up);
         inline glm::vec3 get_up() const;
         
         inline void set_rotation(f32 rotation);

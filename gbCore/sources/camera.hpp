@@ -56,6 +56,11 @@ namespace gb
         return m_look_at;
     }
     
+    inline void camera::set_up(const glm::vec3& up)
+    {
+        m_up = up;
+    }
+    
     inline glm::vec3 camera::get_up() const
     {
         return m_up;

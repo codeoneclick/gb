@@ -22,6 +22,8 @@ protected:
     void create_scene();
     void destroy_scene();
     
+    void on_gr_dragged(const glm::ivec2& point, gb::e_input_element input_element);
+    
     void on_key_up(i32 key);
     void on_key_down(i32 key);
     
