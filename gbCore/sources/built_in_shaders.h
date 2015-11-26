@@ -12,8 +12,11 @@
 extern const char* shader_texure2d_vert;
 extern const char* shader_texure2d_frag;
 
-extern const char* shader_bounding_box_vert;
-extern const char* shader_bounding_box_frag;
+extern const char* shader_debug_bounding_box_vert;
+extern const char* shader_debug_bounding_box_frag;
+
+extern const char* shader_debug_tbn_vert;
+extern const char* shader_debug_tbn_frag;
 
 extern const char* shader_omni_light_vert;
 extern const char* shader_omni_light_frag;

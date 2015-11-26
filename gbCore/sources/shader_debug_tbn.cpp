@@ -1,14 +1,14 @@
 //
-//  shader_bounding_box.cpp
+//  shader_debug_tbn.cpp
 //  gbCore
 //
-//  Created by sergey.sergeev on 8/31/15.
-//  Copyright (c) 2015 sergey.sergeev. All rights reserved.
+//  Created by sergey.sergeev on 11/26/15.
+//  Copyright © 2015 sergey.sergeev. All rights reserved.
 //
 
 #include "main_headers.h"
 
-const char* shader_bounding_box_vert = string_shader
+const char* shader_debug_tbn_vert = string_shader
 (
  uniform mat4 u_mat_m;
  uniform mat4 u_mat_v;
@@ -21,9 +21,9 @@ const char* shader_bounding_box_vert = string_shader
 }
  );
 
-const char* shader_bounding_box_frag = string_shader
+const char* shader_debug_tbn_frag = string_shader
 (
-
+ 
  void main()
 {
     gl_FragColor = vec4(1.0);

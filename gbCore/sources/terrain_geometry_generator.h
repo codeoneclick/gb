@@ -19,14 +19,17 @@ namespace gb
     {
     private:
         
-        static void create_vertices_data(const std::shared_ptr<terrain_container>& container, const glm::ivec2& size, const std::vector<f32>& heights,
+        static void create_vertices_data(const terrain_container_shared_ptr& container, const glm::ivec2& size, const std::vector<f32>& heights,
                                          const std::string& filename);
         
-        static void create_vbos_data(const std::shared_ptr<terrain_container>& container, const std::string& filename);
-        static void create_ibos_data(const std::shared_ptr<terrain_container>& container, const std::string& filename);
-        static void create_tangent_space(const std::shared_ptr<terrain_container>& container, const std::string& filename);
-        static void create_smooth_texcoord(const std::shared_ptr<terrain_container>& container, const std::string& filename);
-        static void create_attaches_to_vbo(const std::shared_ptr<terrain_container>& container, const std::string& filename);
+        static void create_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_tangent_space(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_smooth_texcoord(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_attaches_to_vbo(const terrain_container_shared_ptr& container, const std::string& filename);
+        
+        static void create_debug_normals_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_debug_normals_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename);
         
         static glm::vec3 generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
                                           const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03);

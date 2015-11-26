@@ -42,11 +42,10 @@ namespace gb
         std::vector<terrain_chunk_shared_ptr> m_chunks;
         
         terrain_container::e_heigtmap_chunk_lod get_current_lod(const glm::vec3& position,
-                                                                  const glm::vec3& min_bound,
-                                                                  const glm::vec3& max_bound) const;
-        
+                                                                const glm::vec3& min_bound,
+                                                                const glm::vec3& max_bound) const;
     protected:
-
+        
     public:
         
         ces_terrain_component(const std::string& filename);
@@ -69,6 +68,8 @@ namespace gb
         
         f32 get_height(const glm::vec3& position) const;
         glm::vec2 get_angles_xz(const glm::vec3& position) const;
+        
+        void set_debug_tbn_enabled(bool value);
     };
 };
 

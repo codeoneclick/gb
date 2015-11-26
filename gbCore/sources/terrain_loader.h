@@ -39,9 +39,11 @@ namespace gb
         static std::string get_splatting_normal_textures_mmap_filename(const std::string& filename);
         static std::string get_splatting_displace_textures_mmap_filename(const std::string& filename);
         
-        
         static std::string get_tangent_space_mmap_filename(const std::string& filename);
         static std::string get_attaches_to_vbo_mmap_filename(const std::string& filename);
+        
+        static std::string get_debug_tbn_vbos_mmap_filename(const std::string& filename);
+        static std::string get_debug_tbn_ibos_mmap_filename(const std::string& filename);
         
         static bool is_uncompressed_vertices_mmap_exist(const std::string& filename);
         static bool is_compressed_vertices_mmap_exist(const std::string& filename);
@@ -57,6 +59,9 @@ namespace gb
         
         static bool is_tangent_space_mmap_exist(const std::string& filename);
         static bool is_attaches_to_vbo_mmap_exist(const std::string& filename);
+        
+        static bool is_debug_tbn_vbos_mmap_exist(const std::string& filename);
+        static bool is_debug_tbn_ibos_mmap_exist(const std::string& filename);
     };
 };
 

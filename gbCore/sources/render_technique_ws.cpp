@@ -276,12 +276,11 @@ namespace gb
                     
                     if(debug_render_component && material->is_debugging())
                     {
-                        material_shared_ptr material = debug_render_component->get_material();
-                        debug_render_component->on_bind(m_name, 0, material);
+                        debug_render_component->on_bind();
                         material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
                         
-                        debug_render_component->on_draw(m_name);
-                        debug_render_component->on_unbind(m_name);
+                        debug_render_component->on_draw();
+                        debug_render_component->on_unbind();
                     }
                     m_entities[technique_pass][i].pop();
                 }

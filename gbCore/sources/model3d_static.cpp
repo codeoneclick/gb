@@ -9,7 +9,7 @@
 #include "model3d_static.h"
 #include "ces_geometry_component.h"
 #include "ces_touch_component.h"
-#include "ces_debug_render_component.h"
+#include "ces_bounding_box_debug_component.h"
 #include "ces_box2d_component.h"
 #include "ces_batch_component.h"
 #include "mesh_constructor.h"
@@ -60,13 +60,13 @@ namespace gb
         }
     }
     
-    void model3d_static::set_debug_draw_enabled(bool value)
+    void model3d_static::set_bounding_box_debug_enabled(bool value)
     {
         if(value)
         {
-            ces_debug_render_component_shared_ptr debug_render_component = std::make_shared<ces_debug_render_component>();
-            ces_entity::add_component(debug_render_component);
-            debug_render_component->set_scene_graph(game_object::get_scene_graph());
+            ces_bounding_box_debug_component_shared_ptr bounding_box_debug_component = std::make_shared<ces_bounding_box_debug_component>();
+            ces_entity::add_component(bounding_box_debug_component);
+            bounding_box_debug_component->set_scene_graph(game_object::get_scene_graph());
         }
         else
         {

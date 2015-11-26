@@ -38,6 +38,8 @@ namespace gb
     m_splatting_diffuse_textures_mmap_descriptor(nullptr),
     m_splatting_normal_textures_mmap_descriptor(nullptr),
     m_splatting_displace_textures_mmap_descriptor(nullptr),
+    m_debug_tbn_vbos_mmap_descriptor(nullptr),
+    m_debug_tbn_ibos_mmap_descriptor(nullptr),
     m_main_size(0),
     m_deep_texture(nullptr)
     {
@@ -87,6 +89,9 @@ namespace gb
         m_vbos_mmap.resize(m_chunks_num.x * m_chunks_num.y);
         m_ibos_mmap.resize(m_chunks_num.x * m_chunks_num.y);
         
+        m_debug_tbn_vbos_mmap.resize(m_chunks_num.x * m_chunks_num.y);
+        m_debug_tbn_ibos_mmap.resize(m_chunks_num.x * m_chunks_num.y);
+        
         m_splatting_mask_textures_mmap.resize(m_chunks_num.x * m_chunks_num.y);
         m_splatting_diffuse_textures_mmap.resize(m_chunks_num.x * m_chunks_num.y);
         m_splatting_normal_textures_mmap.resize(m_chunks_num.x * m_chunks_num.y);
@@ -128,16 +133,28 @@ namespace gb
         }
         m_faces = nullptr;
         
-        if(m_vbos_mmap_descriptor != nullptr)
+        if(m_vbos_mmap_descriptor)
         {
             m_vbos_mmap_descriptor->deallocate();
             m_vbos_mmap_descriptor = nullptr;
         }
         
-        if(m_ibos_mmap_descriptor != nullptr)
+        if(m_ibos_mmap_descriptor)
         {
             m_ibos_mmap_descriptor->deallocate();
             m_ibos_mmap_descriptor = nullptr;
+        }
+        
+        if(m_debug_tbn_vbos_mmap_descriptor)
+        {
+            m_debug_tbn_vbos_mmap_descriptor->deallocate();
+            m_debug_tbn_vbos_mmap_descriptor = nullptr;
+        }
+        
+        if(m_debug_tbn_ibos_mmap_descriptor)
+        {
+            m_debug_tbn_ibos_mmap_descriptor->deallocate();
+            m_debug_tbn_ibos_mmap_descriptor = nullptr;
         }
     }
     
@@ -242,6 +259,38 @@ namespace gb
                     m_ibos_mmap[i + j * m_chunks_num.x][k]->set_offset(offset);
                     offset += indices_count * 2;
                 }
+            }
+        }
+        
+        m_debug_tbn_vbos_mmap_descriptor = std::make_shared<memory_map>();
+        m_debug_tbn_vbos_mmap_descriptor->allocate(terrain_loader::get_debug_tbn_vbos_mmap_filename(filename));
+        
+        offset = 0;
+        for(ui32 i = 0; i < m_chunks_num.x; ++i)
+        {
+            for(ui32 j = 0; j < m_chunks_num.y; ++j)
+            {
+                i32 vertices_count = m_chunk_size.x * m_chunk_size.y * 2;
+                m_debug_tbn_vbos_mmap[i + j * m_chunks_num.x] = std::make_shared<terrain_vbo_memory_map>(m_debug_tbn_vbos_mmap_descriptor);
+                m_debug_tbn_vbos_mmap[i + j * m_chunks_num.x]->set_size(vertices_count);
+                m_debug_tbn_vbos_mmap[i + j * m_chunks_num.x]->set_offset(offset);
+                offset += vertices_count;
+            }
+        }
+        
+        m_debug_tbn_ibos_mmap_descriptor = std::make_shared<memory_map>();
+        m_debug_tbn_ibos_mmap_descriptor->allocate(terrain_loader::get_debug_tbn_ibos_mmap_filename(filename));
+        
+        offset = 0;
+        for(ui32 i = 0; i < m_chunks_num.x; ++i)
+        {
+            for(ui32 j = 0; j < m_chunks_num.y; ++j)
+            {
+                i32 indices_count = m_chunks_num.x * m_chunks_num.y * 2;
+                m_debug_tbn_ibos_mmap[i + j * m_chunks_num.x] = std::make_shared<terrain_ibo_memory_map>(m_debug_tbn_ibos_mmap_descriptor);
+                m_debug_tbn_ibos_mmap[i + j * m_chunks_num.x]->set_size(indices_count);
+                m_debug_tbn_ibos_mmap[i + j * m_chunks_num.x]->set_offset(offset);
+                offset += indices_count;
             }
         }
     }

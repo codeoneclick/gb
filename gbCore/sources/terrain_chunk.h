@@ -34,6 +34,10 @@ namespace gb
         ~terrain_chunk();
         
         void set_mesh(const mesh_shared_ptr& mesh);
+        void set_debug_tbn_mesh(const mesh_shared_ptr& mesh);
+        
+        void set_debug_tbn_enabled(bool value);
+        bool is_debug_tbn_enabled() const;
         
         terrain_container::e_heigtmap_chunk_lod get_current_lod() const;
         terrain_container::e_heigtmap_chunk_lod get_inprogress_lod() const;

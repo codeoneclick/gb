@@ -44,6 +44,8 @@ namespace gb
         
         f32 get_height(const glm::vec3& position) const;
         glm::vec2 get_angles_xz(const glm::vec3& position) const;
+        
+        void set_debug_tbn_enabled(bool value);
     };
 };
 

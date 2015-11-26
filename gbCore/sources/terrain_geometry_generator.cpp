@@ -14,9 +14,8 @@
 
 namespace gb
 {
-    
     void terrain_geometry_generator::generate(const std::shared_ptr<terrain_container>& container, const std::string& filename,
-                                                const glm::ivec2& size, const std::vector<f32>& heights)
+                                              const glm::ivec2& size, const std::vector<f32>& heights)
     {
         if(!terrain_loader::is_uncompressed_vertices_mmap_exist(filename) ||
            !terrain_loader::is_compressed_vertices_mmap_exist(filename) ||
@@ -25,6 +24,8 @@ namespace gb
             terrain_geometry_generator::create_vertices_data(container, size, heights, filename);
             terrain_geometry_generator::create_vbos_data(container, filename);
             terrain_geometry_generator::create_ibos_data(container, filename);
+            terrain_geometry_generator::create_debug_normals_vbos_data(container, filename);
+            terrain_geometry_generator::create_debug_normals_ibos_data(container, filename);
         }
         else
         {
@@ -37,11 +38,21 @@ namespace gb
             {
                 terrain_geometry_generator::create_ibos_data(container, filename);
             }
+            
+            if(!terrain_loader::is_debug_tbn_vbos_mmap_exist(filename))
+            {
+                terrain_geometry_generator::create_debug_normals_vbos_data(container, filename);
+            }
+            
+            if(!terrain_loader::is_debug_tbn_ibos_mmap_exist(filename))
+            {
+                terrain_geometry_generator::create_debug_normals_ibos_data(container, filename);
+            }
         }
     }
     
     void terrain_geometry_generator::create_vertices_data(const std::shared_ptr<terrain_container>& container, const glm::ivec2& size, const std::vector<f32>& heights,
-                                                            const std::string& filename)
+                                                          const std::string& filename)
     {
         terrain_container::uncompressed_vertex *uncompressed_vertices = container->get_uncopressed_vertices();
         terrain_container::compressed_vertex *compressed_vertices = container->get_compressed_vertices();
@@ -422,6 +433,70 @@ namespace gb
         stream.close();
     }
     
+    void terrain_geometry_generator::create_debug_normals_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename)
+    {
+        std::ofstream stream;
+        stream.open(terrain_loader::get_debug_tbn_vbos_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
+        if(!stream.is_open())
+        {
+            assert(false);
+        }
+        
+        glm::ivec2 vertices_offset(0);
+        vbo::vertex_attribute vertex;
+        for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
+        {
+            vertices_offset.y = 0;
+            for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
+            {
+                for(ui32 x = 0; x < container->get_chunk_size().x; ++x)
+                {
+                    for(ui32 y = 0; y < container->get_chunk_size().y; ++y)
+                    {
+                        vertex.m_position = container->get_vertex_position(x + vertices_offset.x, y + vertices_offset.y);
+                        stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                        
+                        vertex.m_position = container->get_vertex_position(x + vertices_offset.x, y + vertices_offset.y) +
+                        container->get_uncompressed_vertex_normal(x + vertices_offset.x, y + vertices_offset.y);
+                        stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    }
+                }
+                vertices_offset.y += container->get_chunk_size().y - 1;
+            }
+            vertices_offset.x += container->get_chunk_size().x - 1;
+        }
+        stream.close();
+    }
+    
+    void terrain_geometry_generator::create_debug_normals_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename)
+    {
+        std::ofstream stream;
+        stream.open(terrain_loader::get_debug_tbn_ibos_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
+        if(!stream.is_open())
+        {
+            assert(false);
+        }
+
+        ui16 index = 0;
+        for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
+        {
+            for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
+            {
+                for(ui32 x = 0; x < container->get_chunk_size().x; ++x)
+                {
+                    for(ui32 y = 0; y < container->get_chunk_size().y; ++y)
+                    {
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
+                    }
+                }
+            }
+        }
+        stream.close();
+    }
+    
     void terrain_geometry_generator::generate_tangent_space(const std::shared_ptr<terrain_container>& container, const std::string& filename)
     {
         if(!terrain_loader::is_tangent_space_mmap_exist(filename))
@@ -476,7 +551,7 @@ namespace gb
             glm::vec2 texcoord_03 = glm::unpackUnorm2x16(vertices[indices[i + 2]].m_texcoord);
             
             glm::vec3 tangent = terrain_geometry_generator::generate_tangent(point_01, point_02, point_03,
-                                                                               texcoord_01, texcoord_02, texcoord_03);
+                                                                             texcoord_01, texcoord_02, texcoord_03);
             
             assert(indices[i + 0] < num_vertices);
             assert(indices[i + 1] < num_vertices);
@@ -511,7 +586,7 @@ namespace gb
     }
     
     glm::vec3 terrain_geometry_generator::generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
-                                                             const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03)
+                                                           const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03)
     {
         glm::vec3 P = point_02 - point_01;
         glm::vec3 Q = point_03 - point_01;

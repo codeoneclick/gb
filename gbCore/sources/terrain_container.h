@@ -223,6 +223,9 @@ namespace gb
         std::shared_ptr<memory_map> m_vbos_mmap_descriptor;
         std::shared_ptr<memory_map> m_ibos_mmap_descriptor;
         
+        std::shared_ptr<memory_map> m_debug_tbn_vbos_mmap_descriptor;
+        std::shared_ptr<memory_map> m_debug_tbn_ibos_mmap_descriptor;
+        
         std::shared_ptr<memory_map> m_splatting_mask_textures_mmap_descriptor;
         std::shared_ptr<memory_map> m_splatting_diffuse_textures_mmap_descriptor;
         std::shared_ptr<memory_map> m_splatting_normal_textures_mmap_descriptor;
@@ -230,6 +233,9 @@ namespace gb
         
         std::vector<std::shared_ptr<terrain_vbo_memory_map>> m_vbos_mmap;
         std::vector<std::array<std::shared_ptr<terrain_ibo_memory_map>, e_heigtmap_chunk_lod_max>> m_ibos_mmap;
+        
+        std::vector<std::shared_ptr<terrain_vbo_memory_map>> m_debug_tbn_vbos_mmap;
+        std::vector<std::shared_ptr<terrain_ibo_memory_map>> m_debug_tbn_ibos_mmap;
         
         std::vector<std::shared_ptr<terrain_texture_memory_map_RGB565>> m_splatting_mask_textures_mmap;
         std::vector<std::array<std::shared_ptr<terrain_texture_memory_map_RGB565>, e_heigtmap_chunk_lod_max>> m_splatting_diffuse_textures_mmap;
@@ -301,10 +307,14 @@ namespace gb
         
         inline std::shared_ptr<terrain_vbo_memory_map> get_vbo_mmap(i32 index) const;
         inline std::shared_ptr<terrain_ibo_memory_map> get_ibo_mmap(i32 index, e_heigtmap_chunk_lod lod) const;
+        
         inline std::shared_ptr<terrain_texture_memory_map_RGB565> get_splatting_mask_textures_mmap(i32 index) const;
         inline std::shared_ptr<terrain_texture_memory_map_RGB565> get_splatting_diffuse_textures_mmap(i32 index, e_heigtmap_chunk_lod lod) const;
         inline std::shared_ptr<terrain_texture_memory_map_RGBA8> get_splatting_normal_textures_mmap(i32 index, e_heigtmap_chunk_lod lod) const;
         inline std::shared_ptr<terrain_texture_memory_map_RGBA8> get_splatting_displace_textures_mmap(i32 index, e_heigtmap_chunk_lod lod) const;
+        
+        inline std::shared_ptr<terrain_vbo_memory_map> get_debug_tbn_vbo_mmap(i32 index) const;
+        inline std::shared_ptr<terrain_ibo_memory_map> get_debug_tbn_ibo_mmap(i32 index) const;
         
         void create_deep_texture();
         inline texture_shared_ptr get_deep_texture() const;

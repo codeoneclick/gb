@@ -9,6 +9,7 @@
 #include "terrain_chunk.h"
 #include "ces_geometry_component.h"
 #include "ces_render_component.h"
+#include "ces_tbn_debug_component.h"
 
 namespace gb
 {
@@ -30,6 +31,15 @@ namespace gb
     void terrain_chunk::set_mesh(const mesh_shared_ptr& mesh)
     {
         unsafe_get_geometry_component_from_this->set_mesh(mesh);
+    }
+    
+    void terrain_chunk::set_debug_tbn_mesh(const mesh_shared_ptr& mesh)
+    {
+        ces_tbn_debug_component_shared_ptr tbn_debug_component = std::static_pointer_cast<ces_tbn_debug_component>(ces_entity::get_component(e_ces_component_type_debug_render));
+        if(tbn_debug_component)
+        {
+            tbn_debug_component->set_mesh(mesh);
+        }
     }
     
     terrain_container::e_heigtmap_chunk_lod terrain_chunk::get_current_lod() const
@@ -78,5 +88,24 @@ namespace gb
     {
         unsafe_get_render_component_from_this->set_bind_material_imposer_callback(std::bind(&terrain_chunk::on_bind_material_imposer_callback,
                                                                                             this, std::placeholders::_1));
+    }
+    
+    void terrain_chunk::set_debug_tbn_enabled(bool value)
+    {
+        if(value)
+        {
+            ces_tbn_debug_component_shared_ptr tbn_debug_component = std::make_shared<ces_tbn_debug_component>();
+            ces_entity::add_component(tbn_debug_component);
+            tbn_debug_component->set_scene_graph(game_object::get_scene_graph());
+        }
+        else
+        {
+            ces_entity::remove_component(e_ces_component_type_debug_render);
+        }
+    }
+    
+    bool terrain_chunk::is_debug_tbn_enabled() const
+    {
+        return ces_entity::is_component_exist(e_ces_component_type_debug_render);
     }
 }

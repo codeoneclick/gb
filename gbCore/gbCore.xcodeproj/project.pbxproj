@@ -90,8 +90,8 @@
 		21606C681B8DB500005EA908 /* game_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21606C651B8DB500005EA908 /* game_object.cpp */; };
 		21613FE31B946B79001562EB /* ces_debug_render_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE11B946B79001562EB /* ces_debug_render_component.cpp */; };
 		21613FE41B946B79001562EB /* ces_debug_render_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE11B946B79001562EB /* ces_debug_render_component.cpp */; };
-		21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
-		21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_bounding_box.cpp */; };
+		21613FE61B948256001562EB /* shader_debug_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_debug_bounding_box.cpp */; };
+		21613FE71B948256001562EB /* shader_debug_bounding_box.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21613FE51B948256001562EB /* shader_debug_bounding_box.cpp */; };
 		216DF2AB1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; };
 		216DF2AC1BCBAB53008E4B2B /* renderable_interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */; };
 		216DF2C41BCCCDFF008E4B2B /* skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 216DF2C21BCCCDFF008E4B2B /* skybox.cpp */; };
@@ -359,6 +359,12 @@
 		21C0AB921B7BB0F4004B1B7C /* texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C0AB8F1B7BB0F4004B1B7C /* texture.cpp */; };
 		21C46F9E1B7BC1350070CF14 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C46F9C1B7BC1350070CF14 /* shader.cpp */; };
 		21C46F9F1B7BC1350070CF14 /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21C46F9C1B7BC1350070CF14 /* shader.cpp */; };
+		21D1495D1C06EC7D0091CE50 /* ces_bounding_box_debug_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1495B1C06EC7C0091CE50 /* ces_bounding_box_debug_component.cpp */; };
+		21D1495E1C06EC7D0091CE50 /* ces_bounding_box_debug_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1495B1C06EC7C0091CE50 /* ces_bounding_box_debug_component.cpp */; };
+		21D149611C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1495F1C06ECA10091CE50 /* ces_tbn_debug_component.cpp */; };
+		21D149621C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1495F1C06ECA10091CE50 /* ces_tbn_debug_component.cpp */; };
+		21D149641C06EFA20091CE50 /* shader_debug_tbn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149631C06EFA20091CE50 /* shader_debug_tbn.cpp */; };
+		21D149651C06EFA20091CE50 /* shader_debug_tbn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149631C06EFA20091CE50 /* shader_debug_tbn.cpp */; };
 		21D78BEB1B8F463E00665BB6 /* game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BE91B8F463E00665BB6 /* game_scene.cpp */; };
 		21D78BEC1B8F463E00665BB6 /* game_scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BE91B8F463E00665BB6 /* game_scene.cpp */; };
 		21D78BF31B90572F00665BB6 /* ces_animation_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D78BF11B90572F00665BB6 /* ces_animation_component.cpp */; };
@@ -545,7 +551,7 @@
 		21606C661B8DB500005EA908 /* game_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_object.h; path = sources/game_object.h; sourceTree = "<group>"; };
 		21613FE11B946B79001562EB /* ces_debug_render_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_debug_render_component.cpp; path = sources/ces_debug_render_component.cpp; sourceTree = "<group>"; };
 		21613FE21B946B79001562EB /* ces_debug_render_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_debug_render_component.h; path = sources/ces_debug_render_component.h; sourceTree = "<group>"; };
-		21613FE51B948256001562EB /* shader_bounding_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_bounding_box.cpp; path = sources/shader_bounding_box.cpp; sourceTree = "<group>"; };
+		21613FE51B948256001562EB /* shader_debug_bounding_box.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_debug_bounding_box.cpp; path = sources/shader_debug_bounding_box.cpp; sourceTree = "<group>"; };
 		216DF2A91BCBAB53008E4B2B /* renderable_interface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderable_interface.cpp; path = sources/renderable_interface.cpp; sourceTree = "<group>"; };
 		216DF2AA1BCBAB53008E4B2B /* renderable_interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderable_interface.h; path = sources/renderable_interface.h; sourceTree = "<group>"; };
 		216DF2C21BCCCDFF008E4B2B /* skybox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = skybox.cpp; path = sources/skybox.cpp; sourceTree = "<group>"; };
@@ -1024,6 +1030,11 @@
 		21C0AB901B7BB0F4004B1B7C /* texture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = texture.h; path = sources/texture.h; sourceTree = "<group>"; };
 		21C46F9C1B7BC1350070CF14 /* shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader.cpp; path = sources/shader.cpp; sourceTree = "<group>"; };
 		21C46F9D1B7BC1350070CF14 /* shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shader.h; path = sources/shader.h; sourceTree = "<group>"; };
+		21D1495B1C06EC7C0091CE50 /* ces_bounding_box_debug_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_bounding_box_debug_component.cpp; path = sources/ces_bounding_box_debug_component.cpp; sourceTree = "<group>"; };
+		21D1495C1C06EC7C0091CE50 /* ces_bounding_box_debug_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_bounding_box_debug_component.h; path = sources/ces_bounding_box_debug_component.h; sourceTree = "<group>"; };
+		21D1495F1C06ECA10091CE50 /* ces_tbn_debug_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_tbn_debug_component.cpp; path = sources/ces_tbn_debug_component.cpp; sourceTree = "<group>"; };
+		21D149601C06ECA10091CE50 /* ces_tbn_debug_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_tbn_debug_component.h; path = sources/ces_tbn_debug_component.h; sourceTree = "<group>"; };
+		21D149631C06EFA20091CE50 /* shader_debug_tbn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = shader_debug_tbn.cpp; path = sources/shader_debug_tbn.cpp; sourceTree = "<group>"; };
 		21D78BE91B8F463E00665BB6 /* game_scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_scene.cpp; path = sources/game_scene.cpp; sourceTree = "<group>"; };
 		21D78BEA1B8F463E00665BB6 /* game_scene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_scene.h; path = sources/game_scene.h; sourceTree = "<group>"; };
 		21D78BF11B90572F00665BB6 /* ces_animation_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_animation_component.cpp; path = sources/ces_animation_component.cpp; sourceTree = "<group>"; };
@@ -1252,6 +1263,10 @@
 				2172BDB81BE0BFFC000AE75F /* ces_batch_component.cpp */,
 				218E40731BF0E4EE0002C01B /* ces_terrain_component.h */,
 				218E40721BF0E4EE0002C01B /* ces_terrain_component.cpp */,
+				21D1495C1C06EC7C0091CE50 /* ces_bounding_box_debug_component.h */,
+				21D1495B1C06EC7C0091CE50 /* ces_bounding_box_debug_component.cpp */,
+				21D149601C06ECA10091CE50 /* ces_tbn_debug_component.h */,
+				21D1495F1C06ECA10091CE50 /* ces_tbn_debug_component.cpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1894,7 +1909,8 @@
 			children = (
 				21B4059F1B7A0FDC003382AB /* built_in_shaders.h */,
 				212B18BC1B82184F00FFDCE7 /* shader_texture_2d.cpp */,
-				21613FE51B948256001562EB /* shader_bounding_box.cpp */,
+				21613FE51B948256001562EB /* shader_debug_bounding_box.cpp */,
+				21D149631C06EFA20091CE50 /* shader_debug_tbn.cpp */,
 				21DE0E451BAC5A41009EA47B /* shader_omni_light.cpp */,
 				21229D381BBD59730047CE4F /* shader_instanced_omni_lights.cpp */,
 				21E33D971BB17B8600B540E7 /* shader_direction_light.cpp */,
@@ -2195,7 +2211,7 @@
 				218E407C1BF0E72D0002C01B /* terrain.cpp in Sources */,
 				2173D1E11B7CA774002912BE /* mesh.cpp in Sources */,
 				21B404D41B7A0A88003382AB /* b2PolygonShape.cpp in Sources */,
-				21613FE61B948256001562EB /* shader_bounding_box.cpp in Sources */,
+				21613FE61B948256001562EB /* shader_debug_bounding_box.cpp in Sources */,
 				21B404FD1B7A0A88003382AB /* pngrio.c in Sources */,
 				21DE320A1B8D983A0046EDF8 /* mesh_loading_operation.cpp in Sources */,
 				21B405C81B7B2256003382AB /* game_loop_osx.cpp in Sources */,
@@ -2234,6 +2250,7 @@
 				21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21229D321BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
+				21D149611C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */,
 				21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */,
 				21B404CC1B7A0A88003382AB /* b2CollidePolygon.cpp in Sources */,
 				21DE0E431BAB011A009EA47B /* omni_light.cpp in Sources */,
@@ -2321,6 +2338,7 @@
 				21B4050E1B7A0A88003382AB /* gzwrite.c in Sources */,
 				21B404F61B7A0A88003382AB /* b2Rope.cpp in Sources */,
 				2173D1E51B7CA8C0002912BE /* bone.cpp in Sources */,
+				21D1495D1C06EC7D0091CE50 /* ces_bounding_box_debug_component.cpp in Sources */,
 				21B404F11B7A0A88003382AB /* b2PulleyJoint.cpp in Sources */,
 				21176FCB1BC5188000890D7C /* ces_box2d_system.cpp in Sources */,
 				21D78C071B905D7600665BB6 /* animation_mixer.cpp in Sources */,
@@ -2361,6 +2379,7 @@
 				21B406291B7B9004003382AB /* resource.cpp in Sources */,
 				212B188F1B81C98300FFDCE7 /* ces_render_component.cpp in Sources */,
 				21B4060A1B7B662C003382AB /* output_technique_configuration.cpp in Sources */,
+				21D149641C06EFA20091CE50 /* shader_debug_tbn.cpp in Sources */,
 				21E33D951BB1758900B540E7 /* direction_light.cpp in Sources */,
 				21B406071B7B641F003382AB /* material_configuration.cpp in Sources */,
 				21B4060D1B7B662C003382AB /* transition_configuration.cpp in Sources */,
@@ -2450,6 +2469,7 @@
 				21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
 				21229D331BBD2F1C0047CE4F /* instanced_omni_lights.cpp in Sources */,
+				21D149621C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */,
 				21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */,
 				212B186E1B81B41D00FFDCE7 /* render_pipeline.cpp in Sources */,
 				21DE0E441BAB011A009EA47B /* omni_light.cpp in Sources */,
@@ -2485,7 +2505,7 @@
 				21229D371BBD30FF0047CE4F /* ces_instanced_geometry_component.cpp in Sources */,
 				21B405481B7A0AFA003382AB /* gzread.c in Sources */,
 				21B4062A1B7B9004003382AB /* resource.cpp in Sources */,
-				21613FE71B948256001562EB /* shader_bounding_box.cpp in Sources */,
+				21613FE71B948256001562EB /* shader_debug_bounding_box.cpp in Sources */,
 				21DE300D1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */,
 				21D78C2A1B90AD9700665BB6 /* model3d_animated.cpp in Sources */,
 				21B405491B7A0AFA003382AB /* pugixml.cpp in Sources */,
@@ -2537,6 +2557,7 @@
 				21B405551B7A0AFA003382AB /* b2BroadPhase.cpp in Sources */,
 				21D78C081B905D7600665BB6 /* animation_mixer.cpp in Sources */,
 				21B405561B7A0AFA003382AB /* pngwio.c in Sources */,
+				21D1495E1C06EC7D0091CE50 /* ces_bounding_box_debug_component.cpp in Sources */,
 				21B405571B7A0AFA003382AB /* pngrtran.c in Sources */,
 				21176FCC1BC5188000890D7C /* ces_box2d_system.cpp in Sources */,
 				21B405FA1B7B4276003382AB /* configuration.cpp in Sources */,
@@ -2577,6 +2598,7 @@
 				2173D1E61B7CA8C0002912BE /* bone.cpp in Sources */,
 				21B405681B7A0AFA003382AB /* b2RopeJoint.cpp in Sources */,
 				212B187B1B81B5A700FFDCE7 /* render_technique_base.cpp in Sources */,
+				21D149651C06EFA20091CE50 /* shader_debug_tbn.cpp in Sources */,
 				21E33D961BB1758900B540E7 /* direction_light.cpp in Sources */,
 				212B18A41B81D33A00FFDCE7 /* camera.cpp in Sources */,
 				21DE301F1B834EF30046EDF8 /* texture_commiter_png.cpp in Sources */,

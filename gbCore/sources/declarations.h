@@ -152,6 +152,12 @@ namespace gb
     class ces_debug_render_component;
     typedef std::shared_ptr<ces_debug_render_component> ces_debug_render_component_shared_ptr;
     
+    class ces_bounding_box_debug_component;
+    typedef std::shared_ptr<ces_bounding_box_debug_component> ces_bounding_box_debug_component_shared_ptr;
+    
+    class ces_tbn_debug_component;
+    typedef std::shared_ptr<ces_tbn_debug_component> ces_tbn_debug_component_shared_ptr;
+    
     class ces_particle_emitter_component;
     typedef std::shared_ptr<ces_particle_emitter_component> ces_particle_emitter_component_shared_ptr;
     

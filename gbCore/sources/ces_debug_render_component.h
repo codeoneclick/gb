@@ -19,20 +19,19 @@ namespace gb
         
     protected:
         
-        static material_shared_ptr m_material;
+        material_shared_ptr m_material;
         mesh_shared_ptr m_mesh;
         
         void bind_main_shader_uniforms(const material_shared_ptr& material);
         
     public:
         
-        ces_debug_render_component(void);
-        ~ces_debug_render_component(void);
+        ces_debug_render_component();
+        ~ces_debug_render_component();
         
-        virtual void on_bind(const std::string& technique_name, i32 technique_pass,
-                             const material_shared_ptr& material = nullptr);
-        virtual void on_draw(const std::string& technique_name);
-        virtual void on_unbind(const std::string& technique_name);
+        void on_bind();
+        void on_draw();
+        void on_unbind();
         
         void set_mesh(const mesh_shared_ptr& mesh);
         

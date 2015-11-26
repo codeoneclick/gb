@@ -146,6 +146,18 @@ namespace gb
         return m_ibos_mmap[index][lod];
     };
     
+    inline std::shared_ptr<terrain_container::terrain_vbo_memory_map> terrain_container::get_debug_tbn_vbo_mmap(i32 index) const
+    {
+        assert(index >=0 && index < m_debug_tbn_vbos_mmap.size());
+        return m_debug_tbn_vbos_mmap[index];
+    };
+    
+    inline std::shared_ptr<terrain_container::terrain_ibo_memory_map> terrain_container::get_debug_tbn_ibo_mmap(i32 index) const
+    {
+        assert(index >=0 && index < m_debug_tbn_ibos_mmap.size());
+        return m_debug_tbn_ibos_mmap[index];
+    };
+    
     inline std::shared_ptr<terrain_container::terrain_texture_memory_map_RGB565> terrain_container::get_splatting_mask_textures_mmap(i32 index) const
     {
         assert(index >=0 && index < m_splatting_mask_textures_mmap.size());

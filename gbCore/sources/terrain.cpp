@@ -92,4 +92,9 @@ namespace gb
     {
         return unsafe_get_terrain_component_from_this->get_angles_xz(position - terrain::get_position());
     }
+    
+    void terrain::set_debug_tbn_enabled(bool value)
+    {
+        unsafe_get_terrain_component_from_this->set_debug_tbn_enabled(value);
+    }
 }

@@ -76,7 +76,7 @@ const char* shader_instanced_omni_light_frag = string_shader
  
 #endif
  
-#define __SPECULAR__
+//#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;

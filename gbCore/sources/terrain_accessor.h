@@ -84,7 +84,7 @@ namespace gb
                       const std::array<texture_shared_ptr, 3>& splatting_diffuse_textures,
                       const std::array<texture_shared_ptr, 3>& splatting_normal_textures,
                       const std::array<texture_shared_ptr, 3>& splatting_displace_textures,
-                      const std::function<void(void)>& callback);
+                      const std::function<void()>& callback);
         
         void start_chunk_loading(i32 i, i32 j, terrain_container::e_heigtmap_chunk_lod lod,
                                  const std::function<void(const mesh_shared_ptr&)>& callback_mesh_loaded,

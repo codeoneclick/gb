@@ -33,6 +33,8 @@ namespace gb
     static const std::string k_splatting_displace_textures_data_suffix = "-splatting.textures.h.data";
     static const std::string k_tangent_space_data_suffix = "-tangent.space.data";
     static const std::string k_attaches_to_vbo_data_suffix = "-attaches.vbo.data";
+    static const std::string k_debug_tbn_vbos_data_suffix = "-debug.tbn.vbos.data";
+    static const std::string k_debug_tbn_ibos_data_suffix = "-debug.tbn.ibos.data";
     
     std::tuple<glm::ivec2, std::vector<f32>> terrain_loader::get_heights_data(const std::string& filename)
     {
@@ -278,6 +280,34 @@ namespace gb
         return stringstream.str();
     }
     
+    std::string terrain_loader::get_debug_tbn_vbos_mmap_filename(const std::string& filename)
+    {
+        std::ostringstream stringstream;
+        stringstream<<filename<<k_debug_tbn_vbos_data_suffix;
+        
+#if defined(__IOS__)
+        
+        return documentspath() + stringstream.str();
+        
+#endif
+        
+        return stringstream.str();
+    }
+    
+    std::string terrain_loader::get_debug_tbn_ibos_mmap_filename(const std::string &filename)
+    {
+        std::ostringstream stringstream;
+        stringstream<<filename<<k_debug_tbn_ibos_data_suffix;
+        
+#if defined(__IOS__)
+        
+        return documentspath() + stringstream.str();
+        
+#endif
+        
+        return stringstream.str();
+    }
+    
     bool terrain_loader::is_uncompressed_vertices_mmap_exist(const std::string& filename)
     {
         std::ifstream stream(terrain_loader::get_uncompressed_vertices_mmap_filename(filename));
@@ -361,6 +391,22 @@ namespace gb
     bool terrain_loader::is_attaches_to_vbo_mmap_exist(const std::string &filename)
     {
         std::ifstream stream(terrain_loader::get_attaches_to_vbo_mmap_filename(filename));
+        bool exist = stream.good();
+        stream.close();
+        return exist;
+    }
+    
+    bool terrain_loader::is_debug_tbn_vbos_mmap_exist(const std::string& filename)
+    {
+        std::ifstream stream(terrain_loader::get_debug_tbn_vbos_mmap_filename(filename));
+        bool exist = stream.good();
+        stream.close();
+        return exist;
+    }
+    
+    bool terrain_loader::is_debug_tbn_ibos_mmap_exist(const std::string& filename)
+    {
+        std::ifstream stream(terrain_loader::get_debug_tbn_ibos_mmap_filename(filename));
         bool exist = stream.good();
         stream.close();
         return exist;

@@ -59,7 +59,7 @@ namespace gb
     }
     
     void ces_terrain_component::generate(const graphics_context_shared_ptr& graphics_context,
-                                           const resource_accessor_shared_ptr& resource_accessor)
+                                         const resource_accessor_shared_ptr& resource_accessor)
     {
         m_generation_state = e_terrain_generation_state_generating;
         m_terrain_accessor->generate(m_filename, graphics_context, m_splatting_diffuse_textures, m_splatting_normal_textures, m_splatting_displace_textures,
@@ -114,11 +114,19 @@ namespace gb
                         m_chunks[index]->set_inprogress_lod(lod);
                         
                         m_terrain_accessor->start_chunk_loading(i, j, lod, [this, index] (const mesh_shared_ptr& mesh) {
+                            
                             m_chunks[index]->set_mesh(mesh);
+                            if(m_chunks[index]->is_debug_tbn_enabled())
+                            {
+                                
+                            }
+                            
                         }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_displace_texture) {
+                            
                             m_chunks[index]->set_diffuse_texture(diffuse_texture);
                             m_chunks[index]->set_normal_displace_texture(normal_displace_texture);
                             m_chunks[index]->set_current_lod(lod);
+                            
                         });
                     }
                 }
@@ -177,5 +185,13 @@ namespace gb
     glm::vec2 ces_terrain_component::get_angles_xz(const glm::vec3& position) const
     {
         return m_terrain_accessor->get_angles_xz(position);
+    }
+    
+    void ces_terrain_component::set_debug_tbn_enabled(bool value)
+    {
+        for(i32 i = 0; i < m_chunks.size(); ++i)
+        {
+            m_chunks[i]->set_debug_tbn_enabled(value);
+        }
     }
 }

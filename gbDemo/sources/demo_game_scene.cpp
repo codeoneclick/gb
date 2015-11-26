@@ -107,8 +107,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    scene_graph_inst->add_direction_light(m_direction_light);
-    m_direction_light->set_intensity(.25f);
+    //scene_graph_inst->add_direction_light(m_direction_light);
+    //m_direction_light->set_intensity(.25f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
@@ -156,9 +156,9 @@ gb::game_scene(transition)
     m_models["orc_01"]->set_enable_box2d_physics(true, false);
     m_models["orc_02"]->set_enable_box2d_physics(true, false);
     
-    //m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
-    //                                                                      m_camera);
-    //m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
+    m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
+                                                                          m_camera);
+    m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
     
     m_camera_controller = std::make_shared<koth::camera_controller>(m_camera);
     
@@ -222,8 +222,8 @@ void demo_game_scene::update(f32 deltatime)
     m_level->set_box_under_strain(m_models["orc_02"]->get_position().x,
                                   m_models["orc_02"]->get_position().z);
     m_level->update(deltatime);
-    //m_character_controller->update(deltatime);
-    m_camera_controller->update(deltatime);
+    m_character_controller->update(deltatime);
+    //m_camera_controller->update(deltatime);
     
     m_ai_character_controllers["human_02"]->update(deltatime);
     m_ai_character_controllers["orc_01"]->update(deltatime);
@@ -340,12 +340,12 @@ void demo_game_scene::on_key_up(i32 key)
 
 void demo_game_scene::on_move_state_changed(i32 state)
 {
-    m_camera_controller->set_move_state(state);
-    //m_character_controller->set_move_state(state);
+    //m_camera_controller->set_move_state(state);
+    m_character_controller->set_move_state(state);
 }
 
 void demo_game_scene::on_rotate_state_changed(i32 state)
 {
-    m_camera_controller->set_rotate_state(state);
-    //m_character_controller->set_rotate_state(state);
+    //m_camera_controller->set_rotate_state(state);
+    m_character_controller->set_rotate_state(state);
 }
