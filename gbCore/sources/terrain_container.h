@@ -251,6 +251,7 @@ namespace gb
         texture_shared_ptr m_deep_texture;
         
         void erase_geometry();
+        void erase_debug_geometry();
         void erase_mask_textures();
         void erase_diffuse_textures();
         void erase_normal_textures();
@@ -275,6 +276,7 @@ namespace gb
         
         void init(const glm::ivec2& size);
         void mmap_geometry(const std::string& filename);
+        void mmap_debug_geometry(const std::string& filename);
         void mmap_mask_textures(const std::string& filename);
         void mmap_diffuse_textures(const std::string& filename);
         void mmap_normal_textures(const std::string& filename);

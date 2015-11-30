@@ -208,6 +208,9 @@ namespace gb
             terrain_geometry_generator::generate_tangent_space(m_container, filename);
             terrain_geometry_generator::generate_attaches_to_vbo(m_container, filename);
             
+            terrain_geometry_generator::generate_debug_tbn(m_container, filename);
+            m_container->mmap_debug_geometry(filename);
+            
             terrain_accessor::create_bounding_boxes();
         });
         completion_operation->add_dependency(mmap_geometry_operation);
@@ -460,6 +463,26 @@ namespace gb
         {
             terrain_accessor::erase_chunk_data(index);
         }
+    }
+    
+    mesh_shared_ptr terrain_accessor::get_tbn_debug_mesh(i32 i, i32 j)
+    {
+        ui32 index = i + j * m_container->get_chunks_num().x;
+        vbo_shared_ptr vbo = std::make_shared<gb::vbo>(m_container->get_debug_tbn_vbo_mmap(index)->get_size(),
+                                                       GL_STATIC_DRAW,
+                                                       m_container->get_debug_tbn_vbo_mmap(index)->get_pointer());
+        vbo->unlock();
+        
+        ibo_shared_ptr ibo = std::make_shared<gb::ibo>(m_container->get_debug_tbn_ibo_mmap(index)->get_size(),
+                                                       GL_STATIC_DRAW,
+                                                       m_container->get_debug_tbn_ibo_mmap(index)->get_source_pointer());
+        ibo->unlock();
+        
+        std::ostringstream stringstream;
+        stringstream<<"chunk_debug_tbn_"<<index<<std::endl;
+        mesh_shared_ptr mesh = mesh::construct(stringstream.str(), vbo, ibo,
+                                               std::get<0>(m_chunks_bounds[index]), std::get<1>(m_chunks_bounds[index]), GL_LINES);
+        return mesh;
     }
     
     f32 terrain_accessor::get_angle(const glm::vec3& point_01,

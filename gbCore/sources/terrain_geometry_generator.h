@@ -28,8 +28,8 @@ namespace gb
         static void create_smooth_texcoord(const terrain_container_shared_ptr& container, const std::string& filename);
         static void create_attaches_to_vbo(const terrain_container_shared_ptr& container, const std::string& filename);
         
-        static void create_debug_normals_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename);
-        static void create_debug_normals_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_debug_tbn_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename);
+        static void create_debug_tbn_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename);
         
         static glm::vec3 generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
                                           const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03);
@@ -52,6 +52,8 @@ namespace gb
         
         static void generate_tangent_space(const std::shared_ptr<terrain_container>& container, const std::string& filename);
         static void generate_tangent_space(const std::shared_ptr<terrain_container>& container, ui32 index);
+        
+        static void generate_debug_tbn(const std::shared_ptr<terrain_container>& container, const std::string& filename);
         
         static void generate_attaches_to_vbo(const std::shared_ptr<terrain_container>& container, const std::string& filename);
         

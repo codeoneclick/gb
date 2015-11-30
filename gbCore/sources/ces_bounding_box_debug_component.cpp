@@ -37,8 +37,8 @@ namespace gb
             g_default_material->set_stencil_function_parameter_2(255);
             g_default_material->set_stencil_mask_parameter(255);
             
-            g_default_material->set_depth_test(true);
-            g_default_material->set_depth_mask(true);
+            g_default_material->set_depth_test(false);
+            g_default_material->set_depth_mask(false);
             
             g_default_material->set_clipping(false);
             g_default_material->set_clipping_plane(glm::vec4(0.f));

@@ -91,6 +91,8 @@ namespace gb
                                  const std::function<void(const texture_shared_ptr&, const texture_shared_ptr&)>& callback_textures_loaded);
         void start_chunk_unloading(i32 i, i32 j);
         
+        mesh_shared_ptr get_tbn_debug_mesh(i32 i, i32 j);
+        
         void update();
         void update_vertices(const std::vector<glm::vec3>& vertices,
                              const glm::ivec2& min_bound, const glm::ivec2& max_bound);

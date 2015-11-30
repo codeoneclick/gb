@@ -113,12 +113,13 @@ namespace gb
                     {
                         m_chunks[index]->set_inprogress_lod(lod);
                         
-                        m_terrain_accessor->start_chunk_loading(i, j, lod, [this, index] (const mesh_shared_ptr& mesh) {
+                        m_terrain_accessor->start_chunk_loading(i, j, lod, [this, index, i, j] (const mesh_shared_ptr& mesh) {
                             
                             m_chunks[index]->set_mesh(mesh);
+                            m_chunks[index]->set_debug_tbn_enabled(true);
                             if(m_chunks[index]->is_debug_tbn_enabled())
                             {
-                                
+                                m_chunks[index]->set_debug_tbn_mesh(m_terrain_accessor->get_tbn_debug_mesh(i, j));
                             }
                             
                         }, [this, index, lod] (const texture_shared_ptr& diffuse_texture, const texture_shared_ptr& normal_displace_texture) {

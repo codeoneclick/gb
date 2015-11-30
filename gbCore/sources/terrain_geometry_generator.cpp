@@ -24,8 +24,6 @@ namespace gb
             terrain_geometry_generator::create_vertices_data(container, size, heights, filename);
             terrain_geometry_generator::create_vbos_data(container, filename);
             terrain_geometry_generator::create_ibos_data(container, filename);
-            terrain_geometry_generator::create_debug_normals_vbos_data(container, filename);
-            terrain_geometry_generator::create_debug_normals_ibos_data(container, filename);
         }
         else
         {
@@ -37,16 +35,6 @@ namespace gb
             if(!terrain_loader::is_ibos_mmap_exist(filename))
             {
                 terrain_geometry_generator::create_ibos_data(container, filename);
-            }
-            
-            if(!terrain_loader::is_debug_tbn_vbos_mmap_exist(filename))
-            {
-                terrain_geometry_generator::create_debug_normals_vbos_data(container, filename);
-            }
-            
-            if(!terrain_loader::is_debug_tbn_ibos_mmap_exist(filename))
-            {
-                terrain_geometry_generator::create_debug_normals_ibos_data(container, filename);
             }
         }
     }
@@ -125,7 +113,13 @@ namespace gb
         {
             compressed_vertices[i].m_position = uncompressed_vertices[i].m_position;
             compressed_vertices[i].m_texcoord = glm::packUnorm2x16(uncompressed_vertices[i].m_texcoord);
-            compressed_vertices[i].m_normal = glm::packSnorm4x8(glm::vec4(uncompressed_vertices[i].m_normal, 0.0f));
+            compressed_vertices[i].m_normal = glm::packSnorm4x8(glm::vec4(uncompressed_vertices[i].m_normal, 0.f));
+            
+            /*glm::vec3 raw_normal = uncompressed_vertices[i].m_normal;
+            std::cout<<"raw normal: "<<raw_normal.x<<", "<<raw_normal.y<<", "<<raw_normal.z<<std::endl;
+            
+            glm::vec4 unpacked_normal = glm::unpackSnorm4x8(compressed_vertices[i].m_normal);
+            std::cout<<"unpacked normal: "<<unpacked_normal.x<<", "<<unpacked_normal.y<<", "<<unpacked_normal.z<<std::endl;*/
         }
         
         { // writing compressed vertices metadata
@@ -433,7 +427,7 @@ namespace gb
         stream.close();
     }
     
-    void terrain_geometry_generator::create_debug_normals_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename)
+    void terrain_geometry_generator::create_debug_tbn_vbos_data(const terrain_container_shared_ptr& container, const std::string& filename)
     {
         std::ofstream stream;
         stream.open(terrain_loader::get_debug_tbn_vbos_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
@@ -442,33 +436,55 @@ namespace gb
             assert(false);
         }
         
-        glm::ivec2 vertices_offset(0);
         vbo::vertex_attribute vertex;
         for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
         {
-            vertices_offset.y = 0;
             for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
             {
-                for(ui32 x = 0; x < container->get_chunk_size().x; ++x)
+                ui32 index = i + j * container->get_chunks_num().x;
+                
+                vbo::vertex_attribute* vertices = container->get_vbo_mmap(index)->get_pointer();
+                ui32 num_vertices = container->get_vbo_mmap(index)->get_size();
+                
+                for(ui32 k = 0; k < num_vertices; ++k)
                 {
-                    for(ui32 y = 0; y < container->get_chunk_size().y; ++y)
-                    {
-                        vertex.m_position = container->get_vertex_position(x + vertices_offset.x, y + vertices_offset.y);
-                        stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
-                        
-                        vertex.m_position = container->get_vertex_position(x + vertices_offset.x, y + vertices_offset.y) +
-                        container->get_uncompressed_vertex_normal(x + vertices_offset.x, y + vertices_offset.y);
-                        stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
-                    }
+                    //normal
+                    vertex.m_position = vertices[k].m_position;
+                    vertex.m_color = glm::u8vec4(0, 255, 0, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    
+                    glm::vec4 normal = glm::unpackSnorm4x8(vertices[k].m_normal);
+                    vertex.m_position = vertices[k].m_position + glm::vec3(normal.x, normal.y, normal.z);
+                    vertex.m_color = glm::u8vec4(0, 255, 0, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    
+                    //tangent
+                    vertex.m_position = vertices[k].m_position;
+                    vertex.m_color = glm::u8vec4(255, 0, 0, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    
+                    glm::vec4 tangent = glm::unpackSnorm4x8(vertices[k].m_tangent);
+                    vertex.m_position = vertices[k].m_position + glm::vec3(tangent.x, tangent.y, tangent.z);
+                    vertex.m_color = glm::u8vec4(255, 0, 0, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    
+                    //bitangent
+                    vertex.m_position = vertices[k].m_position;
+                    vertex.m_color = glm::u8vec4(0, 0, 255, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
+                    
+                    glm::vec3 bitangent = glm::cross(glm::vec3(normal.x, normal.y, normal.z),
+                                                     glm::vec3(tangent.x, tangent.y, tangent.z));
+                    vertex.m_position = vertices[k].m_position + bitangent;
+                    vertex.m_color = glm::u8vec4(0, 0, 255, 255);
+                    stream.write((char*)&vertex, sizeof(vbo::vertex_attribute));
                 }
-                vertices_offset.y += container->get_chunk_size().y - 1;
             }
-            vertices_offset.x += container->get_chunk_size().x - 1;
         }
         stream.close();
     }
     
-    void terrain_geometry_generator::create_debug_normals_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename)
+    void terrain_geometry_generator::create_debug_tbn_ibos_data(const terrain_container_shared_ptr& container, const std::string& filename)
     {
         std::ofstream stream;
         stream.open(terrain_loader::get_debug_tbn_ibos_mmap_filename(filename), std::ios::binary | std::ios::out | std::ios::trunc);
@@ -477,15 +493,23 @@ namespace gb
             assert(false);
         }
 
-        ui16 index = 0;
         for(ui32 i = 0; i < container->get_chunks_num().x; ++i)
         {
             for(ui32 j = 0; j < container->get_chunks_num().y; ++j)
             {
+                ui16 index = 0;
                 for(ui32 x = 0; x < container->get_chunk_size().x; ++x)
                 {
                     for(ui32 y = 0; y < container->get_chunk_size().y; ++y)
                     {
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
+                        stream.write((char*)&index, sizeof(ui16));
+                        index++;
                         stream.write((char*)&index, sizeof(ui16));
                         index++;
                         stream.write((char*)&index, sizeof(ui16));
@@ -585,6 +609,19 @@ namespace gb
         }
     }
     
+    void terrain_geometry_generator::generate_debug_tbn(const std::shared_ptr<terrain_container>& container, const std::string& filename)
+    {
+        if(!terrain_loader::is_debug_tbn_vbos_mmap_exist(filename))
+        {
+            terrain_geometry_generator::create_debug_tbn_vbos_data(container, filename);
+        }
+        
+        if(!terrain_loader::is_debug_tbn_ibos_mmap_exist(filename))
+        {
+            terrain_geometry_generator::create_debug_tbn_ibos_data(container, filename);
+        }
+    }
+    
     glm::vec3 terrain_geometry_generator::generate_tangent(const glm::vec3& point_01, const glm::vec3& point_02, const glm::vec3& point_03,
                                                            const glm::vec2& texcoord_01, const glm::vec2& texcoord_02, const glm::vec2& texcoord_03)
     {
@@ -625,7 +662,7 @@ namespace gb
         v = glm::normalize(v);
         f32 t = glm::dot( v, c );
         
-        if ( t < 0.0f )
+        if ( t < 0.f )
             return a;
         if ( t > d )
             return b;
@@ -838,7 +875,13 @@ namespace gb
             }
             container->get_uncopressed_vertices()[index].m_normal = glm::normalize(normal);
             container->get_compressed_vertices()[index].m_position = container->get_uncopressed_vertices()[index].m_position;
+            
+            glm::vec3 raw_normal = container->get_uncopressed_vertices()[index].m_normal;
+            std::cout<<"raw normal: "<<raw_normal.x<<", "<<raw_normal.y<<", "<<raw_normal.z<<std::endl;
             container->get_compressed_vertices()[index].m_normal = glm::packSnorm4x8(glm::vec4(container->get_uncopressed_vertices()[index].m_normal, 0.f));
+            
+            glm::vec4 unpacked_normal = glm::unpackSnorm4x8(container->get_compressed_vertices()[index].m_normal);
+            std::cout<<"unpacked normal: "<<unpacked_normal.x<<", "<<unpacked_normal.y<<", "<<unpacked_normal.z<<std::endl;
         }
     }
 }
