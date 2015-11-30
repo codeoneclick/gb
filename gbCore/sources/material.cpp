@@ -45,8 +45,6 @@ namespace gb
             
             gl_enable(GL_DEPTH_TEST);
             gl_depth_mask(true);
-            
-            glEnable(GL_LINE_SMOOTH);
         });
         return m_cached_parameters;
     }

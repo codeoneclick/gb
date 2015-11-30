@@ -113,19 +113,19 @@ gb::game_scene(transition)
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
    
-    m_instanced_omni_lights->set_radius(3.f, 0);
+    m_instanced_omni_lights->set_radius(7.f, 0);
     m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 0.f, 1.f), 0);
     m_instanced_omni_lights->set_radius(3.f, 1);
     
-    m_instanced_omni_lights->set_radius(3.f, 2);
+    m_instanced_omni_lights->set_radius(7.f, 2);
     m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 1.f, 1.f), 2);
     m_instanced_omni_lights->set_radius(3.f, 3);
     
-    m_instanced_omni_lights->set_radius(3.f, 4);
+    m_instanced_omni_lights->set_radius(7.f, 4);
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 0.f, 0.f, 1.f), 4);
     m_instanced_omni_lights->set_radius(3.f, 5);
     
-    m_instanced_omni_lights->set_radius(3.f, 6);
+    m_instanced_omni_lights->set_radius(7.f, 6);
     m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
     m_instanced_omni_lights->set_radius(3.f, 7);
     

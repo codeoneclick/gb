@@ -78,6 +78,6 @@ const char* shader_splatting_rgba8888_frag = string_shader
     }
     
     diffuse_color.a = alpha;
-    gl_FragColor = diffuse_color;
+    gl_FragColor = vec4(texture2D(sampler_02, v_texcoord_scaled).xyz, texture2D(sampler_05, v_texcoord_scaled).r);
 }
  );

@@ -26,8 +26,8 @@ namespace gb
     
     const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_01 = glm::ivec2(1024);
     const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_02 = glm::ivec2(512);
-    const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_03 = glm::ivec2(128);
-    const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_04 = glm::ivec2(64);
+    const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_03 = glm::ivec2(256);
+    const glm::ivec2 terrain_texture_generator::k_splatting_texture_size_lod_04 = glm::ivec2(128);
     
     std::once_flag g_create_splatting_material_once;
     material_shared_ptr terrain_texture_generator::get_splatting_material(const std::vector<texture_shared_ptr>& textures)

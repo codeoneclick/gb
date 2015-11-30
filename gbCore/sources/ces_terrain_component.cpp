@@ -116,7 +116,6 @@ namespace gb
                         m_terrain_accessor->start_chunk_loading(i, j, lod, [this, index, i, j] (const mesh_shared_ptr& mesh) {
                             
                             m_chunks[index]->set_mesh(mesh);
-                            m_chunks[index]->set_debug_tbn_enabled(true);
                             if(m_chunks[index]->is_debug_tbn_enabled())
                             {
                                 m_chunks[index]->set_debug_tbn_mesh(m_terrain_accessor->get_tbn_debug_mesh(i, j));
