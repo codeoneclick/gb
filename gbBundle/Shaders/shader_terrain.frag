@@ -20,55 +20,50 @@ uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
 uniform sampler2DShadow sampler_03;
 
-const float k_scale = 0.0025;
+const float k_scale = 0.0033;
 const float k_min_steps_num = 8;
-const float k_max_steps_num = 16;
+const float k_max_steps_num = 32;
 
 vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_direction_ts, in vec3 normal_ts)
 {
-    float current_height = 0.0;
-    float current_bound = 1.0;
-    float previous_height = 1.0;
+    vec2 parallax_limit = camera_direction_ts.xy * -length(camera_direction_ts.xy) / camera_direction_ts.z * k_scale;
+    float current_ray_height = 1.0;
+    float current_sampler_height = 0.0;
+    float previous_sampler_height = 1.0;
     vec2 current_texcoord = v_texcoord;
     
     float steps_num = mix(k_min_steps_num, k_max_steps_num, dot(camera_direction_ts, normal_ts));
     float step_size = 1.0 / steps_num;
     vec2 step_offset = camera_direction_ts.xy * k_scale / ( steps_num * camera_direction_ts.z );
     
-    float height_color = (1.0 - texture2D(sampler, current_texcoord).a);
-    
-    vec2 pt1 = vec2(0.0);
-    vec2 pt2 = vec2(0.0);
+    vec2 current_texcoord_offset = vec2(0.0);
+    vec2 previous_texcoord_offset = vec2(0.0);
     
     float step_index = 0;
     while(step_index < steps_num)
     {
-        current_texcoord -= step_offset;
-        
-        current_height = (1.0 - texture2D(sampler, current_texcoord).a);
-        
-        current_bound -= step_size;
-        
-        if (current_height > current_bound)
+        current_sampler_height = texture2D(sampler, current_texcoord + current_texcoord_offset).a;
+        if (current_sampler_height > current_ray_height)
         {
-            pt1 = vec2(current_bound, current_height);
-            pt2 = vec2(current_bound + step_size, previous_height);
+            float delta1 = current_sampler_height - current_ray_height;
+            float delta2 = (current_ray_height + step_size) - previous_sampler_height;
+            float ratio = delta1 / (delta1 + delta2);
+
+            current_texcoord_offset = ratio * previous_texcoord_offset + (1.0 - ratio) * current_texcoord_offset;
             
             step_index = steps_num + 1.0;
         }
         else
         {
             step_index++;
-            previous_height = current_height;
+            
+            current_ray_height -= step_size;
+            previous_texcoord_offset = current_texcoord_offset;
+            current_texcoord_offset += step_size * parallax_limit;
+            previous_sampler_height = current_sampler_height;
         }
     }
-    
-    float delta2 = pt2.x - pt2.y;
-    float delta1 = pt1.x - pt1.y;
-    float parallax_amount = (pt1.x * delta2 - pt2.x * delta1) / (delta2 - delta1);
-    
-    vec2 parallax_offset = step_offset * (1.0 - parallax_amount);
-    current_texcoord = v_texcoord + parallax_offset;
+    current_texcoord = v_texcoord + current_texcoord_offset;
     
     /*vec2 previous_texcoord = current_texcoord;
     float previous_height_color = height_color;
@@ -87,6 +82,7 @@ vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_dir
     float weight = current_height / (current_height - previous_height);
     
     current_texcoord = weight * previous_texcoord + (1.0 - weight) * current_texcoord;*/
+    
     return current_texcoord;
 }
 

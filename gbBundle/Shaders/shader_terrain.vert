@@ -1,7 +1,6 @@
 
 #if defined(__OPENGL_30__)
 
-out vec3 v_position;
 out vec2 v_texcoord;
 out vec3 v_camera_direction_ts;
 out vec3 v_normal_ts;
@@ -9,7 +8,6 @@ out vec4 v_shadow_parameters;
 
 #else
 
-varying vec3 v_position;
 varying vec2 v_texcoord;
 varying vec3 v_camera_direction_ts;
 varying vec3 v_normal_ts;
@@ -40,6 +38,7 @@ void main(void)
     gl_ClipDistance[0] = dot(position, u_vec_clip);
     
     v_texcoord = a_texcoord;
+    
     vec3 normal = a_normal.xyz;
     vec3 tangent = a_tangent.xyz;
     vec3 bitangent = cross(-normal, tangent);
