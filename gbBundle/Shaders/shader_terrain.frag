@@ -21,8 +21,8 @@ uniform sampler2D sampler_02;
 uniform sampler2DShadow sampler_03;
 
 const float k_scale = 0.0033;
-const float k_min_steps_num = 8;
-const float k_max_steps_num = 32;
+const float k_min_steps_num = 8.0;
+const float k_max_steps_num = 32.0;
 
 vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_direction_ts, in vec3 normal_ts)
 {
@@ -39,7 +39,7 @@ vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_dir
     vec2 current_texcoord_offset = vec2(0.0);
     vec2 previous_texcoord_offset = vec2(0.0);
     
-    float step_index = 0;
+    float step_index = 0.0;
     while(step_index < steps_num)
     {
         current_sampler_height = texture2D(sampler, current_texcoord + current_texcoord_offset).a;
@@ -64,25 +64,6 @@ vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_dir
         }
     }
     current_texcoord = v_texcoord + current_texcoord_offset;
-    
-    /*vec2 previous_texcoord = current_texcoord;
-    float previous_height_color = height_color;
-    
-    while (height_color < current_height)
-    {
-        previous_texcoord = current_texcoord;
-        previous_height_color = height_color;
-        current_height -= step_size;
-        current_texcoord += step_offset;
-        height_color = (1.0 - texture2D(sampler, current_texcoord).a);
-    }
-    
-    float previous_height = (1.0 - texture2D (sampler, previous_texcoord).a) - (current_height + step_size);
-    current_height = height_color - current_height;
-    float weight = current_height / (current_height - previous_height);
-    
-    current_texcoord = weight * previous_texcoord + (1.0 - weight) * current_texcoord;*/
-    
     return current_texcoord;
 }
 

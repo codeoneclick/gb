@@ -18,8 +18,8 @@ varying mat3 v_mat_tangent_space;
 uniform sampler2D sampler_02;
 
 const float k_scale = 0.0033;
-const float k_min_steps_num = 8;
-const float k_max_steps_num = 32;
+const float k_min_steps_num = 8.0;
+const float k_max_steps_num = 32.0;
 
 vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_direction_ts, in vec3 normal_ts)
 {
@@ -36,7 +36,7 @@ vec2 get_pom_texcoord(in sampler2D sampler, in vec2 texcoord, in vec3 camera_dir
     vec2 current_texcoord_offset = vec2(0.0);
     vec2 previous_texcoord_offset = vec2(0.0);
     
-    float step_index = 0;
+    float step_index = 0.0;
     while(step_index < steps_num)
     {
         current_sampler_height = texture2D(sampler, current_texcoord + current_texcoord_offset).a;
