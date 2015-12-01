@@ -107,8 +107,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    //scene_graph_inst->add_direction_light(m_direction_light);
-    //m_direction_light->set_intensity(.25f);
+    scene_graph_inst->add_direction_light(m_direction_light);
+    m_direction_light->set_intensity(.25f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
