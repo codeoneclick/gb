@@ -37,11 +37,11 @@ gb::game_scene(transition)
                                                                                   game_scene::get_transition()->get_width(),
                                                                                   game_scene::get_transition()->get_height()));
     m_camera->set_distance_to_look_at(glm::vec3(16.f));
-    m_camera->set_position(glm::vec3(-8.f, 8.f, 8.f));
+    m_camera->set_position(glm::vec3(-8.f, 12.f, 8.f));
     
     m_shadow_cast_light = scene_fabricator_inst->create_shadow_cast_light(90.f, .1f, 128.f);
     
-    m_models["human_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_01.xml");
+    m_models["human_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.orc_01.xml");
     m_models["human_02"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_02.xml");
     m_models["orc_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.orc_01.xml");
     m_models["orc_02"] = scene_fabricator_inst->create_model3d_animated("gameobject.orc_02.xml");
@@ -83,10 +83,10 @@ gb::game_scene(transition)
     //m_models["orc_01"]->set_position(glm::vec3(4.f, .5f, 8.f));
     //m_models["orc_02"]->set_position(glm::vec3(2.f, .5f, 4.f));
     
-    m_models["human_01"]->set_scale(glm::vec3(.5f));
-    m_models["human_02"]->set_scale(glm::vec3(.5f));
-    m_models["orc_01"]->set_scale(glm::vec3(.5f));
-    m_models["orc_02"]->set_scale(glm::vec3(.5f));
+    m_models["human_01"]->set_scale(glm::vec3(.33f));
+    m_models["human_02"]->set_scale(glm::vec3(.33f));
+    m_models["orc_01"]->set_scale(glm::vec3(.33f));
+    m_models["orc_02"]->set_scale(glm::vec3(.33f));
     
     //m_models["human_02"]->set_touches_receives_enabled(true);
     //m_models["human_02"]->set_debug_draw_enabled(true);
@@ -105,8 +105,8 @@ gb::game_scene(transition)
     m_omni_lights["omni_light_02"]->set_position(glm::vec3(16.f, 3.f, 16.f));*/
     
     m_direction_light = scene_fabricator_inst->create_direction_light();
-    scene_graph_inst->add_direction_light(m_direction_light);
-    m_direction_light->set_intensity(.1f);
+    //scene_graph_inst->add_direction_light(m_direction_light);
+    //m_direction_light->set_intensity(.1f);
     
     m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(9);
     scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
