@@ -214,13 +214,13 @@ void demo_game_scene::update(f32 deltatime)
     m_level->update(deltatime);
     m_character_controller->update(deltatime);
     
-    m_ai_character_controllers["human_02"]->update(deltatime);
-    m_ai_character_controllers["orc_01"]->update(deltatime);
-    m_ai_character_controllers["orc_02"]->update(deltatime);
+    //m_ai_character_controllers["human_02"]->update(deltatime);
+    //m_ai_character_controllers["orc_01"]->update(deltatime);
+    //m_ai_character_controllers["orc_02"]->update(deltatime);
     
-    m_ai_character_controllers["human_02"]->set_goal_position(m_models["human_01"]->get_position());
-    m_ai_character_controllers["orc_01"]->set_goal_position(m_models["human_01"]->get_position());
-    m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
+    //m_ai_character_controllers["human_02"]->set_goal_position(m_models["human_01"]->get_position());
+    //m_ai_character_controllers["orc_01"]->set_goal_position(m_models["human_01"]->get_position());
+    //m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
     glm::vec3 light_position = m_models["human_01"]->get_position();
     light_position.y = 1.5f;

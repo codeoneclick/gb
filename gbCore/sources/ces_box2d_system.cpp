@@ -9,6 +9,7 @@
 #include "ces_box2d_system.h"
 #include "collision_manager.h"
 #include "ces_box2d_component.h"
+#include "ces_transformation_component.h"
 
 namespace gb
 {
@@ -33,10 +34,13 @@ namespace gb
         ces_box2d_component_shared_ptr box2d_component =
         std::static_pointer_cast<ces_box2d_component>(entity->get_component(e_ces_component_type_box2d));
         
+        ces_transformation_component_shared_ptr transformation_component =
+        std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
+        
         if(box2d_component && box2d_component->get_box2d_body())
         {
             box2d_component->on_position_changed(glm::vec3(box2d_component->get_box2d_body()->GetPosition().x,
-                                                           0.f,
+                                                           transformation_component->get_position().y,
                                                            box2d_component->get_box2d_body()->GetPosition().y));
             box2d_component->on_rotation_changed(box2d_component->get_box2d_body()->GetAngle());
         }

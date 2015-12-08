@@ -102,7 +102,6 @@ namespace koth
             m_navigation_state_move = e_navigation_state_move_none;
             
             m_position = box2d_component->get_position();
-            m_position.y = .5f;
         }
         m_game_object->set_position(m_position);
         m_game_object->set_rotation(m_rotation);
@@ -111,6 +110,7 @@ namespace koth
     void game_object_navigator::set_position(const glm::vec3& position)
     {
         m_position = position;
+        m_game_object->set_position(position);
         gb::ces_box2d_component_shared_ptr box2d_component = std::static_pointer_cast<gb::ces_box2d_component>(m_game_object->get_component(gb::e_ces_component_type_box2d));
         if(box2d_component && box2d_component->get_box2d_body())
         {

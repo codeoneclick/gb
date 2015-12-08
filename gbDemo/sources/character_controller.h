@@ -15,6 +15,13 @@
 
 namespace koth
 {
+    enum e_jump_state
+    {
+        e_jump_state_undefined = 0,
+        e_jump_state_starting,
+        e_jump_state_ending
+    };
+    
     class character_controller
     {
     private:
@@ -33,6 +40,9 @@ namespace koth
         void increaseSpeed();
         void decreaseSpeed();
         
+        bool m_is_jump_forward;
+        e_jump_state m_jump_state;
+        
     public:
         
         character_controller(const gb::game_object_shared_ptr& game_object,
@@ -46,6 +56,8 @@ namespace koth
         
         void set_move_state(i32 state);
         void set_rotate_state(i32 state);
+        
+        void jump_forward();
     };
 };
 

@@ -20,7 +20,9 @@ namespace koth
     m_camera(camera),
     m_move_state(koth::e_navigation_state_move_none),
     m_rotate_state(koth::e_navigation_state_rotate_none),
-    m_camera_move_speed(0.f)
+    m_camera_move_speed(0.f),
+    m_is_jump_forward(false),
+    m_jump_state(e_jump_state_undefined)
     {
         m_game_object_navigator = std::make_shared<game_object_navigator>(3.f,
                                                                           1.5f,
@@ -35,61 +37,96 @@ namespace koth
     
     void character_controller::update(f32 deltatime)
     {
-        bool isMoved = false;
-        switch (m_move_state)
+        if(!m_is_jump_forward)
         {
-            case koth::e_navigation_state_move_forward:
+            bool isMoved = false;
+            switch (m_move_state)
             {
-                m_game_object_navigator->move_forward();
-                isMoved = true;
-                character_controller::increaseSpeed();
+                case koth::e_navigation_state_move_forward:
+                {
+                    m_game_object_navigator->move_forward();
+                    isMoved = true;
+                    character_controller::increaseSpeed();
+                }
+                    break;
+                case koth::e_navigation_state_move_backward:
+                {
+                    m_game_object_navigator->move_backward();
+                    character_controller::decreaseSpeed();
+                    isMoved = true;
+                }
+                    break;
+                    
+                default:
+                {
+                    character_controller::decreaseSpeed();
+                }
+                    break;
             }
-                break;
-            case koth::e_navigation_state_move_backward:
+            
+            switch (m_rotate_state)
             {
-                m_game_object_navigator->move_backward();
-                character_controller::decreaseSpeed();
-                isMoved = true;
+                case koth::e_navigation_state_rotate_left:
+                {
+                    m_game_object_navigator->rotate_left();
+                    isMoved = true;
+                }
+                    break;
+                    
+                case koth::e_navigation_state_rotate_right:
+                {
+                    m_game_object_navigator->rotate_right();
+                    isMoved = true;
+                }
+                    break;
+                    
+                default:
+                    break;
             }
-                break;
-                
-            default:
+            
+            gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
+            if(isMoved)
             {
-                character_controller::decreaseSpeed();
+                animated_model->set_animation("RUN");
             }
-                break;
-        }
-        
-        switch (m_rotate_state)
-        {
-            case koth::e_navigation_state_rotate_left:
+            else
             {
-                m_game_object_navigator->rotate_left();
-                isMoved = true;
+                animated_model->set_animation("IDLE");
             }
-                break;
-                
-            case koth::e_navigation_state_rotate_right:
-            {
-                m_game_object_navigator->rotate_right();
-                isMoved = true;
-            }
-                break;
-                
-            default:
-                break;
-        }
-        
-        gb::model3d_animated_shared_ptr animated_model = std::static_pointer_cast<gb::model3d_animated>(m_game_object);
-        if(isMoved)
-        {
-            animated_model->set_animation("RUN");
+            m_game_object_navigator->update(deltatime);
         }
         else
         {
-            animated_model->set_animation("IDLE");
+            m_game_object_navigator->move_forward();
+            m_game_object_navigator->update(deltatime);
+            glm::vec3 position = m_game_object->get_position();
+            
+            if(m_jump_state == e_jump_state_starting)
+            {
+                if(position.y < 1.f)
+                {
+                    position.y += .1f;
+                }
+                else
+                {
+                    m_jump_state = e_jump_state_ending;
+                }
+            }
+            else if(m_jump_state == e_jump_state_ending)
+            {
+                if(position.y > 0.f)
+                {
+                    position.y -= .1f;
+                }
+                else
+                {
+                    m_jump_state = e_jump_state_undefined;
+                    m_is_jump_forward = false;
+                }
+            }
+            m_game_object_navigator->set_position(position);
+            //m_game_object->set_position(position);
         }
-        m_game_object_navigator->update(deltatime);
         
         if(m_camera)
         {
@@ -114,6 +151,10 @@ namespace koth
     
     void character_controller::set_move_state(i32 state)
     {
+        if(m_move_state == koth::e_navigation_state_move_backward)
+        {
+            character_controller::jump_forward();
+        }
         m_move_state = state;
     }
     
@@ -137,5 +178,10 @@ namespace koth
             m_camera_move_speed -= .05f;
         }
     }
-
+    
+    void character_controller::jump_forward()
+    {
+        m_is_jump_forward = true;
+        m_jump_state = e_jump_state_starting;
+    }
 }
