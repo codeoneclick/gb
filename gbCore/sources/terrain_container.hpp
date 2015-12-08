@@ -40,7 +40,7 @@ namespace gb
     {
         auto max = std::max_element(m_compressed_vertices, m_compressed_vertices + m_main_size.x * m_main_size.y, [](compressed_vertex const& value_01,
                                                                                                                      compressed_vertex const& value_02) {
-            return value_01.m_position.y > value_02.m_position.y;
+            return value_01.m_position.y < value_02.m_position.y;
         });
         return max->m_position.y;
     }
@@ -49,7 +49,7 @@ namespace gb
     {
         auto min = std::max_element(m_compressed_vertices, m_compressed_vertices + m_main_size.x * m_main_size.y, [] (compressed_vertex const& value_01,
                                                                                                                       compressed_vertex const& value_02) {
-            return value_01.m_position.y < value_02.m_position.y;
+            return value_01.m_position.y > value_02.m_position.y;
         });
         return min->m_position.y;
     }

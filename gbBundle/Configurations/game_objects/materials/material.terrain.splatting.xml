@@ -34,14 +34,14 @@
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01.png"
+        filename="img_02.png"
         render_operation_name=""
         sampler_index="1"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01.png"
+        filename="img_03.png"
         render_operation_name=""
         sampler_index="2"
         wrap_mode="GL_REPEAT"
@@ -55,14 +55,14 @@
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01_n.png"
+        filename="img_02_n.png"
         render_operation_name=""
         sampler_index="4"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01_n.png"
+        filename="img_03_n.png"
         render_operation_name=""
         sampler_index="5"
         wrap_mode="GL_REPEAT"
@@ -76,14 +76,14 @@
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01_d.png"
+        filename="img_02_d.png"
         render_operation_name=""
         sampler_index="7"
         wrap_mode="GL_REPEAT"
         mag_filter="GL_LINEAR"
         min_filter="GL_MIPMAP"/>
         <texture
-        filename="img_01_d.png"
+        filename="img_03_d.png"
         render_operation_name=""
         sampler_index="8"
         wrap_mode="GL_REPEAT"

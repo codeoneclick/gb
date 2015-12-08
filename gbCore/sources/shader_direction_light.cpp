@@ -54,7 +54,7 @@ const char* shader_direction_light_frag = string_shader
  uniform sampler2D  sampler_01;
  uniform sampler2D  sampler_02;
  
-//#define __SPECULAR__
+#define __SPECULAR__
 #if defined(__SPECULAR__)
  
  float specular_square = 16.0;
@@ -80,10 +80,11 @@ const char* shader_direction_light_frag = string_shader
     position = u_mat_i_vp * position;
     position.xyz = position.xyz / position.w;
     
-    float specular_intensity = ns_color.a;
-    vec3 camera_direction = normalize(u_vec_camera_position - position.xyz);
-    vec3 light_reflect = reflect(-u_light_direction, normal);
-    float specular = pow(clamp(dot(light_reflect, camera_direction), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
+    vec3 camera_direction = normalize(position.xyz - u_vec_camera_position);
+    
+    float specular_intensity = color.a;
+    vec3 half_vector = normalize(u_light_direction + camera_direction);
+    float specular = pow(clamp(dot(normal, half_vector), 0.0, 1.0), specular_square) * specular_intensity * specular_power;
     
 #else
     

@@ -17,7 +17,7 @@ varying mat3 v_mat_tangent_space;
 
 uniform sampler2D sampler_02;
 
-const float k_scale = 0.0033;
+const float k_scale = 0.005;
 const float k_min_steps_num = 8.0;
 const float k_max_steps_num = 32.0;
 

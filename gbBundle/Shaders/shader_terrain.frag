@@ -20,7 +20,7 @@ uniform sampler2D sampler_01;
 uniform sampler2D sampler_02;
 uniform sampler2DShadow sampler_03;
 
-const float k_scale = 0.0033;
+const float k_scale = 0.005;
 const float k_min_steps_num = 8.0;
 const float k_max_steps_num = 32.0;
 

@@ -69,12 +69,12 @@ const char* shader_splatting_rgba8888_frag = string_shader
     if(splatting_color.y > 0.0)
     {
         diffuse_color = diffuse_color + texture2D(sampler_03, v_texcoord_scaled) * splatting_color.y;
-        alpha = alpha + texture2D(sampler_06, v_texcoord_scaled).r * splatting_color.x;
+        alpha = alpha + texture2D(sampler_06, v_texcoord_scaled).r * splatting_color.y;
     }
     if(splatting_color.z > 0.0)
     {
         diffuse_color = diffuse_color + texture2D(sampler_04, v_texcoord_scaled) * splatting_color.z;
-        alpha = alpha + texture2D(sampler_07, v_texcoord_scaled).r * splatting_color.x;
+        alpha = alpha + texture2D(sampler_07, v_texcoord_scaled).r * splatting_color.z;
     }
     
     diffuse_color.a = alpha;

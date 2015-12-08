@@ -222,7 +222,9 @@ namespace gb
                                    static_cast<f32>(container->get_chunk_size().y) / static_cast<f32>(k_splatting_texture_mask_size.y));
         
         glm::vec3 offset = glm::vec3(0.f);
-        f32 max_height = terrain_container::k_max_height;
+        f32 max_height = container->get_max_height();
+        f32 min_height = container->get_min_height();
+        f32 sum_heights = max_height + fabsf(min_height);
         
         ui16* pixels = new ui16[k_splatting_texture_mask_size.x * k_splatting_texture_mask_size.y];
         
@@ -232,8 +234,22 @@ namespace gb
             for(ui32 y = 0; y < k_splatting_texture_mask_size.y; ++y)
             {
                 ui32 index = x + y * k_splatting_texture_mask_size.x;
+                f32 height = terrain_accessor::get_height(container, glm::vec3(offset.x + vertices_offset.x, 0.0f, offset.z + vertices_offset.y));
+                ui8 red = 0, green = 0, blue = 0;
+                if(height < 0.f)
+                {
+                    red = 255;
+                }
+                else if(height > max_height * .5f)
+                {
+                    blue = 255;
+                }
+                else
+                {
+                    green = 255;
+                }
                 
-                pixels[index] = TO_RGB565(255, 0, 0);
+                /*pixels[index] = TO_RGB565(255, 0, 0);
                 f32 height = terrain_accessor::get_height(container, glm::vec3(offset.x + vertices_offset.x, 0.0f, offset.z + vertices_offset.y)) + terrain_container::k_deep;
                 glm::vec3 normal = terrain_accessor::get_normal(container, glm::vec3(offset.x + vertices_offset.x, 0.0f, offset.z + vertices_offset.y));
                 
@@ -274,7 +290,7 @@ namespace gb
                 angle = glm::degrees(acosf(angle));
                 assert(angle >= 0.0);
                 angle = std::min(angle / 45.f, 1.f);
-                blue = std::max(static_cast<ui8>(glm::mix(0, 255, angle)), blue);
+                blue = std::max(static_cast<ui8>(glm::mix(0, 255, angle)), blue);*/
                 
                 pixels[index] = TO_RGB565(red, green, blue);
                 
@@ -449,8 +465,8 @@ namespace gb
         if(create)
         {
             data = new ui8[deep_texture_size * deep_texture_size];
-            f32 max_deep = container->get_min_height();
-
+            f32 max_deep = container->get_max_height();
+            
             glm::vec2 position_offset = glm::vec2(container->get_main_size().x / static_cast<f32>(deep_texture_size),
                                                   container->get_main_size().y / static_cast<f32>(deep_texture_size));
             for(i32 i = 0; i < deep_texture_size; ++i)
@@ -458,8 +474,8 @@ namespace gb
                 for(i32 j = 0; j < deep_texture_size; ++j)
                 {
                     f32 height = terrain_accessor::get_height(container, glm::vec3(position_offset.x * i,
-                                                                                     0.f,
-                                                                                     position_offset.y * j));
+                                                                                   0.f,
+                                                                                   position_offset.y * j));
                     height = height < 0.f ? fabsf(height) : 0.f;
                     height /= max_deep * .5f;
                     height = std::max(0.f, std::min(height, 1.f));
