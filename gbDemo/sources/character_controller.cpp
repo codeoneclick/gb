@@ -24,7 +24,7 @@ namespace koth
     m_is_jump_forward(false),
     m_jump_state(e_jump_state_undefined)
     {
-        m_game_object_navigator = std::make_shared<game_object_navigator>(3.f,
+        m_game_object_navigator = std::make_shared<game_object_navigator>(100.f,
                                                                           1.5f,
                                                                           2.f,
                                                                           game_object);
@@ -100,6 +100,7 @@ namespace koth
             m_game_object_navigator->move_forward();
             m_game_object_navigator->update(deltatime);
             glm::vec3 position = m_game_object->get_position();
+            f32 move_speed = 250.f;
             
             if(m_jump_state == e_jump_state_starting)
             {
@@ -122,10 +123,12 @@ namespace koth
                 {
                     m_jump_state = e_jump_state_undefined;
                     m_is_jump_forward = false;
+                    move_speed = 100.f;
                 }
             }
+            
             m_game_object_navigator->set_position(position);
-            //m_game_object->set_position(position);
+            m_game_object_navigator->set_move_forward_speed(move_speed);
         }
         
         if(m_camera)

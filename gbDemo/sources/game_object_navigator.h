@@ -54,6 +54,8 @@ namespace koth
                               const gb::game_object_shared_ptr& game_object);
         ~game_object_navigator();
         
+        void set_move_forward_speed(f32 move_forward_speed);
+        
         void update(f32 deltatime);
         
         void set_position(const glm::vec3& position);

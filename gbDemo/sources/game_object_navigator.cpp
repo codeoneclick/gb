@@ -33,6 +33,11 @@ namespace koth
         
     }
     
+    void game_object_navigator::set_move_forward_speed(f32 move_forward_speed)
+    {
+        m_move_forward_speed = move_forward_speed;
+    }
+    
     void game_object_navigator::update(f32 deltatime)
     {
         gb::ces_box2d_component_shared_ptr box2d_component = std::static_pointer_cast<gb::ces_box2d_component>(m_game_object->get_component(gb::e_ces_component_type_box2d));
@@ -72,15 +77,15 @@ namespace koth
             {
                 case e_navigation_state_move_forward:
                 {
-                    velocity.x += sinf(glm::radians(m_rotation.y)) * m_move_forward_speed;
-                    velocity.y += cosf(glm::radians(m_rotation.y)) * m_move_forward_speed;
+                    velocity.x += sinf(glm::radians(m_rotation.y)) * m_move_forward_speed * deltatime;
+                    velocity.y += cosf(glm::radians(m_rotation.y)) * m_move_forward_speed * deltatime;
                 }
                     break;
                     
                 case e_navigation_state_move_backward:
                 {
-                    velocity.x -= sinf(glm::radians(m_rotation.y)) * m_move_backward_speed;
-                    velocity.y -= cosf(glm::radians(m_rotation.y)) * m_move_backward_speed;
+                    velocity.x -= sinf(glm::radians(m_rotation.y)) * m_move_backward_speed * deltatime;
+                    velocity.y -= cosf(glm::radians(m_rotation.y)) * m_move_backward_speed * deltatime;
 
                 }
                     break;
