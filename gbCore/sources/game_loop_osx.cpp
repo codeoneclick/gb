@@ -21,8 +21,8 @@
 
 + (game_loop_osx*)shared_instance;
 
-- (void)add_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
-- (void)remove_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
+- (void)add_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
+- (void)remove_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
 
 @end
 
@@ -49,13 +49,13 @@
     return self;
 }
 
-- (void)add_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener
+- (void)add_listener:(const std::shared_ptr<gb::i_game_loop>&)listener
 {
     assert(self.m_game_loop);
     self.m_game_loop->add_listener(listener);
 }
 
-- (void)remove_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
+- (void)remove_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
 {
     assert(self.m_game_loop);
     self.m_game_loop->remove_listener(listener);
@@ -76,11 +76,11 @@
 
 namespace gb
 {
-    void add_listener_to_game_loop(const std::shared_ptr<game_loop_interface>& listener)
+    void add_listener_to_game_loop(const std::shared_ptr<i_game_loop>& listener)
     {
         [[game_loop_osx shared_instance] add_listener:listener];
     }
-    void remove_listener_from_game_loop(const std::shared_ptr<game_loop_interface>& listener)
+    void remove_listener_from_game_loop(const std::shared_ptr<i_game_loop>& listener)
     {
         [[game_loop_osx shared_instance] remove_listener:listener];
     }

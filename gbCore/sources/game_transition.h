@@ -19,7 +19,7 @@
 namespace gb
 {
     class game_transition : public input_context_listener,
-    public game_loop_interface,
+    public i_game_loop,
     public std::enable_shared_from_this<game_transition>
     {
     private:
@@ -43,8 +43,8 @@ namespace gb
         configuration_accessor_shared_ptr m_configuration_accessor;
         resource_accessor_shared_ptr m_resource_accessor;
         
-        std::map<i32, game_fabricator_interface_shared_ptr> m_fabricators;
-        std::map<i32, game_graph_interface_shared_ptr> m_graps;
+        std::map<i32, i_scene_fabricator_shared_ptr> m_fabricators;
+        std::map<i32, i_scene_graph_shared_ptr> m_graphs;
         
         virtual void on_gr_pressed(const glm::ivec2& point, e_input_element input_element) { };
         virtual void on_gr_released(const glm::ivec2& point, e_input_element input_element) { };
@@ -68,15 +68,15 @@ namespace gb
         
         std::string get_guid() const;
         
-        game_fabricator_interface_shared_ptr get_fabricator(i32 id) const;
-        game_graph_interface_shared_ptr get_graph(i32 id) const;
+        i_scene_fabricator_shared_ptr get_fabricator(i32 guid) const;
+        i_scene_graph_shared_ptr get_graph(i32 guid) const;
         ces_system_shared_ptr get_system(e_ces_system_type type);
         
-        void add_fabricator(const game_fabricator_interface_shared_ptr& fabricator, i32 id);
-        void remove_fabricator(i32 id);
+        void add_fabricator(const i_scene_fabricator_shared_ptr& fabricator, i32 guid);
+        void remove_fabricator(i32 guid);
         
-        void add_graph(const game_graph_interface_shared_ptr& graph, i32 id);
-        void remove_graph(i32 id);
+        void add_graph(const i_scene_graph_shared_ptr& graph, i32 guid);
+        void remove_graph(i32 guid);
         
         i32 get_width() const;
         i32 get_height() const;

@@ -19,7 +19,6 @@
 #include "ces_particle_emitter_system.h"
 #include "ces_skybox_system.h"
 #include "ces_ocean_system.h"
-#include "ces_terrain_system.h"
 #include "transition_configuration.h"
 #include "render_pipeline.h"
 #include "graphics_context.h"
@@ -161,10 +160,6 @@ namespace gb
         std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>(resource_accessor);
         m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
         
-        std::shared_ptr<ces_terrain_system> terrain_system = std::make_shared<ces_terrain_system>(graphics_context,
-                                                                                                        resource_accessor);
-        m_system_feeder->add_system(terrain_system, e_ces_system_type_terrain);
-        
         ces_batch_system_shared_ptr batch_system = std::make_shared<ces_batch_system>();
         m_system_feeder->add_system(batch_system, e_ces_system_type_batch);
         
@@ -191,7 +186,7 @@ namespace gb
         }
     }
     
-    void game_transition::add_fabricator(const game_fabricator_interface_shared_ptr& fabricator, i32 id)
+    void game_transition::add_fabricator(const i_scene_fabricator_shared_ptr& fabricator, i32 id)
     {
         const auto& iteraror = m_fabricators.find(id);
         if(iteraror == m_fabricators.end())
@@ -206,9 +201,9 @@ namespace gb
         }
     }
     
-    void game_transition::remove_fabricator(i32 id)
+    void game_transition::remove_fabricator(i32 guid)
     {
-        const auto& iteraror = m_fabricators.find(id);
+        const auto& iteraror = m_fabricators.find(guid);
         if(iteraror != m_fabricators.end())
         {
             m_fabricators.erase(iteraror);
@@ -219,14 +214,14 @@ namespace gb
         }
     }
     
-    void game_transition::add_graph(const game_graph_interface_shared_ptr& graph, i32 id)
+    void game_transition::add_graph(const i_scene_graph_shared_ptr& graph, i32 guid)
     {
-        const auto& iteraror = m_graps.find(id);
-        if(iteraror == m_graps.end())
+        const auto& iteraror = m_graphs.find(guid);
+        if(iteraror == m_graphs.end())
         {
             graph->set_systems_feeder(m_system_feeder);
             add_listener_to_game_loop(graph);
-            m_graps.insert(std::make_pair(id, graph));
+            m_graphs.insert(std::make_pair(guid, graph));
         }
         else
         {
@@ -234,13 +229,13 @@ namespace gb
         }
     }
     
-    void game_transition::remove_graph(i32 id)
+    void game_transition::remove_graph(i32 guid)
     {
-        const auto& iteraror = m_graps.find(id);
-        if(iteraror != m_graps.end())
+        const auto& iteraror = m_graphs.find(guid);
+        if(iteraror != m_graphs.end())
         {
             remove_listener_from_game_loop(iteraror->second);
-            m_graps.erase(iteraror);
+            m_graphs.erase(iteraror);
         }
         else
         {
@@ -248,9 +243,9 @@ namespace gb
         }
     }
     
-    game_fabricator_interface_shared_ptr game_transition::get_fabricator(i32 id) const
+    i_scene_fabricator_shared_ptr game_transition::get_fabricator(i32 guid) const
     {
-        const auto& iteraror = m_fabricators.find(id);
+        const auto& iteraror = m_fabricators.find(guid);
         if(iteraror != m_fabricators.end())
         {
             return iteraror->second;
@@ -259,10 +254,10 @@ namespace gb
         return nullptr;
     }
     
-    game_graph_interface_shared_ptr game_transition::get_graph(i32 id) const
+    i_scene_graph_shared_ptr game_transition::get_graph(i32 guid) const
     {
-        const auto& iteraror = m_graps.find(id);
-        if(iteraror != m_graps.end())
+        const auto& iteraror = m_graphs.find(guid);
+        if(iteraror != m_graphs.end())
         {
             return iteraror->second;
         }

@@ -11,18 +11,18 @@
 
 namespace gb
 {
-    game_loop_interface::game_loop_interface() :
+    i_game_loop::i_game_loop() :
     m_paused(false)
     {
         
     }
     
-    void game_loop_interface::set_paused(bool paused)
+    void i_game_loop::set_paused(bool paused)
     {
         m_paused = paused;
     }
     
-    bool game_loop_interface::is_paused() const
+    bool i_game_loop::is_paused() const
     {
         return m_paused;
     }
@@ -36,7 +36,7 @@ namespace gb
     {
         static std::chrono::steady_clock::time_point previous_timestamp = std::chrono::steady_clock::now();
         std::chrono::steady_clock::time_point current_timestamp = std::chrono::steady_clock::now();
-        f32 deltatime = std::chrono::duration_cast<std::chrono::milliseconds>(current_timestamp - previous_timestamp).count() / 1000.0f;
+        f32 deltatime = std::chrono::duration_cast<std::chrono::milliseconds>(current_timestamp - previous_timestamp).count() / 1000.f;
         previous_timestamp = current_timestamp;
         for(const auto& listener : m_listeners)
         {
@@ -48,12 +48,12 @@ namespace gb
         thread_operations_pool::shared_instance()->update();
     }
     
-    void game_loop::add_listener(const std::shared_ptr<game_loop_interface>& listener)
+    void game_loop::add_listener(const std::shared_ptr<i_game_loop>& listener)
     {
         m_listeners.insert(listener);
     }
     
-    void game_loop::remove_listener(const std::shared_ptr<game_loop_interface>& listener)
+    void game_loop::remove_listener(const std::shared_ptr<i_game_loop>& listener)
     {
         m_listeners.erase(listener);
     }

@@ -15,7 +15,7 @@
 
 namespace gb
 {
-    class resource_accessor : public game_loop_interface
+    class resource_accessor : public i_game_loop
     {
     private:
         

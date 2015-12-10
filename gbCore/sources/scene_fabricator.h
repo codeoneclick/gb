@@ -12,14 +12,14 @@
 #include "main_headers.h"
 #include "declarations.h"
 #include "configuration_accessor.h"
-#include "game_fabricator_interface.h"
+#include "i_scene_fabricator.h"
 
 #define scene_fabricator_id 0
 #define scene_fabricator_inst std::static_pointer_cast<gb::scene_fabricator>(game_scene::get_transition()->get_fabricator(scene_fabricator_id))
 
 namespace gb
 {
-    class scene_fabricator : public game_fabricator_interface
+    class scene_fabricator : public i_scene_fabricator
     {
     private:
         
@@ -31,9 +31,9 @@ namespace gb
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
         std::set<direction_light_shared_ptr> m_direction_lights_container;
-        std::set<terrain_shared_ptr> m_terrains_container;
         
-        void add_materials(const renderable_interface_shared_ptr& renderable_object, const std::vector<std::shared_ptr<configuration>>& configurations);
+        void add_materials(const renderable_game_object_shared_ptr& renderable_game_object,
+                           const std::vector<std::shared_ptr<configuration>>& configurations);
         
     public:
         
@@ -60,9 +60,6 @@ namespace gb
         
         ocean_shared_ptr create_ocean(const std::string& filename);
         void destroy_ocean(const ocean_shared_ptr& ocean);
-        
-        terrain_shared_ptr create_terrain(const std::string& filename);
-        void destroy_terrain(const terrain_shared_ptr& terrain);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
         

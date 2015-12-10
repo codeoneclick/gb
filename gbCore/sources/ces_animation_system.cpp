@@ -9,6 +9,8 @@
 #include "ces_animation_system.h"
 #include "ces_entity.h"
 #include "ces_animation_component.h"
+#include "ces_render_component.h"
+#include "animation_mixer.h"
 
 namespace gb
 {
@@ -29,10 +31,8 @@ namespace gb
     
     void ces_animation_system::on_feed(const ces_entity_shared_ptr& entity, f32 deltatime)
     {
-        ces_animation_component_shared_ptr animation_component =
-        std::static_pointer_cast<ces_animation_component>(entity->get_component(e_ces_component_type_animation));
-        
-        if(animation_component)
+        ces_animation_component *animation_component = unsafe_get_animation_component(entity);
+        if(animation_component && animation_component->get_animation_mixer())
         {
             animation_component->update(deltatime);
         }

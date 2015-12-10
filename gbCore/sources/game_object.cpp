@@ -22,6 +22,40 @@ namespace gb
         
     }
     
+    void game_object::set_scene_graph(const scene_graph_shared_ptr& scene_graph)
+    {
+        m_scene_graph = scene_graph;
+    }
+    
+    scene_graph_shared_ptr game_object::get_scene_graph() const
+    {
+        return m_scene_graph.lock();
+    }
+    
+    void game_object::on_added_to_scene(const scene_graph_shared_ptr& scene_graph)
+    {
+        game_object::set_scene_graph(scene_graph);
+        for(const auto& component : ces_entity::get_components())
+        {
+            if(component)
+            {
+                component->set_scene_graph(scene_graph);
+            }
+        }
+    }
+    
+    void game_object::on_removed_from_scene()
+    {
+        game_object::set_scene_graph(nullptr);
+        for(const auto& component : ces_entity::get_components())
+        {
+            if(component)
+            {
+                component->set_scene_graph(nullptr);
+            }
+        }
+    }
+    
     void game_object::set_position(const glm::vec3& position)
     {
         unsafe_get_transformation_component_from_this->set_position(position);

@@ -567,7 +567,7 @@ namespace gb
         current_uniform->set_i32(value);
     }
     
-    const std::map<std::string, std::shared_ptr<shader_uniform>>& material::get_custom_uniforms(void) const
+    const std::map<std::string, std::shared_ptr<shader_uniform>>& material::get_custom_uniforms() const
     {
         return m_custom_shader_uniforms;
     }

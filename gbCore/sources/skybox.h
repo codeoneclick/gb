@@ -9,11 +9,11 @@
 #ifndef skybox_h
 #define skybox_h
 
-#include "game_object.h"
+#include "renderable_game_object.h"
 
 namespace gb
 {
-    class skybox : public game_object
+    class skybox : public renderable_game_object
     {
     private:
         

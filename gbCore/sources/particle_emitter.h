@@ -9,12 +9,12 @@
 #ifndef particle_emitter_h
 #define particle_emitter_h
 
-#include "game_object.h"
+#include "renderable_game_object.h"
 #include "configuration_accessor.h"
 
 namespace gb
 {
-    class particle_emitter : public game_object
+    class particle_emitter : public renderable_game_object
     {
     private:
         

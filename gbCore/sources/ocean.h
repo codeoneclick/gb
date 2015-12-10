@@ -9,11 +9,11 @@
 #ifndef ocean_h
 #define ocean_h
 
-#include "game_object.h"
+#include "renderable_game_object.h"
 
 namespace gb
 {
-    class ocean : public game_object
+    class ocean : public renderable_game_object
     {
     private:
         

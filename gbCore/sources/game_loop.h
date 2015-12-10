@@ -13,7 +13,7 @@
 
 namespace gb
 {
-    class game_loop_interface
+    class i_game_loop
     {
     private:
         
@@ -26,11 +26,11 @@ namespace gb
         
     public:
         
-        game_loop_interface(void);
-        virtual ~game_loop_interface(void) = default;
+        i_game_loop();
+        virtual ~i_game_loop() = default;
         
         void set_paused(bool paused);
-        bool is_paused(void) const;
+        bool is_paused() const;
     };
     
     class game_loop
@@ -39,25 +39,25 @@ namespace gb
         
     protected:
         
-        std::set<std::shared_ptr<game_loop_interface>> m_listeners;
+        std::set<std::shared_ptr<i_game_loop>> m_listeners;
         
     public:
         
-        game_loop(void) = default;
-        ~game_loop(void);
+        game_loop() = default;
+        ~game_loop();
         
-        void on_update(void);
+        void on_update();
         
-        void add_listener(const std::shared_ptr<game_loop_interface>& listener);
-        void remove_listener(const std::shared_ptr<game_loop_interface>& listener);
+        void add_listener(const std::shared_ptr<i_game_loop>& listener);
+        void remove_listener(const std::shared_ptr<i_game_loop>& listener);
     };
     
-    void add_listener_to_game_loop(const std::shared_ptr<game_loop_interface>& listener);
-    void remove_listener_from_game_loop(const std::shared_ptr<game_loop_interface>& listener);
+    void add_listener_to_game_loop(const std::shared_ptr<i_game_loop>& listener);
+    void remove_listener_from_game_loop(const std::shared_ptr<i_game_loop>& listener);
     
 #if defined(__OSX__)
     
-    void terminate_game_loop(void);
+    void terminate_game_loop();
 
 #endif
     

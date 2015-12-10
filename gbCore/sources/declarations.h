@@ -110,11 +110,11 @@ namespace gb
     class shadow_cast_light;
     typedef std::shared_ptr<shadow_cast_light> shadow_cast_light_shared_ptr;
     
-    class game_graph_interface;
-    typedef std::shared_ptr<game_graph_interface> game_graph_interface_shared_ptr;
+    class i_scene_graph;
+    typedef std::shared_ptr<i_scene_graph> i_scene_graph_shared_ptr;
     
-    class game_fabricator_interface;
-    typedef std::shared_ptr<game_fabricator_interface> game_fabricator_interface_shared_ptr;
+    class i_scene_fabricator;
+    typedef std::shared_ptr<i_scene_fabricator> i_scene_fabricator_shared_ptr;
     
     class scene_graph;
     typedef std::shared_ptr<scene_graph> scene_graph_shared_ptr;
@@ -169,6 +169,9 @@ namespace gb
     
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
+    
+    class renderable_game_object;
+    typedef std::shared_ptr<renderable_game_object> renderable_game_object_shared_ptr;
     
     class model3d_static;
     typedef std::shared_ptr<model3d_static> model3d_static_shared_ptr;
@@ -236,9 +239,6 @@ namespace gb
     class ocean;
     typedef std::shared_ptr<ocean> ocean_shared_ptr;
     
-    class renderable_interface;
-    typedef std::shared_ptr<renderable_interface> renderable_interface_shared_ptr;
-    
     class ces_skybox_component;
     typedef std::shared_ptr<ces_skybox_component> ces_skybox_component_shared_ptr;
     
@@ -256,21 +256,6 @@ namespace gb
     
     class thread_operation;
     typedef std::shared_ptr<thread_operation> thread_operation_shared_ptr;
-    
-    class terrain_accessor;
-    typedef std::shared_ptr<terrain_accessor> terrain_accessor_shared_ptr;
-    
-    class terrain_container;
-    typedef std::shared_ptr<terrain_container> terrain_container_shared_ptr;
-    
-    class ces_terrain_component;
-    typedef std::shared_ptr<ces_terrain_component> ces_terrain_component_shared_ptr;
-    
-    class terrain;
-    typedef std::shared_ptr<terrain> terrain_shared_ptr;
-    
-    class terrain_chunk;
-    typedef std::shared_ptr<terrain_chunk> terrain_chunk_shared_ptr;
 };
 
 #endif

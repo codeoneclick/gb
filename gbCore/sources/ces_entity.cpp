@@ -13,7 +13,7 @@ namespace gb
     ces_entity::ces_entity() :
     m_parent(nullptr)
     {
-        m_components.resize(e_ces_component_type_max);
+        m_components.resize(e_ces_component_type_max, nullptr);
         ces_entity::remove_components();
     }
     

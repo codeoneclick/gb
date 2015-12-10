@@ -43,7 +43,7 @@ namespace gb
     
     void instanced_models3d_static::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
-        renderable_interface::add_material(technique_name, technique_pass, material);
+        renderable_game_object::add_material(technique_name, technique_pass, material);
         
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transform_parameters[0], static_cast<i32>(m_transform_parameters.size()),
                                                                                "u_transform_parameters");

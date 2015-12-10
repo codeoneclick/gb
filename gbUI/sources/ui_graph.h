@@ -9,7 +9,7 @@
 #ifndef ui_graph_h
 #define ui_graph_h
 
-#include "game_graph_interface.h"
+#include "i_scene_graph.h"
 #include "ui_declarations.h"
 
 #define ui_graph_id 1
@@ -19,7 +19,7 @@ namespace gb
 {
     namespace ui
     {
-        class ui_graph : public game_graph_interface
+        class ui_graph : public i_scene_graph
         {
         private:
             

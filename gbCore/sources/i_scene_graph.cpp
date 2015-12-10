@@ -1,22 +1,22 @@
 //
-//  game_graph_interface.cpp
+//  i_scene_graph.cpp
 //  gbCore
 //
 //  Created by sergey.sergeev on 10/5/15.
 //  Copyright (c) 2015 sergey.sergeev. All rights reserved.
 //
 
-#include "game_graph_interface.h"
+#include "i_scene_graph.h"
 
 namespace gb
 {
-    game_graph_interface::game_graph_interface() :
+    i_scene_graph::i_scene_graph() :
     m_systems_feeder(nullptr)
     {
         
     }
     
-    void game_graph_interface::set_systems_feeder(const ces_systems_feeder_shared_ptr& systems_feeder)
+    void i_scene_graph::set_systems_feeder(const ces_systems_feeder_shared_ptr& systems_feeder)
     {
         m_systems_feeder = systems_feeder;
     }

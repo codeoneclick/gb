@@ -11,14 +11,14 @@
 
 #include "main_headers.h"
 #include "declarations.h"
-#include "game_graph_interface.h"
+#include "i_scene_graph.h"
 
 #define scene_graph_id 0
 #define scene_graph_inst std::static_pointer_cast<gb::scene_graph>(game_scene::get_transition()->get_graph(scene_graph_id))
 
 namespace gb
 {
-    class scene_graph : public game_graph_interface,
+    class scene_graph : public i_scene_graph,
     public std::enable_shared_from_this<scene_graph>
     {
     private:
@@ -29,7 +29,6 @@ namespace gb
         shadow_cast_light_shared_ptr m_shadow_cast_light;
         skybox_shared_ptr m_skybox;
         ocean_shared_ptr m_ocean;
-        terrain_shared_ptr m_terrain;
         std::set<game_object_shared_ptr> m_game_objects_container;
         std::set<omni_light_shared_ptr> m_omni_lights_container;
         std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
@@ -51,8 +50,6 @@ namespace gb
         void set_skybox(const skybox_shared_ptr& skybox);
         
         void set_ocean(const ocean_shared_ptr& ocean);
-        
-        void set_terrain(const terrain_shared_ptr& terrain);
         
         void add_game_object(const game_object_shared_ptr& game_object);
         void remove_game_object(const game_object_shared_ptr& game_object);

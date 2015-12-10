@@ -9,7 +9,7 @@
 #ifndef ui_fabricator_h
 #define ui_fabricator_h
 
-#include "game_fabricator_interface.h"
+#include "i_scene_fabricator.h"
 #include "ui_declarations.h"
 
 #define ui_fabricator_id 1
@@ -19,7 +19,7 @@ namespace gb
 {
     namespace ui
     {
-        class ui_fabricator : public game_fabricator_interface
+        class ui_fabricator : public i_scene_fabricator
         {
         private:
             

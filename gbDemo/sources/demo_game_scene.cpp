@@ -20,7 +20,6 @@
 #include "instanced_models3d_static.h"
 #include "skybox.h"
 #include "ocean.h"
-#include "terrain.h"
 #include "ui_fabricator.h"
 #include "ui_graph.h"
 #include "level.h"
@@ -137,10 +136,6 @@ gb::game_scene(transition)
     
     m_ocean = scene_fabricator_inst->create_ocean("gameobject.ocean.xml");
     scene_graph_inst->set_ocean(m_ocean);
-    
-    m_terrain = scene_fabricator_inst->create_terrain("gameobject.terrain.xml");
-    scene_graph_inst->set_terrain(m_terrain);
-
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);
@@ -230,7 +225,7 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["orc_02"]->update(deltatime);
     
     glm::vec3 position = m_models["human_01"]->get_position();
-    position.y = m_terrain->get_height(position);
+    //position.y = m_terrain->get_height(position);
     m_models["human_01"]->set_position(position);
     
     m_ai_character_controllers["human_02"]->set_goal_position(m_models["human_01"]->get_position());
@@ -238,44 +233,41 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
     glm::vec3 light_position = m_models["human_01"]->get_position();
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 0);
     
     light_position = m_models["human_01"]->get_position() + m_models["human_01"]->get_forward() * 2.5f;
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 1);
     
-    
-    
-    
     light_position = m_models["human_02"]->get_position();
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 2);
     
     light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 3);
     
     
     
     
     light_position = m_models["orc_01"]->get_position();
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 4);
     
     light_position = m_models["orc_01"]->get_position() + m_models["orc_01"]->get_forward() * 2.5f;
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 5);
     
     
     
     
     light_position = m_models["orc_02"]->get_position();
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 6);
     
     light_position = m_models["orc_02"]->get_position() + m_models["orc_02"]->get_forward() * 2.5f;
-    light_position.y = m_terrain->get_height(light_position) + 1.66f;
+    //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     m_instanced_omni_lights->set_position(light_position, 7);
 
     

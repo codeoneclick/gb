@@ -9,11 +9,11 @@
 #ifndef model3d_static_h
 #define model3d_static_h
 
-#include "game_object.h"
+#include "renderable_game_object.h"
 
 namespace gb
 {
-    class model3d_static : public game_object
+    class model3d_static : public renderable_game_object
     {
     private:
         

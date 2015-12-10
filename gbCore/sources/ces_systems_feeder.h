@@ -17,7 +17,7 @@ namespace gb
 {
     class ces_system;
     class ces_entity;
-    class ces_systems_feeder : public game_loop_interface
+    class ces_systems_feeder : public i_game_loop
     {
     private:
         

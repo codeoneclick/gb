@@ -27,7 +27,6 @@ private:
     gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
     gb::skybox_shared_ptr m_skybox;
     gb::ocean_shared_ptr m_ocean;
-    gb::terrain_shared_ptr m_terrain;
     
     koth::level_shared_ptr m_level;
     koth::camera_controller_shared_ptr m_camera_controller;
