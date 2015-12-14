@@ -41,6 +41,9 @@ namespace gb
         scene_graph();
         ~scene_graph();
         
+        omni_light_shared_ptr add_omni_light(f32 radius = 1.f);
+        void remove_omni_light(const omni_light_shared_ptr& omni_light);
+        
         void set_camera(const camera_shared_ptr& camera);
         camera_shared_ptr get_camera() const;
         

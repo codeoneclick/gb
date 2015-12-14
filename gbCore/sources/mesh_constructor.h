@@ -45,6 +45,8 @@ namespace gb
         
         static mesh_shared_ptr create_screen_quad();
         
+        static mesh_shared_ptr create_grid(ui32 rows, ui32 columns);
+        
         static instanced_mesh_shared_ptr create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors);
         
         static mesh_shared_ptr create_box(const glm::vec3& min_bound,

@@ -156,4 +156,14 @@ namespace gb
         assert(box2d_system);
         box2d_system->get_collision_manager()->destroy_box2d_body(box2d_body);
     }
+    
+    omni_light_shared_ptr scene_graph::add_omni_light(f32 radius)
+    {
+        
+    }
+    
+    void scene_graph::remove_omni_light(const omni_light_shared_ptr& omni_light)
+    {
+        
+    }
 }
