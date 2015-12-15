@@ -95,6 +95,8 @@ gb::game_scene(transition)
     //m_models["orc_01"]->set_debug_draw_enabled(true);
     //m_models["orc_02"]->set_debug_draw_enabled(true);
     
+    m_omni_lights["omni_light_01"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(1.f, 0.f, 0.f, 1.f));
+    
     /*m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
     m_omni_lights["omni_light_01"]->set_radius(4.f);
@@ -109,24 +111,24 @@ gb::game_scene(transition)
     //scene_graph_inst->add_direction_light(m_direction_light);
     //m_direction_light->set_intensity(1.f);
     
-    m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
-    scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
+    //m_instanced_omni_lights = scene_fabricator_inst->create_instanced_omni_lights(8);
+    //scene_graph_inst->add_instanced_omni_lights(m_instanced_omni_lights);
    
-    m_instanced_omni_lights->set_radius(7.f, 0);
-    m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 0.f, 1.f), 0);
-    m_instanced_omni_lights->set_radius(3.f, 1);
+    //m_instanced_omni_lights->set_radius(7.f, 0);
+    //m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 0.f, 1.f), 0);
+    //m_instanced_omni_lights->set_radius(3.f, 1);
     
-    m_instanced_omni_lights->set_radius(7.f, 2);
-    m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 1.f, 1.f), 2);
-    m_instanced_omni_lights->set_radius(3.f, 3);
+    //m_instanced_omni_lights->set_radius(7.f, 2);
+    //m_instanced_omni_lights->set_color(glm::vec4(0.f, 1.f, 1.f, 1.f), 2);
+    //m_instanced_omni_lights->set_radius(3.f, 3);
     
-    m_instanced_omni_lights->set_radius(7.f, 4);
-    m_instanced_omni_lights->set_color(glm::vec4(1.f, 0.f, 0.f, 1.f), 4);
-    m_instanced_omni_lights->set_radius(3.f, 5);
+    //m_instanced_omni_lights->set_radius(7.f, 4);
+    //m_instanced_omni_lights->set_color(glm::vec4(1.f, 0.f, 0.f, 1.f), 4);
+    //m_instanced_omni_lights->set_radius(3.f, 5);
     
-    m_instanced_omni_lights->set_radius(7.f, 6);
-    m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
-    m_instanced_omni_lights->set_radius(3.f, 7);
+    //m_instanced_omni_lights->set_radius(7.f, 6);
+    //m_instanced_omni_lights->set_color(glm::vec4(1.f, 1.f, 0.f, 1.f), 6);
+    //m_instanced_omni_lights->set_radius(3.f, 7);
     
     //m_instanced_omni_lights->set_position(glm::vec3(192.f * .5f, 192.f * .33f, 192.f * .5f), 8);
     //m_instanced_omni_lights->set_radius(192.f, 8);
@@ -233,42 +235,43 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
     glm::vec3 light_position = m_models["human_01"]->get_position();
+    m_omni_lights["omni_light_01"]->set_position(light_position);
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 0);
+    //m_instanced_omni_lights->set_position(light_position, 0);
     
     light_position = m_models["human_01"]->get_position() + m_models["human_01"]->get_forward() * 2.5f;
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 1);
+    //m_instanced_omni_lights->set_position(light_position, 1);
     
     light_position = m_models["human_02"]->get_position();
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 2);
+    //m_instanced_omni_lights->set_position(light_position, 2);
     
     light_position = m_models["human_02"]->get_position() + m_models["human_02"]->get_forward() * 2.5f;
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 3);
+    //m_instanced_omni_lights->set_position(light_position, 3);
     
     
     
     
     light_position = m_models["orc_01"]->get_position();
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 4);
+    //m_instanced_omni_lights->set_position(light_position, 4);
     
     light_position = m_models["orc_01"]->get_position() + m_models["orc_01"]->get_forward() * 2.5f;
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 5);
+    //m_instanced_omni_lights->set_position(light_position, 5);
     
     
     
     
     light_position = m_models["orc_02"]->get_position();
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 6);
+    //m_instanced_omni_lights->set_position(light_position, 6);
     
     light_position = m_models["orc_02"]->get_position() + m_models["orc_02"]->get_forward() * 2.5f;
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
-    m_instanced_omni_lights->set_position(light_position, 7);
+    //m_instanced_omni_lights->set_position(light_position, 7);
 
     
     

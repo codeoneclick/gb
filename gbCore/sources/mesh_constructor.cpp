@@ -355,13 +355,12 @@ namespace gb
         return mesh;
     }
     
-    instanced_mesh_shared_ptr mesh_constructor::create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors)
+    instanced_mesh_shared_ptr mesh_constructor::create_instanced_sphere(f32 radius, i32 rings, i32 sectors)
     {
         std::tuple<vbo_shared_ptr, ibo_shared_ptr, glm::vec3, glm::vec3> data = mesh_constructor::create_sphere_data(radius, rings, sectors);
         instanced_mesh_shared_ptr mesh = instanced_mesh::construct("sphere",
                                                                    std::get<0>(data), std::get<1>(data),
-                                                                   std::get<2>(data), std::get<3>(data),
-                                                                   num_instances);
+                                                                   std::get<2>(data), std::get<3>(data));
         return mesh;
     }
     

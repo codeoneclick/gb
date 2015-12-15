@@ -47,7 +47,7 @@ namespace gb
         
         static mesh_shared_ptr create_grid(ui32 rows, ui32 columns);
         
-        static instanced_mesh_shared_ptr create_spheres(i32 num_instances, f32 radius, i32 rings, i32 sectors);
+        static instanced_mesh_shared_ptr create_instanced_sphere(f32 radius, i32 rings, i32 sectors);
         
         static mesh_shared_ptr create_box(const glm::vec3& min_bound,
                                           const glm::vec3& max_bound);

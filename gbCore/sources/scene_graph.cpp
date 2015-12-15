@@ -19,6 +19,7 @@
 #include "ces_systems_feeder.h"
 #include "ces_box2d_system.h"
 #include "collision_manager.h"
+#include "omni_lights_instances_container.h"
 
 namespace gb
 {
@@ -94,7 +95,7 @@ namespace gb
         m_systems_feeder->remove_entity(game_object);
     }
     
-    void scene_graph::add_omni_light(const omni_light_shared_ptr& omni_light)
+    /*void scene_graph::add_omni_light(const omni_light_shared_ptr& omni_light)
     {
         omni_light->on_added_to_scene(shared_from_this());
         m_omni_lights_container.insert(omni_light);
@@ -120,21 +121,21 @@ namespace gb
         instanced_omni_lights->on_removed_from_scene();
         m_instanced_omni_lights_container.erase(instanced_omni_lights);
         m_systems_feeder->remove_entity(instanced_omni_lights);
-    }
+    }*/
     
-    void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)
-    {
-        direction_light->on_added_to_scene(shared_from_this());
-        m_direction_lights_container.insert(direction_light);
-        m_systems_feeder->add_entity(direction_light);
-    }
+    //void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)
+    //{
+    //    direction_light->on_added_to_scene(shared_from_this());
+        //m_direction_lights_container.insert(direction_light);
+    //    m_systems_feeder->add_entity(direction_light);
+    //}
     
-    void scene_graph::remove_direction_light(const direction_light_shared_ptr& direction_light)
-    {
-        direction_light->on_removed_from_scene();
-        m_direction_lights_container.erase(direction_light);
-        m_systems_feeder->remove_entity(direction_light);
-    }
+    //void scene_graph::remove_direction_light(const direction_light_shared_ptr& direction_light)
+    //{
+    //    direction_light->on_removed_from_scene();
+        //m_direction_lights_container.erase(direction_light);
+    //    m_systems_feeder->remove_entity(direction_light);
+    //}
     
     void scene_graph::set_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound)
     {
@@ -157,9 +158,35 @@ namespace gb
         box2d_system->get_collision_manager()->destroy_box2d_body(box2d_body);
     }
     
-    omni_light_shared_ptr scene_graph::add_omni_light(f32 radius)
+    omni_light_shared_ptr scene_graph::add_omni_light(f32 radius, const glm::vec4& color)
     {
+        omni_lights_instances_container_shared_ptr omni_lights_instances_container = nullptr;
+        if(m_omni_lights_containers.size() == 0)
+        {
+            omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>(m_resource_accessor);
+            m_omni_lights_containers.push_back(omni_lights_instances_container);
+        }
+        else
+        {
+            omni_lights_instances_container = *(m_omni_lights_containers.end() - 1);
+            if(omni_lights_instances_container->get_omni_lights_count() < omni_lights_instances_container::k_max_lights_in_container)
+            {
+                omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>(m_resource_accessor);
+                m_omni_lights_containers.push_back(omni_lights_instances_container);
+            }
+        }
         
+        assert(omni_lights_instances_container);
+        omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
+        omni_lights_instances_container->add_omni_light(omni_light);
+        
+        omni_light->set_radius(radius);
+        omni_light->set_color(color);
+        
+        omni_light->on_added_to_scene(shared_from_this());
+        m_systems_feeder->add_entity(omni_light);
+        
+        return omni_light;
     }
     
     void scene_graph::remove_omni_light(const omni_light_shared_ptr& omni_light)

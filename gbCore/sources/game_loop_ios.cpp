@@ -16,8 +16,8 @@
 
 + (game_loop_ios* )shared_instance;
 
-- (void)add_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
-- (void)remove_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
+- (void)add_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
+- (void)remove_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
 
 @end
 
@@ -39,19 +39,19 @@
     if(self)
     {
         self.m_game_loop = new gb::game_loop();
-        CADisplayLink* displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(on_update:)];
-        [displayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        CADisplayLink* main_loop = [CADisplayLink displayLinkWithTarget:self selector:@selector(on_update:)];
+        [main_loop addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     return self;
 }
 
-- (void)add_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
+- (void)add_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
 {
     assert(self.m_game_loop != nullptr);
     self.m_game_loop->add_listener(listener);
 }
 
-- (void)remove_listener:(const std::shared_ptr<gb::game_loop_interface>&)listener;
+- (void)remove_listener:(const std::shared_ptr<gb::i_game_loop>&)listener;
 {
     assert(self.m_game_loop != nullptr);
     self.m_game_loop->remove_listener(listener);
@@ -67,11 +67,11 @@
 
 namespace gb
 {
-    void add_listener_to_game_loop(const std::shared_ptr<game_loop_interface>& listener)
+    void add_listener_to_game_loop(const std::shared_ptr<i_game_loop>& listener)
     {
         [[game_loop_ios shared_instance] add_listener:listener];
     }
-    void remove_listener_from_game_loop(const std::shared_ptr<game_loop_interface>& listener)
+    void remove_listener_from_game_loop(const std::shared_ptr<i_game_loop>& listener)
     {
         [[game_loop_ios shared_instance] remove_listener:listener];
     }

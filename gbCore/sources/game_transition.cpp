@@ -193,6 +193,7 @@ namespace gb
         {
             fabricator->set_configuration_accessor(m_configuration_accessor);
             fabricator->set_resource_accessor(m_resource_accessor);
+            
             m_fabricators.insert(std::make_pair(id, fabricator));
         }
         else
@@ -220,6 +221,8 @@ namespace gb
         if(iteraror == m_graphs.end())
         {
             graph->set_systems_feeder(m_system_feeder);
+            graph->set_resource_accessor(m_resource_accessor);
+            
             add_listener_to_game_loop(graph);
             m_graphs.insert(std::make_pair(guid, graph));
         }

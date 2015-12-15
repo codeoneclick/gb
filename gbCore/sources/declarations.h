@@ -256,6 +256,9 @@ namespace gb
     
     class thread_operation;
     typedef std::shared_ptr<thread_operation> thread_operation_shared_ptr;
+    
+    class omni_lights_instances_container;
+    typedef std::shared_ptr<omni_lights_instances_container> omni_lights_instances_container_shared_ptr;
 };
 
 #endif

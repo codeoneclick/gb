@@ -120,9 +120,9 @@ namespace gb
         
         omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
         
-        omni_light->add_material("ws.deferred.lighting", 0, material);
-        omni_light->set_mesh(mesh);
-        m_omni_lights_container.insert(omni_light);
+        //omni_light->add_material("ws.deferred.lighting", 0, material);
+        //omni_light->set_mesh(mesh);
+        //m_omni_lights_container.insert(omni_light);
         return omni_light;
     }
     
@@ -176,13 +176,13 @@ namespace gb
         material->set_texture(texture_01, e_shader_sampler_01);
         material->set_texture(texture_02, e_shader_sampler_02);
         
-        instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 16, 16);
+        //instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 16, 16);
         
         instanced_omni_lights_shared_ptr instanced_omni_light = std::make_shared<gb::instanced_omni_lights>(num_instances);
         
-        instanced_omni_light->add_material("ws.deferred.lighting", 0, material);
-        instanced_omni_light->set_mesh(mesh);
-        m_instanced_omni_lights_container.insert(instanced_omni_light);
+        //instanced_omni_light->add_material("ws.deferred.lighting", 0, material);
+        //instanced_omni_light->set_mesh(mesh);
+        //m_instanced_omni_lights_container.insert(instanced_omni_light);
         return instanced_omni_light;
     }
     

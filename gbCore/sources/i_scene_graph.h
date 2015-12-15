@@ -22,6 +22,7 @@ namespace gb
     protected:
         
         ces_systems_feeder_shared_ptr m_systems_feeder;
+        resource_accessor_shared_ptr m_resource_accessor;
         
     public:
         
@@ -29,6 +30,7 @@ namespace gb
         ~i_scene_graph() = default;
         
         void set_systems_feeder(const ces_systems_feeder_shared_ptr& systems_feeder);
+        void set_resource_accessor(const resource_accessor_shared_ptr& resource_accessor);
     };
 };
 
