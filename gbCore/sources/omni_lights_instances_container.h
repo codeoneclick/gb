@@ -21,8 +21,8 @@ namespace gb
         material_shared_ptr m_material;
         instanced_mesh_shared_ptr m_mesh;
         
-        std::vector<glm::vec4> m_transform_parameters;
-        std::vector<glm::vec4> m_colors;
+        std::shared_ptr<std::vector<glm::vec4>> m_transformations;
+        std::shared_ptr<std::vector<glm::vec4>> m_colors;
         
     protected:
         

@@ -16,8 +16,6 @@
 namespace gb
 {
     omni_light::omni_light() :
-    m_transform_parameters_ref(nullptr),
-    m_colors_ref(nullptr),
     m_instance_id(-1)
     {
         ces_transformation_component_shared_ptr transformation_component = std::make_shared<ces_transformation_component>();
@@ -37,23 +35,23 @@ namespace gb
         m_instance_id = instance_id;
     }
     
-    void omni_light::set_parameters_ref(std::vector<glm::vec4>* transform_parameters_ref,
-                                        std::vector<glm::vec4>* colors_ref)
+    void omni_light::set_external_uniforms_data(const std::shared_ptr<std::vector<glm::vec4>>& transformations,
+                                                const std::shared_ptr<std::vector<glm::vec4>>& colors)
     {
-        m_transform_parameters_ref = transform_parameters_ref;
-        m_colors_ref = colors_ref;
+        m_transformations = transformations;
+        m_colors = colors;
     }
     
     void omni_light::set_position(const glm::vec3& position)
     {
-        if(m_instance_id != -1 && m_transform_parameters_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_transformations.lock()->size() > m_instance_id)
         {
-            (*m_transform_parameters_ref)[m_instance_id].x = position.x;
-            (*m_transform_parameters_ref)[m_instance_id].y = position.y;
-            (*m_transform_parameters_ref)[m_instance_id].z = position.z;
+            m_transformations.lock()->at(m_instance_id).x = position.x;
+            m_transformations.lock()->at(m_instance_id).y = position.y;
+            m_transformations.lock()->at(m_instance_id).z = position.z;
             
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&(*m_transform_parameters_ref)[0],
-                                                                                   static_cast<i32>((*m_transform_parameters_ref).size()),
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transformations.lock()->at(0),
+                                                                                   static_cast<i32>(m_transformations.lock()->size()),
                                                                                    "u_transform_parameters");
         }
         else
@@ -64,11 +62,11 @@ namespace gb
     
     glm::vec3 omni_light::get_position() const
     {
-        if(m_instance_id != -1 && m_transform_parameters_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_transformations.lock()->size() > m_instance_id)
         {
-            return glm::vec3((*m_transform_parameters_ref)[m_instance_id].x,
-                             (*m_transform_parameters_ref)[m_instance_id].y,
-                             (*m_transform_parameters_ref)[m_instance_id].z);
+            return glm::vec3(m_transformations.lock()->at(m_instance_id).x,
+                             m_transformations.lock()->at(m_instance_id).y,
+                             m_transformations.lock()->at(m_instance_id).z);
         }
 
         assert(false);
@@ -77,11 +75,11 @@ namespace gb
     
     void omni_light::set_radius(f32 radius)
     {
-        if(m_instance_id != -1 && m_transform_parameters_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_transformations.lock()->size() > m_instance_id)
         {
-            (*m_transform_parameters_ref)[m_instance_id].w = radius;
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&(*m_transform_parameters_ref)[0],
-                                                                                   static_cast<i32>((*m_transform_parameters_ref).size()),
+            m_transformations.lock()->at(m_instance_id).w = radius;
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transformations.lock()->at(0),
+                                                                                   static_cast<i32>(m_transformations.lock()->size()),
                                                                                    "u_transform_parameters");
         }
         else
@@ -92,22 +90,21 @@ namespace gb
     
     f32 omni_light::get_radius() const
     {
-        if(m_instance_id != -1 && m_transform_parameters_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_transformations.lock()->size() > m_instance_id)
         {
-            return (*m_transform_parameters_ref)[m_instance_id].w;
+            return m_transformations.lock()->at(m_instance_id).w;
         }
-
         assert(false);
         return 0.f;
     }
     
     void omni_light::set_color(const glm::vec4& color)
     {
-        if(m_instance_id != -1 && m_colors_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_colors.lock()->size() > m_instance_id)
         {
-            (*m_colors_ref)[m_instance_id] = color;
-            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&(*m_colors_ref)[0],
-                                                                                   static_cast<i32>((*m_colors_ref).size()),
+            m_colors.lock()->at(m_instance_id) = color;
+            unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors.lock()->at(0),
+                                                                                   static_cast<i32>(m_colors.lock()->size()),
                                                                                    "u_lights_colors");
         }
         else
@@ -118,9 +115,9 @@ namespace gb
     
     glm::vec4 omni_light::get_color() const
     {
-        if(m_instance_id != -1 && m_colors_ref->size() > m_instance_id)
+        if(m_instance_id != -1 && m_colors.lock()->size() > m_instance_id)
         {
-            return (*m_colors_ref)[m_instance_id];
+            return m_colors.lock()->at(m_instance_id);
         }
         else
         {
@@ -132,11 +129,11 @@ namespace gb
     void omni_light::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
         renderable_interface::add_material(technique_name, technique_pass, material);
-        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&(*m_transform_parameters_ref)[0],
-                                                                               static_cast<i32>((*m_transform_parameters_ref).size()),
+        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transformations.lock()->at(0),
+                                                                               static_cast<i32>(m_transformations.lock()->size()),
                                                                                "u_transform_parameters");
-        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&(*m_colors_ref)[0],
-                                                                               static_cast<i32>((*m_colors_ref).size()),
+        unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_colors.lock()->at(0),
+                                                                               static_cast<i32>(m_colors.lock()->size()),
                                                                                "u_lights_colors");
     }
     

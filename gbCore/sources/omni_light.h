@@ -17,8 +17,8 @@ namespace gb
     {
     private:
         
-        std::vector<glm::vec4>* m_transform_parameters_ref;
-        std::vector<glm::vec4>* m_colors_ref;
+        std::weak_ptr<std::vector<glm::vec4>> m_transformations;
+        std::weak_ptr<std::vector<glm::vec4>> m_colors;
         i32 m_instance_id;
         
     protected:
@@ -29,8 +29,8 @@ namespace gb
         ~omni_light();
         
         void set_instance_id(i32 instance_id);
-        void set_parameters_ref(std::vector<glm::vec4>* transform_parameters_ref,
-                                std::vector<glm::vec4>* colors_ref);
+        void set_external_uniforms_data(const std::shared_ptr<std::vector<glm::vec4>>& transformations,
+                                        const std::shared_ptr<std::vector<glm::vec4>>& colors);
         
         void set_position(const glm::vec3& position);
         glm::vec3 get_position() const;

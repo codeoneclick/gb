@@ -28,8 +28,6 @@ namespace gb
         std::set<camera_shared_ptr> m_cameras_container;
         std::set<shadow_cast_light_shared_ptr> m_shadow_cast_lights_container;
         std::set<game_object_shared_ptr> m_game_objects_container;
-        std::set<omni_light_shared_ptr> m_omni_lights_container;
-        std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
         std::set<direction_light_shared_ptr> m_direction_lights_container;
         
         void add_materials(const renderable_game_object_shared_ptr& renderable_game_object,
@@ -42,12 +40,6 @@ namespace gb
         
         camera_shared_ptr create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
         void destroy_camera(const camera_shared_ptr& camera);
-        
-        omni_light_shared_ptr create_omni_light();
-        void destroy_omni_light(const omni_light_shared_ptr& omni_light);
-        
-        instanced_omni_lights_shared_ptr create_instanced_omni_lights(i32 num_instances);
-        void destroy_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights);
         
         direction_light_shared_ptr create_direction_light();
         void destroy_direction_light(const direction_light_shared_ptr& direction_light);

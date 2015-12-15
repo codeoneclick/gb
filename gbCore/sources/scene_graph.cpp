@@ -12,7 +12,6 @@
 #include "shadow_cast_light.h"
 #include "game_object.h"
 #include "omni_light.h"
-#include "instanced_omni_lights.h"
 #include "direction_light.h"
 #include "skybox.h"
 #include "ocean.h"

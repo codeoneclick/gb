@@ -17,7 +17,6 @@
 #include "camera.h"
 #include "shadow_cast_light.h"
 #include "omni_light.h"
-#include "instanced_omni_lights.h"
 #include "direction_light.h"
 #include "model3d_static.h"
 #include "instanced_models3d_static.h"
@@ -67,128 +66,6 @@ namespace gb
     void scene_fabricator::destroy_camera(const camera_shared_ptr& camera)
     {
         m_cameras_container.erase(camera);
-    }
-    
-    std::once_flag g_omni_light_adds_created;
-    omni_light_shared_ptr scene_fabricator::create_omni_light()
-    {
-        static shader_shared_ptr shader = nullptr;
-        static mesh_shared_ptr mesh = nullptr;
-        std::call_once(g_omni_light_adds_created, [this]{
-            shader = shader::construct("omni_light",
-                                       shader_omni_light_vert,
-                                       shader_omni_light_frag);
-            assert(shader);
-            
-            mesh = mesh_constructor::create_sphere(1.f, 8, 8);
-            assert(mesh);
-        });
-        
-        material_shared_ptr material = std::make_shared<gb::material>();
-        material->set_shader(shader);
-        
-        material->set_culling(true);
-        material->set_culling_mode(GL_BACK);
-        
-        material->set_blending(true);
-        material->set_blending_function_source(GL_ONE);
-        material->set_blending_function_destination(GL_ONE);
-        
-        material->set_stencil_test(false);
-        material->set_stencil_function(GL_ALWAYS);
-        material->set_stencil_function_parameter_1(1);
-        material->set_stencil_function_parameter_2(255);
-        material->set_stencil_mask_parameter(255);
-        
-        material->set_depth_test(false);
-        material->set_depth_mask(false);
-        
-        material->set_clipping(false);
-        material->set_clipping_plane(glm::vec4(0.f));
-        
-        material->set_reflecting(false);
-        material->set_shadowing(false);
-        material->set_debugging(false);
-        
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.depth");
-        assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
-        assert(texture_02);
-        
-        material->set_texture(texture_01, e_shader_sampler_01);
-        material->set_texture(texture_02, e_shader_sampler_02);
-        
-        omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
-        
-        //omni_light->add_material("ws.deferred.lighting", 0, material);
-        //omni_light->set_mesh(mesh);
-        //m_omni_lights_container.insert(omni_light);
-        return omni_light;
-    }
-    
-    void scene_fabricator::destroy_omni_light(const omni_light_shared_ptr& omni_light)
-    {
-         m_omni_lights_container.erase(omni_light);
-    }
-    
-    std::once_flag g_instanced_omni_light_adds_created;
-    instanced_omni_lights_shared_ptr scene_fabricator::create_instanced_omni_lights(i32 num_instances)
-    {
-        static shader_shared_ptr shader = nullptr;
-        std::call_once(g_instanced_omni_light_adds_created, [this]{
-            shader = shader::construct("instanced_omni_light",
-                                       shader_instanced_omni_light_vert,
-                                       shader_instanced_omni_light_frag);
-            assert(shader);
-        });
-        
-        material_shared_ptr material = std::make_shared<gb::material>();
-        material->set_shader(shader);
-        
-        material->set_culling(false);
-        material->set_culling_mode(GL_BACK);
-        
-        material->set_blending(true);
-        material->set_blending_function_source(GL_ONE);
-        material->set_blending_function_destination(GL_ONE);
-        
-        material->set_stencil_test(false);
-        material->set_stencil_function(GL_ALWAYS);
-        material->set_stencil_function_parameter_1(1);
-        material->set_stencil_function_parameter_2(255);
-        material->set_stencil_mask_parameter(255);
-        
-        material->set_depth_test(false);
-        material->set_depth_mask(false);
-        
-        material->set_clipping(false);
-        material->set_clipping_plane(glm::vec4(0.f));
-        
-        material->set_reflecting(false);
-        material->set_shadowing(false);
-        material->set_debugging(false);
-        
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
-        assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.base.depth");
-        assert(texture_02);
-
-        material->set_texture(texture_01, e_shader_sampler_01);
-        material->set_texture(texture_02, e_shader_sampler_02);
-        
-        //instanced_mesh_shared_ptr mesh = mesh_constructor::create_spheres(num_instances, 1.f, 16, 16);
-        
-        instanced_omni_lights_shared_ptr instanced_omni_light = std::make_shared<gb::instanced_omni_lights>(num_instances);
-        
-        //instanced_omni_light->add_material("ws.deferred.lighting", 0, material);
-        //instanced_omni_light->set_mesh(mesh);
-        //m_instanced_omni_lights_container.insert(instanced_omni_light);
-        return instanced_omni_light;
-    }
-    
-    void scene_fabricator::destroy_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
-    {
-        m_instanced_omni_lights_container.erase(instanced_omni_lights);
     }
     
     std::once_flag g_direction_light_shader_created;

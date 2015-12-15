@@ -26,16 +26,14 @@ namespace gb
     protected:
         
         camera_shared_ptr m_camera;
+        
+        std::vector<omni_lights_instances_container_shared_ptr> m_omni_lights_containers;
         shadow_cast_light_shared_ptr m_shadow_cast_light;
+        
         skybox_shared_ptr m_skybox;
         ocean_shared_ptr m_ocean;
         
         std::set<game_object_shared_ptr> m_game_objects_container;
-        std::vector<omni_lights_instances_container_shared_ptr> m_omni_lights_containers;
-        
-        //std::set<omni_light_shared_ptr> m_omni_lights_container;
-        //std::set<instanced_omni_lights_shared_ptr> m_instanced_omni_lights_container;
-        //std::set<direction_light_shared_ptr> m_direction_lights_container;
         
         void on_update(f32 deltatime);
         

@@ -16,7 +16,6 @@
 #include "direction_light.h"
 #include "particle_emitter.h"
 #include "model3d_animated.h"
-#include "instanced_omni_lights.h"
 #include "instanced_models3d_static.h"
 #include "skybox.h"
 #include "ocean.h"
@@ -96,6 +95,9 @@ gb::game_scene(transition)
     //m_models["orc_02"]->set_debug_draw_enabled(true);
     
     m_omni_lights["omni_light_01"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(1.f, 0.f, 0.f, 1.f));
+    m_omni_lights["omni_light_02"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(0.f, 1.f, 0.f, 1.f));
+    m_omni_lights["omni_light_03"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(0.f, 0.f, 1.f, 1.f));
+    m_omni_lights["omni_light_04"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(1.f, 0.f, 1.f, 1.f));
     
     /*m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
@@ -235,7 +237,10 @@ void demo_game_scene::update(f32 deltatime)
     m_ai_character_controllers["orc_02"]->set_goal_position(m_models["human_01"]->get_position());
     
     glm::vec3 light_position = m_models["human_01"]->get_position();
-    m_omni_lights["omni_light_01"]->set_position(light_position);
+    m_omni_lights["omni_light_01"]->set_position(light_position + glm::vec3(0.f, 0.f, -4.f));
+    m_omni_lights["omni_light_02"]->set_position(light_position + glm::vec3(4.f, 0.f, 0.f));
+    m_omni_lights["omni_light_03"]->set_position(light_position + glm::vec3(-4.f, 0.f, 0.f));
+    m_omni_lights["omni_light_04"]->set_position(light_position + glm::vec3(0.f, 0.f, 4.f));
     //light_position.y = m_terrain->get_height(light_position) + 1.66f;
     //m_instanced_omni_lights->set_position(light_position, 0);
     

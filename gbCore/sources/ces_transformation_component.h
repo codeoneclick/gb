@@ -33,22 +33,22 @@ namespace gb
         
     public:
         
-        ces_transformation_component(void);
-        ~ces_transformation_component(void);
+        ces_transformation_component();
+        ~ces_transformation_component();
     
         void set_position(const glm::vec3& position);
         void set_rotation(const glm::vec3& rotation);
         void set_scale(const glm::vec3& scale);
         
-        glm::vec3 get_position(void) const;
-        glm::vec3 get_rotation(void) const;
-        glm::vec3 get_scale(void) const;
+        glm::vec3 get_position() const;
+        glm::vec3 get_rotation() const;
+        glm::vec3 get_scale() const;
         
-        glm::vec3 get_forward(void) const;
-        glm::vec3 get_up(void) const;
-        glm::vec3 get_right(void) const;
+        glm::vec3 get_forward() const;
+        glm::vec3 get_up() const;
+        glm::vec3 get_right() const;
         
-        glm::mat4 get_matrix_m(void);
+        glm::mat4 get_matrix_m();
     };
 };
 
