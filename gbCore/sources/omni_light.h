@@ -9,11 +9,11 @@
 #ifndef omni_light_h
 #define omni_light_h
 
-#include "renderable_interface.h"
+#include "renderable_game_object.h"
 
 namespace gb
 {
-    class omni_light : public renderable_interface
+    class omni_light : public renderable_game_object
     {
     private:
         

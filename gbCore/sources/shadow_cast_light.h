@@ -34,10 +34,10 @@ namespace gb
         void set_position(const glm::vec3& position);
         
         void set_look_at(const glm::vec3& look_at);
-        glm::vec3 get_look_at(void) const;
+        glm::vec3 get_look_at() const;
         
-        glm::mat4 get_matrix_v(void) const;
-        glm::mat4 get_matrix_p(void) const;
+        glm::mat4 get_matrix_v() const;
+        glm::mat4 get_matrix_p() const;
         
         void update(f32 deltatime);
     };

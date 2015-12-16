@@ -9,11 +9,11 @@
 #ifndef direction_light_h
 #define direction_light_h
 
-#include "renderable_interface.h"
+#include "renderable_game_object.h"
 
 namespace gb
 {
-    class direction_light : public renderable_interface
+    class direction_light : public renderable_game_object
     {
     private:
         

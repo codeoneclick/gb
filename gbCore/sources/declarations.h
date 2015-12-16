@@ -161,9 +161,6 @@ namespace gb
     class ces_particle_emitter_component;
     typedef std::shared_ptr<ces_particle_emitter_component> ces_particle_emitter_component_shared_ptr;
     
-    class ces_instanced_geometry_component;
-    typedef std::shared_ptr<ces_instanced_geometry_component> ces_instanced_geometry_component_shared_ptr;
-    
     class ces_box2d_component;
     typedef std::shared_ptr<ces_box2d_component> ces_box2d_component_shared_ptr;
     
@@ -256,6 +253,9 @@ namespace gb
     
     class omni_lights_instances_container;
     typedef std::shared_ptr<omni_lights_instances_container> omni_lights_instances_container_shared_ptr;
+    
+    class scene_graph_parameters;
+    typedef std::shared_ptr<scene_graph_parameters> scene_graph_parameters_shared_ptr;
 };
 
 #endif

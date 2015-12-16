@@ -23,6 +23,7 @@
 #include "ces_skybox_component.h"
 #include "ces_batch_component.h"
 #include "batch.h"
+#include "scene_graph_parameters.h"
 
 namespace gb
 {
@@ -255,20 +256,20 @@ namespace gb
                                                                    animation_component->get_animation_mixer()->get_transformation_size(), e_shader_uniform_mat_bones);
                         }
                         
+                        scene_graph_parameters_shared_ptr scene_graph_parameters = render_component->get_scene_graph_parameters();
+                        
                         if(skybox_component && material->is_reflecting())
                         {
-                            transformation_component->set_position(glm::vec3(render_component->get_scene_graph()->get_camera()->get_position().x,
-                                                                             -render_component->get_scene_graph()->get_camera()->get_position().y + 1.f,
-                                                                             render_component->get_scene_graph()->get_camera()->get_position().z));
+                            glm::vec3 skybox_position = scene_graph_parameters->get_eye_position();
+                            skybox_position.y = skybox_position.y * -1.f + 1.f;
+                            transformation_component->set_position(skybox_position);
                             material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
                         }
                         else if(skybox_component)
                         {
-                            transformation_component->set_position(glm::vec3(render_component->get_scene_graph()->get_camera()->get_position().x,
-                                                                             render_component->get_scene_graph()->get_camera()->get_position().y,
-                                                                             render_component->get_scene_graph()->get_camera()->get_position().z));
+                            glm::vec3 skybox_position = scene_graph_parameters->get_eye_position();
+                            transformation_component->set_position(skybox_position);
                             material->get_shader()->set_mat4(transformation_component->get_matrix_m(), e_shader_uniform_mat_m);
-
                         }
                         
                         render_component->on_draw(m_name, technique_pass, mesh, material);

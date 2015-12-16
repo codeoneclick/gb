@@ -11,8 +11,7 @@
 #include "vbo.h"
 #include "ibo.h"
 #include "std_extensions.h"
-#include "camera.h"
-#include "scene_graph.h"
+#include "scene_graph_parameters.h"
 
 namespace gb
 {
@@ -146,8 +145,8 @@ namespace gb
                                                               m_settings->get_destination_color_b(),
                                                               m_settings->get_destination_color_a()), particle_clamp_age);
                 
-                camera_shared_ptr camera = ces_base_component::get_scene_graph()->get_camera();
-                glm::mat4 mat_s = camera->get_matrix_s(m_particles[i].m_position);
+                scene_graph_parameters_shared_ptr scene_graph_parameters = ces_base_component::get_scene_graph_parameters();
+                glm::mat4 mat_s = scene_graph_parameters->get_matrix_s(m_particles[i].m_position);
                 
                 glm::vec4 position = glm::vec4(-m_particles[i].m_size.x, -m_particles[i].m_size.y, 0.f, 1.f);
                 position = mat_s * position;

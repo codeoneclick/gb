@@ -19,7 +19,7 @@ namespace gb
     {
     private:
         
-        std::weak_ptr<scene_graph> m_scene_graph;
+        scene_graph_parameters_shared_ptr m_scene_graph_parameters;
         
     protected:
         
@@ -31,8 +31,8 @@ namespace gb
         virtual ~ces_base_component() = default;
         e_ces_component_type get_type() const;
         
-        void set_scene_graph(const scene_graph_shared_ptr& scene_graph);
-        scene_graph_shared_ptr get_scene_graph() const;
+        void set_scene_graph_parameters(const scene_graph_parameters_shared_ptr& scene_graph_parameters);
+        scene_graph_parameters_shared_ptr get_scene_graph_parameters() const;
     };
 
 #define unsafe_get_render_component(entity) static_cast<ces_render_component*>(entity->get_component(e_ces_component_type_render).get())
@@ -55,9 +55,6 @@ namespace gb
     
 #define unsafe_get_particle_emitter_component(entity) static_cast<ces_particle_emitter_component*>(entity->get_component(e_ces_component_type_particle_emitter).get())
 #define unsafe_get_particle_emitter_component_from_this static_cast<ces_particle_emitter_component*>(ces_entity::get_component(e_ces_component_type_particle_emitter).get())
-    
-#define unsafe_get_instanced_geometry_component(entity) static_cast<ces_instanced_geometry_component*>(entity->get_component(e_ces_component_type_geometry).get())
-#define unsafe_get_instanced_geometry_component_from_this static_cast<ces_instanced_geometry_component*>(ces_entity::get_component(e_ces_component_type_geometry).get())
     
 #define unsafe_get_ocean_component(entity) static_cast<ces_ocean_component*>(entity->get_component(e_ces_component_type_ocean).get())
 #define unsafe_get_ocean_component_from_this static_cast<ces_ocean_component*>(ces_entity::get_component(e_ces_component_type_ocean).get())

@@ -22,9 +22,7 @@
 
 namespace gb
 {
-    scene_graph::scene_graph() :
-    m_camera(nullptr),
-    m_shadow_cast_light(nullptr)
+    scene_graph::scene_graph()
     {
 
     }
@@ -46,9 +44,9 @@ namespace gb
         }
     }
     
-    void scene_graph::set_camera(const camera_shared_ptr &camera)
+    void scene_graph::set_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
     {
-        m_camera = camera;
+        m_camera = std::make_shared<gb::camera>(fov, near, far, viewport);
     }
     
     camera_shared_ptr scene_graph::get_camera() const
@@ -56,9 +54,9 @@ namespace gb
         return m_camera;
     }
     
-    void scene_graph::set_shadow_cast_light(const shadow_cast_light_shared_ptr &shadow_cast_light)
+    void scene_graph::set_shadow_cast_light(f32 fov, f32 near, f32 far)
     {
-        m_shadow_cast_light = shadow_cast_light;
+        m_shadow_cast_light = std::make_shared<gb::shadow_cast_light>(fov, near, far);;
     }
     
     shadow_cast_light_shared_ptr scene_graph::get_shadow_cast_light() const
@@ -66,75 +64,41 @@ namespace gb
         return m_shadow_cast_light;
     }
     
-    void scene_graph::set_skybox(const skybox_shared_ptr& skybox)
+    void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)
     {
-        m_skybox = skybox;
-        m_skybox->on_added_to_scene(shared_from_this());
-        m_systems_feeder->add_entity(m_skybox);
+        direction_light->on_added_to_scene(shared_from_this());
+        m_systems_feeder->add_entity(direction_light);
     }
     
-    void scene_graph::set_ocean(const ocean_shared_ptr& ocean)
+    void scene_graph::remove_direction_light(const direction_light_shared_ptr& direction_light)
     {
-        m_ocean = ocean;
-        m_ocean->on_added_to_scene(shared_from_this());
-        m_systems_feeder->add_entity(m_ocean);
+        direction_light->on_removed_from_scene();
+        m_systems_feeder->remove_entity(direction_light);
     }
     
-    void scene_graph::add_game_object(const game_object_shared_ptr& game_object)
-    {
-        game_object->on_added_to_scene(shared_from_this());
-        m_game_objects_container.insert(game_object);
-        m_systems_feeder->add_entity(game_object);
-    }
-    
-    void scene_graph::remove_game_object(const game_object_shared_ptr& game_object)
-    {
-        game_object->on_removed_from_scene();
-        m_game_objects_container.erase(game_object);
-        m_systems_feeder->remove_entity(game_object);
-    }
-    
-    /*void scene_graph::add_omni_light(const omni_light_shared_ptr& omni_light)
+    void scene_graph::add_omni_light(const omni_light_shared_ptr& omni_light)
     {
         omni_light->on_added_to_scene(shared_from_this());
-        m_omni_lights_container.insert(omni_light);
         m_systems_feeder->add_entity(omni_light);
     }
     
     void scene_graph::remove_omni_light(const omni_light_shared_ptr& omni_light)
     {
         omni_light->on_removed_from_scene();
-        m_omni_lights_container.erase(omni_light);
         m_systems_feeder->remove_entity(omni_light);
     }
     
-    void scene_graph::add_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
+    void scene_graph::add_game_object(const game_object_shared_ptr& game_object)
     {
-        instanced_omni_lights->on_added_to_scene(shared_from_this());
-        m_instanced_omni_lights_container.insert(instanced_omni_lights);
-        m_systems_feeder->add_entity(instanced_omni_lights);
+        game_object->on_added_to_scene(shared_from_this());
+        m_systems_feeder->add_entity(game_object);
     }
     
-    void scene_graph::remove_instanced_omni_lights(const instanced_omni_lights_shared_ptr& instanced_omni_lights)
+    void scene_graph::remove_game_object(const game_object_shared_ptr& game_object)
     {
-        instanced_omni_lights->on_removed_from_scene();
-        m_instanced_omni_lights_container.erase(instanced_omni_lights);
-        m_systems_feeder->remove_entity(instanced_omni_lights);
-    }*/
-    
-    //void scene_graph::add_direction_light(const direction_light_shared_ptr& direction_light)
-    //{
-    //    direction_light->on_added_to_scene(shared_from_this());
-        //m_direction_lights_container.insert(direction_light);
-    //    m_systems_feeder->add_entity(direction_light);
-    //}
-    
-    //void scene_graph::remove_direction_light(const direction_light_shared_ptr& direction_light)
-    //{
-    //    direction_light->on_removed_from_scene();
-        //m_direction_lights_container.erase(direction_light);
-    //    m_systems_feeder->remove_entity(direction_light);
-    //}
+        game_object->on_removed_from_scene();
+        m_systems_feeder->remove_entity(game_object);
+    }
     
     void scene_graph::set_box2d_world(const glm::vec2 &min_bound, const glm::vec2 &max_bound)
     {
@@ -155,41 +119,5 @@ namespace gb
         std::shared_ptr<ces_box2d_system> box2d_system = std::static_pointer_cast<ces_box2d_system>(m_systems_feeder->get_system(e_ces_system_type_box2d));
         assert(box2d_system);
         box2d_system->get_collision_manager()->destroy_box2d_body(box2d_body);
-    }
-    
-    omni_light_shared_ptr scene_graph::add_omni_light(f32 radius, const glm::vec4& color)
-    {
-        omni_lights_instances_container_shared_ptr omni_lights_instances_container = nullptr;
-        if(m_omni_lights_containers.size() == 0)
-        {
-            omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>(m_resource_accessor);
-            m_omni_lights_containers.push_back(omni_lights_instances_container);
-        }
-        else
-        {
-            omni_lights_instances_container = *(m_omni_lights_containers.end() - 1);
-            if(omni_lights_instances_container->get_omni_lights_count() < omni_lights_instances_container::k_max_lights_in_container)
-            {
-                omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>(m_resource_accessor);
-                m_omni_lights_containers.push_back(omni_lights_instances_container);
-            }
-        }
-        
-        assert(omni_lights_instances_container);
-        omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
-        omni_lights_instances_container->add_omni_light(omni_light);
-        
-        omni_light->set_radius(radius);
-        omni_light->set_color(color);
-        
-        omni_light->on_added_to_scene(shared_from_this());
-        m_systems_feeder->add_entity(omni_light);
-        
-        return omni_light;
-    }
-    
-    void scene_graph::remove_omni_light(const omni_light_shared_ptr& omni_light)
-    {
-        
     }
 }

@@ -10,7 +10,7 @@
 #include "collision_manager.h"
 #include "mesh.h"
 #include "camera.h"
-#include "scene_graph.h"
+#include "scene_graph_parameters.h"
 #include "ces_entity.h"
 #include "ces_transformation_component.h"
 #include "ces_geometry_component.h"
@@ -74,10 +74,11 @@ namespace gb
         std::shared_ptr<ces_transformation_component> transformation_component =
         std::static_pointer_cast<ces_transformation_component>(entity->get_component(e_ces_component_type_transformation));
         
-        camera_shared_ptr camera = geometry_component->get_scene_graph()->get_camera();
+        scene_graph_parameters_shared_ptr scene_graph_parameters = geometry_component->get_scene_graph_parameters();
+        
         glm::ray ray;
-        collision_manager::unproject(point, camera->get_matrix_v(), camera->get_matrix_p(),
-                                     camera->get_viewport(), &ray);
+        collision_manager::unproject(point, scene_graph_parameters->get_eye_matrix_v(), scene_graph_parameters->get_eye_matrix_p(),
+                                     scene_graph_parameters->get_viewport(), &ray);
         
         std::tuple<glm::vec3, glm::vec3> bounds = geometry_component->get_bounds(transformation_component->get_matrix_m());
         return collision_manager::is_bounding_box_intersected(ray, std::get<0>(bounds), std::get<1>(bounds), point, nullptr);

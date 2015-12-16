@@ -25,37 +25,32 @@ namespace gb
         
     protected:
         
-        std::set<camera_shared_ptr> m_cameras_container;
-        std::set<shadow_cast_light_shared_ptr> m_shadow_cast_lights_container;
         std::set<game_object_shared_ptr> m_game_objects_container;
+        
         std::set<direction_light_shared_ptr> m_direction_lights_container;
+        std::vector<omni_lights_instances_container_shared_ptr> m_omni_lights_containers;
         
         void add_materials(const renderable_game_object_shared_ptr& renderable_game_object,
                            const std::vector<std::shared_ptr<configuration>>& configurations);
+        
+        omni_lights_instances_container_shared_ptr add_omni_lights_instances_container();
         
     public:
         
         scene_fabricator();
         ~scene_fabricator();
         
-        camera_shared_ptr create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
-        void destroy_camera(const camera_shared_ptr& camera);
-        
         direction_light_shared_ptr create_direction_light();
         void destroy_direction_light(const direction_light_shared_ptr& direction_light);
         
-        shadow_cast_light_shared_ptr create_shadow_cast_light(f32 fov, f32 near, f32 far);
-        void destroy_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light);
+        omni_light_shared_ptr create_omni_light(f32 radius = 1.f, const glm::vec4& color = glm::vec4(1.f));
+        void destroy_omni_light(const omni_light_shared_ptr& omni_light);
         
         skybox_shared_ptr create_skybox(const std::string& filename);
-        void destroy_skybox(const skybox_shared_ptr& sky_box);
         
         ocean_shared_ptr create_ocean(const std::string& filename);
-        void destroy_ocean(const ocean_shared_ptr& ocean);
         
         model3d_static_shared_ptr create_model3d_static(const std::string& filename);
-        
-        instanced_models3d_static_shared_ptr create_instanced_models3d_static(const std::string& filename, i32 num_instances);
         
         model3d_animated_shared_ptr create_model3d_animated(const std::string& filename);
         

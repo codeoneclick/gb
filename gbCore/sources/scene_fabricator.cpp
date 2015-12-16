@@ -14,10 +14,9 @@
 #include "sequence.h"
 #include "renderable_game_object.h"
 #include "animation_mixer.h"
-#include "camera.h"
-#include "shadow_cast_light.h"
-#include "omni_light.h"
 #include "direction_light.h"
+#include "omni_light.h"
+#include "omni_lights_instances_container.h"
 #include "model3d_static.h"
 #include "instanced_models3d_static.h"
 #include "model3d_animated.h"
@@ -25,11 +24,14 @@
 #include "skybox.h"
 #include "ocean.h"
 #include "mesh_constructor.h"
-#include "terrain_configuration.h"
 #include "texture_configuration.h"
 
 namespace gb
 {
+    static const std::string k_deffered_rendering_normal_texture = "ws.forward.rendering.normal.color";
+    static const std::string k_deffered_rendering_depth_texture = "ws.base.depth";
+    static const std::string k_deffered_rendering_material_name = "ws.deferred.lighting";
+    
     scene_fabricator::scene_fabricator()
     {
         
@@ -54,18 +56,6 @@ namespace gb
             renderable_game_object->add_material(material_configuration->get_technique_name(),
                                                  material_configuration->get_technique_pass(), material);
         }
-    }
-    
-    camera_shared_ptr scene_fabricator::create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
-    {
-        camera_shared_ptr camera = std::make_shared<gb::camera>(fov, near, far, viewport);
-        m_cameras_container.insert(camera);
-        return camera;
-    }
-    
-    void scene_fabricator::destroy_camera(const camera_shared_ptr& camera)
-    {
-        m_cameras_container.erase(camera);
     }
     
     std::once_flag g_direction_light_shader_created;
@@ -109,9 +99,9 @@ namespace gb
         material->set_shadowing(false);
         material->set_debugging(false);
         
-        texture_shared_ptr texture_01 = m_resource_accessor->get_texture("ws.forward.rendering.normal.color");
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture(k_deffered_rendering_normal_texture);
         assert(texture_01);
-        texture_shared_ptr texture_02 = m_resource_accessor->get_texture("ws.base.depth");
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture(k_deffered_rendering_depth_texture);
         assert(texture_02);
         
         material->set_texture(texture_01, e_shader_sampler_01);
@@ -119,7 +109,7 @@ namespace gb
         
         direction_light_shared_ptr direction_light = std::make_shared<gb::direction_light>();
         
-        direction_light->add_material("ws.deferred.lighting", 0, material);
+        direction_light->add_material(k_deffered_rendering_material_name, 0, material);
         direction_light->set_mesh(mesh);
         m_direction_lights_container.insert(direction_light);
         return direction_light;
@@ -130,16 +120,92 @@ namespace gb
         m_direction_lights_container.erase(direction_light);
     }
     
-    shadow_cast_light_shared_ptr scene_fabricator::create_shadow_cast_light(f32 fov, f32 near, f32 far)
+    std::once_flag g_instanced_omni_light_shader_created;
+    omni_lights_instances_container_shared_ptr scene_fabricator::add_omni_lights_instances_container()
     {
-        shadow_cast_light_shared_ptr shadow_cast_light = std::make_shared<gb::shadow_cast_light>(fov, near, far);
-        m_shadow_cast_lights_container.insert(shadow_cast_light);
-        return shadow_cast_light;
+       omni_lights_instances_container_shared_ptr omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>();
+        
+        static shader_shared_ptr shader = nullptr;
+        std::call_once(g_instanced_omni_light_shader_created, [this] {
+            shader = shader::construct("omni_light",
+                                       shader_instanced_omni_light_vert,
+                                       shader_instanced_omni_light_frag);
+            assert(shader);
+        });
+        
+        material_shared_ptr material = std::make_shared<gb::material>();
+        material->set_shader(shader);
+        
+        material->set_culling(false);
+        material->set_culling_mode(GL_BACK);
+        
+        material->set_blending(true);
+        material->set_blending_function_source(GL_ONE);
+        material->set_blending_function_destination(GL_ONE);
+        
+        material->set_stencil_test(false);
+        material->set_stencil_function(GL_ALWAYS);
+        material->set_stencil_function_parameter_1(1);
+        material->set_stencil_function_parameter_2(255);
+        material->set_stencil_mask_parameter(255);
+        
+        material->set_depth_test(false);
+        material->set_depth_mask(false);
+        
+        material->set_clipping(false);
+        material->set_clipping_plane(glm::vec4(0.f));
+        
+        material->set_reflecting(false);
+        material->set_shadowing(false);
+        material->set_debugging(false);
+        
+        texture_shared_ptr texture_01 = m_resource_accessor->get_texture(k_deffered_rendering_normal_texture);
+        assert(texture_01);
+        texture_shared_ptr texture_02 = m_resource_accessor->get_texture(k_deffered_rendering_depth_texture);
+        assert(texture_02);
+        
+        material->set_texture(texture_01, e_shader_sampler_01);
+        material->set_texture(texture_02, e_shader_sampler_02);
+        
+        instanced_mesh_shared_ptr mesh = mesh_constructor::create_instanced_sphere(1.f, 16, 16);
+        
+        omni_lights_instances_container->set_material(material, k_deffered_rendering_material_name);
+        omni_lights_instances_container->set_mesh(mesh);
+        
+        return omni_lights_instances_container;
     }
     
-    void scene_fabricator::destroy_shadow_cast_light(const shadow_cast_light_shared_ptr& shadow_cast_light)
+    omni_light_shared_ptr scene_fabricator::create_omni_light(f32 radius, const glm::vec4& color)
     {
-        m_shadow_cast_lights_container.erase(shadow_cast_light);
+        omni_lights_instances_container_shared_ptr omni_lights_instances_container = nullptr;
+        if(m_omni_lights_containers.size() == 0)
+        {
+            omni_lights_instances_container = scene_fabricator::add_omni_lights_instances_container();
+            m_omni_lights_containers.push_back(omni_lights_instances_container);
+        }
+        else
+        {
+            omni_lights_instances_container = *(m_omni_lights_containers.end() - 1);
+            if(omni_lights_instances_container->get_omni_lights_count() < omni_lights_instances_container::k_max_lights_in_container)
+            {
+                omni_lights_instances_container = scene_fabricator::add_omni_lights_instances_container();
+                m_omni_lights_containers.push_back(omni_lights_instances_container);
+            }
+        }
+        
+        assert(omni_lights_instances_container);
+        omni_light_shared_ptr omni_light = std::make_shared<gb::omni_light>();
+        omni_lights_instances_container->add_omni_light(omni_light);
+        
+        omni_light->set_radius(radius);
+        omni_light->set_color(color);
+        
+        return omni_light;
+    }
+    
+    void scene_fabricator::destroy_omni_light(const omni_light_shared_ptr& omni_light)
+    {
+        
     }
     
     model3d_static_shared_ptr scene_fabricator::create_model3d_static(const std::string& filename)
@@ -246,47 +312,6 @@ namespace gb
         return particle_emitter;
     }
     
-    instanced_models3d_static_shared_ptr scene_fabricator::create_instanced_models3d_static(const std::string& filename, i32 num_instances)
-    {
-        std::shared_ptr<model_configuration> model_configuration =
-        std::static_pointer_cast<gb::model_configuration>(m_configuration_accessor->get_model_configuration(filename));
-        assert(model_configuration);
-        instanced_models3d_static_shared_ptr instanced_models3d_static = nullptr;
-        if(model_configuration)
-        {
-            instanced_models3d_static = std::make_shared<gb::instanced_models3d_static>(num_instances);
-            
-            instanced_mesh_shared_ptr mesh = nullptr;
-            if(model_configuration->get_mesh_base_class().length() != 0)
-            {
-                if(model_configuration->get_mesh_base_class() == "box")
-                {
-                    mesh = mesh_constructor::create_boxes(glm::vec3(-.5f), glm::vec3(.5f), num_instances);
-                }
-                else
-                {
-                    assert(false);
-                }
-            }
-            else
-            {
-                assert(false);
-            }
-            
-            assert(mesh);
-            instanced_models3d_static->set_mesh(mesh);
-            
-            scene_fabricator::add_materials(instanced_models3d_static, model_configuration->get_materials_configurations());
-            m_game_objects_container.insert(instanced_models3d_static);
-        }
-        return instanced_models3d_static;
-    }
-    
-    void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)
-    {
-        m_game_objects_container.erase(game_object);
-    }
-    
     skybox_shared_ptr scene_fabricator::create_skybox(const std::string& filename)
     {
         std::shared_ptr<skybox_configuration> skybox_configuration =
@@ -305,11 +330,6 @@ namespace gb
             m_game_objects_container.insert(skybox);
         }
         return skybox;
-    }
-    
-    void scene_fabricator::destroy_skybox(const skybox_shared_ptr& skybox)
-    {
-        m_game_objects_container.erase(skybox);
     }
     
     ocean_shared_ptr scene_fabricator::create_ocean(const std::string& filename)
@@ -334,8 +354,8 @@ namespace gb
         return ocean;
     }
     
-    void scene_fabricator::destroy_ocean(const ocean_shared_ptr& ocean)
+    void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)
     {
-        m_game_objects_container.erase(ocean);
+        m_game_objects_container.erase(game_object);
     }
 }

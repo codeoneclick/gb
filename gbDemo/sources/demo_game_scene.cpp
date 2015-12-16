@@ -33,13 +33,15 @@
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
 {
-    m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
-                                                                                  game_scene::get_transition()->get_width(),
-                                                                                  game_scene::get_transition()->get_height()));
+    scene_graph_inst->set_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
+                                                               game_scene::get_transition()->get_width(),
+                                                               game_scene::get_transition()->get_height()));
+    m_camera = scene_graph_inst->get_camera();
     m_camera->set_distance_to_look_at(glm::vec3(48.f));
     m_camera->set_position(glm::vec3(-8.f, 8.f, 8.f));
     
-    m_shadow_cast_light = scene_fabricator_inst->create_shadow_cast_light(90.f, .1f, 128.f);
+    scene_graph_inst->set_shadow_cast_light(90.f, .1f, 128.f);
+    m_shadow_cast_light = scene_graph_inst->get_shadow_cast_light();
     
     m_models["human_01"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_01.xml");
     m_models["human_02"] = scene_fabricator_inst->create_model3d_animated("gameobject.human_02.xml");
@@ -53,8 +55,6 @@ gb::game_scene(transition)
     plane->set_scale(glm::vec3(32.f, 1.f, 32.f));
     plane->set_position(glm::vec3(-8.f, 0.f, -8.f));
     
-    scene_graph_inst->set_camera(m_camera);
-    scene_graph_inst->set_shadow_cast_light(m_shadow_cast_light);
     scene_graph_inst->add_game_object(m_models["human_01"]);
     scene_graph_inst->add_game_object(m_models["human_02"]);
     scene_graph_inst->add_game_object(m_models["orc_01"]);
@@ -94,10 +94,15 @@ gb::game_scene(transition)
     //m_models["orc_01"]->set_debug_draw_enabled(true);
     //m_models["orc_02"]->set_debug_draw_enabled(true);
     
-    m_omni_lights["omni_light_01"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(1.f, 0.f, 0.f, 1.f));
-    m_omni_lights["omni_light_02"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(0.f, 1.f, 0.f, 1.f));
-    m_omni_lights["omni_light_03"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(0.f, 0.f, 1.f, 1.f));
-    m_omni_lights["omni_light_04"] = scene_graph_inst->add_omni_light(4.f, glm::vec4(1.f, 0.f, 1.f, 1.f));
+    m_omni_lights["omni_light_01"] = scene_fabricator_inst->create_omni_light(4.f, glm::vec4(1.f, 0.f, 0.f, 1.f));
+    m_omni_lights["omni_light_02"] = scene_fabricator_inst->create_omni_light(4.f, glm::vec4(0.f, 1.f, 0.f, 1.f));
+    m_omni_lights["omni_light_03"] = scene_fabricator_inst->create_omni_light(4.f, glm::vec4(0.f, 0.f, 1.f, 1.f));
+    m_omni_lights["omni_light_04"] = scene_fabricator_inst->create_omni_light(4.f, glm::vec4(1.f, 0.f, 1.f, 1.f));
+    
+    scene_graph_inst->add_omni_light(m_omni_lights["omni_light_01"]);
+    scene_graph_inst->add_omni_light(m_omni_lights["omni_light_02"]);
+    scene_graph_inst->add_omni_light(m_omni_lights["omni_light_03"]);
+    scene_graph_inst->add_omni_light(m_omni_lights["omni_light_04"]);
     
     /*m_omni_lights["omni_light_01"] = game_scene::get_transition()->get_fabricator()->create_omni_light();
     game_scene::get_transition()->get_scene_graph()->add_omni_light(m_omni_lights["omni_light_01"]);
@@ -136,10 +141,10 @@ gb::game_scene(transition)
     //m_instanced_omni_lights->set_radius(192.f, 8);
     
     m_skybox = scene_fabricator_inst->create_skybox("gameobject.skybox.xml");
-    scene_graph_inst->set_skybox(m_skybox);
+    scene_graph_inst->add_game_object(m_skybox);
     
     m_ocean = scene_fabricator_inst->create_ocean("gameobject.ocean.xml");
-    scene_graph_inst->set_ocean(m_ocean);
+    scene_graph_inst->add_game_object(m_ocean);
 
     m_ui_fabricator = std::make_shared<gb::ui::ui_fabricator>();
     game_scene::get_transition()->add_fabricator(m_ui_fabricator, ui_fabricator_id);

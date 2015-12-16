@@ -11,7 +11,8 @@
 namespace gb
 {
     ces_base_component::ces_base_component() :
-    m_type(e_ces_component_type_undefined)
+    m_type(e_ces_component_type_undefined),
+    m_scene_graph_parameters(nullptr)
     {
         
     }
@@ -21,13 +22,13 @@ namespace gb
         return m_type;
     }
     
-    void ces_base_component::set_scene_graph(const scene_graph_shared_ptr& scene_graph)
+    void ces_base_component::set_scene_graph_parameters(const scene_graph_parameters_shared_ptr& scene_graph_parameters)
     {
-        m_scene_graph = scene_graph;
+        m_scene_graph_parameters = scene_graph_parameters;
     }
     
-    scene_graph_shared_ptr ces_base_component::get_scene_graph() const
+    scene_graph_parameters_shared_ptr ces_base_component::get_scene_graph_parameters() const
     {
-        return m_scene_graph.lock();
+        return m_scene_graph_parameters;
     }
 };

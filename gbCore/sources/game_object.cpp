@@ -8,6 +8,7 @@
 
 #include "game_object.h"
 #include "ces_transformation_component.h"
+#include "scene_graph.h"
 
 namespace gb
 {
@@ -39,7 +40,7 @@ namespace gb
         {
             if(component)
             {
-                component->set_scene_graph(scene_graph);
+                component->set_scene_graph_parameters(scene_graph);
             }
         }
     }
@@ -51,7 +52,7 @@ namespace gb
         {
             if(component)
             {
-                component->set_scene_graph(nullptr);
+                component->set_scene_graph_parameters(nullptr);
             }
         }
     }

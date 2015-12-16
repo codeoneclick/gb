@@ -9,7 +9,7 @@
 #include "ces_skybox_system.h"
 #include "ces_skybox_component.h"
 #include "ces_transformation_component.h"
-#include "scene_graph.h"
+#include "scene_graph_parameters.h"
 #include "camera.h"
 
 namespace gb
@@ -39,9 +39,9 @@ namespace gb
         
         if(skybox_component && transformation_component)
         {
-            transformation_component->set_position(glm::vec3(skybox_component->get_scene_graph()->get_camera()->get_position().x,
-                                                             skybox_component->get_scene_graph()->get_camera()->get_position().y,
-                                                             skybox_component->get_scene_graph()->get_camera()->get_position().z));
+            scene_graph_parameters_shared_ptr scene_graph_parameters = skybox_component->get_scene_graph_parameters();
+            glm::vec3 skybox_position = scene_graph_parameters->get_eye_position();
+            transformation_component->set_position(skybox_position);
         }
     }
     

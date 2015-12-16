@@ -48,7 +48,7 @@ namespace gb
         {
             ces_touch_component_shared_ptr touch_component = std::make_shared<ces_touch_component>();
             ces_entity::add_component(touch_component);
-            touch_component->set_scene_graph(game_object::get_scene_graph());
+            touch_component->set_scene_graph_parameters(game_object::get_scene_graph());
             
             touch_component->enable(e_input_state_pressed, true);
             touch_component->enable(e_input_state_dragged, true);
@@ -66,7 +66,7 @@ namespace gb
         {
             ces_bounding_box_debug_component_shared_ptr bounding_box_debug_component = std::make_shared<ces_bounding_box_debug_component>();
             ces_entity::add_component(bounding_box_debug_component);
-            bounding_box_debug_component->set_scene_graph(game_object::get_scene_graph());
+            bounding_box_debug_component->set_scene_graph_parameters(game_object::get_scene_graph());
         }
         else
         {
@@ -131,7 +131,7 @@ namespace gb
         {
             ces_batch_component_shared_ptr batch_component = std::make_shared<ces_batch_component>(guid);
             ces_entity::add_component(batch_component);
-            batch_component->set_scene_graph(game_object::get_scene_graph());
+            batch_component->set_scene_graph_parameters(game_object::get_scene_graph());
         }
         else
         {

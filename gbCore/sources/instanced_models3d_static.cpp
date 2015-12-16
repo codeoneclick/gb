@@ -7,7 +7,7 @@
 //
 
 #include "instanced_models3d_static.h"
-#include "ces_instanced_geometry_component.h"
+#include "ces_geometry_component.h"
 #include "ces_render_component.h"
 #include "material.h"
 #include "instanced_mesh.h"
@@ -17,7 +17,7 @@ namespace gb
     instanced_models3d_static::instanced_models3d_static(i32 num_instances) :
     m_num_instances(num_instances)
     {
-        ces_instanced_geometry_component_shared_ptr geometry_component = std::make_shared<ces_instanced_geometry_component>();
+        ces_geometry_component_shared_ptr geometry_component = std::make_shared<ces_geometry_component>();
         ces_entity::add_component(geometry_component);
         
         m_positions.resize(num_instances, glm::vec3(0.f));
@@ -51,7 +51,7 @@ namespace gb
 
     void instanced_models3d_static::set_mesh(const mesh_shared_ptr& mesh)
     {
-        unsafe_get_instanced_geometry_component_from_this->set_mesh(mesh);
+        unsafe_get_geometry_component_from_this->set_mesh(mesh);
     }
     
     void instanced_models3d_static::set_position(const glm::vec3& position, i32 instance_id)

@@ -8,7 +8,7 @@
 
 #include "omni_light.h"
 #include "ces_transformation_component.h"
-#include "ces_instanced_geometry_component.h"
+#include "ces_geometry_component.h"
 #include "ces_render_component.h"
 #include "instanced_mesh.h"
 #include "material.h"
@@ -18,10 +18,7 @@ namespace gb
     omni_light::omni_light() :
     m_instance_id(-1)
     {
-        ces_transformation_component_shared_ptr transformation_component = std::make_shared<ces_transformation_component>();
-        ces_entity::add_component(transformation_component);
-        
-        ces_instanced_geometry_component_shared_ptr geometry_component = std::make_shared<ces_instanced_geometry_component>();
+        ces_geometry_component_shared_ptr geometry_component = std::make_shared<ces_geometry_component>();
         ces_entity::add_component(geometry_component);
     }
     
@@ -128,7 +125,7 @@ namespace gb
     
     void omni_light::add_material(const std::string& technique_name, i32 technique_pass, const material_shared_ptr& material)
     {
-        renderable_interface::add_material(technique_name, technique_pass, material);
+        renderable_game_object::add_material(technique_name, technique_pass, material);
         unsafe_get_render_component_from_this->set_custom_shader_uniform_array(&m_transformations.lock()->at(0),
                                                                                static_cast<i32>(m_transformations.lock()->size()),
                                                                                "u_transform_parameters");
@@ -139,6 +136,6 @@ namespace gb
     
     void omni_light::set_mesh(const instanced_mesh_shared_ptr& mesh)
     {
-        unsafe_get_instanced_geometry_component_from_this->set_mesh(mesh);
+        unsafe_get_geometry_component_from_this->set_mesh(mesh);
     }
 }
