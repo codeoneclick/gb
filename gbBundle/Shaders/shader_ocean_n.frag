@@ -38,13 +38,10 @@ void main()
     ripples += texture2D(sampler_02, v_texcoord_displace_02).rgb;
     ripples -= k_1;
     
-    float deep = texture2D(sampler_04, v_texcoord).r;
-    
-    vec2 perturbation_intensity = k_perturbation_factor * ripples.xy * (k_1 - deep);
+    vec2 perturbation_intensity = k_perturbation_factor * ripples.xy;
     vec2 perturbated_texcoord = texcoord_proj + perturbation_intensity;
     
     vec4 color = texture2D(sampler_01, vec2(k_05 + (k_05 - perturbated_texcoord.x), perturbated_texcoord.y));
-    color = mix(k_default_normal, color, deep);
     color = mix(color, k_default_normal, v_extra_parameter);
     color.a = k_1;
     

@@ -62,17 +62,14 @@ void main()
     vec3 eye_direction_ws = normalize(v_eye_position_ws - v_vertex_position_ws);
     float fresnel = dot(k_default_normal.xyz, eye_direction_ws);
     
-    float deep = texture2D(sampler_04, v_texcoord).r;
-    deep *= v_extra_parameter;
-    
-    vec2 perturbation_intensity = k_perturbation_factor * ripples.xy * (k_1 - deep);
+    vec2 perturbation_intensity = k_perturbation_factor * ripples.xy;
     vec2 perturbated_texcoord = texcoord_proj + perturbation_intensity;
     
     vec4 reflection_color = texture2D(sampler_01, perturbated_texcoord);
     vec4 refraction_color = texture2D(sampler_02, vec2(k_05 + (k_05 - perturbated_texcoord.x), perturbated_texcoord.y));
     
-    vec4 color = mix(reflection_color, refraction_color, max(deep, fresnel));
-    color += k_water_color_blue * (k_1 - deep);
+    vec4 color = mix(reflection_color, refraction_color, fresnel);
+    color += k_water_color_blue;
     color.a = k_1;
     
     float fog_distance = length(vec3(192.0 * 0.5, 0.0, 192.0 * 0.5) - v_vertex_position_ws) / (192.0 * 2.0);
