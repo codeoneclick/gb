@@ -25,7 +25,7 @@ namespace gb
         
     protected:
         
-        i32 m_type;
+        std::string m_type;
         virtual void on_feed_start(f32 deltatime) = 0;
         virtual void on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime) = 0;
         virtual void on_feed_end(f32 deltatime) = 0;
@@ -35,7 +35,7 @@ namespace gb
         ces_system();
         ~ces_system();
         
-        i32 get_type() const;
+        std::string get_type() const;
     };
 };
 

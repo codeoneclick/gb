@@ -20,7 +20,7 @@ namespace gb
 {
     ces_input_system::ces_input_system()
     {
-        m_type = e_ces_system_type_input;
+        m_type = ces_system_type.ces_system_type_input;
     }
     
     void ces_input_system::add_touch_listener(const touch_listener_shared_ptr& listener)

@@ -17,7 +17,7 @@ namespace gb
     ces_ocean_system::ces_ocean_system(const resource_accessor_shared_ptr& resource_accessor) :
     m_resource_accessor(resource_accessor)
     {
-        m_type = e_ces_system_type_ocean;
+        m_type = ces_system_type.ces_system_type_ocean;
     }
     
     ces_ocean_system::~ces_ocean_system()

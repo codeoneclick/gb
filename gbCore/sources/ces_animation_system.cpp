@@ -16,7 +16,7 @@ namespace gb
 {
     ces_animation_system::ces_animation_system()
     {
-        m_type = e_ces_system_type_animation;
+        m_type = ces_system_type.ces_system_type_animation;
     }
     
     ces_animation_system::~ces_animation_system()

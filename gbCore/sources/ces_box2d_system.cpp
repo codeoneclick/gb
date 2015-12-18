@@ -14,7 +14,7 @@ namespace gb
 {
     ces_box2d_system::ces_box2d_system()
     {
-        m_type = e_ces_system_type_box2d;
+        m_type = ces_system_type.ces_system_type_box2d;
         m_collision_manager = std::make_shared<collision_manager>();
     }
     

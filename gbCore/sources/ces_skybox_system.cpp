@@ -16,7 +16,7 @@ namespace gb
 {
     ces_skybox_system::ces_skybox_system()
     {
-        m_type = e_ces_system_type_skybox;
+        m_type = ces_system_type.ces_system_type_skybox;
     }
     
     ces_skybox_system::~ces_skybox_system()

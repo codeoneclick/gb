@@ -21,7 +21,7 @@ namespace gb
         
     }
     
-    std::shared_ptr<ces_system> ces_systems_feeder::get_system(i32 type) const
+    std::shared_ptr<ces_system> ces_systems_feeder::get_system(const std::string& type) const
     {
         auto system = m_systems.find(type);
         if(system != m_systems.end())
@@ -52,12 +52,12 @@ namespace gb
         }
     }
     
-    void ces_systems_feeder::add_system(const std::shared_ptr<ces_system>& system, i32 type)
+    void ces_systems_feeder::add_system(const std::shared_ptr<ces_system>& system)
     {
-        m_systems[type] = system;
+        m_systems[system->get_type()] = system;
     }
     
-    void ces_systems_feeder::remove_system(i32 type)
+    void ces_systems_feeder::remove_system(const std::string& type)
     {
         const auto& iterator = m_systems.find(type);
         if(iterator != m_systems.end())

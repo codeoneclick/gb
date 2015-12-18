@@ -13,7 +13,7 @@ namespace gb
 {
     ces_camera_system::ces_camera_system()
     {
-        m_type = e_ces_system_type_camera;
+        m_type = ces_system_type.ces_system_type_camera;
     }
     
     ces_camera_system::~ces_camera_system()

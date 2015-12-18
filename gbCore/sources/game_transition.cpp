@@ -143,32 +143,32 @@ namespace gb
         game_transition::add_fabricator(std::make_shared<scene_fabricator>(), scene_fabricator_id);
         game_transition::add_graph(std::make_shared<scene_graph>(), scene_graph_id);
         
-        m_system_feeder->add_system(render_system, e_ces_system_type_render);
+        m_system_feeder->add_system(render_system);
         
         std::shared_ptr<ces_camera_system> camera_system = std::make_shared<ces_camera_system>();
-        m_system_feeder->add_system(camera_system, e_ces_system_type_camera);
+        m_system_feeder->add_system(camera_system);
         
         std::shared_ptr<ces_animation_system> animation_system = std::make_shared<ces_animation_system>();
-        m_system_feeder->add_system(animation_system, e_ces_system_type_animation);
+        m_system_feeder->add_system(animation_system);
         
         std::shared_ptr<ces_input_system> input_system = std::make_shared<ces_input_system>();
-        m_system_feeder->add_system(input_system, e_ces_system_type_input);
+        m_system_feeder->add_system(input_system);
         m_input_context->add_listener(input_system);
         
         std::shared_ptr<ces_particle_emitter_system> particle_emitter_system = std::make_shared<ces_particle_emitter_system>();
-        m_system_feeder->add_system(particle_emitter_system, e_ces_system_type_particle_emitter);
+        m_system_feeder->add_system(particle_emitter_system);
         
         std::shared_ptr<ces_box2d_system> box2d_system = std::make_shared<ces_box2d_system>();
-        m_system_feeder->add_system(box2d_system, e_ces_system_type_box2d);
+        m_system_feeder->add_system(box2d_system);
         
         std::shared_ptr<ces_skybox_system> skybox_system = std::make_shared<ces_skybox_system>();
-        m_system_feeder->add_system(skybox_system, e_ces_system_type_skybox);
+        m_system_feeder->add_system(skybox_system);
         
         std::shared_ptr<ces_ocean_system> ocean_system = std::make_shared<ces_ocean_system>(resource_accessor);
-        m_system_feeder->add_system(ocean_system, e_ces_system_type_ocean);
+        m_system_feeder->add_system(ocean_system);
         
         ces_batch_system_shared_ptr batch_system = std::make_shared<ces_batch_system>();
-        m_system_feeder->add_system(batch_system, e_ces_system_type_batch);
+        m_system_feeder->add_system(batch_system);
         
         add_listener_to_game_loop(m_system_feeder);
         
@@ -274,12 +274,12 @@ namespace gb
         return nullptr;
     }
     
-    void game_transition::add_system(const ces_system_shared_ptr& system, i32 type)
+    void game_transition::add_system(const ces_system_shared_ptr& system)
     {
-        m_system_feeder->add_system(system, type);
+        m_system_feeder->add_system(system);
     }
     
-    ces_system_shared_ptr game_transition::get_system(i32 type)
+    ces_system_shared_ptr game_transition::get_system(const std::string& type)
     {
         return m_system_feeder->get_system(type);
     }

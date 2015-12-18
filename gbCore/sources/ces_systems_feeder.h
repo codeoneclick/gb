@@ -12,18 +12,17 @@
 #include "ces_systems_feeder.h"
 #include "game_loop.h"
 #include "ces_system_types.h"
+#include "declarations.h"
 
 namespace gb
 {
-    class ces_system;
-    class ces_entity;
     class ces_systems_feeder : public i_game_loop
     {
     private:
         
     protected:
         
-        std::map<i32, std::shared_ptr<ces_system>> m_systems;
+        std::map<std::string, std::shared_ptr<ces_system>> m_systems;
         std::set<std::shared_ptr<ces_entity>> m_entities;
         
         void on_update(f32 deltatime);
@@ -33,13 +32,13 @@ namespace gb
         ces_systems_feeder();
         ~ces_systems_feeder();
         
-        void add_system(const std::shared_ptr<ces_system>& system, i32 type);
-        void remove_system(i32 type);
+        void add_system(const std::shared_ptr<ces_system>& system);
+        void remove_system(const std::string& type);
         
         void add_entity(const std::shared_ptr<ces_entity>& entity);
         void remove_entity(const std::shared_ptr<ces_entity>& entity);
         
-        std::shared_ptr<ces_system> get_system(i32 type) const;
+        std::shared_ptr<ces_system> get_system(const std::string& type) const;
     };
 };
 

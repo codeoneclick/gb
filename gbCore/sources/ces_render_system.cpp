@@ -15,7 +15,7 @@ namespace gb
 {
     ces_render_system::ces_render_system(const std::shared_ptr<graphics_context>& graphic_context, bool is_offscreen)
     {
-        m_type = e_ces_system_type_render;
+        m_type = ces_system_type.ces_system_type_render;
         m_render_pipeline = std::make_shared<render_pipeline>(graphic_context, is_offscreen);
     }
     

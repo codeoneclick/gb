@@ -14,7 +14,7 @@ namespace gb
 {
     ces_particle_emitter_system::ces_particle_emitter_system()
     {
-        m_type = e_ces_system_type_particle_emitter;
+        m_type = ces_system_type.ces_system_type_particle_emitter;
     }
     
     ces_particle_emitter_system::~ces_particle_emitter_system()

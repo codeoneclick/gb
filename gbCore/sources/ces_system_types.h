@@ -11,21 +11,19 @@
 
 namespace gb
 {
-    enum e_ces_system_type
+    extern const struct ces_system_type
     {
-        e_ces_system_type_undefined = 0,
-        e_ces_system_type_camera,
-        e_ces_system_type_render,
-        e_ces_system_type_animation,
-        e_ces_system_type_input,
-        e_ces_system_type_particle_emitter,
-        e_ces_system_type_box2d,
-        e_ces_system_type_skybox,
-        e_ces_system_type_ocean,
-        e_ces_system_type_batch,
-        e_ces_system_type_terrain,
-        e_ces_system_type_max
-    };
+        std::string ces_system_type_camera;
+        std::string ces_system_type_animation;
+        std::string ces_system_type_input;
+        std::string ces_system_type_particle_emitter;
+        std::string ces_system_type_box2d;
+        std::string ces_system_type_skybox;
+        std::string ces_system_type_ocean;
+        std::string ces_system_type_batch;
+        std::string ces_system_type_render;
+        
+    } ces_system_type;
 }
 
 #endif

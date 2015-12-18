@@ -10,8 +10,21 @@
 
 namespace gb
 {
+    const struct ces_system_type ces_system_type =
+    {
+        "index.01.ces_system_type_camera",
+        "index.02.ces_system_type_animation",
+        "index.03.ces_system_type_input",
+        "index.04.ces_system_type_particle_emitter",
+        "index.05.ces_system_type_box2d",
+        "index.06.ces_system_type_skybox",
+        "index.07.ces_system_type_ocean",
+        "index.08.ces_system_type_batch",
+        "index.09.ces_system_type_render"
+    };
+    
     ces_system::ces_system() :
-    m_type(e_ces_system_type_undefined)
+    m_type("")
     {
         
     }
@@ -21,7 +34,7 @@ namespace gb
         
     }
     
-    i32 ces_system::get_type() const
+    std::string ces_system::get_type() const
     {
         return m_type;
     }

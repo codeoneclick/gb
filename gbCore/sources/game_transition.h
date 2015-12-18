@@ -73,8 +73,8 @@ namespace gb
         i_scene_fabricator_shared_ptr get_fabricator(i32 guid) const;
         i_scene_graph_shared_ptr get_graph(i32 guid) const;
         
-        void add_system(const ces_system_shared_ptr& system, i32 type);
-        ces_system_shared_ptr get_system(i32 type);
+        void add_system(const ces_system_shared_ptr& system);
+        ces_system_shared_ptr get_system(const std::string& type);
         
         void add_fabricator(const i_scene_fabricator_shared_ptr& fabricator, i32 guid);
         void remove_fabricator(i32 guid);

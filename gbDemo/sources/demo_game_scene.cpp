@@ -352,13 +352,13 @@ void demo_game_scene::on_key_up(i32 key)
 void demo_game_scene::on_move_state_changed(i32 state)
 {
     //m_camera_controller->set_move_state(state);
-    m_character_controller->set_move_state(state);
+    //m_character_controller->set_move_state(state);
 }
 
 void demo_game_scene::on_rotate_state_changed(i32 state)
 {
     //m_camera_controller->set_rotate_state(state);
-    m_character_controller->set_rotate_state(state);
+    //m_character_controller->set_rotate_state(state);
 }
 
 void demo_game_scene::on_mouse_dragged(const glm::ivec2& delta)

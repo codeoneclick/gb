@@ -15,7 +15,7 @@ namespace koth
 {
     enum e_ces_koth_system_type
     {
-        e_ces_koth_system_type_camera_navigation = gb::e_ces_system_type_max,
+        e_ces_koth_system_type_camera_navigation = -1,
         e_ces_koth_system_type_max
     };
 }
