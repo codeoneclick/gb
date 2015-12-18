@@ -20,7 +20,7 @@ namespace gb
 {
     ces_batch_system::ces_batch_system()
     {
-        m_type = ces_system_type.ces_system_type_ocean;
+        m_type = ces_system_type.ces_system_type_batch;
     }
     
     ces_batch_system::~ces_batch_system()

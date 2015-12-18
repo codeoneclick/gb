@@ -45,12 +45,12 @@ demo_game_transition::~demo_game_transition(void)
 void demo_game_transition::create_scene()
 {
     m_scene = std::make_shared<demo_game_scene>(shared_from_this());
-    std::shared_ptr<gb::ces_input_system> input_system = std::static_pointer_cast<gb::ces_input_system>(game_transition::get_system(gb::e_ces_system_type_input));
+    std::shared_ptr<gb::ces_input_system> input_system = std::static_pointer_cast<gb::ces_input_system>(game_transition::get_system(gb::ces_system_type.ces_system_type_input));
     input_system->add_touch_listener(std::static_pointer_cast<demo_game_scene>(m_scene));
     
     koth::ces_camera_navigation_system_shared_ptr camera_navigation_system = std::make_shared<koth::ces_camera_navigation_system>();
     gb::game_transition::get_input_context()->add_listener(camera_navigation_system);
-    gb::game_transition::add_system(camera_navigation_system, koth::e_ces_koth_system_type_camera_navigation);
+    gb::game_transition::add_system(camera_navigation_system);
 }
 
 void demo_game_transition::destroy_scene()

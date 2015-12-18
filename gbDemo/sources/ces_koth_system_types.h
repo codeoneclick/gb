@@ -13,11 +13,11 @@
 
 namespace koth
 {
-    enum e_ces_koth_system_type
+    extern const struct ces_koth_system_type
     {
-        e_ces_koth_system_type_camera_navigation = -1,
-        e_ces_koth_system_type_max
-    };
+        std::string ces_koth_system_camera_navigation;
+        
+    } ces_koth_system_type;
 }
 
 #endif

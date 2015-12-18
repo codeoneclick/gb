@@ -19,9 +19,14 @@
 
 namespace koth
 {
+    const struct ces_koth_system_type ces_koth_system_type =
+    {
+        "index.01.ces_koth_system_camera_navigation"
+    };
+    
     ces_camera_navigation_system::ces_camera_navigation_system()
     {
-        m_type = e_ces_koth_system_type_camera_navigation;
+        m_type = ces_koth_system_type.ces_koth_system_camera_navigation;
         
         m_keys_state[key_w] = false;
         m_keys_state[key_a] = false;

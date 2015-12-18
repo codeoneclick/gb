@@ -44,7 +44,7 @@ namespace koth
         }
         if(m_move_navigation_state == e_move_navigation_state_backward)
         {
-            m_position += direction * deltatime * 5.f;
+            m_position -= direction * deltatime * 5.f;
         }
         if(m_move_navigation_state == e_move_navigation_state_right)
         {
