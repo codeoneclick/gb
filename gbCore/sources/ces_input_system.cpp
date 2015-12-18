@@ -60,7 +60,7 @@ namespace gb
                 {
                     for(const auto& iterator : m_listeners)
                     {
-                        iterator->on_touch(glm::vec3(0.f), entity, std::get<0>(event), std::get<1>(event));
+                        iterator->on_touch(glm::vec3(0.f), glm::vec3(0.f), entity, std::get<0>(event), std::get<1>(event));
                     }
                 }
             }
@@ -94,12 +94,12 @@ namespace gb
         m_events.push(std::make_tuple(input_element, e_input_state_released, point));
     }
     
-    void ces_input_system::on_gr_moved(const glm::ivec2& point)
+    void ces_input_system::on_gr_moved(const glm::ivec2& point, const glm::ivec2& delta)
     {
         m_events.push(std::make_tuple(e_input_element_none, e_input_state_moved, point));
     }
     
-    void ces_input_system::on_gr_dragged(const glm::ivec2& point, e_input_element input_element)
+    void ces_input_system::on_gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element)
     {
         m_events.push(std::make_tuple(input_element, e_input_state_dragged, point));
     }

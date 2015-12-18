@@ -31,6 +31,10 @@
 		21176FDB1BC55F5D00890D7C /* game_command.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FD81BC55F5D00890D7C /* game_command.cpp */; };
 		21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
 		21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21176FDC1BC5608300890D7C /* game_commands_container.cpp */; };
+		211942171C24064800433080 /* ces_camera_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211942151C24064800433080 /* ces_camera_component.cpp */; };
+		211942181C24064800433080 /* ces_camera_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211942151C24064800433080 /* ces_camera_component.cpp */; };
+		2119421B1C2406A900433080 /* ces_camera_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211942191C2406A900433080 /* ces_camera_system.cpp */; };
+		2119421C1C2406A900433080 /* ces_camera_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211942191C2406A900433080 /* ces_camera_system.cpp */; };
 		211D61731C19A71D004ABE67 /* renderable_game_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211D61711C19A71D004ABE67 /* renderable_game_object.cpp */; };
 		211D61741C19A71D004ABE67 /* renderable_game_object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211D61711C19A71D004ABE67 /* renderable_game_object.cpp */; };
 		211DB5541B82559E0006C507 /* common_ios.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 211DB5531B82559E0006C507 /* common_ios.cpp */; };
@@ -462,6 +466,11 @@
 		21176FD91BC55F5D00890D7C /* game_command.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_command.h; path = sources/game_command.h; sourceTree = "<group>"; };
 		21176FDC1BC5608300890D7C /* game_commands_container.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = game_commands_container.cpp; path = sources/game_commands_container.cpp; sourceTree = "<group>"; };
 		21176FDD1BC5608300890D7C /* game_commands_container.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = game_commands_container.h; path = sources/game_commands_container.h; sourceTree = "<group>"; };
+		211942151C24064800433080 /* ces_camera_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_camera_component.cpp; path = sources/ces_camera_component.cpp; sourceTree = "<group>"; };
+		211942161C24064800433080 /* ces_camera_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_camera_component.h; path = sources/ces_camera_component.h; sourceTree = "<group>"; };
+		211942191C2406A900433080 /* ces_camera_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_camera_system.cpp; path = sources/ces_camera_system.cpp; sourceTree = "<group>"; };
+		2119421A1C2406A900433080 /* ces_camera_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_camera_system.h; path = sources/ces_camera_system.h; sourceTree = "<group>"; };
+		2119421D1C24090E00433080 /* ces_camera_component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = ces_camera_component.hpp; path = sources/ces_camera_component.hpp; sourceTree = "<group>"; };
 		211D61711C19A71D004ABE67 /* renderable_game_object.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = renderable_game_object.cpp; path = sources/renderable_game_object.cpp; sourceTree = "<group>"; };
 		211D61721C19A71D004ABE67 /* renderable_game_object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = renderable_game_object.h; path = sources/renderable_game_object.h; sourceTree = "<group>"; };
 		211DB5531B82559E0006C507 /* common_ios.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = common_ios.cpp; path = sources/common_ios.cpp; sourceTree = "<group>"; };
@@ -1169,6 +1178,8 @@
 				216DF3411BCD0D53008E4B2B /* ces_ocean_system.cpp */,
 				211F55901BE0D67900590B0D /* ces_batch_system.h */,
 				211F558F1BE0D67900590B0D /* ces_batch_system.cpp */,
+				2119421A1C2406A900433080 /* ces_camera_system.h */,
+				211942191C2406A900433080 /* ces_camera_system.cpp */,
 			);
 			name = systems;
 			sourceTree = "<group>";
@@ -1205,6 +1216,9 @@
 				21D1495B1C06EC7C0091CE50 /* ces_bounding_box_debug_component.cpp */,
 				21D149601C06ECA10091CE50 /* ces_tbn_debug_component.h */,
 				21D1495F1C06ECA10091CE50 /* ces_tbn_debug_component.cpp */,
+				211942161C24064800433080 /* ces_camera_component.h */,
+				211942151C24064800433080 /* ces_camera_component.cpp */,
+				2119421D1C24090E00433080 /* ces_camera_component.hpp */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -2180,6 +2194,7 @@
 				21DE32121B8DA1560046EDF8 /* shadow_cast_light.cpp in Sources */,
 				21A8466C1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
 				21229D2A1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
+				211942171C24064800433080 /* ces_camera_component.cpp in Sources */,
 				21A846741B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21D149611C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */,
 				21176FDE1BC5608300890D7C /* game_commands_container.cpp in Sources */,
@@ -2217,6 +2232,7 @@
 				21B404E21B7A0A88003382AB /* b2ChainAndPolygonContact.cpp in Sources */,
 				21613FE31B946B79001562EB /* ces_debug_render_component.cpp in Sources */,
 				21B404DB1B7A0A88003382AB /* b2Body.cpp in Sources */,
+				2119421B1C2406A900433080 /* ces_camera_system.cpp in Sources */,
 				2173D1FA1B7CC0A9002912BE /* material.cpp in Sources */,
 				21D78C291B90AD9700665BB6 /* model3d_animated.cpp in Sources */,
 				21B404DD1B7A0A88003382AB /* b2Fixture.cpp in Sources */,
@@ -2390,6 +2406,7 @@
 				21A8466D1B95BBAB002B95A1 /* ces_particle_emitter_component.cpp in Sources */,
 				21A846751B96D90B002B95A1 /* particle_emitter.cpp in Sources */,
 				21229D2B1BBD08620047CE4F /* instanced_mesh.cpp in Sources */,
+				211942181C24064800433080 /* ces_camera_component.cpp in Sources */,
 				2173D1E21B7CA774002912BE /* mesh.cpp in Sources */,
 				21D149621C06ECA10091CE50 /* ces_tbn_debug_component.cpp in Sources */,
 				21176FDF1BC5608300890D7C /* game_commands_container.cpp in Sources */,
@@ -2427,6 +2444,7 @@
 				21B4062A1B7B9004003382AB /* resource.cpp in Sources */,
 				21613FE71B948256001562EB /* shader_debug_bounding_box.cpp in Sources */,
 				21DE300D1B832DE30046EDF8 /* shader_commiter_glsl.cpp in Sources */,
+				2119421C1C2406A900433080 /* ces_camera_system.cpp in Sources */,
 				21D78C2A1B90AD9700665BB6 /* model3d_animated.cpp in Sources */,
 				21B405491B7A0AFA003382AB /* pugixml.cpp in Sources */,
 				21376BF81B7C8FC100D293C5 /* vbo.cpp in Sources */,

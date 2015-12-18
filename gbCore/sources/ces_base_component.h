@@ -23,18 +23,21 @@ namespace gb
         
     protected:
         
-        e_ces_component_type m_type;
+        i32 m_type;
         ces_base_component();
         
     public:
         
         virtual ~ces_base_component() = default;
-        e_ces_component_type get_type() const;
+        i32 get_type() const;
         
         void set_scene_graph_parameters(const scene_graph_parameters_shared_ptr& scene_graph_parameters);
         scene_graph_parameters_shared_ptr get_scene_graph_parameters() const;
     };
 
+#define unsafe_get_camera_component(entity) static_cast<ces_camera_component*>(entity->get_component(e_ces_component_type_camera).get())
+#define unsafe_get_camera_component_from_this static_cast<ces_camera_component*>(ces_entity::get_component(e_ces_component_type_camera).get())
+    
 #define unsafe_get_render_component(entity) static_cast<ces_render_component*>(entity->get_component(e_ces_component_type_render).get())
 #define unsafe_get_render_component_from_this static_cast<ces_render_component*>(ces_entity::get_component(e_ces_component_type_render).get())
     

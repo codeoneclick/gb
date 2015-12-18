@@ -25,17 +25,17 @@ namespace gb
         
     protected:
         
-        e_ces_system_type m_type;
+        i32 m_type;
         virtual void on_feed_start(f32 deltatime) = 0;
         virtual void on_feed(const std::shared_ptr<ces_entity>& entity, f32 deltatime) = 0;
         virtual void on_feed_end(f32 deltatime) = 0;
         
     public:
         
-        ces_system(void);
-        ~ces_system(void);
+        ces_system();
+        ~ces_system();
         
-        e_ces_system_type get_type(void) const;
+        i32 get_type() const;
     };
 };
 

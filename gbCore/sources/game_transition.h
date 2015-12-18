@@ -28,6 +28,8 @@ namespace gb
         bool m_offscreen;
         ces_systems_feeder_shared_ptr m_system_feeder;
         
+        input_context_shared_ptr m_input_context;
+        
         i32 m_width;
         i32 m_height;
         
@@ -48,8 +50,8 @@ namespace gb
         
         virtual void on_gr_pressed(const glm::ivec2& point, e_input_element input_element) { };
         virtual void on_gr_released(const glm::ivec2& point, e_input_element input_element) { };
-        virtual void on_gr_moved(const glm::ivec2& point) { };
-        virtual void on_gr_dragged(const glm::ivec2& point, e_input_element input_element) { };
+        virtual void on_gr_moved(const glm::ivec2& point, const glm::ivec2& delta) { };
+        virtual void on_gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element) { };
         
         virtual void on_key_up(i32 key) { };
         virtual void on_key_down(i32 key) { };
@@ -70,7 +72,9 @@ namespace gb
         
         i_scene_fabricator_shared_ptr get_fabricator(i32 guid) const;
         i_scene_graph_shared_ptr get_graph(i32 guid) const;
-        ces_system_shared_ptr get_system(e_ces_system_type type);
+        
+        void add_system(const ces_system_shared_ptr& system, i32 type);
+        ces_system_shared_ptr get_system(i32 type);
         
         void add_fabricator(const i_scene_fabricator_shared_ptr& fabricator, i32 guid);
         void remove_fabricator(i32 guid);
@@ -80,6 +84,8 @@ namespace gb
         
         i32 get_width() const;
         i32 get_height() const;
+        
+        input_context_shared_ptr get_input_context() const;
     };
 };
 

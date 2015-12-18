@@ -13,6 +13,16 @@ namespace gb
     extern std::shared_ptr<input_context> create_input_context_ios(const std::shared_ptr<ogl_window>& window);
     extern std::shared_ptr<input_context> create_input_context_osx(const std::shared_ptr<ogl_window>& window);
     
+    glm::ivec2 input_context::get_previous_touch_point() const
+    {
+        return m_previous_touch_point;
+    }
+    
+    void input_context::set_previous_touch_point(const glm::ivec2 point)
+    {
+        m_previous_touch_point = point;
+    }
+    
     std::shared_ptr<input_context> input_context::construct(const std::shared_ptr<ogl_window>& window, e_input_context_api api)
     {
         std::shared_ptr<input_context> context = nullptr;
@@ -68,19 +78,19 @@ namespace gb
         }
     }
     
-    void input_context::gr_moved(const glm::ivec2& point)
+    void input_context::gr_moved(const glm::ivec2& point, const glm::ivec2& delta)
     {
         for(const auto& listener : m_listeners)
         {
-            listener->on_gr_moved(point);
+            listener->on_gr_moved(point, delta);
         }
     }
     
-    void input_context::gr_dragged(const glm::ivec2& point, e_input_element input_element)
+    void input_context::gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element)
     {
         for(const auto& listener : m_listeners)
         {
-            listener->on_gr_dragged(point, input_element);
+            listener->on_gr_dragged(point, delta, input_element);
         }
     }
     

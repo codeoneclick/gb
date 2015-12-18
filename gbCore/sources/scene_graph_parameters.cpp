@@ -11,7 +11,7 @@
 namespace gb
 {
     scene_graph_parameters::scene_graph_parameters() :
-    m_camera(nullptr),
+    m_main_camera(nullptr),
     m_shadow_cast_light(nullptr)
     {
         

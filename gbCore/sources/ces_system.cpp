@@ -10,18 +10,18 @@
 
 namespace gb
 {
-    ces_system::ces_system(void) :
+    ces_system::ces_system() :
     m_type(e_ces_system_type_undefined)
     {
         
     }
     
-    ces_system::~ces_system(void)
+    ces_system::~ces_system()
     {
         
     }
     
-    e_ces_system_type ces_system::get_type(void) const
+    i32 ces_system::get_type() const
     {
         return m_type;
     }

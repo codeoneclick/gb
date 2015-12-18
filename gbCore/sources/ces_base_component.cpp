@@ -17,7 +17,7 @@ namespace gb
         
     }
     
-    e_ces_component_type ces_base_component::get_type() const
+    i32 ces_base_component::get_type() const
     {
         return m_type;
     }

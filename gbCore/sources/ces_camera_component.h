@@ -1,28 +1,52 @@
 //
-//  camera.h
+//  ces_camera_component.h
 //  gbCore
 //
-//  Created by sergey.sergeev on 8/17/15.
-//  Copyright (c) 2015 sergey.sergeev. All rights reserved.
+//  Created by sergey.sergeev on 12/18/15.
+//  Copyright © 2015 sergey.sergeev. All rights reserved.
 //
 
-#ifndef camera_h
-#define camera_h
+#ifndef ces_camera_component_h
+#define ces_camera_component_h
 
-#include "ces_entity.h"
+#include "ces_base_component.h"
 
 namespace gb
 {
-    class camera : public ces_entity
+    class ces_camera_component : public ces_base_component
     {
     private:
         
+        glm::mat4 m_matrix_v;
+        glm::mat4 m_matrix_i_v;
+        glm::mat4 m_matrix_i_vp;
+        glm::mat4 m_matrix_p;
+        glm::mat4 m_matrix_n;
+        
+        glm::vec3 m_position;
+        glm::vec3 m_look_at;
+        glm::vec3 m_up;
+        
+        f32 m_horizontal_angle;
+        f32 m_vertical_angle;
+        
+        f32 m_fov;
+        f32 m_aspect;
+        f32 m_near;
+        f32 m_far;
+        
+        glm::ivec4 m_viewport;
+        
     protected:
+        
+        frustum_shared_ptr m_frustum;
         
     public:
         
-        camera(f32 fov, f32 near, f32 far, glm::ivec4 viewport);
-        ~camera();
+        ces_camera_component();
+        ~ces_camera_component();
+        
+        void update(f32 deltatime);
         
         inline glm::mat4 get_matrix_v() const;
         inline glm::mat4 get_matrix_i_v() const;
@@ -61,8 +85,8 @@ namespace gb
         
         inline frustum_shared_ptr get_frustum() const;
         
-        inline glm::mat4 get_matrix_s(const glm::vec3& position); // spherical
-        inline glm::mat4 get_matrix_c(const glm::vec3& position); // cylindrical
+        glm::mat4 get_matrix_s(const glm::vec3& position); // spherical
+        glm::mat4 get_matrix_c(const glm::vec3& position); // cylindrical
         
         inline glm::vec3 get_direction() const;
         
@@ -72,6 +96,6 @@ namespace gb
     };
 };
 
-#include "camera.hpp"
+#include "ces_camera_component.hpp"
 
 #endif

@@ -11,6 +11,7 @@
 #include "game_loop.h"
 #include "configuration_accessor.h"
 #include "resource_accessor.h"
+#include "ces_camera_system.h"
 #include "ces_render_system.h"
 #include "ces_animation_system.h"
 #include "ces_box2d_system.h"
@@ -37,7 +38,8 @@ namespace gb
     m_offscreen(is_offscreen),
     m_scene(nullptr),
     m_width(0),
-    m_height(0)
+    m_height(0),
+    m_input_context(nullptr)
     {
         m_system_feeder = std::make_shared<ces_systems_feeder>();
     }
@@ -62,6 +64,8 @@ namespace gb
         
         m_configuration_accessor = configurations_accessor;
         m_resource_accessor = resource_accessor;
+        
+        m_input_context = input_context;
         
         std::shared_ptr<ces_render_system> render_system = std::make_shared<ces_render_system>(graphics_context, m_offscreen);
         std::shared_ptr<render_pipeline> render_pipeline = render_system->get_render_pipeline();
@@ -141,12 +145,15 @@ namespace gb
         
         m_system_feeder->add_system(render_system, e_ces_system_type_render);
         
+        std::shared_ptr<ces_camera_system> camera_system = std::make_shared<ces_camera_system>();
+        m_system_feeder->add_system(camera_system, e_ces_system_type_camera);
+        
         std::shared_ptr<ces_animation_system> animation_system = std::make_shared<ces_animation_system>();
         m_system_feeder->add_system(animation_system, e_ces_system_type_animation);
         
         std::shared_ptr<ces_input_system> input_system = std::make_shared<ces_input_system>();
         m_system_feeder->add_system(input_system, e_ces_system_type_input);
-        input_context->add_listener(input_system);
+        m_input_context->add_listener(input_system);
         
         std::shared_ptr<ces_particle_emitter_system> particle_emitter_system = std::make_shared<ces_particle_emitter_system>();
         m_system_feeder->add_system(particle_emitter_system, e_ces_system_type_particle_emitter);
@@ -267,7 +274,12 @@ namespace gb
         return nullptr;
     }
     
-    ces_system_shared_ptr game_transition::get_system(e_ces_system_type type)
+    void game_transition::add_system(const ces_system_shared_ptr& system, i32 type)
+    {
+        m_system_feeder->add_system(system, type);
+    }
+    
+    ces_system_shared_ptr game_transition::get_system(i32 type)
     {
         return m_system_feeder->get_system(type);
     }
@@ -280,5 +292,10 @@ namespace gb
     i32 game_transition::get_height() const
     {
         return m_height;
+    }
+    
+    input_context_shared_ptr game_transition::get_input_context() const
+    {
+        return m_input_context;
     }
 }

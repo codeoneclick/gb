@@ -33,8 +33,7 @@ namespace gb
         scene_graph();
         ~scene_graph();
         
-        void set_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
-        camera_shared_ptr get_camera() const;
+        void set_main_camera(const camera_shared_ptr& camera);
         
         void set_shadow_cast_light(f32 fov, f32 near, f32 far);
         shadow_cast_light_shared_ptr get_shadow_cast_light() const;

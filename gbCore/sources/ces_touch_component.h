@@ -30,6 +30,6 @@ namespace gb
         void enable(e_input_state state, bool value);
         bool is_enabled(e_input_state state);
     };
-}
+};
 
 #endif

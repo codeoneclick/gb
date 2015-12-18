@@ -27,6 +27,8 @@ namespace gb
         
         std::set<game_object_shared_ptr> m_game_objects_container;
         
+        std::set<camera_shared_ptr> m_cameras_container;
+        
         std::set<direction_light_shared_ptr> m_direction_lights_container;
         std::vector<omni_lights_instances_container_shared_ptr> m_omni_lights_containers;
         
@@ -39,6 +41,9 @@ namespace gb
         
         scene_fabricator();
         ~scene_fabricator();
+        
+        camera_shared_ptr create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport);
+        void destroy_camera(const camera_shared_ptr& camera);
         
         direction_light_shared_ptr create_direction_light();
         void destroy_direction_light(const direction_light_shared_ptr& direction_light);

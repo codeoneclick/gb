@@ -28,16 +28,19 @@
 #include "game_command.h"
 #include "game_commands_container.h"
 #include "ces_render_component.h"
-#include "camera_controller.h"
+#include "ces_fly_camera_navigation_component.h"
 
 demo_game_scene::demo_game_scene(const gb::game_transition_shared_ptr& transition) :
 gb::game_scene(transition)
 {
-    scene_graph_inst->set_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
-                                                               game_scene::get_transition()->get_width(),
-                                                               game_scene::get_transition()->get_height()));
-    m_camera = scene_graph_inst->get_camera();
-    m_camera->set_distance_to_look_at(glm::vec3(48.f));
+    m_camera = scene_fabricator_inst->create_camera(45.f, .5f, 1024.f, glm::ivec4(0.f, 0.f,
+                                                                                  game_scene::get_transition()->get_width(),
+                                                                                  game_scene::get_transition()->get_height()));
+    scene_graph_inst->set_main_camera(m_camera);
+    
+    koth::ces_fly_camera_navigation_component_shared_ptr fly_camera_navigation_component = std::make_shared<koth::ces_fly_camera_navigation_component>();
+    m_camera->add_component(fly_camera_navigation_component);
+    fly_camera_navigation_component->set_position(glm::vec3(-8.f, 8.f, 8.f));
     m_camera->set_position(glm::vec3(-8.f, 8.f, 8.f));
     
     scene_graph_inst->set_shadow_cast_light(90.f, .1f, 128.f);
@@ -161,10 +164,8 @@ gb::game_scene(transition)
     m_models["orc_02"]->set_enable_box2d_physics(true, false);
     
     m_character_controller = std::make_shared<koth::character_controller>(m_models["human_01"],
-                                                                          m_camera);
+                                                                          nullptr);
     m_character_controller->set_position(glm::vec3(66.f, 0.f, 66.f));
-    
-    m_camera_controller = std::make_shared<koth::camera_controller>(m_camera);
     
     m_ai_character_controllers["human_02"] = std::make_shared<koth::ai_character_controller>(m_models["human_02"], m_level);
     m_ai_character_controllers["human_02"]->set_position(glm::vec3(66.f, 0.f, 126.f));
@@ -184,6 +185,11 @@ gb::game_scene(transition)
                                                                                                      this,
                                                                                                      std::placeholders::_1));
     m_internal_commands->add_command(koth::on_rotate_state_changed::guid, command);
+    
+    command = std::make_shared<gb::game_command<koth::on_mouse_dragged::t_command>>(std::bind(&demo_game_scene::on_mouse_dragged,
+                                                                                              this,
+                                                                                              std::placeholders::_1));
+    m_internal_commands->add_command(koth::on_mouse_dragged::guid, command);
 }
 
 demo_game_scene::~demo_game_scene()
@@ -324,7 +330,7 @@ void demo_game_scene::update(f32 deltatime)
     m_instanced_omni_lights->set_position(light_position, 3);*/
 }
 
-void demo_game_scene::on_touch(const glm::vec3 &point, const gb::ces_entity_shared_ptr &listener,
+void demo_game_scene::on_touch(const glm::vec3 &point, const glm::vec3& delta, const gb::ces_entity_shared_ptr &listener,
                                gb::e_input_element input_element, gb::e_input_state input_state)
 {
     if(input_state == gb::e_input_state_pressed)
@@ -353,4 +359,9 @@ void demo_game_scene::on_rotate_state_changed(i32 state)
 {
     //m_camera_controller->set_rotate_state(state);
     m_character_controller->set_rotate_state(state);
+}
+
+void demo_game_scene::on_mouse_dragged(const glm::ivec2& delta)
+{
+
 }

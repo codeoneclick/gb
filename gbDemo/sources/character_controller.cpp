@@ -94,7 +94,7 @@ namespace koth
         }
         m_game_object_navigator->update(deltatime);
         
-        if(m_camera)
+        /*if(m_camera)
         {
             f32 fov = glm::mix(45.f, 50.f, m_camera_move_speed);
             m_camera->set_fov(fov);
@@ -112,7 +112,7 @@ namespace koth
             m_camera->set_position(camera_position);
             
             m_camera->set_rotation(glm::radians(m_game_object->get_rotation().y - 90.f));
-        }
+        }*/
     }
     
     void character_controller::set_position(const glm::vec3& position)

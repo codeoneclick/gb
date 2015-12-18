@@ -9,148 +9,163 @@
 #ifndef camera_hpp
 #define camera_hpp
 
+#include "ces_camera_component.h"
+
 namespace gb
 {
     inline glm::mat4 camera::get_matrix_v() const
     {
-        return m_matrix_v;
+        return unsafe_get_camera_component_from_this->get_matrix_v();
     }
     
     inline glm::mat4 camera::get_matrix_i_v() const
     {
-        return m_matrix_i_v;
+        return unsafe_get_camera_component_from_this->get_matrix_i_v();
     }
     
     inline glm::mat4 camera::get_matrix_i_vp() const
     {
-        return m_matrix_i_vp;
+        return unsafe_get_camera_component_from_this->get_matrix_i_vp();
     }
     
     inline glm::mat4 camera::get_matrix_p() const
     {
-        return m_matrix_p;
+        return unsafe_get_camera_component_from_this->get_matrix_p();
     }
     
     inline glm::mat4 camera::get_matrix_n() const
     {
-        return m_matrix_n;
+        return unsafe_get_camera_component_from_this->get_matrix_n();
     }
     
     inline void camera::set_position(const glm::vec3& position)
     {
-        m_position = position;
+        unsafe_get_camera_component_from_this->set_position(position);
     }
     
     inline glm::vec3 camera::get_position() const
     {
-        return m_position;
+        return unsafe_get_camera_component_from_this->get_position();
     }
     
     inline void camera::set_look_at(const glm::vec3& look_at)
     {
-        m_look_at = look_at;
+        unsafe_get_camera_component_from_this->set_look_at(look_at);
     }
     
     inline glm::vec3 camera::get_look_at() const
     {
-        return m_look_at;
+        return unsafe_get_camera_component_from_this->get_look_at();
     }
     
     inline void camera::set_up(const glm::vec3& up)
     {
-        m_up = up;
+        unsafe_get_camera_component_from_this->set_up(up);
     }
     
     inline glm::vec3 camera::get_up() const
     {
-        return m_up;
-    }
-    
-    inline void camera::set_rotation(f32 rotation)
-    {
-        m_rotation = rotation;
-    }
-    
-    inline f32 camera::get_rotation() const
-    {
-        return m_rotation;
-    }
-    
-    inline void camera::set_distance_to_look_at(const glm::vec3& distance)
-    {
-        m_distance = distance;
-    }
-    
-    inline glm::vec3 camera::get_distance_to_look_at() const
-    {
-        return m_distance;
+        return unsafe_get_camera_component_from_this->get_up();
     }
     
     inline void camera::set_fov(f32 fov)
     {
-        m_fov = fov;
-        m_matrix_p = glm::perspective(m_fov, m_aspect, m_near, m_far);
+        unsafe_get_camera_component_from_this->set_fov(fov);
     }
     
     inline f32 camera::get_fov() const
     {
-        return m_fov;
+        return unsafe_get_camera_component_from_this->get_fov();
     }
     
     inline f32 camera::get_aspect() const
     {
-        return m_aspect;
+        return unsafe_get_camera_component_from_this->get_aspect();
     }
     
     inline f32 camera::get_near() const
     {
-        return m_near;
+        return unsafe_get_camera_component_from_this->get_near();
+    }
+    
+    inline void camera::set_near(f32 near)
+    {
+        unsafe_get_camera_component_from_this->set_near(near);
     }
     
     inline f32 camera::get_far() const
     {
-        return m_far;
+        return unsafe_get_camera_component_from_this->get_far();
+    }
+    
+    inline void camera::set_far(f32 far)
+    {
+        unsafe_get_camera_component_from_this->set_far(far);
     }
     
     inline glm::ivec4 camera::get_viewport() const
     {
-        return m_viewport;
+        return unsafe_get_camera_component_from_this->get_viewport();
+    }
+    
+    inline void camera::set_viewport(const glm::ivec4 &viewport)
+    {
+        unsafe_get_camera_component_from_this->set_viewport(viewport);
     }
     
     inline frustum_shared_ptr camera::get_frustum() const
     {
-        return m_frustum;
+        return unsafe_get_camera_component_from_this->get_frustum();
     }
-    
     
     inline f32 camera::get_yaw() const
     {
-        if (m_matrix_v[0][0] == 1.f ||
-            m_matrix_v[0][0] == -1.f)
-        {
-            return atan2f(m_matrix_v[0][2], m_matrix_v[2][3]);
-        }
-        return atan2(-m_matrix_v[2][0], m_matrix_v[0][0]);
+        return unsafe_get_camera_component_from_this->get_yaw();
     }
     
     inline f32 camera::get_pitch() const
     {
-        if (m_matrix_v[0][0] == 1.f ||
-            m_matrix_v[0][0] == -1.f)
-        {
-            return 0.f;
-        }
-        return asin(-m_matrix_v[1][0]);
+        return unsafe_get_camera_component_from_this->get_pitch();
     }
     
     inline f32 camera::get_roll() const
     {
-        if (m_matrix_v[0][0] == 1.f ||
-            m_matrix_v[0][0] == -1.f)
-        {
-            return 0.f;
-        }
-        return atan2(-m_matrix_v[1][2], m_matrix_v[1][1]);
+        return unsafe_get_camera_component_from_this->get_roll();
+    }
+    
+    inline void camera::set_horizontal_angle(f32 angle)
+    {
+        unsafe_get_camera_component_from_this->set_horizontal_angle(angle);
+    }
+    
+    inline f32 camera::get_horizontal_angle() const
+    {
+        return unsafe_get_camera_component_from_this->get_horizontal_angle();
+    }
+    
+    inline void camera::set_vertical_angle(f32 angle)
+    {
+        unsafe_get_camera_component_from_this->set_vertical_angle(angle);
+    }
+    
+    inline f32 camera::get_vertical_angle() const
+    {
+        return unsafe_get_camera_component_from_this->get_vertical_angle();
+    }
+    
+    inline glm::vec3 camera::get_direction() const
+    {
+        return unsafe_get_camera_component_from_this->get_direction();
+    }
+    
+    inline glm::mat4 camera::get_matrix_s(const glm::vec3& position)
+    {
+        return unsafe_get_camera_component_from_this->get_matrix_s(position);
+    }
+    
+    inline glm::mat4 camera::get_matrix_c(const glm::vec3& position)
+    {
+        return unsafe_get_camera_component_from_this->get_matrix_c(position);
     }
 }
 

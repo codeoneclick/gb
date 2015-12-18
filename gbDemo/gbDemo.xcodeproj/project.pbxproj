@@ -305,6 +305,12 @@
 		2192318F1BDA61670080CB39 /* material.human_01.base.outline.xml in Resources */ = {isa = PBXBuildFile; fileRef = 2192318D1BDA61670080CB39 /* material.human_01.base.outline.xml */; };
 		219231911BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 219231901BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml */; };
 		219231921BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 219231901BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml */; };
+		219B5DC01C24162100C7B6EA /* ces_camera_navigation_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DBE1C24162100C7B6EA /* ces_camera_navigation_system.cpp */; };
+		219B5DC11C24162100C7B6EA /* ces_camera_navigation_system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DBE1C24162100C7B6EA /* ces_camera_navigation_system.cpp */; };
+		219B5DC91C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DC71C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp */; };
+		219B5DCA1C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DC71C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp */; };
+		219B5DCD1C241D7700C7B6EA /* ces_camera_navigation_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DCB1C241D7700C7B6EA /* ces_camera_navigation_component.cpp */; };
+		219B5DCE1C241D7700C7B6EA /* ces_camera_navigation_component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 219B5DCB1C241D7700C7B6EA /* ces_camera_navigation_component.cpp */; };
 		21A624251B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624261B987E32002B265A /* gameobject.particle.emitter.smoke.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */; };
 		21A624281B987E5F002B265A /* material.particle.emitter.smoke.base.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */; };
@@ -382,12 +388,8 @@
 		21C2592E1BFCA857004F34C8 /* shader_ocean_n.frag in Resources */ = {isa = PBXBuildFile; fileRef = 21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */; };
 		21C2592F1BFCA85A004F34C8 /* shader_ocean_n.vert in Resources */ = {isa = PBXBuildFile; fileRef = 21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */; };
 		21C259301BFCA960004F34C8 /* material.ocean.normal.xml in Resources */ = {isa = PBXBuildFile; fileRef = 21C259281BFCA691004F34C8 /* material.ocean.normal.xml */; };
-		21D149111C0465240091CE50 /* camera_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1490F1C0465240091CE50 /* camera_navigator.cpp */; };
-		21D149121C0465240091CE50 /* camera_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D1490F1C0465240091CE50 /* camera_navigator.cpp */; };
 		21D149151C0465740091CE50 /* common_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149131C0465740091CE50 /* common_navigator.cpp */; };
 		21D149161C0465740091CE50 /* common_navigator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149131C0465740091CE50 /* common_navigator.cpp */; };
-		21D1494B1C04B2ED0091CE50 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149491C04B2ED0091CE50 /* camera_controller.cpp */; };
-		21D1494C1C04B2EE0091CE50 /* camera_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21D149491C04B2ED0091CE50 /* camera_controller.cpp */; };
 		21D149551C059A850091CE50 /* img_01.png in Resources */ = {isa = PBXBuildFile; fileRef = 21D149521C059A850091CE50 /* img_01.png */; };
 		21D149561C059A850091CE50 /* img_01_d.png in Resources */ = {isa = PBXBuildFile; fileRef = 21D149531C059A850091CE50 /* img_01_d.png */; };
 		21D149571C059A850091CE50 /* img_01_n.png in Resources */ = {isa = PBXBuildFile; fileRef = 21D149541C059A850091CE50 /* img_01_n.png */; };
@@ -772,6 +774,14 @@
 		2192318A1BDA61390080CB39 /* material.human_01.forward.rendering.emissive.outline.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.forward.rendering.emissive.outline.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.forward.rendering.emissive.outline.xml; sourceTree = "<group>"; };
 		2192318D1BDA61670080CB39 /* material.human_01.base.outline.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.base.outline.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.base.outline.xml; sourceTree = "<group>"; };
 		219231901BDA61920080CB39 /* material.human_01.forward.rendering.emissive.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.human_01.forward.rendering.emissive.xml; path = ../gbBundle/Configurations/game_objects/materials/material.human_01.forward.rendering.emissive.xml; sourceTree = "<group>"; };
+		219B5DBE1C24162100C7B6EA /* ces_camera_navigation_system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_camera_navigation_system.cpp; path = sources/ces_camera_navigation_system.cpp; sourceTree = "<group>"; };
+		219B5DBF1C24162100C7B6EA /* ces_camera_navigation_system.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_camera_navigation_system.h; path = sources/ces_camera_navigation_system.h; sourceTree = "<group>"; };
+		219B5DC31C2416B600C7B6EA /* ces_koth_system_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_koth_system_types.h; path = sources/ces_koth_system_types.h; sourceTree = "<group>"; };
+		219B5DC61C241AFE00C7B6EA /* ces_koth_component_types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ces_koth_component_types.h; path = sources/ces_koth_component_types.h; sourceTree = "<group>"; };
+		219B5DC71C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_fly_camera_navigation_component.cpp; path = sources/ces_fly_camera_navigation_component.cpp; sourceTree = "<group>"; };
+		219B5DC81C241D0900C7B6EA /* ces_fly_camera_navigation_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_fly_camera_navigation_component.h; path = sources/ces_fly_camera_navigation_component.h; sourceTree = "<group>"; };
+		219B5DCB1C241D7700C7B6EA /* ces_camera_navigation_component.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ces_camera_navigation_component.cpp; path = sources/ces_camera_navigation_component.cpp; sourceTree = "<group>"; };
+		219B5DCC1C241D7700C7B6EA /* ces_camera_navigation_component.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ces_camera_navigation_component.h; path = sources/ces_camera_navigation_component.h; sourceTree = "<group>"; };
 		21A624241B987E32002B265A /* gameobject.particle.emitter.smoke.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = gameobject.particle.emitter.smoke.xml; path = ../gbBundle/Configurations/game_objects/gameobject.particle.emitter.smoke.xml; sourceTree = "<group>"; };
 		21A624271B987E5F002B265A /* material.particle.emitter.smoke.base.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.particle.emitter.smoke.base.xml; path = ../gbBundle/Configurations/game_objects/materials/material.particle.emitter.smoke.base.xml; sourceTree = "<group>"; };
 		21A7435D1BCC1EBC00674F36 /* ws.technique.forward.rendering.emissive.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ws.technique.forward.rendering.emissive.xml; path = ../gbBundle/Configurations/techniques/ws_techniques/ws.technique.forward.rendering.emissive.xml; sourceTree = "<group>"; };
@@ -818,12 +828,8 @@
 		21C259281BFCA691004F34C8 /* material.ocean.normal.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = material.ocean.normal.xml; path = ../gbBundle/Configurations/game_objects/materials/material.ocean.normal.xml; sourceTree = "<group>"; };
 		21C2592A1BFCA7E2004F34C8 /* shader_ocean_n.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.frag; path = ../gbBundle/Shaders/shader_ocean_n.frag; sourceTree = "<group>"; };
 		21C2592B1BFCA7E2004F34C8 /* shader_ocean_n.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader_ocean_n.vert; path = ../gbBundle/Shaders/shader_ocean_n.vert; sourceTree = "<group>"; };
-		21D1490F1C0465240091CE50 /* camera_navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera_navigator.cpp; path = sources/camera_navigator.cpp; sourceTree = "<group>"; };
-		21D149101C0465240091CE50 /* camera_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera_navigator.h; path = sources/camera_navigator.h; sourceTree = "<group>"; };
 		21D149131C0465740091CE50 /* common_navigator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = common_navigator.cpp; path = sources/common_navigator.cpp; sourceTree = "<group>"; };
 		21D149141C0465740091CE50 /* common_navigator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = common_navigator.h; path = sources/common_navigator.h; sourceTree = "<group>"; };
-		21D149491C04B2ED0091CE50 /* camera_controller.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = camera_controller.cpp; path = sources/camera_controller.cpp; sourceTree = "<group>"; };
-		21D1494A1C04B2ED0091CE50 /* camera_controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = camera_controller.h; path = sources/camera_controller.h; sourceTree = "<group>"; };
 		21D149521C059A850091CE50 /* img_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_01.png; path = ../gbBundle/Textures/img_01.png; sourceTree = "<group>"; };
 		21D149531C059A850091CE50 /* img_01_d.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_01_d.png; path = ../gbBundle/Textures/img_01_d.png; sourceTree = "<group>"; };
 		21D149541C059A850091CE50 /* img_01_n.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = img_01_n.png; path = ../gbBundle/Textures/img_01_n.png; sourceTree = "<group>"; };
@@ -1010,10 +1016,6 @@
 				21176FC51BC516BB00890D7C /* character_controller.cpp */,
 				21D149141C0465740091CE50 /* common_navigator.h */,
 				21D149131C0465740091CE50 /* common_navigator.cpp */,
-				21D149101C0465240091CE50 /* camera_navigator.h */,
-				21D1490F1C0465240091CE50 /* camera_navigator.cpp */,
-				21D1494A1C04B2ED0091CE50 /* camera_controller.h */,
-				21D149491C04B2ED0091CE50 /* camera_controller.cpp */,
 			);
 			name = gameplay;
 			sourceTree = "<group>";
@@ -1240,6 +1242,37 @@
 			name = temp;
 			sourceTree = "<group>";
 		};
+		219B5DC21C24162700C7B6EA /* ces managment */ = {
+			isa = PBXGroup;
+			children = (
+				219B5DC41C241AAE00C7B6EA /* systems */,
+				219B5DC51C241ABD00C7B6EA /* components */,
+			);
+			name = "ces managment";
+			sourceTree = "<group>";
+		};
+		219B5DC41C241AAE00C7B6EA /* systems */ = {
+			isa = PBXGroup;
+			children = (
+				219B5DC31C2416B600C7B6EA /* ces_koth_system_types.h */,
+				219B5DBF1C24162100C7B6EA /* ces_camera_navigation_system.h */,
+				219B5DBE1C24162100C7B6EA /* ces_camera_navigation_system.cpp */,
+			);
+			name = systems;
+			sourceTree = "<group>";
+		};
+		219B5DC51C241ABD00C7B6EA /* components */ = {
+			isa = PBXGroup;
+			children = (
+				219B5DC61C241AFE00C7B6EA /* ces_koth_component_types.h */,
+				219B5DCC1C241D7700C7B6EA /* ces_camera_navigation_component.h */,
+				219B5DCB1C241D7700C7B6EA /* ces_camera_navigation_component.cpp */,
+				219B5DC81C241D0900C7B6EA /* ces_fly_camera_navigation_component.h */,
+				219B5DC71C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp */,
+			);
+			name = components;
+			sourceTree = "<group>";
+		};
 		21A7435F1BCC1F3800674F36 /* forward.rendering.emissive */ = {
 			isa = PBXGroup;
 			children = (
@@ -1291,6 +1324,7 @@
 		21B403351B7A09D6003382AB /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				219B5DC21C24162700C7B6EA /* ces managment */,
 				21176FD11BC55A9100890D7C /* ui_commands */,
 				21176FC01BC5167800890D7C /* gameplay */,
 				21176FBE1BC5095200890D7C /* common */,
@@ -2157,17 +2191,18 @@
 				21176FC71BC516BB00890D7C /* character_controller.cpp in Sources */,
 				21176FC31BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				21B4033D1B7A09FD003382AB /* main.m in Sources */,
+				219B5DC91C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp in Sources */,
 				2102EB441B7D2D6700F20197 /* demo_conroller_osx.cpp in Sources */,
 				2102EB471B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
-				21D149111C0465240091CE50 /* camera_navigator.cpp in Sources */,
 				210A09D91BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
+				219B5DCD1C241D7700C7B6EA /* ces_camera_navigation_component.cpp in Sources */,
 				210A09DD1BD8C702002E86C3 /* ai_move_action.cpp in Sources */,
 				21B4033C1B7A09FD003382AB /* application_delegate_osx.mm in Sources */,
 				2102EB4B1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
+				219B5DC01C24162100C7B6EA /* ces_camera_navigation_system.cpp in Sources */,
 				21D78BEF1B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 				2150586E1BD0E7C70060C308 /* path_node.cpp in Sources */,
 				21D149151C0465740091CE50 /* common_navigator.cpp in Sources */,
-				21D1494B1C04B2ED0091CE50 /* camera_controller.cpp in Sources */,
 				210A09D51BD8C6BE002E86C3 /* ai_action.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2182,17 +2217,18 @@
 				2168C4F51BD8D6A9000F76F1 /* astar.cpp in Sources */,
 				210A09DE1BD8C702002E86C3 /* ai_move_action.cpp in Sources */,
 				21176FC81BC516BB00890D7C /* character_controller.cpp in Sources */,
+				219B5DCA1C241D0900C7B6EA /* ces_fly_camera_navigation_component.cpp in Sources */,
 				21176FC41BC516A200890D7C /* game_object_navigator.cpp in Sources */,
 				2102EB481B7D2D9000F20197 /* demo_game_controller.cpp in Sources */,
-				21D149121C0465240091CE50 /* camera_navigator.cpp in Sources */,
 				2102EB4C1B7D2DAC00F20197 /* demo_game_transition.cpp in Sources */,
+				219B5DCE1C241D7700C7B6EA /* ces_camera_navigation_component.cpp in Sources */,
 				21B4057E1B7A0C58003382AB /* main.m in Sources */,
 				212B18CB1B8232EE00FFDCE7 /* application_delegate_ios.mm in Sources */,
 				212B18CC1B8232F100FFDCE7 /* demo_controller_ios.mm in Sources */,
+				219B5DC11C24162100C7B6EA /* ces_camera_navigation_system.cpp in Sources */,
 				2168C4F61BD8D6AD000F76F1 /* path_node.cpp in Sources */,
 				210A09DA1BD8C6D4002E86C3 /* ai_actions_processor.cpp in Sources */,
 				21D149161C0465740091CE50 /* common_navigator.cpp in Sources */,
-				21D1494C1C04B2EE0091CE50 /* camera_controller.cpp in Sources */,
 				21D78BF01B8F4F6200665BB6 /* demo_game_scene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

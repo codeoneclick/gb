@@ -164,6 +164,9 @@ namespace gb
     class ces_box2d_component;
     typedef std::shared_ptr<ces_box2d_component> ces_box2d_component_shared_ptr;
     
+    class ces_camera_component;
+    typedef std::shared_ptr<ces_camera_component> ces_camera_component_shared_ptr;
+    
     class game_object;
     typedef std::shared_ptr<game_object> game_object_shared_ptr;
     

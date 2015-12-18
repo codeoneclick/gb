@@ -29,7 +29,6 @@ private:
     gb::ocean_shared_ptr m_ocean;
     
     koth::level_shared_ptr m_level;
-    koth::camera_controller_shared_ptr m_camera_controller;
     koth::character_controller_shared_ptr m_character_controller;
     std::map<std::string, koth::ai_character_controller_shared_ptr> m_ai_character_controllers;
     
@@ -40,7 +39,7 @@ protected:
     
     void update(f32 deltatime);
     
-    void on_touch(const glm::vec3& point, const gb::ces_entity_shared_ptr& listener,
+    void on_touch(const glm::vec3& point, const glm::vec3& delta, const gb::ces_entity_shared_ptr& listener,
                   gb::e_input_element input_element, gb::e_input_state input_state);
     
     void on_key_down(i32 key);
@@ -48,6 +47,7 @@ protected:
     
     void on_move_state_changed(i32 state);
     void on_rotate_state_changed(i32 state);
+    void on_mouse_dragged(const glm::ivec2& delta);
     
     void on_use_ability(i32 ability_id);
     

@@ -43,6 +43,12 @@ namespace koth
         typedef std::function<void(i32)> t_command;
         const std::string guid = "on_use_ability";
     };
+    
+    namespace on_mouse_dragged
+    {
+        typedef std::function<void(const glm::ivec2&)> t_command;
+        const std::string guid = "on_mouse_dragged";
+    };
 };
 
 #endif

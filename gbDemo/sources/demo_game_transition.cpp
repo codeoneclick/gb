@@ -13,6 +13,8 @@
 #include "koth_game_commands.h"
 #include "game_commands_container.h"
 #include "game_object_navigator.h"
+#include "ces_koth_system_types.h"
+#include "ces_camera_navigation_system.h"
 
 #define key_w 119
 #define key_a 97
@@ -45,6 +47,10 @@ void demo_game_transition::create_scene()
     m_scene = std::make_shared<demo_game_scene>(shared_from_this());
     std::shared_ptr<gb::ces_input_system> input_system = std::static_pointer_cast<gb::ces_input_system>(game_transition::get_system(gb::e_ces_system_type_input));
     input_system->add_touch_listener(std::static_pointer_cast<demo_game_scene>(m_scene));
+    
+    koth::ces_camera_navigation_system_shared_ptr camera_navigation_system = std::make_shared<koth::ces_camera_navigation_system>();
+    gb::game_transition::get_input_context()->add_listener(camera_navigation_system);
+    gb::game_transition::add_system(camera_navigation_system, koth::e_ces_koth_system_type_camera_navigation);
 }
 
 void demo_game_transition::destroy_scene()
@@ -64,9 +70,10 @@ void demo_game_transition::on_key_up(i32 key)
     demo_game_transition::update_key_state();
 }
 
-void demo_game_transition::on_gr_dragged(const glm::ivec2& point, gb::e_input_element input_element)
+void demo_game_transition::on_gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, gb::e_input_element input_element)
 {
-    
+    gb::game_commands_container_shared_ptr game_commands = m_scene->get_internal_commands();
+    game_commands->execute<koth::on_mouse_dragged::t_command>(koth::on_mouse_dragged::guid, delta);
 }
 
 void demo_game_transition::update_key_state()

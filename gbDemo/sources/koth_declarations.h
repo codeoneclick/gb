@@ -29,9 +29,6 @@ namespace koth
     class character_controller;
     typedef std::shared_ptr<character_controller> character_controller_shared_ptr;
     
-    class camera_controller;
-    typedef std::shared_ptr<camera_controller> camera_controller_shared_ptr;
-    
     class ai_character_controller;
     typedef std::shared_ptr<ai_character_controller> ai_character_controller_shared_ptr;
     
@@ -43,6 +40,15 @@ namespace koth
     
     class ai_move_action;
     typedef std::shared_ptr<ai_move_action> ai_move_action_shared_ptr;
+    
+    class ces_camera_navigation_system;
+    typedef std::shared_ptr<ces_camera_navigation_system> ces_camera_navigation_system_shared_ptr;
+    
+    class ces_camera_navigation_component;
+    typedef std::shared_ptr<ces_camera_navigation_component> ces_camera_navigation_component_shared_ptr;
+    
+    class ces_fly_camera_navigation_component;
+    typedef std::shared_ptr<ces_fly_camera_navigation_component> ces_fly_camera_navigation_component_shared_ptr;
 };
 
 #endif

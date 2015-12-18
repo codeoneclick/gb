@@ -28,7 +28,9 @@
     for (UITouch* touch in touches)
     {
         CGPoint point = [touch locationInView:self];
-        self.m_context->gr_pressed(glm::ivec2(point.x, point.y), gb::e_input_element_mouse_left);
+        glm::ivec2 current_touch_point = glm::ivec2(point.x, point.y);
+        self.m_context->gr_pressed(current_touch_point, gb::e_input_element_mouse_left);
+        self.m_context->set_previous_touch_point(current_touch_point);
     }
 }
 
@@ -38,7 +40,10 @@
     for (UITouch* touch in touches)
     {
         CGPoint point = [touch locationInView:self];
-        self.m_context->gr_dragged(glm::ivec2(point.x, point.y), gb::e_input_element_mouse_left);
+        glm::ivec2 current_touch_point = glm::ivec2(point.x, point.y);
+        glm::ivec2 delta = current_touch_point - self.m_context->get_previous_touch_point();
+        self.m_context->gr_dragged(current_touch_point, delta, gb::e_input_element_mouse_left);
+        self.m_context->set_previous_touch_point(current_touch_point);
     }
 }
 
@@ -48,7 +53,9 @@
     for (UITouch* touch in touches)
     {
         CGPoint point = [touch locationInView:self];
-        self.m_context->gr_released(glm::ivec2(point.x, point.y), gb::e_input_element_mouse_left);
+        glm::ivec2 current_touch_point = glm::ivec2(point.x, point.y);
+        self.m_context->gr_released(current_touch_point, gb::e_input_element_mouse_left);
+        self.m_context->set_previous_touch_point(current_touch_point);
     }
 }
 
@@ -58,7 +65,9 @@
     for (UITouch* touch in touches)
     {
         CGPoint point = [touch locationInView:self];
-        self.m_context->gr_released(glm::ivec2(point.x, point.y), gb::e_input_element_mouse_left);
+        glm::ivec2 current_touch_point = glm::ivec2(point.x, point.y);
+        self.m_context->gr_released(current_touch_point, gb::e_input_element_mouse_left);
+        self.m_context->set_previous_touch_point(current_touch_point);
     }
 }
 

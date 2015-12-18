@@ -8,12 +8,14 @@
 
 #include "ces_entity.h"
 
+#define k_max_components 128
+
 namespace gb
 {
     ces_entity::ces_entity() :
     m_parent(nullptr)
     {
-        m_components.resize(e_ces_component_type_max, nullptr);
+        m_components.resize(k_max_components, nullptr);
         ces_entity::remove_components();
     }
     
@@ -35,7 +37,7 @@ namespace gb
         m_components[component->get_type()] = nullptr;
     }
     
-    void ces_entity::remove_component(e_ces_component_type type)
+    void ces_entity::remove_component(i32 type)
     {
         m_components[type] = nullptr;
     }
@@ -48,13 +50,13 @@ namespace gb
         }
     }
     
-    bool ces_entity::is_component_exist(e_ces_component_type type) const
+    bool ces_entity::is_component_exist(i32 type) const
     {
         assert(type != e_ces_component_type_undefined);
         return m_components[type] != nullptr;
     }
     
-    std::shared_ptr<ces_base_component> ces_entity::get_component(e_ces_component_type type) const
+    std::shared_ptr<ces_base_component> ces_entity::get_component(i32 type) const
     {
         assert(type != e_ces_component_type_undefined);
         return m_components[type];

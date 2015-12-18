@@ -34,24 +34,16 @@ namespace gb
     
     void scene_graph::on_update(f32 deltatime)
     {
-        if(m_camera)
-        {
-            m_camera->update(deltatime);
-        }
         if(m_shadow_cast_light)
         {
             m_shadow_cast_light->update(deltatime);
         }
     }
     
-    void scene_graph::set_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
+    void scene_graph::set_main_camera(const camera_shared_ptr& camera)
     {
-        m_camera = std::make_shared<gb::camera>(fov, near, far, viewport);
-    }
-    
-    camera_shared_ptr scene_graph::get_camera() const
-    {
-        return m_camera;
+        m_main_camera = camera;
+        m_systems_feeder->add_entity(m_main_camera);
     }
     
     void scene_graph::set_shadow_cast_light(f32 fov, f32 near, f32 far)

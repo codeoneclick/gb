@@ -14,6 +14,7 @@ namespace gb
     enum e_ces_component_type
     {
         e_ces_component_type_undefined = 0,
+        e_ces_component_type_camera,
         e_ces_component_type_render,
         e_ces_component_type_geometry,
         e_ces_component_type_transformation,

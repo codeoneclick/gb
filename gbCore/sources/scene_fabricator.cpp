@@ -9,6 +9,7 @@
 #include "scene_fabricator.h"
 #include "resource_accessor.h"
 #include "mesh.h"
+#include "camera.h"
 #include "instanced_mesh.h"
 #include "material.h"
 #include "sequence.h"
@@ -40,6 +41,18 @@ namespace gb
     scene_fabricator::~scene_fabricator()
     {
         
+    }
+    
+    camera_shared_ptr scene_fabricator::create_camera(f32 fov, f32 near, f32 far,const glm::ivec4& viewport)
+    {
+        camera_shared_ptr camera = std::make_shared<gb::camera>(fov, near, far, viewport);
+        m_cameras_container.insert(camera);
+        return camera;
+    }
+    
+    void scene_fabricator::destroy_camera(const camera_shared_ptr& camera)
+    {
+        m_cameras_container.erase(camera);
     }
     
     void scene_fabricator::add_materials(const renderable_game_object_shared_ptr& renderable_game_object,

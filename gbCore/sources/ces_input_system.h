@@ -25,7 +25,7 @@ namespace gb
         touch_listener(void) = default;
         virtual ~touch_listener(void) = default;
         
-        virtual void on_touch(const glm::vec3& point, const ces_entity_shared_ptr& listener,
+        virtual void on_touch(const glm::vec3& point, const glm::vec3& delta, const ces_entity_shared_ptr& listener,
                               e_input_element input_element, e_input_state input_state) = 0;
     };
     
@@ -47,8 +47,8 @@ namespace gb
         
         void on_gr_pressed(const glm::ivec2& point, e_input_element input_element);
         void on_gr_released(const glm::ivec2& point, e_input_element input_element);
-        void on_gr_moved(const glm::ivec2& point);
-        void on_gr_dragged(const glm::ivec2& point, e_input_element input_element);
+        void on_gr_moved(const glm::ivec2& point, const glm::ivec2& delta);
+        void on_gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element);
         
         void on_key_up(i32 key);
         void on_key_down(i32 key);

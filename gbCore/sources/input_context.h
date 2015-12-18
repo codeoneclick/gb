@@ -51,8 +51,8 @@ namespace gb
         
         virtual void on_gr_pressed(const glm::ivec2& point, e_input_element input_element) = 0;
         virtual void on_gr_released(const glm::ivec2& point, e_input_element input_element) = 0;
-        virtual void on_gr_moved(const glm::ivec2& point) = 0;
-        virtual void on_gr_dragged(const glm::ivec2& point, e_input_element input_element) = 0;
+        virtual void on_gr_moved(const glm::ivec2& point, const glm::ivec2& delta) = 0;
+        virtual void on_gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element) = 0;
         
         virtual void on_key_up(i32 key) = 0;
         virtual void on_key_down(i32 key) = 0;
@@ -61,6 +61,8 @@ namespace gb
     class input_context
     {
     private:
+        
+        glm::ivec2 m_previous_touch_point;
         
     protected:
         
@@ -71,12 +73,15 @@ namespace gb
         
         virtual ~input_context();
         
+        glm::ivec2 get_previous_touch_point() const;
+        void set_previous_touch_point(const glm::ivec2 point);
+        
         static std::shared_ptr<input_context> construct(const std::shared_ptr<ogl_window>& window, e_input_context_api api);
         
         void gr_pressed(const glm::ivec2& point, e_input_element input_element);
         void gr_released(const glm::ivec2& point, e_input_element input_element);
-        void gr_moved(const glm::ivec2& point);
-        void gr_dragged(const glm::ivec2& point, e_input_element input_element);
+        void gr_moved(const glm::ivec2& point, const glm::ivec2& delta);
+        void gr_dragged(const glm::ivec2& point, const glm::ivec2& delta, e_input_element input_element);
         
         void key_up(i32 key);
         void key_down(i32 key);

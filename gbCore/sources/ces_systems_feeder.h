@@ -23,23 +23,23 @@ namespace gb
         
     protected:
         
-        std::map<e_ces_system_type, std::shared_ptr<ces_system>> m_systems;
+        std::map<i32, std::shared_ptr<ces_system>> m_systems;
         std::set<std::shared_ptr<ces_entity>> m_entities;
         
         void on_update(f32 deltatime);
         
     public:
         
-        ces_systems_feeder(void);
-        ~ces_systems_feeder(void);
+        ces_systems_feeder();
+        ~ces_systems_feeder();
         
-        void add_system(const std::shared_ptr<ces_system>& system, e_ces_system_type type);
-        void remove_system(e_ces_system_type type);
+        void add_system(const std::shared_ptr<ces_system>& system, i32 type);
+        void remove_system(i32 type);
         
         void add_entity(const std::shared_ptr<ces_entity>& entity);
         void remove_entity(const std::shared_ptr<ces_entity>& entity);
         
-        std::shared_ptr<ces_system> get_system(e_ces_system_type type) const;
+        std::shared_ptr<ces_system> get_system(i32 type) const;
     };
 };
 
