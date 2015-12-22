@@ -10,9 +10,8 @@
 
 namespace koth
 {
-    
     ces_fly_camera_navigation_component::ces_fly_camera_navigation_component() :
-    m_horizontal_angle(M_PI),
+    m_horizontal_angle(0.f),
     m_vertical_angle(0.f)
     {
 

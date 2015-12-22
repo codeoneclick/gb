@@ -45,8 +45,6 @@ namespace gb
         
         static mesh_shared_ptr create_screen_quad();
         
-        static mesh_shared_ptr create_grid(ui32 rows, ui32 columns);
-        
         static instanced_mesh_shared_ptr create_instanced_sphere(f32 radius, i32 rings, i32 sectors);
         
         static mesh_shared_ptr create_box(const glm::vec3& min_bound,
@@ -55,6 +53,12 @@ namespace gb
         static instanced_mesh_shared_ptr create_boxes(const glm::vec3& min_bound,
                                                       const glm::vec3& max_bound,
                                                       i32 num_instances);
+        
+        static mesh_shared_ptr create_grid(i32 rows, i32 columns);
+        
+        static mesh_shared_ptr create_3d_tile_cursor();
+        
+        static mesh_shared_ptr create_model3d_cursor();
     };
 };
 

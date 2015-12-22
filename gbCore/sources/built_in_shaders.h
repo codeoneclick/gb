@@ -33,4 +33,10 @@ extern const char* shader_splatting_rgb565_frag;
 extern const char* shader_splatting_rgba8888_vert;
 extern const char* shader_splatting_rgba8888_frag;
 
+extern const char* shader_wireframe_grid_vert;
+extern const char* shader_wireframe_grid_frag;
+
+extern const char* shader_3d_cursor_vert;
+extern const char* shader_3d_cursor_frag;
+
 #endif

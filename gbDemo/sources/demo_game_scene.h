@@ -24,6 +24,8 @@ private:
     gb::direction_light_shared_ptr m_direction_light;
     std::map<std::string, gb::model3d_animated_shared_ptr> m_models;
     std::map<std::string, gb::omni_light_shared_ptr> m_omni_lights;
+    gb::model3d_static_shared_ptr m_grid;
+    gb::model3d_static_shared_ptr m_3d_tile_cursor;
     //gb::instanced_omni_lights_shared_ptr m_instanced_omni_lights;
     gb::skybox_shared_ptr m_skybox;
     gb::ocean_shared_ptr m_ocean;

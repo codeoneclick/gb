@@ -61,6 +61,9 @@ namespace gb
         
         particle_emitter_shared_ptr create_particle_emitter(const std::string& filename);
         
+        model3d_static_shared_ptr create_grid(i32 rows, i32 columns);
+        model3d_static_shared_ptr create_3d_tile_cursor();
+        
         void destroy_game_object(const game_object_shared_ptr& game_object);
     };
 };

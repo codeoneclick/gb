@@ -26,6 +26,7 @@
 #include "ocean.h"
 #include "mesh_constructor.h"
 #include "texture_configuration.h"
+#include "materials_constructor.h"
 
 namespace gb
 {
@@ -71,46 +72,10 @@ namespace gb
         }
     }
     
-    std::once_flag g_direction_light_shader_created;
     direction_light_shared_ptr scene_fabricator::create_direction_light()
     {
-        static shader_shared_ptr shader = nullptr;
-        static mesh_shared_ptr mesh = nullptr;
-        std::call_once(g_direction_light_shader_created, [this]{
-            shader = shader::construct("direction_light",
-                                       shader_direction_light_vert,
-                                       shader_direction_light_frag);
-            assert(shader);
-            
-            mesh = mesh_constructor::create_screen_quad();
-            assert(mesh);
-        });
-        
-        material_shared_ptr material = std::make_shared<gb::material>();
-        material->set_shader(shader);
-        
-        material->set_culling(false);
-        material->set_culling_mode(GL_BACK);
-        
-        material->set_blending(true);
-        material->set_blending_function_source(GL_ONE);
-        material->set_blending_function_destination(GL_ONE);
-        
-        material->set_stencil_test(false);
-        material->set_stencil_function(GL_ALWAYS);
-        material->set_stencil_function_parameter_1(1);
-        material->set_stencil_function_parameter_2(255);
-        material->set_stencil_mask_parameter(255);
-        
-        material->set_depth_test(false);
-        material->set_depth_mask(false);
-        
-        material->set_clipping(false);
-        material->set_clipping_plane(glm::vec4(0.f));
-        
-        material->set_reflecting(false);
-        material->set_shadowing(false);
-        material->set_debugging(false);
+        mesh_shared_ptr mesh = mesh_constructor::create_screen_quad();;
+        material_shared_ptr material = materials_constructor::create_direction_light_material();
         
         texture_shared_ptr texture_01 = m_resource_accessor->get_texture(k_deffered_rendering_normal_texture);
         assert(texture_01);
@@ -133,44 +98,10 @@ namespace gb
         m_direction_lights_container.erase(direction_light);
     }
     
-    std::once_flag g_instanced_omni_light_shader_created;
     omni_lights_instances_container_shared_ptr scene_fabricator::add_omni_lights_instances_container()
     {
-       omni_lights_instances_container_shared_ptr omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>();
-        
-        static shader_shared_ptr shader = nullptr;
-        std::call_once(g_instanced_omni_light_shader_created, [this] {
-            shader = shader::construct("omni_light",
-                                       shader_instanced_omni_light_vert,
-                                       shader_instanced_omni_light_frag);
-            assert(shader);
-        });
-        
-        material_shared_ptr material = std::make_shared<gb::material>();
-        material->set_shader(shader);
-        
-        material->set_culling(false);
-        material->set_culling_mode(GL_BACK);
-        
-        material->set_blending(true);
-        material->set_blending_function_source(GL_ONE);
-        material->set_blending_function_destination(GL_ONE);
-        
-        material->set_stencil_test(false);
-        material->set_stencil_function(GL_ALWAYS);
-        material->set_stencil_function_parameter_1(1);
-        material->set_stencil_function_parameter_2(255);
-        material->set_stencil_mask_parameter(255);
-        
-        material->set_depth_test(false);
-        material->set_depth_mask(false);
-        
-        material->set_clipping(false);
-        material->set_clipping_plane(glm::vec4(0.f));
-        
-        material->set_reflecting(false);
-        material->set_shadowing(false);
-        material->set_debugging(false);
+        omni_lights_instances_container_shared_ptr omni_lights_instances_container = std::make_shared<gb::omni_lights_instances_container>();
+        material_shared_ptr material = materials_constructor::create_omni_light_material();
         
         texture_shared_ptr texture_01 = m_resource_accessor->get_texture(k_deffered_rendering_normal_texture);
         assert(texture_01);
@@ -365,6 +296,30 @@ namespace gb
             m_game_objects_container.insert(ocean);
         }
         return ocean;
+    }
+    
+    model3d_static_shared_ptr scene_fabricator::create_grid(i32 rows, i32 columns)
+    {
+        material_shared_ptr material = materials_constructor::create_wireframe_grid_material();
+        mesh_shared_ptr mesh = mesh_constructor::create_grid(rows, columns);
+
+        model3d_static_shared_ptr grid = std::make_shared<gb::model3d_static>();;
+        grid->set_mesh(mesh);
+        grid->add_material("ws.base", 0, material);
+        m_game_objects_container.insert(grid);
+        return grid;
+    }
+    
+    model3d_static_shared_ptr scene_fabricator::create_3d_tile_cursor()
+    {
+        material_shared_ptr material = materials_constructor::create_3d_cursor_material();
+        mesh_shared_ptr mesh = mesh_constructor::create_3d_tile_cursor();
+        
+        model3d_static_shared_ptr tile_cursor = std::make_shared<gb::model3d_static>();;
+        tile_cursor->set_mesh(mesh);
+        tile_cursor->add_material("ws.base", 0, material);
+        m_game_objects_container.insert(tile_cursor);
+        return tile_cursor;
     }
     
     void scene_fabricator::destroy_game_object(const game_object_shared_ptr& game_object)

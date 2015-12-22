@@ -38,6 +38,15 @@ gb::game_scene(transition)
                                                                                   game_scene::get_transition()->get_height()));
     scene_graph_inst->set_main_camera(m_camera);
     
+    m_grid = scene_fabricator_inst->create_grid(32, 32);
+    m_grid->set_position(glm::vec3(0.f, 1.f, 0.f));
+    m_grid->set_touches_receives_enabled(true);
+    scene_graph_inst->add_game_object(m_grid);
+    
+    m_3d_tile_cursor = scene_fabricator_inst->create_3d_tile_cursor();
+    m_3d_tile_cursor->set_position(glm::vec3(0.f, 1.f, 0.f));
+    scene_graph_inst->add_game_object(m_3d_tile_cursor);
+    
     koth::ces_fly_camera_navigation_component_shared_ptr fly_camera_navigation_component = std::make_shared<koth::ces_fly_camera_navigation_component>();
     m_camera->add_component(fly_camera_navigation_component);
     fly_camera_navigation_component->set_position(glm::vec3(-8.f, 8.f, 8.f));
@@ -336,6 +345,7 @@ void demo_game_scene::on_touch(const glm::vec3 &point, const glm::vec3& delta, c
     if(input_state == gb::e_input_state_pressed)
     {
         std::cout<<"on_touch"<<std::endl;
+        m_3d_tile_cursor->set_position(glm::vec3(point.x, 1.f, point.z));
     }
 }
 
